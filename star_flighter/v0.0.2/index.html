@@ -99,6 +99,7 @@
       playerSpeed: 5,
       playerLives: 3,
       playerMaxLives: 5,
+      playerMaxWeaponLevel: 5,
       playerRadius: 17,
       bulletSpeed: 8,
       playerShootInterval: 180,
@@ -139,11 +140,20 @@
     const ASSET_PATHS = {
       background: "images/space-background.png",
       player: "images/player.png",
+      player1: "images/player-level-1.png",
+      player2: "images/player-level-2.png",
+      player3: "images/player-level-3.png",
+      player4: "images/player-level-4.png",
+      player5: "images/player-level-5.png",
       normal: "images/enemy-normal.png",
       fast: "images/enemy-fast.png",
       heavy: "images/enemy-heavy.png",
       elite: "images/enemy-elite.png",
-      boss: "images/boss.png"
+      boss: "images/boss.png",
+      boss1: "images/boss-1.png",
+      boss2: "images/boss-2.png",
+      boss3: "images/boss-3.png",
+      boss4: "images/boss-4.png"
     };
 
     const assets = {};
@@ -374,7 +384,7 @@
       shoot(time) {
         if (time - this.lastShot < CONFIG.playerShootInterval) return;
         this.lastShot = time;
-        const level = clamp(this.weaponLevel, 1, 4);
+        const level = clamp(this.weaponLevel, 1, CONFIG.playerMaxWeaponLevel);
         const shots = [];
 
         if (level === 1) {
@@ -386,12 +396,20 @@
           shots.push({ ox: 0, vx: 0, vy: -CONFIG.bulletSpeed });
           shots.push({ ox: -12, vx: -1.1, vy: -CONFIG.bulletSpeed + 0.25 });
           shots.push({ ox: 12, vx: 1.1, vy: -CONFIG.bulletSpeed + 0.25 });
-        } else {
+        } else if (level === 4) {
           shots.push({ ox: 0, vx: 0, vy: -CONFIG.bulletSpeed });
           shots.push({ ox: -10, vx: -1.05, vy: -CONFIG.bulletSpeed + 0.2 });
           shots.push({ ox: 10, vx: 1.05, vy: -CONFIG.bulletSpeed + 0.2 });
           shots.push({ ox: -16, vx: -2.05, vy: -CONFIG.bulletSpeed + 0.7 });
           shots.push({ ox: 16, vx: 2.05, vy: -CONFIG.bulletSpeed + 0.7 });
+        } else {
+          shots.push({ ox: 0, vx: 0, vy: -CONFIG.bulletSpeed - 0.8 });
+          shots.push({ ox: -9, vx: 0, vy: -CONFIG.bulletSpeed - 0.2 });
+          shots.push({ ox: 9, vx: 0, vy: -CONFIG.bulletSpeed - 0.2 });
+          shots.push({ ox: -17, vx: -1.2, vy: -CONFIG.bulletSpeed + 0.2 });
+          shots.push({ ox: 17, vx: 1.2, vy: -CONFIG.bulletSpeed + 0.2 });
+          shots.push({ ox: -23, vx: -2.2, vy: -CONFIG.bulletSpeed + 0.9 });
+          shots.push({ ox: 23, vx: 2.2, vy: -CONFIG.bulletSpeed + 0.9 });
         }
 
         shots.forEach((shot) => {
@@ -455,7 +473,20 @@
 
         ctx.shadowColor = CONFIG.colors.cyan;
         ctx.shadowBlur = 22;
-        if (drawAsset(ctx, "player", 80, 80)) {
+        const form = clamp(this.weaponLevel, 1, CONFIG.playerMaxWeaponLevel);
+        const formSize = 78 + form * 7;
+        if (drawAsset(ctx, `player${form}`, formSize, formSize) || drawAsset(ctx, "player", 80, 80)) {
+          if (form >= 3) {
+            drawGlowCircle(ctx, -24, 14, 4 + form * 0.5, CONFIG.colors.cyan, 0.55);
+            drawGlowCircle(ctx, 24, 14, 4 + form * 0.5, CONFIG.colors.cyan, 0.55);
+          }
+          if (form >= 5) {
+            ctx.strokeStyle = "rgba(93, 247, 255, 0.38)";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(0, 0, 46 + Math.sin(time / 90) * 2, 0, Math.PI * 2);
+            ctx.stroke();
+          }
           ctx.restore();
           return;
         }
@@ -548,6 +579,18 @@
         this.score = Math.round(base.score * diff.scoreScale);
         this.color = base.color;
         this.accent = base.accent;
+        this.variant = type === "boss" ? (((Math.max(1, game.level) / 5) | 0) - 1 + 4) % 4 + 1 : 0;
+        if (this.type === "boss") {
+          const bossPalettes = [
+            { color: "#ef4444", accent: "#ffb4a8" },
+            { color: "#a855ff", accent: "#ff4fd8" },
+            { color: "#ff9f43", accent: "#ffd166" },
+            { color: "#5df7ff", accent: "#b9fbff" }
+          ];
+          const palette = bossPalettes[this.variant - 1];
+          this.color = palette.color;
+          this.accent = palette.accent;
+        }
         this.dead = false;
         this.hitFlash = 0;
         this.phase = rand(0, Math.PI * 2);
@@ -597,10 +640,15 @@
           this.shootTimer = Math.max(450, 900 - this.game.level * 22);
           const speed = 2.5 + this.game.level * 0.07;
           const hpRatio = this.hp / this.maxHp;
-          this.game.enemyBullets.push(EnemyBullet.aimed(this.x - 28, this.y + 34, this.game.player, speed));
-          this.game.enemyBullets.push(EnemyBullet.aimed(this.x + 28, this.y + 34, this.game.player, speed));
+          const cannonSpread = this.variant === 3 ? 40 : 28;
+          this.game.enemyBullets.push(EnemyBullet.aimed(this.x - cannonSpread, this.y + 34, this.game.player, speed));
+          this.game.enemyBullets.push(EnemyBullet.aimed(this.x + cannonSpread, this.y + 34, this.game.player, speed));
+          if (this.variant === 2 || this.variant === 4) {
+            this.game.enemyBullets.push(new EnemyBullet(this.x, this.y + 46, Math.sin(this.phase) * 1.4, speed + 0.4));
+          }
           if (hpRatio < 0.55) {
-            [-0.7, -0.35, 0, 0.35, 0.7].forEach((angle) => {
+            const angles = this.variant === 3 ? [-0.9, -0.55, -0.2, 0.2, 0.55, 0.9] : [-0.7, -0.35, 0, 0.35, 0.7];
+            angles.forEach((angle) => {
               this.game.enemyBullets.push(new EnemyBullet(this.x, this.y + 46, Math.sin(angle) * speed, Math.cos(angle) * speed));
             });
           }
@@ -645,7 +693,8 @@
           boss: [154, 172]
         }[this.type];
 
-        if (spriteSize && drawAsset(ctx, this.type, spriteSize[0], spriteSize[1], Math.PI)) {
+        const assetKey = this.type === "boss" ? `boss${this.variant || 1}` : this.type;
+        if (spriteSize && (drawAsset(ctx, assetKey, spriteSize[0], spriteSize[1], Math.PI) || drawAsset(ctx, this.type, spriteSize[0], spriteSize[1], Math.PI))) {
           if (this.hitFlash > 0) {
             ctx.globalCompositeOperation = "source-atop";
             ctx.globalAlpha = 0.5;
@@ -797,7 +846,7 @@
 
       apply(player, game) {
         if (this.type === "weapon") {
-          player.weaponLevel = Math.min(4, player.weaponLevel + 1);
+          player.weaponLevel = Math.min(CONFIG.playerMaxWeaponLevel, player.weaponLevel + 1);
           game.floatingTexts.push(new FloatingText(player.x, player.y - 34, "POWER UP!", CONFIG.colors.cyan, 24));
         } else if (this.type === "life") {
           player.lives = Math.min(CONFIG.playerMaxLives, player.lives + 1);
@@ -1293,6 +1342,15 @@
 
       drawBackground(ctx) {
         const background = assets.background;
+        const t = this.frame;
+        const sector = Math.floor(t / 1900) % 4;
+        const sectorColors = [
+          { a: "rgba(93, 247, 255, 0.16)", b: "rgba(168, 85, 255, 0.13)", label: "CYAN NEBULA" },
+          { a: "rgba(255, 79, 216, 0.18)", b: "rgba(255, 209, 102, 0.08)", label: "MAGENTA RIFT" },
+          { a: "rgba(67, 255, 145, 0.11)", b: "rgba(93, 247, 255, 0.12)", label: "AURORA BELT" },
+          { a: "rgba(255, 159, 67, 0.14)", b: "rgba(168, 85, 255, 0.13)", label: "EMBER FIELD" }
+        ];
+        const palette = sectorColors[sector];
         if (background && background.loaded) {
           const scroll = (this.frame * 0.42) % CONFIG.height;
           ctx.drawImage(background.image, 0, scroll - CONFIG.height, CONFIG.width, CONFIG.height);
@@ -1307,6 +1365,38 @@
           ctx.fillStyle = gradient;
           ctx.fillRect(0, 0, CONFIG.width, CONFIG.height);
         }
+
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+        const driftA = Math.sin(t / 220) * 70;
+        const driftB = Math.cos(t / 270) * 64;
+        const nebulaA = ctx.createRadialGradient(60 + driftA, 130 + (t * 0.05) % 220, 18, 60 + driftA, 130 + (t * 0.05) % 220, 250);
+        nebulaA.addColorStop(0, palette.a);
+        nebulaA.addColorStop(0.48, "rgba(255,255,255,0.025)");
+        nebulaA.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = nebulaA;
+        ctx.fillRect(0, 0, CONFIG.width, CONFIG.height);
+
+        const nebulaB = ctx.createRadialGradient(CONFIG.width - 70 + driftB, 530 - (t * 0.035) % 260, 20, CONFIG.width - 70 + driftB, 530 - (t * 0.035) % 260, 280);
+        nebulaB.addColorStop(0, palette.b);
+        nebulaB.addColorStop(0.55, "rgba(255,255,255,0.02)");
+        nebulaB.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = nebulaB;
+        ctx.fillRect(0, 0, CONFIG.width, CONFIG.height);
+        ctx.restore();
+
+        ctx.save();
+        ctx.globalAlpha = 0.13 + Math.sin(t / 300) * 0.04;
+        ctx.strokeStyle = palette.a;
+        ctx.lineWidth = 1;
+        for (let i = 0; i < 7; i++) {
+          const y = ((t * (0.25 + i * 0.02)) + i * 112) % (CONFIG.height + 140) - 70;
+          ctx.beginPath();
+          ctx.moveTo(-40, y);
+          ctx.bezierCurveTo(135, y + Math.sin(t / 90 + i) * 28, 330, y - 34, CONFIG.width + 40, y + 18);
+          ctx.stroke();
+        }
+        ctx.restore();
 
         ctx.save();
         ctx.globalAlpha = background && background.loaded ? 0.13 : 0.2;
