@@ -1,0 +1,646 @@
+你是一名资深 HTML5 游戏开发工程师和小游戏策划师。
+请帮我生成一款完整可运行的 2D 小飞机射击游戏，使用纯前端技术实现。
+请先给出简短实现方案，然后直接生成完整可执行的代码。
+不要省略任何代码，不要用"此处省略"。
+请在当前目录，直接生成代码到 index.html
+
+
+# 一、技术要求
+
+请使用以下技术栈：
+
+1. HTML + CSS + JavaScript
+2. 使用 Canvas 进行游戏渲染
+3. 不依赖后端
+4. 不使用大型游戏引擎
+5. 原生 JavaScript，不使用 React / Vue
+6. 所有代码写在一个 HTML 文件中，方便直接运行
+7. 代码结构清晰，模块化组织，便于后续扩展
+8. 兼容桌面浏览器与移动端
+9. 页面打开后即可游玩，不需要刷新或安装
+
+最终请输出一个完整的 index.html 文件代码。
+
+
+---
+
+# 二、游戏主题
+
+游戏名称：**星际突击队 / Star Fighter**
+
+游戏类型：
+竖版 2D 小飞机射击游戏，类似经典街机飞机大战。
+
+核心体验：
+玩家操控一架战斗机，在宇宙战场中躲避敌机和子弹，持续射击敌人，获得分数，通过道具增强火力，释放大招清场，尽可能存活更久。
+
+
+---
+
+# 三、版本信息与画布
+
+## 版本号
+
+在 CONFIG 中集中维护：
+
+```js
+const CONFIG = {
+  version: "v2.4 Omega",
+  ...
+}
+```
+
+开始界面底部显示版本号和最高分，例如：
+
+```
+v2.4 Omega    High Score 1200
+```
+
+版本号文字不抢主标题视觉层级，放在底部信息区。
+
+## 画布尺寸
+
+- 桌面端默认：480 × 720
+- 居中显示
+- 页面背景为深色渐变（深蓝黑）
+- Canvas 外层有发光边框（青色 + 紫色双重光晕）
+- Canvas 外层叠加 scanline 扫描线 overlay，增强街机感
+
+
+---
+
+# 四、画面风格
+
+整体风格：高完成度科幻街机风
+
+1. 深空背景，带星云、星尘、远景星层
+2. 霓虹蓝、紫色、深空黑为主色调
+3. 玩家战机蓝白金属质感，带发光尾焰
+4. 飞机、敌机、子弹、爆炸、道具均使用 Canvas 几何绘制，支持可选图片素材覆盖
+5. 背景纵向滚动，叠加动态星星和流星效果
+6. UI 清晰，半透明信息面板，文字有轻微发光感
+
+色彩参考（CONFIG.colors）：
+
+```js
+colors: {
+  cyan:   "#5df7ff",
+  blue:   "#4a8cff",
+  violet: "#a855ff",
+  pink:   "#ff4fd8",
+  red:    "#ff4f5f",
+  orange: "#ff9f43",
+  green:  "#43ff91",
+  gold:   "#ffd166",
+  white:  "#f7fbff"
+}
+```
+
+页面 CSS 颜色变量（:root）：
+
+```css
+--cyan:   #5df7ff;
+--blue:   #4a8cff;
+--purple: #a855ff;
+--pink:   #ff4fd8;
+--gold:   #ffd166;
+--dark:   #050714;
+```
+
+
+---
+
+# 五、本地素材
+
+图片素材统一放在 images/ 目录，代码优先加载本地 PNG。
+若图片加载失败，仍保留 Canvas 几何绘制作为后备，保证游戏可运行。
+
+图片路径集中在 ASSET_PATHS 对象中管理：
+
+```js
+const ASSET_PATHS = {
+  background: "images/space-background.png",
+  player:     "images/player.png",
+  player1:    "images/player-level-1.png",
+  player2:    "images/player-level-2.png",
+  player3:    "images/player-level-3.png",
+  player4:    "images/player-level-4.png",
+  player5:    "images/player-level-5.png",
+  normal:     "images/enemy-normal.png",
+  fast:       "images/enemy-fast.png",
+  heavy:      "images/enemy-heavy.png",
+  elite:      "images/enemy-elite.png",
+  boss:       "images/boss.png",
+  boss1:      "images/boss-1.png",
+  boss2:      "images/boss-2.png",
+  boss3:      "images/boss-3.png",
+  boss4:      "images/boss-4.png"
+};
+```
+
+图片绘制规则：
+
+1. 使用 drawAsset(ctx, key, width, height, rotation, alpha) 封装绘制逻辑
+2. 敌机图片素材若朝上，绘制时旋转 Math.PI（180 度），使其朝向玩家方向
+3. 图片大小需与碰撞半径保持一致
+
+
+---
+
+# 六、数值配置（CONFIG）
+
+以下为完整的 CONFIG 参考值，请在代码中保持一致：
+
+```js
+const CONFIG = {
+  version:              "v2.4 Omega",
+  width:                480,
+  height:               720,
+  playerSpeed:          5,
+  playerLives:          3,
+  playerMaxLives:       5,
+  playerMaxWeaponLevel: 5,
+  playerRadius:         17,
+  bulletSpeed:          8,
+  playerShootInterval:  180,      // ms
+  invincibleTime:       1000,     // ms，受伤后无敌时间
+  shieldTime:           5000,     // ms，护盾持续时间
+  ultimateCooldown:     15000,    // ms，大招冷却
+  ultimateDuration:     900,      // ms，大招特效持续
+  enemySpawnInterval:   900,      // ms，初始敌机生成间隔
+  enemyMinSpawnInterval:250,      // ms，最短生成间隔
+  powerDropChance:      0.15,     // 道具掉落概率 15%
+  levelScore:           500,      // 每 500 分升 1 级
+  particleLimit:        420,      // 粒子数量上限
+  touchShootDelay:      160,      // ms，触屏射击延迟
+  difficulties: {
+    easy:   { name: "Easy",   enemyRate: 1.12, enemySpeed: 0.88, enemyHp: 0, scoreScale: 1   },
+    normal: { name: "Normal", enemyRate: 1,    enemySpeed: 1,    enemyHp: 0, scoreScale: 1   },
+    hard:   { name: "Hard",   enemyRate: 0.82, enemySpeed: 1.15, enemyHp: 1, scoreScale: 1.2 }
+  },
+  colors: { ... }  // 如上所示
+};
+```
+
+
+---
+
+# 七、敌机系统
+
+敌机类型配置（ENEMY_TYPES）：
+
+```js
+const ENEMY_TYPES = {
+  normal: { hp: 1,  speed: 2,    score: 10,  radius: 16, color: "#5df7ff", accent: "#ffffff" },
+  fast:   { hp: 1,  speed: 4,    score: 20,  radius: 13, color: "#ff7a3d", accent: "#ffd166" },
+  heavy:  { hp: 4,  speed: 1.2,  score: 50,  radius: 25, color: "#a855ff", accent: "#ff4fd8" },
+  elite:  { hp: 8,  speed: 1.5,  score: 100, radius: 30, color: "#ff4fd8", accent: "#ffd166" },
+  boss:   { hp: 70, speed: 0.72, score: 600, radius: 58, color: "#8b5cf6", accent: "#5df7ff" }
+};
+```
+
+## 各类敌机行为
+
+### 普通敌机（normal）
+- 血量 1，速度 2，分数 10
+- 青色轻型无人机，直线向下移动
+
+### 快速敌机（fast）
+- 血量 1，速度 4，分数 20
+- 橙色高速截击机，会略微左右漂移
+
+### 重型敌机（heavy）
+- 血量 4，速度 1.2，分数 50
+- 紫色装甲舰，受击时有白色闪烁反馈
+
+### 精英敌机（elite）
+- 血量 8，速度 1.5，分数 100
+- 洋红色异形精英机
+- 会向玩家当前位置发射子弹
+- 出现频率较低
+
+### Boss（boss）
+- 血量 70，速度 0.72，分数 600
+- 每 5 个等级出现一次
+- 不会被大招清除
+- 有血条 UI（屏幕上方进度条）
+- Boss 出现时屏幕中央短暂显示 "BOSS INCOMING"
+
+## Boss 多机型循环
+
+Boss 按轮次循环，使用 boss1 ～ boss4 图片素材：
+
+| 轮次 | 机型             | 弹幕风格                   |
+|------|------------------|----------------------------|
+| 1    | 黑红无畏舰        | 双炮锁定，朝玩家方向射击     |
+| 2    | 紫色异星母舰      | 双炮 + 中路能量弹           |
+| 3    | 橙色重炮攻城舰    | 更宽炮口，扇形弹幕           |
+| 4    | 青蓝水晶指挥舰    | 漂移能量弹，弹道略有偏转     |
+
+每种 Boss 有不同的受击和爆炸粒子颜色。
+
+## 难度与关卡影响
+
+- 随等级提升，敌机生成间隔缩短（公式：`enemySpawnInterval * difficulty.enemyRate - (level-1) * 38`）
+- 最短不低于 enemyMinSpawnInterval（250ms）
+- 精英敌机出现概率随等级提升（`clamp(0.05 + level * 0.008, 0.05, 0.2)`）
+- 重型敌机出现概率随等级提升（`clamp(0.13 + level * 0.006, 0.13, 0.28)`）
+- 敌机离开屏幕后自动销毁
+
+
+---
+
+# 八、玩家飞机
+
+玩家飞机位于屏幕下方，初始位置 (240, 638)。
+
+## 属性
+
+- 初始生命：3，最大生命：5
+- 移动速度：5
+- 射击冷却：180ms
+- 碰撞半径：17
+- 武器等级：1 ～ 5，随道具提升
+
+## 键盘控制
+
+| 按键             | 功能                  |
+|------------------|-----------------------|
+| W / ↑            | 向上移动              |
+| S / ↓            | 向下移动              |
+| A / ←            | 向左移动              |
+| D / →            | 向右移动              |
+| Space（按住）    | 连续射击              |
+| P                | 暂停 / 继续           |
+| E 或 X           | 释放大招（欧米伽脉冲）|
+| R                | 游戏结束后重新开始    |
+| Enter            | 开始界面开始游戏      |
+| ← / →（开始界面）| 切换难度              |
+
+## 移动端触摸控制
+
+- 触摸画布并拖动控制飞机移动
+- 触摸时自动连续射击
+- 屏幕底部叠加 HTML 按钮（不在 Canvas 内）：
+  - PAUSE / RESUME 按钮（暂停/继续，游戏中和暂停中可点击）
+  - BLAST 技能按钮（冷却时显示剩余秒数，就绪时金色高亮）
+- 按钮只在触屏设备或小屏幕显示（@media hover:none / pointer:coarse / max-width:720px）
+- 按钮点击不干扰 Canvas 触摸移动
+
+## 飞机外观与变形
+
+武器等级 1 ～ 5 对应不同外观，跟随 weaponLevel 切换图片素材：
+
+| 等级 | 外观描述              | 图片素材           |
+|------|-----------------------|--------------------|
+| 1    | 轻型基础战机          | player-level-1.png |
+| 2    | 机翼扩展              | player-level-2.png |
+| 3    | 增加侧翼炮            | player-level-3.png |
+| 4    | 高级装甲与多引擎      | player-level-4.png |
+| 5    | 终极战机，能量核心与翼荚 | player-level-5.png |
+
+图片加载失败时用 Canvas 几何绘制（蓝色 / 青色主色，有机翼、机头、尾焰）。
+外观变大时碰撞体不随外观等比变大（保持 radius: 17），避免手感变差。
+
+## 受伤与无敌
+
+- 被敌机或敌方子弹击中后减少生命，武器等级 -1
+- 受伤后有 1000ms 无敌闪烁时间
+- 生命为 0 时游戏结束
+- 受伤时屏幕轻微红色闪烁，并产生爆炸粒子
+
+## 护盾
+
+- 拾取护盾道具后激活 5 秒护盾
+- 护盾期间玩家不受伤
+- 玩家周围显示半透明金色圆形保护罩，带发光效果
+
+
+---
+
+# 九、玩家子弹
+
+玩家按住 Space 或触屏时连续射击。
+
+子弹向上移动，命中敌人后消失。
+各等级弹道：
+
+| 等级 | 弹道描述                                    |
+|------|---------------------------------------------|
+| 1    | 单发直线子弹                                |
+| 2    | 双发平行子弹（间距 ±8）                     |
+| 3    | 三发子弹：中间直线 + 两侧略微倾斜（±1.05 vx）|
+| 4    | 五发散射：中间 + 两侧 + 外侧两发（±2.05 vx）|
+| 5    | 七发散射：中间 + 6 发扩散，外侧速度更快      |
+
+视觉：蓝白色发光弹，有尾迹，体积不要太大。
+
+
+---
+
+# 十、敌方子弹
+
+精英敌机和 Boss 向玩家当前位置发射子弹。
+
+规则：
+- 子弹从敌机位置发出，朝玩家当前位置方向移动
+- 命中玩家后消失，玩家无敌时不受伤
+- 离开画布后销毁
+- 视觉：红橙色小型发光弹
+- 速度适中，玩家可以躲避，不要过于密集
+
+
+---
+
+# 十一、道具系统
+
+击败敌机后有约 15% 概率掉落道具，从敌机死亡位置缓慢向下移动。
+
+## 道具类型
+
+### 火力升级（weapon）
+- 图标颜色：蓝色（cyan）
+- 武器等级 +1，最高 5 级
+- 效果永久，直到死亡或重开
+- 拾取时显示 "POWER UP!"
+
+### 生命恢复（life）
+- 图标颜色：绿色（green）
+- 生命 +1，最大不超过 5
+- 拾取时显示 "LIFE +1"
+
+### 护盾（shield）
+- 图标颜色：金色（gold）
+- 激活 5 秒护盾
+- 拾取时显示 "SHIELD!"
+
+道具视觉：旋转几何图形或发光圆环，离开屏幕后销毁。
+
+
+---
+
+# 十二、大招技能：欧米伽脉冲（Omega Blast）
+
+## 触发方式
+
+- 桌面端：按 E 或 X 释放
+- 移动端：点击 BLAST 按钮
+
+## 效果
+
+1. 清空场上所有敌方子弹
+2. 清空所有非 Boss 小兵（Boss 不被清除，保持 Boss 战挑战性）
+3. 被清掉的小兵仍然给分，显示得分飘字
+4. 释放后进入 15 秒冷却
+5. UI 显示 "Blast Ready" 或剩余冷却秒数
+
+## 特效
+
+1. 从玩家飞船位置向外扩散多层能量环（4 层扩展圆环）
+2. 全屏短暂蓝白能量闪光（径向渐变叠加）
+3. 金色光线从玩家位置向外辐射（10 条等角分布线）
+4. 屏幕震动
+5. 小兵被清除时产生爆炸粒子
+6. 屏幕中央显示 "OMEGA BLAST" 飘字
+7. 特效持续约 900ms（CONFIG.ultimateDuration）
+
+## 移动端按钮状态
+
+- 冷却中：显示剩余秒数，按钮置灰
+- 就绪时：显示 "BLAST"，按钮金色高亮（.skill-ready 样式）
+
+
+---
+
+# 十三、动态背景系统
+
+## 背景图片
+
+使用 images/space-background.png 纵向滚动：
+- 每帧偏移 0.42px
+- 上下拼接两张保证无缝循环
+- 叠加 rgba(1,4,16,0.22) 暗色遮罩，防止背景过亮影响游戏元素识别
+
+## 背景色域切换（星域变化）
+
+每 1900 帧切换一个星域（sector = Math.floor(frame / 1900) % 4），共 4 种：
+
+| 编号 | 名称               | 主色 A                        | 主色 B                          |
+|------|--------------------|-------------------------------|---------------------------------|
+| 0    | CYAN NEBULA        | rgba(93,247,255,0.16)         | rgba(168,85,255,0.13)           |
+| 1    | MAGENTA RIFT       | rgba(255,79,216,0.18)         | rgba(255,209,102,0.08)          |
+| 2    | AURORA BELT        | rgba(67,255,145,0.11)         | rgba(93,247,255,0.12)           |
+| 3    | EMBER FIELD        | rgba(255,159,67,0.14)         | rgba(168,85,255,0.13)           |
+
+## 动态星云层（globalCompositeOperation: screen）
+
+- 双径向渐变雾气，随 sin/cos 漂移（driftA = sin(t/220)*70, driftB = cos(t/270)*64）
+- 纵向缓慢移动（不同频率）
+
+## 流动曲线（贝塞尔线）
+
+- 7 条贝塞尔曲线横穿画布，缓慢向下漂移
+- globalAlpha ≈ 0.13 + sin(t/300)*0.04
+- 颜色跟随当前星域 palette.a
+
+## 空间网格线
+
+- 斜向扫描线（每 64px 一行，逐帧下移）
+- 颜色 CONFIG.colors.violet，低透明度
+
+## 动态星星与流星
+
+- 多层星星，不同速度和亮度
+- 偶尔有流星划过
+
+
+---
+
+# 十四、关卡与难度成长
+
+游戏采用无尽模式，根据分数提升等级：
+
+- 每 500 分提升 1 个等级
+- 升级时屏幕中央短暂显示 "LEVEL UP!" 渐隐文字（1400ms）
+- 等级越高：敌机生成间隔越短、精英 / 重型出现概率提升、Boss 按 5 的倍数等级触发
+- 难度增长平滑，不暴涨
+
+难度选择（开始界面）：
+
+- Easy / Normal / Hard 三档，方向键 ← / → 切换
+- 影响敌机生成速率、敌机速度、血量和分数倍数（Hard 分数 ×1.2）
+
+
+---
+
+# 十五、游戏状态
+
+## 1. 开始界面（start）
+
+显示：
+- 游戏标题（星际突击队 / STAR FIGHTER）
+- 简短背景说明
+- 操作说明（WASD/方向键、Space、P、E 大招）
+- 难度选择（‹ Easy / Normal / Hard ›，闪烁提示方向键切换）
+- 闪烁的 "Press Enter to Start"
+- 版本号 + 最高分（底部）
+- 移动端触摸说明
+
+按 Enter 开始游戏。
+
+## 2. 游戏中（playing）
+
+HUD（顶部半透明信息面板）：
+- Score / Lives（心形图标）/ Level / Weapon 等级
+- Blast Ready 或剩余冷却秒数
+- 护盾剩余时间（有护盾时显示）
+- Combo x{n}（连击数 > 1 时显示）
+- Boss 血条（Boss 存在时显示，屏幕上方进度条）
+
+## 3. 暂停中（paused）
+
+- 半透明遮罩
+- 显示 "PAUSED" + "Press P to Continue"
+- 移动端 PAUSE 按钮变为 "RESUME"
+
+## 4. 游戏结束（gameover）
+
+显示：
+- "GAME OVER"
+- Final Score
+- High Score（从 localStorage 读取，游戏结束后更新）
+- "Press R to Restart"
+
+
+---
+
+# 十六、碰撞检测
+
+使用圆形碰撞（circleHit = distance(a,b) < a.radius + b.radius）：
+
+1. 玩家子弹 vs 敌机
+2. 玩家飞机 vs 敌机
+3. 玩家飞机 vs 敌方子弹
+4. 玩家飞机 vs 道具
+
+碰撞反馈：
+- 子弹击中敌人：小火花粒子
+- 敌机死亡：爆炸粒子扩散 + 得分飘字
+- 玩家受伤：屏幕红色闪烁 + 粒子爆炸
+- 拾取道具：提示飘字（如 "POWER UP!"）
+
+
+---
+
+# 十七、粒子与特效系统
+
+简单粒子系统，每帧更新并绘制，生命周期结束后自动移除，数量上限 420（CONFIG.particleLimit）。
+
+粒子属性：位置、速度（vx/vy）、生命周期、颜色、大小
+
+特效包括：
+1. 敌机爆炸：多粒子向外扩散
+2. 子弹命中火花
+3. 玩家尾焰（每帧在飞机后方生成微粒）
+4. 道具拾取光效
+5. Level Up 渐隐文字（FloatingText 类）
+6. 大招能量环 + 全屏闪光（drawUltimateEffect 方法）
+7. 屏幕震动（对 Canvas translate 施加随机偏移，逐帧衰减）
+
+FloatingText 类：位置、文字、颜色、大小、生命周期，带渐隐效果。
+
+
+---
+
+# 十八、连击系统
+
+- 连续击杀敌机（每次击杀刷新 1800ms 计时器）
+- Combo 计数 > 2 时，得分飘字显示 `+分数 x{combo}`
+- Combo 计数显示在 UI 右上区域
+- 计时器归零后连击重置
+
+
+---
+
+# 十九、音效系统
+
+使用 Web Audio API 生成简单电子音效，封装为 playSound(type) 函数。
+
+首次用户交互后初始化 AudioContext（避免浏览器限制）：
+
+需要音效：
+1. 玩家射击（短促高频）
+2. 敌机爆炸（低频爆炸音）
+3. 玩家受伤（警报音）
+4. 拾取道具（上扬音调）
+5. 游戏开始
+6. 游戏结束（下沉音调）
+
+实现要求：
+- 使用 OscillatorNode + GainNode 生成
+- 音量适中，避免持续噪音
+- 不依赖外部音频文件
+
+
+---
+
+# 二十、代码结构
+
+请按以下结构组织代码（带注释分节）：
+
+```
+1. 常量配置（CONFIG, ENEMY_TYPES, ASSET_PATHS）
+2. 资源加载（assets 对象，图片预加载）
+3. 工具函数（clamp, rand, distance, circleHit, drawGlowCircle, drawCenteredText, drawAsset）
+4. 输入控制（键盘 + 触屏事件）
+5. 音效系统（AudioSystem 或 playSound）
+6. 游戏对象类：
+   - Star / Meteor（背景星星和流星）
+   - Player（玩家飞机）
+   - Bullet（玩家子弹）
+   - Enemy（所有敌机，含 Boss）
+   - EnemyBullet（敌方子弹）
+   - PowerUp（道具）
+   - Particle（粒子）
+   - FloatingText（飘字）
+7. Game 主对象（状态管理、主循环、绘制）
+8. 初始化逻辑
+```
+
+
+---
+
+# 二十一、性能要求
+
+1. 使用 requestAnimationFrame 驱动主循环
+2. 对象离开屏幕后及时从数组移除（filter dead）
+3. 粒子数量上限 420，超出时不再生成
+4. 避免每帧创建过多临时对象
+5. Canvas 绘制逻辑清晰，游戏长时间运行不明显卡顿
+
+
+---
+
+# 二十二、最终输出要求
+
+请直接输出完整的 index.html 代码。
+
+不要只写伪代码。不要省略。
+
+代码必须可以直接保存为 index.html，在浏览器中运行。
+
+请确保：
+
+1. 没有语法错误
+2. 游戏可以正常开始
+3. 玩家可以移动和射击
+4. 敌机生成并移动
+5. 子弹可以击中敌人
+6. 有分数、生命、等级、武器等级显示
+7. 玩家死亡后显示 Game Over 与最高分
+8. 可以重新开始
+9. 大招可以释放、清除小兵（不清除 Boss）并进入冷却
+10. 移动端触摸控制可用，按钮不干扰画布手势
+11. 所有图片素材路径以 images/ 为前缀，图片加载失败时保留 Canvas 几何后备绘制
+12. 版本号 v2.4 Omega 显示在开始界面底部
+13. 代码有适当注释
