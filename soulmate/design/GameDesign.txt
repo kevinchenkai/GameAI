@@ -9,7 +9,7 @@
 4）images/mate00*.jpg 是我女朋友的照片合集，作为素材。每张是三拼图，表情是：开心，生气，撒娇。
 5）可以跟我对话，背后连接的是 DeepSeek-V4-Flash 模型，API 配置为。
     DEEPSEEK_URL = 'https://api.deepseek.com'
-    DEEPSEEK_API_KEY = 'sk-335ca0c131bd48ddabd4c9e0d3002169'
+    DEEPSEEK_API_KEY = ''
     DEEPSEEK_MODEL = 'deepseek-v4-flash'
     只是部署在我本机的程序，没有安全隐患，可以将配置写在 html 或者 js。
 6）游戏背景氛围浪漫，让人心动，以女朋友的表情为主体呈现，游戏背景显示 当前时间，有适当的背景变化。
