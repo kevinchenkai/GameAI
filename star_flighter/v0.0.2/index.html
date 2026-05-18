@@ -79,11 +79,65 @@
       mix-blend-mode: screen;
       opacity: 0.42;
     }
+
+    .mobile-controls {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .touch-button {
+      pointer-events: auto;
+      min-width: 76px;
+      height: 44px;
+      border: 1px solid rgba(93, 247, 255, 0.52);
+      border-radius: 8px;
+      background: rgba(4, 13, 34, 0.76);
+      box-shadow:
+        0 0 16px rgba(93, 247, 255, 0.24),
+        inset 0 0 14px rgba(93, 247, 255, 0.1);
+      color: #f7fbff;
+      font: 800 13px "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+      text-shadow: 0 0 8px rgba(93, 247, 255, 0.72);
+      touch-action: manipulation;
+    }
+
+    .touch-button.skill-ready {
+      border-color: rgba(255, 209, 102, 0.72);
+      color: #ffd166;
+      box-shadow:
+        0 0 18px rgba(255, 209, 102, 0.35),
+        inset 0 0 16px rgba(255, 209, 102, 0.12);
+    }
+
+    .touch-button:disabled {
+      color: rgba(247, 251, 255, 0.5);
+      border-color: rgba(247, 251, 255, 0.2);
+      box-shadow: inset 0 0 10px rgba(247, 251, 255, 0.06);
+    }
+
+    @media (hover: none), (pointer: coarse), (max-width: 720px) {
+      .mobile-controls {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="game-shell" aria-label="Star Fighter canvas game">
     <canvas id="gameCanvas" width="480" height="720"></canvas>
+    <div class="mobile-controls" aria-label="Mobile game controls">
+      <button id="pauseButton" class="touch-button" type="button">PAUSE</button>
+      <button id="ultimateButton" class="touch-button skill-ready" type="button">BLAST</button>
+    </div>
     <div class="scanline"></div>
   </main>
 
@@ -94,6 +148,7 @@
     // 1. 常量配置
     // ============================================================
     const CONFIG = {
+      version: "v2.4 Omega",
       width: 480,
       height: 720,
       playerSpeed: 5,
@@ -105,6 +160,8 @@
       playerShootInterval: 180,
       invincibleTime: 1000,
       shieldTime: 5000,
+      ultimateCooldown: 15000,
+      ultimateDuration: 900,
       enemySpawnInterval: 900,
       enemyMinSpawnInterval: 250,
       powerDropChance: 0.15,
@@ -1035,6 +1092,8 @@
       constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
+        this.pauseButton = document.getElementById("pauseButton");
+        this.ultimateButton = document.getElementById("ultimateButton");
         this.audio = new AudioSystem();
         this.highScore = Number(localStorage.getItem("starFighterHighScore") || 0);
         this.difficultyKeys = ["easy", "normal", "hard"];
@@ -1044,6 +1103,7 @@
         this.meteors = [];
         this.resize();
         this.bindPointer();
+        this.bindControls();
         this.createBackground();
         this.reset();
         this.state = "start";
@@ -1097,6 +1157,34 @@
         });
       }
 
+      bindControls() {
+        const stopTouch = (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.audio.init();
+        };
+
+        if (this.pauseButton) {
+          this.pauseButton.addEventListener("pointerdown", (event) => {
+            stopTouch(event);
+            if (this.state === "playing" || this.state === "paused") this.togglePause();
+          });
+          this.pauseButton.addEventListener("click", (event) => {
+            stopTouch(event);
+          });
+        }
+
+        if (this.ultimateButton) {
+          this.ultimateButton.addEventListener("pointerdown", (event) => {
+            stopTouch(event);
+            this.activateUltimate();
+          });
+          this.ultimateButton.addEventListener("click", (event) => {
+            stopTouch(event);
+          });
+        }
+      }
+
       createBackground() {
         this.stars.length = 0;
         for (let i = 0; i < 85; i++) this.stars.push(new Star(1));
@@ -1122,6 +1210,9 @@
         this.flashTime = 0;
         this.shake = 0;
         this.levelMessageTime = 0;
+        this.ultimateReadyAt = 0;
+        this.ultimateEffectTime = 0;
+        this.ultimatePulseAge = 0;
         this.bossActive = false;
         this.bossLevelSpawned = 0;
       }
@@ -1130,6 +1221,7 @@
         this.audio.init();
         if (key === "enter" && this.state === "start") this.start();
         if (key === "p" && (this.state === "playing" || this.state === "paused")) this.togglePause();
+        if ((key === "e" || key === "x") && this.state === "playing") this.activateUltimate();
         if (key === "r" && this.state === "gameover") this.restart();
         if ((key === "arrowleft" || key === "a") && this.state === "start") this.changeDifficulty(-1);
         if ((key === "arrowright" || key === "d") && this.state === "start") this.changeDifficulty(1);
@@ -1159,6 +1251,57 @@
         this.highScore = Math.max(this.highScore, this.score);
         localStorage.setItem("starFighterHighScore", String(this.highScore));
         this.audio.play("gameover");
+      }
+
+      activateUltimate() {
+        const now = performance.now();
+        if (this.state !== "playing" || now < this.ultimateReadyAt) return false;
+
+        const clearedBullets = this.enemyBullets.length;
+        const clearedEnemies = this.enemies.filter((enemy) => enemy.type !== "boss").length;
+        this.enemyBullets.forEach((bullet) => {
+          this.createHitSpark(bullet.x, bullet.y);
+          bullet.dead = true;
+        });
+
+        for (const enemy of this.enemies) {
+          if (enemy.type === "boss" || enemy.dead) continue;
+          enemy.dead = true;
+          this.score += enemy.score;
+          this.createExplosion(enemy.x, enemy.y, enemy.color, enemy.type === "elite" ? 32 : 22);
+          this.floatingTexts.push(new FloatingText(enemy.x, enemy.y, `+${enemy.score}`, CONFIG.colors.gold, 19));
+        }
+
+        this.ultimateReadyAt = now + CONFIG.ultimateCooldown;
+        this.ultimateEffectTime = CONFIG.ultimateDuration;
+        this.ultimatePulseAge = 0;
+        this.flashTime = Math.max(this.flashTime, 210);
+        this.shake = Math.max(this.shake, 18);
+        this.combo += clearedEnemies;
+        this.comboTimer = 1800;
+        this.floatingTexts.push(new FloatingText(CONFIG.width / 2, CONFIG.height / 2 - 18, "OMEGA BLAST", CONFIG.colors.cyan, 34));
+        this.floatingTexts.push(new FloatingText(CONFIG.width / 2, CONFIG.height / 2 + 22, `CLEARED ${clearedEnemies + clearedBullets}`, CONFIG.colors.gold, 20));
+
+        for (let ring = 0; ring < 4; ring++) {
+          for (let i = 0; i < 34; i++) {
+            const angle = (Math.PI * 2 * i) / 34 + ring * 0.18;
+            const speed = 3.2 + ring * 1.25;
+            this.spawnParticle({
+              x: this.player.x,
+              y: this.player.y,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              life: rand(420, 760),
+              size: rand(1.7, 4.8),
+              color: ring % 2 === 0 ? CONFIG.colors.cyan : CONFIG.colors.gold
+            });
+          }
+        }
+
+        this.audio.play("pickup");
+        this.audio.play("explode");
+        this.checkLevelUp();
+        return true;
       }
 
       spawnParticle(options) {
@@ -1268,6 +1411,8 @@
 
         this.flashTime = Math.max(0, this.flashTime - delta);
         this.shake = Math.max(0, this.shake - delta * 0.035);
+        this.ultimateEffectTime = Math.max(0, this.ultimateEffectTime - delta);
+        this.ultimatePulseAge += delta;
         this.comboTimer = Math.max(0, this.comboTimer - delta);
         if (this.comboTimer <= 0) this.combo = 0;
         this.levelMessageTime = Math.max(0, this.levelMessageTime - delta);
@@ -1414,6 +1559,61 @@
         this.meteors.forEach((meteor) => meteor.draw(ctx));
       }
 
+      drawUltimateEffect(ctx) {
+        if (this.ultimateEffectTime <= 0) return;
+        const progress = 1 - this.ultimateEffectTime / CONFIG.ultimateDuration;
+        const alpha = clamp(this.ultimateEffectTime / CONFIG.ultimateDuration, 0, 1);
+        const originX = this.player.x;
+        const originY = this.player.y;
+
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+        ctx.strokeStyle = `rgba(93, 247, 255, ${0.72 * alpha})`;
+        ctx.lineWidth = 3;
+        ctx.shadowColor = CONFIG.colors.cyan;
+        ctx.shadowBlur = 28;
+        for (let i = 0; i < 4; i++) {
+          const radius = 42 + progress * (230 + i * 76) - i * 28;
+          if (radius <= 0) continue;
+          ctx.beginPath();
+          ctx.arc(originX, originY, radius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        const beam = ctx.createRadialGradient(originX, originY, 10, originX, originY, 320);
+        beam.addColorStop(0, `rgba(255,255,255,${0.25 * alpha})`);
+        beam.addColorStop(0.2, `rgba(93,247,255,${0.18 * alpha})`);
+        beam.addColorStop(1, "rgba(93,247,255,0)");
+        ctx.fillStyle = beam;
+        ctx.fillRect(0, 0, CONFIG.width, CONFIG.height);
+
+        ctx.strokeStyle = `rgba(255, 209, 102, ${0.45 * alpha})`;
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 10; i++) {
+          const angle = this.ultimatePulseAge / 180 + i * (Math.PI * 2 / 10);
+          ctx.beginPath();
+          ctx.moveTo(originX, originY);
+          ctx.lineTo(originX + Math.cos(angle) * CONFIG.width, originY + Math.sin(angle) * CONFIG.width);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      syncControlButtons() {
+        const now = performance.now();
+        if (this.pauseButton) {
+          this.pauseButton.disabled = !(this.state === "playing" || this.state === "paused");
+          this.pauseButton.textContent = this.state === "paused" ? "RESUME" : "PAUSE";
+        }
+
+        if (this.ultimateButton) {
+          const cooldownLeft = Math.max(0, this.ultimateReadyAt - now);
+          this.ultimateButton.disabled = this.state !== "playing" || cooldownLeft > 0;
+          this.ultimateButton.textContent = cooldownLeft > 0 ? `${Math.ceil(cooldownLeft / 1000)}s` : "BLAST";
+          this.ultimateButton.classList.toggle("skill-ready", this.state === "playing" && cooldownLeft <= 0);
+        }
+      }
+
       drawUI(ctx) {
         ctx.save();
         ctx.shadowColor = CONFIG.colors.cyan;
@@ -1434,6 +1634,11 @@
         ctx.fillText(`Lives ${"♥".repeat(Math.max(0, this.player.lives))}`, 143, 35);
         ctx.fillText(`Level ${this.level}`, 250, 35);
         ctx.fillText(`Weapon ${this.player.weaponLevel}`, 334, 35);
+
+        const ultimateLeft = Math.max(0, this.ultimateReadyAt - performance.now());
+        ctx.textAlign = "left";
+        ctx.fillStyle = ultimateLeft > 0 ? "rgba(247,251,255,0.62)" : CONFIG.colors.gold;
+        ctx.fillText(`Blast ${ultimateLeft > 0 ? Math.ceil(ultimateLeft / 1000) + "s" : "Ready"}`, 24, 70);
 
         const shieldLeft = Math.max(0, this.player.shieldUntil - performance.now());
         if (shieldLeft > 0) {
@@ -1478,8 +1683,8 @@
         ctx.shadowColor = CONFIG.colors.violet;
         ctx.shadowBlur = 10;
         ctx.fillText("深空航道遭遇敌方舰队，突击队已进入战斗空域。", CONFIG.width / 2, 246);
-        ctx.fillText("WASD / 方向键移动    Space 射击    P 暂停", CONFIG.width / 2, 304);
-        ctx.fillText("击毁敌机、拾取道具、挑战更高等级与 Boss。", CONFIG.width / 2, 334);
+        ctx.fillText("WASD / 方向键移动    Space 射击    P 暂停    E 大招", CONFIG.width / 2, 304);
+        ctx.fillText("击毁敌机、拾取道具、释放欧米伽脉冲清场。", CONFIG.width / 2, 334);
 
         ctx.fillStyle = "rgba(3, 10, 28, 0.62)";
         ctx.strokeStyle = "rgba(93, 247, 255, 0.42)";
@@ -1500,7 +1705,7 @@
 
         ctx.font = "700 14px Trebuchet MS, Segoe UI, Arial";
         ctx.fillStyle = "rgba(247,251,255,0.65)";
-        ctx.fillText(`High Score ${this.highScore}`, CONFIG.width / 2, 584);
+        ctx.fillText(`${CONFIG.version}    High Score ${this.highScore}`, CONFIG.width / 2, 584);
         ctx.fillText("移动端可触摸拖动并自动射击", CONFIG.width / 2, 615);
         ctx.restore();
       }
@@ -1550,10 +1755,12 @@
         this.enemies.forEach((enemy) => enemy.draw(ctx));
         this.enemyBullets.forEach((bullet) => bullet.draw(ctx));
         this.particles.forEach((particle) => particle.draw(ctx));
+        this.drawUltimateEffect(ctx);
         if (this.state !== "start") this.player.draw(ctx, performance.now());
         this.floatingTexts.forEach((text) => text.draw(ctx));
         this.drawUI(ctx);
         this.drawLevelMessage(ctx);
+        this.syncControlButtons();
 
         if (this.flashTime > 0) {
           ctx.fillStyle = `rgba(255, 79, 95, ${0.18 * (this.flashTime / 160)})`;
