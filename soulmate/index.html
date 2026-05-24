@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f6b4bf">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="description" content="一个只属于我们的手机陪伴小游戏，打开就能和她说说话。">
+    <meta itemprop="name" content="心动陪伴">
+    <meta itemprop="description" content="一个只属于我们的手机陪伴小游戏，打开就能和她说说话。">
+    <meta itemprop="image" content="images/share-cover.png?v=20260525-002">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="心动陪伴">
+    <meta property="og:description" content="一个只属于我们的手机陪伴小游戏，打开就能和她说说话。">
+    <meta property="og:image" content="images/share-cover.png?v=20260525-002">
+    <meta property="og:image:width" content="724">
+    <meta property="og:image:height" content="724">
+    <meta property="og:site_name" content="心动陪伴">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="心动陪伴">
+    <meta name="twitter:description" content="一个只属于我们的手机陪伴小游戏，打开就能和她说说话。">
+    <meta name="twitter:image" content="images/share-cover.png?v=20260525-002">
+    <link rel="image_src" href="images/share-cover.png?v=20260525-002">
+    <link rel="apple-touch-icon" href="images/share-cover.png?v=20260525-002">
+    <title>心动陪伴</title>
+    <link rel="stylesheet" href="styles.css?v=20260525-002">
+  </head>
+  <body data-phase="night" data-mood="happy">
+    <main id="startScreen" class="screen start-screen" aria-label="开始界面">
+      <div class="ambient-clock" id="startClock">--:--</div>
+      <section class="start-content">
+        <p class="start-kicker">Only us</p>
+        <h1>心动陪伴</h1>
+        <p class="start-desc">一个只属于我们的手机陪伴小游戏</p>
+        <p id="startVersion" class="version">v0.3.4</p>
+        <button class="primary-button" id="startButton" type="button">开始陪伴</button>
+      </section>
+    </main>
+
+    <main id="gameScreen" class="screen game-screen is-hidden" aria-label="心动陪伴游戏">
+      <header class="top-bar">
+        <div class="time-block">
+          <time id="clockText" class="clock-text">--:--:--</time>
+          <div id="dateText" class="date-text">今天</div>
+        </div>
+        <div class="top-actions">
+          <button id="musicButton" class="icon-button music-button" type="button" aria-label="静音背景音乐" aria-pressed="false">
+            <img src="images/music-toggle.svg?v=20260525-002" alt="">
+          </button>
+          <button id="aboutButton" class="small-button" type="button" aria-label="查看版本">v0.3.4</button>
+        </div>
+      </header>
+
+      <section class="companion-stage" aria-label="女朋友照片">
+        <button id="photoButton" class="photo-card" type="button" aria-label="轻点照片互动">
+          <img id="mateImage" class="mate-strip" src="images/mate001.jpg" alt="她的表情照片">
+          <span id="tapNote" class="tap-note">点点我</span>
+        </button>
+      </section>
+
+      <section class="status-row" aria-label="陪伴状态">
+        <div>
+          <span class="status-label">今日心动值</span>
+          <strong id="heartScore">0</strong>
+          <span id="intimacyLabel" class="intimacy-label">陪伴期</span>
+        </div>
+        <p id="moodText">她在陪你</p>
+      </section>
+
+      <section class="chat-panel" aria-label="聊天记录">
+        <div id="messages" class="messages" aria-live="polite"></div>
+      </section>
+
+      <form id="chatForm" class="input-bar" autocomplete="off">
+        <label class="sr-only" for="messageInput">和她说点什么</label>
+        <input id="messageInput" name="message" type="text" inputmode="text" enterkeyhint="send" maxlength="160" placeholder="和她说点什么...">
+        <button id="sendButton" class="send-button" type="submit">发送</button>
+      </form>
+    </main>
+
+    <div id="stageCeremony" class="stage-ceremony is-hidden" aria-live="polite">
+      <div class="stage-card">
+        <span class="stage-kicker">关系升温</span>
+        <strong id="stageTitle">进入 心动期</strong>
+        <span id="stageSubtitle">她离你更近了一点</span>
+      </div>
+    </div>
+
+    <audio id="bgmAudio" src="images/bgm.mp3?v=20260525-002" loop preload="auto"></audio>
+    <script src="app.js?v=20260525-002"></script>
+  </body>
+</html>

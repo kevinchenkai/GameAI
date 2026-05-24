@@ -1,0 +1,14 @@
+{
+  "name": "wulin-tavern-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Wulin Tavern V1 Node.js SSE API.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "PORT=3002 node --watch src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

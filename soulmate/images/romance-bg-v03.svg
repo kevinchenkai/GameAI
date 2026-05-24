@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600" preserveAspectRatio="none">
+  <defs>
+    <radialGradient id="pearl" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff8fb" stop-opacity=".72"/>
+      <stop offset=".58" stop-color="#ffd4e2" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ffd4e2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ribbon" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff" stop-opacity=".28"/>
+      <stop offset=".52" stop-color="#ffd0e0" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#b8f0ff" stop-opacity=".12"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <path d="M-90 338C104 210 250 325 418 223C574 128 718 116 1002 202" fill="none" stroke="url(#ribbon)" stroke-width="88" stroke-linecap="round" filter="url(#blur)" opacity=".72"/>
+  <path d="M-80 1190C145 1018 310 1138 478 1004C620 890 754 902 994 970" fill="none" stroke="url(#ribbon)" stroke-width="80" stroke-linecap="round" filter="url(#blur)" opacity=".5"/>
+  <circle cx="148" cy="188" r="132" fill="url(#pearl)" opacity=".66"/>
+  <circle cx="772" cy="414" r="118" fill="url(#pearl)" opacity=".46"/>
+  <circle cx="144" cy="1118" r="150" fill="url(#pearl)" opacity=".34"/>
+  <circle cx="734" cy="1342" r="176" fill="url(#pearl)" opacity=".42"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" opacity=".28">
+    <path d="M110 620c36-42 74-42 112 0 38-42 76-42 114 0"/>
+    <path d="M570 780c26-30 54-30 82 0 28-30 56-30 84 0"/>
+    <path d="M252 1396c22-25 45-25 68 0 23-25 46-25 69 0"/>
+  </g>
+</svg>

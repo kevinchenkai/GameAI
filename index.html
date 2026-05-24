@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Codex Games: Wulin Tavern, Soulmate, and Star Fighter, three original AI Native games crafted with Codex." />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; block-all-mixed-content" />
+  <link rel="icon" href="data:," />
+  <title>Codex Games | AI Native Game Studio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050713;
+      --ink: #f6fbff;
+      --muted: #aab8ca;
+      --soft: #76869d;
+      --line: rgba(186, 217, 255, 0.2);
+      --line-strong: rgba(127, 226, 255, 0.54);
+      --glass: rgba(8, 16, 34, 0.68);
+      --glass-strong: rgba(12, 23, 46, 0.86);
+      --cyan: #64efff;
+      --blue: #4a8cff;
+      --violet: #a855ff;
+      --pink: #ff6faf;
+      --gold: #ffd166;
+      --mint: #72f0c5;
+      --max: 1180px;
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255, 111, 175, 0.16), transparent 28%),
+        radial-gradient(circle at 84% 14%, rgba(100, 239, 255, 0.16), transparent 26%),
+        radial-gradient(circle at 60% 82%, rgba(168, 85, 255, 0.14), transparent 34%),
+        linear-gradient(135deg, #060713 0%, #08142d 46%, #04050e 100%);
+      color: var(--ink);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(100, 239, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), transparent 74%);
+    }
+
+    body::after {
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.028) 0,
+          rgba(255, 255, 255, 0.028) 1px,
+          transparent 1px,
+          transparent 6px
+        );
+      opacity: 0.32;
+      mix-blend-mode: screen;
+    }
+
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .ambient span {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 0 14px rgba(100, 239, 255, 0.72);
+      animation: drift 13s linear infinite;
+    }
+
+    .ambient span:nth-child(1) { left: 10%; top: 24%; animation-delay: -2s; }
+    .ambient span:nth-child(2) { left: 28%; top: 72%; animation-delay: -7s; }
+    .ambient span:nth-child(3) { left: 46%; top: 18%; animation-delay: -4s; }
+    .ambient span:nth-child(4) { left: 64%; top: 58%; animation-delay: -9s; }
+    .ambient span:nth-child(5) { left: 82%; top: 32%; animation-delay: -5s; }
+    .ambient span:nth-child(6) { left: 91%; top: 76%; animation-delay: -11s; }
+
+    @keyframes drift {
+      0% { transform: translate3d(0, 28px, 0); opacity: 0; }
+      18% { opacity: 0.9; }
+      100% { transform: translate3d(58px, -80px, 0); opacity: 0; }
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max), calc(100% - 36px));
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 max(26px, env(safe-area-inset-bottom));
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 24px rgba(100, 239, 255, 0.26);
+      flex: 0 0 auto;
+    }
+
+    .mark::before,
+    .mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .mark::before {
+      width: 10px;
+      height: 10px;
+      background: var(--cyan);
+      box-shadow: 0 0 18px var(--cyan);
+    }
+
+    .mark::after {
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgba(168, 188, 255, 0.58);
+      transform: rotateX(68deg) rotateZ(-24deg);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 3px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .lang-toggle {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(5, 10, 22, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      flex: 0 0 auto;
+    }
+
+    .lang-toggle button {
+      min-width: 46px;
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .lang-toggle button[aria-pressed="true"] {
+      color: #07101f;
+      background: linear-gradient(135deg, var(--cyan), #d7fbff);
+      box-shadow: 0 0 18px rgba(100, 239, 255, 0.32);
+    }
+
+    .hero {
+      min-height: auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 34px;
+      align-items: start;
+      padding: 30px 0 66px;
+    }
+
+    .hero-copy {
+      max-width: 1040px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--cyan);
+      font: 760 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 18px var(--cyan);
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0 auto;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.96;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .gradient-text {
+      display: block;
+      color: transparent;
+      background: linear-gradient(110deg, #ffffff 5%, #c8f8ff 34%, #ffd3e5 66%, #c8bdff 96%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--ink);
+      font-weight: 780;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .button.primary {
+      border-color: rgba(100, 239, 255, 0.55);
+      background: linear-gradient(135deg, rgba(100, 239, 255, 0.95), rgba(74, 140, 255, 0.95));
+      color: #06101d;
+      box-shadow: 0 18px 38px rgba(74, 140, 255, 0.24);
+    }
+
+    .showcase {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      perspective: 1200px;
+    }
+
+    .game-card {
+      position: relative;
+      min-height: 540px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--glass);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transform: rotateX(0deg) rotateY(0deg);
+      transition: transform 220ms ease, border-color 220ms ease;
+      isolation: isolate;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+    }
+
+    .game-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.92;
+    }
+
+    .game-card.tavern::before {
+      background:
+        linear-gradient(180deg, rgba(7, 8, 15, 0.12), rgba(9, 12, 22, 0.92) 58%),
+        radial-gradient(circle at 22% 24%, rgba(255, 209, 102, 0.26), transparent 30%),
+        url("tavern/images/promo/wulin-tavern-homepage.jpg") center / cover;
+    }
+
+    .game-card.soul::before {
+      background:
+        linear-gradient(180deg, rgba(6, 9, 20, 0.18), rgba(6, 9, 20, 0.9) 58%),
+        radial-gradient(circle at 22% 22%, rgba(255, 111, 175, 0.32), transparent 28%),
+        url("soulmate/images/share-cover.png") center / cover;
+    }
+
+    .game-card.star::before {
+      background:
+        linear-gradient(180deg, rgba(3, 6, 17, 0.16), rgba(4, 8, 18, 0.9) 58%),
+        radial-gradient(circle at 24% 26%, rgba(100, 239, 255, 0.28), transparent 34%),
+        url("star_fighter/images/space-background.png") center / cover;
+    }
+
+    .game-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+      min-height: 540px;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      gap: 18px;
+      align-items: start;
+      align-content: start;
+      padding: 24px;
+    }
+
+    .card-inner > div:last-child {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 216px;
+      display: grid;
+      place-items: center;
+    }
+
+    .portrait {
+      width: min(100%, 250px);
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--radius);
+      box-shadow: 0 26px 46px rgba(255, 111, 175, 0.18), 0 0 34px rgba(255, 111, 175, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .portrait img {
+      display: block;
+      width: 300%;
+      height: 100%;
+      object-fit: cover;
+      transform: translateX(-66.666%);
+    }
+
+    .tavern-promo {
+      width: min(100%, 320px);
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 1px solid rgba(255, 238, 189, 0.34);
+      border-radius: var(--radius);
+      box-shadow: 0 26px 46px rgba(255, 209, 102, 0.15), 0 0 34px rgba(255, 111, 80, 0.14);
+      background: rgba(255, 255, 255, 0.08);
+      transform: rotate(-1.5deg);
+    }
+
+    .tavern-promo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ship-stage {
+      position: relative;
+      width: min(100%, 250px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .ship-stage::before {
+      content: "";
+      position: absolute;
+      inset: 14%;
+      border: 1px solid rgba(100, 239, 255, 0.32);
+      border-radius: 50%;
+      box-shadow: 0 0 34px rgba(100, 239, 255, 0.28), inset 0 0 28px rgba(168, 85, 255, 0.18);
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    .ship-stage img {
+      position: relative;
+      width: 64%;
+      max-width: 150px;
+      filter: drop-shadow(0 0 20px rgba(100, 239, 255, 0.55));
+      animation: floatShip 3.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      50% { transform: scale(1.08); opacity: 0.58; }
+    }
+
+    @keyframes floatShip {
+      50% { transform: translateY(-10px); }
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--mint);
+      font: 760 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      text-transform: uppercase;
+    }
+
+    .soul .tagline {
+      color: #ffd4e2;
+    }
+
+    .tavern .tagline {
+      color: #ffe2a8;
+    }
+
+    .tagline::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 12px currentColor;
+    }
+
+    .game-card h2 {
+      margin: 0;
+      font-size: clamp(25px, 3vw, 36px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .game-card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: #dcecff;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      font-weight: 720;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 22px;
+    }
+
+    .mini-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 10px 13px;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    .mini-link.play {
+      border-color: rgba(255, 209, 102, 0.44);
+      color: #08101f;
+      background: linear-gradient(135deg, var(--gold), #fff3bf);
+    }
+
+    .section {
+      padding: 18px 0 76px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .detail {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      background: rgba(9, 18, 38, 0.58);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    }
+
+    .detail strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    .detail p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 14px;
+    }
+
+    .flow-section {
+      padding-top: 0;
+    }
+
+    .flow-panel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(100, 239, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(255, 209, 102, 0.1), transparent 24%),
+        rgba(9, 18, 38, 0.62);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .flow-copy {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.28fr);
+      gap: 24px;
+      align-items: end;
+      padding: 24px;
+    }
+
+    .flow-copy h2 {
+      margin: 0;
+      font-size: clamp(30px, 4.2vw, 54px);
+      line-height: 1.02;
+    }
+
+    .flow-copy p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    .flow-note {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.055);
+      color: #dcecff;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .flow-visual {
+      margin: 0;
+      padding: 0 24px 24px;
+    }
+
+    .flow-visual img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+      padding: 24px 0 8px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .records {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .records a {
+      color: inherit;
+    }
+
+    .records a:hover {
+      color: var(--cyan);
+    }
+
+    [data-lang="en"] .zh,
+    [data-lang="zh"] .en {
+      display: none !important;
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-copy {
+        text-align: left;
+        margin: 0;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      .lead {
+        max-width: 760px;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
+      }
+
+      .showcase {
+        max-width: 760px;
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .flow-copy {
+        grid-template-columns: 1fr;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .shell {
+        width: min(100% - 24px, var(--max));
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .brand span {
+        white-space: normal;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 24px 0 54px;
+      }
+
+      h1 {
+        font-size: clamp(42px, 13vw, 62px);
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .card-inner {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .visual {
+        min-height: 178px;
+      }
+
+      .portrait {
+        width: min(74vw, 220px);
+      }
+
+      .game-card {
+        min-height: 0;
+      }
+
+      .card-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .mini-link {
+        width: 100%;
+      }
+
+      .flow-copy,
+      .flow-visual {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .flow-copy {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .flow-visual {
+        padding-bottom: 16px;
+      }
+
+      .footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body data-lang="en">
+  <div class="ambient" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="https://g.ismayday.mobi/" aria-label="Codex Games home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>
+          <strong>Codex Games</strong>
+          <span class="zh">三款由 Codex 打磨的浏览器游戏</span>
+          <span class="en">Three browser games crafted with Codex</span>
+        </span>
+      </a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="zh">AI Coding Arcade</span>
+          <span class="en">AI Coding Arcade</span>
+        </p>
+        <h1 id="page-title">
+          <span class="zh gradient-text">用 Codex 做出来的小游戏宇宙</span>
+          <span class="en gradient-text">A tiny game universe made with Codex</span>
+        </h1>
+        <p class="lead">
+          <span class="zh">这是三款原创 AI Native 游戏：去武侠酒馆碰见一桌奇妙大侠，和温柔陪伴一起度过日常，或驾驶战机冲进霓虹深空。</span>
+          <span class="en">Three original AI Native games: wander into a wuxia tavern full of unpredictable heroes, spend a quiet moment with a warm companion, or launch into neon deep space.</span>
+        </p>
+        <div class="hero-actions" aria-label="Game shortcuts">
+          <a class="button primary" href="https://g.ismayday.mobi/tavern/">
+            <span class="zh">进入武侠酒馆</span>
+            <span class="en">Enter Wulin Tavern</span>
+          </a>
+          <a class="button" href="https://g.ismayday.mobi/soulmate">
+            <span class="zh">进入心动陪伴</span>
+            <span class="en">Play Soulmate</span>
+          </a>
+          <a class="button" href="https://g.ismayday.mobi/star_fighter">
+            <span class="zh">进入星际突击队</span>
+            <span class="en">Play Star Fighter</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="showcase" aria-label="Games">
+        <article class="game-card tavern">
+          <div class="card-inner">
+            <div class="visual" aria-hidden="true">
+              <div class="tavern-promo">
+                <img src="tavern/images/promo/wulin-tavern-homepage.jpg" alt="" />
+              </div>
+            </div>
+            <div>
+              <div class="tagline">
+                <span class="zh">武侠酒馆</span>
+                <span class="en">Wuxia Tavern</span>
+              </div>
+              <h2>
+                <span class="zh">Wulin Tavern<br />武侠酒馆</span>
+                <span class="en">Wulin Tavern<br />Heroes at the Table</span>
+              </h2>
+              <p>
+                <span class="zh">推门进馆，四张八仙桌每隔一段时间都会换上新客。郭靖、黄蓉、杨过、小龙女、乔峰这些大侠可能同桌拼酒，也可能突然吵出一场江湖名场面。</span>
+                <span class="en">Step through the tavern doors and the tables keep changing. Guo Jing, Huang Rong, Yang Guo, Xiaolongnu, Qiao Feng, and other heroes may share a drink, trade jokes, or spark a legendary scene.</span>
+              </p>
+              <div class="meta">
+                <span class="chip">Wuxia</span>
+                <span class="chip">Tavern Tales</span>
+                <span class="chip">AI Dialogue</span>
+              </div>
+              <div class="card-actions">
+                <a class="mini-link play" href="https://g.ismayday.mobi/tavern/">
+                  <span class="zh">入座听书</span>
+                  <span class="en">Take a Seat</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card soul">
+          <div class="card-inner">
+            <div class="visual" aria-hidden="true">
+              <div class="portrait">
+                <img src="soulmate/images/mate001.jpg" alt="" />
+              </div>
+            </div>
+            <div>
+              <div class="tagline">
+                <span class="zh">心动陪伴</span>
+                <span class="en">Soft Companion</span>
+              </div>
+              <h2>
+                <span class="zh">Soulmate<br />心动陪伴</span>
+                <span class="en">Soulmate<br />Heartbeat Companion</span>
+              </h2>
+              <p>
+                <span class="zh">打开后像进入一个只属于你们的小房间。你可以和她聊天、点一点照片、要抱抱或听一句晚安；她会随着语气和时间切换心情，让陪伴感更贴近真实日常。</span>
+                <span class="en">Step into a small private room made for the two of you. Chat with her, tap her photo, ask for a hug, or hear a soft good night; her mood shifts with your words and the time of day.</span>
+              </p>
+              <div class="meta">
+                <span class="chip">Mobile First</span>
+                <span class="chip">Chat</span>
+                <span class="chip">v0.3</span>
+              </div>
+              <div class="card-actions">
+                <a class="mini-link play" href="https://g.ismayday.mobi/soulmate">
+                  <span class="zh">开始陪伴</span>
+                  <span class="en">Stay Close</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card star">
+          <div class="card-inner">
+            <div class="visual" aria-hidden="true">
+              <div class="ship-stage">
+                <img src="star_fighter/images/player-level-5.png" alt="" />
+              </div>
+            </div>
+            <div>
+              <div class="tagline">
+                <span class="zh">星际突击队</span>
+                <span class="en">Neon Shooter</span>
+              </div>
+              <h2>
+                <span class="zh">Star Fighter<br />星际突击队</span>
+                <span class="en">Star Fighter<br />Arcade Strike Team</span>
+              </h2>
+              <p>
+                <span class="zh">驾驶战机冲进深空战场，躲开密集弹幕，拾取道具强化火力，在 Boss 压迫感和连击节奏里寻找生存空间。危急时刻，释放欧米伽脉冲清出一条路。</span>
+                <span class="en">Pilot your fighter through a deep-space battlefield, dodge incoming fire, collect power-ups, and survive the pressure of bosses and combo runs. When the screen closes in, fire Omega Blast and carve a path forward.</span>
+              </p>
+              <div class="meta">
+                <span class="chip">Arcade</span>
+                <span class="chip">Boss Fight</span>
+                <span class="chip">v2.4 Omega</span>
+              </div>
+              <div class="card-actions">
+                <a class="mini-link play" href="https://g.ismayday.mobi/star_fighter">
+                  <span class="zh">立即出击</span>
+                  <span class="en">Launch</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="craft-title">
+      <div class="section-head">
+        <h2 id="craft-title">
+          <span class="zh">三种心情，三种打开方式</span>
+          <span class="en">Three moods, three ways to play</span>
+        </h2>
+        <p>
+          <span class="zh">想看江湖热闹，就进武侠酒馆；想被轻轻陪着，就进入心动陪伴；想立刻进入战斗，就启动星际突击队。</span>
+          <span class="en">Enter Wulin Tavern when you want a lively wuxia crowd, choose Soulmate when you want something gentle beside you, or launch Star Fighter when you want action right away.</span>
+        </p>
+      </div>
+      <div class="details-grid">
+        <div class="detail">
+          <strong>
+            <span class="zh">一个有江湖烟火气</span>
+            <span class="en">One Feels Like Jianghu</span>
+          </strong>
+          <p>
+            <span class="zh">武侠酒馆像一场随时开席的江湖盲盒，每次进门都可能遇到新的拼桌、新的八卦和新的神回复。</span>
+            <span class="en">Wulin Tavern feels like a living jianghu lucky draw, where each visit can bring new tablemates, rumors, and sharp replies.</span>
+          </p>
+        </div>
+        <div class="detail">
+          <strong>
+            <span class="zh">一个偏温柔</span>
+            <span class="en">One Is Gentle</span>
+          </strong>
+          <p>
+            <span class="zh">心动陪伴更像一段安静的日常，把聊天、表情和时间感做成轻轻的陪同。</span>
+            <span class="en">Soulmate plays like a quiet everyday ritual, turning chat, expressions, and time into a soft sense of company.</span>
+          </p>
+        </div>
+        <div class="detail">
+          <strong>
+            <span class="zh">一个偏热血</span>
+            <span class="en">One Is Intense</span>
+          </strong>
+          <p>
+            <span class="zh">星际突击队更强调手感和节奏，越往后越紧张，越想再来一局。</span>
+            <span class="en">Star Fighter is about feel and rhythm: the longer you last, the tighter it gets, and the stronger the urge to try again.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section flow-section" aria-labelledby="flow-title">
+      <div class="flow-panel">
+        <div class="flow-copy">
+          <div>
+            <h2 id="flow-title">
+              <span class="zh">AI Native 游戏制作流程</span>
+              <span class="en">AI Native Game Creation Flow</span>
+            </h2>
+            <p>
+              <span class="zh">从一句创意开始，把世界观、角色、玩法、美术、代码和上线验证串成连续循环。AI 不只是辅助写代码，而是参与灵感扩展、原型打磨、内容生成和体验迭代。</span>
+              <span class="en">Start from a single idea, then connect worldbuilding, characters, mechanics, art, code, and launch checks into one creative loop. AI is not just a coding helper here; it shapes ideation, prototyping, content, and iteration.</span>
+            </p>
+          </div>
+          <div class="flow-note">
+            <span class="zh">适合快速把“想玩什么”变成“可以打开体验什么”，也适合持续扩展角色、剧情和玩法。</span>
+            <span class="en">Built for turning “what would be fun?” into something playable, while leaving room to grow characters, stories, and mechanics over time.</span>
+          </div>
+        </div>
+        <figure class="flow-visual">
+          <img class="zh" src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-cn.jpg" alt="AI Native 游戏制作流程图" />
+          <img class="en" src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" alt="AI Native game creation flow diagram" />
+        </figure>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>
+        <span class="zh">Built with Codex · HTML5 Games</span>
+        <span class="en">Built with Codex · HTML5 Games</span>
+      </span>
+      <div class="records" aria-label="ICP filing information">
+        <a href="https://ismayday.mobi/" rel="noopener">Seta Chen</a>
+        <a href="https://beian.miit.gov.cn/" rel="noopener">京ICP备18049801号</a>
+        <a href="https://beian.miit.gov.cn/" rel="noopener">京ICP备18049801号-1</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const root = document.body;
+    const langButtons = Array.from(document.querySelectorAll("[data-set-lang]"));
+    const savedLang = localStorage.getItem("codex-games-lang");
+    const initialLang = savedLang || "en";
+
+    function setLang(lang) {
+      const next = lang === "en" ? "en" : "zh";
+      root.dataset.lang = next;
+      document.documentElement.lang = next === "zh" ? "zh-CN" : "en";
+      localStorage.setItem("codex-games-lang", next);
+      langButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.setLang === next));
+      });
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener("click", () => setLang(button.dataset.setLang));
+    });
+
+    setLang(initialLang);
+  </script>
+</body>
+</html>
