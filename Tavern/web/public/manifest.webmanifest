@@ -1,0 +1,20 @@
+{
+  "name": "江湖小酒馆",
+  "short_name": "江湖小酒馆",
+  "description": "横屏武侠酒馆互动 Demo",
+  "start_url": "/tavern/",
+  "scope": "/tavern/",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "background_color": "#120d0a",
+  "theme_color": "#120d0a",
+  "screenshots": [
+    {
+      "src": "/tavern/images/promo/wulin-tavern-homepage.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ]
+}

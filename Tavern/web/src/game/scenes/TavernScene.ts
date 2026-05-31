@@ -8,6 +8,7 @@ import { createDemoSeed, createRoundState } from "../systems/roundSystem";
 import { createPlaceholderTexture, loadImageAsset } from "./BootScene";
 import { DialogPanel } from "../ui/DialogPanel";
 import { Joystick } from "../ui/Joystick";
+import { enterTavernFullscreen, isFullscreenActive, shouldShowFullscreenControl, toggleTavernFullscreen } from "../systems/fullscreenSystem";
 import type { CollisionZone, Direction, RoundState, SeatedNpc } from "../types";
 
 export class TavernScene extends Phaser.Scene {
@@ -27,6 +28,8 @@ export class TavernScene extends Phaser.Scene {
   private bgmMuted = false;
   private bgmStarting = false;
   private bgmIcon?: Phaser.GameObjects.Image;
+  private fullscreenButton?: Phaser.GameObjects.Container;
+  private fullscreenLabel?: Phaser.GameObjects.Text;
   private hoveredNpcId?: string;
 
   constructor() {
@@ -70,10 +73,20 @@ export class TavernScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setDepth(4000);
     this.createBgmButton();
-    this.input.once("pointerdown", () => this.startBgm());
+    this.createFullscreenButton();
+    this.input.once("pointerdown", () => {
+      if (shouldShowFullscreenControl()) void enterTavernFullscreen().finally(() => this.drawFullscreenButton());
+      this.startBgm();
+    });
     this.createRefreshButton();
     this.startRound();
     this.input.on("pointerdown", this.handlePointerDown, this);
+    document.addEventListener("fullscreenchange", this.drawFullscreenButton);
+    document.addEventListener("webkitfullscreenchange", this.drawFullscreenButton);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      document.removeEventListener("fullscreenchange", this.drawFullscreenButton);
+      document.removeEventListener("webkitfullscreenchange", this.drawFullscreenButton);
+    });
   }
 
   update(_time: number, delta: number): void {
@@ -270,6 +283,20 @@ export class TavernScene extends Phaser.Scene {
     this.drawBgmIcon();
   }
 
+  private createFullscreenButton(): void {
+    if (!shouldShowFullscreenControl()) return;
+    const button = this.add.container(1815, 124).setDepth(4100);
+    const bg = this.add.rectangle(0, 0, 88, 42, 0x8e4c2c, 0.9).setStrokeStyle(2, 0xf5d38a);
+    this.fullscreenLabel = this.add.text(0, 0, "全屏", { fontSize: "20px", color: "#fff7df" }).setOrigin(0.5);
+    button.add([bg, this.fullscreenLabel]).setSize(88, 42).setInteractive({ useHandCursor: true });
+    button.on("pointerdown", (_pointer: Phaser.Input.Pointer, _x: number, _y: number, event: Phaser.Types.Input.EventData) => {
+      event.stopPropagation();
+      void toggleTavernFullscreen().finally(() => this.drawFullscreenButton());
+    });
+    this.fullscreenButton = button;
+    this.drawFullscreenButton();
+  }
+
   private startBgm(): void {
     if (this.bgmMuted) return;
     if (!this.bgm) {
@@ -299,6 +326,12 @@ export class TavernScene extends Phaser.Scene {
     if (!this.bgmIcon) return;
     this.bgmIcon.setTexture(this.bgmMuted ? "icon-bgm-off" : "icon-bgm-on");
   }
+
+  private drawFullscreenButton = (): void => {
+    if (!this.fullscreenButton || !this.fullscreenLabel) return;
+    this.fullscreenLabel.setText(isFullscreenActive() ? "退出" : "全屏");
+    this.fullscreenButton.setAlpha(isFullscreenActive() ? 0.78 : 0.92);
+  };
 
   private handlePointerDown(pointer: Phaser.Input.Pointer): void {
     if (this.dialog.isOpen()) return;

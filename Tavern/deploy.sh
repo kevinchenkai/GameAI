@@ -11,7 +11,7 @@ REMOTE_USER="${REMOTE_USER:-www}"
 HEALTH_URL="${HEALTH_URL:-https://g.ismayday.mobi/tavern-api/health}"
 CHAT_URL="${CHAT_URL:-https://g.ismayday.mobi/tavern-api/chat}"
 VITE_TAVERN_API_URL="${VITE_TAVERN_API_URL:-https://g.ismayday.mobi/tavern-api}"
-ASSET_VERSION="${ASSET_VERSION:-art-v6-qiaofeng-nameplate-20260524}"
+ASSET_VERSION="${ASSET_VERSION:-art-v7-table-b-20260528}"
 
 echo "==> Deploying Wulin Tavern from $LOCAL_DIR"
 echo "==> Target: $REMOTE_HOST:$REMOTE_APP_DIR"

@@ -12,6 +12,7 @@ body {
   display: grid;
   place-items: center;
   overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #app {
@@ -25,15 +26,38 @@ body {
   touch-action: none;
 }
 
+#app:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  background: #120d0a;
+}
+
+#app:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  background: #120d0a;
+}
+
 @supports (height: 100dvh) {
   #app {
     width: min(100vw, calc(100dvh * 16 / 9), 1920px);
     height: min(100dvh, calc(100vw * 9 / 16), 1080px);
   }
+
+  #app:fullscreen,
+  #app:-webkit-full-screen {
+    width: 100vw;
+    height: 100dvh;
+  }
 }
 
 canvas {
   display: block;
+  -webkit-touch-callout: none;
 }
 
 .dialog-panel {
