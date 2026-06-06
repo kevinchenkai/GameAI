@@ -1,11 +1,12 @@
-const APP_VERSION = 'v0.3.4';
-const ASSET_VERSION = '20260525-002';
+const APP_VERSION = 'v0.4.4';
+const ASSET_VERSION = '20260602-reset';
 const SHARE_TITLE = '心动陪伴';
 const SHARE_DESC = '一个只属于我们的手机陪伴小游戏，打开就能和她说说话。';
 const SHARE_IMAGE = `images/share-cover.png?v=${ASSET_VERSION}`;
 const SOULMATE_API_CHAT = '/api/chat';
 
 const STORAGE_KEYS = {
+  uid: 'soulmate.uid',
   started: 'soulmate.started',
   messages: 'soulmate.messages',
   heart: 'soulmate.heart',
@@ -194,6 +195,7 @@ const INTIMACY_LEVELS = [
 ];
 
 const state = {
+  uid: '',
   started: false,
   messages: [],
   mood: 'happy',
@@ -256,6 +258,7 @@ function bindElements() {
     startVersion: document.getElementById('startVersion'),
     startButton: document.getElementById('startButton'),
     aboutButton: document.getElementById('aboutButton'),
+    settingsButton: document.getElementById('settingsButton'),
     musicButton: document.getElementById('musicButton'),
     bgmAudio: document.getElementById('bgmAudio'),
     startClock: document.getElementById('startClock'),
@@ -361,6 +364,9 @@ function bindEvents() {
     noteInteraction();
     showStartScreen();
   });
+  if (els.settingsButton) {
+    els.settingsButton.addEventListener('click', noteInteraction);
+  }
   els.musicButton.addEventListener('click', toggleMusic);
   els.chatForm.addEventListener('submit', sendMessage);
   if (els.quickActions) {
@@ -835,6 +841,8 @@ function buildSoulMateApiPayload(input) {
     }));
 
   return {
+    uid: state.uid,
+    sessionId: state.uid,
     message: input,
     clientTime: formatClientTime(new Date()),
     mood: state.mood,
@@ -1232,6 +1240,7 @@ function settleMessagesAfterLayout() {
 }
 
 function loadState() {
+  state.uid = ensureClientUid();
   state.started = localStorage.getItem(STORAGE_KEYS.started) === '1';
   state.musicMuted = localStorage.getItem(STORAGE_KEYS.musicMuted) === '1';
   state.messages = safeJson(localStorage.getItem(STORAGE_KEYS.messages), []);
@@ -1242,6 +1251,30 @@ function loadState() {
   }
   chooseMateImage();
   ensureTodayHeart(new Date());
+}
+
+function ensureClientUid() {
+  const existing = normalizeUid(localStorage.getItem(STORAGE_KEYS.uid));
+  if (existing) return existing;
+
+  const uid = generateUid();
+  localStorage.setItem(STORAGE_KEYS.uid, uid);
+  return uid;
+}
+
+function generateUid() {
+  if (window.crypto?.randomUUID) {
+    return `u_${window.crypto.randomUUID().replace(/-/g, '').slice(0, 20)}`;
+  }
+
+  const randomPart = Math.random().toString(36).slice(2, 14);
+  const timePart = Date.now().toString(36).slice(-8);
+  return normalizeUid(`u_${timePart}${randomPart}`) || 'u_local0000000000000000';
+}
+
+function normalizeUid(value) {
+  const uid = String(value || '').trim().toLowerCase();
+  return /^[a-z][a-z0-9_-]{2,31}$/.test(uid) ? uid : '';
 }
 
 function persistMessages() {

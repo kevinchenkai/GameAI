@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f6b4bf">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>心动陪伴设置</title>
+    <link rel="stylesheet" href="styles.css?v=20260602-reset">
+  </head>
+  <body class="settings-page" data-phase="night" data-mood="happy">
+    <main class="settings-screen" aria-label="设置 UID">
+      <header class="settings-top">
+        <a class="icon-button back-button" href="index.html" aria-label="返回游戏">
+          <span aria-hidden="true">‹</span>
+        </a>
+        <div>
+          <p class="settings-kicker">Settings</p>
+          <h1>玩家设置</h1>
+        </div>
+      </header>
+
+      <section class="settings-card">
+        <span class="settings-label">当前 UID</span>
+        <strong id="currentUid" class="uid-display">--</strong>
+
+        <form id="uidForm" class="uid-form" autocomplete="off">
+          <label for="uidInput">设置自己的 UID</label>
+          <input id="uidInput" name="uid" type="text" inputmode="latin" autocapitalize="none" spellcheck="false" maxlength="32" placeholder="例如 setachen">
+          <p class="uid-rule">3-32 位，小写字母、数字、下划线或短横线，必须以字母开头。</p>
+          <button id="saveUidButton" class="primary-button" type="submit">保存 UID</button>
+        </form>
+
+        <div class="settings-actions">
+          <button id="copyUidButton" class="ghost-button" type="button">复制当前 UID</button>
+          <a class="ghost-button" href="index.html">返回游戏</a>
+        </div>
+
+        <div class="danger-zone">
+          <span class="settings-label">初始化</span>
+          <p class="danger-copy">清空当前 UID 的聊天、心动值和专属记忆，UID 本身会保留。</p>
+          <button id="resetUidButton" class="danger-button" type="button">清空当前 UID 数据</button>
+        </div>
+
+        <p id="settingsStatus" class="settings-status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="settings.js?v=20260602-reset"></script>
+  </body>
+</html>

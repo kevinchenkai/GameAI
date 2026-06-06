@@ -160,10 +160,11 @@ function getWeekday(date) {
   return ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][date.getDay()];
 }
 
-function buildSystemPrompt(payload, date) {
+function buildSystemPrompt(payload, date, context = {}) {
   const heartScore = Number(payload.heartScore) || 0;
   const intimacy = getIntimacyLevel(heartScore, payload.intimacy);
   const scene = getLifeScene(date);
+  const memoryBlock = buildMemoryBlock(context);
 
   return [
     '角色身份：你是用户真实恋爱中的女朋友，不要说自己是 AI，也不要解释模型或系统。',
@@ -174,11 +175,13 @@ function buildSystemPrompt(payload, date) {
     `你们的共同生活细节：${RELATIONSHIP_PROFILE.car}；${RELATIONSHIP_PROFILE.movie}。`,
     `她的性格底色：${RELATIONSHIP_PROFILE.personality}。`,
     RELATIONSHIP_PROFILE.memoryRule,
+    memoryBlock,
     '回复风格：像微信里真实女友随口回消息，温柔、亲密、自然、轻微撒娇。必须口语化，别像写小说或小作文。',
     '长度要求：回复要短，通常 1 句，最多 2 句；总长度尽量控制在 45 个汉字以内，特别有情绪时也不要超过 70 个汉字。',
     '输出格式：优先使用“(形象动作) 回复内容”。括号内只写动作、神态或位置，不写引号，不写“我说：”。括号后空一格再写回复内容。',
     '动作描写：动作要短，3 到 12 个字左右即可，例如“(凑过来)”“(捏捏你的手)”“(把康康抱开)”。不要长动作，不要连续写多个动作。',
     '共同记忆使用规则：每次最多只提一个共同记忆或生活背景点，不要把大三、6 年、知春路、Seed、康康、创作、健身、美食、旅行、车、电影一次性都说出来。用户只是随口一句时，只轻轻接话，不展开回忆。',
+    '动态记忆使用规则：可用记忆只在和用户当前这句话相关时自然使用；不要为了展示记忆而转移话题；不要说“根据记忆库”“长期记忆”等技术词；如果用户纠正，以用户最新说法为准。',
     `当前生活场景围栏：${scene.summary}`,
     `当前动作围栏：${scene.actionRule}`,
     `当前地点围栏：${scene.placeRule}`,
@@ -195,10 +198,10 @@ function buildSystemPrompt(payload, date) {
     `当前心动值：${heartScore}，亲密阶段：${intimacy.name}（${intimacy.tone}）。${intimacy.prompt}`,
     `当前阶段动作亲密度：${intimacy.actionGuide}`,
     `当前真实时间：${formatDate(date)} ${getWeekday(date)} ${formatTime(date, true)}，时间段：${getTimePhase(date)}。`
-  ].join('\n');
+  ].filter(Boolean).join('\n');
 }
 
-export function buildChatMessages(payload) {
+export function buildChatMessages(payload, context = {}) {
   const date = getRequestDate(payload.clientTime);
   const recent = Array.isArray(payload.recentMessages) ? payload.recentMessages : [];
   const history = recent
@@ -210,11 +213,41 @@ export function buildChatMessages(payload) {
     }));
 
   return [
-    { role: 'system', content: buildSystemPrompt(payload, date) },
+    { role: 'system', content: buildSystemPrompt(payload, date, context) },
     ...history,
     {
       role: 'user',
       content: `当前真实时间：${formatDate(date)} ${getWeekday(date)} ${formatTime(date, true)}，时间段：${getTimePhase(date)}。\n我说：${String(payload.message).trim()}`
     }
   ];
+}
+
+function buildMemoryBlock(context) {
+  const lines = [];
+  const corrections = Array.isArray(context.corrections) ? context.corrections : [];
+  const memories = Array.isArray(context.memories) ? context.memories : [];
+  const summaries = Array.isArray(context.summaries) ? context.summaries : [];
+
+  if (corrections.length) {
+    lines.push('用户纠正规则（优先级高于普通记忆）：');
+    corrections.slice(0, 5).forEach((item) => {
+      lines.push(`- ${item.rule}`);
+    });
+  }
+
+  if (memories.length) {
+    lines.push('可用共同记忆（只在相关时自然带出，每次最多用一条）：');
+    memories.slice(0, 8).forEach((item) => {
+      lines.push(`- [${item.level}/${item.type}] ${item.text}`);
+    });
+  }
+
+  if (summaries.length) {
+    lines.push('近期对话摘要（只用于理解上下文，不要复述）：');
+    summaries.slice(0, 1).forEach((item) => {
+      lines.push(`- ${item.text}`);
+    });
+  }
+
+  return lines.join('\n');
 }

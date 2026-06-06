@@ -25,11 +25,15 @@ rsync -avz --delete \
   --exclude ".htaccess" \
   --exclude "package-lock.json" \
   --exclude "*.log" \
+  --exclude "api/data/" \
+  --exclude "*.sqlite" \
+  --exclude "*.sqlite-wal" \
+  --exclude "*.sqlite-shm" \
   --exclude "audit/" \
   --exclude "output/" \
   --exclude "roadshow/" \
   --exclude "tmp/" \
-  "$LOCAL_DIR" "$REMOTE_HOST:$REMOTE_ROOT/"
+  "$LOCAL_DIR/" "$REMOTE_HOST:$REMOTE_APP_DIR/"
 
 ssh "$REMOTE_HOST" bash -s -- "$REMOTE_APP_DIR" "$REMOTE_API_DIR" "$REMOTE_NODE" "$REMOTE_USER" "$HEALTH_URL" "$CHAT_URL" <<'REMOTE_SCRIPT'
 set -Eeuo pipefail
@@ -52,12 +56,22 @@ if [ ! -f "$API_DIR/.env" ]; then
 fi
 
 sudo chown -R "$RUN_USER:$RUN_USER" "$APP_DIR"
+sudo -u "$RUN_USER" mkdir -p "$API_DIR/data/backups"
 sudo rm -rf "$APP_DIR/audit" "$APP_DIR/output" "$APP_DIR/roadshow" "$APP_DIR/tmp"
+
+echo "==> Checking frontend syntax"
+cd "$APP_DIR"
+sudo -u "$RUN_USER" "$NODE_BIN" --check app.js
+sudo -u "$RUN_USER" "$NODE_BIN" --check settings.js
 
 echo "==> Checking API syntax"
 cd "$API_DIR"
 sudo -u "$RUN_USER" "$NODE_BIN" --check src/server.js
 sudo -u "$RUN_USER" "$NODE_BIN" --check src/config.js
+sudo -u "$RUN_USER" "$NODE_BIN" --check src/db.js
+sudo -u "$RUN_USER" "$NODE_BIN" --check src/migrations.js
+sudo -u "$RUN_USER" "$NODE_BIN" --check src/memoryStore.js
+sudo -u "$RUN_USER" "$NODE_BIN" --check src/memoryRetrieve.js
 sudo -u "$RUN_USER" "$NODE_BIN" --check src/prompt.js
 sudo -u "$RUN_USER" "$NODE_BIN" --check src/deepseek.js
 sudo -u "$RUN_USER" "$NODE_BIN" --check src/fallback.js
@@ -104,7 +118,7 @@ echo
 echo "==> Chat smoke test"
 chat_output="$(curl -N -sS --max-time 20 -X POST "$CHAT_URL" \
   -H 'Content-Type: application/json' \
-  -d '{"message":"今天好累","mood":"cute","heartScore":120,"intimacy":"close","recentMessages":[]}')"
+  -d '{"uid":"deploy-smoke","sessionId":"deploy-smoke","message":"今天好累","mood":"cute","heartScore":120,"intimacy":"close","recentMessages":[]}')"
 echo "$chat_output" | sed -n '1,40p'
 
 if ! printf '%s' "$chat_output" | grep -q 'event: done'; then

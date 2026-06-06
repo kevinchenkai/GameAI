@@ -3,7 +3,7 @@
 文档日期：2026-05-26  
 当前项目路径：`/Users/kk/Work/GameAI/soulmate/`  
 线上部署路径：`/www/wwwroot/g.ismayday.mobi/soulmate/`  
-当前线上版本：`v0.3.4`  
+当前线上版本：`v0.4.4`
 二期目标版本：`v0.4.x`  
 技术方向：移动端优先 HTML5 前端 + 轻量 Node.js API + SQLite + DeepSeek 记忆提取/压缩
 
@@ -824,6 +824,20 @@ Prompt 中记忆块示例：
 
 `POST /api/chat` 仍然返回 SSE。
 
+请求必须携带当前终端绑定的 `uid`：
+
+```json
+{
+  "uid": "setachen",
+  "sessionId": "setachen",
+  "message": "今天好累",
+  "mood": "cute",
+  "heartScore": 120,
+  "intimacy": "close",
+  "recentMessages": []
+}
+```
+
 `done` 事件建议扩展为：
 
 ```json
@@ -834,7 +848,7 @@ Prompt 中记忆块示例：
   "heartDelta": 2,
   "source": "deepseek",
   "memoryUsed": [
-    { "id": 12, "level": "L2", "text": "用户下班后更喜欢先吃饭再安排活动。" }
+    { "id": 12, "uid": "setachen", "level": "L2", "text": "用户下班后更喜欢先吃饭再安排活动。" }
   ],
   "memoryUpdated": {
     "created": 1,
@@ -857,6 +871,8 @@ Prompt 中记忆块示例：
 - `type`
 - `status`
 - `limit`
+- `uid`：只看某个玩家的专属记忆；`global` 表示全局记忆。
+- `includeGlobal=1`：查询某个 UID 时一起返回全局记忆。
 
 写操作需要 `ADMIN_TOKEN`，读操作也建议先加 token，避免公网暴露隐私。
 
@@ -866,6 +882,7 @@ Prompt 中记忆块示例：
 
 ```json
 {
+  "uid": "setachen",
   "level": "L2",
   "type": "preference",
   "text": "用户喜欢短一点、口语一点的回复。",
@@ -903,6 +920,8 @@ Prompt 中记忆块示例：
 
 用途：调试下一次 `/api/chat` 会注入哪些记忆。
 
+查询参数支持 `uid`，召回范围是 `uid IS NULL` 的全局记忆和当前 UID 的专属记忆。
+
 建议只在本地或管理 token 下开放。
 
 返回：
@@ -916,6 +935,31 @@ Prompt 中记忆块示例：
   "recentMessages": []
 }
 ```
+
+### 9.8 `POST /api/uid/move`
+
+用途：单终端 UID 改名迁移。
+
+```json
+{
+  "fromUid": "u_mbs8x4k9e21q7a5c3p0d",
+  "toUid": "setachen"
+}
+```
+
+服务端在一个事务里迁移 `chat_messages`、`conversation_summaries`、`memories`、`corrections` 中的专属数据。目标 UID 已有数据时返回 `409`，避免误合并。
+
+### 9.9 `POST /api/uid/reset`
+
+用途：初始化当前 UID 的历史数据。
+
+```json
+{
+  "uid": "setachen"
+}
+```
+
+服务端在一个事务里删除该 UID 下的 `chat_messages`、`conversation_summaries`、`memories`、`corrections` 和相关 `memory_links`。全局记忆和全局纠偏不受影响。前端成功后同步清除本地聊天、心动值、每日签、阶段仪式和图片索引，保留 UID 本身。
 
 ## 10. 记忆检索策略
 
@@ -1143,7 +1187,40 @@ sqlite3 api/data/soulmate.sqlite ".backup 'api/data/backups/soulmate-$(date +%F-
 - 上班时间和地点围栏仍然有效。
 - 能通过 `GET /api/context/preview` 看到将要注入的记忆，方便调试。
 
-### 13.3 v0.4.3：DeepSeek 自动记忆提取
+### 13.3 v0.4.3：UID 玩家分区与单终端 move
+
+目标：
+
+- 每个终端首次加载生成唯一 UID。
+- 前端聊天请求携带 UID。
+- SQLite 按 UID 隔离聊天、摘要、专属记忆和专属纠偏。
+- 主页面增加设置入口，设置页支持把随机 UID move 到自定义 UID。
+- `POST /api/uid/move` 在事务内迁移数据，目标 UID 已有数据时返回 `409`。
+
+验收：
+
+- 新终端首次打开自动生成 UID，刷新后不变。
+- 设置 UID 后，本地数据不清空，后端旧 UID 数据被迁移到新 UID。
+- `/api/chat` 写入 `chat_messages.uid`。
+- `/api/context/preview?uid=xxx` 只召回全局记忆和当前 UID 的专属记忆。
+
+### 13.4 v0.4.4：设置页初始化当前 UID 数据
+
+目标：
+
+- 优化设置页次级按钮可读性。
+- 新增清空当前 UID 数据入口。
+- 新增 `/api/uid/reset`，保留 UID，删除该 UID 的聊天、摘要、专属记忆和专属纠偏。
+- 前端成功后清除本地聊天、心动值、每日签、阶段仪式和图片索引。
+
+验收：
+
+- 复制 UID 和返回游戏按钮在浅紫背景上清晰可读。
+- 点击清空当前 UID 数据前有确认。
+- 清空后当前 UID 不变，游戏回到初始化状态。
+- 全局记忆不被删除。
+
+### 13.5 v0.4.5：DeepSeek 自动记忆提取
 
 目标：
 
@@ -1160,7 +1237,7 @@ sqlite3 api/data/soulmate.sqlite ".backup 'api/data/backups/soulmate-$(date +%F-
 - 模型自己的回复不会被当成用户事实入库。
 - 同一偏好重复出现时会强化或合并，而不是生成多条重复记忆。
 
-### 13.4 v0.4.4：对话摘要压缩
+### 13.6 v0.4.6：对话摘要压缩
 
 目标：
 

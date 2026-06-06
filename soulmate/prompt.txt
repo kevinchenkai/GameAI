@@ -19,11 +19,13 @@
 - `/Users/kk/Documents/Codex/soulmate/`
 
 建议文件结构：
-- `/Users/kk/Documents/Codex/soulmate/index.html`
-- `/Users/kk/Documents/Codex/soulmate/styles.css`
-- `/Users/kk/Documents/Codex/soulmate/app.js`
-- `/Users/kk/Documents/Codex/soulmate/README.md`
-- `/Users/kk/Documents/Codex/soulmate/images/`
+- `/Users/kk/Work/GameAI/soulmate/index.html`
+- `/Users/kk/Work/GameAI/soulmate/settings.html`
+- `/Users/kk/Work/GameAI/soulmate/styles.css`
+- `/Users/kk/Work/GameAI/soulmate/app.js`
+- `/Users/kk/Work/GameAI/soulmate/settings.js`
+- `/Users/kk/Work/GameAI/soulmate/README.md`
+- `/Users/kk/Work/GameAI/soulmate/images/`
 
 要求：
 - iPhone Safari 和 Android Chrome 兼容。
@@ -43,7 +45,7 @@
 开始界面内容：
 - 游戏名，例如“心动陪伴”或“她一直在”。
 - 一句非常简短的游戏介绍，例如“一个只属于我们的手机陪伴小游戏”。
-- 显示版本号，当前版本为 `v0.3.4`，方便用户后续分辨版本。
+- 显示版本号，当前版本为 `v0.4.4`，方便用户后续分辨版本。
 - 一个明显的“开始陪伴”按钮。
 
 开始界面设计：
@@ -51,6 +53,17 @@
 - 可以有实时当前时间的小字或背景氛围，但不要信息过多。
 - 点击开始后进入主游戏界面。
 - 可以把“已开始过”的状态存在 `localStorage`，下次打开可以直接进入游戏；但界面里也要能通过一个小按钮或设置入口回到开始界面查看版本。
+
+## 3.1 玩家 UID
+
+- 每个终端第一次加载游戏时，必须自动生成一个唯一 UID，并保存到 `localStorage` 的 `soulmate.uid`。
+- 一个终端只能绑定一个 UID，不设计多账号切换。
+- 主游戏界面右上角需要有设置入口，打开 `settings.html`。
+- 设置页允许用户把随机 UID 修改成自定义 UID，例如 `setachen`。
+- 用户手动设置 UID 等价于 UID move：前端调用 `/api/uid/move`，后端在事务内把旧 UID 的聊天、摘要、专属记忆和纠偏迁移到新 UID。
+- move 成功后才更新本地 `soulmate.uid`；目标 UID 已有数据时应返回失败，避免误合并。
+- 设置页需要提供清空当前 UID 历史数据的入口：保留 UID，清空本地聊天/心动状态，并调用 `/api/uid/reset` 删除服务端该 UID 的聊天、摘要、专属记忆和纠偏；全局记忆不能删除。
+- UID 规则：3-32 位，小写字母、数字、下划线或短横线，必须以字母开头。
 
 ## 4. 女朋友人设
 
@@ -309,6 +322,7 @@ v0.3 视觉要求：
 ```
 - 加 iOS Web App 相关 meta。
 - 包含开始界面和主游戏界面两个根容器。
+- 主游戏界面需要有设置入口，跳转到 `settings.html`。
 - 不要把大量逻辑写在 HTML 中，逻辑放 `app.js`。
 
 `styles.css`：
@@ -327,9 +341,11 @@ v0.3 视觉要求：
 
 `app.js`：
 - 常量：
-  - `APP_VERSION = 'v0.3.4'`
+  - `APP_VERSION = 'v0.4.4'`
   - `ASSET_VERSION`，用于给 `styles.css`、`app.js`、分享图、小图标和 PC 背景图增加版本查询参数，解决手机浏览器和微信内置浏览器缓存问题。
   - `SOULMATE_API_CHAT = '/api/chat'`
+- 首次加载需要调用 `ensureClientUid()`，保证所有聊天请求都带上当前 `uid`。
+- `buildSoulMateApiPayload(input)` 必须包含 `uid` 和 `sessionId`，短期 `sessionId` 可以直接等于 `uid`。
 - 核心函数建议：
   - `initApp()`
   - `showStartScreen()`
@@ -366,6 +382,7 @@ v0.3 视觉要求：
   - 今日日期。
   - 最近使用的照片索引。
   - 背景音乐静音状态。
+  - 当前终端 UID：`soulmate.uid`。
   - 亲密阶段由今日心动值实时计算，不需要单独保存。
 
 ## 12. 文案方向
@@ -373,7 +390,7 @@ v0.3 视觉要求：
 开始界面示例：
 - 标题：“心动陪伴”
 - 介绍：“一个只属于我们的手机陪伴小游戏”
-- 版本：“v0.3.4”
+- 版本：“v0.4.4”
 - 按钮：“开始陪伴”
 
 陪伴短句示例：
