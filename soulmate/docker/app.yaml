@@ -8,6 +8,8 @@ services:
       - "${API_PORT}:3001"
     env_file:
       - ../api/.env
+    environment:
+      HOST: 0.0.0.0
     volumes:
       - api-data:/app/data
     restart: unless-stopped
