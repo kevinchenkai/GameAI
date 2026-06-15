@@ -48,6 +48,11 @@ async function readDeepSeekStream(response, onDelta) {
   let fullText = '';
   let finishReason = '';
 
+  // We deliberately do NOT forward deltas to the client while the stream is in
+  // flight: the truncation / empty-reply checks below can only run once the
+  // stream ends, and forwarding mid-stream would leak a half-finished reply to
+  // the user before we decide to fall back. Instead we buffer here, validate,
+  // and replay the validated text as deltas only on success.
   while (true) {
     const { value, done } = await reader.read();
     if (done) break;
@@ -73,7 +78,6 @@ async function readDeepSeekStream(response, onDelta) {
         if (!delta) continue;
 
         fullText += delta;
-        onDelta?.(delta, fullText);
       }
     }
   }
@@ -81,7 +85,22 @@ async function readDeepSeekStream(response, onDelta) {
   if (!fullText) throw new Error('DeepSeek empty stream');
   if (finishReason === 'length') throw new Error('DeepSeek token limit');
   if (isLikelyTruncated(fullText)) throw new Error('DeepSeek incomplete reply');
+
+  replayValidatedReply(fullText, onDelta);
   return fullText;
+}
+
+// Replay the validated reply in small chunks so the client still gets a typing
+// effect, without ever having seen an unvalidated (possibly truncated) reply.
+function replayValidatedReply(fullText, onDelta) {
+  if (typeof onDelta !== 'function') return;
+  const chunkSize = 6;
+  let sent = '';
+  for (let i = 0; i < fullText.length; i += chunkSize) {
+    const piece = fullText.slice(i, i + chunkSize);
+    sent += piece;
+    onDelta(piece, sent);
+  }
 }
 
 function isLikelyTruncated(reply) {

@@ -4,10 +4,10 @@
 
 ## 本地运行
 
-前端静态页：
+前端静态页（部署源在 `frontend/`）：
 
 ```bash
-cd /Users/kk/Work/GameAI/soulmate
+cd /Users/kk/Work/GameAI/soulmate/frontend
 python3 -m http.server 4173
 ```
 
@@ -94,13 +94,15 @@ v0.4.1/v0.4.2 最小闭环已加入轻量 SQLite 记忆底座，v0.4.3 增加 UI
 
 ## 文件
 
-- `index.html`：页面结构、开始界面、主游戏界面。
-- `settings.html`：当前终端 UID 设置和 move 页面。
-- `styles.css`：移动端竖屏布局、时间段背景、三种情绪视觉状态。
-- `app.js`：真实时间、聊天、UID、API 请求、离线回复、心动值、背景音乐和本地存储。
-- `settings.js`：UID 校验、复制和 move 请求。
-- `api/`：轻量 Node.js 后端，提供 `/api/hello`、`/api/health`、`/api/chat`。
-- `images/`：照片素材、分享封面、背景音乐和 v0.3 美术氛围素材。
+前端静态资源都在 `frontend/` 目录下（部署时同步到服务器 `/soulmate/` 根目录）：
+
+- `frontend/index.html`：页面结构、开始界面、主游戏界面。
+- `frontend/settings.html`：当前终端 UID 设置和 move 页面。
+- `frontend/styles.css`：移动端竖屏布局、时间段背景、三种情绪视觉状态。
+- `frontend/app.js`：真实时间、聊天、UID、API 请求、离线回复、心动值、背景音乐和本地存储。
+- `frontend/settings.js`：UID 校验、复制和 move 请求。
+- `frontend/images/`：照片素材、分享封面、背景音乐和 v0.3 美术氛围素材。
+- `api/`：轻量 Node.js 后端，提供 `/api/hello`、`/api/health`、`/api/chat` 等。
 
 ## 已知限制
 

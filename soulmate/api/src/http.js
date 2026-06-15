@@ -7,13 +7,16 @@ export function withCors(headers = {}) {
   };
 }
 
-export function sendJson(res, statusCode, payload) {
+// Admin/management routes must not be reachable cross-origin: they are
+// same-origin only, so we deliberately omit the permissive CORS headers.
+export function sendJson(res, statusCode, payload, { cors = true } = {}) {
   const body = statusCode === 204 ? '' : JSON.stringify(payload, null, 2);
-  res.writeHead(statusCode, withCors({
+  const headers = {
     'Content-Type': 'application/json; charset=utf-8',
     'Content-Length': Buffer.byteLength(body),
     'Cache-Control': 'no-store'
-  }));
+  };
+  res.writeHead(statusCode, cors ? withCors(headers) : headers);
   res.end(body);
 }
 

@@ -139,6 +139,8 @@ async function handleChat(req, res) {
   }
 }
 
+const ADMIN_RES_OPTIONS = { cors: false };
+
 async function handleMemory(req, res, url, pathname) {
   if (!requireAdmin(req, res)) return;
 
@@ -157,7 +159,7 @@ async function handleMemory(req, res, url, pathname) {
           status: url.searchParams.get('status') || '',
           limit: url.searchParams.get('limit') || ''
         })
-      });
+      }, ADMIN_RES_OPTIONS);
       return;
     }
 
@@ -166,7 +168,7 @@ async function handleMemory(req, res, url, pathname) {
       sendJson(res, 201, {
         ok: true,
         memory: createMemory(payload)
-      });
+      }, ADMIN_RES_OPTIONS);
       return;
     }
 
@@ -174,10 +176,10 @@ async function handleMemory(req, res, url, pathname) {
       const payload = await readJsonBody(req);
       const memory = updateMemory(Number(idMatch[1]), payload);
       if (!memory) {
-        sendJson(res, 404, { ok: false, error: 'Memory not found' });
+        sendJson(res, 404, { ok: false, error: 'Memory not found' }, ADMIN_RES_OPTIONS);
         return;
       }
-      sendJson(res, 200, { ok: true, memory });
+      sendJson(res, 200, { ok: true, memory }, ADMIN_RES_OPTIONS);
       return;
     }
 
@@ -186,7 +188,7 @@ async function handleMemory(req, res, url, pathname) {
     sendJson(res, 400, {
       ok: false,
       error: error.message
-    });
+    }, ADMIN_RES_OPTIONS);
   }
 }
 
@@ -217,7 +219,7 @@ function handleContextPreview(req, res, url) {
       summaries: context.summaries,
       keywords: context.keywords
     }
-  });
+  }, ADMIN_RES_OPTIONS);
 }
 
 async function handleUidMove(req, res) {
@@ -371,7 +373,7 @@ function requireAdmin(req, res) {
     sendJson(res, 503, {
       ok: false,
       error: 'ADMIN_TOKEN is not configured'
-    });
+    }, ADMIN_RES_OPTIONS);
     return false;
   }
 
@@ -383,7 +385,7 @@ function requireAdmin(req, res) {
     sendJson(res, 401, {
       ok: false,
       error: 'Unauthorized'
-    });
+    }, ADMIN_RES_OPTIONS);
     return false;
   }
 

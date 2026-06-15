@@ -138,5 +138,11 @@ if ! printf '%s' "$chat_output" | grep -q '"ok":true'; then
   exit 1
 fi
 
+# Clean up the smoke-test UID so it never accumulates in the production DB.
+RESET_URL="${HEALTH_URL%/health}/uid/reset"
+curl -fsS --max-time 10 -X POST "$RESET_URL" \
+  -H 'Content-Type: application/json' \
+  -d '{"uid":"deploy-smoke"}' >/dev/null 2>&1 || echo "WARN: failed to clean deploy-smoke uid" >&2
+
 echo "==> Deployed successfully"
 REMOTE_SCRIPT
