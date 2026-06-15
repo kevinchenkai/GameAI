@@ -51,7 +51,7 @@ export const config = {
   appName: 'soulmate-api',
   appVersion: '0.4.4',
   apiRoot,
-  host: readEnv('HOST', '127.0.0.1'),
+  host: readEnv('HOST', '0.0.0.0'),
   port: Number(readEnv('PORT', '3001')),
   deepseek: {
     url: readEnv('DEEPSEEK_URL', 'https://api.deepseek.com').replace(/\/+$/, ''),

@@ -1,6 +1,6 @@
 {
   "name": "soulmate-api",
-  "version": "0.2.0",
+  "version": "0.4.4",
   "private": true,
   "description": "SoulMate lightweight Node.js API backend.",
   "type": "module",
@@ -9,6 +9,6 @@
     "dev": "PORT=3001 node --watch src/server.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }

@@ -14,26 +14,33 @@ CHAT_URL="${CHAT_URL:-https://g.ismayday.mobi/api/chat}"
 echo "==> Deploying SoulMate from $LOCAL_DIR"
 echo "==> Target: $REMOTE_HOST:$REMOTE_APP_DIR"
 
+# Sync frontend static assets to app root on server
 rsync -avz --delete \
   --rsync-path="sudo rsync" \
   --no-owner --no-group --no-times --no-perms \
-  --exclude ".git/" \
+  --exclude ".DS_Store" \
+  --exclude "Dockerfile" \
+  --exclude ".dockerignore" \
+  --exclude "nginx.conf" \
+  "$LOCAL_DIR/frontend/" "$REMOTE_HOST:$REMOTE_APP_DIR/"
+
+# Sync API directory
+rsync -avz --delete \
+  --rsync-path="sudo rsync" \
+  --no-owner --no-group --no-times --no-perms \
   --exclude "node_modules/" \
   --exclude ".DS_Store" \
   --exclude ".env" \
   --exclude ".checks/" \
-  --exclude ".htaccess" \
+  --exclude "Dockerfile" \
+  --exclude ".dockerignore" \
   --exclude "package-lock.json" \
   --exclude "*.log" \
-  --exclude "api/data/" \
+  --exclude "data/" \
   --exclude "*.sqlite" \
   --exclude "*.sqlite-wal" \
   --exclude "*.sqlite-shm" \
-  --exclude "audit/" \
-  --exclude "output/" \
-  --exclude "roadshow/" \
-  --exclude "tmp/" \
-  "$LOCAL_DIR/" "$REMOTE_HOST:$REMOTE_APP_DIR/"
+  "$LOCAL_DIR/api/" "$REMOTE_HOST:$REMOTE_APP_DIR/api/"
 
 ssh "$REMOTE_HOST" bash -s -- "$REMOTE_APP_DIR" "$REMOTE_API_DIR" "$REMOTE_NODE" "$REMOTE_USER" "$HEALTH_URL" "$CHAT_URL" <<'REMOTE_SCRIPT'
 set -Eeuo pipefail

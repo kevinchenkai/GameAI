@@ -1,0 +1,12 @@
+.DS_Store
+.env
+.checks/
+node_modules/
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.log
+Dockerfile
+.dockerignore
+package-lock.json

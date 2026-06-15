@@ -64,7 +64,7 @@ export function fallbackReply(payload) {
 }
 
 function getTimePhase(date) {
-  const hour = date.getHours();
+  const hour = date.getUTCHours();
   if (hour >= 5 && hour <= 8) return 'morning';
   if (hour >= 9 && hour <= 16) return 'day';
   if (hour >= 17 && hour <= 19) return 'evening';

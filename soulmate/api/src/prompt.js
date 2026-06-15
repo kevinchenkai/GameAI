@@ -59,11 +59,61 @@ export const INTIMACY_LEVELS = [
 
 export function getRequestDate(clientTime) {
   const date = clientTime ? new Date(clientTime) : new Date();
-  return Number.isNaN(date.getTime()) ? new Date() : date;
+  if (Number.isNaN(date.getTime())) {
+    return new Date();
+  }
+
+  const offsetMatch = String(clientTime).trim().match(/([+-]\d{2}:\d{2}|Z)$/);
+  if (!offsetMatch) {
+    return date;
+  }
+
+  const tz = offsetMatch[1];
+  if (tz === 'Z') {
+    return date;
+  }
+
+  const sign = tz[0] === '+' ? 1 : -1;
+  const [hours, minutes] = tz.slice(1).split(':').map((value) => Number(value));
+  const offsetMinutes = sign * ((Number(hours) * 60) + Number(minutes));
+
+  return new Date(date.getTime() + offsetMinutes * 60 * 1000);
+}
+
+function getHour(date) {
+  return date.getUTCHours();
+}
+
+function getMinute(date) {
+  return date.getUTCMinutes();
+}
+
+function getSecond(date) {
+  return date.getUTCSeconds();
+}
+
+function getMonth(date) {
+  return date.getUTCMonth();
+}
+
+function getDate(date) {
+  return date.getUTCDate();
+}
+
+function getFullYear(date) {
+  return date.getUTCFullYear();
+}
+
+function getWeekdayIndex(date) {
+  return date.getUTCDay();
+}
+
+function getMinutesOfDay(date) {
+  return getHour(date) * 60 + getMinute(date);
 }
 
 export function getTimePhase(date) {
-  const hour = date.getHours();
+  const hour = getHour(date);
   if (hour >= 5 && hour <= 8) return 'morning';
   if (hour >= 9 && hour <= 16) return 'day';
   if (hour >= 17 && hour <= 19) return 'evening';
@@ -71,8 +121,8 @@ export function getTimePhase(date) {
 }
 
 export function getLifeScene(date) {
-  const day = date.getDay();
-  const minutes = date.getHours() * 60 + date.getMinutes();
+  const day = getWeekdayIndex(date);
+  const minutes = getMinutesOfDay(date);
   const isWorkday = day >= 1 && day <= 5;
   const workStart = 9 * 60;
   const workEnd = 18 * 60 + 30;
@@ -147,17 +197,17 @@ function pad(value) {
 }
 
 function formatDate(date) {
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  return `${getFullYear(date)}-${pad(getMonth(date) + 1)}-${pad(getDate(date))}`;
 }
 
 function formatTime(date, withSeconds) {
-  const parts = [date.getHours(), date.getMinutes()];
-  if (withSeconds) parts.push(date.getSeconds());
+  const parts = [getHour(date), getMinute(date)];
+  if (withSeconds) parts.push(getSecond(date));
   return parts.map((part) => String(part).padStart(2, '0')).join(':');
 }
 
 function getWeekday(date) {
-  return ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][date.getDay()];
+  return ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][getWeekdayIndex(date)];
 }
 
 function buildSystemPrompt(payload, date, context = {}) {
