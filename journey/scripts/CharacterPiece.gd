@@ -5,13 +5,14 @@ extends Node2D
 ## 预留状态图标与气泡挂点。被动技能/状态结算在后续任务接入。
 
 ## 同格四子偏移（左上/右上/左下/右下），见主方案 §3.4.4。
+## 偏移收紧，使四子都落在 ~70px 路面石板格位内（格间距约 76px）。
 const SLOT_OFFSETS := [
-	Vector2(-22, -22),
-	Vector2(22, -22),
-	Vector2(-22, 22),
-	Vector2(22, 22),
+	Vector2(-13, -13),
+	Vector2(13, -13),
+	Vector2(-13, 13),
+	Vector2(13, 13),
 ]
-const RADIUS := 26.0
+const RADIUS := 22.0
 const STEP_TIME := 0.18  # 每格移动时长（秒）
 
 ## 移动播放完成（逐格动画走完最终落点）时发出，附带落点 index。

@@ -9,23 +9,32 @@ extends Node
 
 const BOARD_PATH := "res://data/board_72.json"
 const EVENTS_PATH := "res://data/events.json"
+const PATH_TABLE := "res://data/board_path.json"
 
 const TILE_COUNT := 72
 
-## 蛇形布局参数（Task 2 占位坐标；正式地图对齐在 Task 8）。
+## 设计分辨率（与底图 board_map.png 同比，坐标基准）。归一化点 × 此尺寸 = 画布坐标。
+## 实际屏幕缩放由 project.godot 的 canvas_items/keep 处理，与此无关。
+const DESIGN_SIZE := Vector2(1920.0, 1080.0)
+
+## 蛇形 fallback 参数（仅当 board_path.json 缺失时退回，保证可跑）。
 const COLS := 9
-const ROWS := 8
 const ORIGIN := Vector2(140.0, 120.0)
 const SPACING := Vector2(120.0, 120.0)
 
 ## index(1..72) -> 格子数据字典 { index, region, tile_type, event_id }
 var _tiles: Dictionary = {}
-## index(1..72) -> Vector2 屏幕坐标
+## index(1..72) -> Vector2 画布坐标
 var _positions: Dictionary = {}
+## index(1..72) -> Vector2 归一化坐标（来自 board_path.json）
+var _norm: Dictionary = {}
+## 是否使用取经路点位表（false 则退回蛇形 fallback）
+var _use_path_table: bool = false
 ## 数据是否已成功加载并通过校验
 var _loaded: bool = false
 
 func _ready() -> void:
+	_load_path_table()
 	_load_and_validate()
 
 ## 加载棋盘与事件数据并交叉校验。任一环节失败 push_error 并中止（不静默）。
@@ -76,12 +85,47 @@ func _load_and_validate() -> void:
 	_loaded = true
 	print("[BoardManager] 已加载并校验 %d 格，事件引用全部有效" % TILE_COUNT)
 
-## 蛇形（boustrophedon）排布：第 1 格在左上，逐行折返。
+## 加载取经路点位表 board_path.json，并校验（72 条、index 连续、x/y∈[0,1]）。
+## 任一不满足 push_error 并退回蛇形 fallback（不静默）。
+func _load_path_table() -> void:
+	if not FileAccess.file_exists(PATH_TABLE):
+		push_warning("[BoardManager] 缺少 %s，退回蛇形布局" % PATH_TABLE)
+		return
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(PATH_TABLE))
+	if typeof(parsed) != TYPE_ARRAY or (parsed as Array).size() != TILE_COUNT:
+		push_error("[BoardManager] board_path.json 非数组或数量≠%d，退回蛇形布局" % TILE_COUNT)
+		return
+	var seen := {}
+	for p in parsed:
+		if typeof(p) != TYPE_DICTIONARY:
+			push_error("[BoardManager] board_path.json 含非对象条目，退回蛇形布局")
+			return
+		var idx: int = int(p.get("index", -1))
+		var x: float = float(p.get("x", -1.0))
+		var y: float = float(p.get("y", -1.0))
+		if idx < 1 or idx > TILE_COUNT or seen.has(idx):
+			push_error("[BoardManager] board_path.json 非法/重复 index=%s，退回蛇形布局" % str(idx))
+			return
+		if x < 0.0 or x > 1.0 or y < 0.0 or y > 1.0:
+			push_error("[BoardManager] board_path.json 第 %d 点坐标越界 [0,1]，退回蛇形布局" % idx)
+			return
+		seen[idx] = true
+		_norm[idx] = Vector2(x, y)
+	if seen.size() != TILE_COUNT:
+		push_error("[BoardManager] board_path.json index 不连续，退回蛇形布局")
+		return
+	_use_path_table = true
+	print("[BoardManager] 已加载取经路点位表 %d 点" % TILE_COUNT)
+
+## 计算格子画布坐标：优先取经路点位表（归一化×设计分辨率），否则蛇形 fallback。
 func _compute_position(index: int) -> Vector2:
-	var i := index - 1            # 0-based
+	if _use_path_table and _norm.has(index):
+		var n: Vector2 = _norm[index]
+		return Vector2(n.x * DESIGN_SIZE.x, n.y * DESIGN_SIZE.y)
+	# fallback：蛇形（boustrophedon）排布
+	var i := index - 1
 	var row := i / COLS
 	var col_in_row := i % COLS
-	# 奇数行从右向左，形成蛇形
 	var col := col_in_row if (row % 2 == 0) else (COLS - 1 - col_in_row)
 	return ORIGIN + Vector2(col * SPACING.x, row * SPACING.y)
 

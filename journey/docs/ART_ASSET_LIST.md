@@ -30,6 +30,14 @@
 | 小雷音寺装饰 | `region_lesser_thunderclap.png` | 透明分层 | 已接入 |
 | 西天灵山装饰 | `region_western_paradise.png` | 透明分层 | 已接入 |
 
+## S1 棋盘背景融合（`assets/backgrounds/` + `data/`）
+
+| 素材 | 文件 | 规格 | 状态 |
+|---|---|---|---|
+| 取经路背景 v2 | `board_map.png` | 1920x1080，内嵌 72 个统一格位 | 已生成 |
+| 旧背景备份 | `board_map_v0.png` | 1920x1080 | 已生成 |
+| 72 格点位表 | `board_path.json` | 72 个归一化中心坐标 | 已生成 |
+
 ## B3 格子图标（`assets/sprites/tiles/`）
 
 | 素材 | 文件 | 规格 | 状态 |

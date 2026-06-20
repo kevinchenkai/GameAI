@@ -53,10 +53,25 @@ func _on_game_over(winner_id: String) -> void:
 	await get_tree().create_timer(1.2).timeout
 	get_tree().change_scene_to_file(RESULT_SCENE)
 
-## 调试：D 键切换棋盘编号（透传给 Board）。
+## 快捷键：D 切换棋盘编号；F11 切全屏/窗口；Esc 退出全屏。
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_D:
-		var board := get_node_or_null("Board")
-		if board and board.has_method("_apply_debug_visibility"):
-			board.debug_index_visible = not board.debug_index_visible
-			board._apply_debug_visibility()
+	if not (event is InputEventKey and event.pressed and not event.echo):
+		return
+	match event.keycode:
+		KEY_D:
+			var board := get_node_or_null("Board")
+			if board and board.has_method("_apply_debug_visibility"):
+				board.debug_index_visible = not board.debug_index_visible
+				board._apply_debug_visibility()
+		KEY_F11:
+			_toggle_fullscreen()
+		KEY_ESCAPE:
+			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _toggle_fullscreen() -> void:
+	var m := DisplayServer.window_get_mode()
+	if m == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
