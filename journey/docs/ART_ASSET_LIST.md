@@ -38,6 +38,13 @@
 | 旧背景备份 | `board_map_v0.png` | 1920x1080 | 已生成 |
 | 72 格点位表 | `board_path.json` | 72 个归一化中心坐标 | 已生成 |
 
+## S2 场景背景（`assets/backgrounds/`）
+
+| 素材 | 文件 | 规格 | 状态 |
+|---|---|---|---|
+| 角色选择背景 | `select_bg.png` | 1920x1080，UI 预留区对齐 S2 坐标 | 已接入 |
+| 结算背景 | `result_bg.png` | 1920x1080，UI 预留区对齐 S2 坐标 | 已接入 |
+
 ## B3 格子图标（`assets/sprites/tiles/`）
 
 | 素材 | 文件 | 规格 | 状态 |

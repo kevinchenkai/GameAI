@@ -1,30 +1,41 @@
 extends Control
 ## 角色选择界面（CharacterSelect.tscn 根节点）。
 ##
-## Task 7：玩家从 4 角色中选 1（其余 AI）。选定后存入 GameManager 并进入 GameScene。
-## Task 8：卡片用角色头像素材。
+## S2：背景 select_bg；4 张卡片按 brief 预留坐标定位到背景的 4 个光台上。
+## 玩家选 1 角色（其余 AI），选定后存入 GameManager 并进入 GameScene。
 
 const GAME_SCENE := "res://scenes/GameScene.tscn"
-const AVATAR_SIZE := Vector2(160, 160)
 
-@onready var _cards_root: HBoxContainer = $Center/Cards
+## 4 卡片中心 x（对齐 select_bg 预留光台），垂直中心 y。见 S2_SCREENS_BRIEF.md。
+const CARD_CENTERS_X := [480.0, 800.0, 1120.0, 1440.0]
+const CARD_CENTER_Y := 570.0
+const CARD_SIZE := Vector2(280.0, 400.0)
+const AVATAR_SIZE := Vector2(180.0, 180.0)
+
+@onready var _cards_root: Control = $Cards
 
 func _ready() -> void:
 	_build_cards()
 
-
 func _build_cards() -> void:
 	for child in _cards_root.get_children():
 		child.queue_free()
-	for data in GameManager.get_roster():
-		_cards_root.add_child(_make_card(data))
+	var roster: Array = GameManager.get_roster()
+	for i in roster.size():
+		var center_x: float = CARD_CENTERS_X[i] if i < CARD_CENTERS_X.size() else 480.0 + i * 320.0
+		var card := _make_card(roster[i])
+		card.position = Vector2(center_x - CARD_SIZE.x * 0.5, CARD_CENTER_Y - CARD_SIZE.y * 0.5)
+		_cards_root.add_child(card)
 
 func _make_card(data: Dictionary) -> Control:
 	var card := VBoxContainer.new()
-	card.custom_minimum_size = Vector2(200, 280)
+	card.custom_minimum_size = CARD_SIZE
+	card.size = CARD_SIZE
+	card.add_theme_constant_override("separation", 10)
 
 	var avatar := TextureRect.new()
 	avatar.custom_minimum_size = AVATAR_SIZE
+	avatar.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	avatar.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	avatar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	var avatar_path := str(data.get("avatar", ""))
@@ -35,18 +46,23 @@ func _make_card(data: Dictionary) -> Control:
 	var name_label := Label.new()
 	name_label.text = str(data.get("name", ""))
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	name_label.add_theme_font_size_override("font_size", 22)
+	name_label.add_theme_font_size_override("font_size", 26)
+	name_label.add_theme_color_override("font_color", Color(0.35, 0.22, 0.08))
 	card.add_child(name_label)
 
 	var role_label := Label.new()
 	role_label.text = _role_text(str(data.get("passive_skill", "")))
 	role_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	role_label.add_theme_font_size_override("font_size", 14)
+	role_label.add_theme_font_size_override("font_size", 15)
+	role_label.add_theme_color_override("font_color", Color(0.4, 0.3, 0.15))
 	role_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	role_label.custom_minimum_size = Vector2(CARD_SIZE.x, 50)
 	card.add_child(role_label)
 
 	var btn := Button.new()
-	btn.text = "选择 %s" % str(data.get("name", ""))
+	btn.text = "选择"
+	btn.custom_minimum_size = Vector2(160, 48)
+	btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	var cid := str(data.get("id", ""))
 	btn.pressed.connect(func(): _on_select(cid))
 	card.add_child(btn)

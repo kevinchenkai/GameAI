@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjourney0result"]
+[gd_scene load_steps=4 format=3 uid="uid://bjourney0result"]
 
 [ext_resource type="Script" path="res://scripts/ResultScene.gd" id="1_result"]
 [ext_resource type="PackedScene" path="res://scenes/ui/RankingPanel.tscn" id="2_ranking"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/result_bg.png" id="3_bg"]
 
 [node name="ResultScene" type="Control"]
 layout_mode = 3
@@ -10,35 +11,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1_result")
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Box" type="VBoxContainer" parent="Center"]
-layout_mode = 2
-theme_override_constants/separation = 18
-
-[node name="Winner" type="Label" parent="Center/Box"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
+[node name="Winner" type="Label" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 90.0
+offset_right = 1560.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0.45, 0.25, 0.05, 1)
+theme_override_font_sizes/font_size = 38
 text = "🏆"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Avatar" type="TextureRect" parent="Center/Box"]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-size_flags_horizontal = 4
+[node name="Avatar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 200.0
+offset_right = 1110.0
+offset_bottom = 500.0
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 6
 
-[node name="RankingPanel" parent="Center/Box" instance=ExtResource("2_ranking")]
-layout_mode = 2
+[node name="RankingPanel" parent="." instance=ExtResource("2_ranking")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = 730.0
+offset_top = 520.0
+offset_right = 1190.0
+offset_bottom = 800.0
 
-[node name="RestartButton" type="Button" parent="Center/Box"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 22
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 830.0
+offset_right = 1060.0
+offset_bottom = 890.0
+theme_override_font_sizes/font_size = 24
 text = "重新开始"

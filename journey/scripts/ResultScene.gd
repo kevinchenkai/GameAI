@@ -5,10 +5,10 @@ extends Control
 
 const SELECT_SCENE := "res://scenes/CharacterSelect.tscn"
 
-@onready var _winner_label: Label = $Center/Box/Winner
-@onready var _winner_avatar: TextureRect = $Center/Box/Avatar
-@onready var _ranking: VBoxContainer = $Center/Box/RankingPanel
-@onready var _restart: Button = $Center/Box/RestartButton
+@onready var _winner_label: Label = $Winner
+@onready var _winner_avatar: TextureRect = $Avatar
+@onready var _ranking: VBoxContainer = $RankingPanel
+@onready var _restart: Button = $RestartButton
 
 func _ready() -> void:
 	var winner_id := GameManager.get_winner()

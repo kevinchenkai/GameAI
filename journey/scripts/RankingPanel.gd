@@ -22,7 +22,9 @@ func _make_row(row: Dictionary) -> Control:
 	if row.get("is_winner", false):
 		tag += " 🏆"
 	line.text = "%s  %s   第 %d 格%s" % [medal, str(row.get("name", "")), int(row.get("index", 0)), tag]
-	line.add_theme_font_size_override("font_size", 24 if row.get("is_winner", false) else 20)
-	if row.get("is_winner", false):
-		line.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	line.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var is_winner: bool = row.get("is_winner", false)
+	line.add_theme_font_size_override("font_size", 26 if is_winner else 22)
+	# result_bg 为浅金底：胜者用深橙金，其余用深棕，保证可读
+	line.add_theme_color_override("font_color", Color(0.78, 0.42, 0.05) if is_winner else Color(0.36, 0.24, 0.1))
 	return line

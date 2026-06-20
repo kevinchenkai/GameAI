@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjourney0charselect"]
+[gd_scene load_steps=3 format=3 uid="uid://bjourney0charselect"]
 
 [ext_resource type="Script" path="res://scripts/CharacterSelect.gd" id="1_select"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/select_bg.png" id="2_bg"]
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
@@ -9,23 +10,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1_select")
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 1240.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 32
-text = "选择你的取经人"
-horizontal_alignment = 1
-
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 120.0
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Cards" type="HBoxContainer" parent="Center"]
-layout_mode = 2
-theme_override_constants/separation = 24
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 60.0
+offset_right = 1560.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(0.99, 0.97, 0.9, 1)
+theme_override_font_sizes/font_size = 44
+text = "选择你的取经人"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cards" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
