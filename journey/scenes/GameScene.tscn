@@ -1,14 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjourney0gamescene"]
+[gd_scene load_steps=8 format=3 uid="uid://bjourney0gamescene"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_gamescene"]
 [ext_resource type="PackedScene" path="res://scenes/board/Board.tscn" id="2_board"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DicePanel.tscn" id="3_dice"]
+[ext_resource type="PackedScene" path="res://scenes/ui/TurnPanel.tscn" id="4_turn"]
+[ext_resource type="Script" path="res://scripts/AIController.gd" id="5_ai"]
+[ext_resource type="PackedScene" path="res://scenes/ui/EventPopup.tscn" id="6_popup"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/board_map.png" id="7_map"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_gamescene")
 
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 360)
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("7_map")
+modulate = Color(1, 1, 1, 0.45)
+
 [node name="Board" parent="." instance=ExtResource("2_board")]
 
 [node name="Pieces" type="Node2D" parent="."]
+
+[node name="AIController" type="Node" parent="."]
+script = ExtResource("5_ai")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -19,3 +34,9 @@ offset_right = 1240.0
 offset_bottom = 52.0
 text = "Journey Ludo — V0.1"
 horizontal_alignment = 1
+
+[node name="TurnPanel" parent="CanvasLayer" instance=ExtResource("4_turn")]
+
+[node name="DicePanel" parent="CanvasLayer" instance=ExtResource("3_dice")]
+
+[node name="EventPopup" parent="CanvasLayer" instance=ExtResource("6_popup")]

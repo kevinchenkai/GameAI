@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjourney0turnpanel"]
+
+[ext_resource type="Script" path="res://scripts/TurnPanel.gd" id="1_turnpanel"]
+
+[node name="TurnPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 60.0
+offset_right = 440.0
+offset_bottom = 100.0
+script = ExtResource("1_turnpanel")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 22
+text = "当前回合：—"
+vertical_alignment = 1

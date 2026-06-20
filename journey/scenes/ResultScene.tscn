@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjourney0result"]
+
+[ext_resource type="Script" path="res://scripts/ResultScene.gd" id="1_result"]
+[ext_resource type="PackedScene" path="res://scenes/ui/RankingPanel.tscn" id="2_ranking"]
+
+[node name="ResultScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_result")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Box" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Winner" type="Label" parent="Center/Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "🏆"
+horizontal_alignment = 1
+
+[node name="Avatar" type="TextureRect" parent="Center/Box"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RankingPanel" parent="Center/Box" instance=ExtResource("2_ranking")]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="Center/Box"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "重新开始"

@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjourney0dicepanel"]
+
+[ext_resource type="Script" path="res://scripts/DiceController.gd" id="1_dice"]
+
+[node name="DicePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1040.0
+offset_top = 600.0
+offset_right = 1240.0
+offset_bottom = 700.0
+script = ExtResource("1_dice")
+
+[node name="Face" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 0.0
+offset_right = 86.0
+offset_bottom = 80.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Result" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 0.0
+offset_right = 90.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 40
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RollButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 56.0
+text = "掷骰"

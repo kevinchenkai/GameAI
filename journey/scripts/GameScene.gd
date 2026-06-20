@@ -1,48 +1,62 @@
 extends Node2D
 ## 游戏主场景控制器（GameScene.tscn 根节点）。
 ##
-## Task 1：占位空场景。Task 2：挂载棋盘。
-## Task 3：在起点生成 4 个角色棋子（四角偏移），提供逐格移动验证。
-## 真实回合/掷骰在 Task 4 接入；本任务用空格键做移动 demo。
+## 生成 4 棋子 → 注入运行时（骰子/AI/棋子/弹窗）→ 以玩家所选角色开局。
+## 终局切换到 ResultScene（Task 7）。
 
 const PIECE_SCENE := preload("res://scenes/pieces/CharacterPiece.tscn")
+const RESULT_SCENE := "res://scenes/ResultScene.tscn"
 const START_INDEX := 1
 
 @onready var _title: Label = $CanvasLayer/Title
 @onready var _pieces_root: Node2D = $Pieces
+@onready var _dice: Control = $CanvasLayer/DicePanel
+@onready var _turn_panel: Control = $CanvasLayer/TurnPanel
+@onready var _popup: Control = $CanvasLayer/EventPopup
+@onready var _ai: Node = $AIController
 
-var _pieces: Array[Node2D] = []
-var _demo_turn: int = 0  # demo：轮流移动哪个棋子
+var _pieces: Dictionary = {}   # character_id -> CharacterPiece
 
 func _ready() -> void:
-	print("[GameScene] ready. GameManager state = %s" % GameManager.State.keys()[GameManager.get_state()])
 	if _title:
-		_title.text = "Journey Ludo — V0.1 (Task 3：空格掷骰移动 / D 切换编号)"
+		_title.text = "Journey Ludo — V0.1（D 切换格子编号）"
 	_spawn_pieces()
+	GameManager.turn_started.connect(_on_turn_started)
+	GameManager.game_over.connect(_on_game_over)
+	GameManager.register_runtime(_dice, _ai, _pieces, _popup)
+	# 以角色选择界面选定的角色开局（§3.4.7 插到首发）
+	GameManager.start_game(GameManager.get_selected_player())
 
-## 在起点生成全部角色棋子，按花名册顺序分配四角槽位。
 func _spawn_pieces() -> void:
 	var roster: Array = GameManager.get_roster()
 	for i in roster.size():
 		var piece := PIECE_SCENE.instantiate()
 		_pieces_root.add_child(piece)
 		piece.setup(roster[i], START_INDEX, i)
-		_pieces.append(piece)
+		_pieces[String(roster[i].get("id", ""))] = piece
 	print("[GameScene] 已生成 %d 个棋子于起点" % _pieces.size())
 
-## Demo：空格键让下一个棋子掷一次骰子并逐格前进，验证移动动画。
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE:
-		_demo_move()
+func _on_turn_started(_character_id: String, character_name: String, is_player: bool) -> void:
+	if _turn_panel:
+		_turn_panel.show_actor(character_name, is_player)
 
-func _demo_move() -> void:
-	if _pieces.is_empty():
-		return
-	var piece: Node2D = _pieces[_demo_turn % _pieces.size()]
-	if piece.is_moving():
-		return
-	var roll: int = GameRng.randi_range(1, 6)
-	print("[Demo] %s 掷出 %d，从第 %d 格出发" % [piece.character_name, roll, piece.current_index])
-	_demo_turn += 1
-	await piece.move_by(roll)
-	print("[Demo] %s 停在第 %d 格" % [piece.character_name, piece.current_index])
+func _on_game_over(winner_id: String) -> void:
+	var data := {}
+	for c in GameManager.get_roster():
+		if c.get("id", "") == winner_id:
+			data = c
+	if _title:
+		_title.text = "🏆 胜者：%s — 游戏结束" % str(data.get("name", winner_id))
+	if _dice:
+		_dice.set_button_enabled(false)
+	# 短暂停留展示终局位置，再进入结算界面
+	await get_tree().create_timer(1.2).timeout
+	get_tree().change_scene_to_file(RESULT_SCENE)
+
+## 调试：D 键切换棋盘编号（透传给 Board）。
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_D:
+		var board := get_node_or_null("Board")
+		if board and board.has_method("_apply_debug_visibility"):
+			board.debug_index_visible = not board.debug_index_visible
+			board._apply_debug_visibility()

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjourney0ranking"]
+
+[ext_resource type="Script" path="res://scripts/RankingPanel.gd" id="1_ranking"]
+
+[node name="RankingPanel" type="VBoxContainer"]
+custom_minimum_size = Vector2(420, 240)
+theme_override_constants/separation = 12
+script = ExtResource("1_ranking")

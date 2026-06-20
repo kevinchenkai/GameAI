@@ -1,25 +1,38 @@
 extends Node2D
 ## 单个棋盘格（Tile.tscn 根节点）。
 ##
-## Task 2：占位渲染——按格子类型上色的圆形 + 可切换的调试编号标签。
-## 正式格子图标（assets/sprites/tiles/）在 Task 8 接入。
+## Task 8：用正式格子图标（assets/sprites/tiles/）渲染；无对应图标的类型
+## （start/special）回退到占位彩色圆。调试编号标签可切换。
 
 const RADIUS := 42.0
+const ICON_SIZE := 84.0  # 图标显示直径
 
-## 占位配色（按 tile_type，对照 CLAUDE_TASKS Task 2 实现要点）。
+## tile_type -> 图标文件（无映射者用占位圆）。
+const TYPE_ICONS := {
+	"normal": "res://assets/sprites/tiles/tile_normal.png",
+	"reward": "res://assets/sprites/tiles/tile_reward.png",
+	"punish": "res://assets/sprites/tiles/tile_punish.png",
+	"warp": "res://assets/sprites/tiles/tile_warp.png",
+	"post_station": "res://assets/sprites/tiles/tile_post_station.png",
+	"finish": "res://assets/sprites/tiles/tile_finish.png",
+	"start": "res://assets/sprites/tiles/tile_finish.png",  # 起点复用金色终点图
+}
+
+## 占位配色（仅未映射图标的类型用，如 special）。
 const TYPE_COLORS := {
-	"start": Color("f4c430"),         # 起点 金
-	"normal": Color("c9c9c9"),        # 普通 灰
-	"reward": Color("5fbf6a"),        # 奖励 绿
-	"punish": Color("e0524a"),        # 惩罚 红
-	"warp": Color("9b6fd6"),          # 传送 紫
-	"post_station": Color("4a90e0"),  # 驿站 蓝
-	"special": Color("e8923d"),       # 特殊 橙
-	"finish": Color("f4c430"),        # 终点 金
+	"start": Color("f4c430"),
+	"normal": Color("c9c9c9"),
+	"reward": Color("5fbf6a"),
+	"punish": Color("e0524a"),
+	"warp": Color("9b6fd6"),
+	"post_station": Color("4a90e0"),
+	"special": Color("e8923d"),
+	"finish": Color("f4c430"),
 }
 
 var _index: int = 0
 var _tile_type: String = "normal"
+var _texture: Texture2D = null
 
 @onready var _label: Label = $IndexLabel
 
@@ -28,6 +41,9 @@ func setup(index: int, tile_type: String, world_pos: Vector2) -> void:
 	_index = index
 	_tile_type = tile_type
 	position = world_pos
+	var path: String = TYPE_ICONS.get(tile_type, "")
+	if path != "" and ResourceLoader.exists(path):
+		_texture = load(path)
 	if _label:
 		_label.text = str(index)
 	queue_redraw()
@@ -38,6 +54,10 @@ func set_debug_index_visible(v: bool) -> void:
 		_label.visible = v
 
 func _draw() -> void:
-	var col: Color = TYPE_COLORS.get(_tile_type, TYPE_COLORS["normal"])
-	draw_circle(Vector2.ZERO, RADIUS, col)
-	draw_arc(Vector2.ZERO, RADIUS, 0.0, TAU, 32, Color(0, 0, 0, 0.35), 2.0, true)
+	if _texture:
+		var s := ICON_SIZE
+		draw_texture_rect(_texture, Rect2(-s * 0.5, -s * 0.5, s, s), false)
+	else:
+		var col: Color = TYPE_COLORS.get(_tile_type, TYPE_COLORS["normal"])
+		draw_circle(Vector2.ZERO, RADIUS, col)
+		draw_arc(Vector2.ZERO, RADIUS, 0.0, TAU, 32, Color(0, 0, 0, 0.35), 2.0, true)
