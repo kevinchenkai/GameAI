@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjourney0gamescene"]
+
+[ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_gamescene"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_gamescene")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 1240.0
+offset_bottom = 80.0
+text = "Journey Ludo — V0.1"
+horizontal_alignment = 1

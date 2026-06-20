@@ -1,0 +1,35 @@
+; Engine configuration file.
+; 《Journey Ludo》西游记飞行棋 V0.1
+; Godot 4.x — 2D / Compatibility 渲染。autoload 规划见 docs/CLAUDE_TASKS.md §2。
+
+config_version=5
+
+[application]
+
+config/name="Journey Ludo"
+config/description="《西游记飞行棋》Q版 2D 单线 72 格飞行棋 Demo"
+run/main_scene="res://scenes/Main.tscn"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameRng="*res://scripts/GameRng.gd"
+BoardManager="*res://scripts/BoardManager.gd"
+EventManager="*res://scripts/EventManager.gd"
+SkillManager="*res://scripts/SkillManager.gd"
+TurnManager="*res://scripts/TurnManager.gd"
+AudioManager="*res://scripts/AudioManager.gd"
+GameManager="*res://scripts/GameManager.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

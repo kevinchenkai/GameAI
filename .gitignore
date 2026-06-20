@@ -50,3 +50,9 @@ temp/
 # Editors
 .idea/
 .vscode/
+
+# Godot (journey)
+journey/.godot/
+journey/export_presets.cfg
+journey/.import/
+journey/*.translation

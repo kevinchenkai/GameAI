@@ -1,0 +1,19 @@
+{
+  "debug_seed": null,
+
+  "dice": { "min": 1, "max": 6 },
+
+  "knockback_distance": 3,
+  "shield_max": 2,
+  "reroll_per_turn": 1,
+
+  "skills": {
+    "sun_wukong_cloud_dash_bonus": 2,
+    "zhu_bajie_thick_skin_chance": 0.5,
+    "tang_seng_shield_per_post_station": 1,
+    "sha_seng_reward_bonus": 1,
+    "sha_seng_punish_reduction": 1
+  },
+
+  "ai": { "think_delay_sec": 0.5 }
+}
