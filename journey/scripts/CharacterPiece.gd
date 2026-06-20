@@ -5,15 +5,15 @@ extends Node2D
 ## 预留状态图标与气泡挂点。被动技能/状态结算在后续任务接入。
 
 ## 同格四子偏移（左上/右上/左下/右下），见主方案 §3.4.4。
-## 偏移收紧，使四子都落在 ~70px 路面石板格位内（格间距约 76px）。
 const SLOT_OFFSETS := [
-	Vector2(-13, -13),
-	Vector2(13, -13),
-	Vector2(-13, 13),
-	Vector2(13, 13),
+	Vector2(-16, -14),
+	Vector2(16, -14),
+	Vector2(-16, 14),
+	Vector2(16, 14),
 ]
-const RADIUS := 22.0
-const STEP_TIME := 0.18  # 每格移动时长（秒）
+const RADIUS := 26.0          # 护盾光圈/状态角标半径
+const SPRITE_SIZE := 84.0     # 角色立绘显示直径（S2：调大到合适尺寸）
+const STEP_TIME := 0.18       # 每格移动时长（秒）
 
 ## 移动播放完成（逐格动画走完最终落点）时发出，附带落点 index。
 signal move_finished(final_index: int)
@@ -161,9 +161,9 @@ func _draw() -> void:
 		var glow := Color(1.0, 0.86, 0.35, 0.35 + 0.2 * shield)
 		draw_arc(Vector2.ZERO, RADIUS + 6.0, 0.0, TAU, 32, glow, 5.0, true)
 	if _sprite:
-		# 正式棋子图，底对齐到格中心略上方
-		var d := RADIUS * 2.2
-		draw_texture_rect(_sprite, Rect2(-d * 0.5, -d * 0.78, d, d), false)
+		# 正式棋子图，底部略压在格位上、主体在格位上方（站在路面石板上的观感）
+		var d := SPRITE_SIZE
+		draw_texture_rect(_sprite, Rect2(-d * 0.5, -d * 0.82, d, d), false)
 	else:
 		# 占位：彩色圆 + 角色名首字
 		draw_circle(Vector2.ZERO, RADIUS, _color)
