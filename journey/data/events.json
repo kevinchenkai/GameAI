@@ -1,0 +1,280 @@
+[
+  {
+    "id": "peach_forward_2",
+    "name": "仙桃",
+    "description": "前进 2 格",
+    "effect_type": "move_forward",
+    "negative": false,
+    "value": 2
+  },
+  {
+    "id": "monkey_reroll",
+    "name": "猴群助威",
+    "description": "再掷一次",
+    "effect_type": "re_roll",
+    "negative": false
+  },
+  {
+    "id": "monkey_back_1",
+    "name": "顽猴捣乱",
+    "description": "后退 1 格",
+    "effect_type": "move_backward",
+    "negative": true,
+    "value": 1
+  },
+  {
+    "id": "waterfall_warp_9",
+    "name": "水帘洞捷径",
+    "description": "前进到第 9 格",
+    "effect_type": "warp_to",
+    "negative": false,
+    "value": 9
+  },
+  {
+    "id": "feast_shield",
+    "name": "喜宴",
+    "description": "获得护盾",
+    "effect_type": "gain_status",
+    "negative": false,
+    "value": 1,
+    "status": "shield"
+  },
+  {
+    "id": "steal_back_2",
+    "name": "偷吃贡品",
+    "description": "后退 2 格",
+    "effect_type": "move_backward",
+    "negative": true,
+    "value": 2
+  },
+  {
+    "id": "bajie_forward_2",
+    "name": "八戒帮忙",
+    "description": "前进 2 格",
+    "effect_type": "move_forward",
+    "negative": false,
+    "value": 2
+  },
+  {
+    "id": "host_stay_shield",
+    "name": "庄主留客",
+    "description": "停留一回合但获得护盾",
+    "effect_type": "stay_and_shield",
+    "negative": false,
+    "value": 1
+  },
+  {
+    "id": "quicksand_stay",
+    "name": "流沙陷落",
+    "description": "停留一回合",
+    "effect_type": "stay",
+    "negative": true,
+    "value": 1
+  },
+  {
+    "id": "raft_forward_3",
+    "name": "木筏渡河",
+    "description": "前进 3 格",
+    "effect_type": "move_forward",
+    "negative": false,
+    "value": 3
+  },
+  {
+    "id": "flood_dice_minus",
+    "name": "河水上涨",
+    "description": "下回合骰子 -1",
+    "effect_type": "gain_status",
+    "negative": true,
+    "value": -1,
+    "status": "dice_minus"
+  },
+  {
+    "id": "shaseng_immune",
+    "name": "沙僧引路",
+    "description": "获得一次免疫负面事件",
+    "effect_type": "gain_status",
+    "negative": false,
+    "value": 1,
+    "status": "negate_negative"
+  },
+  {
+    "id": "bone_swap_random",
+    "name": "白骨幻象",
+    "description": "与随机角色交换位置",
+    "effect_type": "swap_random",
+    "negative": false
+  },
+  {
+    "id": "fiery_eyes_clear",
+    "name": "火眼金睛",
+    "description": "清除负面状态",
+    "effect_type": "clear_negative",
+    "negative": false
+  },
+  {
+    "id": "bone_gamble",
+    "name": "三打白骨精",
+    "description": "掷骰大于 3 前进 3 格，否则后退 3 格",
+    "effect_type": "dice_gate",
+    "negative": false,
+    "value": 3
+  },
+  {
+    "id": "demon_dice_minus",
+    "name": "妖气缠身",
+    "description": "下回合骰子 -1",
+    "effect_type": "gain_status",
+    "negative": true,
+    "value": -1,
+    "status": "dice_minus"
+  },
+  {
+    "id": "bridge_forward_3",
+    "name": "花桥捷径",
+    "description": "前进 3 格",
+    "effect_type": "move_forward",
+    "negative": false,
+    "value": 3
+  },
+  {
+    "id": "queen_stay_shield",
+    "name": "女王邀请",
+    "description": "停留一回合但获得护盾",
+    "effect_type": "stay_and_shield",
+    "negative": false,
+    "value": 1
+  },
+  {
+    "id": "charm_swap_front",
+    "name": "迷香",
+    "description": "与前方最近角色交换位置",
+    "effect_type": "swap_front",
+    "negative": false
+  },
+  {
+    "id": "child_river_clear",
+    "name": "子母河清泉",
+    "description": "清除负面状态",
+    "effect_type": "clear_negative",
+    "negative": false
+  },
+  {
+    "id": "flame_back_3",
+    "name": "火焰灼烧",
+    "description": "后退 3 格",
+    "effect_type": "move_backward",
+    "negative": true,
+    "value": 3
+  },
+  {
+    "id": "fan_forward_5",
+    "name": "芭蕉扇",
+    "description": "前进 5 格",
+    "effect_type": "move_forward",
+    "negative": false,
+    "value": 5
+  },
+  {
+    "id": "niu_block",
+    "name": "牛魔王拦路",
+    "description": "掷骰小于 4 则停留一回合",
+    "effect_type": "dice_gate_stay",
+    "negative": true,
+    "value": 4
+  },
+  {
+    "id": "iron_fan_counter",
+    "name": "铁扇公主相助",
+    "description": "获得反击护盾",
+    "effect_type": "gain_status",
+    "negative": false,
+    "value": 1,
+    "status": "counter_shield"
+  },
+  {
+    "id": "flame_lost_warp_46",
+    "name": "烈焰迷路",
+    "description": "回到第 46 格",
+    "effect_type": "warp_to",
+    "negative": true,
+    "value": 46
+  },
+  {
+    "id": "fake_buddha_random",
+    "name": "假佛现身",
+    "description": "随机负面事件",
+    "effect_type": "random_negative",
+    "negative": true
+  },
+  {
+    "id": "maitreya_clear_forward",
+    "name": "弥勒相助",
+    "description": "清除负面状态并前进 2 格",
+    "effect_type": "clear_then_forward",
+    "negative": false,
+    "value": 2
+  },
+  {
+    "id": "reorder_all",
+    "name": "黄眉怪布袋",
+    "description": "所有角色重新排序",
+    "effect_type": "reorder_all",
+    "negative": false
+  },
+  {
+    "id": "cymbal_stay",
+    "name": "金铙困身",
+    "description": "停留一回合",
+    "effect_type": "stay",
+    "negative": true,
+    "value": 1
+  },
+  {
+    "id": "buddha_light_shield",
+    "name": "佛光初现",
+    "description": "获得护盾",
+    "effect_type": "gain_status",
+    "negative": false,
+    "value": 1,
+    "status": "shield"
+  },
+  {
+    "id": "cloud_forward_3",
+    "name": "祥云托举",
+    "description": "前进 3 格",
+    "effect_type": "move_forward",
+    "negative": false,
+    "value": 3
+  },
+  {
+    "id": "last_trial_back_2",
+    "name": "最后一难",
+    "description": "后退 2 格",
+    "effect_type": "move_backward",
+    "negative": true,
+    "value": 2
+  },
+  {
+    "id": "lotus_shield",
+    "name": "莲花台",
+    "description": "获得护盾",
+    "effect_type": "gain_status",
+    "negative": false,
+    "value": 1,
+    "status": "shield"
+  },
+  {
+    "id": "scripture_reroll",
+    "name": "经书在前",
+    "description": "再掷一次",
+    "effect_type": "re_roll",
+    "negative": false
+  },
+  {
+    "id": "game_finish",
+    "name": "抵达西天",
+    "description": "抵达西天，游戏胜利",
+    "effect_type": "finish",
+    "negative": false
+  }
+]

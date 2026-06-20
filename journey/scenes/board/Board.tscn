@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjourney0board"]
+
+[ext_resource type="Script" path="res://scripts/Board.gd" id="1_board"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_board")

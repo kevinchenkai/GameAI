@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjourney0tile"]
+
+[ext_resource type="Script" path="res://scripts/Tile.gd" id="1_tile"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_tile")
+
+[node name="IndexLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -14.0
+offset_right = 20.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

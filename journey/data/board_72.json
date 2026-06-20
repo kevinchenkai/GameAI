@@ -1,0 +1,434 @@
+[
+  {
+    "index": 1,
+    "region": "flower_fruit_mountain",
+    "tile_type": "start",
+    "event_id": null
+  },
+  {
+    "index": 2,
+    "region": "flower_fruit_mountain",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 3,
+    "region": "flower_fruit_mountain",
+    "tile_type": "reward",
+    "event_id": "peach_forward_2"
+  },
+  {
+    "index": 4,
+    "region": "flower_fruit_mountain",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 5,
+    "region": "flower_fruit_mountain",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 6,
+    "region": "flower_fruit_mountain",
+    "tile_type": "reward",
+    "event_id": "monkey_reroll"
+  },
+  {
+    "index": 7,
+    "region": "flower_fruit_mountain",
+    "tile_type": "punish",
+    "event_id": "monkey_back_1"
+  },
+  {
+    "index": 8,
+    "region": "flower_fruit_mountain",
+    "tile_type": "warp",
+    "event_id": "waterfall_warp_9"
+  },
+  {
+    "index": 9,
+    "region": "flower_fruit_mountain",
+    "tile_type": "post_station",
+    "event_id": null
+  },
+  {
+    "index": 10,
+    "region": "gao_village",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 11,
+    "region": "gao_village",
+    "tile_type": "reward",
+    "event_id": "feast_shield"
+  },
+  {
+    "index": 12,
+    "region": "gao_village",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 13,
+    "region": "gao_village",
+    "tile_type": "punish",
+    "event_id": "steal_back_2"
+  },
+  {
+    "index": 14,
+    "region": "gao_village",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 15,
+    "region": "gao_village",
+    "tile_type": "reward",
+    "event_id": "bajie_forward_2"
+  },
+  {
+    "index": 16,
+    "region": "gao_village",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 17,
+    "region": "gao_village",
+    "tile_type": "special",
+    "event_id": "host_stay_shield"
+  },
+  {
+    "index": 18,
+    "region": "gao_village",
+    "tile_type": "post_station",
+    "event_id": null
+  },
+  {
+    "index": 19,
+    "region": "quicksand_river",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 20,
+    "region": "quicksand_river",
+    "tile_type": "punish",
+    "event_id": "quicksand_stay"
+  },
+  {
+    "index": 21,
+    "region": "quicksand_river",
+    "tile_type": "reward",
+    "event_id": "raft_forward_3"
+  },
+  {
+    "index": 22,
+    "region": "quicksand_river",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 23,
+    "region": "quicksand_river",
+    "tile_type": "special",
+    "event_id": "flood_dice_minus"
+  },
+  {
+    "index": 24,
+    "region": "quicksand_river",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 25,
+    "region": "quicksand_river",
+    "tile_type": "reward",
+    "event_id": "shaseng_immune"
+  },
+  {
+    "index": 26,
+    "region": "quicksand_river",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 27,
+    "region": "quicksand_river",
+    "tile_type": "post_station",
+    "event_id": null
+  },
+  {
+    "index": 28,
+    "region": "white_bone_ridge",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 29,
+    "region": "white_bone_ridge",
+    "tile_type": "punish",
+    "event_id": "bone_swap_random"
+  },
+  {
+    "index": 30,
+    "region": "white_bone_ridge",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 31,
+    "region": "white_bone_ridge",
+    "tile_type": "reward",
+    "event_id": "fiery_eyes_clear"
+  },
+  {
+    "index": 32,
+    "region": "white_bone_ridge",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 33,
+    "region": "white_bone_ridge",
+    "tile_type": "special",
+    "event_id": "bone_gamble"
+  },
+  {
+    "index": 34,
+    "region": "white_bone_ridge",
+    "tile_type": "punish",
+    "event_id": "demon_dice_minus"
+  },
+  {
+    "index": 35,
+    "region": "white_bone_ridge",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 36,
+    "region": "white_bone_ridge",
+    "tile_type": "post_station",
+    "event_id": null
+  },
+  {
+    "index": 37,
+    "region": "women_country",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 38,
+    "region": "women_country",
+    "tile_type": "reward",
+    "event_id": "bridge_forward_3"
+  },
+  {
+    "index": 39,
+    "region": "women_country",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 40,
+    "region": "women_country",
+    "tile_type": "special",
+    "event_id": "queen_stay_shield"
+  },
+  {
+    "index": 41,
+    "region": "women_country",
+    "tile_type": "punish",
+    "event_id": "charm_swap_front"
+  },
+  {
+    "index": 42,
+    "region": "women_country",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 43,
+    "region": "women_country",
+    "tile_type": "reward",
+    "event_id": "child_river_clear"
+  },
+  {
+    "index": 44,
+    "region": "women_country",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 45,
+    "region": "women_country",
+    "tile_type": "post_station",
+    "event_id": null
+  },
+  {
+    "index": 46,
+    "region": "flaming_mountain",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 47,
+    "region": "flaming_mountain",
+    "tile_type": "punish",
+    "event_id": "flame_back_3"
+  },
+  {
+    "index": 48,
+    "region": "flaming_mountain",
+    "tile_type": "reward",
+    "event_id": "fan_forward_5"
+  },
+  {
+    "index": 49,
+    "region": "flaming_mountain",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 50,
+    "region": "flaming_mountain",
+    "tile_type": "special",
+    "event_id": "niu_block"
+  },
+  {
+    "index": 51,
+    "region": "flaming_mountain",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 52,
+    "region": "flaming_mountain",
+    "tile_type": "reward",
+    "event_id": "iron_fan_counter"
+  },
+  {
+    "index": 53,
+    "region": "flaming_mountain",
+    "tile_type": "punish",
+    "event_id": "flame_lost_warp_46"
+  },
+  {
+    "index": 54,
+    "region": "flaming_mountain",
+    "tile_type": "post_station",
+    "event_id": null
+  },
+  {
+    "index": 55,
+    "region": "lesser_thunderclap",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 56,
+    "region": "lesser_thunderclap",
+    "tile_type": "punish",
+    "event_id": "fake_buddha_random"
+  },
+  {
+    "index": 57,
+    "region": "lesser_thunderclap",
+    "tile_type": "reward",
+    "event_id": "maitreya_clear_forward"
+  },
+  {
+    "index": 58,
+    "region": "lesser_thunderclap",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 59,
+    "region": "lesser_thunderclap",
+    "tile_type": "special",
+    "event_id": "reorder_all"
+  },
+  {
+    "index": 60,
+    "region": "lesser_thunderclap",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 61,
+    "region": "lesser_thunderclap",
+    "tile_type": "punish",
+    "event_id": "cymbal_stay"
+  },
+  {
+    "index": 62,
+    "region": "lesser_thunderclap",
+    "tile_type": "reward",
+    "event_id": "buddha_light_shield"
+  },
+  {
+    "index": 63,
+    "region": "lesser_thunderclap",
+    "tile_type": "post_station",
+    "event_id": null
+  },
+  {
+    "index": 64,
+    "region": "western_paradise",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 65,
+    "region": "western_paradise",
+    "tile_type": "reward",
+    "event_id": "cloud_forward_3"
+  },
+  {
+    "index": 66,
+    "region": "western_paradise",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 67,
+    "region": "western_paradise",
+    "tile_type": "punish",
+    "event_id": "last_trial_back_2"
+  },
+  {
+    "index": 68,
+    "region": "western_paradise",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 69,
+    "region": "western_paradise",
+    "tile_type": "reward",
+    "event_id": "lotus_shield"
+  },
+  {
+    "index": 70,
+    "region": "western_paradise",
+    "tile_type": "normal",
+    "event_id": null
+  },
+  {
+    "index": 71,
+    "region": "western_paradise",
+    "tile_type": "special",
+    "event_id": "scripture_reroll"
+  },
+  {
+    "index": 72,
+    "region": "western_paradise",
+    "tile_type": "finish",
+    "event_id": "game_finish"
+  }
+]
