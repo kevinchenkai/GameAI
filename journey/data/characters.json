@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sun_wukong",
+    "name": "孙悟空",
+    "role": "speed",
+    "passive_skill": "cloud_dash",
+    "color": "f4c430",
+    "sprite": "res://assets/sprites/characters/sun_wukong.png",
+    "avatar": "res://assets/sprites/characters/sun_wukong_avatar.png"
+  },
+  {
+    "id": "zhu_bajie",
+    "name": "猪八戒",
+    "role": "defense",
+    "passive_skill": "thick_skin",
+    "color": "5fbf6a",
+    "sprite": "res://assets/sprites/characters/zhu_bajie.png",
+    "avatar": "res://assets/sprites/characters/zhu_bajie_avatar.png"
+  },
+  {
+    "id": "tang_seng",
+    "name": "唐僧",
+    "role": "shield",
+    "passive_skill": "buddha_light",
+    "color": "e0524a",
+    "sprite": "res://assets/sprites/characters/tang_seng.png",
+    "avatar": "res://assets/sprites/characters/tang_seng_avatar.png"
+  },
+  {
+    "id": "sha_seng",
+    "name": "沙僧",
+    "role": "balanced",
+    "passive_skill": "steady_walk",
+    "color": "4a6fd6",
+    "sprite": "res://assets/sprites/characters/sha_seng.png",
+    "avatar": "res://assets/sprites/characters/sha_seng_avatar.png"
+  }
+]

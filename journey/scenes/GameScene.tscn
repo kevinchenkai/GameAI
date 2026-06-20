@@ -8,6 +8,8 @@ script = ExtResource("1_gamescene")
 
 [node name="Board" parent="." instance=ExtResource("2_board")]
 
+[node name="Pieces" type="Node2D" parent="."]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Title" type="Label" parent="CanvasLayer"]
