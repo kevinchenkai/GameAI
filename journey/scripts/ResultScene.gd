@@ -11,6 +11,7 @@ const SELECT_SCENE := "res://scenes/CharacterSelect.tscn"
 @onready var _restart: Button = $RestartButton
 
 func _ready() -> void:
+	AudioManager.play_bgm("bgm_result")
 	var winner_id := GameManager.get_winner()
 	var data := _find(winner_id)
 	if _winner_label:
@@ -21,6 +22,7 @@ func _ready() -> void:
 	if _ranking:
 		_ranking.render(GameManager.get_ranking())
 	if _restart:
+		ButtonStyle.apply(_restart, 26)
 		_restart.pressed.connect(_on_restart)
 
 func _find(cid: String) -> Dictionary:
@@ -30,4 +32,5 @@ func _find(cid: String) -> Dictionary:
 	return {}
 
 func _on_restart() -> void:
+	AudioManager.play_sfx("sfx_click")
 	get_tree().change_scene_to_file(SELECT_SCENE)

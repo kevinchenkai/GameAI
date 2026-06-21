@@ -6,15 +6,17 @@ extends Control
 
 const GAME_SCENE := "res://scenes/GameScene.tscn"
 
-## 4 卡片中心 x（对齐 select_bg 预留光台），垂直中心 y。见 S2_SCREENS_BRIEF.md。
-const CARD_CENTERS_X := [480.0, 800.0, 1120.0, 1440.0]
-const CARD_CENTER_Y := 570.0
+## 4 卡片中心 x / 中心 y。对齐实机 select_bg 底部 4 个祥云圆台预留位，
+## S5 经实机手工微调定稿（整体右移+下移踩稳云台；标题在 .tscn 中左上居中）。
+const CARD_CENTERS_X := [550.0, 840.0, 1160.0, 1460.0]
+const CARD_CENTER_Y := 650.0
 const CARD_SIZE := Vector2(280.0, 400.0)
 const AVATAR_SIZE := Vector2(180.0, 180.0)
 
 @onready var _cards_root: Control = $Cards
 
 func _ready() -> void:
+	AudioManager.play_bgm("bgm_select")
 	_build_cards()
 
 func _build_cards() -> void:
@@ -61,8 +63,9 @@ func _make_card(data: Dictionary) -> Control:
 
 	var btn := Button.new()
 	btn.text = "选择"
-	btn.custom_minimum_size = Vector2(160, 48)
+	btn.custom_minimum_size = Vector2(160, 52)
 	btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	ButtonStyle.apply(btn, 22)
 	var cid := str(data.get("id", ""))
 	btn.pressed.connect(func(): _on_select(cid))
 	card.add_child(btn)
@@ -78,5 +81,6 @@ func _role_text(skill: String) -> String:
 		_: return ""
 
 func _on_select(character_id: String) -> void:
+	AudioManager.play_sfx("sfx_click")
 	GameManager.set_selected_player(character_id)
 	get_tree().change_scene_to_file(GAME_SCENE)

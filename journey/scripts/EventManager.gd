@@ -58,11 +58,13 @@ func resolve(event_id: String, actor: Node, all_pieces: Array) -> Dictionary:
 		"event_id": event_id,
 		"name": str(ev.get("name", event_id)),
 		"description": str(ev.get("description", "")),
+		"effect_type": str(ev.get("effect_type", "")),
 		"negative": bool(ev.get("negative", false)),
 		"follow_up": "none",
 		"steps": 0,
 		"target": 0,
 		"note": "",
+		"negated": false,
 	}
 	if ev.is_empty():
 		push_error("[EventManager] 未知 event_id：%s" % event_id)
@@ -77,6 +79,7 @@ func resolve(event_id: String, actor: Node, all_pieces: Array) -> Dictionary:
 	if is_neg and SkillManager.try_negate_negative(actor).negated:
 		outcome.follow_up = "none"
 		outcome.note = "效果被抵消"
+		outcome.negated = true
 		actor.show_bubble("抵消！")
 		return outcome
 

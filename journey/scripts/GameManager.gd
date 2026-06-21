@@ -195,6 +195,7 @@ func _resolve_collision(actor: Node) -> void:
 			other.show_bubble(str(kb.bubble))
 		var tb: int = int(kb.get("target_back", 0))
 		if tb > 0:
+			AudioManager.play_sfx("sfx_knockback")
 			var path := BoardManager.get_move_path(other.current_index, -tb)
 			if path.size() > 0:
 				other.snap_to(path[-1])
@@ -208,6 +209,7 @@ func _resolve_collision(actor: Node) -> void:
 ## 结算落地格事件，按 outcome 执行后续。返回 "ok" / "re_roll" / "winner_declared"。
 func _resolve_event(event_id: String, actor_id: String, piece: Node) -> String:
 	var outcome: Dictionary = EventManager.resolve(event_id, piece, _pieces_array())
+	AudioManager.play_sfx(_event_sfx_id(outcome))
 	if _popup:
 		await _popup.show_event(outcome)
 
@@ -230,6 +232,26 @@ func _resolve_event(event_id: String, actor_id: String, piece: Node) -> String:
 		_:
 			# stay / none：交换/重排序/状态授予/清负面已在 resolve 内完成
 			return "ok"
+
+## 把事件 outcome 映射到对应音效 id（见 docs/UPGRADE_S4_AUDIO.md §4）。
+## 优先级：抵消/护盾 > 传送类 > 负面 > 正向。
+func _event_sfx_id(outcome: Dictionary) -> String:
+	var et := str(outcome.get("effect_type", ""))
+	# 护盾抵消命中，或获得护盾
+	if bool(outcome.get("negated", false)):
+		return "sfx_shield"
+	if et == "gain_status" and str(outcome.get("note", "")).find("护盾") != -1:
+		return "sfx_shield"
+	if et == "stay_and_shield":
+		return "sfx_shield"
+	# 传送 / 交换 / 重排序：瞬移「咻」
+	if et in ["warp_to", "swap_random", "swap_front", "reorder_all"]:
+		return "sfx_warp"
+	# 负面事件
+	if bool(outcome.get("negative", false)):
+		return "sfx_negative"
+	# 其余按正向反馈
+	return "sfx_reward"
 
 ## 再掷一次（§3.4.2：单回合限 1 次）。
 func _do_reroll() -> void:
@@ -279,6 +301,7 @@ func _finish_turn() -> void:
 func _declare_winner(winner_id: String) -> void:
 	_winner_id = winner_id
 	change_state(State.GAME_OVER)
+	AudioManager.play_sfx("sfx_win")
 	var data := _find_char(winner_id)
 	print("[GameOver] 胜者：%s" % str(data.get("name", winner_id)))
 	game_over.emit(winner_id)

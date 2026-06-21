@@ -15,5 +15,13 @@
     "sha_seng_punish_reduction": 1
   },
 
-  "ai": { "think_delay_sec": 0.5 }
+  "ai": { "think_delay_sec": 0.5 },
+
+  "audio": {
+    "bgm_volume_db": -8.0,
+    "sfx_volume_db": -2.0,
+    "muted": false,
+    "bgm_fade_sec": 0.6,
+    "step_min_interval_sec": 0.08
+  }
 }

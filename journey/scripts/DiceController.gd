@@ -57,6 +57,7 @@ func roll(modifier: int) -> void:
 		return
 	_rolling = true
 	set_button_enabled(false)
+	AudioManager.play_sfx("sfx_dice")
 	# 滚动动画：连续显示随机面
 	for i in ROLL_ANIM_FRAMES:
 		_show_face(GameRng.randi_range(1, 6))

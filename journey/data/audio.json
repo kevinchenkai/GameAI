@@ -1,0 +1,18 @@
+{
+  "bgm": {
+    "bgm_select": { "path": "res://assets/audio/bgm/bgm_select.ogg", "volume_db": 0.0 },
+    "bgm_game":   { "path": "res://assets/audio/bgm/bgm_game.ogg",   "volume_db": 0.0 },
+    "bgm_result": { "path": "res://assets/audio/bgm/bgm_result.ogg", "volume_db": 0.0 }
+  },
+  "sfx": {
+    "sfx_dice":      { "path": "res://assets/audio/sfx/sfx_dice.ogg",      "volume_db": 0.0 },
+    "sfx_step":      { "path": "res://assets/audio/sfx/sfx_step.ogg",      "volume_db": -6.0 },
+    "sfx_reward":    { "path": "res://assets/audio/sfx/sfx_reward.ogg",    "volume_db": 0.0 },
+    "sfx_negative":  { "path": "res://assets/audio/sfx/sfx_negative.ogg",  "volume_db": 0.0 },
+    "sfx_warp":      { "path": "res://assets/audio/sfx/sfx_warp.ogg",      "volume_db": 0.0 },
+    "sfx_shield":    { "path": "res://assets/audio/sfx/sfx_shield.ogg",    "volume_db": 0.0 },
+    "sfx_knockback": { "path": "res://assets/audio/sfx/sfx_knockback.ogg", "volume_db": 0.0 },
+    "sfx_win":       { "path": "res://assets/audio/sfx/sfx_win.ogg",       "volume_db": 0.0 },
+    "sfx_click":     { "path": "res://assets/audio/sfx/sfx_click.ogg",     "volume_db": 0.0 }
+  }
+}

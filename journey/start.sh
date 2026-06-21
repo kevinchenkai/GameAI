@@ -46,7 +46,8 @@ echo "Using Godot: ${GODOT_BIN}"
 "${GODOT_BIN}" --version
 
 echo "Refreshing Godot import cache..."
-"${GODOT_BIN}" --headless --path . --import
+# 用位置参数传项目路径（--path . 配 --import 在部分 Godot 4.x 上会误报 no main scene）
+"${GODOT_BIN}" --headless --import .
 
 echo "Starting Journey Ludo..."
 exec "${GODOT_BIN}" --path .

@@ -24,9 +24,9 @@ stretch_mode = 6
 [node name="Winner" type="Label" parent="."]
 layout_mode = 0
 offset_left = 360.0
-offset_top = 90.0
-offset_right = 1560.0
-offset_bottom = 170.0
+offset_top = 58.0
+offset_right = 1140.0
+offset_bottom = 132.0
 theme_override_colors/font_color = Color(0.45, 0.25, 0.05, 1)
 theme_override_font_sizes/font_size = 38
 text = "🏆"
@@ -35,26 +35,26 @@ vertical_alignment = 1
 
 [node name="Avatar" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 810.0
-offset_top = 200.0
-offset_right = 1110.0
-offset_bottom = 500.0
+offset_left = 815.0
+offset_top = 170.0
+offset_right = 1105.0
+offset_bottom = 460.0
 expand_mode = 1
 stretch_mode = 6
 
 [node name="RankingPanel" parent="." instance=ExtResource("2_ranking")]
 layout_mode = 0
 anchors_preset = 0
-offset_left = 730.0
-offset_top = 520.0
-offset_right = 1190.0
-offset_bottom = 800.0
+offset_left = 560.0
+offset_top = 565.0
+offset_right = 1360.0
+offset_bottom = 825.0
 
 [node name="RestartButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 860.0
-offset_top = 830.0
-offset_right = 1060.0
-offset_bottom = 890.0
-theme_override_font_sizes/font_size = 24
+offset_left = 760.0
+offset_top = 885.0
+offset_right = 1160.0
+offset_bottom = 975.0
+theme_override_font_sizes/font_size = 26
 text = "重新开始"

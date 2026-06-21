@@ -7,6 +7,9 @@ extends Node2D
 
 const RADIUS := 32.0
 const ICON_SIZE := 56.0  # 叠加图标直径（小于路面石板，居中其上）
+## S3：中心终点台（第 72 格）比普通格大 1.5–2×，其终点图标相应放大。
+const FINISH_INDEX := 72
+const FINISH_ICON_SIZE := 96.0
 
 ## 这些类型不叠图标（露出背景路面石板）。
 const PLAIN_TYPES := ["normal", "start"]
@@ -61,7 +64,7 @@ func set_debug_index_visible(v: bool) -> void:
 
 func _draw() -> void:
 	if _texture:
-		var s := ICON_SIZE
+		var s: float = FINISH_ICON_SIZE if _index == FINISH_INDEX else ICON_SIZE
 		draw_texture_rect(_texture, Rect2(-s * 0.5, -s * 0.5, s, s), false)
 	elif _tile_type == "special":
 		# special 无专属图标：画一个小橙环标记（不遮挡路面石板）

@@ -22,10 +22,10 @@ stretch_mode = 6
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 360.0
-offset_top = 60.0
-offset_right = 1560.0
-offset_bottom = 150.0
+offset_left = 0.0
+offset_top = 56.0
+offset_right = 1200.0
+offset_bottom = 154.0
 theme_override_colors/font_color = Color(0.99, 0.97, 0.9, 1)
 theme_override_font_sizes/font_size = 44
 text = "选择你的取经人"

@@ -27,15 +27,19 @@
 | `docs/CLAUDE_TASKS.md` | Claude Code | Codex 只读 |
 | `README.md` | Claude Code | Codex 只读 |
 | `prompts/imagegen/**` | Codex | Claude Code 只读 |
+| `prompts/audio/S4_SFX_BRIEF.md` | Claude Code（写需求）→ Codex（执行检索） | 需求由编码侧写定，Codex 据此产出 SFX |
+| `prompts/audio/S4_BGM_PROMPTS.md` | Claude Code（写提示词）→ 用户 + Gemini（生成） | BGM 由用户用 Gemini 产出 |
 | `assets/raw/**` | Codex | Claude Code 只读 |
 | `assets/sprites/**` | Codex（产出文件） | Claude Code 只读引用 |
 | `assets/backgrounds/**` | Codex（产出文件） | Claude Code 只读引用 |
+| `assets/audio/sfx/**` | Codex（产出文件，CC0 检索） | Claude Code 只读引用 |
+| `assets/audio/bgm/**` | 用户 + Gemini（产出文件） | Claude Code 只读引用 |
 | `docs/ART_ASSET_LIST.md` | Codex | Claude Code 只读 |
 | `AGENTS.md` | 共同（改动需双方知会） | — |
 
 **铁律**
-- Claude Code **不生成、不修改任何图片像素，不写美术提示词**。
-- Codex **不写、不改任何 `.gd` / `.tscn` / `.json` 代码与数据文件**。
+- Claude Code **不生成、不修改任何图片像素 / 音频采样，不写美术提示词**（音频需求 brief 由编码侧写、产出归 Codex / Gemini）。
+- Codex **不写、不改任何 `.gd` / `.tscn` / `.json` 代码与数据文件**（含 `data/audio.json`）。
 
 ---
 

@@ -5,11 +5,12 @@ extends Node2D
 ## 预留状态图标与气泡挂点。被动技能/状态结算在后续任务接入。
 
 ## 同格四子偏移（左上/右上/左下/右下），见主方案 §3.4.4。
+## S3：螺旋最内圈格距收窄至 ~49px，四角偏移略收紧保证同格多子在小格位上仍可辨。
 const SLOT_OFFSETS := [
-	Vector2(-16, -14),
-	Vector2(16, -14),
-	Vector2(-16, 14),
-	Vector2(16, 14),
+	Vector2(-13, -12),
+	Vector2(13, -12),
+	Vector2(-13, 12),
+	Vector2(13, 12),
 ]
 const RADIUS := 26.0          # 护盾光圈/状态角标半径
 const SPRITE_SIZE := 84.0     # 角色立绘显示直径（S2：调大到合适尺寸）
@@ -83,6 +84,7 @@ func move_by(steps: int) -> void:
 			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		await tween.finished
 		current_index = idx
+		AudioManager.play_step()
 		stepped_on.emit(idx)
 	_moving = false
 	move_finished.emit(current_index)

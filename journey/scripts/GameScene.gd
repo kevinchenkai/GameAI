@@ -20,6 +20,7 @@ var _pieces: Dictionary = {}   # character_id -> CharacterPiece
 func _ready() -> void:
 	if _title:
 		_title.text = "Journey Ludo — V0.1（D 切换格子编号）"
+	AudioManager.play_bgm("bgm_game")
 	_spawn_pieces()
 	GameManager.turn_started.connect(_on_turn_started)
 	GameManager.game_over.connect(_on_game_over)
