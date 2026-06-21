@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bjourney0theme0default"]
+
+[ext_resource type="FontFile" uid="uid://c308i2o7b4sv4" path="res://assets/fonts/NotoSansSC-Regular-subset.ttf" id="1_font"]
+
+[resource]
+default_font = ExtResource("1_font")

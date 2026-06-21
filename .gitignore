@@ -56,3 +56,6 @@ journey/.godot/
 journey/export_presets.cfg
 journey/.import/
 journey/*.translation
+
+# Codex imagegen/audio 中间件（出图草稿，非游戏成品，不入库）
+journey/assets/raw/
