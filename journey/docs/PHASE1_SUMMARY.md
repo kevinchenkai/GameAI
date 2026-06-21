@@ -24,7 +24,7 @@
 | **S1** | 棋盘与背景美术融合 + 全屏自适应 | ✅ |
 | **S2** | 角色棋子放大、选择/结算页背景接入 | ✅ |
 | **S3** | 螺旋棋盘接入 | ✅ |
-| **S4** | 音频系统接口与配置 | ✅ |
+| **S4** | 音频系统实装（3 BGM + 9 SFX，数据驱动播放） | ✅ |
 | **S5** | 选择页 / 结算页 UI 对齐 | ✅ |
 | **发布** | Web 一体化部署、中文乱码修复、加载优化、仓库瘦身 | ✅ |
 
@@ -44,6 +44,10 @@
 - 状态优先级：免疫负面 > 护盾
 
 **4 名角色**：孙悟空、猪八戒、唐僧、沙僧，各带技能（`data/characters.json` 配置）。
+
+**音频系统（S4 已实装）**：数据驱动（`data/audio.json` 映射 id→路径/音量），`AudioManager` 单例负责 BGM 循环+淡入淡出切段、SFX 播放池、静音开关。共 **3 段 BGM + 9 个 SFX = 12 个 .ogg**：
+- BGM：`bgm_select` / `bgm_game` / `bgm_result`（选择/对局/结算分场景循环）
+- SFX：`sfx_dice`（掷骰）/ `sfx_step`（移动）/ `sfx_reward`（奖励）/ `sfx_negative`（负面）/ `sfx_warp`（传送）/ `sfx_shield`（护盾）/ `sfx_knockback`（击退）/ `sfx_win`（胜利）/ `sfx_click`（点击）
 
 ---
 
@@ -73,7 +77,8 @@ journey/
 ├── assets/
 │   ├── fonts/              # NotoSansSC 子集（中文显示）
 │   ├── themes/             # default_theme.tres（全局默认字体）
-│   ├── sprites/ backgrounds/ audio/
+│   ├── sprites/ backgrounds/
+│   ├── audio/              # bgm/ (3) + sfx/ (9) .ogg
 │   └── raw/                # Codex 出图中间件（已移出版本库，本地保留）
 ├── docs/                   # 主方案 / 任务手册 / 升级记录 / 本总结
 ├── deploy.sh               # Web 一体化部署脚本
@@ -135,7 +140,7 @@ journey/
 ## 10. 后续可选方向（非一期范围）
 
 - 纯逻辑模拟脚本：固定种子跑 1000 局验证平衡，再调数值（主方案 §16.4）
-- 音频资源正式接入（一期仅留空接口与配置）
+- 音频资源调优（音量平衡、更多事件音效、混音）
 - 移动端触控/适配打磨
 - 更多事件/技能扩展（复用现有 `effect_type`，只换 id/文案）
 
