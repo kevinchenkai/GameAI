@@ -38,3 +38,7 @@ Players pilot a fighter through deep space, dodge incoming fire, collect upgrade
 - Focus: Arcade action, boss pressure, power-up progression
 - Source: [`star_fighter/`](./star_fighter/)
 
+## Notes
+
+More games and experiments are on the way.
+
