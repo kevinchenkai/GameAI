@@ -1,0 +1,30 @@
+CLAUDE.md
+  4fca2e14c0ddaf88 53,55,57-59,61,65-71,75,78-88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "0d6c3b48c41e1a72fbaf639df2c2c6240db28f24",
+  "prompts": {
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 25,
+      "total_deletions": 9,
+      "accepted_lines": 25,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/81a0c5c1dba4357cae9a36b86fd1c734f1b7bb39641379ed427fc9bcaf398751",
+      "token_usage": {
+        "input_tokens": 235,
+        "output_tokens": 55271,
+        "cache_creation_input_tokens": 365052,
+        "cache_read_input_tokens": 14287984
+      }
+    }
+  }
+}
