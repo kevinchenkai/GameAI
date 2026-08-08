@@ -15,6 +15,35 @@ import { GardenScene } from './game/scenes/GardenScene';
 const BOOT_TIMEOUT_MS = 15000;
 
 /**
+ * ★★ 渲染倍率上限。
+ *
+ *   不设倍率时 Phaser 把 canvas 的像素缓冲设成 CSS 尺寸，
+ *   在 DPR=2/3 的手机上等于让浏览器把整个画面拉伸 2~3 倍。
+ *   棋子是圆润插画，糊一点不易察觉；**文字笔画边缘是高对比的，
+ *   一拉伸立刻发虚** —— 用户实测反馈的"字体很模糊"就是这个。
+ *
+ *   ⚠️ 不直接用 `window.devicePixelRatio`：3x 屏意味着 **9 倍填充率**，
+ *   老机器会掉帧（M4 留下那条 TODO 的顾虑正是这个）。
+ *   折中到 2 —— 2x 已足够让文字锐利，再往上肉眼收益很小，
+ *   代价却是平方增长。
+ */
+const MAX_RENDER_SCALE = 2;
+
+function renderScale(): number {
+  const dpr = typeof window === 'undefined' ? 1 : (window.devicePixelRatio ?? 1);
+  return Math.max(1, Math.min(MAX_RENDER_SCALE, dpr));
+}
+
+/** 当前视口的 CSS 尺寸 */
+function viewportSize(): { w: number; h: number } {
+  const el = document.getElementById('game');
+  return {
+    w: el?.clientWidth || window.innerWidth,
+    h: el?.clientHeight || window.innerHeight,
+  };
+}
+
+/**
  * ★ 开发期可用 `?renderer=canvas` 强制 Canvas 渲染。
  *
  *   动机：某些无头 / 虚拟显卡环境下 WebGL 会抛
@@ -35,13 +64,24 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: 'game',
   backgroundColor: ENV_PALETTE.skyLight,
   scale: {
-    // 竖屏，按容器自适应。实际布局由 computeLayout() 算，
-    // 不依赖 Phaser 的缩放模式（见 game/render/layout.ts）
-    mode: Phaser.Scale.RESIZE,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-    // TODO(M5)：老机器按 3x DPR 渲染会掉帧，需要限制。
-    //   Phaser 3.90 没有 maxPixelRatio 配置项，得在 M5 实测后决定手段
-    //   （canvas 尺寸缩放 or FX_QUALITY 联动），不在这里凭猜测写。
+    /**
+     * ★ 用 NONE + 手动 resize()，不用 RESIZE 自动模式。
+     *
+     *   需要的是"**缓冲区按 DPR 放大、CSS 尺寸保持不变**"：
+     *   Phaser 的 `resize(w,h)` 把 `canvas.width` 设成 w，
+     *   把 `style.width` 设成 `w * zoom`。所以传入
+     *   `CSS尺寸 × scale` 并令 `zoom = 1/scale`，
+     *   就得到高分辨率缓冲 + 正确的显示尺寸。
+     *   （RESIZE 模式会自己按容器改尺寸，把这套覆盖掉。）
+     *
+     *   ⚠️ 游戏内坐标从此是**物理像素**，不是 CSS 像素。
+     *   布局算法拿到的宽高会大一倍，棋子边长也随之变大 ——
+     *   这正是我们要的：一切都按真实像素画，浏览器不再拉伸。
+     */
+    mode: Phaser.Scale.NONE,
+    zoom: 1 / renderScale(),
+    width: viewportSize().w * renderScale(),
+    height: viewportSize().h * renderScale(),
   },
   render: {
     antialias: true,
@@ -51,6 +91,23 @@ const config: Phaser.Types.Core.GameConfig = {
 };
 
 const game = new Phaser.Game(config);
+
+/**
+ * ★ NONE 模式不会自动跟随容器，转屏 / 地址栏收起都要自己处理。
+ *
+ *   ⚠️ 必须**同时**更新缓冲尺寸与 zoom：只改尺寸的话，
+ *   转屏后 canvas 会按物理像素撑满屏幕（画面大一倍）。
+ */
+function syncCanvasSize(): void {
+  const s = renderScale();
+  const { w, h } = viewportSize();
+  game.scale.setZoom(1 / s);
+  game.scale.resize(w * s, h * s);
+}
+
+window.addEventListener('resize', syncCanvasSize);
+// iOS 转屏后视口尺寸要等一帧才准
+window.addEventListener('orientationchange', () => setTimeout(syncCanvasSize, 100));
 
 /**
  * ★ 兜底：引擎起不来时也要把话说清楚。

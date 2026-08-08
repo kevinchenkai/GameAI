@@ -31,13 +31,31 @@ export class WebAudioManager implements AudioManager {
   /**
    * ★ 必须在**用户手势的同步调用栈里**调用（pointerdown 等）。
    *   异步之后再创建，浏览器不认这个手势。
+   *
+   * ★★ iOS（含微信 WKWebView）比桌面严格得多，实测"Mac/Android 有声、
+   *   iPhone 微信无声"就出在这里。三件事缺一不可：
+   *
+   *   1. **每次手势都重试 resume()**：iOS 上 context 经常在创建后仍是
+   *      `suspended`，而且切后台 / 接电话 / 微信内跳转回来都会再次挂起。
+   *      只在第一次解锁是不够的。
+   *   2. **播一段静音 buffer**：这是 iOS 认可"用户确实允许放声音"的
+   *      标志动作。只 resume 不发声，某些 WebView 仍然静默。
+   *   3. **resume() 要等它真的完成**：它是 Promise，`void` 掉的话
+   *      紧随其后的 playTone 会在仍然 suspended 的 context 上排期 ——
+   *      声音永远不会出来，且没有任何报错。
+   *
+   * ⚠️ 还有一条**代码解决不了**：iOS 的 WebAudio 受**响铃/静音物理开关**
+   *   控制。拨到静音档时整个网页都没声音，这不是 bug。
    */
   unlock(): void {
-    if (this.ctx || this.unavailable) {
-      // 已创建但被系统挂起（切后台回来）时要恢复
-      void this.ctx?.resume().catch(() => undefined);
+    if (this.unavailable) return;
+
+    if (this.ctx) {
+      // ★ 每次手势都尝试恢复 —— iOS 会反复把 context 挂起
+      this.resumeAndPrime();
       return;
     }
+
     try {
       const Ctor =
         window.AudioContext ??
@@ -52,15 +70,60 @@ export class WebAudioManager implements AudioManager {
       master.connect(ctx.destination);
       this.ctx = ctx;
       this.master = master;
-      void ctx.resume().catch(() => undefined);
+      this.resumeAndPrime();
     } catch {
       // ★ 没有声音是可以接受的降级；因为没声音而崩掉游戏不可接受
       this.unavailable = true;
     }
   }
 
+  /**
+   * 恢复 context 并播一段**静音 buffer**。
+   *
+   * ★ 静音 buffer 是 iOS 上的标准解锁手法：
+   *   只调 resume() 而不实际产生一次输出，部分 WKWebView
+   *   （微信内置浏览器就是其中之一）仍然不放行后续声音。
+   */
+  private resumeAndPrime(): void {
+    const ctx = this.ctx;
+    if (!ctx) return;
+
+    const prime = (): void => {
+      try {
+        // 1 帧的空 buffer，听不见，但足以让 iOS 认账
+        const buf = ctx.createBuffer(1, 1, ctx.sampleRate);
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        src.connect(ctx.destination);
+        src.start(0);
+      } catch {
+        // 解锁失败不影响游戏
+      }
+    };
+
+    if (ctx.state === 'running') {
+      prime();
+      return;
+    }
+    // ★ 必须在 resume 完成之后再 prime，否则仍在 suspended 上排期
+    void ctx.resume().then(prime).catch(() => undefined);
+  }
+
+  /** context 是否真的在跑（供 UI 提示用） */
+  isRunning(): boolean {
+    return this.ctx?.state === 'running';
+  }
+
   consume(events: readonly CoreGameEvent[]): void {
     if (!this.ctx || !this.master || this.muted) return;
+
+    /**
+     * ★ context 可能在中途被系统挂起（iOS 切后台、微信内跳转、
+     *   接电话）。此时排期的音符**永远不会响**，而且不报错 ——
+     *   表现就是"玩着玩着突然没声了"。这里顺手救一次。
+     */
+    if (this.ctx.state !== 'running') this.resumeAndPrime();
+
     const now = this.ctx.currentTime;
     for (const cue of planSfx(events)) {
       const spec = SFX[cue.name];

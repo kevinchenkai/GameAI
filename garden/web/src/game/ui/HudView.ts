@@ -12,6 +12,7 @@ import { ENV_PALETTE } from '../../config/pieces';
 import type { LayoutResult } from '../render/layout';
 import { TEX } from '../textureKeys';
 import type { HudModel, ObjectiveView } from './hudModel';
+import { fontPx, px } from './uiScale';
 
 const FONT = '"PingFang SC", "Microsoft YaHei", -apple-system, sans-serif';
 
@@ -45,16 +46,16 @@ export class HudView {
 
     // —— 左侧：剩余步数 ——
     this.movesLabel = this.scene.add
-      .text(r.x + 18, r.y + r.h * 0.5 - 16, '剩余步数', {
+      .text(r.x + px(this.scene, 18), r.y + r.h * 0.5 - px(this.scene, 16), '剩余步数', {
         fontFamily: FONT,
-        fontSize: '15px',
+        fontSize: fontPx(this.scene, 15),
         color: ENV_PALETTE.textDark,
       })
       .setAlpha(0.75);
 
-    this.movesValue = this.scene.add.text(r.x + 18, r.y + r.h * 0.5 + 2, '', {
+    this.movesValue = this.scene.add.text(r.x + px(this.scene, 18), r.y + r.h * 0.5 + px(this.scene, 2), '', {
       fontFamily: FONT,
-      fontSize: '30px',
+      fontSize: fontPx(this.scene, 30),
       fontStyle: 'bold',
       color: MOVES_COLOR.normal,
     });
@@ -75,8 +76,8 @@ export class HudView {
    */
   private buildObjectives(model: HudModel): void {
     const r = this.layout.hudRect;
-    const size = Math.min(34, r.h * 0.42);
-    const gap = size + 46;
+    const size = Math.min(px(this.scene, 34), r.h * 0.42);
+    const gap = size + px(this.scene, 46);
     const centerY = r.y + r.h * 0.5;
 
     /**
@@ -86,18 +87,18 @@ export class HudView {
      *   `r.x + r.w - 18` 当中心，结果图标有一半在屏幕外 ——
      *   单测全过（数据是对的），只有真机截图才看得出来。
      */
-    const edgePad = 12 + size * 0.5 + size * 0.42;
+    const edgePad = px(this.scene, 12) + size * 0.5 + size * 0.42;
     const rightX = r.x + r.w - edgePad;
     const startX = rightX - (model.objectives.length - 1) * gap;
 
     for (const [i, o] of model.objectives.entries()) {
       const x = startX + i * gap;
-      const icon = this.makeIcon(o, x, centerY - 6, size);
+      const icon = this.makeIcon(o, x, centerY - px(this.scene, 6), size);
 
       const text = this.scene.add
-        .text(x, centerY + size * 0.5 + 2, '', {
+        .text(x, centerY + size * 0.5 + px(this.scene, 2), '', {
           fontFamily: FONT,
-          fontSize: '15px',
+          fontSize: fontPx(this.scene, 15),
           fontStyle: 'bold',
           color: ENV_PALETTE.textDark,
         })
@@ -105,9 +106,9 @@ export class HudView {
 
       // 完成标记 —— ✓ 比"变灰"更明确
       const check = this.scene.add
-        .text(x + size * 0.42, centerY - size * 0.5 - 2, '✓', {
+        .text(x + size * 0.42, centerY - size * 0.5 - px(this.scene, 2), '✓', {
           fontFamily: FONT,
-          fontSize: '19px',
+          fontSize: fontPx(this.scene, 19),
           fontStyle: 'bold',
           color: '#3FA34D',
         })
@@ -150,7 +151,7 @@ export class HudView {
       if (o.obstacle !== null) {
         const plate = this.scene.add.graphics();
         plate.fillStyle(0xe8f4f8, 1);
-        plate.fillRoundedRect(x - size / 2, y - size / 2, size, size, 6);
+        plate.fillRoundedRect(x - size / 2, y - size / 2, size, size, px(this.scene, 6));
         this.layer.add(plate);
         this.plates.push(plate);
       }
@@ -161,9 +162,10 @@ export class HudView {
     // 占位：认不出的目标种类（或贴图没加载成功）
     const g = this.scene.add.graphics();
     g.fillStyle(0xcfc5b4, 1);
-    g.fillRoundedRect(x - size / 2, y - size / 2, size, size, 6);
-    g.lineStyle(2, 0x8a6a4a, 1);
-    g.strokeRoundedRect(x - size / 2, y - size / 2, size, size, 6);
+    const rr = px(this.scene, 6);
+    g.fillRoundedRect(x - size / 2, y - size / 2, size, size, rr);
+    g.lineStyle(px(this.scene, 2), 0x8a6a4a, 1);
+    g.strokeRoundedRect(x - size / 2, y - size / 2, size, size, rr);
     return g;
   }
 

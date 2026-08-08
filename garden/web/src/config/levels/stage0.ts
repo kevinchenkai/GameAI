@@ -33,39 +33,39 @@ export const STAGE0_LEVELS: readonly LevelConfig[] = [
   {
     // 通过率 100% —— 新手关，刻意做成不可能失败
     id: 1,
-    board: { cols: 8, rows: 8 },
+    board: { cols: 7, rows: 7 },
     moves: 16,
     colors: [...EASY_COLORS],
-    objectives: [{ kind: 'collect', piece: 'red', count: 25 }],
+    objectives: [{ kind: 'collect', piece: 'red', count: 19 }],
     stars: { two: 4, three: 7 },
     tutorial: [{ id: 'swap', text: '滑动相邻的两个水果，让三个一样的连成一条线' }],
   },
   {
     // 通过率 100%
     id: 2,
-    board: { cols: 8, rows: 8 },
+    board: { cols: 7, rows: 7 },
     moves: 16,
     colors: [...EASY_COLORS],
-    objectives: [{ kind: 'collect', piece: 'yellow', count: 30 }],
+    objectives: [{ kind: 'collect', piece: 'yellow', count: 23 }],
     stars: { two: 4, three: 7 },
   },
   {
     // ★ 升到 5 色 —— 难度的真正来源。通过率 100%、3★ 75%
     id: 3,
-    board: { cols: 8, rows: 8 },
+    board: { cols: 7, rows: 7 },
     moves: 18,
     colors: [...MID_COLORS],
     objectives: [
-      { kind: 'collect', piece: 'red', count: 22 },
-      { kind: 'collect', piece: 'green', count: 22 },
+      { kind: 'collect', piece: 'red', count: 17 },
+      { kind: 'collect', piece: 'green', count: 17 },
     ],
     stars: { two: 4, three: 8 },
   },
   {
     // 首次出现冰：全部 1hp，且放在中间容易够到的位置。通过率 100%
     id: 4,
-    board: { cols: 8, rows: 8 },
-    moves: 18,
+    board: { cols: 7, rows: 7 },
+    moves: 20,
     colors: [...MID_COLORS],
     objectives: [{ kind: 'clearObstacle', obstacle: 'ice', count: 6 }],
     obstacles: [
@@ -89,46 +89,45 @@ export const STAGE0_LEVELS: readonly LevelConfig[] = [
     // 首次挖洞（只挖四角，不碰中央）。通过率 98%、星级已拉开
     id: 5,
     board: {
-      cols: 8,
-      rows: 8,
+      cols: 7,
+      rows: 7,
       blocked: [
         { col: 0, row: 0 },
-        { col: 7, row: 0 },
-        { col: 0, row: 7 },
-        { col: 7, row: 7 },
+        { col: 6, row: 0 },
+        { col: 0, row: 6 },
+        { col: 6, row: 6 },
       ],
     },
     moves: 18,
     colors: [...MID_COLORS],
-    objectives: [{ kind: 'collect', piece: 'blue', count: 35 }],
+    objectives: [{ kind: 'collect', piece: 'blue', count: 27 }],
     stars: { two: 4, three: 8 },
   },
   {
     // ★ 升到 6 色 —— 通过率 73%、3★ 14%（难度真正开始）
     id: 6,
-    board: { cols: 8, rows: 8 },
-    moves: 22,
+    board: { cols: 7, rows: 7 },
+    moves: 21,
     colors: [...FULL_COLORS],
-    objectives: [{ kind: 'collect', piece: 'orange', count: 28 }],
+    objectives: [{ kind: 'collect', piece: 'orange', count: 21 }],
     stars: { two: 5, three: 10 },
   },
   {
     // 6 色 + 冰（含 2hp）。通过率 81%、3★ 39%
     id: 7,
-    board: { cols: 8, rows: 8 },
-    moves: 26,
+    board: { cols: 7, rows: 7 },
+    moves: 24,
     colors: [...FULL_COLORS],
     objectives: [
-      { kind: 'collect', piece: 'red', count: 20 },
-      { kind: 'clearObstacle', obstacle: 'ice', count: 6 },
+      { kind: 'collect', piece: 'red', count: 22 },
+      { kind: 'clearObstacle', obstacle: 'ice', count: 5 },
     ],
     obstacles: [
       { pos: { col: 2, row: 2 }, kind: 'ice', hp: 1 },
-      { pos: { col: 5, row: 2 }, kind: 'ice', hp: 1 },
-      { pos: { col: 2, row: 5 }, kind: 'ice', hp: 2 },
-      { pos: { col: 5, row: 5 }, kind: 'ice', hp: 2 },
-      { pos: { col: 3, row: 4 }, kind: 'ice', hp: 1 },
-      { pos: { col: 4, row: 3 }, kind: 'ice', hp: 1 },
+      { pos: { col: 4, row: 2 }, kind: 'ice', hp: 1 },
+      { pos: { col: 2, row: 4 }, kind: 'ice', hp: 2 },
+      { pos: { col: 4, row: 4 }, kind: 'ice', hp: 2 },
+      { pos: { col: 3, row: 3 }, kind: 'ice', hp: 1 },
     ],
     stars: { two: 6, three: 11 },
   },
@@ -145,27 +144,32 @@ export const STAGE0_LEVELS: readonly LevelConfig[] = [
      */
     id: 8,
     board: {
-      cols: 8,
-      rows: 8,
+      cols: 7,
+      rows: 7,
       blocked: [
         { col: 0, row: 0 },
-        { col: 7, row: 0 },
+        { col: 6, row: 0 },
       ],
     },
-    moves: 30,
+    moves: 28,
     colors: [...FULL_COLORS],
     objectives: [
-      { kind: 'collect', piece: 'green', count: 20 },
+      { kind: 'collect', piece: 'green', count: 24 },
       { kind: 'clearObstacle', obstacle: 'ice', count: 6 },
     ],
+    /**
+     * ⚠️ 7×7 上冰要**往里放**。8×8 时代冰在 (1,1)(6,6) 这些贴边位置
+     *   还够得到；缩到 7×7 后可选消除本就变少，贴边的冰会把通过率
+     *   拖到 45%（模拟器实测）。往中间挪 + 减到 5 块才回得来。
+     */
     obstacles: [
-      { pos: { col: 1, row: 1 }, kind: 'ice', hp: 1 },
-      { pos: { col: 6, row: 1 }, kind: 'ice', hp: 1 },
-      { pos: { col: 1, row: 6 }, kind: 'ice', hp: 1 },
-      { pos: { col: 6, row: 6 }, kind: 'ice', hp: 1 },
+      { pos: { col: 2, row: 2 }, kind: 'ice', hp: 1 },
       { pos: { col: 4, row: 2 }, kind: 'ice', hp: 1 },
-      { pos: { col: 3, row: 5 }, kind: 'ice', hp: 1 },
+      { pos: { col: 2, row: 4 }, kind: 'ice', hp: 1 },
+      { pos: { col: 4, row: 4 }, kind: 'ice', hp: 1 },
+      { pos: { col: 3, row: 3 }, kind: 'ice', hp: 1 },
+      { pos: { col: 3, row: 1 }, kind: 'ice', hp: 1 },
     ],
-    stars: { two: 7, three: 13 },
+    stars: { two: 6, three: 12 },
   },
 ];

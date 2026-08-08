@@ -59,6 +59,10 @@ export class LevelScene extends Phaser.Scene {
    *   所以挂在 this 上的这个值能活过重启。
    */
   private pendingLevelId: number | null = null;
+  /** ★ 存成字段才能在 shutdown 时正确解绑（箭头函数每次新建会解不掉） */
+  private readonly onVisibility = (): void => {
+    if (document.visibilityState === 'visible') this.audio.unlock();
+  };
   /** 当前这一段动画的时间轴，仅用于缓存窗口判断 */
   private playStartedAt = 0;
   private playTotalMs = 0;
@@ -119,7 +123,18 @@ export class LevelScene extends Phaser.Scene {
     this.bindInput();
     this.buildSettingsButton();
 
+    /**
+     * ★ 从后台回来要重新解锁音频。
+     *   iOS / 微信在页面进入后台时会挂起 AudioContext，回来后
+     *   若不 resume，后续所有音效都排期到一个 suspended 的 context 上 ——
+     *   静默失败，没有任何报错。
+     */
+    document.addEventListener('visibilitychange', this.onVisibility);
+
     this.scale.on(Phaser.Scale.Events.RESIZE, this.onResize, this);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      document.removeEventListener('visibilitychange', this.onVisibility);
+    });
   }
 
   /**
@@ -166,11 +181,35 @@ export class LevelScene extends Phaser.Scene {
    *   Phaser 的 ScaleManager 在容器还没完成布局时会报 **0×0**，
    *   拿它算布局会得到"棋子边长为 0"的空棋盘（M4 实测遇到过）。
    *   这里退回到窗口尺寸兜底 —— RESIZE 事件随后会给出准确值并重排。
+   *
+   * ★★ 游戏内坐标是**物理像素**（main.ts 按 DPR 放大了缓冲区，
+   *   否则手机上文字全糊）。所以：
+   *   - 兜底的 `window.innerWidth` 是 CSS 像素，**要乘回倍率**
+   *   - Safe Area 由 CSS env() 读出，也是 CSS 像素，同样要换算
+   *   两者任一漏乘，棋盘就会偏移或缩到半屏。
    */
   private measureLayout(): LayoutResult {
-    const w = this.scale.width || window.innerWidth;
-    const h = this.scale.height || window.innerHeight;
-    return computeLayout(w, h, readSafeAreaInsets());
+    const scale = this.renderScale();
+    const w = this.scale.width || window.innerWidth * scale;
+    const h = this.scale.height || window.innerHeight * scale;
+
+    const css = readSafeAreaInsets();
+    const insets = {
+      top: css.top * scale,
+      right: css.right * scale,
+      bottom: css.bottom * scale,
+      left: css.left * scale,
+    };
+    return computeLayout(w, h, insets, scale);
+  }
+
+  /** 画布缓冲相对 CSS 尺寸的倍率（与 main.ts 的 renderScale 一致） */
+  private renderScale(): number {
+    const canvas = this.game.canvas;
+    const cssW = canvas?.clientWidth ?? 0;
+    if (!canvas || cssW <= 0) return 1;
+    const ratio = canvas.width / cssW;
+    return Number.isFinite(ratio) && ratio > 0 ? ratio : 1;
   }
 
   /** 把 core 的棋盘位置同步给播放器（每回合开头一次） */

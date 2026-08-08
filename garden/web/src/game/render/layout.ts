@@ -50,8 +50,8 @@ const EMPTY: Rect = { x: 0, y: 0, w: 0, h: 0 };
  * ★ 步骤 3：由可用宽度推导棋子边长。
  *   棋盘两侧各留 boardMarginPt，棋子是正方形。
  */
-function pieceSizeFor(availableW: number, cols: number): number {
-  return (availableW - LAYOUT.boardMarginPt * 2) / cols;
+function pieceSizeFor(availableW: number, cols: number, scale: number): number {
+  return (availableW - LAYOUT.boardMarginPt * scale * 2) / cols;
 }
 
 /**
@@ -70,7 +70,21 @@ export function computeLayout(
   viewportW: number,
   viewportH: number,
   insets: SafeAreaInsets,
+  /**
+   * ★ 设计像素 → 物理像素的倍率（见 game/ui/uiScale.ts）。
+   *
+   *   main.ts 按 DPR 放大了画布缓冲（否则手机上文字全糊），
+   *   于是传进来的 viewportW/H 是**物理像素**。
+   *   而 LAYOUT 里的 minPieceSizePt / boardMarginPt 是**设计像素**，
+   *   两者必须换算到同一坐标系再比大小 ——
+   *   漏乘的话，DPR=2 的手机上"最小棋子 38pt"会被当成 38 物理像素
+   *   （实际只有 19 设计像素），于是**永远不会降到 7×7**，
+   *   而那恰恰是这个阈值存在的意义。
+   */
+  scale = 1,
 ): LayoutResult {
+  const minPiece = LAYOUT.minPieceSizePt * scale;
+  const margin = LAYOUT.boardMarginPt * scale;
   // —— 1. 扣 Safe Area ——
   const safeX = insets.left;
   const safeY = insets.top;
@@ -81,17 +95,17 @@ export function computeLayout(
   // ★ 显式标注 number：boardFallback 是 readonly [8, 7] 元组，
   //   推断出的字面量类型会让下面的循环赋值不通过。
   let cols: number = LAYOUT.boardFallback[0];
-  let pieceSizePt = pieceSizeFor(safeW, cols);
+  let pieceSizePt = pieceSizeFor(safeW, cols, scale);
   let belowMinimum = false;
 
   for (const candidate of LAYOUT.boardFallback) {
-    const size = pieceSizeFor(safeW, candidate);
+    const size = pieceSizeFor(safeW, candidate, scale);
     cols = candidate;
     pieceSizePt = size;
-    if (size >= LAYOUT.minPieceSizePt) break;
+    if (size >= minPiece) break;
   }
 
-  if (pieceSizePt < LAYOUT.minPieceSizePt) {
+  if (pieceSizePt < minPiece) {
     // ★ 连最小棋盘都放不下 —— 触到硬底线，标记出来
     belowMinimum = true;
   }
@@ -121,19 +135,19 @@ export function computeLayout(
   // 否则棋盘会溢出屏幕。棋子随之变小，同样计入 belowMinimum。
   // ★ 高度不足以容纳任何棋盘时，`maxBoardH` 会 ≤ 0 ——
   //   此时钳到 0（而不是跳过收缩），否则棋盘会以"满宽 × 无高度"画出去。
-  const maxBoardH = Math.max(0, safeH - LAYOUT.boardMarginPt * 2);
+  const maxBoardH = Math.max(0, safeH - margin * 2);
   let finalSide = boardSide;
   if (boardSide > maxBoardH) {
     finalSide = maxBoardH;
     pieceSizePt = cols > 0 ? finalSide / cols : 0;
-    if (pieceSizePt < LAYOUT.minPieceSizePt) belowMinimum = true;
+    if (pieceSizePt < minPiece) belowMinimum = true;
   }
 
   const boardH = finalSide;
   const boardW = finalSide;
 
   // —— 5. 剩余高度按权重弹性分配 ——
-  const leftover = Math.max(0, safeH - boardH - LAYOUT.boardMarginPt * 2);
+  const leftover = Math.max(0, safeH - boardH - margin * 2);
   const { hud, pet, controls } = LAYOUT.weights;
   const totalWeight = hud + pet + controls;
 
@@ -142,17 +156,17 @@ export function computeLayout(
   const controlsH = (leftover * controls) / totalWeight;
 
   // —— 6. Pet 区不足 → 半身构图 ——
-  const petCompact = petH < LAYOUT.petMinHeightPt;
+  const petCompact = petH < LAYOUT.petMinHeightPt * scale;
 
   // —— 竖直堆叠：hud → board → pet → controls ——
   const boardX = safeX + (safeW - boardW) / 2;
   let cursorY = safeY;
 
   const hudRect: Rect = { x: safeX, y: cursorY, w: safeW, h: hudH };
-  cursorY += hudH + LAYOUT.boardMarginPt;
+  cursorY += hudH + margin;
 
   const boardRect: Rect = { x: boardX, y: cursorY, w: boardW, h: boardH };
-  cursorY += boardH + LAYOUT.boardMarginPt;
+  cursorY += boardH + margin;
 
   const petRect: Rect = { x: safeX, y: cursorY, w: safeW, h: petH };
   cursorY += petH;

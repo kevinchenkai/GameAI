@@ -10,10 +10,14 @@
 
 import Phaser from 'phaser';
 import { ENV_PALETTE } from '../../config/pieces';
+import { fontPx, px } from './uiScale';
 
 const FONT = '"PingFang SC", "Microsoft YaHei", -apple-system, sans-serif';
 
-/** ★ 触摸目标最小边长（pt）。Apple HIG 是 44，这里对 50+ 用户再放宽 */
+/**
+ * ★ 触摸目标最小边长（**设计像素**）。Apple HIG 是 44，这里对 50+ 用户再放宽。
+ * ⚠️ 用到实际坐标时要经 px() 换算成物理像素（见 uiScale.ts）。
+ */
 export const MIN_TAP_PT = 52;
 
 export interface ButtonSpec {
@@ -55,9 +59,10 @@ export class Panel {
   card(centerX: number, centerY: number, w: number, h: number): void {
     const g = this.scene.add.graphics();
     g.fillStyle(0xfffbf2, 1);
-    g.fillRoundedRect(centerX - w / 2, centerY - h / 2, w, h, 20);
-    g.lineStyle(3, 0x8a6a4a, 1);
-    g.strokeRoundedRect(centerX - w / 2, centerY - h / 2, w, h, 20);
+    const radius = px(this.scene, 20);
+    g.fillRoundedRect(centerX - w / 2, centerY - h / 2, w, h, radius);
+    g.lineStyle(px(this.scene, 3), 0x8a6a4a, 1);
+    g.strokeRoundedRect(centerX - w / 2, centerY - h / 2, w, h, radius);
     this.add(g);
   }
 
@@ -65,7 +70,7 @@ export class Panel {
     const t = this.scene.add
       .text(x, y, text, {
         fontFamily: FONT,
-        fontSize: `${size}px`,
+        fontSize: fontPx(this.scene, size),
         fontStyle: 'bold',
         color: ENV_PALETTE.textDark,
       })
@@ -76,7 +81,11 @@ export class Panel {
 
   label(x: number, y: number, text: string, size = 17): Phaser.GameObjects.Text {
     const t = this.scene.add
-      .text(x, y, text, { fontFamily: FONT, fontSize: `${size}px`, color: ENV_PALETTE.textDark })
+      .text(x, y, text, {
+        fontFamily: FONT,
+        fontSize: fontPx(this.scene, size),
+        color: ENV_PALETTE.textDark,
+      })
       .setOrigin(0.5);
     this.add(t);
     return t;
@@ -89,25 +98,27 @@ export class Panel {
    *   Phaser 的 setInteractive 默认用贴图边界，这里显式给 Rectangle。
    */
   button(x: number, y: number, w: number, spec: ButtonSpec): void {
-    const h = Math.max(MIN_TAP_PT, 52);
-    const width = Math.max(w, MIN_TAP_PT);
+    // ★ MIN_TAP_PT 是设计像素，命中区要按物理像素算
+    const h = px(this.scene, MIN_TAP_PT);
+    const width = Math.max(w, h);
+    const radius = px(this.scene, 14);
 
     const g = this.scene.add.graphics();
     if (spec.primary) {
       g.fillStyle(0xffb03a, 1);
-      g.fillRoundedRect(x - width / 2, y - h / 2, width, h, 14);
+      g.fillRoundedRect(x - width / 2, y - h / 2, width, h, radius);
     } else {
       g.fillStyle(0xfff6e5, 1);
-      g.fillRoundedRect(x - width / 2, y - h / 2, width, h, 14);
-      g.lineStyle(2.5, 0x8a6a4a, 1);
-      g.strokeRoundedRect(x - width / 2, y - h / 2, width, h, 14);
+      g.fillRoundedRect(x - width / 2, y - h / 2, width, h, radius);
+      g.lineStyle(px(this.scene, 2.5), 0x8a6a4a, 1);
+      g.strokeRoundedRect(x - width / 2, y - h / 2, width, h, radius);
     }
     this.add(g);
 
     const t = this.scene.add
       .text(x, y, spec.label, {
         fontFamily: FONT,
-        fontSize: '19px',
+        fontSize: fontPx(this.scene, 19),
         fontStyle: 'bold',
         color: spec.primary ? '#4A3520' : ENV_PALETTE.textDark,
       })

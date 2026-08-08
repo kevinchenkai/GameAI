@@ -14,6 +14,7 @@
 import type Phaser from 'phaser';
 import type { Tempo } from '../../config/tuning';
 import { MIN_TAP_PT, Panel } from './Panel';
+import { px } from './uiScale';
 
 export interface SettingsPanelOptions {
   readonly tempo: Tempo;
@@ -46,7 +47,7 @@ export class SettingsPanel {
     const { width, height } = this.scene.scale;
     const cx = width / 2;
     const cy = height / 2;
-    const cardW = Math.min(320, width - 40);
+    const cardW = Math.min(px(this.scene, 320), width - px(this.scene, 40));
 
     /**
      * ★ 卡片高度**由内容逐项累加算出**，不写死。
@@ -55,12 +56,17 @@ export class SettingsPanel {
      *   按钮高度有下限（MIN_TAP_PT = 52，为 50+ 用户放宽过），
      *   一旦按钮变大，写死的高度就装不下。这类重叠**单测抓不到**，
      *   只有真机截图看得出来。
+     *
+     * ⚠️⚠️ **所有尺寸都要经 px() 换算成物理像素**。
+     *   画布按 DPR 放大后，字号已经乘了倍率，若这里的间距还是设计像素，
+     *   内容就会撑破卡片 —— DPR=2 时实测整个面板叠成一团。
+     *   （只改字号不改布局，是这次踩的坑。）
      */
-    const BTN_H = MIN_TAP_PT;
-    const PAD = 26;
-    const GAP = 16;
-    const titleH = 34;
-    const labelH = 24;
+    const BTN_H = px(this.scene, MIN_TAP_PT);
+    const PAD = px(this.scene, 26);
+    const GAP = px(this.scene, 16);
+    const titleH = px(this.scene, 34);
+    const labelH = px(this.scene, 24);
     const cardH =
       PAD + titleH + GAP + labelH + BTN_H + GAP + labelH + BTN_H + GAP + BTN_H + PAD;
 
@@ -76,9 +82,10 @@ export class SettingsPanel {
     // —— 节奏 ——
     p.label(cx, y + labelH / 2, '节奏');
     y += labelH;
-    const btnW = (cardW - 2 * PAD - 12) / 2;
+    const btnW = (cardW - 2 * PAD - px(this.scene, 12)) / 2;
     for (const [i, t] of (['calm', 'brisk'] as const).entries()) {
-      const x = cx + (i === 0 ? -btnW / 2 - 6 : btnW / 2 + 6);
+      const gapHalf = px(this.scene, 6);
+      const x = cx + (i === 0 ? -btnW / 2 - gapHalf : btnW / 2 + gapHalf);
       p.button(x, y + BTN_H / 2, btnW, {
         label: TEMPO_LABEL[t],
         primary: opts.tempo === t,
