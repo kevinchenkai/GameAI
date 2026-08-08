@@ -24,15 +24,20 @@ export class BootScene extends Phaser.Scene {
       this.load.image(TEX.piece(color), path);
     }
 
-    // —— UI ——
-    this.load.image(TEX.uiPanelBg, ASSETS.ui.panelBg);
-    this.load.image(TEX.uiBtnPrimary, ASSETS.ui.btnPrimary);
-    this.load.image(TEX.uiBtnPause, ASSETS.ui.btnPause);
-    this.load.image(TEX.uiMovesBadge, ASSETS.ui.movesBadge);
-    this.load.image(TEX.uiObjectiveSlot, ASSETS.ui.objectiveSlot);
-
-    // —— 背景 ——
-    this.load.image(TEX.levelBg, ASSETS.garden.levelBg);
+    /**
+     * ★★ UI 贴图与关卡背景**全部不加载** —— 它们一张都没被画过。
+     *
+     *   实测：`TEX.uiPanelBg / uiBtnPrimary / uiBtnPause / uiMovesBadge /
+     *   uiObjectiveSlot / levelBg` 在渲染层的引用次数都是 **0**。
+     *   Panel、HudView、ResultPanel 全部用 Graphics 画圆角矩形 ——
+     *   这是刻意的（要按 DPR 缩放、要跟随主题色），不是漏画。
+     *
+     *   于是这 6 张一直在首屏白下载：**660KB，占首屏的 54%**，
+     *   下载完就躺在纹理缓存里等着被 GC。
+     *
+     *   素材本身保留在 assets/（没删），将来真要用整图贴图时
+     *   把这几行加回来即可 —— 但**别在没人画的时候预加载**。
+     */
 
     // —— 障碍：冰（Stage 0 唯一障碍）——
     this.load.image(TEX.iceOverlay(1), ASSETS.obstacles.ice1);

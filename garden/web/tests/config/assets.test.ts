@@ -15,6 +15,8 @@
 
 import { describe, expect, it } from 'vitest';
 import { ASSETS, REFERENCE_ONLY } from '../../src/config/assets';
+import { readdirSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 /** 把 Manifest 递归摊平成 [键路径, 值] */
 function flatten(obj: unknown, prefix = ''): Array<[string, string]> {
@@ -117,5 +119,61 @@ describe('Manifest 内容完整性', () => {
     for (const ref of Object.values(REFERENCE_ONLY)) {
       expect(paths.has(ref), `${ref} 不应出现在 ASSETS 中`).toBe(false);
     }
+  });
+});
+
+/**
+ * ★★ 回归：**preload 的每一张贴图都必须真的被画出来**。
+ *
+ *   实测踩到：UI 五张贴图 + 关卡背景一共 **660KB（占首屏 54%）**
+ *   在 BootScene 里被预加载，但渲染层对它们的引用次数是 **0** ——
+ *   Panel / HudView / ResultPanel 全部用 Graphics 画，从没用过整图。
+ *   下载完就躺在纹理缓存里等着被 GC。
+ *
+ *   这类浪费**没有任何症状**：不报错、不白屏、功能完全正常，
+ *   只是所有人的首屏都多等一截。靠人 review 很难发现，
+ *   所以用测试钉住：BootScene 里 load 的 TEX，必须在别处被引用。
+ */
+describe('★★ 首屏纪律：preload 的贴图必须有人用', () => {
+  const SRC = resolve(__dirname, '../../src');
+
+  /** 读整个 src/ 的 .ts 文本（文件不多，直接全读） */
+  function allSources(): { path: string; text: string }[] {
+    const out: { path: string; text: string }[] = [];
+    const walk = (dir: string): void => {
+      for (const e of readdirSync(dir, { withFileTypes: true })) {
+        const p = resolve(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (e.name.endsWith('.ts')) out.push({ path: p, text: readFileSync(p, 'utf8') });
+      }
+    };
+    walk(SRC);
+    return out;
+  }
+
+  it('BootScene 预加载的每个 TEX.xxx 都在渲染层被引用', () => {
+    const sources = allSources();
+    const boot = sources.find((s) => s.path.endsWith('BootScene.ts'));
+    expect(boot).toBeDefined();
+
+    // 只取 this.load.image(TEX.xxx, ...) 里的 key 名
+    const loaded = [...(boot as { text: string }).text.matchAll(/this\.load\.image\(\s*TEX\.(\w+)/g)].map(
+      (m) => m[1] as string,
+    );
+    expect(loaded.length).toBeGreaterThan(0);
+
+    const unused: string[] = [];
+    for (const key of loaded) {
+      // 在 BootScene 与 textureKeys 之外，是否还有人引用这个 key
+      const used = sources.some(
+        (s) =>
+          !s.path.endsWith('BootScene.ts') &&
+          !s.path.endsWith('textureKeys.ts') &&
+          new RegExp(`TEX\\.${key}\\b`).test(s.text),
+      );
+      if (!used) unused.push(key);
+    }
+
+    expect(unused, `这些贴图被预加载但没人画：${unused.join(', ')}`).toEqual([]);
   });
 });

@@ -125,6 +125,8 @@ describe('★★ 尾巴根部与身体的接合', () => {
     let bitDepth = 0;
     let colorType = 0;
     const idat: Buffer[] = [];
+    /** 调色板 PNG 的透明度表；RGBA 图没有这一段 */
+    let trns: Buffer = Buffer.alloc(0);
     while (i < buf.length) {
       const len = buf.readUInt32BE(i);
       const type = buf.subarray(i + 4, i + 8).toString('ascii');
@@ -135,12 +137,20 @@ describe('★★ 尾巴根部与身体的接合', () => {
         bitDepth = data[8] as number;
         colorType = data[9] as number;
       } else if (type === 'IDAT') idat.push(data);
+      else if (type === 'tRNS') trns = data;
       i += 12 + len;
     }
     expect(bitDepth).toBe(8);
-    expect(colorType).toBe(6); // RGBA
+    /**
+     * ★ 同时支持 RGBA(6) 与**调色板(3)**。
+     *   ⚠️ 素材经 pngquant 压缩后会变成调色板 PNG —— 只认 6 的话，
+     *   这组几何断言会在"素材被压缩"时全部失败，
+     *   而几何其实一点没变（实测根部仍 779/779 埋入）。
+     *   报错还是 `expected 3 to be 6`，很容易被误读成"图坏了"。
+     */
+    expect([3, 6]).toContain(colorType);
     const raw = inflateSync(Buffer.concat(idat));
-    const bpp = 4;
+    const bpp = colorType === 6 ? 4 : 1;
     const stride = w * bpp;
     const out = Buffer.alloc(stride * h);
     let pos = 0;
@@ -169,11 +179,17 @@ describe('★★ 尾巴根部与身体的接合', () => {
       }
       line.copy(out, y * stride);
     }
-    return {
-      w,
-      h,
-      a: (x, y) => (x < 0 || y < 0 || x >= w || y >= h ? 0 : (out[(y * w + x) * 4 + 3] as number)),
+    /**
+     * ★ 取 alpha：RGBA 直接读第 4 通道；调色板图要经 tRNS 查表
+     *   （索引不在表里 = 完全不透明）。
+     */
+    const alphaAt = (x: number, y: number): number => {
+      if (x < 0 || y < 0 || x >= w || y >= h) return 0;
+      if (colorType === 6) return out[(y * w + x) * 4 + 3] as number;
+      const idx = out[y * w + x] as number;
+      return idx < trns.length ? (trns[idx] as number) : 255;
     };
+    return { w, h, a: alphaAt };
   }
 
   it('★★ 根部断面每一个像素都必须落在身体不透明区内（不能有白缝）', () => {
