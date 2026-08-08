@@ -12,11 +12,24 @@
  * → Codex 开发期**直接用规范文件名，不要主动加 -v2**；版本号由本文件管理。
  */
 
-const PIECES = '/assets/pieces';
-const PET = '/assets/pet';
-const OBSTACLES = '/assets/obstacles';
-const UI = '/assets/ui';
-const GARDEN = '/assets/garden';
+/**
+ * ★ 部署前缀。开发期 `/`，生产期 `/garden/`（vite.config.ts 的 base）。
+ *
+ * ⚠️ **不要写死成 `/assets/...`**。首次部署时踩过：JS/CSS 由 Vite 自动加了
+ *   base 前缀，但本文件里的素材路径是手写字面量、Vite 不会处理它们，
+ *   于是线上去请求 `/assets/...` 而正确位置是 `/garden/assets/...` ——
+ *   **全部素材 404，白屏**。本地开发因为 base 恰好是 `/` 而完全正常，
+ *   所以这个 bug 只在部署后才暴露。
+ *
+ * `import.meta.env.BASE_URL` 由 Vite 在构建时注入，保证与实际 base 一致。
+ */
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const PIECES = `${BASE}/assets/pieces`;
+const PET = `${BASE}/assets/pet`;
+const OBSTACLES = `${BASE}/assets/obstacles`;
+const UI = `${BASE}/assets/ui`;
+const GARDEN = `${BASE}/assets/garden`;
 
 export const ASSETS = {
   pieces: {
