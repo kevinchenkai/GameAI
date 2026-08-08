@@ -1,0 +1,30 @@
+index.html
+  4fca2e14c0ddaf88 6,926-927,930-932,938-940,950,953-954,959-960,963-964,967-968,971-973,976-978,1018,1021-1022,1027-1028,1031-1032,1035-1036,1039-1041,1044-1046,1096-1097,1103-1104,1107-1108,1123-1124,1127-1128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "ea07d06cce2de7a4c491ba481f9bb7100847e56d",
+  "prompts": {
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 49,
+      "total_deletions": 52,
+      "accepted_lines": 49,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/5b74d2a0edcd09b506916eccc9f55bd2e7a4e316bd3e1507050df3b56158d166",
+      "token_usage": {
+        "input_tokens": 187,
+        "output_tokens": 42628,
+        "cache_creation_input_tokens": 220424,
+        "cache_read_input_tokens": 10243431
+      }
+    }
+  }
+}
