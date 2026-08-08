@@ -200,7 +200,11 @@ export class LevelScene extends Phaser.Scene {
       bottom: css.bottom * scale,
       left: css.left * scale,
     };
-    return computeLayout(w, h, insets, scale);
+    // ★ 列数以**关卡数据**为准，不让布局算法自选 ——
+    //   否则关卡是 7×7、棋盘却按 8 列铺格，棋子不会变大（见 layout.ts 注释）。
+    //   ⚠️ `session` 是 `!:` 断言字段，首次布局可能早于 createSession，
+    //   这里用可选链兜底，不能直接点出来。
+    return computeLayout(w, h, insets, scale, this.session?.board.cols);
   }
 
   /** 画布缓冲相对 CSS 尺寸的倍率（与 main.ts 的 renderScale 一致） */

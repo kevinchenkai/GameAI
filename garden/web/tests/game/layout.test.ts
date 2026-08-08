@@ -177,3 +177,61 @@ describe('★★ 退化输入：不崩，且不产出负数尺寸', () => {
     expect(cellAtPoint(r, 10, 10)).toBeNull();
   });
 });
+
+/**
+ * ★★ 回归：关卡列数必须**压过**布局算法的自选逻辑。
+ *
+ *   真实 bug：computeLayout 只按"棋子 ≥ 38pt"从 boardFallback 自选列数，
+ *   完全不看关卡数据。真机上 8 列永远达标 → fallback 从不触发。
+ *   于是关卡改成 7×7 后，棋盘仍按 **8 列的格子尺寸**铺，
+ *   表现为「7 列 8 号格子」：右侧空一条、棋子一点没变大。
+ *
+ *   用户报告的正是这个 —— "改 7×7 是为了让格子更大、占满屏幕"，
+ *   但看上去毫无变化。单测此前全绿，因为没有一条断言把
+ *   "关卡列数"和"实际渲染列数"连起来。
+ */
+describe('★★ 回归：关卡列数说了算（7×7 必须真的更大）', () => {
+  it.each(DEVICES.map((d) => [d.name, d] as const))(
+    '%s：传入 7 列时 boardCols 必须是 7',
+    (_name, d) => {
+      const r = computeLayout(d.w, d.h, d.insets, 1, 7);
+      expect(r.boardCols).toBe(7);
+      expect(r.boardRows).toBe(7);
+    },
+  );
+
+  it('★ 7 列的棋子必须**明显大于** 8 列（这才是改版的目的）', () => {
+    const eight = computeLayout(390, 844, NO_INSETS, 1, 8);
+    const seven = computeLayout(390, 844, NO_INSETS, 1, 7);
+    expect(seven.pieceSizePt).toBeGreaterThan(eight.pieceSizePt);
+    // 8/7 ≈ 1.143，允许少量浮点误差
+    expect(seven.pieceSizePt / eight.pieceSizePt).toBeGreaterThan(1.13);
+  });
+
+  it('★ 棋盘必须铺满可用宽度（不留下右侧空白条）', () => {
+    for (const d of DEVICES) {
+      const r = computeLayout(d.w, d.h, d.insets, 1, 7);
+      const safeW = d.w - d.insets.left - d.insets.right;
+      const used = r.boardRect.w + LAYOUT.boardMarginPt * 2;
+      // 宽度受限时，棋盘 + 两侧边距应当正好等于可用宽度
+      if (!r.belowMinimum && r.boardRect.w >= r.boardRect.h) {
+        expect(Math.abs(used - safeW)).toBeLessThan(1);
+      }
+    }
+  });
+
+  it('★ 棋盘水平居中', () => {
+    for (const d of DEVICES) {
+      const r = computeLayout(d.w, d.h, d.insets, 1, 7);
+      const safeX = d.insets.left;
+      const safeW = d.w - d.insets.left - d.insets.right;
+      const leftGap = r.boardRect.x - safeX;
+      const rightGap = safeX + safeW - (r.boardRect.x + r.boardRect.w);
+      expect(Math.abs(leftGap - rightGap)).toBeLessThan(1);
+    }
+  });
+
+  it('不传列数时保留旧的自选行为（兼容既有调用）', () => {
+    expect(computeLayout(390, 844, NO_INSETS).boardCols).toBe(8);
+  });
+});

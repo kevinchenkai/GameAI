@@ -82,6 +82,20 @@ export function computeLayout(
    *   而那恰恰是这个阈值存在的意义。
    */
   scale = 1,
+  /**
+   * ★★ 关卡实际列数。**传了就以它为准，不再自行挑选。**
+   *
+   *   ⚠️ 这里曾是一个真实的 bug：本函数只按"棋子 ≥ 38pt"从
+   *   `boardFallback` 里自选列数，而**完全不看关卡数据**。
+   *   真机上 8 列永远满足 38pt，于是 fallback 从不触发 ——
+   *   关卡明明是 7×7，棋盘却按 8 列的格子尺寸铺，
+   *   结果是 **7 列 8 号格子**：右侧空一条、棋子没变大。
+   *   （这正是"改 7×7 却看不出变大"的原因。）
+   *
+   *   列数属于**关卡数据**，不该由布局算法猜。不传时保留旧的
+   *   自选行为，只为兼容既有单测。
+   */
+  requestedCols?: number,
 ): LayoutResult {
   const minPiece = LAYOUT.minPieceSizePt * scale;
   const margin = LAYOUT.boardMarginPt * scale;
@@ -98,11 +112,18 @@ export function computeLayout(
   let pieceSizePt = pieceSizeFor(safeW, cols, scale);
   let belowMinimum = false;
 
-  for (const candidate of LAYOUT.boardFallback) {
-    const size = pieceSizeFor(safeW, candidate, scale);
-    cols = candidate;
-    pieceSizePt = size;
-    if (size >= minPiece) break;
+  if (requestedCols !== undefined && requestedCols > 0) {
+    // ★ 关卡说了算：棋子按这个列数**铺满可用宽度**。
+    //   列数少 → 每格更大，这正是"改 7×7 让老人小孩看得清"的目的。
+    cols = requestedCols;
+    pieceSizePt = pieceSizeFor(safeW, cols, scale);
+  } else {
+    for (const candidate of LAYOUT.boardFallback) {
+      const size = pieceSizeFor(safeW, candidate, scale);
+      cols = candidate;
+      pieceSizePt = size;
+      if (size >= minPiece) break;
+    }
   }
 
   if (pieceSizePt < minPiece) {
