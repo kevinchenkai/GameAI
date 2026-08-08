@@ -180,9 +180,9 @@ export class BoardView {
    * ★ **必须画在棋子之上** —— 冰是盖在棋子上的一层护甲（core 语义：
    *   棋子照常参与匹配，冰只是挡住一次消除）。画在棋子下面就看不见了。
    *
-   * ★ ice-1 已交付（真半透明，有效不透明度 48%）。
-   *   **ice-2 尚未交付** —— 暂用 ice-1 的贴图配更高不透明度表现"更厚"。
-   *   这个回退是刻意的：宁可两级冰长得像，也不要让 2hp 的冰**看不见**。
+   * ★ ice-1 / ice-2 均已交付，两张都是真半透明
+   *   （有效不透明度 48% / 44%，ice-2 靠**裂纹更少、边缘更实**表达"更厚"，
+   *   不是靠更不透明 —— 这是刻意的，见下）。
    *
    * ⚠️ 不要因为"想让冰更明显"而调高不透明度：
    *   实测 48% 已经把六色的最小相邻灰度差从 22.7 压到 12.3
@@ -194,11 +194,9 @@ export class BoardView {
     const s = this.layout.pieceSizePt;
     const c = cellCenter(this.layout, at.col, at.row);
 
-    const texKey = TEX.iceOverlay(1); // ice-2 未交付，统一用 ice-1 的贴图
-    const img = this.scene.add.image(c.x, c.y, texKey);
+    // hp ≥ 2 用更厚的那张贴图；两张不透明度相近，差别在裂纹与边缘
+    const img = this.scene.add.image(c.x, c.y, TEX.iceOverlay(hp >= 2 ? 2 : 1));
     img.setDisplaySize(s, s);
-    // hp ≥ 2 更厚：靠不透明度区分，不靠换图
-    img.setAlpha(hp >= 2 ? 1 : 0.82);
     this.layer.add(img);
     // ★ 显式置顶 —— 不依赖"恰好后加入"这种巧合。
     //   棋子会在 spawn / reconcile 时后加入 layer，不置顶就会盖住冰。

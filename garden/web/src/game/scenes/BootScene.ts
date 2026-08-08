@@ -32,9 +32,8 @@ export class BootScene extends Phaser.Scene {
     this.load.image(TEX.levelBg, ASSETS.garden.levelBg);
 
     // —— 障碍：冰（Stage 0 唯一障碍）——
-    // ★ ice-2 尚未交付，暂用 ice-1 的贴图 + 更高的不透明度表现"更厚"，
-    //   见 BoardView.showObstacle。真图到位后只需在这里补一行 load。
     this.load.image(TEX.iceOverlay(1), ASSETS.obstacles.ice1);
+    this.load.image(TEX.iceOverlay(2), ASSETS.obstacles.ice2);
 
     // —— 花园：院门 4 阶段（M7 的花园场景用）——
     ASSETS.garden.gate.forEach((path, stage) => {
