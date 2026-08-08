@@ -1,0 +1,56 @@
+"garden/docs/Garden Match 游戏框架设计 V1.1.md"
+  2c4db6ea02bd3453 283-284,292-293,515-527,531-544,550-576
+README.md
+  4fca2e14c0ddaf88 60
+garden/CLAUDE.md
+  4fca2e14c0ddaf88 1-164
+CLAUDE.md
+  4fca2e14c0ddaf88 16,24,28,34,40,52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "8696eceef2648abe24bd98d0a207251f2b489402",
+  "prompts": {
+    "2c4db6ea02bd3453": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d28a47ec-5bec-4514-ac65-be2369dfff14",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 1277,
+      "total_deletions": 11,
+      "accepted_lines": 103,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/d7dd17255f7ebda102aba6728c46dbe535adf79710d1ddefd70d6f2a46b12895",
+      "token_usage": {
+        "input_tokens": 238,
+        "output_tokens": 98419,
+        "cache_creation_input_tokens": 185771,
+        "cache_read_input_tokens": 17337977
+      }
+    },
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 340,
+      "total_deletions": 2277,
+      "accepted_lines": 2144,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/78b28431ae8447978999b924c3a938690626ae0acef075bf8fdd2bfe3b110bef",
+      "token_usage": {
+        "input_tokens": 297,
+        "output_tokens": 69017,
+        "cache_creation_input_tokens": 539068,
+        "cache_read_input_tokens": 20581531
+      }
+    }
+  }
+}
