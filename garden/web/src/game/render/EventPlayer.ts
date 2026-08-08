@@ -73,12 +73,37 @@ export class PhaserEventPlayer implements EventPlayer {
     });
   }
 
-  /** 结束当前这一段（正常播完或被打断），**保证 resolve 恰好一次** */
+  /**
+   * 结束当前这一段（正常播完或被打断），**保证 resolve 恰好一次**。
+   *
+   * ★★ 收尾时必须**结算掉所有还在跑的补间**。
+   *
+   *   ⚠️ 完成时刻由 `delayedCall(totalMs)` 决定，但**排在时间轴末尾的
+   *   补间会在那之后才结束**（它们的 onComplete 还没跑）。
+   *   于是顺序变成：
+   *     play() resolve → LevelScene 调 reconcile() 把精灵摆到正确位置
+   *     → 那些还活着的补间继续跑，**又把精灵挪走 / 漏掉销毁**
+   *   表现就是用户截图里的"同一格叠着两个棋子"。
+   *
+   *   `complete()` 会把补间直接推进到终点并触发 onComplete —— 该销毁的
+   *   销毁、该到位的到位 —— 这样 reconcile() 面对的是一个静止的棋盘。
+   */
   private finish(): void {
     this.playing = false;
+    this.settleTweens();
     const resolve = this.finishCurrent;
     this.finishCurrent = null;
     resolve?.();
+  }
+
+  /** 把未完成的补间瞬间推到终点（触发它们的 onComplete） */
+  private settleTweens(): void {
+    const running = this.pendingTweens;
+    this.pendingTweens = [];
+    for (const t of running) {
+      // 已经自然结束的补间调 complete() 是无害的空操作
+      if (t.isPlaying?.()) t.complete?.();
+    }
   }
 
   remainingMs(): number {
@@ -86,12 +111,19 @@ export class PhaserEventPlayer implements EventPlayer {
     return Math.max(0, this.timeline.totalMs - (this.scene.time.now - this.startedAt));
   }
 
+  /**
+   * 立即结束当前这一段（玩家抢下一步时用）。
+   *
+   * ★ 与 finish() 的区别：这里用 `complete()` 而不是 `stop()`。
+   *   `stop()` 会让补间**停在半路且不触发 onComplete** ——
+   *   那些"在 onComplete 里销毁精灵"的逻辑就被跳过了，
+   *   精灵永远留在盘上。被打断也必须把该销毁的销毁掉。
+   */
   skipAll(): void {
-    for (const t of this.pendingTweens) t.stop();
     for (const t of this.timers) t.remove(false);
-    this.pendingTweens = [];
     this.timers = [];
     // ★ 被打断也要兑现承诺，否则 await 方永远醒不过来
+    //   （finish() 内部会 settleTweens，把补间推到终点）
     this.finish();
   }
 
@@ -133,6 +165,8 @@ export class PhaserEventPlayer implements EventPlayer {
             onUpdate: () => this.view.followOverlay(id),
             onComplete: () => this.view.removeSprite(id),
           });
+          // ★ 同 specialFire：消掉的格子要从索引里抹掉
+          this.forgetPosition(pos);
         }
         break;
       }
@@ -182,8 +216,40 @@ export class PhaserEventPlayer implements EventPlayer {
         this.view.clearObstacle(e.pos);
         break;
 
+      /**
+       * ★★ 特殊棋子爆炸波及的格子**也要销毁精灵**。
+       *
+       *   ⚠️ 这两条曾经是空实现，后果：一发火箭在 core 里清掉 8 格，
+       *   但其中只有 2 格产出 `match` 事件（那 2 格是玩家凑出的三连），
+       *   **另外 6 格的精灵永远留在屏幕上**。新棋子随后落进同一格，
+       *   于是同一个格子里叠着两个棋子 —— 用户实测截图里的
+       *   "梨压着蓝莓"就是这么来的。
+       *
+       *   core 从不产出"请删掉这个精灵"的指令，它只说"这些格子被波及了"。
+       *   把 affected 翻译成销毁，是渲染层的职责。
+       */
       case 'specialFire':
-      case 'comboBlast':
+      case 'comboBlast': {
+        for (const pos of e.affected) {
+          const id = this.idAt(pos);
+          if (id === null) continue;
+          const sprite = this.view.spriteOf(id);
+          if (!sprite) continue;
+          this.tween({
+            targets: sprite,
+            scale: 0,
+            alpha: 0,
+            duration: durationMs,
+            ease: 'Back.easeIn',
+            onUpdate: () => this.view.followOverlay(id),
+            onComplete: () => this.view.removeSprite(id),
+          });
+          // ★ 位置索引也要清掉，否则后续事件会拿它当作还在盘上的棋子
+          this.forgetPosition(pos);
+        }
+        break;
+      }
+
       case 'specialSpawn':
       case 'shuffle':
       case 'collect':
@@ -230,6 +296,17 @@ export class PhaserEventPlayer implements EventPlayer {
 
   private idAt(p: { col: number; row: number }): number | null {
     return this.posIndex.get(this.key(p)) ?? null;
+  }
+
+  /**
+   * 把某格从位置索引里抹掉（棋子已被消除 / 炸掉）。
+   *
+   * ★ 不抹的话，后续事件仍会把这一格解析成那个**已经在淡出**的精灵：
+   *   连环引爆时第二发火箭会去动一个正在消失的棋子，
+   *   表现是"有些棋子该炸没炸"。
+   */
+  private forgetPosition(p: { col: number; row: number }): void {
+    this.posIndex.delete(this.key(p));
   }
 
   /**
