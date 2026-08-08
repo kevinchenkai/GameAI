@@ -45,6 +45,15 @@
 | 角色选择背景 | `select_bg.png` | 1920x1080，UI 预留区对齐 S2 坐标 | 已接入 |
 | 结算背景 | `result_bg.png` | 1920x1080，UI 预留区对齐 S2 坐标 | 已接入 |
 
+## S3 螺旋棋盘背景（`assets/backgrounds/`）
+
+| 素材 | 文件 | 规格 | 状态 |
+|---|---|---|---|
+| 矩形螺旋取经盘背景 | `board_map.png` | 1920x1080，S3 无底图大路重绘版，按 `board_path_s3.json` 对齐 72 格位，终点格后处理精修 | 已接入 |
+| S3 首版螺旋背景备份 | `board_map_s3_v1.png` | 1920x1080 | 已生成 |
+| S1 棋盘背景备份 | `board_map_s1.png` | 1920x1080 | 已生成 |
+| S3 螺旋点位表（生效） | `data/board_path.json` | 72 螺旋归一化坐标（已由 S3 替换，S1 备份为 `data/board_path_s1.json`） | 已接入 |
+
 ## B3 格子图标（`assets/sprites/tiles/`）
 
 | 素材 | 文件 | 规格 | 状态 |
