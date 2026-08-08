@@ -1,0 +1,32 @@
+README.md
+  4fca2e14c0ddaf88 5,41-73
+CLAUDE.md
+  4fca2e14c0ddaf88 1-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "5784b2ff24c22c0bcdab1bbe65a40e5e0d377207",
+  "prompts": {
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 105,
+      "total_deletions": 1,
+      "accepted_lines": 105,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/83a92ce219a8cd0cb5afbbb9304dcd618875ab272ad2c2deb4e6af313db1d53b",
+      "token_usage": {
+        "input_tokens": 35,
+        "output_tokens": 7474,
+        "cache_creation_input_tokens": 27407,
+        "cache_read_input_tokens": 912010
+      }
+    }
+  }
+}
