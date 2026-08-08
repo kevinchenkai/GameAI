@@ -29,6 +29,23 @@ Codex 审核提出 4 项必改 + 4 项建议优化，**全部接受并已落入�
 
 ---
 
+## 修订记录：V1.1 复查 Patch（2026-08-07 二轮）
+
+Codex 复查提出 2 项接口必改 + 1 项 V1 Full TODO，**全部接受**：
+
+| # | Codex 复查意见 | 处理 | 位置 |
+|---|---|---|---|
+| **PATCH A** | `CoreTurnSummary` 删除 `petSkillReady`，宠物状态归 `PetRuntimeState` | ✅ 已改 | §4.3、§6.2 |
+| 附带 | `skillOffer`（窗口）与 `skill`（已释放）拆成两个状态 | ✅ 已改 | §6.2 |
+| **PATCH B** | `settled` 不再解锁输入，引入 `TurnPhase` / `READY_FOR_INPUT` | ✅ 已改 | §4.3.3、§9.2 |
+| TODO | Mastery Star 按历史最高评级**增量**发放，堵重刷漏洞 | ✅ 已写入 | §8.2 |
+
+**冻结契约从 6 条增至 8 条**（见 §14）。
+
+> 这两个 Patch 都是我在 V1.1 里没做干净的地方：PATCH A 是"Core 不认识旺财"喊了口号但字段没删；PATCH B 是我把"棋盘停了"和"可以操作了"当成了同一件事。Codex 抓得准。
+
+---
+
 ## 0. 本文档的作用
 
 本文档定义 Garden Match 的**技术骨架**——目录结构、模块边界、数据流、核心数据结构、开发批次。
@@ -276,7 +293,7 @@ V1 把重反应和技能都挂在 `settled` 上，存在一个真实缺陷，Cod
 
 | 事件 | 含义 | 谁消费 |
 |---|---|---|
-| `settled` | **棋盘物理稳定** —— 无下落、无待消除 | 渲染层（解锁输入、停止动画） |
+| `settled` | **棋盘物理稳定** —— 无下落、无待消除 | 渲染层（结束棋盘动画）。**★ 不解锁输入** |
 | `turnResolved` | **回合完整结算** —— 棋盘稳定 **+ 目标结算 + 胜负判定** 都已完成 | **宠物系统（唯一决策入口）** |
 
 ```ts
@@ -296,11 +313,56 @@ export interface CoreTurnSummary {
 ```
 玩家输入 → Match/Cascade → 棋盘稳定(settled)
         → Objective 结算 → Win/Lose 判定
-        → 生成 TurnSummary → turnResolved ★
+        → 生成 CoreTurnSummary → turnResolved ★
         → Pet Reaction Resolver
 ```
 
 宠物**只看 `turnResolved`，永不看裸 `settled`**。这样它做决定时，胜负已经是已知信息。
+
+#### 4.3.3 Turn Controller：输入闸门 ★（PATCH B）
+
+V1.1 初稿让渲染层在 `settled` 时解锁输入，这留了一个 race condition。Codex 指出的窗口是真实的：
+
+```
+Cascade → settled → ★ 输入解锁 → levelWin → turnResolved
+                      ↑
+              这里玩家可能抢在 Victory 流程启动前又走一步
+```
+
+概率低，但**架构不该允许这种状态存在**。
+
+**修正**：输入解锁不再由任何单个事件负责，而由一个显式的回合状态机管理。
+
+```ts
+// game/TurnController.ts
+export type TurnPhase =
+  | 'READY_FOR_INPUT'      // ★ 唯一接受输入的状态
+  | 'RESOLVING'            // 连锁结算与播放中
+  | 'BOARD_SETTLED'        // 棋盘停了，但胜负未定
+  | 'TURN_RESOLVED'        // 结算完成
+  | 'PRESENTATION';        // 宠物反应 / 技能窗口 / 结算弹窗
+```
+
+```
+READY_FOR_INPUT → RESOLVING → BOARD_SETTLED → TURN_RESOLVED
+        ↑                                          ↓
+        └───────────── PRESENTATION ←──────────────┘
+```
+
+**回到 `READY_FOR_INPUT` 的条件（全部满足才行）**：
+
+```ts
+function canAcceptInput(t: TurnState): boolean {
+  return t.phase === 'TURN_RESOLVED'
+    && t.result === 'continue'      // 没赢也没输
+    && !t.blockingPetReaction       // 没有阻塞式宠物反应在播
+    && !t.skillOfferOpen            // 没有技能窗口开着
+    && !t.petSkillExecuting         // 没有宠物技能在执行
+    && !t.resultPopupOpen;          // 没有结算弹窗
+}
+```
+
+**这个设计的长期价值**：Stage 0 没有技能，`skillOfferOpen` / `petSkillExecuting` 恒为 false，闸门退化成"结算完就能输入"。但**Stage 0.5 接入技能时不需要改输入架构**——只是让两个 flag 真正起作用。这正是提前定死的意义。
 
 #### 4.3.2 Core 不认识旺财 ★（Codex 必改 3）
 
@@ -779,12 +841,41 @@ stars: {
 };
 ```
 
+### 8.2 Mastery Star 按「历史最高评级增量」发放 ★（Codex 复查 §6）
+
+**不阻塞 Stage 0**（Stage 0 不启用 Mastery），但**必须在 V1 Full 启用前实现**，否则有刷分漏洞：玩家反复重打第 1 关就能无限刷 Mastery Star。
+
+```ts
+masteryGain = Math.max(0, newRating - oldBestRating);
+```
+
+| 第几次打 | 本次评级 | 历史最高 | 获得 |
+|---|---|---|---|
+| 1 | 1 星 | 0 | **+1** |
+| 2 | 3 星 | 1 | **+2** |
+| 3 | 3 星 | 3 | **+0** |
+| 4 | 2 星 | 3 | **+0**（不倒扣） |
+
+存档改为记录**历史最高**，而非最近一次：
+
+```ts
+levels: Record<number, {
+  bestRating: 0 | 1 | 2 | 3;    // 0 = 未通关
+}>;
+```
+
+> **`Math.max(0, ...)` 不能省**：打出比历史最好成绩差的评级时，增量为负，必须夹到 0——不能倒扣玩家已经拿到的星星。
+>
+> **Progress Star 不受此限制**：它是"通关就 +1"，重打不再给（同样看 `bestRating > 0` 判断是否首次通关）。这一点在实现时容易漏——重打旧关卡不应推进花园。
+
+### 8.3 建设节奏
+
 **"再玩两关就能把池塘修好了"** —— 这个心理是留存核心。所以：
 
 - 建设进度条**必须在关卡结算界面就显示**，让玩家在"还要不要再玩一关"的决策点看到"就差一点"
 - 节点拆成 2~3 个可见阶段（如院门：清杂草 → 修门框 → 挂灯笼），**每 3 关就有一次可见变化**，而不是攒 10 关才动一次
 
-### 8.3 花园节点结构
+### 8.4 花园节点结构
 
 ```ts
 export interface GardenNode {
@@ -851,12 +942,22 @@ Cascade 播放中 ────────────────────�
                                             ↓
                                       turnResolved
                                             ↓
+                                     PRESENTATION
+                              （宠物反应 / 技能窗口 / 弹窗）
+                                            ↓
+                                  ★ READY_FOR_INPUT
+                                            ↓
                               ★ 重新验证该 Move 当前是否合法
                                      ├─ 合法 → 执行
                                      └─ 非法 → 静默丢弃
 ```
 
-**重新验证是关键**，不能直接执行缓存的坐标。这样既服务了年轻玩家的连续操作，又不会产生"我明明滑了这两个，怎么换的是别的"的混乱。
+**两个关键点**：
+
+1. **缓存的 Move 在 `READY_FOR_INPUT` 才兑现**，不是 `settled`、也不是 `turnResolved`（PATCH B）。否则玩家的缓存输入会插到宠物反应或结算弹窗前面
+2. **兑现前必须重新验证合法性**，不能直接执行缓存的坐标——中途棋盘可能已经变了
+
+这样既服务了年轻玩家的连续操作，又不会产生"我明明滑了这两个，怎么换的是别的"的混乱。
 
 ### 9.3 性能降级（按 Codex §14 修正）
 
@@ -1117,14 +1218,16 @@ export const ASSETS = {
 
 ## 14. 接口契约冻结清单
 
-以下 6 条是 Stage 0 的**不可变契约**。改动它们意味着返工，需要重新评审：
+以下 8 条是 Stage 0 的**不可变契约**。改动它们意味着返工，需要重新评审：
 
-1. `core/` 不认识 Phaser，**也不认识旺财**
+1. `core/` 不认识 Phaser，**也不认识旺财** —— `CoreTurnSummary` **不含任何宠物字段**
 2. `settled` = 棋盘稳定；`turnResolved` = 棋盘稳定 + 目标 + 胜负
-3. 宠物**只消费 `turnResolved`**，决策集中在 `resolveReaction()` 一个函数
+3. 宠物**只消费 `turnResolved`**，决策集中在 `resolvePetDecision(turn, pet)` 一个函数
 4. 宠物改棋盘**只经 `PetActionCommand` → `applyPetAction()`**
 5. 优先级 `Victory > Pet Skill > Big Combo > Hint`
 6. 素材路径**只走 Asset Manifest**，不硬编码
+7. **★ 输入只在 `READY_FOR_INPUT` 解锁**，`settled` 与 `turnResolved` 都不解锁（PATCH B）
+8. **★ `skillOffer`（可点击窗口）与 `skill`（棋盘已变更）是两个状态**，不可合并
 
 ---
 

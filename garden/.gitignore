@@ -1,0 +1,19 @@
+# Vite 构建时由 vite.config.ts 的 garden-assets 插件从 ../assets/ 复制而来，
+# 是生成物不是源文件——源在 garden/assets/。
+web/public/assets/
+
+# ——— 出图候选（不入库）———
+# 每张正式素材背后有 2~3 个候选原图，加起来 26MB，而正式素材只有 888KB。
+# 这些草稿定稿后不会再被用到，但 git 历史里的大文件删不掉——
+# 一旦提交，之后每次 clone 都要拉这 26MB。
+#
+# ⚠️ 例外：验收对比图（40px 灰度 / 剪影 / 深色底）**保留**，
+#    它们是"卡点是否通过"的证据，体积也只有约 100KB。
+#
+# 注意写法：必须排除**目录下的文件**（candidates/*）而不是目录本身
+# （candidates/）。git 不会进入被排除的目录，写成后者的话下面的 ! 规则
+# 一条都不会生效——这一点很容易踩。
+assets/*/candidates/*
+!assets/*/candidates/*-40px-grayscale.png
+!assets/*/candidates/*-40px-silhouette.png
+!assets/*/candidates/*-dark-preview.png

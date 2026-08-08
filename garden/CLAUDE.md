@@ -68,7 +68,21 @@ READY_FOR_INPUT → RESOLVING → BOARD_SETTLED → TURN_RESOLVED → PRESENTATI
 
 只有同时满足：`turn.result === 'continue'`、无阻塞式 Pet Reaction、无 Skill Offer、无 Pet Skill 执行中、无 Result Popup，才回到 `READY_FOR_INPUT`。输入 Buffer 也挂在该状态上。
 
+**附带 — `skillOffer` 与 `skill` 是两个状态，不可合并**
+
+`skillOffer` = 1.5s 可点击窗口，**棋盘未变**，可安全取消；`skill` = 技能动画与 Gameplay Action 已开始，**棋盘正在变更**，不可回退。混成一个状态会让"取消"语义无处安放。（Stage 0 不实现技能，但状态划分先定死。）
+
 > 需要改契约时：**停下来说明理由，等用户确认**，不要边改边说。
+
+### 3.2 V1 Full 前必须补（Stage 0 不阻塞）
+
+**Mastery Star 按历史最高评级增量发放**，否则玩家重刷同一简单关可无限刷星：
+
+```ts
+masteryGain = Math.max(0, newRating - bestRating);   // 不倒扣
+```
+
+存档记录 `bestRating: 0 | 1 | 2 | 3`（0 = 未通关）。**Progress Star 同理只在首次通关发放** —— 重打旧关卡不应推进花园。
 
 ---
 
