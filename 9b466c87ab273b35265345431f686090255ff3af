@@ -1,0 +1,156 @@
+garden/web/tests/core/validateLevel.test.ts
+  640fa3cf12a5a767 1-236
+garden/web/tests/game/layout.test.ts
+  640fa3cf12a5a767 1-179
+garden/web/src/config/tuning.ts
+  640fa3cf12a5a767 55-80
+garden/web/src/game/input/gesture.ts
+  640fa3cf12a5a767 1-180
+garden/web/tests/core/objective.test.ts
+  640fa3cf12a5a767 1-211
+garden/web/src/game/render/BoardView.ts
+  640fa3cf12a5a767 1-250
+garden/web/src/core/simulate.ts
+  640fa3cf12a5a767 1-261
+garden/web/tests/core/skeleton.test.ts
+  640fa3cf12a5a767 55,57-62
+garden/web/tests/core/fuzz.test.ts
+  640fa3cf12a5a767 14,158-252
+garden/web/src/core/types.ts
+  640fa3cf12a5a767 57-85
+garden/web/tests/game/gesture.test.ts
+  640fa3cf12a5a767 1-301
+garden/web/src/game/scenes/LevelScene.ts
+  640fa3cf12a5a767 2,6,12-33,36-46,52-238
+garden/web/src/game/render/timeline.ts
+  640fa3cf12a5a767 1-136
+garden/web/src/core/resolver.ts
+  640fa3cf12a5a767 138-200,228,231,233-253,255-273,329-349,355,365,385,401,406-407,410,414-417,422-430,443-479
+garden/web/tests/core/obstacles.test.ts
+  640fa3cf12a5a767 1-11,13-201
+garden/web/src/game/textureKeys.ts
+  640fa3cf12a5a767 1-43
+garden/web/tests/game/boardView.test.ts
+  640fa3cf12a5a767 1-316
+garden/web/src/game/safeArea.ts
+  640fa3cf12a5a767 1-46
+garden/web/src/game/TurnController.ts
+  640fa3cf12a5a767 2,15,39-44,48,52,74,78-113,116-131,133-135,138-147
+garden/web/src/config/levels/index.ts
+  640fa3cf12a5a767 18,20
+garden/web/src/core/validateLevel.ts
+  640fa3cf12a5a767 2,11-14,42-44,49-53,57,59-281
+garden/web/src/core/board.ts
+  640fa3cf12a5a767 8,36-47
+garden/web/tests/game/turnController.test.ts
+  640fa3cf12a5a767 1-12,14-28,30-44,47-105,108-112,114,116-125,128-129,132-134,137-140,143-144,147-148,151-158,161-195,197-204,206,208-216
+garden/web/tests/game/timeline.test.ts
+  640fa3cf12a5a767 1-166
+garden/web/tests/core/combo.test.ts
+  640fa3cf12a5a767 1-174
+garden/web/src/core/special.ts
+  640fa3cf12a5a767 2,8,12-89,92-118,120-122,124-137,141,143-151,154-221
+garden/web/tests/core/special.test.ts
+  640fa3cf12a5a767 1-239
+.gitignore
+  640fa3cf12a5a767 54-56
+garden/web/src/game/render/layout.ts
+  640fa3cf12a5a767 2,4,6-10,13,22-28,33-36,39-44,47-48,50-59,61,63,70-72,74-186,188-207
+garden/web/tools/simulate.ts
+  640fa3cf12a5a767 2,5-6,8-9,12-14,16-21,24-25,32-39,43,45-48,51-75,77-93
+garden/web/src/game/scenes/BootScene.ts
+  640fa3cf12a5a767 2,5,10-11,19-51,55
+garden/web/tsconfig.json
+  640fa3cf12a5a767 22
+garden/web/src/core/objective.ts
+  640fa3cf12a5a767 2,22-28,30-32,34-63,66-67,70-75,77-78,80-84,87-96
+garden/web/src/core/obstacles.ts
+  640fa3cf12a5a767 2,15-16,28-58,62-63,66-67,69-122
+garden/web/src/core/matcher.ts
+  640fa3cf12a5a767 15-16,66-68,70-72,234-235
+garden/orders/codex-imagegen-order-batch3-stage0-rest.md
+  640fa3cf12a5a767 562,567-578
+garden/web/src/game/render/EventPlayer.ts
+  640fa3cf12a5a767 2,7-8,11,14,16-18,27-262
+garden/web/src/config/levels/stage0.ts
+  640fa3cf12a5a767 1-171
+garden/orders/codex-redo-batch3-remaining.md
+  640fa3cf12a5a767 1-182
+garden/web/src/main.ts
+  640fa3cf12a5a767 13-28,30,49-54
+garden/web/tests/core/simulate.test.ts
+  640fa3cf12a5a767 1-11,18-28,31-36,38-86,89-110,112-135,137-140,142-144
+garden/web/tests/game/eventPlayer.test.ts
+  640fa3cf12a5a767 1-182
+garden/web/src/core/session.ts
+  640fa3cf12a5a767 12,35-43,56-73
+garden/orders/LEGIBILITY-SPEC.md
+  640fa3cf12a5a767 78-113,176-223
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "9b466c87ab273b35265345431f686090255ff3af",
+  "prompts": {
+    "2c4db6ea02bd3453": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d28a47ec-5bec-4514-ac65-be2369dfff14",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 78,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/c5d951bb1d230888587613558e70cb6c6804d520a04417b32ab8b46243d6b5d4",
+      "token_usage": {
+        "input_tokens": 292,
+        "output_tokens": 114275,
+        "cache_creation_input_tokens": 245686,
+        "cache_read_input_tokens": 22861967
+      }
+    },
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1850,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/acfb98d883faf46937f25683a00b65a0d46640bf7733a0c86fa7c82784232d77",
+      "token_usage": {
+        "input_tokens": 298,
+        "output_tokens": 69801,
+        "cache_creation_input_tokens": 540009,
+        "cache_read_input_tokens": 20785382
+      }
+    },
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 32646,
+      "total_deletions": 17806,
+      "accepted_lines": 30528,
+      "overriden_lines": 10,
+      "messages_url": "http://172.20.103.50:8002/cas/700bf3c4fdd3ca84b5ed01f37f9a258a2e2f31239e22831fd3030685279990b0",
+      "token_usage": {
+        "input_tokens": 5320,
+        "output_tokens": 445939,
+        "cache_creation_input_tokens": 1650982,
+        "cache_read_input_tokens": 164933038
+      }
+    }
+  }
+}
