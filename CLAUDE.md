@@ -50,26 +50,42 @@
 - ❌ **绝不**对站点根执行 `rsync --delete`——会连带删除其它三个游戏与 mimo / mystock
 - 若某次部署看起来需要动站点根，**停下来问用户**
 
-### 服务器与首页发布
+### 服务器访问
 
-> ⚠️ **前置条件：SSH 免密登录是「用户本机 Mac 的一次性授权」，不是仓库能力。**
-> 主机地址见各项目 `deploy.sh` 的 `REMOTE_HOST` 默认值（可用同名环境变量覆盖）。
-> 换一台机器、或没有配过密钥的环境，下列命令会直接失败——**这属于环境配置问题，不要试图绕过或代为配置密钥**，请让用户处理。
-> 未经用户明确要求，**不主动连服务器、不主动发布线上**。
+用户本机 Mac 已配好 SSH 免密，**可直接登录，无需每次询问**：
 
-服务器实况（本文档记录，便于判断，不代表你有权限执行）：
+```bash
+ssh ubuntu@211.159.177.55
+```
 
+- 该账号 **sudo 免密**，`rsync` 已安装
 - nginx `root` = `/www/wwwroot/g.ismayday.mobi`
 - 文件属主统一 `www:www`，权限 644
 - 静态图片 `expires 30d`（**改图请换文件名**，否则用户 30 天内看到旧图）
-- **站点根 `index.html` 没有部署脚本**，需手动 rsync 发布：
+- 各 `deploy.sh` 的 `REMOTE_HOST` 默认值即此主机，可用同名环境变量覆盖
+
+> 换机器 / 未配密钥的环境下会连不上——那是环境问题，交给用户处理，不要代为配置密钥。
+
+### 首页发布
+
+**站点根 `index.html` 没有部署脚本**，需手动 rsync（`images/` 等首页自用素材同理）：
 
 ```bash
 rsync -avz --rsync-path="sudo rsync" --no-owner --no-group --chmod=F644 \
-  index.html "$REMOTE_HOST:/www/wwwroot/g.ismayday.mobi/"
+  index.html ubuntu@211.159.177.55:/www/wwwroot/g.ismayday.mobi/
 ```
 
-发布后 `sudo chown www:www` 对齐属主。**发布线上前先 `--dry-run` 确认影响范围**。
+发布后对齐属主：
+
+```bash
+ssh ubuntu@211.159.177.55 "sudo chown -R www:www /www/wwwroot/g.ismayday.mobi/index.html /www/wwwroot/g.ismayday.mobi/images"
+```
+
+发布纪律：
+
+- **先 `--dry-run` 确认影响范围**，再实际执行
+- 发布后核对本地与服务器 md5 一致，并 curl 各页面确认 200
+- 只发布用户要求的内容；**大范围改动或涉及站点根删除时，先问用户**
 
 密钥（DeepSeek key、`ADMIN_TOKEN` 等）只存在于各项目服务器上的 `.env`，**不入库、不打印、不写进文档**。
 
