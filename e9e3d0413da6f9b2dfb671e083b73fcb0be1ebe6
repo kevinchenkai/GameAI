@@ -1,0 +1,78 @@
+garden/web/src/main.ts
+  640fa3cf12a5a767 18-45,67-84,95-111
+garden/web/src/game/scenes/LevelScene.ts
+  640fa3cf12a5a767 62-65,126-133,135-137,184-189,192-212
+garden/web/src/game/ui/uiScale.ts
+  640fa3cf12a5a767 1-41
+garden/web/src/game/audio/WebAudioManager.ts
+  640fa3cf12a5a767 34-48,51-55,58,73,80-116,119-126
+garden/web/src/game/ui/SettingsPanel.ts
+  640fa3cf12a5a767 50,59-63,65-69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "e9e3d0413da6f9b2dfb671e083b73fcb0be1ebe6",
+  "prompts": {
+    "2c4db6ea02bd3453": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d28a47ec-5bec-4514-ac65-be2369dfff14",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 59,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/c5d951bb1d230888587613558e70cb6c6804d520a04417b32ab8b46243d6b5d4",
+      "token_usage": {
+        "input_tokens": 292,
+        "output_tokens": 114275,
+        "cache_creation_input_tokens": 245686,
+        "cache_read_input_tokens": 22861967
+      }
+    },
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1850,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/acfb98d883faf46937f25683a00b65a0d46640bf7733a0c86fa7c82784232d77",
+      "token_usage": {
+        "input_tokens": 298,
+        "output_tokens": 69801,
+        "cache_creation_input_tokens": 540009,
+        "cache_read_input_tokens": 20785382
+      }
+    },
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 1195,
+      "total_deletions": 70,
+      "accepted_lines": 6554,
+      "overriden_lines": 74,
+      "messages_url": "http://172.20.103.50:8002/cas/a1c0332389b26416f507fd78ec2ab52d7dd0492ab6329fc528e4ee6006efb504",
+      "token_usage": {
+        "input_tokens": 6389,
+        "output_tokens": 703994,
+        "cache_creation_input_tokens": 3332563,
+        "cache_read_input_tokens": 324624007
+      }
+    }
+  }
+}
