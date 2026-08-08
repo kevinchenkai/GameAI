@@ -39,6 +39,12 @@ import {
 } from '../TurnController';
 import { createGestureState, stepGesture, type GestureState } from '../input/gesture';
 import { readSafeAreaInsets } from '../safeArea';
+import { PetView } from '../pet/PetView';
+import { PetControllerImpl } from '../pet/PetController';
+import { createHintState, resetHint, tickHint, type HintState } from '../pet/hintSchedule';
+import { PET_SKILL } from '../../config/pet';
+import { createRng } from '../../core/rng';
+import { findAllValidMoves } from '../../core/matcher';
 
 export class LevelScene extends Phaser.Scene {
   private session!: SessionState;
@@ -66,6 +72,16 @@ export class LevelScene extends Phaser.Scene {
   /** 当前这一段动画的时间轴，仅用于缓存窗口判断 */
   private playStartedAt = 0;
   private playTotalMs = 0;
+
+  // —— 旺财（M6）——
+  private pet: PetView | null = null;
+  private petCtl!: PetControllerImpl;
+  private hint: HintState = createHintState(0);
+  /** hint 阶段正在呼吸的目标棋子，换阶段时要停掉 */
+  private hintTween: Phaser.Tweens.Tween | null = null;
+  private hintSprite: Phaser.GameObjects.Image | null = null;
+  /** 呼吸前的原始缩放，停止时还原（tween 可能停在放大相位） */
+  private hintBaseScale = 1;
 
   constructor() {
     super('Level');
@@ -96,6 +112,10 @@ export class LevelScene extends Phaser.Scene {
     this.gesture = createGestureState();
     this.playStartedAt = 0;
     this.playTotalMs = 0;
+    // ★ 旺财同理：restart 后旧的 PetView 已随场景销毁，引用是死的
+    this.pet = null;
+    this.hintTween = null;
+    this.hintSprite = null;
 
     // 设置同样要重新读
     const saved = loadSettings();
@@ -119,6 +139,28 @@ export class LevelScene extends Phaser.Scene {
 
     this.player = new PhaserEventPlayer(this, this.view, () => this.tempo);
     this.syncPlayerIndex();
+
+    /**
+     * ★ 旺财。PetView 只管画，PetControllerImpl 只管规则，两者不互相认识 ——
+     *   规则因此能在 Node 里单测（见 tests/game/petController.test.ts）。
+     *
+     * ★ 随机走 rng（红线：禁止散用 Math.random()）。眨眼间隔是随机的，
+     *   但用固定种子派生，保证同一局可复现。
+     */
+    // ★ 派生独立 rng：直接复用 session 的会打乱棋盘生成的随机序列
+    this.pet = new PetView(this, this.layout.petRect, createRng(this.session.rngState));
+    this.pet.build();
+    const view = this.pet;
+    this.petCtl = new PetControllerImpl(
+      {
+        playHappy: () => view.playHappy(),
+        playExcited: (ms) => view.playExcited(ms),
+        setState: (s) => view.setState(s),
+      },
+      () => this.time.now,
+      PET_SKILL.maxEnergy,
+    );
+    this.hint = createHintState(this.time.now);
 
     this.bindInput();
     this.buildSettingsButton();
@@ -299,6 +341,13 @@ export class LevelScene extends Phaser.Scene {
    *   READY_FOR_INPUT 再兑现（冻结契约 7）。
    */
   private requestMove(move: Move): void {
+    // ★ 玩家有动作 → 提示计时归零（无论这一步最终是否被接受）
+    this.hint = resetHint(this.time.now);
+    this.clearHint();
+
+    // ★ 宠物重反应播放中不接受输入（冻结契约 7）
+    if (this.petCtl.isBlocking()) return;
+
     if (canAcceptInput(this.turn) || this.turn.phase === 'READY_FOR_INPUT') {
       void this.runTurn(move);
       return;
@@ -319,12 +368,16 @@ export class LevelScene extends Phaser.Scene {
 
   private async runTurn(move: Move): Promise<void> {
     this.turn = advance(this.turn, 'RESOLVING');
+    // ★ 新回合开始 —— 允许这一段连锁再放一次重反应
+    this.petCtl.beginTurn();
+    this.clearHint();
 
     const result = applyMove(this.session, move);
     this.session = result.session;
 
-    // ★ 音频与渲染消费**同一份事件序列**，不另起一套时序
+    // ★ 音频、渲染、宠物消费**同一份事件序列**，不另起一套时序
     this.audio.consume(result.events);
+    this.petCtl.consume(result.events);
 
     // 时间轴要在播放前算好 —— 缓存窗口判断依赖它
     const timeline = buildTimeline(result.events, this.tempo);
@@ -359,8 +412,17 @@ export class LevelScene extends Phaser.Scene {
       return; // 输入保持锁定，直到玩家在弹窗里做出选择
     }
 
-    // M6 会在这里插入宠物反应（同样走 PRESENTATION）
+    /**
+     * ★ 宠物的**阻塞式**重反应（冻结契约 7：无阻塞式 Pet Reaction 才回
+     *   READY_FOR_INPUT）。轻反应不在此列 —— 它按设计永不阻塞。
+     *
+     *   ⚠️ 这里用 `petBlocking` 标志而不是直接不 advance：
+     *   相位必须回到 READY_FOR_INPUT，否则缓存输入永远兑现不了。
+     *   闸门由 canAcceptInput() + isBlocking() 共同把守。
+     */
     this.turn = advance(this.turn, 'READY_FOR_INPUT');
+    // 玩家刚走完一步，提示计时重新开始
+    this.hint = resetHint(this.time.now);
 
     // ★ 兑现缓存 —— **必须重新验证合法性**（棋盘已变），非法则静默丢弃
     const taken = takeBufferedMove(this.turn);
@@ -402,6 +464,126 @@ export class LevelScene extends Phaser.Scene {
     this.settingsButton?.destroy();
     this.buildSettingsButton();
     this.syncPlayerIndex();
+    // ★ 旺财要跟着 pet 区一起重排，否则转屏后会留在旧位置
+    this.pet?.setRect(this.layout.petRect);
+    this.clearHint();
+  }
+
+  // ————————————————————————————————————————————————
+  // Hint（框架 §6.5）「提示，不催促」
+  // ————————————————————————————————————————————————
+
+  /**
+   * ★ 每帧推进提示计时。
+   *
+   *   只在**真的能接受输入**时计时 —— 动画播放中、结算弹窗开着时
+   *   玩家本来就动不了，那段时间不该算作"发呆"。
+   *   （否则弹窗停留 5 秒，一关掉就立刻弹提示，很突兀。）
+   */
+  override update(): void {
+    if (!this.canPlayerAct()) {
+      this.hint = resetHint(this.time.now);
+      return;
+    }
+    const r = tickHint(this.hint, this.time.now);
+    this.hint = r.state;
+    if (r.justEntered) this.enterHintPhase();
+  }
+
+  private canPlayerAct(): boolean {
+    return (
+      this.turn.phase === 'READY_FOR_INPUT' &&
+      !this.petCtl.isBlocking() &&
+      !this.settings.isOpen &&
+      this.session.result === 'continue'
+    );
+  }
+
+  private enterHintPhase(): void {
+    const phase = this.hint.phase;
+    if (phase === 'thinking') {
+      this.pet?.setState('thinking');
+      return;
+    }
+    if (phase === 'hint' || phase === 'repeat') {
+      this.pet?.setState('hint');
+      this.showHintMove();
+    }
+  }
+
+  /**
+   * 指出一步可行的 Move。
+   *
+   * ★ **不画箭头、不弹窗** —— 只让目标棋子轻微呼吸（框架 §6.5）。
+   *   对 50+ 用户，一个突然出现的大箭头是"你不行"的提醒；
+   *   一个缓慢的呼吸只是"这里可以看看"。
+   *
+   * ★ 复用 core 的 findAllValidMoves()，**不在渲染层另写一套找步逻辑** ——
+   *   否则提示的步与 core 认可的步可能不一致。
+   */
+  private showHintMove(): void {
+    // ★ 只停上一次的呼吸，**不要**动旺财的状态 ——
+    //   调用方刚把它设成 'hint'，走整套 clearHint() 会立刻覆盖回 idle。
+    this.stopHintTween();
+    const moves = findAllValidMoves(this.session.board);
+    const first = moves[0];
+    if (!first) return; // 死局由 core 的 shuffle 处理，这里不插手
+
+    const id = this.session.board.cells[first.a.row * this.session.board.cols + first.a.col]?.piece
+      ?.id;
+    if (id === undefined) return;
+    const sprite = this.view.spriteOf(id);
+    if (!sprite) return;
+
+    /**
+     * ★ 记住**原始缩放**，停止时要还原到它。
+     *   tween 可能停在任意相位（比如正好放大到 1.08 倍），
+     *   只 remove 不还原的话，那颗棋子会永远比别的大一圈 ——
+     *   而且它随后还会参与下落、交换，把这个尺寸一直带下去。
+     */
+    this.hintBaseScale = sprite.scale;
+    this.hintSprite = sprite;
+    this.hintTween = this.tweens.add({
+      targets: sprite,
+      scale: sprite.scale * 1.08,
+      duration: 620,
+      ease: 'Sine.easeInOut',
+      yoyo: true,
+      repeat: -1,
+    });
+  }
+
+  /**
+   * ★ 停止呼吸并**还原缩放** —— 只 remove 不还原，棋子会永远停在放大态。
+   *
+   * ★★ 还要把旺财从 `thinking` / `hint` 拉回 `idle`。
+   *   ⚠️ 实测漏掉这一步：玩家发呆触发一次提示后，**旺财的状态永远停在
+   *   `hint`**，之后再也回不到 idle —— 而且因为 Idle 微动作是独立 tween，
+   *   画面上看不出异常（尾巴照样摇），只有查运行时状态才发现。
+   */
+  private clearHint(): void {
+    this.stopHintTween();
+    const state = this.pet?.getState();
+    if (state === 'thinking' || state === 'hint') this.pet?.setState('idle');
+  }
+
+  /**
+   * 只停呼吸动画并还原缩放，**不碰旺财状态**。
+   *
+   * ★ 拆出来是因为两个调用方的意图不同：
+   *   - `showHintMove()` 换一颗棋子提示 → 只想停上一次的 tween
+   *   - `clearHint()` 提示彻底结束     → 还要把旺财拉回 idle
+   *   混用会让"进入 hint"当场被自己覆盖回 idle（实测踩到）。
+   */
+  private stopHintTween(): void {
+    if (this.hintTween) {
+      this.hintTween.remove();
+      this.hintTween = null;
+    }
+    if (this.hintSprite) {
+      this.hintSprite.setScale(this.hintBaseScale);
+      this.hintSprite = null;
+    }
   }
 
   /** HUD 的数据源。★ 由 core 的关卡 + 进度推导，渲染层不自己记账 */

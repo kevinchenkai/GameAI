@@ -49,8 +49,26 @@ export class BootScene extends Phaser.Scene {
     });
 
     /**
-     * ★ Stage 0 所需素材已全部交付。
-     *   `special.rainbow` 与 `pet.*` 属 Stage 0.5 / M6，故意不在这里加载 ——
+     * —— 旺财 Puppet 5 层（M6）——
+     *
+     * ★★ **只加载 Puppet 分层，不加载 happy / hint 整图。**
+     *   Idle、开心、庆祝全部由这 5 层合成（PetView），整图是冗余的：
+     *     Puppet 5 层  276 KB
+     *     happy + hint 520 KB  ← 能表达的东西 Puppet 都能表达
+     *   首屏每一 KB 都要还（docs/TODO-性能优化.md），这 520KB 不值得。
+     *   将来若真要用整图（比如更复杂的庆祝），再按需 lazy load。
+     *
+     * ⚠️ preview-composite.png 是**风格参考图**，任何时候都不要 preload
+     *   （216KB，且它是整体重绘的效果图，不参与合成 —— 见 pet-rig.ts）。
+     */
+    this.load.image(TEX.petBody, ASSETS.pet.puppet.body);
+    this.load.image(TEX.petTail, ASSETS.pet.puppet.tail);
+    this.load.image(TEX.petEars, ASSETS.pet.puppet.ears);
+    this.load.image(TEX.petEyesOpen, ASSETS.pet.puppet.eyesOpen);
+    this.load.image(TEX.petEyesBlink, ASSETS.pet.puppet.eyesBlink);
+
+    /**
+     * ★ `special.rainbow` 属 Stage 0.5，故意不在这里加载 ——
      *   preload 的每一张都会计入首屏，见 docs/TODO-性能优化.md。
      */
   }

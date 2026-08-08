@@ -93,6 +93,15 @@ const config: Phaser.Types.Core.GameConfig = {
 const game = new Phaser.Game(config);
 
 /**
+ * ★ 开发期把 game 实例挂到 window，便于在浏览器里核验运行时状态
+ *   （M4 教训：渲染层单测全绿也可能白屏 / 不动，必须能实跑检查）。
+ *   生产构建里 `import.meta.env.DEV` 为 false，整段被 tree-shake 掉。
+ */
+if (import.meta.env.DEV) {
+  (window as unknown as { __GAME__?: Phaser.Game }).__GAME__ = game;
+}
+
+/**
  * ★ NONE 模式不会自动跟随容器，转屏 / 地址栏收起都要自己处理。
  *
  *   ⚠️ 必须**同时**更新缓冲尺寸与 zoom：只改尺寸的话，
