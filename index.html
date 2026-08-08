@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Codex Games: Wulin Tavern, Soulmate, and Star Fighter, three original AI Native games crafted with Codex." />
+  <meta name="description" content="Codex Games: Wulin Tavern, Soulmate, Star Fighter, and Journey Ludo, four original AI Native games crafted with Codex." />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; block-all-mixed-content" />
   <link rel="icon" href="data:," />
   <title>Codex Games | AI Native Game Studio</title>
@@ -328,7 +328,7 @@
 
     .showcase {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
       perspective: 1200px;
     }
@@ -378,6 +378,13 @@
         linear-gradient(180deg, rgba(3, 6, 17, 0.16), rgba(4, 8, 18, 0.9) 58%),
         radial-gradient(circle at 24% 26%, rgba(100, 239, 255, 0.28), transparent 34%),
         url("star_fighter/images/space-background.png") center / cover;
+    }
+
+    .game-card.journey::before {
+      background:
+        linear-gradient(180deg, rgba(10, 8, 4, 0.14), rgba(12, 10, 20, 0.9) 58%),
+        radial-gradient(circle at 24% 24%, rgba(255, 209, 102, 0.28), transparent 32%),
+        url("images/promo/journey-ludo-cover.jpg") center / cover;
     }
 
     .game-card::after {
@@ -454,6 +461,24 @@
       object-fit: cover;
     }
 
+    .board-frame {
+      width: min(100%, 320px);
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 1px solid rgba(255, 226, 168, 0.38);
+      border-radius: var(--radius);
+      box-shadow: 0 26px 46px rgba(255, 209, 102, 0.16), 0 0 34px rgba(114, 240, 197, 0.12);
+      background: rgba(255, 255, 255, 0.08);
+      transform: rotate(1.5deg);
+    }
+
+    .board-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .ship-stage {
       position: relative;
       width: min(100%, 250px);
@@ -504,6 +529,10 @@
 
     .tavern .tagline {
       color: #ffe2a8;
+    }
+
+    .journey .tagline {
+      color: #ffd166;
     }
 
     .tagline::before {
@@ -605,7 +634,7 @@
 
     .details-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -763,6 +792,12 @@
       }
 
       .details-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .details-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -867,8 +902,8 @@
         <span class="mark" aria-hidden="true"></span>
         <span>
           <strong>Codex Games</strong>
-          <span class="zh">三款由 Codex 打磨的浏览器游戏</span>
-          <span class="en">Three browser games crafted with Codex</span>
+          <span class="zh">四款由 Codex 打磨的浏览器游戏</span>
+          <span class="en">Four browser games crafted with Codex</span>
         </span>
       </a>
       <div class="lang-toggle" role="group" aria-label="Language">
@@ -888,8 +923,8 @@
           <span class="en gradient-text">A tiny game universe made with Codex</span>
         </h1>
         <p class="lead">
-          <span class="zh">这是三款原创 AI Native 游戏：去武侠酒馆碰见一桌奇妙大侠，和温柔陪伴一起度过日常，或驾驶战机冲进霓虹深空。</span>
-          <span class="en">Three original AI Native games: wander into a wuxia tavern full of unpredictable heroes, spend a quiet moment with a warm companion, or launch into neon deep space.</span>
+          <span class="zh">这是四款原创 AI Native 游戏：去武侠酒馆碰见一桌奇妙大侠，和温柔陪伴一起度过日常，驾驶战机冲进霓虹深空，或掷一把骰子踏上西游取经路。</span>
+          <span class="en">Four original AI Native games: wander into a wuxia tavern full of unpredictable heroes, spend a quiet moment with a warm companion, launch into neon deep space, or roll the dice along the pilgrimage west.</span>
         </p>
         <div class="hero-actions" aria-label="Game shortcuts">
           <a class="button primary" href="https://g.ismayday.mobi/tavern/">
@@ -903,6 +938,10 @@
           <a class="button" href="https://g.ismayday.mobi/star_fighter">
             <span class="zh">进入星际突击队</span>
             <span class="en">Play Star Fighter</span>
+          </a>
+          <a class="button" href="https://g.ismayday.mobi/journey/">
+            <span class="zh">进入西游取经棋</span>
+            <span class="en">Play Journey Ludo</span>
           </a>
         </div>
       </div>
@@ -1012,18 +1051,53 @@
             </div>
           </div>
         </article>
+
+        <article class="game-card journey">
+          <div class="card-inner">
+            <div class="visual" aria-hidden="true">
+              <div class="board-frame">
+                <img src="images/promo/journey-ludo-cover.jpg" alt="" loading="lazy" />
+              </div>
+            </div>
+            <div>
+              <div class="tagline">
+                <span class="zh">西游取经棋</span>
+                <span class="en">Pilgrimage Board</span>
+              </div>
+              <h2>
+                <span class="zh">Journey Ludo<br />西游取经棋</span>
+                <span class="en">Journey Ludo<br />Race to the West</span>
+              </h2>
+              <p>
+                <span class="zh">选一位取经人，和另外三位 AI 同行沿 72 格螺旋棋盘一路向西。骰子决定脚下的路，事件格随时翻盘，抢先抵达中心灵山者取得真经。</span>
+                <span class="en">Pick a pilgrim and race three AI companions along a 72-tile spiral toward the west. The dice set your pace, event tiles turn the tables, and the first to reach Vulture Peak at the center takes the scripture.</span>
+              </p>
+              <div class="meta">
+                <span class="chip">Board Game</span>
+                <span class="chip">Godot 4</span>
+                <span class="chip">v0.1</span>
+              </div>
+              <div class="card-actions">
+                <a class="mini-link play" href="https://g.ismayday.mobi/journey/">
+                  <span class="zh">启程西行</span>
+                  <span class="en">Start the Journey</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="section" aria-labelledby="craft-title">
       <div class="section-head">
         <h2 id="craft-title">
-          <span class="zh">三种心情，三种打开方式</span>
-          <span class="en">Three moods, three ways to play</span>
+          <span class="zh">四种心情，四种打开方式</span>
+          <span class="en">Four moods, four ways to play</span>
         </h2>
         <p>
-          <span class="zh">想看江湖热闹，就进武侠酒馆；想被轻轻陪着，就进入心动陪伴；想立刻进入战斗，就启动星际突击队。</span>
-          <span class="en">Enter Wulin Tavern when you want a lively wuxia crowd, choose Soulmate when you want something gentle beside you, or launch Star Fighter when you want action right away.</span>
+          <span class="zh">想看江湖热闹，就进武侠酒馆；想被轻轻陪着，就进入心动陪伴；想立刻进入战斗，就启动星际突击队；想和人斗一局运气，就摇骰子上路。</span>
+          <span class="en">Enter Wulin Tavern when you want a lively wuxia crowd, choose Soulmate when you want something gentle beside you, launch Star Fighter when you want action right away, or roll the dice when you want a game of luck and turns.</span>
         </p>
       </div>
       <div class="details-grid">
@@ -1055,6 +1129,16 @@
           <p>
             <span class="zh">星际突击队更强调手感和节奏，越往后越紧张，越想再来一局。</span>
             <span class="en">Star Fighter is about feel and rhythm: the longer you last, the tighter it gets, and the stronger the urge to try again.</span>
+          </p>
+        </div>
+        <div class="detail">
+          <strong>
+            <span class="zh">一个看运气</span>
+            <span class="en">One Is Luck</span>
+          </strong>
+          <p>
+            <span class="zh">西游取经棋适合和 AI 同行斗一局：一颗骰子、一串事件格，领先和垫底随时对调。</span>
+            <span class="en">Journey Ludo is a race against AI companions: one die, a trail of event tiles, and a lead that can flip at any turn.</span>
           </p>
         </div>
       </div>
