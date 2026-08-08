@@ -1,0 +1,82 @@
+garden/web/tests/game/boardView.test.ts
+  640fa3cf12a5a767 33-34,42,46,89-90,320-432
+garden/web/src/game/render/EventPlayer.ts
+  640fa3cf12a5a767 133,152-153,254-261
+garden/web/src/game/scenes/LevelScene.ts
+  640fa3cf12a5a767 17,61-62,75-104
+garden/web/src/game/scenes/BootScene.ts
+  640fa3cf12a5a767 38-42,49-51
+garden/web/src/game/render/BoardView.ts
+  640fa3cf12a5a767 15,22-31,35-39,58-59,99-100,108-111,193-194,237-301,331-332
+garden/orders/LEGIBILITY-SPEC.md
+  640fa3cf12a5a767 263-285
+garden/web/src/game/textureKeys.ts
+  640fa3cf12a5a767 33,39-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "a3a4d72dc0ccaa7890d13d92b01b0778184826dd",
+  "prompts": {
+    "2c4db6ea02bd3453": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d28a47ec-5bec-4514-ac65-be2369dfff14",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 59,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/c5d951bb1d230888587613558e70cb6c6804d520a04417b32ab8b46243d6b5d4",
+      "token_usage": {
+        "input_tokens": 292,
+        "output_tokens": 114275,
+        "cache_creation_input_tokens": 245686,
+        "cache_read_input_tokens": 22861967
+      }
+    },
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1850,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/acfb98d883faf46937f25683a00b65a0d46640bf7733a0c86fa7c82784232d77",
+      "token_usage": {
+        "input_tokens": 298,
+        "output_tokens": 69801,
+        "cache_creation_input_tokens": 540009,
+        "cache_read_input_tokens": 20785382
+      }
+    },
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 8454,
+      "total_deletions": 30,
+      "accepted_lines": 4516,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/a40d2463eb9b6bbe7ca0bf8f76443b39d9a555ec1c9257c0225ddaa6af2bc416",
+      "token_usage": {
+        "input_tokens": 5703,
+        "output_tokens": 543265,
+        "cache_creation_input_tokens": 2206200,
+        "cache_read_input_tokens": 215912442
+      }
+    }
+  }
+}
