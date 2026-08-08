@@ -16,6 +16,7 @@ import { getLevel } from '../../config/levels/index';
 import { DEFAULT_TEMPO, INPUT_BUFFER, type Tempo } from '../../config/tuning';
 import type { Move, Pos, SpecialKind } from '../../core/types';
 import type { SessionState } from '../../core/session';
+import { WebAudioManager } from '../audio/WebAudioManager';
 import { BoardView } from '../render/BoardView';
 import { HudView } from '../ui/HudView';
 import { buildHudView, type HudModel } from '../ui/hudModel';
@@ -39,6 +40,7 @@ export class LevelScene extends Phaser.Scene {
   private layout!: LayoutResult;
   private view!: BoardView;
   private hud!: HudView;
+  private readonly audio = new WebAudioManager();
   private player!: PhaserEventPlayer;
   private turn: TurnState = createTurnState();
   private gesture: GestureState = createGestureState();
@@ -159,6 +161,13 @@ export class LevelScene extends Phaser.Scene {
   }
 
   private onPointer(phase: 'down' | 'move' | 'up', p: Phaser.Input.Pointer): void {
+    /**
+     * ★ 在**用户手势的同步栈里**解锁音频。
+     *   iOS Safari / Chrome 都要求这一点；异步之后再创建 AudioContext
+     *   浏览器不认这个手势，表现是整局游戏一声不响、控制台还没有报错。
+     */
+    if (phase === 'down') this.audio.unlock();
+
     const step = stepGesture(
       this.gesture,
       { phase, x: p.x, y: p.y, t: this.time.now },
@@ -214,6 +223,9 @@ export class LevelScene extends Phaser.Scene {
 
     const result = applyMove(this.session, move);
     this.session = result.session;
+
+    // ★ 音频与渲染消费**同一份事件序列**，不另起一套时序
+    this.audio.consume(result.events);
 
     // 时间轴要在播放前算好 —— 缓存窗口判断依赖它
     const timeline = buildTimeline(result.events, this.tempo);
