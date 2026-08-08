@@ -35,18 +35,20 @@ export class BootScene extends Phaser.Scene {
     this.load.image(TEX.iceOverlay(1), ASSETS.obstacles.ice1);
     this.load.image(TEX.iceOverlay(2), ASSETS.obstacles.ice2);
 
+    // —— 特殊棋子叠加层（Stage 0 三种，彩虹球不做）——
+    this.load.image(TEX.overlayRocketH, ASSETS.overlays.rocketH);
+    this.load.image(TEX.overlayRocketV, ASSETS.overlays.rocketV);
+    this.load.image(TEX.overlayBomb, ASSETS.overlays.bomb);
+
     // —— 花园：院门 4 阶段（M7 的花园场景用）——
     ASSETS.garden.gate.forEach((path, stage) => {
       this.load.image(TEX.gate(stage), path);
     });
 
     /**
-     * ★ 以下素材**尚未交付**（第 3 批剩余 4 张），Stage 0 用占位渲染：
-     *   - obstacles.ice2          —— 双层冰，等原生 Alpha 路径
-     *   - overlays.rocketH/V/bomb —— 半透明叠加层，同上
-     *
-     * 走 Asset Manifest 的间接就是为这种情况准备的：
-     * 素材到位后**只需在这里加载，渲染代码一行不改**。
+     * ★ Stage 0 所需素材已全部交付。
+     *   `special.rainbow` 与 `pet.*` 属 Stage 0.5 / M6，故意不在这里加载 ——
+     *   preload 的每一张都会计入首屏，见 docs/TODO-性能优化.md。
      */
   }
 

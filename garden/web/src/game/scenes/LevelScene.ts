@@ -14,7 +14,7 @@ import { applyMove } from '../../core/resolver';
 import { isSwappable } from '../../core/board';
 import { getLevel } from '../../config/levels/index';
 import { DEFAULT_TEMPO, INPUT_BUFFER, type Tempo } from '../../config/tuning';
-import type { Move, Pos } from '../../core/types';
+import type { Move, Pos, SpecialKind } from '../../core/types';
 import type { SessionState } from '../../core/session';
 import { BoardView } from '../render/BoardView';
 import { PhaserEventPlayer } from '../render/EventPlayer';
@@ -58,6 +58,8 @@ export class LevelScene extends Phaser.Scene {
     // ★ 种子固定便于 M4 调试；M5 接入存档后改为真随机
     this.session = createSession(level, 20260808);
 
+    this.devSeedSpecials();
+
     this.layout = this.measureLayout();
     this.view = new BoardView(this, this.layout);
     this.view.build(this.session.board);
@@ -68,6 +70,36 @@ export class LevelScene extends Phaser.Scene {
     this.bindInput();
 
     this.scale.on(Phaser.Scale.Events.RESIZE, this.onResize, this);
+  }
+
+  /**
+   * ★ 开发期的 `?special=1`：在起始棋盘上直接种下三种特殊棋子。
+   *
+   *   特殊棋子要 match-4 / match-5 才生成，靠手点很难凑出来 ——
+   *   而叠加层在**六色棋子上是否都看得清**恰恰是必须用眼睛验的
+   *   （M4 教训：单测全绿也可能白屏，渲染层只有实跑才算数）。
+   *
+   *   生产构建里 `import.meta.env.DEV` 为 false，整段被 tree-shake 掉。
+   */
+  private devSeedSpecials(): void {
+    if (!import.meta.env.DEV || typeof location === 'undefined') return;
+    if (new URLSearchParams(location.search).get('special') !== '1') return;
+
+    const kinds = ['rocketH', 'rocketV', 'bomb'] as const;
+    const board = this.session.board;
+    let seeded = 0;
+    // 铺满一整行，六色都能看到同一种标记
+    for (let row = 0; row < board.rows && seeded < kinds.length * board.cols; row++) {
+      const kind = kinds[row % kinds.length];
+      if (!kind) continue;
+      for (let col = 0; col < board.cols; col++) {
+        const piece = board.cells[row * board.cols + col]?.piece;
+        if (!piece) continue;
+        (piece as { special: SpecialKind }).special = kind;
+        seeded++;
+      }
+      if (row >= kinds.length - 1) break;
+    }
   }
 
   /** 开发期的 `?level=N`。生产构建里整段被消除 */

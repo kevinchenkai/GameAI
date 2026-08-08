@@ -130,6 +130,7 @@ export class PhaserEventPlayer implements EventPlayer {
             alpha: 0,
             duration: durationMs,
             ease: 'Back.easeIn',
+            onUpdate: () => this.view.followOverlay(id),
             onComplete: () => this.view.removeSprite(id),
           });
         }
@@ -148,6 +149,8 @@ export class PhaserEventPlayer implements EventPlayer {
             duration: durationMs,
             // ★ 回弹让下落有重量感 —— 这是"手感"的主要来源之一
             ease: 'Quad.easeIn',
+            // 特殊棋子的叠加层要跟着一起掉，否则标记会留在原地
+            onUpdate: () => this.view.followOverlay(m.id),
           });
           this.trackPosition(m.id, m.to);
         }
@@ -248,7 +251,14 @@ export class PhaserEventPlayer implements EventPlayer {
       const sprite = this.view.spriteOf(id);
       if (!sprite) return;
       const target = this.view.positionOf(to);
-      this.tween({ targets: sprite, x: target.x, y: target.y, duration, ease: 'Quad.easeInOut' });
+      this.tween({
+        targets: sprite,
+        x: target.x,
+        y: target.y,
+        duration,
+        ease: 'Quad.easeInOut',
+        onUpdate: () => this.view.followOverlay(id),
+      });
     };
 
     move(idA, b);

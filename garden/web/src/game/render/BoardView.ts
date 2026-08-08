@@ -12,16 +12,31 @@
  */
 
 import type Phaser from 'phaser';
-import type { BoardState, Piece, Pos } from '../../core/types';
+import type { BoardState, Piece, Pos, SpecialKind } from '../../core/types';
 import { cellCenter, type LayoutResult } from './layout';
 import { TEX } from '../textureKeys';
 
 /** 棋子贴图相对格子的占比 —— 留一点缝，棋子之间不要挤在一起 */
 const PIECE_FILL = 0.86;
 
+/**
+ * 特殊棋子 → 叠加层纹理。`none` 与 `rainbow` 无叠加层
+ * （rainbow 是独立整图素材，且 Stage 0 不做）。
+ */
+const OVERLAY_TEX: Partial<Record<SpecialKind, string>> = {
+  rocketH: TEX.overlayRocketH,
+  rocketV: TEX.overlayRocketV,
+  bomb: TEX.overlayBomb,
+};
+
 export class BoardView {
   private readonly sprites = new Map<number, Phaser.GameObjects.Image>();
   private readonly obstacleFx = new Map<string, Phaser.GameObjects.Image>();
+  /**
+   * 特殊棋子叠加层，按 **pieceId** 索引（和棋子精灵一致，不按坐标）——
+   * 叠加层要跟着棋子一起下落，坐标每回合都在变。
+   */
+  private readonly overlayFx = new Map<number, Phaser.GameObjects.Image>();
   private readonly layer: Phaser.GameObjects.Container;
   private selection: Phaser.GameObjects.Graphics | null = null;
 
@@ -40,7 +55,8 @@ export class BoardView {
       for (let col = 0; col < board.cols; col++) {
         const cell = board.cells[row * board.cols + col];
         if (!cell || !cell.piece) continue;
-        this.createSprite(cell.piece, { col, row });
+        const sprite = this.createSprite(cell.piece, { col, row });
+        this.syncOverlay(cell.piece, sprite);
         if (cell.obstacle) this.showObstacle({ col, row }, cell.obstacle.hp);
       }
     }
@@ -80,12 +96,18 @@ export class BoardView {
         sprite.setPosition(c.x, c.y);
         sprite.setAlpha(1);
         this.resetSpriteSize(sprite);
+        // ★ 叠加层一并对账：棋子可能在本回合刚变成 / 不再是特殊棋子
+        this.syncOverlay(piece, sprite);
       }
     }
 
     // 渲染层有、core 没有 → 删掉（残留的"幽灵棋子"）
     for (const id of [...this.sprites.keys()]) {
       if (!wanted.has(id)) this.removeSprite(id);
+    }
+    // 叠加层同理：棋子没了，它的标记也不该赖着
+    for (const id of [...this.overlayFx.keys()]) {
+      if (!wanted.has(id)) this.removeOverlay(id);
     }
 
     // 障碍同理对账
@@ -168,6 +190,8 @@ export class BoardView {
   }
 
   removeSprite(id: number): void {
+    // ★ 先撤标记再撤棋子 —— 否则棋子消失了，火箭还浮在空格上
+    this.removeOverlay(id);
     const s = this.sprites.get(id);
     if (!s) return;
     s.destroy();
@@ -210,6 +234,71 @@ export class BoardView {
     this.obstacleFx.delete(key);
   }
 
+  /**
+   * 把某个棋子的特殊叠加层同步到位。
+   *
+   * ★ 叠加层是**通用素材**（3 张，不分颜色），叠在普通棋子贴图之上 ——
+   *   所以特殊棋子会保留自己的水果外观，玩家仍看得出"这是一颗苹果，
+   *   而且它蓄了能量"。这正是 6×3=18 张独立素材换不来的好处。
+   *
+   * ★ 叠加层**满格**（不乘 PIECE_FILL）：火箭要触到格子两端，
+   *   多格相接才能连成一条线。棋子留缝、标记不留缝，是刻意的。
+   *
+   * ⚠️ 位置必须跟着棋子精灵走，而不是重新算格心 ——
+   *   下落补间进行中时格心是"终点"，跟着精灵才不会脱节。
+   */
+  private syncOverlay(piece: Piece, sprite: Phaser.GameObjects.Image): void {
+    const key = OVERLAY_TEX[piece.special];
+    const existing = this.overlayFx.get(piece.id);
+
+    if (!key) {
+      // 特殊棋子被消耗掉了（或从来就是普通棋子）
+      if (existing) {
+        existing.destroy();
+        this.overlayFx.delete(piece.id);
+      }
+      return;
+    }
+
+    const size = this.layout.pieceSizePt;
+    let img = existing;
+    // 换了种类（如 rocketH → bomb）就重建，纹理 key 无法原地改得干净
+    if (img && img.texture.key !== key) {
+      img.destroy();
+      img = undefined;
+      this.overlayFx.delete(piece.id);
+    }
+    if (!img || !img.scene) {
+      img = this.scene.add.image(sprite.x, sprite.y, key);
+      this.layer.add(img);
+      this.overlayFx.set(piece.id, img);
+    }
+    img.setPosition(sprite.x, sprite.y);
+    img.setDisplaySize(size, size);
+    img.setAlpha(sprite.alpha);
+    // ★ 必须在棋子之上；棋子会在 spawn / reconcile 时后加入 layer
+    this.layer.bringToTop(img);
+  }
+
+  /** 叠加层跟随棋子精灵移动 —— 下落 / 交换补间每帧调用 */
+  followOverlay(pieceId: number): void {
+    const img = this.overlayFx.get(pieceId);
+    const sprite = this.spriteOf(pieceId);
+    if (!img || !img.scene) return;
+    if (!sprite) {
+      img.destroy();
+      this.overlayFx.delete(pieceId);
+      return;
+    }
+    img.setPosition(sprite.x, sprite.y);
+    img.setAlpha(sprite.alpha);
+  }
+
+  private removeOverlay(id: number): void {
+    this.overlayFx.get(id)?.destroy();
+    this.overlayFx.delete(id);
+  }
+
   /** 点选模式的选中框 */
   showSelection(at: Pos | null): void {
     this.selection?.destroy();
@@ -239,6 +328,8 @@ export class BoardView {
   clear(): void {
     for (const s of this.sprites.values()) s.destroy();
     this.sprites.clear();
+    for (const g of this.overlayFx.values()) g.destroy();
+    this.overlayFx.clear();
     for (const g of this.obstacleFx.values()) g.destroy();
     this.obstacleFx.clear();
     this.selection?.destroy();

@@ -30,6 +30,8 @@ interface FakeImage {
   scaleY: number;
   alpha: number;
   scene: object | null;
+  /** BoardView 靠 texture.key 判断叠加层要不要重建（rocketH → bomb） */
+  texture: { key: string };
   setDisplaySize(w: number, h: number): FakeImage;
   setScale(s: number): FakeImage;
   setPosition(x: number, y: number): FakeImage;
@@ -37,10 +39,11 @@ interface FakeImage {
   destroy(): void;
 }
 
-function makeFakeImage(scene: object, x: number, y: number): FakeImage {
+function makeFakeImage(scene: object, x: number, y: number, key = ''): FakeImage {
   const img: FakeImage = {
     x,
     y,
+    texture: { key },
     displayWidth: SOURCE_PX,
     displayHeight: SOURCE_PX,
     scaleX: 1,
@@ -83,8 +86,8 @@ function makeFakeScene() {
   const created: FakeImage[] = [];
   const scene = {
     add: {
-      image(x: number, y: number, _key: string) {
-        const img = makeFakeImage(scene, x, y);
+      image(x: number, y: number, key: string) {
+        const img = makeFakeImage(scene, x, y, key);
         created.push(img);
         return img;
       },
@@ -312,5 +315,118 @@ describe('★ 回归：不把已销毁的精灵交出去', () => {
     expect(created.length).toBe(before + 1); // 确实新建了
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((revived as any).scene).not.toBeNull();
+  });
+});
+
+describe('★★ 特殊棋子叠加层', () => {
+  const OVERLAY_KEYS = ['overlay-rocket-h', 'overlay-rocket-v', 'overlay-bomb'];
+  const overlays = (created: FakeImage[]): FakeImage[] =>
+    created.filter((i) => OVERLAY_KEYS.includes(i.texture.key) && i.scene !== null);
+
+  /** 把棋盘上第一颗棋子改造成特殊棋子（core 的 Piece 是 readonly，测试里绕过） */
+  const makeSpecial = (
+    session: ReturnType<typeof createSession>,
+    kind: 'rocketH' | 'rocketV' | 'bomb' | 'none',
+  ): number => {
+    const cell = session.board.cells.find((c) => c.piece);
+    const piece = cell?.piece;
+    if (!piece) throw new Error('棋盘上没有棋子');
+    (piece as { special: string }).special = kind;
+    return piece.id;
+  };
+
+  it('普通棋盘上一个叠加层都不该有', () => {
+    const { created } = buildView();
+    expect(overlays(created)).toHaveLength(0);
+  });
+
+  it('★ 棋子变成特殊棋子后，对账会补上叠加层', () => {
+    const { view, session, created } = buildView();
+    makeSpecial(session, 'rocketH');
+
+    view.reconcile(session.board);
+
+    const ov = overlays(created);
+    expect(ov).toHaveLength(1);
+    expect(ov[0]?.texture.key).toBe('overlay-rocket-h');
+  });
+
+  it('★★ 叠加层满格，不乘 PIECE_FILL —— 火箭要触到格子两端才能连成线', () => {
+    const { view, session, created } = buildView();
+    makeSpecial(session, 'rocketH');
+    view.reconcile(session.board);
+
+    const ov = overlays(created)[0];
+    if (!ov) throw new Error('没有叠加层');
+    expect(ov.displayWidth).toBeCloseTo(LAYOUT.pieceSizePt, 5);
+    // 棋子本身是留缝的，叠加层必须比它大
+    expect(ov.displayWidth).toBeGreaterThan(view.pieceSize);
+  });
+
+  it('★★ 特殊棋子被消耗后，叠加层不会赖在棋盘上', () => {
+    const { view, session, created } = buildView();
+    makeSpecial(session, 'bomb');
+    view.reconcile(session.board);
+    expect(overlays(created)).toHaveLength(1);
+
+    // 特殊属性被消耗掉（core 语义：放完就变回普通棋子）
+    makeSpecial(session, 'none');
+    view.reconcile(session.board);
+    expect(overlays(created)).toHaveLength(0);
+  });
+
+  it('★★ 棋子被消除后，叠加层跟着一起消失（不留浮在空格上的火箭）', () => {
+    const { view, session, created } = buildView();
+    const id = makeSpecial(session, 'rocketV');
+    view.reconcile(session.board);
+    expect(overlays(created)).toHaveLength(1);
+
+    view.removeSprite(id);
+    expect(overlays(created)).toHaveLength(0);
+  });
+
+  it('★ 种类变了要换贴图，不是留着旧的', () => {
+    const { view, session, created } = buildView();
+    makeSpecial(session, 'rocketH');
+    view.reconcile(session.board);
+    expect(overlays(created)[0]?.texture.key).toBe('overlay-rocket-h');
+
+    makeSpecial(session, 'bomb');
+    view.reconcile(session.board);
+
+    const ov = overlays(created);
+    expect(ov).toHaveLength(1);
+    expect(ov[0]?.texture.key).toBe('overlay-bomb');
+  });
+
+  it('★ 反复对账不会堆出重复叠加层', () => {
+    const { view, session, created } = buildView();
+    makeSpecial(session, 'bomb');
+    for (let i = 0; i < 5; i++) view.reconcile(session.board);
+    expect(overlays(created)).toHaveLength(1);
+  });
+
+  it('★ followOverlay 让标记跟住棋子（下落中不脱节）', () => {
+    const { view, session, created } = buildView();
+    const id = makeSpecial(session, 'rocketH');
+    view.reconcile(session.board);
+
+    const sprite = view.spriteOf(id) as unknown as FakeImage;
+    sprite.setPosition(123, 456);
+    sprite.setAlpha(0.5);
+    view.followOverlay(id);
+
+    const ov = overlays(created)[0];
+    expect(ov?.x).toBe(123);
+    expect(ov?.y).toBe(456);
+    expect(ov?.alpha).toBe(0.5);
+  });
+
+  it('★ clear() 把叠加层也清干净', () => {
+    const { view, session, created } = buildView();
+    makeSpecial(session, 'bomb');
+    view.reconcile(session.board);
+    view.clear();
+    expect(overlays(created)).toHaveLength(0);
   });
 });

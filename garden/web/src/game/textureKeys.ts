@@ -30,13 +30,16 @@ export const TEX = {
   petHappy: 'pet-happy',
   petHint: 'pet-hint',
 
-  /** 冰块覆盖层。★ ice-2 尚未交付，渲染层会回退到 ice-1 */
+  /** 冰块覆盖层，hp 1/2 两张 */
   iceOverlay: (hp: number): string => `obstacle-ice-${hp}`,
 
   /** 院门 4 阶段（M7 花园场景） */
   gate: (stage: number): string => `garden-gate-${stage}`,
 
-  /** 尚未交付的素材（第 3 批剩余 3 张叠加层），Stage 0 用占位渲染 */
+  /**
+   * 特殊棋子叠加层。★ 通用叠加，不分颜色 ——
+   * 3 张而不是 18 张（6 色 × 3 种），且颜色永远和棋子匹配。
+   */
   overlayRocketH: 'overlay-rocket-h',
   overlayRocketV: 'overlay-rocket-v',
   overlayBomb: 'overlay-bomb',
