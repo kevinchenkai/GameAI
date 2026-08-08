@@ -1,0 +1,38 @@
+journey/CLAUDE.md
+  4fca2e14c0ddaf88 5,83
+soulmate/CLAUDE.md
+  4fca2e14c0ddaf88 1-70
+CLAUDE.md
+  4fca2e14c0ddaf88 10-19,25-42
+star_fighter/CLAUDE.md
+  4fca2e14c0ddaf88 1-71
+Tavern/CLAUDE.md
+  4fca2e14c0ddaf88 1-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "73b1a1dcb40fbfce0b24c85fe382ec2343a13ffa",
+  "prompts": {
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 252,
+      "total_deletions": 9,
+      "accepted_lines": 252,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/85c5498301171a260b8cc3467f4cfa0cf2dc5c70408d8e6612b59c344c974adb",
+      "token_usage": {
+        "input_tokens": 65,
+        "output_tokens": 18533,
+        "cache_creation_input_tokens": 51290,
+        "cache_read_input_tokens": 2112002
+      }
+    }
+  }
+}
