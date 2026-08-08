@@ -13,12 +13,16 @@ import { createSession } from '../../core/session';
 import { applyMove } from '../../core/resolver';
 import { isSwappable } from '../../core/board';
 import { getLevel } from '../../config/levels/index';
-import { DEFAULT_TEMPO, INPUT_BUFFER, type Tempo } from '../../config/tuning';
-import type { Move, Pos, SpecialKind } from '../../core/types';
+import { INPUT_BUFFER, type Tempo } from '../../config/tuning';
+import type { CoreGameEvent, Move, Pos, SpecialKind } from '../../core/types';
+import { loadSettings, saveSettings } from '../../meta/settings';
 import type { SessionState } from '../../core/session';
 import { WebAudioManager } from '../audio/WebAudioManager';
 import { BoardView } from '../render/BoardView';
 import { HudView } from '../ui/HudView';
+import { Panel } from '../ui/Panel';
+import { ResultPanel } from '../ui/ResultPanel';
+import { SettingsPanel } from '../ui/SettingsPanel';
 import { buildHudView, type HudModel } from '../ui/hudModel';
 import { PhaserEventPlayer } from '../render/EventPlayer';
 import { cellAtPoint, computeLayout, type LayoutResult } from '../render/layout';
@@ -29,6 +33,7 @@ import {
   bufferInput,
   canAcceptInput,
   createTurnState,
+  setFlags,
   takeBufferedMove,
   type TurnState,
 } from '../TurnController';
@@ -44,7 +49,16 @@ export class LevelScene extends Phaser.Scene {
   private player!: PhaserEventPlayer;
   private turn: TurnState = createTurnState();
   private gesture: GestureState = createGestureState();
-  private tempo: Tempo = DEFAULT_TEMPO;
+  private tempo: Tempo = loadSettings().tempo;
+  private result!: ResultPanel;
+  private settings!: SettingsPanel;
+  private settingsButton: Panel | null = null;
+  /**
+   * ★ 跨 scene.restart() 传递关卡 id。
+   *   restart 会重建实例字段，但 Phaser 的 Scene 对象本身是复用的，
+   *   所以挂在 this 上的这个值能活过重启。
+   */
+  private pendingLevelId: number | null = null;
   /** 当前这一段动画的时间轴，仅用于缓存窗口判断 */
   private playStartedAt = 0;
   private playTotalMs = 0;
@@ -54,14 +68,41 @@ export class LevelScene extends Phaser.Scene {
   }
 
   create(): void {
-    // ★ 开发期可用 `?level=4` 直接打开指定关卡（4 是首个含冰关卡）。
-    //   否则要真打通前三关才能看到冰，验证成本太高。
-    const id = this.devLevelId() ?? 1;
+    // ★ 关卡来源优先级：重开指定的 > URL 的 ?level= > 第 1 关
+    const id = this.pendingLevelId ?? this.devLevelId() ?? 1;
+    this.pendingLevelId = null;
     const level = getLevel(id);
     if (!level) throw new Error(`关卡 ${id} 不存在 —— config/levels 未正确加载`);
 
-    // ★ 种子固定便于 M4 调试；M5 接入存档后改为真随机
-    this.session = createSession(level, 20260808);
+    // ★ 每次重开换一个种子，否则"再试一次"会拿到一模一样的棋盘 ——
+    //   玩家会以为按钮没生效。用时间戳而非 Math.random()（红线：随机走 rng）
+    this.session = createSession(level, Date.now() & 0x7fffffff);
+
+    /**
+     * ★★ `scene.restart()` **不会重建实例**，只是再跑一次 `create()`。
+     *   所以所有"字段初始化式"（`private turn = createTurnState()`）
+     *   只在**第一次**执行，之后永远保留上一局的值。
+     *
+     *   ⚠️ 实测踩到：过关后点「下一关」，新关卡的相位仍停在
+     *   `PRESENTATION` —— 输入被永久锁死，**棋盘看着正常但完全点不动**，
+     *   而且没有任何报错。手势状态与时间轴同理。
+     *   这类状态必须在 create() 里显式复位。
+     */
+    this.turn = createTurnState();
+    this.gesture = createGestureState();
+    this.playStartedAt = 0;
+    this.playTotalMs = 0;
+
+    // 设置同样要重新读
+    const saved = loadSettings();
+    this.tempo = saved.tempo;
+    this.audio.setMuted(saved.muted);
+    this.audio.setSfxVolume(saved.sfxVolume);
+
+    this.result = new ResultPanel(this);
+    this.settings = new SettingsPanel(this);
+    // restart 后场景里的 GameObject 已被清空，旧引用是死的
+    this.settingsButton = null;
 
     this.devSeedSpecials();
 
@@ -76,6 +117,7 @@ export class LevelScene extends Phaser.Scene {
     this.syncPlayerIndex();
 
     this.bindInput();
+    this.buildSettingsButton();
 
     this.scale.on(Phaser.Scale.Events.RESIZE, this.onResize, this);
   }
@@ -168,6 +210,20 @@ export class LevelScene extends Phaser.Scene {
      */
     if (phase === 'down') this.audio.unlock();
 
+    /**
+     * ★ 有模态面板开着时，棋盘手势必须整体停摆。
+     *
+     *   ⚠️ 光靠"压暗层吃掉点击"不够：Phaser 的 `this.input.on(POINTER_*)`
+     *   是**场景级**监听，不管点在哪个对象上都会触发。
+     *   不挡的话，玩家在结算弹窗上点"再试一次"，
+     *   那一下**同时**被当成棋盘上的一次点选 —— 手势状态机被污染，
+     *   重开后第一次滑动就会莫名其妙地换错棋子。
+     */
+    if (this.result.isOpen || this.settings.isOpen) {
+      this.gesture = createGestureState();
+      return;
+    }
+
     const step = stepGesture(
       this.gesture,
       { phase, x: p.x, y: p.y, t: this.time.now },
@@ -248,7 +304,19 @@ export class LevelScene extends Phaser.Scene {
     this.syncPlayerIndex();
     this.rebuildIfNeeded(result.events);
 
-    // M5/M6 会在这里插入 PRESENTATION（宠物反应、结算弹窗）
+    /**
+     * ★ 胜负结算走 **PRESENTATION** 相位（冻结契约 7 为此预留）。
+     *   ⚠️ 不要在这里直接 advance 到 READY_FOR_INPUT ——
+     *   那会让玩家在结算弹窗弹出**之前**抢到下一步输入。
+     */
+    if (this.session.result !== 'continue') {
+      this.turn = advance(this.turn, 'PRESENTATION');
+      this.turn = setFlags(this.turn, { resultPopupOpen: true });
+      this.showResult(result.events);
+      return; // 输入保持锁定，直到玩家在弹窗里做出选择
+    }
+
+    // M6 会在这里插入宠物反应（同样走 PRESENTATION）
     this.turn = advance(this.turn, 'READY_FOR_INPUT');
 
     // ★ 兑现缓存 —— **必须重新验证合法性**（棋盘已变），非法则静默丢弃
@@ -288,11 +356,98 @@ export class LevelScene extends Phaser.Scene {
     this.view.build(this.session.board);
     this.hud.setLayout(this.layout);
     this.hud.rebuild(this.hudModel());
+    this.settingsButton?.destroy();
+    this.buildSettingsButton();
     this.syncPlayerIndex();
   }
 
   /** HUD 的数据源。★ 由 core 的关卡 + 进度推导，渲染层不自己记账 */
   private hudModel(): HudModel {
     return buildHudView(this.session.level, this.session.progress, this.session.movesLeft);
+  }
+
+  // ————————————————————————————————————————————————
+  // 结算与设置
+  // ————————————————————————————————————————————————
+
+  /** ★ 结算数据取自**事件**，不重新推断胜负（事件序列是唯一真相源） */
+  private showResult(events: readonly CoreGameEvent[]): void {
+    const win = events.find((e) => e.t === 'levelWin');
+    const lose = events.find((e) => e.t === 'levelLose');
+
+    if (win && win.t === 'levelWin') {
+      this.audio.play('win');
+      this.result.open({
+        kind: 'win',
+        rating: win.rating,
+        movesLeft: win.movesLeft,
+        hasNext: getLevel(this.session.level.id + 1) !== undefined,
+        onReplay: () => this.restart(this.session.level.id),
+        onNext: () => this.restart(this.session.level.id + 1),
+      });
+      return;
+    }
+
+    if (lose && lose.t === 'levelLose') {
+      this.audio.play('lose');
+      this.result.open({
+        kind: 'lose',
+        remaining: lose.remaining,
+        onReplay: () => this.restart(this.session.level.id),
+      });
+    }
+  }
+
+  /**
+   * 重开某一关。
+   *
+   * ★ 直接 restart 整个场景，而不是手工复位十几个字段。
+   *   手工复位漏一个（棋盘、精灵、时间轴、手势、相位……）
+   *   就会留下上一局的残留状态，且**不报错**。
+   */
+  private restart(levelId: number): void {
+    this.result.close();
+    this.settings.close();
+    this.pendingLevelId = levelId;
+    this.scene.restart();
+  }
+
+  /**
+   * 设置入口。放在 controlsRect（棋盘下方），不放 HUD ——
+   * HUD 那一行是"当前局势"，塞按钮进去会与步数/目标抢注意力。
+   */
+  private buildSettingsButton(): void {
+    const r = this.layout.controlsRect;
+    const panel = new Panel(this, 20);
+    panel.button(this.scale.width / 2, r.y + r.h / 2, 160, {
+      label: '⚙ 设置',
+      onClick: () => this.openSettings(),
+    });
+    this.settingsButton = panel;
+  }
+
+  private openSettings(): void {
+    this.audio.unlock();
+    this.settings.open({
+      tempo: this.tempo,
+      muted: this.audio.isMuted(),
+      onTempo: (t) => {
+        this.tempo = t;
+        this.persistSettings();
+      },
+      onMuted: (m) => {
+        this.audio.setMuted(m);
+        this.persistSettings();
+      },
+      onClose: () => undefined,
+    });
+  }
+
+  private persistSettings(): void {
+    saveSettings({
+      tempo: this.tempo,
+      sfxVolume: this.audio.getSfxVolume(),
+      muted: this.audio.isMuted(),
+    });
   }
 }
