@@ -57,6 +57,7 @@ Players pick one of four pilgrims — Sun Wukong, Zhu Bajie, Tang Seng, or Sha S
 | [`soulmate/`](./soulmate/) | Soulmate (HTML5) |
 | [`star_fighter/`](./star_fighter/) | Star Fighter (HTML5) |
 | [`journey/`](./journey/) | Journey Ludo (Godot 4) |
+| [`garden/`](./garden/) | Garden Match (Phaser 3 + TS) — in development |
 | [`index.html`](./index.html) | Codex Games hub page |
 | [`scripts/`](./scripts/) | Shared deploy and utility scripts |
 

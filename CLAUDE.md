@@ -13,6 +13,7 @@
 | [`soulmate/`](./soulmate/) | Soulmate | 原生 HTML/JS + Node + SQLite | [CLAUDE.md](./soulmate/CLAUDE.md) ⚠️ 另有 [AGENTS.md](./soulmate/AGENTS.md) |
 | [`star_fighter/`](./star_fighter/) | Star Fighter | 单文件 HTML5 Canvas | [CLAUDE.md](./star_fighter/CLAUDE.md) |
 | [`journey/`](./journey/) | 西游记飞行棋 Journey Ludo | Godot 4.x | [CLAUDE.md](./journey/CLAUDE.md) |
+| [`garden/`](./garden/) | Garden Match 三消 🚧 开发中 | Phaser 3 + TS + Vite | [CLAUDE.md](./garden/CLAUDE.md) |
 | `index.html` | Codex Games 站点首页 | HTML | — |
 | `scripts/` | 公共部署 / 工具脚本 | — | — |
 
@@ -20,22 +21,23 @@
 
 **跨项目边界**：各子项目互不干涉。改动一个项目时，不擅自修改其它项目的文件。
 
-### 尚未纳入管理
+### 开发中项目
 
 | 目录 | 状态 |
 |---|---|
-| `garden/` | 新建项目，**刚启动、未到发布阶段，暂不入库**。当前为未跟踪状态，属预期——不要顺手 `git add -A` 带进提交，也不要当成垃圾目录清理。待可发布时再由用户决定纳入。 |
+| `garden/` | Garden Match（三消 + 萌宠 + 花园），**已进入正式编码（Stage 0）**。策划与框架文档已入库，接口契约冻结见 [garden/CLAUDE.md](./garden/CLAUDE.md) §3。**尚未上线**，部署目录 `/www/wwwroot/g.ismayday.mobi/garden/` 待首次发布时创建。 |
 
 ---
 
 ## 1.1 部署边界（全局红线）
 
-四个游戏**共用同一台服务器的同一个站点根** `/www/wwwroot/g.ismayday.mobi/`，各自占一个子目录：
+各游戏**共用同一台服务器的同一个站点根** `/www/wwwroot/g.ismayday.mobi/`，各自占一个子目录：
 
 ```
 /www/wwwroot/g.ismayday.mobi/     ← 站点根（Codex Games 首页 index.html）
 ├── star_fighter/    ├── soulmate/
 ├── tavern/          ├── journey/
+├── garden/          ← Garden Match，开发中，首次发布时创建
 ├── images/promo/    ← 首页自用素材（如 journey-ludo-cover.jpg）
 └── mimo/  mystock/  ← ⚠️ 非本仓库项目，不归 GameAI 管，勿动
 ```
@@ -47,7 +49,7 @@
 
 - ✅ 只同步到自己的 `$REMOTE_APP_DIR`
 - ❌ **绝不**把任何子项目的文件 rsync 到站点根 `$REMOTE_ROOT`
-- ❌ **绝不**对站点根执行 `rsync --delete`——会连带删除其它三个游戏与 mimo / mystock
+- ❌ **绝不**对站点根执行 `rsync --delete`——会连带删除其它所有游戏与 mimo / mystock
 - 若某次部署看起来需要动站点根，**停下来问用户**
 
 ### 服务器访问

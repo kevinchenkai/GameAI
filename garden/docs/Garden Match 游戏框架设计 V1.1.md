@@ -280,14 +280,16 @@ V1 把重反应和技能都挂在 `settled` 上，存在一个真实缺陷，Cod
 | `turnResolved` | **回合完整结算** —— 棋盘稳定 **+ 目标结算 + 胜负判定** 都已完成 | **宠物系统（唯一决策入口）** |
 
 ```ts
-export interface TurnSummary {
+// core/types.ts —— 纯棋盘/关卡信息，不含任何宠物字段
+export interface CoreTurnSummary {
   maxCascade: number;
   totalCleared: number;
   specialCreated: SpecialKind[];
   result: 'continue' | 'win' | 'lose';   // ★ 宠物据此决定演什么
-  petSkillReady: boolean;
 }
 ```
+
+> **PATCH A**：V1.1 初稿这里还留着 `petSkillReady: boolean`，与「core 不认识旺财」的冻结契约**直接矛盾**——Core 凭什么知道宠物技能好没好？已删除。宠物就绪状态属于 Pet 层自己的 runtime，见 §6.2。
 
 **修正后的顺序**：
 
@@ -510,20 +512,69 @@ export type PetState =
 
 ### 6.2 Pet Reaction Resolver（★ 单一决策入口）
 
-宠物的**所有**重反应决策集中在一个函数里，输入是 `TurnSummary`，输出是一个状态。**不允许在别处零散地 `pet.play(...)`。**
+**PATCH A 后的正确形态**：宠物状态属于 Pet 层，Core 完全不知道它的存在。
+
+```ts
+// game/pet/state.ts —— Pet 层自己的 runtime，core/ 看不见
+export interface PetRuntimeState {
+  energy: number;
+  maxEnergy: number;
+  skillReady: boolean;
+  state: PetState;
+}
+```
+
+决策函数**同时吃两份输入**：Core 给的回合结果 + Pet 自己的状态。
 
 ```ts
 // game/pet/reactionResolver.ts
-function resolveReaction(s: TurnSummary): PetState {
-  if (s.result === 'win')  return 'victory';    // ★ 最高优先级
-  if (s.result === 'lose') return 'encourage';
-  if (s.petSkillReady)     return 'skill';
-  if (s.maxCascade >= COMBO_EXCITED_THRESHOLD) return 'excited';
-  return 'idle';
+export type PetDecision =
+  | { type: 'reaction'; state: PetState }
+  | { type: 'skillOffer' };        // ★ 开启 1.5s 可点击窗口，尚未释放
+
+function resolvePetDecision(
+  turn: CoreTurnSummary,          // 来自 core：只有棋盘/关卡信息
+  pet: PetRuntimeState            // 来自 pet 层：能量、就绪
+): PetDecision {
+  if (turn.result === 'win')  return { type: 'reaction', state: 'victory' };
+  if (turn.result === 'lose') return { type: 'reaction', state: 'encourage' };
+  if (pet.skillReady)         return { type: 'skillOffer' };          // ★ 不是 'skill'
+  if (turn.maxCascade >= COMBO_EXCITED_THRESHOLD)
+                              return { type: 'reaction', state: 'excited' };
+  return { type: 'reaction', state: 'idle' };
 }
 ```
 
 这正是既定优先级 `Victory > Pet Skill > Big Combo > Hint` 的直接编码。**优先级写成一串 if 而不是散落各处**，是为了让"赢了就不该再放技能"这类规则一眼可验证。
+
+#### `skillOffer` ≠ `skill`（Codex 复查 §1.3）
+
+这两个是**不同阶段**，V1.1 初稿把它们混成一个状态是错的：
+
+| 阶段 | 含义 | 棋盘 |
+|---|---|---|
+| `skillOffer` | 1.5s 可点击窗口，宠物发光待命 | **未改变** |
+| `skill` | 技能动画 + Gameplay Action 已开始 | **正在改变** |
+
+完整链路：
+
+```
+turnResolved
+   ↓
+PetDecision = skillOffer
+   ↓
+1.5s 窗口（点击 or 超时）
+   ↓
+PetSkillRequested
+   ↓
+PetActionCommand
+   ↓
+core.applyPetAction()
+   ↓
+PetState = 'skill' + CoreGameEvent[] 播放
+```
+
+分开的价值：**窗口期棋盘没变，可以安全取消**（比如玩家此时暂停）；一旦进入 `skill`，就是不可回退的棋盘变更。混成一个状态会让"取消"语义无处安放。
 
 ```ts
 // 事件消费
@@ -535,7 +586,7 @@ function onCoreEvents(events: CoreGameEvent[]) {
     }
     // 重反应：只在 turnResolved，只一次
     if (e.t === 'turnResolved') {
-      pet.play(resolveReaction(e.summary), { level: e.summary.maxCascade });
+      applyDecision(resolvePetDecision(e.summary, petRuntime));
     }
   }
 }
