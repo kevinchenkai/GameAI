@@ -2,6 +2,7 @@
 
 > 本文件是 Claude Code 在本项目工作的**强约束规范**。开工前必读，实现中遵守。
 > 关联文档：主方案 [`docs/JOURNEY_LUDO_V0_1_PLAN.md`](./docs/JOURNEY_LUDO_V0_1_PLAN.md)、任务手册 [`docs/CLAUDE_TASKS.md`](./docs/CLAUDE_TASKS.md)、协作边界 [`AGENTS.md`](./AGENTS.md)。
+> 仓库级约定（远端、同步、部署边界）见根目录 [`../CLAUDE.md`](../CLAUDE.md)。
 
 ---
 
@@ -79,7 +80,7 @@ Claude Code 是**编码线**，只负责代码 / 逻辑 / 数据 / 引擎工程�
 - commit 前缀：`feat(taskN): ...` / `fix: ...` / `docs(journey): ...`。
 - commit message 结尾附：
   ```
-  Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+  Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
   ```
 - 不提交 `.DS_Store`（已 gitignore）；不擅自提交美术素材（属 Codex 的批次提交）。
 - **未经用户要求不擅自 push**。

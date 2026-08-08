@@ -7,16 +7,39 @@
 
 ## 1. 仓库构成
 
-| 目录 | 项目 | 技术栈 |
-|---|---|---|
-| [`Tavern/`](./Tavern/) | 武林客栈 Wulin Tavern | HTML5 |
-| [`soulmate/`](./soulmate/) | Soulmate | HTML5 |
-| [`star_fighter/`](./star_fighter/) | Star Fighter | HTML5 |
-| [`journey/`](./journey/) | 西游记飞行棋 Journey Ludo | Godot 4.x |
-| `index.html` | Codex Games 站点首页 | HTML |
-| `scripts/` | 公共部署 / 工具脚本 | — |
+| 目录 | 项目 | 技术栈 | 子项目规范 |
+|---|---|---|---|
+| [`Tavern/`](./Tavern/) | 武林小馆 Wulin Tavern | Phaser 3 + TS + Node API | [CLAUDE.md](./Tavern/CLAUDE.md) |
+| [`soulmate/`](./soulmate/) | Soulmate | 原生 HTML/JS + Node + SQLite | [CLAUDE.md](./soulmate/CLAUDE.md) ⚠️ 另有 [AGENTS.md](./soulmate/AGENTS.md) |
+| [`star_fighter/`](./star_fighter/) | Star Fighter | 单文件 HTML5 Canvas | [CLAUDE.md](./star_fighter/CLAUDE.md) |
+| [`journey/`](./journey/) | 西游记飞行棋 Journey Ludo | Godot 4.x | [CLAUDE.md](./journey/CLAUDE.md) |
+| `index.html` | Codex Games 站点首页 | HTML | — |
+| `scripts/` | 公共部署 / 工具脚本 | — | — |
+
+**开工前先读对应子项目的 CLAUDE.md**；子项目规范与本文件冲突时，以子项目为准。
 
 **跨项目边界**：各子项目互不干涉。改动一个项目时，不擅自修改其它项目的文件。
+
+---
+
+## 1.1 部署边界（全局红线）
+
+四个游戏**共用同一台服务器的同一个站点根** `/www/wwwroot/g.ismayday.mobi/`，各自占一个子目录：
+
+```
+/www/wwwroot/g.ismayday.mobi/     ← 站点根（Codex Games 首页）
+├── tavern/          ├── soulmate/
+├── star_fighter/    └── journey/
+```
+
+各项目 `deploy.sh` 多数带 `rsync --delete`。因此：
+
+- ✅ 只同步到自己的 `$REMOTE_APP_DIR`
+- ❌ **绝不**把任何子项目的文件 rsync 到站点根 `$REMOTE_ROOT`
+- ❌ **绝不**对站点根执行 `rsync --delete`——会连带删除其它三个游戏
+- 若某次部署看起来需要动站点根，**停下来问用户**
+
+密钥（DeepSeek key、`ADMIN_TOKEN` 等）只存在于各项目服务器上的 `.env`，**不入库、不打印、不写进文档**。
 
 ---
 
