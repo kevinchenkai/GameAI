@@ -43,10 +43,16 @@ export class BootScene extends Phaser.Scene {
     this.load.image(TEX.overlayRocketV, ASSETS.overlays.rocketV);
     this.load.image(TEX.overlayBomb, ASSETS.overlays.bomb);
 
-    // —— 花园：院门 4 阶段（M7 的花园场景用）——
-    ASSETS.garden.gate.forEach((path, stage) => {
-      this.load.image(TEX.gate(stage), path);
-    });
+    /**
+     * ★★ 院门 4 张**故意不在这里加载**（M7 起改为 GardenScene 自己按需加载）。
+     *
+     *   它们合计 3064KB，占原首屏素材的 **78%**，而关卡页根本不显示它们 ——
+     *   玩家要先通关 3 次才会看到花园。为了一张几分钟后才用得上的图
+     *   让所有人多等几秒白屏，是纯亏。
+     *
+     *   见 docs/TODO-性能优化.md：首屏优化是 M8 真人测试的前置条件 ——
+     *   带着 4MB 首屏去测，测到的是"加载慢"而不是"玩法好不好"。
+     */
 
     /**
      * —— 旺财 Puppet 5 层（M6）——

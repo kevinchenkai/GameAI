@@ -16,6 +16,8 @@ import { getLevel } from '../../config/levels/index';
 import { INPUT_BUFFER, type Tempo } from '../../config/tuning';
 import type { CoreGameEvent, Move, Pos, SpecialKind } from '../../core/types';
 import { loadSettings, saveSettings } from '../../meta/settings';
+import { applyLevelResult, loadSave, saveSave } from '../../meta/save';
+import { focusedProgress } from '../../meta/gardenProgress';
 import type { SessionState } from '../../core/session';
 import { WebAudioManager } from '../audio/WebAudioManager';
 import { BoardView } from '../render/BoardView';
@@ -602,11 +604,35 @@ export class LevelScene extends Phaser.Scene {
 
     if (win && win.t === 'levelWin') {
       this.audio.play('win');
+
+      /**
+       * ★★ 先结算存档，再开弹窗 —— 弹窗要显示的花园进度依赖结算结果。
+       *
+       *   `applyLevelResult` 内部保证了两条容易写错的规则：
+       *   Progress Star 只在**首次通关**发放、Mastery 按**历史最高增量**发放。
+       *   这里只管调用，不要在场景里再算一遍（算两遍必然算不一致）。
+       */
+      const applied = applyLevelResult(loadSave(), this.session.level.id, win.rating);
+      saveSave(applied.save);
+
+      const focus = focusedProgress(applied.save);
+      const canBuild = focus?.canBuild ?? false;
+
       this.result.open({
         kind: 'win',
         rating: win.rating,
         movesLeft: win.movesLeft,
         hasNext: getLevel(this.session.level.id + 1) !== undefined,
+        garden: focus
+          ? {
+              stage: focus.stage,
+              totalStages: focus.totalStages,
+              starsShort: focus.starsShort,
+              gained: applied.progressGained,
+            }
+          : null,
+        // ★ 只有真的能建设时才给按钮 —— 点进去发现建不了比没有按钮更糟
+        ...(canBuild ? { onGarden: (): void => this.gotoGarden() } : {}),
         onReplay: () => this.restart(this.session.level.id),
         onNext: () => this.restart(this.session.level.id + 1),
       });
@@ -635,6 +661,13 @@ export class LevelScene extends Phaser.Scene {
     this.settings.close();
     this.pendingLevelId = levelId;
     this.scene.restart();
+  }
+
+  /** 去花园。★ 关掉弹窗再切场景，否则弹窗会残留在场景栈里 */
+  private gotoGarden(): void {
+    this.result.close();
+    this.settings.close();
+    this.scene.start('Garden');
   }
 
   /**

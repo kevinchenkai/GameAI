@@ -51,9 +51,20 @@ describe('骨架 —— 每个模块在运行时真的导出了它声称的东�
 });
 
 describe('未实现的函数抛出明确错误，而不是静默返回 undefined', () => {
-  it('错误信息指明该在哪个 Milestone 补', () => {
-    // M1/M3/M4 已实现的不再列在这里；随 Milestone 推进逐条移走
-    expect(() => save.loadSave()).toThrow(/M7/);
+  /**
+   * ★ M7 已实现 loadSave，原断言（应抛 /M7/）随之移走。
+   *   仍在这里守着的是**明确划到 V1 Full**的进度码导出 / 导入 ——
+   *   它们不是"忘了写"，是刻意不做（Stage 0 只有 8 关，丢档损失可接受）。
+   *   留一条断言，防止有人以为它们能用而直接调用。
+   */
+  it('★ V1 Full 才做的进度码要抛错，不能静默返回 undefined', () => {
+    expect(() => save.exportProgressCode(save.createDefaultSave())).toThrow(/V1 Full/);
+    expect(() => save.importProgressCode('x')).toThrow(/V1 Full/);
+  });
+
+  it('★ M7 已实现：loadSave 返回可用存档，不再抛错', () => {
+    expect(() => save.loadSave()).not.toThrow();
+    expect(save.loadSave().version).toBe(1);
   });
 
   it('★ M4 已实现：computeLayout 不再是占位', () => {
