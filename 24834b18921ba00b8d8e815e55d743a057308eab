@@ -1,0 +1,203 @@
+garden/web/src/game/audio/AudioManager.ts
+  640fa3cf12a5a767 1-16
+garden/web/tests/core/fuzz.test.ts
+  640fa3cf12a5a767 1-171
+garden/web/src/game/scenes/BootScene.ts
+  640fa3cf12a5a767 1-22
+garden/web/tests/core/contracts.test.ts
+  640fa3cf12a5a767 1-105
+garden/web/tests/game/turnController.test.ts
+  640fa3cf12a5a767 1-70
+garden/web/tests/core/matcher.test.ts
+  640fa3cf12a5a767 1-292
+garden/web/src/game/pet/events.ts
+  640fa3cf12a5a767 1-23
+garden/web/src/game/render/EventPlayer.ts
+  640fa3cf12a5a767 1-21
+"garden/docs/Garden Match 游戏框架设计 V1.1.md"
+  2c4db6ea02bd3453 32-48,296,316,322-366,844-872,878,945-949,955-960,1221,1223,1225,1229-1230
+garden/web/src/game/pet/state.ts
+  640fa3cf12a5a767 1-32
+garden/web/tests/core/generator.test.ts
+  640fa3cf12a5a767 1-199
+garden/orders/LEGIBILITY-SPEC.md
+  640fa3cf12a5a767 1-250
+garden/web/src/core/generator.ts
+  640fa3cf12a5a767 1-74,76-154
+garden/web/tsconfig.json
+  640fa3cf12a5a767 1-28
+garden/web/src/core/special.ts
+  640fa3cf12a5a767 1-12,16-18,25-30,34,36
+garden/web/tests/core/helpers.ts
+  640fa3cf12a5a767 1-140
+garden/web/tests/core/skeleton.test.ts
+  640fa3cf12a5a767 1-97
+garden/web/src/main.ts
+  640fa3cf12a5a767 1-33
+garden/web/src/game/scenes/GardenScene.ts
+  640fa3cf12a5a767 1-21
+garden/web/src/config/pet-rig.ts
+  640fa3cf12a5a767 1-56
+garden/web/tests/game/reactionResolver.test.ts
+  640fa3cf12a5a767 1-79
+garden/web/tests/core/board.test.ts
+  640fa3cf12a5a767 1-218
+garden/web/src/core/rng.ts
+  640fa3cf12a5a767 1-98
+garden/web/src/config/assets.ts
+  640fa3cf12a5a767 1-99
+garden/web/tools/validateLevels.ts
+  640fa3cf12a5a767 1-40
+garden/web/vitest.config.ts
+  640fa3cf12a5a767 1-14
+garden/web/src/game/TurnController.ts
+  640fa3cf12a5a767 1-80,84
+garden/.gitignore
+  640fa3cf12a5a767 1-19
+garden/web/eslint.config.js
+  640fa3cf12a5a767 1-134
+garden/web/tests/core/resolver.test.ts
+  640fa3cf12a5a767 1-279
+garden/web/src/core/objective.ts
+  640fa3cf12a5a767 1-23,31,35-36,43-44
+garden/web/src/core/obstacles.ts
+  640fa3cf12a5a767 1-32,35,37
+garden/assets/README.md
+  640fa3cf12a5a767 1-36,38-42,44-61
+garden/deploy.sh
+  640fa3cf12a5a767 1-128
+garden/web/vite.config.ts
+  640fa3cf12a5a767 1-97
+"garden/docs/美术素材工单 V1.1（Codex image-2）.md"
+  640fa3cf12a5a767 588
+  2c4db6ea02bd3453 28-41,387,389-403,405-425,435-443,594-595,685-691,750-751,755-757,759,767,791,794
+garden/web/src/core/types.ts
+  640fa3cf12a5a767 1-217
+garden/web/tools/simulate.ts
+  640fa3cf12a5a767 1-52
+garden/web/package.json
+  640fa3cf12a5a767 1-29
+garden/web/tests/core/rng.test.ts
+  640fa3cf12a5a767 1-97
+garden/web/src/config/pet.ts
+  640fa3cf12a5a767 1-107
+garden/web/src/config/levels/index.ts
+  640fa3cf12a5a767 1-27
+garden/web/src/core/session.ts
+  640fa3cf12a5a767 1-105
+garden/orders/codex-imagegen-order-batch1-pieces.md
+  640fa3cf12a5a767 1-149,153-180,184-212,216-245,249-279,283-311,315-368,372-392
+garden/web/src/core/validateLevel.ts
+  640fa3cf12a5a767 1-61
+garden/orders/README.md
+  640fa3cf12a5a767 1-157
+garden/web/src/config/tuning.ts
+  640fa3cf12a5a767 1-129
+garden/CLAUDE.md
+  2c4db6ea02bd3453 71-74,77-85
+garden/web/src/core/resolver.ts
+  640fa3cf12a5a767 1-324
+garden/orders/SUBMIT.md
+  640fa3cf12a5a767 1-212
+garden/web/index.html
+  640fa3cf12a5a767 1-41
+garden/web/src/config/pieces.ts
+  640fa3cf12a5a767 1-112
+garden/web/src/game/pet/PetController.ts
+  640fa3cf12a5a767 1-26,30-31
+garden/orders/codex-imagegen-order-batch2-wangcai-puppet.md
+  640fa3cf12a5a767 1-165,167-214,218-250,254-275,277-292
+garden/orders/codex-imagegen-order-batch0-wangcai-master.md
+  640fa3cf12a5a767 1-99,101-102,104-121,123-128,130-266
+garden/web/src/core/petAction.ts
+  640fa3cf12a5a767 1-30,33,35
+garden/orders/codex-imagegen-order-batch3-stage0-rest.md
+  640fa3cf12a5a767 1-116,120-146,150-170,174-215,219-242,246-298,302-322,326-343,347-366,370-389,393-518,522-552,556-601
+garden/web/src/core/matcher.ts
+  640fa3cf12a5a767 1-270
+garden/web/src/config/garden.ts
+  640fa3cf12a5a767 1-70
+garden/web/src/core/board.ts
+  640fa3cf12a5a767 1-77,79-105
+garden/web/src/config/assistance.ts
+  640fa3cf12a5a767 1-36
+garden/web/src/game/render/layout.ts
+  640fa3cf12a5a767 1-39
+garden/web/src/game/pet/reactionResolver.ts
+  640fa3cf12a5a767 1-59
+garden/web/src/game/scenes/LevelScene.ts
+  640fa3cf12a5a767 1-21
+garden/web/tests/config/palette.test.ts
+  640fa3cf12a5a767 1-64
+garden/web/src/meta/save.ts
+  640fa3cf12a5a767 1-49,59-67
+garden/web/src/core/notImplemented.ts
+  640fa3cf12a5a767 1-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "24834b18921ba00b8d8e815e55d743a057308eab",
+  "prompts": {
+    "2c4db6ea02bd3453": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d28a47ec-5bec-4514-ac65-be2369dfff14",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 2361,
+      "total_deletions": 123,
+      "accepted_lines": 305,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/c5d951bb1d230888587613558e70cb6c6804d520a04417b32ab8b46243d6b5d4",
+      "token_usage": {
+        "input_tokens": 292,
+        "output_tokens": 114275,
+        "cache_creation_input_tokens": 245686,
+        "cache_read_input_tokens": 22861967
+      }
+    },
+    "4fca2e14c0ddaf88": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "14292ce1-3f2e-4465-947c-0a9192ed4e53",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1850,
+      "overriden_lines": 1,
+      "messages_url": "http://172.20.103.50:8002/cas/acfb98d883faf46937f25683a00b65a0d46640bf7733a0c86fa7c82784232d77",
+      "token_usage": {
+        "input_tokens": 298,
+        "output_tokens": 69801,
+        "cache_creation_input_tokens": 540009,
+        "cache_read_input_tokens": 20785382
+      }
+    },
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 21858,
+      "total_deletions": 21785,
+      "accepted_lines": 14999,
+      "overriden_lines": 140,
+      "messages_url": "http://172.20.103.50:8002/cas/4b4e00973e78218a8aa62b3645f32022585eb90929b95de87ea58bd8ba4d7bf6",
+      "token_usage": {
+        "input_tokens": 4627,
+        "output_tokens": 206981,
+        "cache_creation_input_tokens": 912428,
+        "cache_read_input_tokens": 50542478
+      }
+    }
+  }
+}
