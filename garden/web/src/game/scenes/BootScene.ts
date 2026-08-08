@@ -9,6 +9,7 @@
 import Phaser from 'phaser';
 import { ASSETS } from '../../config/assets';
 import { TEX } from '../textureKeys';
+import { hideBootOverlay, setBootError, setBootProgress } from '../bootOverlay';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -16,6 +17,8 @@ export class BootScene extends Phaser.Scene {
   }
 
   preload(): void {
+    this.bindLoaderProgress();
+
     // —— 棋子 ——
     for (const [color, path] of Object.entries(ASSETS.pieces)) {
       this.load.image(TEX.piece(color), path);
@@ -52,7 +55,36 @@ export class BootScene extends Phaser.Scene {
      */
   }
 
+  /**
+   * 把 Phaser Loader 的进度喂给 HTML 层的进度条。
+   *
+   * ★ `FILE_LOAD_ERROR` 必须处理：素材 404 时 Phaser **不会中止**，
+   *   它照常走完 `complete`，然后场景拿着一堆空纹理去画 ——
+   *   表现是"游戏起来了但什么都看不见"，而控制台只有一行 warn。
+   *   首次部署踩过一次（全部素材 404），当时排查了很久。
+   */
+  private bindLoaderProgress(): void {
+    const failed: string[] = [];
+
+    this.load.on(Phaser.Loader.Events.PROGRESS, (value: number) => {
+      setBootProgress(value);
+    });
+
+    this.load.on(Phaser.Loader.Events.FILE_LOAD_ERROR, (file: Phaser.Loader.File) => {
+      failed.push(file.key);
+      console.error(`[Boot] 素材加载失败：${file.key} ← ${String(file.url)}`);
+    });
+
+    this.load.once(Phaser.Loader.Events.COMPLETE, () => {
+      if (failed.length > 0) {
+        setBootError(`有 ${failed.length} 项素材没能加载，画面可能不完整`);
+      }
+    });
+  }
+
   create(): void {
+    // ★ 必须在场景真正开始之后才收起遮罩，否则会露出一帧空背景
+    hideBootOverlay();
     this.scene.start('Level');
   }
 }

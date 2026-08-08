@@ -32,10 +32,82 @@
         display: block;
         touch-action: none;
       }
+
+      /*
+       * ★ 加载指示**写在 HTML 里，不在 Phaser 里**。
+       *
+       *   Phaser 的 BootScene 要等 ~350KB 的 JS 下载并解析完才存在，
+       *   而那段时间恰恰是最长、最需要有东西可看的一段。
+       *   用 Phaser 画进度条，等于「白屏结束之后才开始显示进度条」。
+       *
+       *   这段 CSS 与 DOM 随 index.html 一起到达（首个网络往返），
+       *   所以它在 JS 到达之前就能显示。
+       */
+      #boot {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        background: #fff6e5;
+        /* 淡出时不要挡住已经能玩的棋盘 */
+        transition: opacity 0.35s ease;
+      }
+      #boot.done {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #boot-title {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei',
+          sans-serif;
+        /* 50+ 用户：字号不吝啬 */
+        font-size: 22px;
+        font-weight: 600;
+        color: #7a5c3e;
+        letter-spacing: 0.08em;
+      }
+      #boot-track {
+        width: 62%;
+        max-width: 280px;
+        height: 12px;
+        border-radius: 999px;
+        background: #f0e2c8;
+        overflow: hidden;
+      }
+      #boot-fill {
+        height: 100%;
+        width: 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #ffc85c, #ff9f43);
+        transition: width 0.25s ease;
+      }
+      #boot-hint {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei',
+          sans-serif;
+        font-size: 15px;
+        color: #a68a6d;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot,
+        #boot-fill {
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
     <div id="game"></div>
+
+    <!-- ★ 首屏可见的加载态。白屏是最差的等待形态：
+         50+ 用户遇到白屏的默认反应是关掉页面（CLAUDE.md §3.3）。 -->
+    <div id="boot">
+      <div id="boot-title">花园小镇</div>
+      <div id="boot-track"><div id="boot-fill"></div></div>
+      <div id="boot-hint">正在准备花园…</div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

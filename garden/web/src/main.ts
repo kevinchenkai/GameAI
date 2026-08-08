@@ -6,9 +6,13 @@
 
 import Phaser from 'phaser';
 import { ENV_PALETTE } from './config/pieces';
+import { setBootError } from './game/bootOverlay';
 import { BootScene } from './game/scenes/BootScene';
 import { LevelScene } from './game/scenes/LevelScene';
 import { GardenScene } from './game/scenes/GardenScene';
+
+/** 超过这个时间引擎还没起来，就认定为失败（慢网也够用了） */
+const BOOT_TIMEOUT_MS = 15000;
 
 /**
  * ★ 开发期可用 `?renderer=canvas` 强制 Canvas 渲染。
@@ -47,6 +51,21 @@ const config: Phaser.Types.Core.GameConfig = {
 };
 
 const game = new Phaser.Game(config);
+
+/**
+ * ★ 兜底：引擎起不来时也要把话说清楚。
+ *
+ *   实测过的场景：某些环境下 WebGL 抛
+ *   `Framebuffer status: Incomplete Attachment`，Phaser 构造中断，
+ *   BootScene 根本不会执行 —— 进度条会**永远停在 15%**，
+ *   用户对着一个不动的进度条干等，而控制台的报错他看不到。
+ *
+ *   宁可显示"加载失败"，也不要让人无限等待。
+ */
+setTimeout(() => {
+  if (game.isBooted) return;
+  setBootError('加载失败了，请刷新页面重试');
+}, BOOT_TIMEOUT_MS);
 
 // ★ 仅开发期暴露给调试用（Vite 会在生产构建里把这段整体消除）
 if (import.meta.env.DEV) {

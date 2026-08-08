@@ -17,6 +17,8 @@ import { DEFAULT_TEMPO, INPUT_BUFFER, type Tempo } from '../../config/tuning';
 import type { Move, Pos, SpecialKind } from '../../core/types';
 import type { SessionState } from '../../core/session';
 import { BoardView } from '../render/BoardView';
+import { HudView } from '../ui/HudView';
+import { buildHudView, type HudModel } from '../ui/hudModel';
 import { PhaserEventPlayer } from '../render/EventPlayer';
 import { cellAtPoint, computeLayout, type LayoutResult } from '../render/layout';
 import { buildTimeline, isBufferWindowOpen } from '../render/timeline';
@@ -36,6 +38,7 @@ export class LevelScene extends Phaser.Scene {
   private session!: SessionState;
   private layout!: LayoutResult;
   private view!: BoardView;
+  private hud!: HudView;
   private player!: PhaserEventPlayer;
   private turn: TurnState = createTurnState();
   private gesture: GestureState = createGestureState();
@@ -63,6 +66,9 @@ export class LevelScene extends Phaser.Scene {
     this.layout = this.measureLayout();
     this.view = new BoardView(this, this.layout);
     this.view.build(this.session.board);
+
+    this.hud = new HudView(this, this.layout);
+    this.hud.build(this.hudModel());
 
     this.player = new PhaserEventPlayer(this, this.view, () => this.tempo);
     this.syncPlayerIndex();
@@ -226,6 +232,7 @@ export class LevelScene extends Phaser.Scene {
 
     // ★ 与 core 对账：以 core 的棋盘为准，不累积渲染层的推测
     this.view.reconcile(this.session.board);
+    this.hud.update(this.hudModel());
     this.syncPlayerIndex();
     this.rebuildIfNeeded(result.events);
 
@@ -267,6 +274,13 @@ export class LevelScene extends Phaser.Scene {
     this.layout = this.measureLayout();
     this.view.setLayout(this.layout);
     this.view.build(this.session.board);
+    this.hud.setLayout(this.layout);
+    this.hud.rebuild(this.hudModel());
     this.syncPlayerIndex();
+  }
+
+  /** HUD 的数据源。★ 由 core 的关卡 + 进度推导，渲染层不自己记账 */
+  private hudModel(): HudModel {
+    return buildHudView(this.session.level, this.session.progress, this.session.movesLeft);
   }
 }
