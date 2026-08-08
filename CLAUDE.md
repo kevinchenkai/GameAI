@@ -52,13 +52,21 @@
 
 ### 服务器与首页发布
 
-- SSH：`ubuntu@211.159.177.55`（sudo 免密），nginx `root` = `/www/wwwroot/g.ismayday.mobi`
-- 文件属主统一 `www:www`，权限 644；静态图片 `expires 30d`（**改图请换文件名**，否则用户 30 天内看到旧图）
-- **站点根 `index.html` 没有部署脚本**，由手动 rsync 发布：
+> ⚠️ **前置条件：SSH 免密登录是「用户本机 Mac 的一次性授权」，不是仓库能力。**
+> 主机地址见各项目 `deploy.sh` 的 `REMOTE_HOST` 默认值（可用同名环境变量覆盖）。
+> 换一台机器、或没有配过密钥的环境，下列命令会直接失败——**这属于环境配置问题，不要试图绕过或代为配置密钥**，请让用户处理。
+> 未经用户明确要求，**不主动连服务器、不主动发布线上**。
+
+服务器实况（本文档记录，便于判断，不代表你有权限执行）：
+
+- nginx `root` = `/www/wwwroot/g.ismayday.mobi`
+- 文件属主统一 `www:www`，权限 644
+- 静态图片 `expires 30d`（**改图请换文件名**，否则用户 30 天内看到旧图）
+- **站点根 `index.html` 没有部署脚本**，需手动 rsync 发布：
 
 ```bash
 rsync -avz --rsync-path="sudo rsync" --no-owner --no-group --chmod=F644 \
-  index.html ubuntu@211.159.177.55:/www/wwwroot/g.ismayday.mobi/
+  index.html "$REMOTE_HOST:/www/wwwroot/g.ismayday.mobi/"
 ```
 
 发布后 `sudo chown www:www` 对齐属主。**发布线上前先 `--dry-run` 确认影响范围**。
