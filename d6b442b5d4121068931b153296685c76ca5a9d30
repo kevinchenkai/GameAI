@@ -1,0 +1,34 @@
+journey/docs/s3_layout_preview.png.import
+  d04e6e85d2bc6e1f 1-40
+journey/prompts/imagegen/S3_BOARD_BRIEF.md
+  d04e6e85d2bc6e1f 1-91
+journey/docs/ART_ASSET_LIST.md
+  d04e6e85d2bc6e1f 48-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "d6b442b5d4121068931b153296685c76ca5a9d30",
+  "prompts": {
+    "d04e6e85d2bc6e1f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "33d5ffae-ccf4-4947-a07e-7f6451ba8c0d",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 140,
+      "total_deletions": 0,
+      "accepted_lines": 140,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/ca90a53ec2fc401dfae4deb45b8b80ef05c7d115fb8a42bf8dafd6362822be80",
+      "token_usage": {
+        "input_tokens": 13,
+        "output_tokens": 1055,
+        "cache_creation_input_tokens": 9913,
+        "cache_read_input_tokens": 143104
+      }
+    }
+  }
+}
