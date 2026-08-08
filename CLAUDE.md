@@ -20,6 +20,12 @@
 
 **跨项目边界**：各子项目互不干涉。改动一个项目时，不擅自修改其它项目的文件。
 
+### 尚未纳入管理
+
+| 目录 | 状态 |
+|---|---|
+| `garden/` | 新建项目，**刚启动、未到发布阶段，暂不入库**。当前为未跟踪状态，属预期——不要顺手 `git add -A` 带进提交，也不要当成垃圾目录清理。待可发布时再由用户决定纳入。 |
+
 ---
 
 ## 1.1 部署边界（全局红线）
@@ -27,17 +33,35 @@
 四个游戏**共用同一台服务器的同一个站点根** `/www/wwwroot/g.ismayday.mobi/`，各自占一个子目录：
 
 ```
-/www/wwwroot/g.ismayday.mobi/     ← 站点根（Codex Games 首页）
-├── tavern/          ├── soulmate/
-├── star_fighter/    └── journey/
+/www/wwwroot/g.ismayday.mobi/     ← 站点根（Codex Games 首页 index.html）
+├── star_fighter/    ├── soulmate/
+├── tavern/          ├── journey/
+├── images/promo/    ← 首页自用素材（如 journey-ludo-cover.jpg）
+└── mimo/  mystock/  ← ⚠️ 非本仓库项目，不归 GameAI 管，勿动
 ```
+
+> `mimo/` 与 `mystock/` 是部署在同一台服务器的**其它非游戏项目**，不在本仓库内。
+> 它们不是"多余目录"，**任何情况下不清理、不同步、不纳入部署范围**。
 
 各项目 `deploy.sh` 多数带 `rsync --delete`。因此：
 
 - ✅ 只同步到自己的 `$REMOTE_APP_DIR`
 - ❌ **绝不**把任何子项目的文件 rsync 到站点根 `$REMOTE_ROOT`
-- ❌ **绝不**对站点根执行 `rsync --delete`——会连带删除其它三个游戏
+- ❌ **绝不**对站点根执行 `rsync --delete`——会连带删除其它三个游戏与 mimo / mystock
 - 若某次部署看起来需要动站点根，**停下来问用户**
+
+### 服务器与首页发布
+
+- SSH：`ubuntu@211.159.177.55`（sudo 免密），nginx `root` = `/www/wwwroot/g.ismayday.mobi`
+- 文件属主统一 `www:www`，权限 644；静态图片 `expires 30d`（**改图请换文件名**，否则用户 30 天内看到旧图）
+- **站点根 `index.html` 没有部署脚本**，由手动 rsync 发布：
+
+```bash
+rsync -avz --rsync-path="sudo rsync" --no-owner --no-group --chmod=F644 \
+  index.html ubuntu@211.159.177.55:/www/wwwroot/g.ismayday.mobi/
+```
+
+发布后 `sudo chown www:www` 对齐属主。**发布线上前先 `--dry-run` 确认影响范围**。
 
 密钥（DeepSeek key、`ADMIN_TOKEN` 等）只存在于各项目服务器上的 `.env`，**不入库、不打印、不写进文档**。
 
