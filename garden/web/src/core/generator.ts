@@ -122,6 +122,66 @@ export function generateRefill(
 }
 
 /**
+ * ★★ 会**避免制造死局**的补充填充（框架 §5.4 的预防版本）。
+ *
+ *   `generateRefill` 是盲填的：随机挑颜色，填完可能整盘无合法 Move，
+ *   于是回合末触发 shuffle。玩家看到的是"棋盘自己动了一下"——
+ *   不扣步、不算 bug，但**看得见**，且 6 色 7×7 下每 12 步就会遇到一次
+ *   （49 格 ÷ 6 色 ≈ 每色 8 个，凑不出可交换对的概率显著上升）。
+ *
+ *   本函数在填完后检查一次：**若无合法 Move 就重掷**。
+ *   重掷只换颜色、不换位置，所以：
+ *     - 不影响掉落动画（位置由 fall 决定，与本函数无关）
+ *     - 不改变难度（颜色分布仍是同一个 rng 分布）
+ *     - 只是把"必然要 shuffle 的那一掷"提前换掉
+ *
+ * ⚠️ 重试次数必须有上限：极端棋盘（几乎填满障碍）可能怎么填都是死局，
+ *   无限重试会**卡死主线程**。达到上限就返回最后一次结果，
+ *   让回合末的 shuffle 兜底 —— 那条路本来就存在，是正确的降级。
+ */
+const REFILL_MAX_ATTEMPTS = 12;
+
+export function generateRefillAvoidingDeadlock(
+  board: BoardState,
+  emptyPositions: readonly Pos[],
+  rng: Rng,
+  options: GeneratorOptions,
+  ids: PieceIdSource,
+): readonly { readonly piece: Piece; readonly at: Pos }[] {
+  let last: readonly { readonly piece: Piece; readonly at: Pos }[] = [];
+
+  for (let attempt = 0; attempt < REFILL_MAX_ATTEMPTS; attempt++) {
+    /**
+     * ★ 每次重试都要**新建棋子 id**（makePiece 走 ids），不能复用上一轮的 ——
+     *   id 是渲染层的精灵索引，复用会让两个不同的棋子拿到同一个 id。
+     */
+    const items = emptyPositions.map((at) => ({
+      piece: makePiece(pickColor(rng, options), ids),
+      at,
+    }));
+    last = items;
+
+    const filled = withCells(
+      board,
+      items.map(({ piece, at }) => {
+        const cell = cellAt(board, at);
+        return { pos: at, cell: { ...(cell as Cell), piece } };
+      }),
+    );
+
+    /**
+     * ★ 有**待消除的匹配**时直接接受：那说明连锁还要继续，
+     *   棋盘根本没到"稳定"状态，此时判死局没有意义。
+     */
+    if (findAllMatches(filled).length > 0) return items;
+    if (hasAnyValidMove(filled)) return items;
+  }
+
+  // 12 次都不行 —— 交给回合末的 shuffle 兜底
+  return last;
+}
+
+/**
  * 死局时重排现有棋子（不新增棋子，保持难度不变）。
  * 重排后必须「无自动匹配 + 有合法 Move」，否则重试。
  */

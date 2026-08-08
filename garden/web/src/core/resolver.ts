@@ -18,7 +18,12 @@
  */
 
 import { cellAt, isAdjacent, isSwappable, swapPieces, withCells } from './board';
-import { generateRefill, shuffleBoard, type GeneratorOptions, type PieceIdSource } from './generator';
+import {
+  generateRefillAvoidingDeadlock,
+  shuffleBoard,
+  type GeneratorOptions,
+  type PieceIdSource,
+} from './generator';
 import { findAllMatches, hasAnyValidMove } from './matcher';
 import { damageObstacles } from './obstacles';
 import {
@@ -278,7 +283,19 @@ function runCascades(ctx: ResolveCtx, preferredOrigin: readonly Pos[]): void {
 
     const empties = findEmptyPositions(ctx.board);
     if (empties.length > 0) {
-      const items = generateRefill(empties, ctx.rng, ctx.options, ctx.ids);
+      /**
+       * ★ 用**避免制造死局**的版本填充（见 generator.ts）。
+       *   盲填会让整盘凑不出可交换对，于是回合末触发 shuffle ——
+       *   玩家看到"棋盘自己动了一下"。这里提前把那一掷换掉。
+       *   重掷只换颜色不换位置，不影响掉落动画，也不改变难度分布。
+       */
+      const items = generateRefillAvoidingDeadlock(
+        ctx.board,
+        empties,
+        ctx.rng,
+        ctx.options,
+        ctx.ids,
+      );
       ctx.board = withCells(
         ctx.board,
         items.map(({ piece, at }) => ({
@@ -467,7 +484,14 @@ function applyComboBlast(ctx: ResolveCtx, affected: readonly Pos[], origin: read
 
   const empties = findEmptyPositions(ctx.board);
   if (empties.length > 0) {
-    const items = generateRefill(empties, ctx.rng, ctx.options, ctx.ids);
+    // ★ 与 runCascades 中的补充走同一条路（避免制造死局）
+    const items = generateRefillAvoidingDeadlock(
+      ctx.board,
+      empties,
+      ctx.rng,
+      ctx.options,
+      ctx.ids,
+    );
     ctx.board = withCells(
       ctx.board,
       items.map(({ piece, at }) => ({
