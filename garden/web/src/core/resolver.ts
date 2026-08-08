@@ -17,12 +17,38 @@
  *   特殊棋子生成与触发、障碍受损、目标结算与胜负判定。
  */
 
-import { cellAt, isAdjacent, isPlayable, swapPieces, withCells } from './board';
+import { cellAt, isAdjacent, isSwappable, swapPieces, withCells } from './board';
 import { generateRefill, shuffleBoard, type GeneratorOptions, type PieceIdSource } from './generator';
 import { findAllMatches, hasAnyValidMove } from './matcher';
+import { damageObstacles } from './obstacles';
+import {
+  accumulateProgress,
+  computeRating,
+  isAllComplete,
+  remainingCounts,
+} from './objective';
 import { restoreGenerators, type SessionState } from './session';
+import { comboAffectedArea, specialAffectedArea, specialFromMatch } from './special';
 import type { Rng } from './rng';
-import type { BoardState, Cell, CoreGameEvent, CoreTurnSummary, Move, Piece, Pos } from './types';
+import type {
+  BoardState,
+  Cell,
+  CoreGameEvent,
+  CoreTurnSummary,
+  Move,
+  Piece,
+  Pos,
+  SpecialKind,
+} from './types';
+
+const keyOf = (p: Pos): string => `${p.col},${p.row}`;
+
+/**
+ * ★ Stage 0 冻结范围：不做彩虹球（框架 §12）。
+ *   5 连仍然识别得出来，只是不生成彩虹球棋子。
+ *   V1 Full 把这个常量改成 true 即可启用，组合表已在 special.ts 定死。
+ */
+const ENABLE_RAINBOW = false;
 
 export interface ResolveResult {
   readonly session: SessionState;
@@ -38,6 +64,7 @@ interface ResolveCtx {
   readonly options: GeneratorOptions;
   maxCascade: number;
   totalCleared: number;
+  readonly specialCreated: SpecialKind[];
 }
 
 /** 防御性上限：正常连锁远达不到，用于挡住潜在的死循环 */
@@ -108,6 +135,69 @@ function findEmptyPositions(board: BoardState): Pos[] {
   return out;
 }
 
+/**
+ * 清除这些格子上的棋子。
+ *
+ * ★ **仍有血的障碍会挡住清除** —— 这就是"冰需要 N 次消除才破"的实现：
+ *   第 1 次消除把冰打掉一层，棋子**留在原地**（玩家看到冰变薄了）；
+ *   等冰的血空了、障碍消失，下一次消除才真正清走棋子。
+ *
+ *   ⚠️ 调用顺序有讲究：必须在 `damageObstacles` **之后**调用，
+ *   这样"这一轮刚好被打空的冰"已经从格子上移除，其下棋子会被正常清走。
+ */
+function clearPieces(board: BoardState, positions: readonly Pos[]): BoardState {
+  const updates: { pos: Pos; cell: Cell }[] = [];
+  for (const pos of positions) {
+    const cell = cellAt(board, pos);
+    if (!cell || !cell.piece) continue;
+    if (cell.obstacle) continue; // 障碍还在（血没空）→ 这一轮护住棋子
+    updates.push({ pos, cell: { ...cell, piece: null } });
+  }
+  return withCells(board, updates);
+}
+
+// ————————————————————————————————————————————————
+// 特殊棋子触发
+// ————————————————————————————————————————————————
+
+/**
+ * 引爆消除集合中的特殊棋子，返回被波及的额外格子。
+ *
+ * ★ 连锁引爆：火箭清出的一行里若还有炸弹，炸弹也要爆。
+ *   用 `visited` 集合防止 A 引爆 B、B 又引爆 A 的无限循环 ——
+ *   **每个特殊棋子一次结算内最多引爆一次**。
+ *
+ * ★ 产出 specialFire 事件，渲染层据此播放爆炸动画。
+ */
+function fireSpecials(ctx: ResolveCtx, initial: ReadonlyMap<string, Pos>): Pos[] {
+  const visited = new Set<string>();
+  const extra = new Map<string, Pos>();
+  const queue: Pos[] = [...initial.values()];
+
+  while (queue.length > 0) {
+    const pos = queue.shift() as Pos;
+    const k = keyOf(pos);
+    if (visited.has(k)) continue;
+
+    const piece = cellAt(ctx.board, pos)?.piece;
+    if (!piece || piece.special === 'none') continue;
+    visited.add(k);
+
+    const affected = specialAffectedArea(ctx.board, pos, piece.special);
+    ctx.events.push({ t: 'specialFire', pos, kind: piece.special, affected });
+
+    for (const p of affected) {
+      const pk = keyOf(p);
+      if (!initial.has(pk)) extra.set(pk, p);
+      // 波及到的格子若也是特殊棋子，入队等待引爆
+      if (!visited.has(pk) && cellAt(ctx.board, p)?.piece?.special !== 'none') {
+        queue.push(p);
+      }
+    }
+  }
+  return [...extra.values()];
+}
+
 // ————————————————————————————————————————————————
 // 连锁循环
 // ————————————————————————————————————————————————
@@ -135,24 +225,52 @@ function runCascades(ctx: ResolveCtx, preferredOrigin: readonly Pos[]): void {
       });
     }
 
-    // TODO(M2)：specialSpawn —— 按 group.shape 生成特殊棋子于 group.origin
-    // TODO(M2)：specialFire —— 触发被消除的特殊棋子（可递归）
-    // TODO(M2)：obstacleHit / obstacleClear —— damageObstacles(board, cleared)
-    // TODO(M2)：collect —— 目标进度累计
-
-    // 消除：去重（T/L 型的拐点会出现在两个 group 里）
+    // ——— 消除集合：去重（T/L 型的拐点会出现在两个 group 里）———
     const cleared = new Map<string, Pos>();
     for (const group of matches) {
-      for (const p of group.positions) cleared.set(`${p.col},${p.row}`, p);
+      for (const p of group.positions) cleared.set(keyOf(p), p);
     }
+
+    // ——— 特殊棋子生成 ★ 必须在消除**之前**决定，之后那些棋子就没了 ———
+    // 生成位置从消除集合里**移除**：新生成的特殊棋子留在盘上，不被一起消掉。
+    const spawnedSpecials: { pos: Pos; kind: SpecialKind }[] = [];
+    for (const group of matches) {
+      const kind = specialFromMatch(group);
+      if (kind === 'none') continue;
+      if (kind === 'rainbow' && !ENABLE_RAINBOW) continue; // Stage 0 冻结范围
+      spawnedSpecials.push({ pos: group.origin, kind });
+      cleared.delete(keyOf(group.origin));
+      ctx.specialCreated.push(kind);
+    }
+
+    // ——— 特殊棋子触发：被消除的格子里若有特殊棋子，逐个引爆（可连锁引爆）———
+    const fired = fireSpecials(ctx, cleared);
+
+    // 引爆波及的格子也计入消除
+    for (const p of fired) cleared.set(keyOf(p), p);
+    // 但已生成的新特殊棋子仍然保留（不被自己那一轮的爆炸清掉）
+    for (const s of spawnedSpecials) cleared.delete(keyOf(s.pos));
+
     ctx.totalCleared += cleared.size;
-    ctx.board = withCells(
-      ctx.board,
-      [...cleared.values()].map((pos) => ({
-        pos,
-        cell: { ...(cellAt(ctx.board, pos) as Cell), piece: null },
-      })),
-    );
+
+    // ——— 障碍受损（★ 在消除生效前算，需要知道哪些格被消除）———
+    const dmg = damageObstacles(ctx.board, [...cleared.values()]);
+    ctx.board = dmg.board;
+    ctx.events.push(...dmg.events);
+
+    // ——— 真正清除棋子 ———
+    ctx.board = clearPieces(ctx.board, [...cleared.values()]);
+
+    // ——— 写入新生成的特殊棋子 ———
+    for (const s of spawnedSpecials) {
+      const cell = cellAt(ctx.board, s.pos) as Cell;
+      const base = cell.piece;
+      if (!base) continue;
+      ctx.board = withCells(ctx.board, [
+        { pos: s.pos, cell: { ...cell, piece: { ...base, special: s.kind } } },
+      ]);
+      ctx.events.push({ t: 'specialSpawn', pos: s.pos, kind: s.kind });
+    }
 
     const fell = applyGravity(ctx.board);
     ctx.board = fell.board;
@@ -208,14 +326,33 @@ function finishTurn(ctx: ResolveCtx, session: SessionState, movesLeft: number): 
 
   ctx.events.push({ t: 'movesChanged', left: movesLeft });
 
-  // 7~8. TODO(M2)：目标结算 → 胜负判定 → levelWin / levelLose
-  const result: CoreTurnSummary['result'] = 'continue';
+  // 7. 目标结算 —— 只认事件，不看棋盘（事件序列是唯一真相源）
+  const progress = accumulateProgress(session.level, session.progress, ctx.events);
+
+  // 8. 胜负判定
+  //    ★ 顺序很重要：先判赢再判输。步数用尽的同一回合里若目标也完成了，
+  //      那应该算赢 —— 玩家用最后一步达成目标是最爽的时刻，不能判他输。
+  let result: CoreTurnSummary['result'] = 'continue';
+  if (isAllComplete(session.level, progress)) {
+    result = 'win';
+    ctx.events.push({
+      t: 'levelWin',
+      rating: computeRating(session.level, movesLeft),
+      movesLeft,
+    });
+  } else if (movesLeft <= 0) {
+    result = 'lose';
+    ctx.events.push({
+      t: 'levelLose',
+      remaining: remainingCounts(session.level, progress),
+    });
+  }
 
   // 9. turnResolved —— ★ 宠物唯一的决策入口
   const summary: CoreTurnSummary = {
     maxCascade: ctx.maxCascade,
     totalCleared: ctx.totalCleared,
-    specialCreated: [], // TODO(M2)
+    specialCreated: ctx.specialCreated,
     result,
   };
   ctx.events.push({ t: 'turnResolved', summary });
@@ -225,6 +362,7 @@ function finishTurn(ctx: ResolveCtx, session: SessionState, movesLeft: number): 
       ...session,
       board: ctx.board,
       movesLeft,
+      progress,
       result,
       rngState: ctx.rng.getState(),
       nextPieceId: ctx.ids.next(),
@@ -244,6 +382,7 @@ function createCtx(session: SessionState): ResolveCtx {
     options: { colors: session.level.colors },
     maxCascade: 0,
     totalCleared: 0,
+    specialCreated: [],
   };
 }
 
@@ -259,25 +398,36 @@ function createCtx(session: SessionState): ResolveCtx {
 export function applyMove(session: SessionState, move: Move): ResolveResult {
   const { a, b } = move;
 
+  // ★ isSwappable 比 isPlayable 严：被冰锁住的棋子不能交换
   const legal =
     session.result === 'continue' &&
     session.movesLeft > 0 &&
     isAdjacent(a, b) &&
-    isPlayable(session.board, a) &&
-    isPlayable(session.board, b) &&
-    !!cellAt(session.board, a)?.piece &&
-    !!cellAt(session.board, b)?.piece;
+    isSwappable(session.board, a) &&
+    isSwappable(session.board, b);
 
   if (!legal) {
-    // 连相邻/有棋子都不满足时，连 swap 动画都不该播
+    // 连相邻/可交换都不满足时，连 swap 动画都不该播
     return { session, events: [] };
   }
+
+  // ★ 组合判定在交换**之前** —— comboAffectedArea 要读两格各自的
+  //   special 类型，交换后 a/b 上的棋子就对调了，语义会拧。
+  const combo = comboAffectedArea(session.board, a, b);
 
   const ctx = createCtx(session);
   ctx.board = swapPieces(ctx.board, a, b);
   ctx.events.push({ t: 'swap', a, b });
 
-  // TODO(M2)：特殊棋子组合（comboAffectedArea）在此判定 —— 组合交换即使不成 3 连也合法
+  if (combo) {
+    // ★ 特殊棋子组合：即使不成 3 连也是合法操作，直接引爆。
+    //   这是「彩虹 + 火箭」这类全场最爽时刻的入口（框架 §5.3）。
+    ctx.events.push({ t: 'comboBlast', kinds: combo.kinds, affected: combo.affected });
+    applyComboBlast(ctx, combo.affected, [a, b]);
+    runCascades(ctx, []);
+    return finishTurn(ctx, session, session.movesLeft - 1);
+  }
+
   if (findAllMatches(ctx.board).length === 0) {
     // 无效交换：弹回，不扣步，不产出 turnResolved
     return {
@@ -288,6 +438,45 @@ export function applyMove(session: SessionState, move: Move): ResolveResult {
 
   runCascades(ctx, [a, b]);
   return finishTurn(ctx, session, session.movesLeft - 1);
+}
+
+/**
+ * 执行组合爆炸：清除受影响区域，结算障碍，然后下落补充。
+ * 之后交给 runCascades 处理后续连锁。
+ */
+function applyComboBlast(ctx: ResolveCtx, affected: readonly Pos[], origin: readonly Pos[]): void {
+  const cleared = new Map<string, Pos>();
+  for (const p of affected) cleared.set(keyOf(p), p);
+  // 组合的两个棋子自身也消失
+  for (const p of origin) cleared.set(keyOf(p), p);
+
+  // 波及范围里的其它特殊棋子照样引爆
+  for (const p of fireSpecials(ctx, cleared)) cleared.set(keyOf(p), p);
+
+  ctx.totalCleared += cleared.size;
+
+  const dmg = damageObstacles(ctx.board, [...cleared.values()]);
+  ctx.board = dmg.board;
+  ctx.events.push(...dmg.events);
+
+  ctx.board = clearPieces(ctx.board, [...cleared.values()]);
+
+  const fell = applyGravity(ctx.board);
+  ctx.board = fell.board;
+  if (fell.moves.length > 0) ctx.events.push({ t: 'fall', moves: fell.moves });
+
+  const empties = findEmptyPositions(ctx.board);
+  if (empties.length > 0) {
+    const items = generateRefill(empties, ctx.rng, ctx.options, ctx.ids);
+    ctx.board = withCells(
+      ctx.board,
+      items.map(({ piece, at }) => ({
+        pos: at,
+        cell: { ...(cellAt(ctx.board, at) as Cell), piece },
+      })),
+    );
+    ctx.events.push({ t: 'spawn', items });
+  }
 }
 
 /**

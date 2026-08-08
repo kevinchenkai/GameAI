@@ -15,10 +15,9 @@
  */
 
 import type { LevelConfig } from '../../core/types';
+import { STAGE0_LEVELS } from './stage0';
 
-// M7 时逐关补齐。此处保持空数组而不是占位假数据——
-// 假关卡会让 validateLevels 报出没意义的错，掩盖真问题。
-export const LEVELS: readonly LevelConfig[] = [];
+export const LEVELS: readonly LevelConfig[] = STAGE0_LEVELS;
 
 export function getLevel(id: number): LevelConfig | undefined {
   return LEVELS.find((l) => l.id === id);

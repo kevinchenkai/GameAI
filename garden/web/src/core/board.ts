@@ -5,6 +5,7 @@
  * 这样事件序列可以安全地引用中间状态，回放与快照也不需要深拷贝。
  */
 
+import { locksPieceBeneath } from './types';
 import type { BoardState, Cell, Piece, Pos } from './types';
 
 export const EMPTY_CELL: Cell = { piece: null, obstacle: null, blocked: false };
@@ -30,6 +31,18 @@ export function pieceAt(board: BoardState, pos: Pos): Piece | null {
 export function isPlayable(board: BoardState, pos: Pos): boolean {
   const cell = cellAt(board, pos);
   return cell !== null && !cell.blocked;
+}
+
+/**
+ * 玩家能否交换这一格。
+ * ★ 比 isPlayable 更严：**被冰覆盖的棋子不能被交换** ——
+ *   玩家必须先破冰。冰是"锁"，不是"装饰"。
+ *   （判据放在 board 层，是因为 matcher 与 resolver 都要用。）
+ */
+export function isSwappable(board: BoardState, pos: Pos): boolean {
+  const cell = cellAt(board, pos);
+  if (!cell || cell.blocked || !cell.piece) return false;
+  return !(cell.obstacle && locksPieceBeneath(cell.obstacle.kind));
 }
 
 /** 两格是否正交相邻（对角不算——三消只允许正交交换） */

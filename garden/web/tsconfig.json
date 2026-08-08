@@ -19,7 +19,7 @@
 
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "Bundler",
-    "types": ["node"],
+    "types": ["node", "vite/client"],
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true

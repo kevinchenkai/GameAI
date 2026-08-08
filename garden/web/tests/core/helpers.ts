@@ -7,9 +7,17 @@
  *   R 红  O 橙  Y 黄  G 绿  P 紫  B 蓝  #=洞  .=空格
  */
 
-import { createEmptyBoard, idx } from '../../src/core/board';
+import { createEmptyBoard, idx, withCells } from '../../src/core/board';
 import { createSession, type SessionState } from '../../src/core/session';
-import type { BoardState, Cell, LevelConfig, PieceColor, Pos } from '../../src/core/types';
+import type {
+  BoardState,
+  Cell,
+  LevelConfig,
+  ObstacleKind,
+  PieceColor,
+  Pos,
+  SpecialKind,
+} from '../../src/core/types';
 
 const CHAR_TO_COLOR: Readonly<Record<string, PieceColor>> = {
   R: 'red',
@@ -137,4 +145,29 @@ export function makeSession(art: string, over: Partial<SessionState> = {}): Sess
 /** 空盘，用于单独测重力 */
 export function emptyBoard(cols: number, rows: number, blocked: readonly Pos[] = []): BoardState {
   return createEmptyBoard(cols, rows, blocked);
+}
+
+/**
+ * 在字符画基础上叠加特殊棋子与障碍。
+ *
+ *   makeBoard(art, { specials: [[P(0,0),'bomb']], obstacles: [[P(1,1),'ice',2]] })
+ */
+export function decorate(
+  board: BoardState,
+  opts: {
+    specials?: readonly (readonly [Pos, SpecialKind])[];
+    obstacles?: readonly (readonly [Pos, ObstacleKind, number])[];
+  },
+): BoardState {
+  let out = board;
+  for (const [pos, kind] of opts.specials ?? []) {
+    const cell = out.cells[idx(out, pos)] as Cell;
+    if (!cell.piece) throw new Error(`decorate: (${pos.col},${pos.row}) 没有棋子`);
+    out = withCells(out, [{ pos, cell: { ...cell, piece: { ...cell.piece, special: kind } } }]);
+  }
+  for (const [pos, kind, hp] of opts.obstacles ?? []) {
+    const cell = out.cells[idx(out, pos)] as Cell;
+    out = withCells(out, [{ pos, cell: { ...cell, obstacle: { kind, hp, maxHp: hp } } }]);
+  }
+  return out;
 }

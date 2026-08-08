@@ -12,7 +12,8 @@
  * 如果不合并，会当成两组独立的 3 连，生成两个特殊棋子——那是错的。
  */
 
-import { cellAt, isPlayable, posEquals, swapPieces } from './board';
+import { cellAt, isSwappable, posEquals, swapPieces } from './board';
+import { locksPieceBeneath } from './types';
 import type { BoardState, PieceColor, Pos } from './types';
 
 export interface MatchGroup {
@@ -62,9 +63,13 @@ function scanLine(
   };
 
   for (let i = 0; i < length; i++) {
-    // blocked 格与空格都会打断连线——洞的两侧不相连
+    // 打断连线的三种情况：洞、空格、被冰覆盖的棋子。
+    // ★ 冰覆盖时下面的棋子不参与匹配 —— 玩家必须先破冰。
+    //   这条是 ice 与其它三种障碍的关键差别（见 obstacles.blocksPieceMatching）。
     const cell = cellAt(board, posAt(i));
-    const color = cell && !cell.blocked ? (cell.piece?.color ?? null) : null;
+    const usable =
+      cell && !cell.blocked && !(cell.obstacle && locksPieceBeneath(cell.obstacle.kind));
+    const color = usable ? (cell.piece?.color ?? null) : null;
     if (color !== runColor) {
       flush(i);
       runColor = color;
@@ -226,7 +231,8 @@ export function findAllMatches(
 
 /** 该交换是否会产生匹配——用于输入合法性判断与死局检测 */
 export function wouldMatch(board: BoardState, a: Pos, b: Pos): boolean {
-  if (!isPlayable(board, a) || !isPlayable(board, b)) return false;
+  // ★ 用 isSwappable 而非 isPlayable —— 被冰锁住的棋子不能交换
+  if (!isSwappable(board, a) || !isSwappable(board, b)) return false;
   const pa = cellAt(board, a)?.piece;
   const pb = cellAt(board, b)?.piece;
   if (!pa || !pb) return false;

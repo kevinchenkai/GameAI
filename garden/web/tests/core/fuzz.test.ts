@@ -11,6 +11,7 @@ import { applyMove } from '../../src/core/resolver';
 import { createSession, type SessionState } from '../../src/core/session';
 import { findAllMatches, findAllValidMoves } from '../../src/core/matcher';
 import { createRng } from '../../src/core/rng';
+import { withCells } from '../../src/core/board';
 import { makeLevel } from './helpers';
 import type { CoreGameEvent } from '../../src/core/types';
 
@@ -152,6 +153,101 @@ describe('fuzz —— 随机对局不变量', () => {
         checkInvariants(s, `seed=${seed} turn=${turn}`);
       }
     }
+  });
+
+  it('★ M2：带冰障碍 × 25 个种子 —— 冰会封锁棋子，最容易出边界', () => {
+    for (let seed = 400; seed < 425; seed++) {
+      const level = makeLevel({
+        moves: 25,
+        objectives: [{ kind: 'clearObstacle', obstacle: 'ice', count: 5 }],
+      });
+      let s = createSession(level, seed);
+      // 随机撒 6 块冰
+      const rngIce = createRng(seed * 31);
+      let board = s.board;
+      for (let i = 0; i < 6; i++) {
+        const col = rngIce.int(board.cols);
+        const row = rngIce.int(board.rows);
+        const cell = board.cells[row * board.cols + col];
+        if (!cell || cell.blocked || cell.obstacle) continue;
+        board = withCells(board, [
+          { pos: { col, row }, cell: { ...cell, obstacle: { kind: 'ice', hp: 2, maxHp: 2 } } },
+        ]);
+      }
+      s = { ...s, board };
+
+      const rng = createRng(seed);
+      checkInvariants(s, `ice seed=${seed} 开局`);
+      for (let turn = 0; turn < 25; turn++) {
+        if (s.result !== 'continue') break;
+        const moves = findAllValidMoves(s.board);
+        if (moves.length === 0) break;
+        const r = applyMove(s, rng.pick(moves));
+        checkEventOrder(r.events, `ice seed=${seed} turn=${turn}`);
+        s = r.session;
+        checkInvariants(s, `ice seed=${seed} turn=${turn}`);
+      }
+    }
+  });
+
+  /** 打完一局，返回结局与统计 */
+  function playToEnd(
+    seed: number,
+    level: ReturnType<typeof makeLevel>,
+    tag: string,
+  ): { result: SessionState['result']; movesLeft: number; specialSpawns: number } {
+    let s = createSession(level, seed);
+    const rng = createRng(seed);
+    let specialSpawns = 0;
+    for (let turn = 0; turn < 40; turn++) {
+      if (s.result !== 'continue') break;
+      const moves = findAllValidMoves(s.board);
+      if (moves.length === 0) break;
+      const r = applyMove(s, rng.pick(moves));
+      checkEventOrder(r.events, `${tag} seed=${seed} turn=${turn}`);
+      specialSpawns += r.events.filter((e) => e.t === 'specialSpawn').length;
+      s = r.session;
+      checkInvariants(s, `${tag} seed=${seed} turn=${turn}`);
+    }
+    return { result: s.result, movesLeft: s.movesLeft, specialSpawns };
+  }
+
+  it('★ M2：必输局 × 25 个种子 —— levelLose 路径', () => {
+    let loses = 0;
+    let specials = 0;
+    for (let seed = 500; seed < 525; seed++) {
+      // 目标高到打不完，步数少 → 必然走 lose 分支
+      const level = makeLevel({
+        moves: 12,
+        objectives: [{ kind: 'collect', piece: 'red', count: 999 }],
+      });
+      const r = playToEnd(seed, level, 'lose');
+      if (r.result === 'lose') {
+        loses++;
+        expect(r.movesLeft, `seed=${seed} 判输时步数应为 0`).toBe(0);
+      }
+      specials += r.specialSpawns;
+    }
+    expect(loses, '25 局应全部判输').toBe(25);
+    // 顺带确认特殊棋子确实在生成（否则等于没测到 M2 的一半）
+    expect(specials, '应生成过特殊棋子').toBeGreaterThan(0);
+  });
+
+  it('★ M2：必胜局 × 25 个种子 —— levelWin 路径（上一版漏测了这条）', () => {
+    let wins = 0;
+    for (let seed = 600; seed < 625; seed++) {
+      // 目标低到一步就能达成 → 必然走 win 分支
+      const level = makeLevel({
+        moves: 20,
+        objectives: [{ kind: 'collect', piece: 'red', count: 1 }],
+      });
+      const r = playToEnd(seed, level, 'win');
+      if (r.result === 'win') wins++;
+    }
+    // ★ 这里必须断言"全部赢"而不是"有赢有输"——
+    //   上一版写的是 wins + loses > 0，结果 25 局全输也能通过，
+    //   win 路径实际一次都没被执行到。
+    expect(wins, '25 局应全部判赢').toBe(25);
   });
 
   it('★ 整局可复现：同种子同走法，结果逐字节一致', () => {

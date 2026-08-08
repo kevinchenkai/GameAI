@@ -52,12 +52,14 @@ describe('骨架 —— 每个模块在运行时真的导出了它声称的东�
 
 describe('未实现的函数抛出明确错误，而不是静默返回 undefined', () => {
   it('错误信息指明该在哪个 Milestone 补', () => {
-    // M1 已实现的不再列在这里；随 Milestone 推进逐条移走
-    expect(() => layout.computeLayout(375, 812, { top: 0, right: 0, bottom: 0, left: 0 })).toThrow(
-      /M4/,
-    );
+    // M1/M3/M4 已实现的不再列在这里；随 Milestone 推进逐条移走
     expect(() => save.loadSave()).toThrow(/M7/);
-    expect(() => objective.computeRating({} as never, 0)).toThrow(/M2/);
+  });
+
+  it('★ M4 已实现：computeLayout 不再是占位', () => {
+    const r = layout.computeLayout(375, 812, { top: 0, right: 0, bottom: 0, left: 0 });
+    expect(r.pieceSizePt).toBeGreaterThan(0);
+    expect(r.boardCols).toBeGreaterThan(0);
   });
 
   it('★ Stage 0 不实现的技能通道也抛错，不会被误用', () => {

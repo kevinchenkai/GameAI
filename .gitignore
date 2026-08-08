@@ -51,6 +51,9 @@ temp/
 .idea/
 .vscode/
 
+# Claude Code 本地工具配置（dev server 启动项等），因机器而异，不入库
+.claude/
+
 # Godot (journey)
 journey/.godot/
 journey/export_presets.cfg

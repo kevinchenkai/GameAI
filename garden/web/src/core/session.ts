@@ -9,6 +9,7 @@
  *   某一步之后悄悄分叉——那种 bug 极难查。
  */
 
+import { cellAt, withCells } from './board';
 import { createIdSource, generateInitialBoard, type PieceIdSource } from './generator';
 import { createRng, type Rng } from './rng';
 import type { BoardState, LevelConfig } from './types';
@@ -31,7 +32,15 @@ export interface SessionState {
 export function createSession(level: LevelConfig, seed: number): SessionState {
   const rng = createRng(seed);
   const ids = createIdSource(1);
-  const board = generateInitialBoard(level, rng, { colors: level.colors }, ids);
+  const generated = generateInitialBoard(level, rng, { colors: level.colors }, ids);
+
+  // ★ 把关卡配置里的障碍放到棋盘上。
+  //   ⚠️ 这一步曾经漏掉，后果是**破障目标永远无法完成** ——
+  //     配置里写了冰，盘上却一块都没有。类型检查全过，测试也全过
+  //     （因为当时的测试都是手工构造棋盘的），是模拟器跑出 0% 通过率
+  //     才暴露的。这正是「先做模拟器再写关卡」的价值。
+  const board = withObstacles(generated, level);
+
   return {
     level,
     board,
@@ -42,6 +51,24 @@ export function createSession(level: LevelConfig, seed: number): SessionState {
     nextPieceId: ids.next(), // 取走一个作为下次起点（该值尚未被使用）
     turnCount: 0,
   };
+}
+
+/**
+ * 按关卡配置在棋盘上放置障碍。
+ * 非法位置（越界 / 放在洞上）在此静默跳过 —— 那些情况由
+ * validateLevelConfig 负责报错，这里不重复判断，也不应该崩。
+ */
+function withObstacles(board: BoardState, level: LevelConfig): BoardState {
+  const updates = [];
+  for (const o of level.obstacles ?? []) {
+    const cell = cellAt(board, o.pos);
+    if (!cell || cell.blocked) continue;
+    updates.push({
+      pos: o.pos,
+      cell: { ...cell, obstacle: { kind: o.kind, hp: o.hp, maxHp: o.hp } },
+    });
+  }
+  return withCells(board, updates);
 }
 
 /**
