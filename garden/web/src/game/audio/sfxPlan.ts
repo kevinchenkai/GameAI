@@ -72,17 +72,49 @@ export function planSfx(events: readonly CoreGameEvent[]): readonly SfxCue[] {
          *   与 core 一旦不同步就会出现"画面第 3 连锁、声音还在第 1 层"，
          *   而且没有任何报错（CLAUDE.md §4.2：事件序列是唯一真相源）。
          */
+        /**
+         * ★ 消除**规模**也参与音高：消 5 个比消 3 个更高一点。
+         *
+         *   此前无论消 3 个还是消 5 个都是同一个音 —— 而画面上
+         *   粒子数是随规模变的，听觉却没跟上。
+         *   幅度刻意很小（每多一个 +1 档，最多 +2 档）：
+         *   这是"顺带确认"，抢戏的应该是连锁升调。
+         */
+        const sizeBonus = Math.min(Math.max(e.positions.length - 3, 0), 2);
         if (e.cascadeLevel > 0) {
-          push('cascade', cascadePitch(SFX.cascade.freq, e.cascadeLevel));
+          push('cascade', cascadePitch(SFX.cascade.freq, e.cascadeLevel + sizeBonus));
         } else {
-          push('match');
+          push('match', cascadePitch(SFX.match.freq, sizeBonus));
         }
         cursor += 20; // 同段内轻微错开，避免完全重合
         break;
       }
 
+      /**
+       * ★★ 生成特殊棋子 —— 此前完全无声。
+       *
+       *   match-4 凑出火箭是玩家少数几个"我是故意的"时刻，
+       *   视觉上有叠加层出现，听觉上却什么都没有。
+       *
+       * ★ **不走节流**：它与触发它的那次 match 必然紧邻（同一段内相差
+       *   十几毫秒），走 push() 会被 SFX_THROTTLE_MS 判成重复而丢掉 ——
+       *   但它和 match 是两件不同的事，都该被听见。
+       *   节流防的是"同名音效连发成噪音"，这里不是那种情况。
+       */
+      case 'specialSpawn':
+        cues.push({ name: 'specialSpawn', atMs: cursor + 40, pitchScale: 1 });
+        break;
+
       case 'specialFire':
         push('specialFire');
+        break;
+
+      /**
+       * ★ 合体引爆：全局最重的一击，同样不节流 ——
+       *   它一局里最多出现几次，每次都必须听见。
+       */
+      case 'comboBlast':
+        cues.push({ name: 'comboBlast', atMs: cursor, pitchScale: 1 });
         break;
 
       case 'obstacleHit':

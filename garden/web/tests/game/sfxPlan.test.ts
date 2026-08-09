@@ -190,3 +190,103 @@ describe('事件 → 音效', () => {
     }
   });
 });
+
+/**
+ * ★★ A1 配套：视觉有反馈的时刻，听觉不能是空的。
+ *
+ *   粒子特效上线后，"消除/爆炸"在画面上已经分了强弱，
+ *   但音频侧仍有几个事件完全无声 —— 反馈是残缺的。
+ */
+describe('★ 特殊棋子的声音（此前完全无声）', () => {
+  it('★★ 生成特殊棋子会响 —— match-4 是玩家"我是故意的"时刻', () => {
+    const cues = planSfx([
+      { t: 'specialSpawn', pos: { col: 2, row: 3 }, kind: 'rocketH' } as CoreGameEvent,
+    ]);
+    expect(cues.map((c) => c.name)).toContain('specialSpawn');
+  });
+
+  it('match 与随后的 specialSpawn 都会响（两件事，都该被听见）', () => {
+    const cues = planSfx([
+      match('red', 4),
+      { t: 'specialSpawn', pos: { col: 1, row: 0 }, kind: 'rocketH' } as CoreGameEvent,
+    ]);
+    const names2 = cues.map((c) => c.name);
+    expect(names2).toContain('match');
+    expect(names2).toContain('specialSpawn');
+  });
+
+  /**
+   * ★★ 这条才是"不走节流"真正防住的情况。
+   *
+   *   节流是**按音效名**去重的，所以 specialSpawn 从来不会被 match 挤掉
+   *   （两者名字不同）—— 真正的风险是**一次连锁里生成两个特殊棋子**：
+   *   大消除时这很常见，两次 spawn 相隔仅几十毫秒。
+   *   若走 push()，第二个会被 SFX_THROTTLE_MS 判成重复而**静默丢弃**，
+   *   玩家造出了两个火箭却只听见一个。
+   */
+  it('★★ 一回合内生成两个特殊棋子，两次都要响', () => {
+    const cues = planSfx([
+      match('red', 5),
+      { t: 'specialSpawn', pos: { col: 1, row: 0 }, kind: 'rocketH' } as CoreGameEvent,
+      { t: 'specialSpawn', pos: { col: 5, row: 2 }, kind: 'bomb' } as CoreGameEvent,
+    ]);
+    expect(cues.filter((c) => c.name === 'specialSpawn')).toHaveLength(2);
+  });
+
+  it('合体引爆会响，且与单发火箭是不同的音', () => {
+    const combo = planSfx([
+      { t: 'comboBlast', kinds: ['rocketH', 'bomb'], affected: [] } as unknown as CoreGameEvent,
+    ]);
+    expect(combo.map((c) => c.name)).toContain('comboBlast');
+    expect(combo.map((c) => c.name)).not.toContain('specialFire');
+  });
+
+  /**
+   * ★ comboBlast 往往清掉半个棋盘，是全局最重的一击。
+   *   它必须比单发火箭更"重"，否则玩家分不出自己刚干了件大事。
+   */
+  it('★ 合体引爆比单发火箭更低沉、更长', () => {
+    expect(SFX.comboBlast.freq).toBeLessThan(SFX.specialFire.freq);
+    expect(SFX.comboBlast.durationMs).toBeGreaterThan(SFX.specialFire.durationMs);
+    expect(SFX.comboBlast.gain).toBeGreaterThan(SFX.specialFire.gain);
+  });
+});
+
+describe('★ 消除规模参与音高', () => {
+  it('★ 消 5 个比消 3 个音更高（画面粒子更多，声音要跟上）', () => {
+    const three = planSfx([match('red', 3)]).find((c) => c.name === 'match');
+    const five = planSfx([match('red', 5)]).find((c) => c.name === 'match');
+    expect(three).toBeDefined();
+    expect(five).toBeDefined();
+    expect((five as { pitchScale: number }).pitchScale).toBeGreaterThan(
+      (three as { pitchScale: number }).pitchScale,
+    );
+  });
+
+  /**
+   * ★★ 幅度必须**小**：抢戏的应该是连锁升调，规模只是顺带确认。
+   *   若规模加成过大，一次大消除会听起来像 3 连锁 —— 反而误导。
+   */
+  it('★★ 规模加成有上限，且不超过连锁本身的表达力', () => {
+    const huge = planSfx([match('red', 12)]).find((c) => c.name === 'match');
+    const casc3 = planSfx([match('red', 3, 3)]).find((c) => c.name === 'cascade');
+    expect(huge).toBeDefined();
+    expect(casc3).toBeDefined();
+    // 12 连消的音高加成不应超过第 3 层连锁
+    expect((huge as { pitchScale: number }).pitchScale).toBeLessThanOrEqual(
+      (casc3 as { pitchScale: number }).pitchScale,
+    );
+  });
+
+  it('★ 规模加成后仍不超出中频上限', () => {
+    for (const n of [3, 5, 8, 20]) {
+      for (const lv of [0, 3, 8]) {
+        const cue = planSfx([match('red', n, lv)])[0];
+        expect(cue).toBeDefined();
+        const spec = SFX[(cue as { name: SfxName }).name];
+        const hz = spec.freq * (cue as { pitchScale: number }).pitchScale;
+        expect(hz, `${n} 连 × ${lv} 层`).toBeLessThanOrEqual(AUDIBLE_BAND.maxHz);
+      }
+    }
+  });
+});

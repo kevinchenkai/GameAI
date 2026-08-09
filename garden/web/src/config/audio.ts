@@ -35,7 +35,9 @@ export type SfxName =
   | 'swapBack'
   | 'match'
   | 'cascade'
+  | 'specialSpawn'
   | 'specialFire'
+  | 'comboBlast'
   | 'obstacleHit'
   | 'obstacleClear'
   | 'win'
@@ -118,6 +120,26 @@ export const SFX: Readonly<Record<SfxName, ToneSpec>> = {
   },
 
   /**
+   * 特殊棋子**生成**：短促上行，"你造出了个好东西"。
+   *
+   * ★★ 这一刻此前是**完全无声**的 —— 而 match-4 凑出火箭是
+   *   玩家少数几个"我是故意的"时刻，比普通三消更值得确认。
+   *   视觉上有叠加层出现，听觉上却什么都没有，反馈是残缺的。
+   *
+   * ★ 与 obstacleClear（780→980）刻意拉开：那是"解决了"，
+   *   这是"得到了"。起点更低、跨度更大，听感上更像"升起"。
+   */
+  specialSpawn: {
+    freq: 600,
+    endFreq: 900,
+    durationMs: 190,
+    gain: 0.3,
+    wave: 'triangle',
+    attackMs: 2,
+    partials: [{ ratio: 1.5, gain: 0.3 }],
+  },
+
+  /**
    * 特殊棋子发射：**低中频**，要有推力感。
    * ★ 爆炸用低中频增加满足感（框架审核 §19）。
    *
@@ -138,6 +160,34 @@ export const SFX: Readonly<Record<SfxName, ToneSpec>> = {
     partials: [
       { ratio: 1.5, gain: 0.3 },
       { ratio: 2.0, gain: 0.18 },
+    ],
+  },
+
+  /**
+   * 两个特殊棋子合体引爆：**全局最重的一击**。
+   *
+   * ★ 比 specialFire 更低、更长、更响 —— comboBlast 往往清掉半个棋盘，
+   *   如果和单发火箭一个音，玩家分不出自己刚干了件大事。
+   *
+   * ⚠️ gain 仍留有余量（0.42 而非拉满）：这一下常与多个 match 音
+   *   在同一段内叠加，峰值叠上去容易削波。响度差靠**对比**做出来，
+   *   不是靠绝对值顶到上限。
+   */
+  /**
+   * ⚠️ 终点 210Hz 而不是更低：AUDIBLE_BAND 下限是 200Hz，
+   *   再低手机扬声器根本推不出来，只剩"什么都没有"。
+   *   "更重"靠时长与 gain 做，不靠继续往下扫。
+   */
+  comboBlast: {
+    freq: 260,
+    endFreq: 210,
+    durationMs: 380,
+    gain: 0.42,
+    wave: 'triangle',
+    attackMs: 2,
+    partials: [
+      { ratio: 1.5, gain: 0.32 },
+      { ratio: 2.0, gain: 0.2 },
     ],
   },
 
