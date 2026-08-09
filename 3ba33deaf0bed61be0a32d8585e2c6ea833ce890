@@ -1,0 +1,54 @@
+garden/web/tests/game/sfxPlan.test.ts
+  640fa3cf12a5a767 366-418
+garden/web/src/game/audio/sfxPlan.ts
+  640fa3cf12a5a767 16,68-76,79
+garden/web/src/config/audio.ts
+  640fa3cf12a5a767 153-162,164-165,187-192,195-196,277-287
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "3ba33deaf0bed61be0a32d8585e2c6ea833ce890",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 578,
+      "total_deletions": 929,
+      "accepted_lines": 3291,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/cead291e4dc6126778b54a5c435e3ea9a91f10c287ba3dda42dfe35e43e55b22",
+      "token_usage": {
+        "input_tokens": 8531,
+        "output_tokens": 1174009,
+        "cache_creation_input_tokens": 9011223,
+        "cache_read_input_tokens": 652835868
+      }
+    },
+    "eda626ef510a1c9f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6faaad6a-b12d-4d2c-ae65-cb942d4732f2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 523,
+      "total_deletions": 0,
+      "accepted_lines": 523,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/18f1b263c80ea21eb7b3342ef8e50aaa19a98a5342bc1373238c0aa5054b3a17",
+      "token_usage": {
+        "input_tokens": 1146,
+        "output_tokens": 364482,
+        "cache_creation_input_tokens": 681045,
+        "cache_read_input_tokens": 97639234
+      }
+    }
+  }
+}
