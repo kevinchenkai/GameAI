@@ -29,6 +29,11 @@ export class WebAudioManager implements AudioManager {
   private muted: boolean = AUDIO_DEFAULTS.muted;
   /** context 创建失败过就不再重试 —— 不要每次点击都抛一遍异常 */
   private unavailable = false;
+  /**
+   * ★ 解锁未完成时被搁置的那一段事件，等 resume 落地后补播。
+   *   只留**最后一段**（见 flushPending）。
+   */
+  private pending: readonly CoreGameEvent[] | null = null;
 
   /**
    * ★ 节奏由外部注入 —— 音效要和动画对齐，就必须知道动画有多快。
@@ -116,10 +121,35 @@ export class WebAudioManager implements AudioManager {
 
     if (ctx.state === 'running') {
       prime();
+      this.flushPending();
       return;
     }
     // ★ 必须在 resume 完成之后再 prime，否则仍在 suspended 上排期
-    void ctx.resume().then(prime).catch(() => undefined);
+    void ctx
+      .resume()
+      .then(() => {
+        prime();
+        // ★ resume 落地后立刻补播等在门口的那一段（见 consume）
+        this.flushPending();
+      })
+      .catch(() => undefined);
+  }
+
+  /**
+   * ★★ 补播「解锁未完成时被搁置的那一段」。
+   *
+   *   ⚠️ 这是"微信里第一局没声、点一次设置才有声"的真正修复。
+   *   见 consume() 里的详细说明。
+   *
+   *   只补**最后一段**：连续几个回合都排不出去时，补播全部会在
+   *   resume 落地的瞬间**一起炸开**，比没声音更糟。
+   */
+  private flushPending(): void {
+    const pending = this.pending;
+    this.pending = null;
+    if (!pending) return;
+    if (this.ctx?.state !== 'running') return;
+    this.schedule(pending);
   }
 
   /** context 是否真的在跑（供 UI 提示用） */
@@ -131,11 +161,47 @@ export class WebAudioManager implements AudioManager {
     if (!this.ctx || !this.master || this.muted) return;
 
     /**
-     * ★ context 可能在中途被系统挂起（iOS 切后台、微信内跳转、
-     *   接电话）。此时排期的音符**永远不会响**，而且不报错 ——
-     *   表现就是"玩着玩着突然没声了"。这里顺手救一次。
+     * ★★★ context 没在跑就**不要排期**，先存起来。
+     *
+     *   ⚠️⚠️ 这是"微信里第一局没声音、点一次设置才有声"的**真正原因**，
+     *   它和之前修的时间轴对齐是**两个独立的 bug**：
+     *
+     *   `unlock()` 确实在 pointerdown 的同步栈里调了，但 `resume()`
+     *   是 **Promise**，实测要 100~300ms 才落地。而同一次点击里
+     *   pointerup → requestMove → runTurn → consume() 是**同步**走完的，
+     *   此时 context 仍是 `suspended` ——
+     *
+     *     · suspended 的 context，`currentTime` **冻结在 0 不推进**
+     *     · 于是整段音符全排在 0.000~0.520s
+     *     · 等 resume 落地时 currentTime 已经 0.180s，
+     *       排在它之前的音**全部成了过去式，永远不会响**
+     *     · 而且 **不抛任何错误**，控制台干干净净
+     *
+     *   原来第 138 行的 `if (state !== 'running') this.resumeAndPrime()`
+     *   救不回来：它是 fire-and-forget，下一行立刻就读了 currentTime。
+     *
+     *   点一次「设置」之所以有效，只是因为那次点击给了 resume()
+     *   几百毫秒去落地 —— 不是设置面板做了什么。
      */
-    if (this.ctx.state !== 'running') this.resumeAndPrime();
+    if (this.ctx.state !== 'running') {
+      // ★ 只留最后一段：见 flushPending 的说明
+      this.pending = events;
+      this.resumeAndPrime();
+      return;
+    }
+
+    this.schedule(events);
+  }
+
+  /**
+   * 把一段事件排进 context。
+   *
+   * ★ 抽出来是因为它有**两个调用点**：正常路径（consume）与
+   *   解锁落地后的补播（flushPending）。两边必须用同一套时序，
+   *   否则补播出来的那一段会和画面对不上。
+   */
+  private schedule(events: readonly CoreGameEvent[]): void {
+    if (!this.ctx || !this.master) return;
 
     /**
      * ★★ 音效必须**对齐画面时间轴**，不能自己数节拍。
@@ -208,9 +274,20 @@ export class WebAudioManager implements AudioManager {
     for (const p of spec.partials ?? []) voice(p.ratio, p.gain);
   }
 
-  /** 直接播一个音效（UI 反馈用，不经过事件） */
+  /**
+   * 直接播一个音效（UI 反馈用，不经过事件）。
+   *
+   * ★ 同样要挡住 suspended：胜负音是在 `play()` 里放的，
+   *   若 context 还没解锁，它会和 consume 一样静默丢失。
+   *   这里**不做补播** —— 单个 UI 音迟到几百毫秒补出来，
+   *   比不响更奇怪（"赢了半天才叮一声"）。
+   */
   play(name: SfxName): void {
     if (!this.ctx || this.muted) return;
+    if (this.ctx.state !== 'running') {
+      this.resumeAndPrime();
+      return;
+    }
     this.playTone(SFX[name], this.ctx.currentTime, 1);
   }
 

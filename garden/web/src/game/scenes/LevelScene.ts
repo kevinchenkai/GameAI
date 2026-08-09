@@ -78,6 +78,22 @@ export class LevelScene extends Phaser.Scene {
   private readonly onVisibility = (): void => {
     if (document.visibilityState === 'visible') this.audio.unlock();
   };
+  /**
+   * ★★ 在**最早的那一次触摸**上解锁音频。
+   *
+   *   ⚠️ 为什么不只靠 `onPointer('down')`：`resume()` 是 Promise，
+   *   实测要 100~300ms 才落地，而**同一次点击**里
+   *   pointerup → runTurn → consume 是同步走完的。
+   *   解锁越早发起，第一回合赶上"已经 running"的概率越大 ——
+   *   赶不上也不会丢音（WebAudioManager 会搁置并补播），
+   *   但能直接响总好过补播。
+   *
+   *   用 `capture: true` 挂在 document 上：它先于 Phaser 的
+   *   canvas 监听执行，是这一帧里能拿到的最早时机。
+   */
+  private readonly onFirstTouch = (): void => {
+    this.audio.unlock();
+  };
   /** 当前这一段动画的时间轴，仅用于缓存窗口判断 */
   private playStartedAt = 0;
   private playTotalMs = 0;
@@ -198,9 +214,19 @@ export class LevelScene extends Phaser.Scene {
      */
     document.addEventListener('visibilitychange', this.onVisibility);
 
+    /**
+     * ★ 尽可能早地解锁音频（见 onFirstTouch）。
+     *   `touchstart` 覆盖手机，`pointerdown` 覆盖桌面与触控笔；
+     *   两个都挂，谁先来算谁的（unlock 本身是幂等的）。
+     */
+    document.addEventListener('touchstart', this.onFirstTouch, { capture: true, passive: true });
+    document.addEventListener('pointerdown', this.onFirstTouch, { capture: true, passive: true });
+
     this.scale.on(Phaser.Scale.Events.RESIZE, this.onResize, this);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       document.removeEventListener('visibilitychange', this.onVisibility);
+      document.removeEventListener('touchstart', this.onFirstTouch, { capture: true });
+      document.removeEventListener('pointerdown', this.onFirstTouch, { capture: true });
       // ★ 粒子发射器不会随场景自动回收，重开几局就会明显掉帧
       this.fx?.destroy();
     });
