@@ -39,6 +39,30 @@ MAX_AREA = {"overlay-rocket-h": 12.0, "overlay-rocket-v": 12.0, "overlay-bomb": 
 MAX_SPAN = 90.0
 ALPHA_MIN = 8             # 低于此视为透明，不计入统计
 
+# —— 第 6 批新增判据 ——
+#
+# ★★ 为什么加这两条：redo5 交付**全部数字达标却更难看**。
+#
+#   Codex 把跨度从 230 压到 50，但压的方式是**把亮芯砍掉**
+#   （芯部 P95 从 221~241 掉到 135~137），而不是把明暗过渡做柔。
+#   结果标记平均色 (172,98,28) 和橙子 (222,113,34) 撞成同一族褐色，
+#   芯色到橙子的色距从 107 腰斩到 51 —— 亮度和色相两条路同时堵死。
+#
+#   原判据放行了它：Δ 只看亮度差，MAX_SPAN 只看跨度，
+#   两者都没防住"整体降亮 + 撞色"。所以补两条。
+MIN_CORE_LUM = 190.0      # 芯部 P95 亮度下限：压跨度只能靠柔化过渡，不许降亮芯
+#
+# ★★ 色距**不能单独当硬判据** —— 这一条我差点写错，实测挡住了。
+#
+#   旧版（可读性公认合格）在香蕉上色距只有 20.2~37.0：金芯和香蕉几乎同色。
+#   但它在香蕉上明明清清楚楚，因为**亮度差高达 132**，靠亮度赢的。
+#   反过来 redo5 在橙子上色距 41、亮度差也只有 43 —— 两条都不占，才糊。
+#
+#   所以正确的规则是「**亮度或色相，至少赢一样；不许两样都输**」，
+#   而不是两条都要满足（那会把公认合格的旧版一起毙掉）。
+MIN_CORE_DIST = 90.0      # 色距达标线：达到即可豁免亮度差要求
+STRONG_DELTA = 60.0       # 亮度差达标线：达到即可豁免色距要求
+
 BT709 = np.array([0.2126, 0.7152, 0.0722])
 
 
@@ -73,6 +97,23 @@ def delta(comp: np.ndarray, piece: np.ndarray, m: np.ndarray, ref_mask: np.ndarr
     bright = float(np.percentile(lm, 90)) - base   # 亮芯对背景
     dark = base - float(np.percentile(lm, 10))     # 暗芯对背景
     return max(bright, dark)
+
+
+def core_color(ov: np.ndarray) -> tuple[np.ndarray, float]:
+    """
+    标记"芯部"的平均色与亮度 P95。
+
+    ★ 芯 = 实心区（alpha>200）里最亮的 20%。描边不算芯 ——
+      判据要防的是"整体降亮变浑"，而描边本来就该是暗的。
+    """
+    m = ov[..., 3] > 200
+    if not m.any():
+        m = ov[..., 3] > ALPHA_MIN
+    rgb = ov[..., :3][m]
+    lum = luma(rgb)
+    p95 = float(np.percentile(lum, 95))
+    core = rgb[lum >= np.percentile(lum, 80)]
+    return core.mean(axis=0), p95
 
 
 def alpha_composite(base: np.ndarray, over: np.ndarray) -> np.ndarray:
@@ -117,8 +158,23 @@ def check_one(ov_path: Path, piece_dir: Path) -> tuple[list[str], list[str]]:
     if area > cap:
         fails.append(f"{name}: 覆盖 {area:.1f}% > {cap:.0f}%，开始盖住水果本体")
 
-    # §4.2 六色灰度差 —— 判据是"标记看不看得见"
-    notes.append("  六色可见性（标记区 vs 邻近棋子，BT.709）：")
+    # 芯部亮度 —— 压跨度不许靠降亮芯
+    core, core_p95 = core_color(ov)
+    notes.append(
+        f"  芯部亮度 P95   = {core_p95:6.1f}   (下限 {MIN_CORE_LUM:.0f}；旧版 221~241)"
+    )
+    if core_p95 < MIN_CORE_LUM:
+        fails.append(
+            f"{name}: 芯部 P95={core_p95:.1f} < {MIN_CORE_LUM:.0f} —— "
+            f"跨度是靠**砍掉亮芯**压下来的，不是靠柔化过渡。标记会发闷发浑"
+        )
+    notes.append(f"  芯部平均色     = ({core[0]:.0f}, {core[1]:.0f}, {core[2]:.0f})")
+
+    # §4.2 六色可见性：亮度差 Δ 与芯色距，**至少赢一样**
+    notes.append(
+        f"  六色可见性（Δ=亮度差 / D=芯色距；需 Δ>={MIN_DELTA:.0f} 且"
+        f"「Δ>={STRONG_DELTA:.0f} 或 D>={MIN_CORE_DIST:.0f}」）："
+    )
     for c in COLORS:
         pf = piece_dir / f"piece-{c}.png"
         if not pf.exists():
@@ -140,12 +196,24 @@ def check_one(ov_path: Path, piece_dir: Path) -> tuple[list[str], list[str]]:
             continue
 
         d = delta(comp, piece, m, ref_mask)
-        ok = d >= MIN_DELTA
-        star = "" if ok else "  <-- 不合格"
+        pm = piece[..., 3] > 200
+        dist = float(np.linalg.norm(core - piece[..., :3][pm].mean(axis=0))) if pm.any() else 999.0
+
+        # 亮度或色相，至少赢一样；两样都输才是真糊
+        wins = d >= STRONG_DELTA or dist >= MIN_CORE_DIST
+        ok = d >= MIN_DELTA and wins
         hint = "  (最浅，历史失败点)" if c == "yellow" else ""
-        notes.append(f"    {c:<7} Δ = {d:6.1f}   {'OK' if ok else '不合格'}{hint}{star}")
-        if not ok:
+        why = "" if ok else ("  <-- 亮度与色相双输，糊在一起" if d >= MIN_DELTA else "  <-- 看不见")
+        notes.append(
+            f"    {c:<7} Δ = {d:6.1f}  D = {dist:6.1f}   {'OK' if ok else '不合格'}{hint}{why}"
+        )
+        if d < MIN_DELTA:
             fails.append(f"{name} on {c}: Δ={d:.1f} < {MIN_DELTA:.0f}，标记在这个颜色上看不见")
+        elif not wins:
+            fails.append(
+                f"{name} on {c}: Δ={d:.1f}(<{STRONG_DELTA:.0f}) 且芯色距={dist:.1f}"
+                f"(<{MIN_CORE_DIST:.0f}) —— 亮度不够亮、颜色又撞，标记糊进棋子里"
+            )
 
     return fails, notes
 
