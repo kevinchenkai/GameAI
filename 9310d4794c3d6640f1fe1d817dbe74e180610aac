@@ -1,0 +1,32 @@
+"garden/docs/M8 真人测试准备.md"
+  640fa3cf12a5a767 1,3-4,7-11,19,25-27,29,31,33-34,36,51-52,61-62,78-83,109-156,160-205,210,213,218-221,225,229-231,234-239,248,261,267-268,270-271,273,278-283
+garden/docs/README.md
+  640fa3cf12a5a767 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "9310d4794c3d6640f1fe1d817dbe74e180610aac",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 434,
+      "total_deletions": 395,
+      "accepted_lines": 4131,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/e7cd775b19cf492bd0b144fe20bf76e57450beb58cd2d2b5bd9b833118f00e2d",
+      "token_usage": {
+        "input_tokens": 8880,
+        "output_tokens": 1248857,
+        "cache_creation_input_tokens": 10761903,
+        "cache_read_input_tokens": 716779466
+      }
+    }
+  }
+}
