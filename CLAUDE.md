@@ -25,7 +25,7 @@
 
 | 目录 | 状态 |
 |---|---|
-| `garden/` | Garden Match（三消 + 萌宠 + 花园），**已进入正式编码（Stage 0）**。策划与框架文档已入库，接口契约冻结见 [garden/CLAUDE.md](./garden/CLAUDE.md) §3。**尚未上线**，部署目录 `/www/wwwroot/g.ismayday.mobi/garden/` 待首次发布时创建。 |
+| `garden/` | Garden Match（三消 + 萌宠 + 花园），**Stage 0 功能已齐并已上线** https://g.ismayday.mobi/garden/ 。接口契约冻结见 [garden/CLAUDE.md](./garden/CLAUDE.md) §3，开发记录见 [开发日志](./garden/docs/开发日志%20Stage%200（M0~M7）.md)。当前阶段：UI 美化 → M8 真人测试。 |
 
 ---
 
@@ -123,6 +123,39 @@ git rev-list --left-right --count ezone/master...HEAD   # 期望 0  0
 ```
 
 左值 = 远端独有提交数，右值 = 本地独有提交数。备份库正常情况下应始终是**纯快进**（左值为 0）；若左值非 0，说明有人直接改了备份库，**先查清来源再处理，不要强推覆盖**。
+
+
+### Tag 约定
+
+| 前缀 | 含义 | 例 |
+|---|---|---|
+| `vX.Y.Z` | **整仓**版本（历史遗留，实际多为某个子项目的发版） | `v1.1.1`（soulmate 发版） |
+| `<子项目>-<阶段>-vX.Y` | **单个子项目**的里程碑 / 回滚点 | `garden-stage0-v1.0` |
+
+新建里程碑标签**一律用子项目前缀**——本仓库有 5 个子项目，
+裸 `vX.Y.Z` 无法表达"这是谁的版本"（现有 3 个整仓标签就有这个问题）。
+
+打 tag 前必须确认：
+
+```bash
+git status --porcelain          # 空
+npm test && npm run build       # 全绿（在对应子项目里跑）
+git rev-list --left-right --count origin/main...HEAD    # 0  0
+```
+
+**用附注标签**（`git tag -a`）而非轻量标签，说明里写清
+「此时做完了什么、明确没做什么、怎么回滚」——
+回滚点的价值在于半年后还知道它是什么。
+
+推送要**分别推两个远端**（tag 不随 `git push` 自动带上）：
+
+```bash
+git push origin <tag>
+git push ezone  <tag>
+```
+
+⚠️ 已推送的提交**不要 `reset --hard`** —— 两个远端都会不一致。
+回滚用 `git revert`（保留历史）或 `git checkout <tag>`（只看）。
 
 ### 约定
 
