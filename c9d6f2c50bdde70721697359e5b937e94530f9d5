@@ -1,0 +1,34 @@
+garden/web/src/game/scenes/LevelScene.ts
+  640fa3cf12a5a767 81-96,217-224,228-229
+garden/web/src/game/audio/WebAudioManager.ts
+  640fa3cf12a5a767 32-36,124,128-152,164-184,186-204,277-284,287-290
+garden/web/tests/game/webAudioUnlock.test.ts
+  640fa3cf12a5a767 1-227
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "c9d6f2c50bdde70721697359e5b937e94530f9d5",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 7541,
+      "total_deletions": 1228,
+      "accepted_lines": 4912,
+      "overriden_lines": 97,
+      "messages_url": "http://172.20.103.50:8002/cas/057b30c548162a644968a4197a3fa43fed3ac34490d26b16cec5e4a320c08cc0",
+      "token_usage": {
+        "input_tokens": 9042,
+        "output_tokens": 1277454,
+        "cache_creation_input_tokens": 10824498,
+        "cache_read_input_tokens": 728890964
+      }
+    }
+  }
+}
