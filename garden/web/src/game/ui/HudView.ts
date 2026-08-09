@@ -8,7 +8,7 @@
  */
 
 import type Phaser from 'phaser';
-import { ENV_PALETTE } from '../../config/pieces';
+import { ENV_PALETTE, ENV_HEX } from '../../config/pieces';
 import type { LayoutResult } from '../render/layout';
 import { TEX } from '../textureKeys';
 import type { HudModel, ObjectiveView } from './hudModel';
@@ -110,7 +110,7 @@ export class HudView {
           fontFamily: FONT,
           fontSize: fontPx(this.scene, 19),
           fontStyle: 'bold',
-          color: '#3FA34D',
+          color: ENV_PALETTE.success,
         })
         .setOrigin(0.5)
         .setVisible(false);
@@ -150,7 +150,7 @@ export class HudView {
        */
       if (o.obstacle !== null) {
         const plate = this.scene.add.graphics();
-        plate.fillStyle(0xe8f4f8, 1);
+        plate.fillStyle(ENV_HEX.icePlate, 1);
         plate.fillRoundedRect(x - size / 2, y - size / 2, size, size, px(this.scene, 6));
         this.layer.add(plate);
         this.plates.push(plate);
@@ -161,10 +161,10 @@ export class HudView {
     }
     // 占位：认不出的目标种类（或贴图没加载成功）
     const g = this.scene.add.graphics();
-    g.fillStyle(0xcfc5b4, 1);
+    g.fillStyle(ENV_HEX.stone, 1);
     const rr = px(this.scene, 6);
     g.fillRoundedRect(x - size / 2, y - size / 2, size, size, rr);
-    g.lineStyle(px(this.scene, 2), 0x8a6a4a, 1);
+    g.lineStyle(px(this.scene, 2), ENV_HEX.panelStroke, 1);
     g.strokeRoundedRect(x - size / 2, y - size / 2, size, size, rr);
     return g;
   }

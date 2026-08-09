@@ -1,9 +1,11 @@
-import { readFileSync as readFileSyncNode } from 'node:fs';
+import { readFileSync as readFileSyncNode, readdirSync as readdirSyncNode } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
 import { inflateSync } from 'node:zlib';
 import { describe, expect, it } from 'vitest';
 import {
   ALL_COLORS,
+  ENV_HEX,
+  ENV_PALETTE,
   MIN_LUMINANCE_SEPARATION,
   PIECE_DEFS,
   type PieceDef,
@@ -216,6 +218,66 @@ describe('★★ 真实交付图的明度（不是配置里的规格值）', () 
     for (const c of COLORS) {
       const spec = PIECE_DEFS[c].luminance;
       expect(Math.abs(meanLuminance(c) - spec), `${c} 偏离规格过多`).toBeLessThan(8);
+    }
+  });
+});
+
+/**
+ * ★★ 回归：**色值只能有一个来源**。
+ *
+ *   实测踩到：UI 代码里散落 16 处硬编码 `0x8a6a4a` / `'#FFB03A'` 之类，
+ *   与色板里的 `panelStroke` / `btnPrimary` 是同一个颜色却各写各的。
+ *   换主题要在 6 个文件里翻，而且**改漏了不报错**——
+ *   只是某个描边留在旧配色上，肉眼极难发现。
+ *
+ *   这条测试扫渲染层源码，禁止再出现硬编码色值。
+ */
+describe('★★ 色值单一来源：渲染层禁止硬编码颜色', () => {
+  const SRC = resolvePath(__dirname, '../../src/game');
+
+  function walk(dir: string): string[] {
+    const out: string[] = [];
+    for (const e of readdirSyncNode(dir, { withFileTypes: true })) {
+      const p = resolvePath(dir, e.name);
+      if (e.isDirectory()) out.push(...walk(p));
+      else if (e.name.endsWith('.ts')) out.push(p);
+    }
+    return out;
+  }
+
+  it('game/ 下没有 0xRRGGBB 字面量', () => {
+    const offenders: string[] = [];
+    for (const f of walk(SRC)) {
+      const text = readFileSyncNode(f, 'utf8');
+      for (const [i, line] of text.split('\n').entries()) {
+        // 跳过注释行——注释里提到色值是允许的（说明用）
+        const code = line.replace(/\/\/.*$/, '').replace(/^\s*\*.*$/, '');
+        const m = code.match(/0x[0-9a-fA-F]{6}\b/);
+        if (m) offenders.push(`${f.replace(SRC, 'game')}:${i + 1}  ${m[0]}`);
+      }
+    }
+    expect(offenders, `请改用 ENV_HEX.*：\n${offenders.join('\n')}`).toEqual([]);
+  });
+
+  it("game/ 下没有 color: '#RRGGBB' 字面量", () => {
+    const offenders: string[] = [];
+    for (const f of walk(SRC)) {
+      const text = readFileSyncNode(f, 'utf8');
+      for (const [i, line] of text.split('\n').entries()) {
+        const code = line.replace(/\/\/.*$/, '').replace(/^\s*\*.*$/, '');
+        if (/color:\s*'#[0-9a-fA-F]{3,8}'/.test(code)) {
+          offenders.push(`${f.replace(SRC, 'game')}:${i + 1}`);
+        }
+      }
+    }
+    expect(offenders, `请改用 ENV_PALETTE.*：\n${offenders.join('\n')}`).toEqual([]);
+  });
+
+  it('★ ENV_HEX 与 ENV_PALETTE 一一对应且数值一致', () => {
+    expect(Object.keys(ENV_HEX).sort()).toEqual(Object.keys(ENV_PALETTE).sort());
+    for (const [k, v] of Object.entries(ENV_PALETTE)) {
+      const n = ENV_HEX[k as keyof typeof ENV_HEX];
+      expect('#' + n.toString(16).toUpperCase().padStart(6, '0')).toBe(v.toUpperCase());
     }
   });
 });

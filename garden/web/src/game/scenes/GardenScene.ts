@@ -14,7 +14,7 @@
 
 import Phaser from 'phaser';
 import { ASSETS } from '../../config/assets';
-import { ENV_PALETTE } from '../../config/pieces';
+import { ENV_PALETTE, ENV_HEX } from '../../config/pieces';
 import { PET_LINES } from '../../config/pet';
 import { buildNodeStage, nodeProgress, type NodeProgress } from '../../meta/gardenProgress';
 import { loadSave, saveSave, type SaveData } from '../../meta/save';
@@ -179,7 +179,7 @@ export class GardenScene extends Phaser.Scene {
     }
 
     const g = this.add.graphics();
-    g.fillStyle(0xcfc5b4, 1);
+    g.fillStyle(ENV_HEX.stone, 1);
     g.fillRoundedRect(x - size / 2, y - size / 2, size, size, px(this, 12));
     this.nodes.push(g);
   }
@@ -218,10 +218,10 @@ export class GardenScene extends Phaser.Scene {
     for (let i = 0; i < total; i++) {
       const bx = startX + i * (box + gap) - box / 2;
       if (i < p.stage) {
-        g.fillStyle(0xffb03a, 1);
+        g.fillStyle(ENV_HEX.btnPrimary, 1);
         g.fillRoundedRect(bx, boxY, box, box, px(this, 4));
       } else {
-        g.lineStyle(px(this, 2), 0x8a6a4a, 0.6);
+        g.lineStyle(px(this, 2), ENV_HEX.panelStroke, 0.6);
         g.strokeRoundedRect(bx, boxY, box, box, px(this, 4));
       }
     }

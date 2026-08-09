@@ -9,7 +9,7 @@
  */
 
 import Phaser from 'phaser';
-import { ENV_PALETTE } from '../../config/pieces';
+import { ENV_PALETTE, ENV_HEX } from '../../config/pieces';
 import { fontPx, px } from './uiScale';
 
 const FONT = '"PingFang SC", "Microsoft YaHei", -apple-system, sans-serif';
@@ -47,7 +47,7 @@ export class Panel {
   scrim(alpha = 0.45): void {
     const { width, height } = this.scene.scale;
     const g = this.scene.add.graphics();
-    g.fillStyle(0x2a1e12, alpha);
+    g.fillStyle(ENV_HEX.scrim, alpha);
     g.fillRect(0, 0, width, height);
     g.setInteractive(
       new Phaser.Geom.Rectangle(0, 0, width, height),
@@ -58,10 +58,10 @@ export class Panel {
 
   card(centerX: number, centerY: number, w: number, h: number): void {
     const g = this.scene.add.graphics();
-    g.fillStyle(0xfffbf2, 1);
+    g.fillStyle(ENV_HEX.panelBg, 1);
     const radius = px(this.scene, 20);
     g.fillRoundedRect(centerX - w / 2, centerY - h / 2, w, h, radius);
-    g.lineStyle(px(this.scene, 3), 0x8a6a4a, 1);
+    g.lineStyle(px(this.scene, 3), ENV_HEX.panelStroke, 1);
     g.strokeRoundedRect(centerX - w / 2, centerY - h / 2, w, h, radius);
     this.add(g);
   }
@@ -105,12 +105,12 @@ export class Panel {
 
     const g = this.scene.add.graphics();
     if (spec.primary) {
-      g.fillStyle(0xffb03a, 1);
+      g.fillStyle(ENV_HEX.btnPrimary, 1);
       g.fillRoundedRect(x - width / 2, y - h / 2, width, h, radius);
     } else {
-      g.fillStyle(0xfff6e5, 1);
+      g.fillStyle(ENV_HEX.btnSecondary, 1);
       g.fillRoundedRect(x - width / 2, y - h / 2, width, h, radius);
-      g.lineStyle(px(this.scene, 2.5), 0x8a6a4a, 1);
+      g.lineStyle(px(this.scene, 2.5), ENV_HEX.panelStroke, 1);
       g.strokeRoundedRect(x - width / 2, y - h / 2, width, h, radius);
     }
     this.add(g);

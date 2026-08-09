@@ -108,5 +108,39 @@ export const ENV_PALETTE = {
   panelBg: '#FFFBF2',
   panelStroke: '#8A6A4A',
   btnPrimary: '#FFB03A',
+  /** 主按钮上的文字 —— 橙底上用深棕，不用纯黑 */
+  btnPrimaryText: '#4A3520',
+  /** 次按钮底色（浅奶油） */
+  btnSecondary: '#FFF6E5',
+  /** 压暗遮罩（scrim） */
+  scrim: '#2A1E12',
+  /** 冰块图标的底板 —— 冰是半透明覆盖层，单独当图标会太淡 */
+  icePlate: '#E8F4F8',
+  /** 目标完成的对勾 */
+  success: '#3FA34D',
+  /** 步数吃紧时的警示色。★ 只变色不闪烁 */
+  warn: '#D2691E',
+  /** 格子底板的阴影（配 CELL.backdropAlpha 使用，不是主题色） */
+  cellShadow: '#000000',
   textDark: '#5A4632',
 } as const;
+
+/**
+ * ★★ `ENV_PALETTE` 的**数值版**，供 Phaser Graphics 使用。
+ *
+ *   Graphics 的 `fillStyle` / `lineStyle` 只吃 `0xRRGGBB` 数字，
+ *   而上面的色板是 `'#RRGGBB'` 字符串（便于与美术工单核对）。
+ *   两种形态都需要，但**色值只能有一个来源** ——
+ *   否则改主题时必然改漏一处。
+ *
+ *   ⚠️ 这正是之前的实际状况：代码里散落 16 处硬编码 `0x8a6a4a` 之类，
+ *   与色板里的 `panelStroke` 是同一个颜色却各写各的。
+ *   换主题要在 6 个文件里翻，且**改漏了不报错**。
+ *
+ *   这里由字符串**自动派生**，不手写第二份。
+ */
+export const ENV_HEX: Readonly<Record<keyof typeof ENV_PALETTE, number>> = Object.freeze(
+  Object.fromEntries(
+    Object.entries(ENV_PALETTE).map(([k, v]) => [k, Number.parseInt(v.slice(1), 16)]),
+  ) as Record<keyof typeof ENV_PALETTE, number>,
+);

@@ -152,5 +152,22 @@ export const PET_ANIM_BUDGET = {
   hintDuration: 1200,
 } as const;
 
+/**
+ * 棋盘格子的视觉常量（**设计像素**，用时经 px() 换算）。
+ *
+ * ★ 红线：数值不写死进逻辑代码。这几个原本散在 BoardView 里当裸数字，
+ *   既没走 px()（DPR=2 手机上只有一半），也没法统一调。
+ */
+export const CELL = {
+  /** 底板相对格子的内缩量 —— 格子之间留缝，棋子不挤在一起 */
+  insetPt: 2,
+  /** 底板与选中框的圆角 */
+  radiusPt: 8,
+  /** 选中框描边宽度 */
+  selectionWidthPt: 4,
+  /** 底板阴影不透明度（配 ENV_HEX.cellShadow） */
+  backdropAlpha: 0.06,
+} as const;
+
 /** 触发 excited 重反应的连锁层数阈值 */
 export const COMBO_EXCITED_THRESHOLD = 3;

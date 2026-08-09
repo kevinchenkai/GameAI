@@ -15,6 +15,9 @@ import type Phaser from 'phaser';
 import type { BoardState, Piece, Pos, SpecialKind } from '../../core/types';
 import { cellCenter, type LayoutResult } from './layout';
 import { TEX } from '../textureKeys';
+import { ENV_HEX } from '../../config/pieces';
+import { CELL } from '../../config/tuning';
+import { px } from '../ui/uiScale';
 
 /** 棋子贴图相对格子的占比 —— 留一点缝，棋子之间不要挤在一起 */
 const PIECE_FILL = 0.86;
@@ -129,17 +132,24 @@ export class BoardView {
     }
   }
 
-  /** 棋盘底板：把可玩格子画出来，洞不画 —— 玩家要能看出哪里是洞 */
+  /**
+   * 棋盘底板：把可玩格子画出来，洞不画 —— 玩家要能看出哪里是洞。
+   *
+   * ⚠️ 尺寸走 `px()` 换算。游戏内坐标是**物理像素**（main.ts 按 DPR 放大缓冲），
+   *   直接写裸数字的话，DPR=2 手机上间隙与圆角只有设计值的一半。
+   */
   private drawBackdrop(board: BoardState): void {
     const g = this.scene.add.graphics();
     const s = this.layout.pieceSizePt;
-    g.fillStyle(0x000000, 0.06);
+    const inset = px(this.scene, CELL.insetPt);
+    const radius = px(this.scene, CELL.radiusPt);
+    g.fillStyle(ENV_HEX.cellShadow, CELL.backdropAlpha);
     for (let row = 0; row < board.rows; row++) {
       for (let col = 0; col < board.cols; col++) {
         const cell = board.cells[row * board.cols + col];
         if (!cell || cell.blocked) continue;
         const c = cellCenter(this.layout, col, row);
-        g.fillRoundedRect(c.x - s / 2 + 2, c.y - s / 2 + 2, s - 4, s - 4, 8);
+        g.fillRoundedRect(c.x - s / 2 + inset, c.y - s / 2 + inset, s - inset * 2, s - inset * 2, radius);
       }
     }
     this.layer.add(g);
@@ -306,9 +316,21 @@ export class BoardView {
     if (!at) return;
     const s = this.layout.pieceSizePt;
     const c = cellCenter(this.layout, at.col, at.row);
+    const inset = px(this.scene, CELL.insetPt);
     const g = this.scene.add.graphics();
-    g.lineStyle(4, 0xffb03a, 1);
-    g.strokeRoundedRect(c.x - s / 2 + 2, c.y - s / 2 + 2, s - 4, s - 4, 8);
+    /**
+     * ⚠️ 描边宽度必须经 px() —— 写裸 `4` 的话在 DPR=2 手机上
+     *   只有设计粗细的**一半**，选中框会细得看不清。
+     *   （Panel.ts 里同类描边写的是 px(scene, 3)，此处曾经漏了。）
+     */
+    g.lineStyle(px(this.scene, CELL.selectionWidthPt), ENV_HEX.btnPrimary, 1);
+    g.strokeRoundedRect(
+      c.x - s / 2 + inset,
+      c.y - s / 2 + inset,
+      s - inset * 2,
+      s - inset * 2,
+      px(this.scene, CELL.radiusPt),
+    );
     this.layer.add(g);
     this.selection = g;
   }

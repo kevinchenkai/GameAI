@@ -15,6 +15,7 @@ import type Phaser from 'phaser';
 import type { Rating } from '../../core/types';
 import { MIN_TAP_PT, Panel } from './Panel';
 import { fontPx, px } from './uiScale';
+import { ENV_PALETTE, ENV_HEX } from '../../config/pieces';
 
 /**
  * ★★ 花园建设进度 —— **必须在结算页显示**（框架 §8.1）。
@@ -112,7 +113,7 @@ export class ResultPanel {
       .text(cx, y + px(this.scene, 26), stars, {
         fontFamily: '"PingFang SC", sans-serif',
         fontSize: fontPx(this.scene, 40),
-        color: '#FFB03A',
+        color: ENV_PALETTE.btnPrimary,
       })
       .setOrigin(0.5);
     p.add(t);
@@ -172,7 +173,7 @@ export class ResultPanel {
       .text(cx - (g.gained > 0 ? px(this.scene, 16) : 0), y + px(this.scene, 10), line, {
         fontFamily: '"PingFang SC", sans-serif',
         fontSize: fontPx(this.scene, 16),
-        color: '#5A4632',
+        color: ENV_PALETTE.textDark,
       })
       .setOrigin(0.5);
     p.add(t);
@@ -183,7 +184,7 @@ export class ResultPanel {
           fontFamily: '"PingFang SC", sans-serif',
           fontSize: fontPx(this.scene, 16),
           fontStyle: 'bold',
-          color: '#FFB03A',
+          color: ENV_PALETTE.btnPrimary,
         })
         .setOrigin(0.5);
       p.add(plus);
@@ -198,10 +199,10 @@ export class ResultPanel {
     for (let i = 0; i < g.totalStages; i++) {
       const bx = startX + i * (box + gap) - box / 2;
       if (i < g.stage) {
-        gfx.fillStyle(0xffb03a, 1);
+        gfx.fillStyle(ENV_HEX.btnPrimary, 1);
         gfx.fillRoundedRect(bx, boxY, box, box, px(this.scene, 3));
       } else {
-        gfx.lineStyle(px(this.scene, 2), 0x8a6a4a, 0.5);
+        gfx.lineStyle(px(this.scene, 2), ENV_HEX.panelStroke, 0.5);
         gfx.strokeRoundedRect(bx, boxY, box, box, px(this.scene, 3));
       }
     }

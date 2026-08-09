@@ -23,7 +23,19 @@ import type Phaser from 'phaser';
  *   这里必须拿到**实际生效的那个值**，两处不能各算各的。
  */
 export function uiScale(scene: Phaser.Scene): number {
-  const canvas = scene.game.canvas;
+  /**
+   * ⚠️ `scene.game` 也要用可选链，不能只保护 `canvas`。
+   *
+   *   场景在 `create()` 之前、或被销毁之后，`game` 可能是 undefined，
+   *   写成 `scene.game.canvas` 会直接抛 TypeError。
+   *   （实测：给 BoardView 接入 px() 后，22 条单测同时报
+   *   "Cannot read properties of undefined (reading 'canvas')" ——
+   *   测试用的假场景没有 game 对象。）
+   *
+   *   倍率取不到时返回 1 是**正确的降级**：等于按设计像素画，
+   *   尺寸偏小但画面完整；抛异常则整个棋盘都画不出来。
+   */
+  const canvas = scene.game?.canvas;
   const cssW = canvas?.clientWidth ?? 0;
   if (!canvas || cssW <= 0) return 1;
   const ratio = canvas.width / cssW;
