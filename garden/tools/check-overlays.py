@@ -28,7 +28,10 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 PIECES = ROOT / "web" / "public" / "assets" / "pieces"
 
-OVERLAYS = ["overlay-rocket-h", "overlay-rocket-v", "overlay-bomb"]
+# ⚠️ 带 `-v2` 后缀：nginx 对图片设了 expires 30d，同名覆盖会让用户
+#    30 天内看到旧图（见 web/src/config/assets.ts 的说明）。
+#    下次改图递增到 -v3，这里也要跟着改。
+OVERLAYS = ["overlay-rocket-h-v2", "overlay-rocket-v-v2", "overlay-bomb-v2"]
 COLORS = ["red", "yellow", "green", "blue", "purple", "orange"]
 
 # —— 工单硬判据 ——

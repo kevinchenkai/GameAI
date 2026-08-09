@@ -45,10 +45,20 @@ export const ASSETS = {
    * 特殊棋子做成**通用叠加层**，叠在普通棋子上。
    * 资产量从 18 张（6 色 × 3 种）降到 3 张，且颜色永远匹配。
    */
+  /**
+   * ⚠️ **改图必须换文件名** —— 文件名里的 `-v2` 不是版本洁癖。
+   *
+   *   nginx 对静态图片设了 `expires 30d`（见根 CLAUDE.md §1.1）。
+   *   同名覆盖时，服务器上明明是新图，**用户 30 天内仍看到旧图** ——
+   *   而且这个问题在开发机上永远复现不出来（本地没有这条缓存规则）。
+   *   实测：叠加层重做上线后，服务器 md5 已是新版，手机上却还是旧样式。
+   *
+   *   下次再改这三张图，把 `-v2` 递增到 `-v3`，别再同名覆盖。
+   */
   overlays: {
-    rocketH: `${PIECES}/overlay-rocket-h.png`,
-    rocketV: `${PIECES}/overlay-rocket-v.png`,
-    bomb: `${PIECES}/overlay-bomb.png`,
+    rocketH: `${PIECES}/overlay-rocket-h-v2.png`,
+    rocketV: `${PIECES}/overlay-rocket-v-v2.png`,
+    bomb: `${PIECES}/overlay-bomb-v2.png`,
   },
 
   /** 彩虹球是唯一独立素材（它本来就无色）。V1 Full，Stage 0 不做 */

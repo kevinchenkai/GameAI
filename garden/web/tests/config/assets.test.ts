@@ -15,7 +15,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { ASSETS, REFERENCE_ONLY } from '../../src/config/assets';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 /** 把 Manifest 递归摊平成 [键路径, 值] */
@@ -84,6 +84,37 @@ describe('★★ 素材路径必须带上部署前缀（BASE_URL）', () => {
     for (const [key, path] of ALL) {
       expect(path.includes('//'), `${key} = ${path} 含重复斜杠`).toBe(false);
     }
+  });
+
+  /**
+   * ★★ Manifest 里的每个文件都必须**真的存在于 assets/**。
+   *
+   *   ⚠️ 这条防的是"改图换文件名"时漏改一头：
+   *   nginx 对图片设了 `expires 30d`（根 CLAUDE.md §1.1），
+   *   所以改图**必须换文件名**，否则用户 30 天内还看到旧图。
+   *   而换名时如果只改了文件、忘了改 Manifest（或反过来），
+   *   线上就是**素材 404**——本地开发期未必立刻发现，
+   *   因为浏览器可能还缓存着旧名那张。
+   *
+   *   （实际发生过：叠加层重做后同名覆盖，服务器 md5 已是新版，
+   *   手机上仍是旧样式，排查了一轮才定位到是 30 天缓存。）
+   */
+  it('★★ 每个 Manifest 路径在 assets/ 下都有对应文件', () => {
+    const root = resolve(__dirname, '../../../assets');
+    /**
+     * ★ `special.rainbow` 属 Stage 0.5，**故意不加载也不出图**
+     *   （BootScene 里有对应注释）。它在 Manifest 里只是先占好路径，
+     *   不该因为"文件还没有"就让这条测试红。
+     */
+    const NOT_YET = new Set(['special.rainbow']);
+    const missing: string[] = [];
+    for (const [key, path] of ALL) {
+      if (NOT_YET.has(key)) continue;
+      // 路径形如 `<BASE>/assets/pieces/x.png`，取 assets/ 之后的部分
+      const rel = path.slice(path.indexOf('/assets/') + '/assets/'.length);
+      if (!existsSync(resolve(root, rel))) missing.push(`${key} → assets/${rel}`);
+    }
+    expect(missing, `Manifest 指向了不存在的文件：\n${missing.join('\n')}`).toEqual([]);
   });
 });
 
