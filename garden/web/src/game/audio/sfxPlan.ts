@@ -13,6 +13,7 @@ import {
   AUDIBLE_BAND,
   CASCADE_SEMITONE_STEP,
   CASCADE_SFX_FROM_LEVEL,
+  SWAP_TO_MATCH_GAP_MS,
   SFX,
   SFX_THROTTLE_MS,
   type SfxName,
@@ -64,8 +65,18 @@ export function planSfx(events: readonly CoreGameEvent[]): readonly SfxCue[] {
 
   for (const e of events) {
     switch (e.t) {
+      /**
+       * ★★ 交换音之后**必须推进游标**。
+       *
+       *   ⚠️ 实测：一步普通消除的音序是 swap@0ms + match@0ms ——
+       *   两个音**完全同时**响。520Hz 与 660Hz 叠在一起糊成一声，
+       *   玩家只听见"交换"，会以为消除根本没有声音（用户实际反馈 #3）。
+       *   `cursor += 20` 原本写在 match 分支的**末尾**，
+       *   只错开了同一段里的第二次 match，对 swap→match 这一对无效。
+       */
       case 'swap':
         push('swap');
+        cursor += SWAP_TO_MATCH_GAP_MS;
         break;
 
       case 'swapBack':

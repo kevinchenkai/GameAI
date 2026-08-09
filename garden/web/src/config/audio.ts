@@ -150,9 +150,19 @@ export const SFX: Readonly<Record<SfxName, ToneSpec>> = {
    *   基频不变、推力还在，但能量收回中频。
    *   （这类问题**只有实测频谱才看得出来**，基频检查是过的。）
    */
+  /**
+   * ⚠️ **实测修正**：原为 320→220Hz，用户在 Mac 与 iPhone 上
+   *   都反馈"听不到"。原因不是音量（振幅是 swap 的 2.5 倍），
+   *   而是**手机与笔记本扬声器在 300Hz 以下几乎没有输出** ——
+   *   物理上放不出来，调音量无济于事。
+   *
+   *   AUDIBLE_BAND 的下限 200Hz 是"理论可听"，不是"小扬声器放得响"。
+   *   实际下限要按 ~400Hz 算。"低沉有推力"改用**下行滑音 + 低次谐波**
+   *   来表达，而不是把基频真的压到放不出来的地方。
+   */
   specialFire: {
-    freq: 320,
-    endFreq: 220,
+    freq: 560,
+    endFreq: 400,
     durationMs: 280,
     gain: 0.36,
     wave: 'triangle',
@@ -174,13 +184,16 @@ export const SFX: Readonly<Record<SfxName, ToneSpec>> = {
    *   不是靠绝对值顶到上限。
    */
   /**
-   * ⚠️ 终点 210Hz 而不是更低：AUDIBLE_BAND 下限是 200Hz，
-   *   再低手机扬声器根本推不出来，只剩"什么都没有"。
-   *   "更重"靠时长与 gain 做，不靠继续往下扫。
+   * ⚠️ **实测修正**：原为 260→210Hz，用户反馈完全听不到 ——
+   *   这是全部音效里最低的，也最彻底地掉在小扬声器的盲区里。
+   *
+   *   现在比 specialFire 低一点点（480 vs 560）保持"更重"的相对关系，
+   *   但整体抬进放得出来的区间。真正的"重"靠**更长 + 更响 + 更多低次
+   *   谐波**表达，那些在小扬声器上是听得见的。
    */
   comboBlast: {
-    freq: 260,
-    endFreq: 210,
+    freq: 480,
+    endFreq: 340,
     durationMs: 380,
     gain: 0.42,
     wave: 'triangle',
@@ -260,6 +273,17 @@ export const CASCADE_SEMITONE_STEP = 2;
  *   文字占屏幕、会盖住棋盘，门槛要更高。
  */
 export const CASCADE_SFX_FROM_LEVEL = 2;
+
+/**
+ * 交换音与随后的消除音之间的间隔（ms）。
+ *
+ * ★★ 不能是 0 —— 两个音同时响会**糊成一声**，
+ *   玩家只听见交换，以为消除没有声音（实际发生过）。
+ *
+ * ★ 也不宜太大：交换与消除在感知上是同一个动作的因果两端，
+ *   隔太远会像"卡了一下"。60ms 刚好能分辨出是两声。
+ */
+export const SWAP_TO_MATCH_GAP_MS = 60;
 
 /** 音量默认值。★ 默认开，但留出静音入口（M5 的设置面板） */
 export const AUDIO_DEFAULTS = {

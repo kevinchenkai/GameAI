@@ -363,3 +363,56 @@ describe('★★ 连锁的听觉层级', () => {
     }
   });
 });
+
+/**
+ * ★★ 回归：用户实测"听不到"的三个音效。
+ *
+ *   这一组守的是两个**只有真机才暴露**的失败：
+ *   频率掉进小扬声器盲区、两个音同时响糊成一声。
+ *   两者单测原本都查不出来 —— 频率合规、事件也确实排进了序列。
+ */
+describe('★★ 回归：实测听不到的三个音效', () => {
+  /**
+   * ★★ AUDIBLE_BAND 的 200Hz 下限是"理论可听"，
+   *   **不是"手机/笔记本扬声器放得响"**。
+   *   小扬声器在 300Hz 以下几乎没有输出，400Hz 以下明显衰减 ——
+   *   specialFire(320→220) 与 comboBlast(260→210) 就是这么消失的。
+   *   振幅完全正常（是 swap 的 2.5~3 倍），调音量无济于事。
+   */
+  const SPEAKER_FLOOR = 300;
+
+  it('★★ 所有音效的频率都在小扬声器放得出的范围（>300Hz）', () => {
+    const tooLow: string[] = [];
+    for (const n of names) {
+      const s = SFX[n];
+      const lo = Math.min(s.freq, s.endFreq ?? s.freq);
+      if (lo < SPEAKER_FLOOR) tooLow.push(`${n}(${lo}Hz)`);
+    }
+    expect(tooLow, `这些音效低于小扬声器下限，真机上会听不到：${tooLow.join(', ')}`).toEqual([]);
+  });
+
+  /**
+   * ★★ swap 与 match 曾经**都排在 0ms**，完全同时响。
+   *   520Hz + 660Hz 叠成一声，玩家只听见交换，
+   *   以为消除根本没声音（用户反馈 #3）。
+   */
+  it('★★ 交换音与消除音不能同时响（会糊成一声）', () => {
+    const cues = planSfx([swap(), match()]);
+    const s = cues.find((c) => c.name === 'swap');
+    const m = cues.find((c) => c.name === 'match');
+    expect(s).toBeDefined();
+    expect(m).toBeDefined();
+    const gap = (m as { atMs: number }).atMs - (s as { atMs: number }).atMs;
+    expect(gap, '两个音相隔太近会听成一声').toBeGreaterThanOrEqual(40);
+  });
+
+  /**
+   * ★ comboBlast 必须仍是"最重的一击" ——
+   *   抬频率是为了听得见，不能把它抬得比火箭还轻快。
+   */
+  it('★ 抬高频率后，合体引爆仍比单发火箭更重', () => {
+    expect(SFX.comboBlast.freq).toBeLessThan(SFX.specialFire.freq);
+    expect(SFX.comboBlast.durationMs).toBeGreaterThan(SFX.specialFire.durationMs);
+    expect(SFX.comboBlast.gain).toBeGreaterThan(SFX.specialFire.gain);
+  });
+});
