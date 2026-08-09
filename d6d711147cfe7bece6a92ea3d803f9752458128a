@@ -1,0 +1,34 @@
+garden/web/src/game/audio/sfxPlan.ts
+  640fa3cf12a5a767 75-83,85,87,93-107,112-117
+garden/web/src/config/audio.ts
+  640fa3cf12a5a767 38,40,122-141,166-193
+garden/web/tests/game/sfxPlan.test.ts
+  640fa3cf12a5a767 208-233
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "d6d711147cfe7bece6a92ea3d803f9752458128a",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 383,
+      "total_deletions": 9,
+      "accepted_lines": 2627,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/3f061cd545431bcc4696de6b705bcf32f8779739a5e57896ceb7ee5b36e96f56",
+      "token_usage": {
+        "input_tokens": 8353,
+        "output_tokens": 1136633,
+        "cache_creation_input_tokens": 8376226,
+        "cache_read_input_tokens": 624818227
+      }
+    }
+  }
+}
