@@ -1,0 +1,84 @@
+h3/cases.json
+  640fa3cf12a5a767 1-167
+h3/README.md
+  eda626ef510a1c9f 1-212
+h3/prompts/C-005-xianxia.txt
+  640fa3cf12a5a767 1-3
+h3/.gitignore
+  eda626ef510a1c9f 1-10
+h3/deploy.sh
+  eda626ef510a1c9f 1-160
+h3/build_html.py
+  eda626ef510a1c9f 1-441
+h3/prompts/H3-001-space-captain.txt
+  640fa3cf12a5a767 1-3
+h3/prompts/C-008-sixasset.txt
+  640fa3cf12a5a767 1
+h3/prompts/C-007-binocular.txt
+  640fa3cf12a5a767 1-7
+h3/prompts/H3-003-lamb-voice.txt
+  640fa3cf12a5a767 1-24
+h3/index.html
+  640fa3cf12a5a767 1-30,32,36-820
+h3/prompts/C-003-wuxia.txt
+  640fa3cf12a5a767 1-5
+h3/prompts/C-002-hitchcock.txt
+  640fa3cf12a5a767 1
+h3/build.py
+  640fa3cf12a5a767 1-63
+h3/prompts/C-006-fps.txt
+  640fa3cf12a5a767 1-5
+h3/prompts/C-001-coffee.txt
+  640fa3cf12a5a767 1-5
+h3/prompts/C-004-vampire.txt
+  640fa3cf12a5a767 1-7
+h3/prompts/H3-002-ramen-focus-pull.txt
+  640fa3cf12a5a767 1-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "da6f01b5270776961f37fec4a3669745a1c2a9c1",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 2292,
+      "total_deletions": 0,
+      "accepted_lines": 5485,
+      "overriden_lines": 3,
+      "messages_url": "http://172.20.103.50:8002/cas/b31505071945d22d276a990e5fe2b44769d3ede35031666af2fd3ce2a31538c6",
+      "token_usage": {
+        "input_tokens": 8547,
+        "output_tokens": 1177358,
+        "cache_creation_input_tokens": 9353749,
+        "cache_read_input_tokens": 655456394
+      }
+    },
+    "eda626ef510a1c9f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6faaad6a-b12d-4d2c-ae65-cb942d4732f2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 311,
+      "total_deletions": 11,
+      "accepted_lines": 823,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/cd93ee82c9befb10b06d1015cda6e57a107767da1e7a7a941440a96cc5c2d6da",
+      "token_usage": {
+        "input_tokens": 1192,
+        "output_tokens": 378262,
+        "cache_creation_input_tokens": 702249,
+        "cache_read_input_tokens": 102956723
+      }
+    }
+  }
+}
