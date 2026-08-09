@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MiniMax-H3 作品展示 · 开源复现</title>
+<meta name="description" content="MiniMax-H3 开源版视频生成模型的复现作品集，包含 11 个案例的成片、完整 prompt 原文与逐条判定结论。">
+<meta name="theme-color" content="#0b0d12">
+<script>
+/* 🔴 必须在 <style> 之前同步执行：先定主题再首次绘制，否则深色用户会闪一下白屏。
+   默认 dark；只有用户显式切到 light 才走浅色。 */
+(function () {
+  try {
+    var t = localStorage.getItem('h3-theme');
+    if (t === 'light' || t === 'dark') {
+      document.documentElement.setAttribute('data-theme', t);
+    }
+  } catch (e) {}
+})();
+</script>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  /* 🌙 默认深色。浅色只在用户**显式选择**时生效（html[data-theme="light"]），
+     不跟随系统 —— 系统深浅色只用于决定"跟随系统"这一档的落点。 */
+  :root{
+    --bg:#0b0d12; --bg2:#12151d; --card:#161a24; --line:#262c3a;
+    --fg:#e8ecf4; --dim:#98a2b8; --accent:#6ea8ff; --accent2:#9b7bff;
+    --ok:#3fb950; --warn:#d29922; --radius:14px;
+    color-scheme:dark;
+  }
+  html[data-theme="light"]{
+    --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --line:#e3e7ef;
+    --fg:#1a1f2b; --dim:#5b6478; --accent:#2563eb; --accent2:#7c3aed;
+    --ok:#1a7f37; --warn:#9a6700;
+    color-scheme:light;
+  }
+
+  /* 主题切换按钮 */
+  .theme-toggle{
+    position:fixed; top:14px; right:14px; z-index:50;
+    display:flex; align-items:center; gap:6px;
+    background:color-mix(in srgb,var(--card) 88%,transparent);
+    border:1px solid var(--line); border-radius:999px;
+    padding:5px 6px; cursor:pointer;
+    backdrop-filter:saturate(180%) blur(10px);
+    -webkit-backdrop-filter:saturate(180%) blur(10px);
+    font-family:inherit; font-size:.84rem; color:var(--dim);
+    transition:border-color .18s, color .18s;
+  }
+  .theme-toggle:hover{border-color:var(--accent); color:var(--fg)}
+  .theme-toggle .ico{
+    width:24px; height:24px; display:grid; place-items:center;
+    border-radius:999px; font-size:.95rem; line-height:1;
+  }
+  .theme-toggle .ico.on{background:color-mix(in srgb,var(--accent) 20%,transparent); color:var(--fg)}
+  .theme-toggle .lbl{padding-right:8px}
+  @media (max-width:600px){
+    .theme-toggle{top:10px; right:10px; padding:4px 5px}
+    .theme-toggle .lbl{display:none}
+  }
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",
+      "Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+
+  /* ---------- 头部 ---------- */
+  .hero{
+    padding:72px 0 56px; text-align:center;
+    background:
+      radial-gradient(1000px 400px at 50% -120px, rgba(110,168,255,.20), transparent 70%),
+      linear-gradient(180deg, var(--bg2), var(--bg));
+    border-bottom:1px solid var(--line);
+  }
+  .hero h1{
+    margin:0 0 14px; font-size:clamp(1.9rem,5.4vw,3.1rem); line-height:1.25;
+    letter-spacing:-.02em;
+    background:linear-gradient(100deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .sub{margin:0 auto; max-width:44em; color:var(--dim); font-size:1.02rem}
+  .stats{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:26px;
+  }
+  .stat{
+    background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:7px 16px; font-size:.88rem; color:var(--dim);
+  }
+  .stat b{color:var(--fg); font-weight:650}
+
+  /* ---------- 章节 ---------- */
+  section{padding:56px 0 8px}
+  h2{
+    margin:0 0 8px; font-size:clamp(1.35rem,3.2vw,1.75rem); letter-spacing:-.01em;
+    display:flex; align-items:center; gap:11px;
+  }
+  h2::before{
+    content:""; width:4px; height:1.05em; border-radius:3px;
+    background:linear-gradient(180deg,var(--accent),var(--accent2));
+  }
+  .lead{color:var(--dim); margin:0 0 24px; max-width:52em}
+
+  .intro-grid{
+    display:grid; gap:14px; margin:22px 0 6px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  }
+  .tile{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:16px 18px;
+  }
+  .tile h4{margin:0 0 6px; font-size:.97rem}
+  .tile p{margin:0; color:var(--dim); font-size:.9rem; line-height:1.7}
+  .tile code{
+    background:var(--bg); border:1px solid var(--line); border-radius:5px;
+    padding:1px 6px; font-size:.85em;
+  }
+
+  /* ---------- 案例卡 ---------- */
+  .case{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:20px; margin-bottom:20px;
+  }
+  .case-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:12px; flex-wrap:wrap; margin-bottom:12px;
+  }
+  .case-title{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; min-width:0}
+  .cid{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.82rem; color:var(--accent);
+    background:color-mix(in srgb,var(--accent) 12%,transparent);
+    border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+    border-radius:6px; padding:2px 8px; white-space:nowrap;
+  }
+  .case h3{margin:0; font-size:1.14rem; letter-spacing:-.01em}
+  .badge{
+    font-size:.82rem; padding:3px 12px; border-radius:999px; white-space:nowrap;
+    border:1px solid transparent; font-weight:600;
+  }
+  .badge.ok{
+    color:var(--ok); background:color-mix(in srgb,var(--ok) 14%,transparent);
+    border-color:color-mix(in srgb,var(--ok) 34%,transparent);
+  }
+  .badge.warn{
+    color:var(--warn); background:color-mix(in srgb,var(--warn) 14%,transparent);
+    border-color:color-mix(in srgb,var(--warn) 34%,transparent);
+  }
+
+  .meta{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;
+    font-size:.84rem; color:var(--dim);
+  }
+  .meta span{
+    background:var(--bg); border:1px solid var(--line);
+    border-radius:7px; padding:3px 10px;
+  }
+  .meta b{color:var(--fg); font-weight:600; margin-right:6px}
+
+  .player{
+    background:#000; border-radius:10px; overflow:hidden;
+    border:1px solid var(--line); line-height:0;
+  }
+  .player video{width:100%; height:auto; display:block; max-height:74vh}
+  /* 竖屏成片：限制宽度，避免在桌面端占满整屏 */
+  .player.vertical{max-width:392px; margin:0 auto}
+
+  .note{margin:14px 0 0; color:var(--dim); font-size:.93rem}
+
+  /* ---------- Prompt ---------- */
+  .prompt-box{
+    margin-top:14px; border:1px solid var(--line);
+    border-radius:10px; background:var(--bg); overflow:hidden;
+  }
+  .prompt-box summary{
+    cursor:pointer; padding:11px 14px; font-size:.9rem; user-select:none;
+    display:flex; justify-content:space-between; align-items:center;
+    gap:10px; flex-wrap:wrap; list-style:none;
+  }
+  .prompt-box summary::-webkit-details-marker{display:none}
+  .prompt-box summary::before{content:"▸ "; color:var(--accent)}
+  .prompt-box[open] summary::before{content:"▾ "}
+  .prompt-box summary:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+  .pmeta{
+    color:var(--dim); font-size:.78rem;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  .prompt-actions{padding:0 14px; margin-top:2px}
+  .copy{
+    background:var(--card); color:var(--fg); border:1px solid var(--line);
+    border-radius:7px; padding:5px 13px; font-size:.83rem; cursor:pointer;
+    font-family:inherit;
+  }
+  .copy:hover{border-color:var(--accent); color:var(--accent)}
+  .copy.done{color:var(--ok); border-color:var(--ok)}
+  .prompt-box pre{
+    margin:10px 0 0; padding:14px; overflow-x:auto;
+    background:transparent; border-top:1px solid var(--line);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    font-size:.845rem; line-height:1.72; color:var(--fg);
+    white-space:pre-wrap; word-wrap:break-word;
+  }
+
+  footer{
+    margin-top:56px; padding:30px 0 48px; border-top:1px solid var(--line);
+    color:var(--dim); font-size:.86rem; text-align:center;
+  }
+  footer a{color:var(--accent)}
+
+  @media (max-width:600px){
+    .wrap{padding:0 15px}
+    .hero{padding:52px 0 42px}
+    section{padding:42px 0 6px}
+    .case{padding:15px; border-radius:12px}
+    .case h3{font-size:1.04rem}
+    .player.vertical{max-width:100%}
+    .prompt-box pre{font-size:.8rem}
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" type="button"
+        aria-label="切换深色 / 浅色主题" title="切换深色 / 浅色主题">
+  <span class="ico" id="icoDark">🌙</span>
+  <span class="ico" id="icoLight">☀️</span>
+  <span class="lbl" id="themeLabel">深色</span>
+</button>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>MiniMax-H3 作品展示</h1>
+    <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集。
+       每个案例都附完整 prompt 原文与逐条判定结论 —— 包括没做到的部分。</p>
+    <div class="stats">
+      <span class="stat">共 <b>11</b> 个案例</span>
+      <span class="stat">复现成功 <b>7</b></span>
+      <span class="stat">部分成功 <b>4</b></span>
+      <span class="stat">NaN / 黑帧 <b>0</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section id="about">
+  <h2>关于 MiniMax-H3</h2>
+  <p class="lead">
+    MiniMax-H3 是 MiniMax 开源的视频生成模型，特点是<b>原生同时生成画面与音频</b>——
+    对白、环境声与配乐在一次推理里同时产出，不需要事后配音。
+  </p>
+
+  <div class="intro-grid">
+    <div class="tile">
+      <h4>五种生成模式</h4>
+      <p><code>T2VA</code> 纯文生视频 · <code>I2VA</code> 单图驱动 ·
+         <code>FL2VA</code> 首尾帧驱动 · <code>L2VA</code> 尾帧驱动 ·
+         <code>Ref2VA</code> 参考图 / 参考视频 / 参考音频驱动</p>
+    </div>
+    <div class="tile">
+      <h4>画面与音频同源</h4>
+      <p>音频不是后期贴上去的：prompt 里描述的音效节点会与画面事件对齐，
+         口型也能与新增对白同步。</p>
+    </div>
+    <div class="tile">
+      <h4>帧数走固定网格</h4>
+      <p>可用帧数为 <code>17k+5</code>：107 / 124 / … / 362。
+         最长约 15.08 秒，本站 C-004 就是跑在 362 帧上限。</p>
+    </div>
+    <div class="tile">
+      <h4>原生分辨率</h4>
+      <p>768 为短边，横屏 <code>1344×768</code>、竖屏 <code>768×1344</code>。
+         本站成片全部按原生分辨率直出，未做放大。</p>
+    </div>
+  </div>
+
+  <p class="lead" style="margin-top:22px">
+    需要说明的是：官方托管服务里有一层名为 <b>H3-Context-IR</b> 的提示词预处理，
+    开源版本并不包含。因此网上流传的一些很短的 prompt 在开源版直跑，
+    效果会与演示不同 —— 本站所有 prompt 都是<b>在开源版上实际跑通</b>的原文。
+  </p>
+</section>
+
+<section id="official">
+  <h2>官方基准案例</h2>
+  <p class="lead">来自 MiniMax 官方仓库的可复现脚本，用于校准环境与接线是否正确。
+     三条全部复现成功。</p>
+  
+<article class="case" id="H3-001">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">H3-001</span>
+      <h3>太空舰长 Space Captain</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>243</span>
+    <span><b>时长</b>10.125s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/H3-001.jpg"
+           src="videos/H3-001.mp4"></video>
+  </div>
+
+  <p class="note">官方基准案例。两镜结构 + 舰队跃迁白光爆发 + 摄影机剧烈震动，音频随事件由环境 hum 推到爆发后骤然安静。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">2504 字符 · sha256 98f36b879692</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-H3-001">复制</button>
+    </div>
+    <pre id="p-H3-001">integrated_multimodal_description: [Shot 1] Cinematic, medium wide shot, pushing in slowly. In the cavernous, dimly lit bridge of a starship, sleek metallic consoles with glowing amber displays flank a massive, curved observation window. A female captain, in her late 40s with an athletic build and short silver-streaked black hair, stands in the center midground. She wears a structured, high-collared dark navy military tunic with silver chest insignias. Her back is to the camera, silhouetted against the cool, ambient starlight pouring through the thick glass. She stands perfectly still with her hands clasped tightly behind her back. Outside the window, a massive armada of jagged, dark grey dreadnoughts hovers in tight formation against a deep purple space nebula. The fleet&#x27;s massive rear thrusters begin to glow with an intense, escalating bright blue light. [Shot 2] At 00:04.500, the camera cuts to a close-up of the captain&#x27;s face and shakes strongly. The brilliant blue-white light from the fleet&#x27;s gathering energy reflects vividly in her dark eyes. Suddenly, a blinding white flash floods through the window, completely washing out the background as the fleet jumps to hyperspace. The sheer spatial force violently jolts the bridge, causing the captain from Shot 1 to stagger slightly forward, her shoulders tensing as she visibly braces herself against the physical tremors. As the intense white light fades abruptly, leaving only the dim, empty expanse of the purple nebula reflected on her starkly lit skin, her jaw clenches, and she slowly closes her eyes in the newly emptied space.
+overall_soundscape: A low, resonant hum of the ship&#x27;s ambient life support systems serves as the baseline, soon drowned out by an audible, escalating, high-pitched electronic whine as the fleet outside charges its hyperdrives. A massive, deafening, bass-heavy boom and sharp crackle erupts during the blinding flash, accompanied by the loud metallic creaking, rattling, and deep thuds of the bridge&#x27;s bulkheads vibrating under immense physical stress. The intense roaring impact then cuts abruptly back to a hollow, echoing room tone, leaving only the faint, steady hum of the isolated bridge.
+non_diegetic_music: Cinematic space-opera orchestral score, slow tempo, featuring a solitary, mournful French horn melody over deep, sustained string dissonances that build rapidly in volume and intensity, swelling to a massive orchestral peak before snapping immediately into silence right after the jump.</pre>
+  </details>
+</article>
+<article class="case" id="H3-002">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">H3-002</span>
+      <h3>拉面变焦 Ramen Focus Pull</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>I2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>192</span>
+    <span><b>时长</b>8.000s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/H3-002.jpg"
+           src="videos/H3-002.mp4"></video>
+  </div>
+
+  <p class="note">官方标注 FL2VA，实际条件里只有一张首帧图，等价于 I2VA。摄影机全程静止，靠焦点位移叙事。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">4534 字符 · sha256 ae09dc561167</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-H3-002">复制</button>
+    </div>
+    <pre id="p-H3-002">For the target video, at 0.00 seconds into the target video, &lt;Picture 1&gt; (from [Shot 1]) is fully referenced.
+
+integrated_multimodal_description: [Shot 1] This is a live-action, cinematic shot with a shallow depth of field. The camera holds a perfectly static shot throughout the entire eight-second duration, capturing a cozy family gathering in a traditional Japanese dining room. The scene opens with a large, intricately patterned blue and white ceramic bowl of ramen in the immediate foreground, rendered in crisp, sharp focus. The bowl sits on a smooth, polished long wooden table. Inside the bowl, a rich, oily golden-brown broth surrounds yellow wavy noodles, topped with two thick, round slices of chashu pork featuring visible fat marbling and a distinct spiral meat pattern. A generous mound of freshly chopped, bright green scallions rests in the center, and a crisp, dark green rectangular sheet of nori seaweed is tucked into the right edge. To the left of the bowl, a pair of light brown wooden chopsticks rests horizontally on a small, dark rectangular chopstick rest, near a small cylindrical ceramic teacup with blue painted patterns. On the right side of the table, a spherical paper lantern with a ribbed bamboo frame sits on a black wooden base. In the background, a large family of seven is gathered around the table, initially appearing as a soft, blurred presence. Behind them, traditional Japanese sliding shoji screens with wooden lattice frames are open, revealing a bright outdoor scene with lush green trees. Early in the clip, the thick, white steam rising from the hot ramen broth immediately intensifies, billowing upwards in thick, swirling clouds that dance continuously above the bowl. As the clip progresses into the middle seconds, the camera maintains its static position while the focus begins a deliberate, smooth shift deeper into the room. The foreground ramen bowl, its vibrant ingredients, and the rising steam gradually soften into a hazy, out-of-focus blur. Simultaneously, the family members in the background come into sharp, detailed clarity. The heavy steam continues to rise from the foreground, creating a dynamic, translucent veil between the camera and the family. With the focus now firmly locked on the background, the vibrant family dinner comes alive. The man in the dark navy blue long-sleeved shirt on the left leans forward, his mouth moving animatedly in a silent exchange. The young girl in the crisp white short-sleeved t-shirt beside him smiles brightly, looking toward the center of the table. The woman on the far left, wearing a soft light blue long-sleeved blouse, turns her head slightly, smiling gently. Across the table, the woman in the light grey button-down shirt smiles broadly, her eyes crinkling, as she rests her hands near her plate. The woman in the dark grey top further back uses her wooden chopsticks to pick up a small piece of food from a central ceramic dish filled with bright red pickled vegetables. The woman in the center back in the light grey sweater smiles gently, her hands clasped softly in front of her, observing the interaction. Throughout the remainder of the clip, the family continues their lively physical interaction, their mouths moving in continuous, silent cadences of conversation, while the thick, white steam from the blurred ramen bowl in the foreground never stops rising, adding a comforting atmosphere to the warm gathering.
+
+overall_soundscape: The soundscape begins with a quiet room tone mixed with the faint, airy rustle of the thick steam billowing from the hot ramen bowl in the foreground, accompanied by the subtle, continuous hissing and bubbling of the rich broth. As the visual focus shifts deeper into the room, the physical sounds of the bustling family dinner become dominant in the foreground. The clear, sharp clinking of ceramic bowls and wooden chopsticks touching plates is clearly heard as the family members reach for food. This is followed by the faint, muffled thud of a cup being set down on the smooth wooden table, and the subtle, rhythmic rustle of cotton and wool clothing as the family members lean forward and gesture, perfectly capturing the lively, physical atmosphere of the shared meal.
+
+non_diegetic_music: A gentle, heartwarming acoustic guitar melody plays softly in the background, accompanied by the subtle, resonant notes of a traditional Japanese koto. The music maintains a slow, comforting tempo that enhances the cozy, nostalgic, and joyful atmosphere of the family gathering.</pre>
+  </details>
+</article>
+<article class="case" id="H3-003">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">H3-003</span>
+      <h3>羊羔与人声 Lamb + Voice</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>Ref2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>124</span>
+    <span><b>时长</b>5.167s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/H3-003.jpg"
+           src="videos/H3-003.mp4"></video>
+  </div>
+
+  <p class="note">参考视频 + 独立音色参考同时接入。身份保持完整（金发、粉西装、怀里黑羊），并新增对白且口型同步。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">3554 字符 · sha256 11f126106c4a</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-H3-003">复制</button>
+    </div>
+    <pre id="p-H3-003">subject_definitions:
+&lt;Subject 1&gt; is the young man with short wavy blonde hair, wearing a bright pink suit jacket, matching pink trousers, an unbuttoned white shirt, and silver rings, holding a small black lamb in his arms in &lt;Video 1&gt;.
+&lt;Video 1&gt; is the source video for the editing task.
+&lt;Audio 1&gt; is the synchronized audio track of &lt;Video 1&gt;, providing the background music.
+&lt;Audio 2&gt; is the voice timbre reference for &lt;Subject 1&gt;&#x27;s voice, containing a spoken male voiceover.
+
+summary:
+[video editing + audio reference + audio reuse] The target video is an edited version of &lt;Video 1&gt;. &lt;Subject 1&gt;, wearing a bright pink suit and holding a black lamb, stands in a grassy field with other white lambs in the background. The edit animates &lt;Subject 1&gt;&#x27;s face to speak the user-provided dialogue. &lt;Audio 1&gt; is partially reused as the continuous background music, while the target references the calm male voice timbre of &lt;Audio 2&gt; for &lt;Subject 1&gt;&#x27;s spoken lines.
+
+retention_analysis:
+&lt;Subject 1&gt; (appears in [Shot 1]): fully_preserved - the man retains his identity, wavy blonde hair, pink suit, white shirt, accessories, and the black lamb he holds, with his mouth newly animated to speak.
+&lt;Video 1&gt; (source video editing): fully_preserved - the original camera framing, warm golden hour lighting, grassy hill setting, and background white lambs are maintained while the central character is edited.
+&lt;Audio 1&gt;: partially_copy - the atmospheric background music from &lt;Audio 1&gt; is reused in the target video, mixed beneath the newly added spoken dialogue.
+&lt;Audio 2&gt;: reference - the target audio references the male voice timbre from &lt;Audio 2&gt; to generate &lt;Subject 1&gt;&#x27;s spoken dialogue.
+
+detailed_description:
+The target video is in realistic photographic style.
+[Shot 1] The shot begins from the source &lt;Video 1&gt;, showing &lt;Subject 1&gt;, a young man with short wavy blonde hair, wearing a bright pink suit jacket, matching pink trousers, and a casually unbuttoned white shirt. He stands confidently in a sunlit green pasture, gently holding a small black lamb securely in his arms. The warm, golden hour lighting casts soft shadows across his face and the bright pink fabric of his suit. Behind him, several white lambs stand and graze on the rolling grassy hill against a clear, pale blue sky. The atmospheric background music from &lt;Audio 1&gt; plays continuously throughout the scene. &lt;Subject 1&gt; physically speaks, his mouth movements naturally syncing to the new dialogue, with his voice timbre referencing the calm male delivery from &lt;Audio 2&gt;. Looking thoughtfully forward, &lt;Subject 1&gt; (S1) speaks softly, &lt;d&gt;[English] Follow the wind, live free.&lt;/d&gt; As he delivers the line, he subtly shifts his weight, cradling the resting black lamb while the camera slowly pushes in. &lt;Subject 1&gt; (S1) continues his thought, &lt;d&gt;[English] Leave worries behind, enjoy the moment.&lt;/d&gt; Exactly as his voice stops, his lips meet in a relaxed, peaceful smile, and his jaw ceases speaking motion. He then turns his gaze slightly away toward the horizon, gently stroking the black lamb&#x27;s fleece with his fingers as the camera holds on this tranquil, sunlit state through the end of the video.
+
+overall_soundscape:
+The soundscape consists of the continuous, atmospheric background music from &lt;Audio 1&gt;, overlaid with the clear, calm male dialogue spoken by the main character, referencing the voice timbre of &lt;Audio 2&gt;.
+
+non_diegetic_music:
+The atmospheric, sustained background music from &lt;Audio 1&gt; is reused as the continuous score, playing quietly beneath the spoken dialogue.</pre>
+  </details>
+</article>
+</section>
+
+<section id="community">
+  <h2>社区案例复现</h2>
+  <p class="lead">社区流传的优秀 prompt 在开源版上的实跑结果。
+     标注「部分成功」的案例，说明中写明了具体是哪一项没有达成。</p>
+  
+<article class="case" id="C-001">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-001</span>
+      <h3>咖啡漩涡 → 沙漠</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>FL2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>243</span>
+    <span><b>时长</b>10.125s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/C-001.jpg"
+           src="videos/C-001.mp4"></video>
+  </div>
+
+  <p class="note">首尾帧驱动的形变转场。prompt 明令禁止硬切与黑场，成片实测转场处最大帧差仅为中位数的 3.3 倍（真实切镜为 40.6 倍），确认连续。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">891 字符 · sha256 c4e5758641c6</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-001">复制</button>
+    </div>
+    <pre id="p-C-001">@Image 1: Push in rapidly toward the milk foam, cocoa particles, and dark liquid texture on the coffee until particles, bubbles, and ripples fill the frame. Keep the macro photography realistic, with extremely shallow depth of field and fine powder drifting through backlight. Let the surface feel suspended between granular sand and fluid.
+
+At the exact moment when the cocoa particles, foam contours, and coffee swirl closely resemble the dune ridges, wind-carved textures, and airborne sand in @Image 2, transition seamlessly into the desert landscape. Continue pushing forward until the full dunes from @Image 2 are revealed.
+
+No tearing, black frames, hard cuts, obvious VFX, or compositing seams. Keep it photoreal, quiet, and restrained—as though one granular material naturally expands from the microscopic coffee surface into a vast desert. One continuous shot with no visible edit.</pre>
+  </details>
+</article>
+<article class="case" id="C-002">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-002</span>
+      <h3>希区柯克变焦</h3>
+    </div>
+    <span class="badge warn">部分成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>Ref2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>124</span>
+    <span><b>时长</b>5.167s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/C-002.jpg"
+           src="videos/C-002.mp4"></video>
+  </div>
+
+  <p class="note">参考图的人物身份未迁移：参考为咖啡馆卷发年轻女性，成片为戴礼帽的年长男性。变焦一项自动判据失败，如实记为无法判定。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">123 字符 · sha256 9f8360255b5d</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-002">复制</button>
+    </div>
+    <pre id="p-C-002">Reference the Hitchcock camera movement from Video 1, have the character in Image 2 sing, with the vocals matching Audio 3.</pre>
+  </details>
+</article>
+<article class="case" id="C-003">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-003</span>
+      <h3>武侠竹林夜戏</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>192</span>
+    <span><b>时长</b>8.000s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/C-003.jpg"
+           src="videos/C-003.mp4"></video>
+  </div>
+
+  <p class="note">冷调实测 B−R=+24.42（暖调对照为 −38.06），暗部占比 40.5%，前景虚化竹叶、正反打分镜、飘雪与远处雾光全部命中。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">1117 字符 · sha256 1b695ce62237</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-003">复制</button>
+    </div>
+    <pre id="p-C-003">A 16:9 cinematic wuxia mystery set in a bamboo forest at night. Use a low-saturation palette of cold blue, ink green, charcoal, and gray. Thin mist fills the forest and fine snow drifts through the air. The mood is austere, lethal, and controlled, with the tension of a martial-arts sect investigating a case and exchanging secret intelligence.
+
+Deep in the forest, dense vertical bamboo fills the background while cold white mist-light glows in the distance. Soft, out-of-focus leaves partially obscure the foreground, creating the sense of watching from within the grove. A cool, soft front-side key lights the actors’ faces; backlight keeps the foreground dark and the distance luminous. Use shallow depth of field so leaves, snow, and bamboo dissolve into soft bokeh.
+
+Prioritize facial close-ups and measured shot/reverse-shot coverage. Keep the rhythm restrained but tense. Photoreal period-drama production value, cinematic lighting, and no modern elements. No subtitles, on-screen text, watermarks, modern clothing or architecture, animation styling, over-smoothed skin, bright daylight, or comic performance.</pre>
+  </details>
+</article>
+<article class="case" id="C-004">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-004</span>
+      <h3>竖屏吸血鬼短剧</h3>
+    </div>
+    <span class="badge warn">部分成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>Ref2VA</span>
+    <span><b>分辨率</b>768×1344</span>
+    <span><b>帧数</b>362</span>
+    <span><b>时长</b>15.083s</span>
+  </div>
+
+  <div class="player vertical">
+    <video controls preload="none" playsinline
+           poster="posters/C-004.jpg"
+           src="videos/C-004.mp4"></video>
+  </div>
+
+  <p class="note">唯一竖屏案例，也是帧数上限 362。画面本身稳定无崩坏，但身份未迁移（参考为白人卷发，成片为东亚背头），尾段出现乱码字幕，语音也不可辨识为任何语言。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">1092 字符 · sha256 d935d791b5c0</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-004">复制</button>
+    </div>
+    <pre id="p-C-004">Create a 15-second, 9:16 live-action vampire-romance teaser for an international short-drama audience. Use Image 1 for the leads’ appearance and Image 2 for the setting. Preserve both identities throughout and maintain premium live-action production value.
+
+Story: an innocent human woman strays into a forbidden wing of an old castle and awakens a sleeping vampire noble. He senses that she carries a trace of an ancient war, which sparks dangerous fascination and a possessive need for control. She fears him but refuses to submit completely and pushes back against his dominance.
+
+Style: ReelShort / DramaBox vampire romance—darkly romantic, fate-bound, oppressive, and charged with dangerous attraction, with a strong hook and a high-impact turn. Keep it polished, restrained, and tightly paced like the opening 15 seconds of a breakout series. No gore, cheap horror, Halloween styling, or modern street aesthetic.
+
+Compose for TikTok / ReelShort / DramaBox. Favor medium-close shots, close-ups, and extreme close-ups that emphasize faces, eye contact, pressure, and relationship tension.</pre>
+  </details>
+</article>
+<article class="case" id="C-005">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-005</span>
+      <h3>仙侠分镜控制</h3>
+    </div>
+    <span class="badge warn">部分成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>Ref2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>192</span>
+    <span><b>时长</b>8.000s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/C-005.jpg"
+           src="videos/C-005.mp4"></video>
+  </div>
+
+  <p class="note">分镜语言迁移成功（远景背身不露脸、近景才给正脸），但人物身份未迁移——参考男性，成片女性。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">687 字符 · sha256 93820bf7b2e2</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-005">复制</button>
+    </div>
+    <pre id="p-C-005">Use Image 2 as the locked character reference. Preserve the half-up long black hair, openwork silver crown, indigo ribbon, layered pale hanfu, translucent blue outer robe, deep-blue sash, silver floral fastener, and long tassels. Use Image 1 for storyboard order and pacing.
+
+Render in high-quality 4K, 16:9 Chinese-inspired 3D with cinematic xianxia production value: intense, solemn, and shaped by destiny. Follow the storyboard beat by beat, with natural camera movement and seamless transitions—never a slideshow. Show the face only in close-up or extreme close-up. In wide shots, use back view, rear three-quarter view, or empty environment shots; never show a distant frontal face.</pre>
+  </details>
+</article>
+<article class="case" id="C-006">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-006</span>
+      <h3>第一人称射击</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>Ref2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>192</span>
+    <span><b>时长</b>8.000s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/C-006.jpg"
+           src="videos/C-006.mp4"></video>
+  </div>
+
+  <p class="note">手持感实测最强：持续晃动帧比 0.812 为全集最高，平滑后左右换向 15 次。后坐力一项未观察到，如实标注不计入通过。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">769 字符 · sha256 d7b641ed4194</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-006">复制</button>
+    </div>
+    <pre id="p-C-006">Camera: first-person, eye level, handheld gameplay. Simulate a player operating a modern-warfare FPS, holding an assault rifle and advancing slowly around the perimeter of a military base. Move forward along a road beside cover, sweep the reticle across the passage ahead, pause to fire several rounds at a distant target, then continue pushing forward like authentic player-controlled footage.
+
+Lighting: cool natural light across a modern military base, mixed with smoke and firelight. Keep the image photoreal and crisp, with AAA-quality weapons, materials, dust, and battlefield haze.
+
+Camera movement: subtle player-driven sway while moving; begin with a slow advance, make small checks left and right, add light recoil when firing, then continue forward steadily.</pre>
+  </details>
+</article>
+<article class="case" id="C-007">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-007</span>
+      <h3>双圆望远镜遮罩</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>Ref2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>243</span>
+    <span><b>时长</b>10.125s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/C-007.jpg"
+           src="videos/C-007.mp4"></video>
+  </div>
+
+  <p class="note">prompt 要求双圆遮罩全程绝对固定、只有筒内画面可动。实测质心漂移 Δcx 0.0038 / Δcy 0.0041，遮罩确实钉死。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">1614 字符 · sha256 a36654ebeecd</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-007">复制</button>
+    </div>
+    <pre id="p-C-007">Use Images 1–4 as sequential keyframes, seen through a vintage binocular viewfinder searching for the MINIMAX installation. Open out of focus with subtle handheld shake, then push in quickly and rack focus onto Image 1. Between keyframes, use fast binocular-scan transitions with whip movement, motion blur, optical smearing, and brief exposure flicker. Cut at peak blur, then settle and snap back into focus. Keep the twin circular lens mask absolutely fixed throughout: identical position, scale, feathered black vignette, and edge softness, with no warping or drift. Only the image inside the mask may move.
+
+In Image 2, let the fabric move gently in the wind while the MINIMAX lettering follows the folds and remains legible. In Image 3, the subject should feel like a stylish passerby caught by chance, walking, turning, and swinging their arms naturally. In Image 4, the subject adjusts their glasses or lifts their chin slightly with a cool, effortless fashion-campaign attitude.
+
+Red typography should resolve with the focus: begin slightly blurred and at low opacity, then fade into clarity over 0.3–0.5 seconds. A subtle vertical slide or slight tracking expansion is allowed. Fade it out before the next transition or let motion blur carry it away. No spins, bounces, or large fly-ins/outs.
+
+Visual language: a voyeuristic, Wes Anderson-inspired 35 mm film look with fine grain, soft highlight halation, restrained color, and red typographic accents. Minimal, premium, lightly playful. Do not add people, vehicles, buildings, or logos. Preserve the core composition and the MINIMAX installation exactly.</pre>
+  </details>
+</article>
+<article class="case" id="C-008">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">C-008</span>
+      <h3>六素材节奏迁移</h3>
+    </div>
+    <span class="badge warn">部分成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>Ref2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>192</span>
+    <span><b>时长</b>8.000s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/C-008.jpg"
+           src="videos/C-008.mp4"></video>
+  </div>
+
+  <p class="note">六张素材图都用上了，但参考视频的剪辑节奏没有迁移：成片 2 个切点 vs 参考 5 个，切镜密度低了 79.6%。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">106 字符 · sha256 ae61f2a02d97</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-C-008">复制</button>
+    </div>
+    <pre id="p-C-008">Use Images 1–6 as assets. Match Reference Video 1 closely for shot rhythm, transition language, and music.</pre>
+  </details>
+</article>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>全部成片由开源版 MiniMax-H3 在本地 GPU 生成，<b>seed=0</b>，未经挑选或重跑择优。<br>
+       每条 prompt 均标注 sha256 前 12 位，与复现记录一一对应。</p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+/* ---------- 主题切换 ---------- */
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var lbl = document.getElementById('themeLabel');
+  var icoD = document.getElementById('icoDark');
+  var icoL = document.getElementById('icoLight');
+  var meta = document.querySelector('meta[name="theme-color"]');
+
+  function current() {
+    return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+  function paint() {
+    var t = current();
+    icoD.classList.toggle('on', t === 'dark');
+    icoL.classList.toggle('on', t === 'light');
+    lbl.textContent = t === 'dark' ? '深色' : '浅色';
+    btn.setAttribute('aria-pressed', String(t === 'light'));
+    if (meta) meta.setAttribute('content', t === 'dark' ? '#0b0d12' : '#f6f7fb');
+  }
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    if (next === 'dark') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', 'light');
+    try { localStorage.setItem('h3-theme', next); } catch (e) {}
+    paint();
+  });
+  paint();
+})();
+
+/* ---------- 复制 prompt ---------- */
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('.copy');
+  if (!btn) return;
+  var pre = document.getElementById(btn.dataset.target);
+  if (!pre) return;
+  var text = pre.textContent;
+  var done = function () {
+    var old = btn.textContent;
+    btn.textContent = '已复制';
+    btn.classList.add('done');
+    setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1600);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done, fallback);
+  } else { fallback(); }
+  function fallback() {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (err) {}
+    document.body.removeChild(ta);
+  }
+});
+
+// 同一时间只播一条，避免多条视频同时出声
+document.addEventListener('play', function (e) {
+  if (e.target.tagName !== 'VIDEO') return;
+  document.querySelectorAll('video').forEach(function (v) {
+    if (v !== e.target) v.pause();
+  });
+}, true);
+</script>
+
+</body>
+</html>
