@@ -169,26 +169,41 @@ export class ResultPanel {
   private buildGardenBar(p: Panel, g: GardenBarView, cx: number, y: number): void {
     const line =
       g.starsShort === 0 ? '院门可以建设啦！' : `院门还差 ${g.starsShort} 颗星`;
-    const t = this.scene.add
-      .text(cx - (g.gained > 0 ? px(this.scene, 16) : 0), y + px(this.scene, 10), line, {
-        fontFamily: '"PingFang SC", sans-serif',
-        fontSize: fontPx(this.scene, 16),
-        color: ENV_PALETTE.textDark,
-      })
-      .setOrigin(0.5);
-    p.add(t);
+    const textY = y + px(this.scene, 10);
+    const gapPx = px(this.scene, 10);
 
-    if (g.gained > 0) {
-      const plus = this.scene.add
-        .text(t.x + t.displayWidth / 2 + px(this.scene, 10), y + px(this.scene, 10), `+${g.gained}★`, {
+    /**
+     * ★★ 两段文字要作为**一个整体**居中，不能各自定位。
+     *
+     *   ⚠️ 第一版把主文案固定左移 16pt 给 "+1★" 腾地方 ——
+     *   但 16 是**猜的**，与徽章实际宽度无关：
+     *   徽章比这宽时两者就**叠在一起**（用户截图正是这样）。
+     *   而且文案本身长度会变（"还差 2 颗星" / "可以建设啦！"），
+     *   固定偏移在哪种组合下都不对。
+     *
+     *   正确做法：先量出两段的真实宽度，再把**整组**摆到中间。
+     *   ⚠️ 必须先用 origin(0,0.5) 创建才能量到 displayWidth，
+     *   量完再设最终 x —— Phaser 的文字宽度要等对象建好才有。
+     */
+    const mk = (s: string, bold: boolean, color: string): Phaser.GameObjects.Text =>
+      this.scene.add
+        .text(0, textY, s, {
           fontFamily: '"PingFang SC", sans-serif',
           fontSize: fontPx(this.scene, 16),
-          fontStyle: 'bold',
-          color: ENV_PALETTE.btnPrimary,
+          ...(bold ? { fontStyle: 'bold' } : {}),
+          color,
         })
-        .setOrigin(0.5);
-      p.add(plus);
-    }
+        .setOrigin(0, 0.5);
+
+    const t = mk(line, false, ENV_PALETTE.textDark);
+    const plus = g.gained > 0 ? mk(`+${g.gained}★`, true, ENV_PALETTE.btnPrimary) : null;
+
+    const totalW = t.displayWidth + (plus ? gapPx + plus.displayWidth : 0);
+    t.x = cx - totalW / 2;
+    if (plus) plus.x = t.x + t.displayWidth + gapPx;
+
+    p.add(t);
+    if (plus) p.add(plus);
 
     // 阶段格子
     const box = px(this.scene, 14);
