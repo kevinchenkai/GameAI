@@ -1,0 +1,28 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "00520222ed8e1c2046ab7e3a2f5de47977d8856d",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 82,
+      "total_deletions": 161,
+      "accepted_lines": 832,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/76301316d10341a924f60bc2475c7859509656750454780fba7fd97640e447fa",
+      "token_usage": {
+        "input_tokens": 7927,
+        "output_tokens": 1067135,
+        "cache_creation_input_tokens": 7817522,
+        "cache_read_input_tokens": 587737344
+      }
+    }
+  }
+}
