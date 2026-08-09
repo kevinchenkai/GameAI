@@ -1,0 +1,34 @@
+garden/web/tests/game/layout.test.ts
+  640fa3cf12a5a767 211-219,222-223,247-326
+garden/web/src/config/tuning.ts
+  640fa3cf12a5a767 98-118
+garden/web/src/game/render/layout.ts
+  640fa3cf12a5a767 105,108-122,149-161,210-216,219,225,228
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "854f9443807a4b5b90ac64deb5f0c201f21ea186",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 446,
+      "total_deletions": 603,
+      "accepted_lines": 3714,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/c15f027536d0294966c189fb54f749b0e079254af04ac0a858608722d80a9a8d",
+      "token_usage": {
+        "input_tokens": 8687,
+        "output_tokens": 1202930,
+        "cache_creation_input_tokens": 9781927,
+        "cache_read_input_tokens": 683227358
+      }
+    }
+  }
+}
