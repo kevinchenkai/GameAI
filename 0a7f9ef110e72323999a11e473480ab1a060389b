@@ -1,0 +1,34 @@
+garden/web/src/config/assets.ts
+  640fa3cf12a5a767 48-57,59-61
+garden/tools/check-overlays.py
+  640fa3cf12a5a767 31-34
+garden/web/tests/config/assets.test.ts
+  640fa3cf12a5a767 18,88-118
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "0a7f9ef110e72323999a11e473480ab1a060389b",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 2148,
+      "total_deletions": 5,
+      "accepted_lines": 2573,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/2d52571387e041b6f08f2d0e88e56505e7fc2a365f1f8849c35a3c9d86c79938",
+      "token_usage": {
+        "input_tokens": 8265,
+        "output_tokens": 1119461,
+        "cache_creation_input_tokens": 8126120,
+        "cache_read_input_tokens": 613275272
+      }
+    }
+  }
+}
