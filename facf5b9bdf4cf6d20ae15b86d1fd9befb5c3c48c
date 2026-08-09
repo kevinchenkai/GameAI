@@ -1,0 +1,56 @@
+h3/cases.json
+  640fa3cf12a5a767 130
+h3/index.html
+  640fa3cf12a5a767 681
+h3/README.md
+  eda626ef510a1c9f 227-230
+h3/build.py
+  eda626ef510a1c9f 32-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "facf5b9bdf4cf6d20ae15b86d1fd9befb5c3c48c",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 254,
+      "total_deletions": 2,
+      "accepted_lines": 3750,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/e2f3d7359681c3af7e9b83cefeb79622751c31134d1456210c89371df82924a5",
+      "token_usage": {
+        "input_tokens": 8823,
+        "output_tokens": 1227848,
+        "cache_creation_input_tokens": 10684705,
+        "cache_read_input_tokens": 714162490
+      }
+    },
+    "eda626ef510a1c9f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6faaad6a-b12d-4d2c-ae65-cb942d4732f2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 4,
+      "total_deletions": 3,
+      "accepted_lines": 7,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/167d600eebd367651c9ef1a855209055020504c000d4aa7cf4bc9b56c98d4049",
+      "token_usage": {
+        "input_tokens": 1504,
+        "output_tokens": 450783,
+        "cache_creation_input_tokens": 879011,
+        "cache_read_input_tokens": 124291924
+      }
+    }
+  }
+}
