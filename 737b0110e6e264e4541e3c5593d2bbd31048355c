@@ -1,0 +1,50 @@
+garden/web/src/config/pet-rig.ts
+  640fa3cf12a5a767 71-85,87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "737b0110e6e264e4541e3c5593d2bbd31048355c",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 151,
+      "total_deletions": 271,
+      "accepted_lines": 3512,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/6f0fd971d08cf37bb754d34f7d17910b7b9f1c2d856281400fe8ea51b66e7d20",
+      "token_usage": {
+        "input_tokens": 8817,
+        "output_tokens": 1226718,
+        "cache_creation_input_tokens": 10682737,
+        "cache_read_input_tokens": 712668796
+      }
+    },
+    "eda626ef510a1c9f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6faaad6a-b12d-4d2c-ae65-cb942d4732f2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 1,
+      "accepted_lines": 3,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/ded46814aa37e7aaa75d57498e5804335764ddd3b6da043f4c436bea58d04358",
+      "token_usage": {
+        "input_tokens": 1418,
+        "output_tokens": 430206,
+        "cache_creation_input_tokens": 834066,
+        "cache_read_input_tokens": 116294024
+      }
+    }
+  }
+}
