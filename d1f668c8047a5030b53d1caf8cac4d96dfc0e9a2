@@ -1,0 +1,44 @@
+garden/web/src/game/render/fxPlan.ts
+  640fa3cf12a5a767 1-78
+garden/web/src/config/tuning.ts
+  640fa3cf12a5a767 120-183
+garden/web/src/game/scenes/LevelScene.ts
+  640fa3cf12a5a767 31-32,62-64,154-163,202-203,511-519
+garden/web/tests/game/fxPlan.test.ts
+  640fa3cf12a5a767 1-138
+garden/web/tests/game/fxQuality.test.ts
+  640fa3cf12a5a767 1-95
+garden/web/src/game/render/EventPlayer.ts
+  640fa3cf12a5a767 18,36-39,44,159-177,258-276,297-305,333-335
+garden/web/src/game/render/MatchFx.ts
+  640fa3cf12a5a767 1-207
+garden/web/src/game/render/fxQuality.ts
+  640fa3cf12a5a767 1-106
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "d1f668c8047a5030b53d1caf8cac4d96dfc0e9a2",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 2583,
+      "total_deletions": 32,
+      "accepted_lines": 1521,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/647dcc109e2fe618a69e005330da2b8331877af1a1b5f1f28422e26589534109",
+      "token_usage": {
+        "input_tokens": 8211,
+        "output_tokens": 1109954,
+        "cache_creation_input_tokens": 7907037,
+        "cache_read_input_tokens": 607073264
+      }
+    }
+  }
+}
