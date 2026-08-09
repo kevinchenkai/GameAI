@@ -1,0 +1,38 @@
+garden/CLAUDE.md
+  640fa3cf12a5a767 96-98,104-105
+"garden/docs/UI 美化方案调研.md"
+  640fa3cf12a5a767 3-12
+garden/docs/README.md
+  640fa3cf12a5a767 3,13,16,74-75,77
+CLAUDE.md
+  640fa3cf12a5a767 28
+"garden/docs/开发日志 UI 美化（A 类 + B1）.md"
+  640fa3cf12a5a767 1-232
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "f8d99b666d8e4afb88e2e2c1dfdf576b49d10348",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 718,
+      "total_deletions": 12,
+      "accepted_lines": 4234,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/ccb130286f8c4cf6a27b54424fccd11daa21e402103b86d9263d88cf29089163",
+      "token_usage": {
+        "input_tokens": 8854,
+        "output_tokens": 1238934,
+        "cache_creation_input_tokens": 10745072,
+        "cache_read_input_tokens": 715426216
+      }
+    }
+  }
+}
