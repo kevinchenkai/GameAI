@@ -94,6 +94,27 @@ export class LevelScene extends Phaser.Scene {
   private readonly onFirstTouch = (): void => {
     this.audio.unlock();
   };
+
+  /**
+   * ★ 把 Phaser 的 AudioContext 交给我们的合成音管理器。
+   *
+   *   Phaser 的 sound 后端**不一定是 WebAudio**（noAudio / HTML5Audio
+   *   时就没有 `context`），所以要探测而不是断言。
+   *   拿不到就退回自建 —— 见 WebAudioManager.unlock 的兜底分支。
+   */
+  private adoptPhaserAudioContext(): void {
+    const mgr = this.sound as unknown as { context?: unknown };
+    const ctx = mgr.context;
+    // ★ 用 rAF 的存在与否判不出来，只能看它像不像一个 AudioContext
+    if (
+      ctx !== null &&
+      typeof ctx === 'object' &&
+      typeof (ctx as AudioContext).createGain === 'function' &&
+      typeof (ctx as AudioContext).currentTime === 'number'
+    ) {
+      this.audio.adoptContext(ctx as AudioContext);
+    }
+  }
   /** 当前这一段动画的时间轴，仅用于缓存窗口判断 */
   private playStartedAt = 0;
   private playTotalMs = 0;
@@ -149,6 +170,19 @@ export class LevelScene extends Phaser.Scene {
     this.audio.setSfxVolume(saved.sfxVolume);
     // ★ 音效要和动画对齐，就必须知道当前节奏（舒缓/明快时长差 1.6 倍）
     this.audio.setTempoSource(() => this.tempo);
+
+    /**
+     * ★★★ 接管 Phaser 的 AudioContext，**不要自己再建一个**。
+     *
+     *   ⚠️ 这是"iPhone 微信一直没声、点设置才有"的真正修复。
+     *   Phaser 在 `new Phaser.Game()` 时就自建了 context，并在
+     *   **document.body** 上挂了解锁 handler。iOS 是按 context 逐个
+     *   授权的 —— 用户那一下手势被 Phaser 的 handler 消费，
+     *   解锁的是 Phaser 的 context；我们自建的第二个从来没被解锁。
+     *
+     *   详见 WebAudioManager.adoptContext 的注释。
+     */
+    this.adoptPhaserAudioContext();
 
     this.result = new ResultPanel(this);
     this.settings = new SettingsPanel(this);

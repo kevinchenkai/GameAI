@@ -65,6 +65,45 @@ export class WebAudioManager implements AudioManager {
    * ⚠️ 还有一条**代码解决不了**：iOS 的 WebAudio 受**响铃/静音物理开关**
    *   控制。拨到静音档时整个网页都没声音，这不是 bug。
    */
+  /**
+   * ★★★ 接管 **Phaser 已经建好的那个 AudioContext**。
+   *
+   *   ⚠️⚠️ 这是"微信里一直没声、点一次设置才有"的**真正修复**。
+   *   我先后归因到频率、时间轴、解锁竞态，都不是根因 ——
+   *   根因是**页面上存在两个 AudioContext**：
+   *
+   *     · Phaser 在 `new Phaser.Game()` 时就自建了一个
+   *       （WebAudioSoundManager 第 47 行），并在 **document.body** 上
+   *       挂了 touchstart/touchend/mousedown/mouseup/keydown 解锁handler
+   *     · 我们又在首次手势里 `new AudioContext()` 建了**第二个**
+   *
+   *   iOS 的解锁是**按 context 逐个授权**的：用户那一下手势被
+   *   Phaser 的 handler 消费掉，解锁的是 **Phaser 的** context；
+   *   我们这个第二 context 从来没被真正解锁，于是一直静默。
+   *
+   *   桌面 Chrome / Android 没有这条限制（context 建出来就是 running），
+   *   所以只有 iOS/微信复现 —— 这解释了为什么它躲过了所有本地验证。
+   *
+   *   → 正确做法是**不自己建**，直接用 Phaser 那一个。
+   *     它已经被 Phaser 的 body handler 解锁好了。
+   *
+   * @param ctx Phaser 的 `sound.context`（WebAudio 后端时才有）
+   */
+  adoptContext(ctx: AudioContext): void {
+    if (this.ctx === ctx) return;
+    try {
+      const master = ctx.createGain();
+      master.gain.value = this.muted ? 0 : 1;
+      master.connect(ctx.destination);
+      this.ctx = ctx;
+      this.master = master;
+      this.unavailable = false;
+      this.resumeAndPrime();
+    } catch {
+      this.unavailable = true;
+    }
+  }
+
   unlock(): void {
     if (this.unavailable) return;
 
@@ -74,6 +113,12 @@ export class WebAudioManager implements AudioManager {
       return;
     }
 
+    /**
+     * ★ 走到这里说明**没能接管 Phaser 的 context**
+     *   （noAudio、或非 WebAudio 后端）。自建一个作为兜底。
+     *   ⚠️ iOS 上这条路基本注定静默 —— 见 adoptContext 的说明。
+     *   保留它只是为了不让"没有 Phaser 音频"直接变成崩溃。
+     */
     try {
       const Ctor =
         window.AudioContext ??

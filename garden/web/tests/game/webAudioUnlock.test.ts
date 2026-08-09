@@ -212,6 +212,39 @@ describe('AudioContext 解锁竞态（微信首局无声）', () => {
     expect(oneTurn).toBeGreaterThan(0);
   });
 
+  describe('★★ 接管 Phaser 的 context（iOS 真正的根因）', () => {
+    it('adoptContext 之后**不再自建** —— 页面上只能有一个 context', () => {
+      const handle = install();
+      const audio = new WebAudioManager();
+
+      // Phaser 早就建好了一个（这里用同一个 Fake 类冒充）
+      const phaserCtx = new FakeAudioContext();
+      phaserCtx.state = 'running'; // Phaser 的 body handler 已经解锁了它
+      audio.adoptContext(phaserCtx as unknown as AudioContext);
+
+      // 之后再来手势，**不许**再 new 一个
+      audio.unlock();
+      expect(() => handle.instance).toThrow(); // 从没走过 new AudioContext
+
+      // 而且音要排进 Phaser 那个 context
+      audio.consume(TURN);
+      expect(phaserCtx.scheduled.length).toBeGreaterThan(0);
+    });
+
+    it('接管的 context 已经 running 时，第一回合就能直接出声（不走补播）', () => {
+      const audio = new WebAudioManager();
+      const phaserCtx = new FakeAudioContext();
+      phaserCtx.state = 'running';
+      audio.adoptContext(phaserCtx as unknown as AudioContext);
+
+      phaserCtx.scheduled.length = 0;
+      audio.consume(TURN);
+
+      // ★ 这正是用户要的"第一次交换就有声音"
+      expect(phaserCtx.scheduled.length).toBeGreaterThan(0);
+    });
+  });
+
   it('静音时不排期，也不堆积补播队列', async () => {
     const handle = install();
     const audio = new WebAudioManager();
