@@ -46,8 +46,12 @@ for c in cases:
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-{esc(c['id'])}">复制</button>
+      <a class="srclink" href="{esc(c['src_url'])}"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-{esc(c['id'])}">{prompt_html}</pre>
+    <p class="srcnote">出处：<a href="{esc(c['src_url'])}"
+       target="_blank" rel="noopener noreferrer">{esc(c['src_label'])}</a></p>
   </details>
 </article>""")
 
@@ -246,7 +250,38 @@ HTML = f"""<!doctype html>
     color:var(--dim); font-size:.78rem;
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }}
-  .prompt-actions{{padding:0 14px; margin-top:2px}}
+  .prompt-actions{{
+    padding:0 14px; margin-top:2px;
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  }}
+  .srclink{{
+    color:var(--dim); font-size:.83rem; text-decoration:none;
+    border:1px solid var(--line); border-radius:7px; padding:5px 11px;
+  }}
+  .srclink:hover{{border-color:var(--accent); color:var(--accent)}}
+  .srcnote{{
+    margin:0; padding:10px 14px 14px;
+    font-size:.82rem; color:var(--dim);
+  }}
+  .srcnote a{{color:var(--accent)}}
+
+  /* 引用区 */
+  .links-grid{{
+    display:grid; gap:14px; margin:20px 0 6px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  }}
+  .linkcard{{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:16px 18px;
+  }}
+  .linkcard h4{{margin:0 0 10px; font-size:.97rem}}
+  .linkcard ul{{margin:0; padding:0; list-style:none}}
+  .linkcard li{{margin:0 0 9px; font-size:.9rem; line-height:1.55}}
+  .linkcard li:last-child{{margin-bottom:0}}
+  .linkcard a{{color:var(--accent); text-decoration:none; word-break:break-word}}
+  .linkcard a:hover{{text-decoration:underline}}
+  .linkcard .d{{display:block; color:var(--dim); font-size:.82rem; margin-top:2px}}
+  .lead a{{color:var(--accent)}}
   .copy{{
     background:var(--card); color:var(--fg); border:1px solid var(--line);
     border-radius:7px; padding:5px 13px; font-size:.83rem; cursor:pointer;
@@ -309,6 +344,12 @@ HTML = f"""<!doctype html>
   <p class="lead">
     MiniMax-H3 是 MiniMax 开源的视频生成模型，特点是<b>原生同时生成画面与音频</b>——
     对白、环境声与配乐在一次推理里同时产出，不需要事后配音。
+    模型主页：<a href="https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      target="_blank" rel="noopener noreferrer">Hugging Face</a> ·
+    <a href="https://github.com/MiniMax-AI/MiniMax-H3"
+      target="_blank" rel="noopener noreferrer">GitHub</a> ·
+    <a href="https://modelscope.cn/models/MiniMax/MiniMax-H3"
+      target="_blank" rel="noopener noreferrer">ModelScope</a>。
   </p>
 
   <div class="intro-grid">
@@ -339,6 +380,12 @@ HTML = f"""<!doctype html>
     需要说明的是：官方托管服务里有一层名为 <b>H3-Context-IR</b> 的提示词预处理，
     开源版本并不包含。因此网上流传的一些很短的 prompt 在开源版直跑，
     效果会与演示不同 —— 本站所有 prompt 都是<b>在开源版上实际跑通</b>的原文。
+    官方写作规范见
+    <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md"
+       target="_blank" rel="noopener noreferrer">Prompt Writing Guide</a>，
+    本地部署见
+    <a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3"
+       target="_blank" rel="noopener noreferrer">ComfyUI 官方教程</a>。
   </p>
 </section>
 
@@ -354,6 +401,58 @@ HTML = f"""<!doctype html>
   <p class="lead">社区流传的优秀 prompt 在开源版上的实跑结果。
      标注「部分成功」的案例，说明中写明了具体是哪一项没有达成。</p>
   {community}
+</section>
+
+<section id="refs">
+  <h2>参考与出处</h2>
+  <p class="lead">本站每条 prompt 的原文出处已标在对应案例的 Prompt 区内。
+     下面是复现过程中实际用到的资料 —— <b>只列真正读过并用上的</b>，不做资源罗列。</p>
+
+  <div class="links-grid">
+    <div class="linkcard">
+      <h4>模型与官方文档</h4>
+      <ul>
+        <li><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3" target="_blank" rel="noopener noreferrer">MiniMaxAI/MiniMax-H3 · Hugging Face</a>
+            <span class="d">模型权重主页，官方可复现脚本也在这里</span></li>
+        <li><a href="https://github.com/MiniMax-AI/MiniMax-H3" target="_blank" rel="noopener noreferrer">MiniMax-AI/MiniMax-H3 · GitHub</a>
+            <span class="d">推理代码与 h3-prompt-writing skill</span></li>
+        <li><a href="https://modelscope.cn/models/MiniMax/MiniMax-H3" target="_blank" rel="noopener noreferrer">MiniMax-H3 · ModelScope</a>
+            <span class="d">国内下载镜像</span></li>
+        <li><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md" target="_blank" rel="noopener noreferrer">Video Prompt Writing Guide（base）</a>
+            <span class="d">官方 prompt 写作规范，Ref 模式另有 ref_en 版</span></li>
+        <li><a href="https://app.notion.com/p/MiniMax-H3-Model-User-Guide-3acbb3a8c3ae8106bdb0fa92a3ee6707" target="_blank" rel="noopener noreferrer">MiniMax-H3 Model User Guide（Notion）</a>
+            <span class="d">官方用户指南，C-001 的原始出处</span></li>
+      </ul>
+    </div>
+
+    <div class="linkcard">
+      <h4>社区实践</h4>
+      <ul>
+        <li><a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts" target="_blank" rel="noopener noreferrer">forgewebO1/awesome-minimax-h3-prompts</a>
+            <span class="d">★ 本站 C-001 ~ C-008 全部八条 prompt 的逐字原文来源</span></li>
+        <li><a href="https://x.com/MiniMax_AI/status/2083008095488516262" target="_blank" rel="noopener noreferrer">MiniMax 官方 X · 希区柯克变焦演示</a>
+            <span class="d">C-002 的原始演示</span></li>
+        <li><a href="https://github.com/wildminder/awesome-minimax-H3" target="_blank" rel="noopener noreferrer">wildminder/awesome-minimax-H3</a>
+            <span class="d">生态索引，用于交叉核对案例出处</span></li>
+      </ul>
+    </div>
+
+    <div class="linkcard">
+      <h4>本地运行环境</h4>
+      <ul>
+        <li><a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3" target="_blank" rel="noopener noreferrer">ComfyUI · MiniMax-H3 官方教程</a>
+            <span class="d">本站成片全部经由 ComfyUI 原生节点生成</span></li>
+        <li><a href="https://modelscope.cn/models/Comfy-Org/MiniMax-H3" target="_blank" rel="noopener noreferrer">Comfy-Org/MiniMax-H3 · ModelScope</a>
+            <span class="d">ComfyUI 适配的权重打包版</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="lead" style="margin-top:20px">
+    ⚠️ 社区流传的案例里，有相当一部分只有<b>效果转述</b>而没有 prompt 原文。
+    这类案例本站<b>一律不收</b> —— 照转述自行编写 prompt 再标成「社区案例复现」，
+    等于用自己写的内容冒充他人的成果。
+  </p>
 </section>
 
 <footer>

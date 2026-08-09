@@ -41,6 +41,24 @@ CASES = [
      "六张素材图都用上了，但参考视频的剪辑节奏没有迁移：成片 2 个切点 vs 参考 5 个，切镜密度低了 79.6%。"),
 ]
 
+# 每个案例的 prompt 出处（复现记录 h3-oss-REPRODUCTION-LOG.md 里的「来源」行）。
+# 🔴 只写**真正取到原文的那一个**地址，不要为了页面好看凑链接：
+#    C-001/C-002 的原文取自 gallery，gallery 又溯源到官方 guide / 官方 X，
+#    这种情况写 gallery（原文实际来源），官方出处放在 note 或引用区。
+SOURCES = {
+    "H3-001": ("官方可复现脚本 reproducible-768p-t2va-request.sh",
+               "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-t2va-request.sh"),
+    "H3-002": ("官方可复现脚本 reproducible-768p-fl2va-request.sh",
+               "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-fl2va-request.sh"),
+    "H3-003": ("官方可复现脚本 reproducible-768p-ref2va-request.sh",
+               "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-ref2va-request.sh"),
+}
+# C-001 ~ C-008 的逐字原文全部取自同一个社区 gallery。
+for _cid in ("C-001", "C-002", "C-003", "C-004", "C-005", "C-006", "C-007", "C-008"):
+    SOURCES[_cid] = ("社区 gallery forgewebO1/awesome-minimax-h3-prompts",
+                     "https://github.com/forgewebO1/awesome-minimax-h3-prompts")
+
+
 def sha12(p):
     import hashlib
     return hashlib.sha256(p.read_bytes()).hexdigest()[:12]
@@ -49,12 +67,14 @@ items = []
 for cid, title, pf, mode, res, frames, dur, verdict, level, note in CASES:
     pp = ROOT / "prompts" / pf
     text = pp.read_text(encoding="utf-8")
+    src_label, src_url = SOURCES[cid]
     items.append({
         "id": cid, "title": title, "mode": mode, "res": res,
         "frames": frames, "dur": dur, "verdict": verdict, "level": level,
         "note": note, "prompt": text.strip(), "sha": sha12(pp),
         "chars": len(text.strip()),
         "vertical": res.startswith("768×"),
+        "src_label": src_label, "src_url": src_url,
     })
 
 (ROOT / "cases.json").write_text(json.dumps(items, ensure_ascii=False, indent=1), encoding="utf-8")

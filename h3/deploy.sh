@@ -103,7 +103,9 @@ RSYNC_FLAGS=(-avz --delete
   --exclude "build.py"
   --exclude "build_html.py"
   --exclude "deploy.sh"
-  --exclude "cases.json")
+  --exclude "cases.json"
+  # README 是内部维护文档（含服务器路径、部署红线），不该随站点公开可读
+  --exclude "README.md")
 
 echo
 echo "==> MiniMax-H3 展示页部署"

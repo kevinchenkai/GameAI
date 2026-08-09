@@ -48,9 +48,10 @@ h3/
 | 区块 | 内容 |
 |---|---|
 | Hero | 标题 + 统计（案例数 / 复现成功 / 部分成功 / NaN 数） |
-| 关于 MiniMax-H3 | 模型简介 + 四张特性卡 + H3-Context-IR 说明 |
+| 关于 MiniMax-H3 | 模型简介 + 四张特性卡 + H3-Context-IR 说明（含模型主页 / 写作规范 / ComfyUI 教程链接） |
 | 官方基准案例 | H3-001 ~ H3-003，来自官方可复现脚本 |
 | 社区案例复现 | C-001 ~ C-008 |
+| 参考与出处 | 分三组：模型与官方文档 / 社区实践 / 本地运行环境 |
 
 每个案例卡包含：案例号徽章、标题、结论徽章、元信息（模式/分辨率/帧数/时长）、
 视频播放器、一段说明、可折叠的 prompt 原文（带复制按钮）。
@@ -100,7 +101,25 @@ ffmpeg -v error -y -ss 1.0 -i videos/C-009.mp4 -frames:v 1 \
   这是 `build.py` 里的 `"vertical": res.startswith("768×")` —— 注意是**全角 ×**，
   与 `CASES` 表里写的必须一致。
 
-⑤ 重新构建并部署（见 §5）。
+⑤ 在 `build.py` 的 `SOURCES` 里补出处（**新增案例必填，缺了构建会 KeyError**）：
+
+```python
+SOURCES["C-009"] = ("社区 gallery forgewebO1/awesome-minimax-h3-prompts",
+                    "https://github.com/forgewebO1/awesome-minimax-h3-prompts")
+```
+
+⑥ 重新构建并部署（见 §5）。
+
+### 4.1.1 🔴 出处链接怎么填
+
+**填「原文实际取自哪里」，不填「谁最早发的」。**
+
+C-001 的 prompt 逐字取自社区 gallery，gallery 自己溯源到官方 Notion guide。
+出处写 gallery，官方 guide 放在页面底部的引用区 —— 因为**我们复现时读的是 gallery 那份**，
+写成官方出处等于声称核对过官方原文，而实际没有。C-002（溯源到官方 X）同理。
+
+同样地，引用区**只列真正读过并用上的资料**。凑一堆"相关链接"会让读者以为
+每条都参与了复现，那是另一种失真。
 
 ### 4.2 只改文字说明 / 结论
 
@@ -210,3 +229,16 @@ done
 - **音频不可自动判**：音色/曲风是否接近参考需要人耳，页面里标为"不可验"的项不计入通过率。
 - **视频未压缩**：按原生分辨率直出，21 MB 全量。若以后案例变多需要考虑转码或懒加载分页
   （目前 `preload="none"` + 封面图已保证首屏不下载视频）。
+- **外链会腐烂**：页面上 13 个外链在 2026-08-09 全部实测 200，且已核对
+  gallery 里仍能逐字搜到本站全部八条 C 系列 prompt。但社区仓库随时可能改名或删档，
+  `deploy.sh` **不检查外链**（部署不该依赖外网）。隔一段时间手动跑一次：
+
+  ```bash
+  cd /Users/kk/Work/GameAI/h3
+  for u in $(grep -o 'href="http[^"]*"' index.html | sed 's/href="//;s/"//' | sort -u); do
+    printf '%-6s %s\n' "$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 -A 'Mozilla/5.0' "$u")" "$u"
+  done
+  ```
+
+  注意 GitHub / HF 的失效页也可能返回 200（软 404），所以除了状态码，
+  还要抽查页面内容是否真含对应案例。

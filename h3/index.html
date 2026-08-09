@@ -187,7 +187,38 @@
     color:var(--dim); font-size:.78rem;
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }
-  .prompt-actions{padding:0 14px; margin-top:2px}
+  .prompt-actions{
+    padding:0 14px; margin-top:2px;
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  }
+  .srclink{
+    color:var(--dim); font-size:.83rem; text-decoration:none;
+    border:1px solid var(--line); border-radius:7px; padding:5px 11px;
+  }
+  .srclink:hover{border-color:var(--accent); color:var(--accent)}
+  .srcnote{
+    margin:0; padding:10px 14px 14px;
+    font-size:.82rem; color:var(--dim);
+  }
+  .srcnote a{color:var(--accent)}
+
+  /* 引用区 */
+  .links-grid{
+    display:grid; gap:14px; margin:20px 0 6px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  }
+  .linkcard{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:16px 18px;
+  }
+  .linkcard h4{margin:0 0 10px; font-size:.97rem}
+  .linkcard ul{margin:0; padding:0; list-style:none}
+  .linkcard li{margin:0 0 9px; font-size:.9rem; line-height:1.55}
+  .linkcard li:last-child{margin-bottom:0}
+  .linkcard a{color:var(--accent); text-decoration:none; word-break:break-word}
+  .linkcard a:hover{text-decoration:underline}
+  .linkcard .d{display:block; color:var(--dim); font-size:.82rem; margin-top:2px}
+  .lead a{color:var(--accent)}
   .copy{
     background:var(--card); color:var(--fg); border:1px solid var(--line);
     border-radius:7px; padding:5px 13px; font-size:.83rem; cursor:pointer;
@@ -250,6 +281,12 @@
   <p class="lead">
     MiniMax-H3 是 MiniMax 开源的视频生成模型，特点是<b>原生同时生成画面与音频</b>——
     对白、环境声与配乐在一次推理里同时产出，不需要事后配音。
+    模型主页：<a href="https://huggingface.co/MiniMaxAI/MiniMax-H3"
+      target="_blank" rel="noopener noreferrer">Hugging Face</a> ·
+    <a href="https://github.com/MiniMax-AI/MiniMax-H3"
+      target="_blank" rel="noopener noreferrer">GitHub</a> ·
+    <a href="https://modelscope.cn/models/MiniMax/MiniMax-H3"
+      target="_blank" rel="noopener noreferrer">ModelScope</a>。
   </p>
 
   <div class="intro-grid">
@@ -280,6 +317,12 @@
     需要说明的是：官方托管服务里有一层名为 <b>H3-Context-IR</b> 的提示词预处理，
     开源版本并不包含。因此网上流传的一些很短的 prompt 在开源版直跑，
     效果会与演示不同 —— 本站所有 prompt 都是<b>在开源版上实际跑通</b>的原文。
+    官方写作规范见
+    <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md"
+       target="_blank" rel="noopener noreferrer">Prompt Writing Guide</a>，
+    本地部署见
+    <a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3"
+       target="_blank" rel="noopener noreferrer">ComfyUI 官方教程</a>。
   </p>
 </section>
 
@@ -319,10 +362,14 @@
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-H3-001">复制</button>
+      <a class="srclink" href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-t2va-request.sh"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-H3-001">integrated_multimodal_description: [Shot 1] Cinematic, medium wide shot, pushing in slowly. In the cavernous, dimly lit bridge of a starship, sleek metallic consoles with glowing amber displays flank a massive, curved observation window. A female captain, in her late 40s with an athletic build and short silver-streaked black hair, stands in the center midground. She wears a structured, high-collared dark navy military tunic with silver chest insignias. Her back is to the camera, silhouetted against the cool, ambient starlight pouring through the thick glass. She stands perfectly still with her hands clasped tightly behind her back. Outside the window, a massive armada of jagged, dark grey dreadnoughts hovers in tight formation against a deep purple space nebula. The fleet&#x27;s massive rear thrusters begin to glow with an intense, escalating bright blue light. [Shot 2] At 00:04.500, the camera cuts to a close-up of the captain&#x27;s face and shakes strongly. The brilliant blue-white light from the fleet&#x27;s gathering energy reflects vividly in her dark eyes. Suddenly, a blinding white flash floods through the window, completely washing out the background as the fleet jumps to hyperspace. The sheer spatial force violently jolts the bridge, causing the captain from Shot 1 to stagger slightly forward, her shoulders tensing as she visibly braces herself against the physical tremors. As the intense white light fades abruptly, leaving only the dim, empty expanse of the purple nebula reflected on her starkly lit skin, her jaw clenches, and she slowly closes her eyes in the newly emptied space.
 overall_soundscape: A low, resonant hum of the ship&#x27;s ambient life support systems serves as the baseline, soon drowned out by an audible, escalating, high-pitched electronic whine as the fleet outside charges its hyperdrives. A massive, deafening, bass-heavy boom and sharp crackle erupts during the blinding flash, accompanied by the loud metallic creaking, rattling, and deep thuds of the bridge&#x27;s bulkheads vibrating under immense physical stress. The intense roaring impact then cuts abruptly back to a hollow, echoing room tone, leaving only the faint, steady hum of the isolated bridge.
 non_diegetic_music: Cinematic space-opera orchestral score, slow tempo, featuring a solitary, mournful French horn melody over deep, sustained string dissonances that build rapidly in volume and intensity, swelling to a massive orchestral peak before snapping immediately into silence right after the jump.</pre>
+    <p class="srcnote">出处：<a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-t2va-request.sh"
+       target="_blank" rel="noopener noreferrer">官方可复现脚本 reproducible-768p-t2va-request.sh</a></p>
   </details>
 </article>
 <article class="case" id="H3-002">
@@ -356,6 +403,8 @@ non_diegetic_music: Cinematic space-opera orchestral score, slow tempo, featurin
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-H3-002">复制</button>
+      <a class="srclink" href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-fl2va-request.sh"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-H3-002">For the target video, at 0.00 seconds into the target video, &lt;Picture 1&gt; (from [Shot 1]) is fully referenced.
 
@@ -364,6 +413,8 @@ integrated_multimodal_description: [Shot 1] This is a live-action, cinematic sho
 overall_soundscape: The soundscape begins with a quiet room tone mixed with the faint, airy rustle of the thick steam billowing from the hot ramen bowl in the foreground, accompanied by the subtle, continuous hissing and bubbling of the rich broth. As the visual focus shifts deeper into the room, the physical sounds of the bustling family dinner become dominant in the foreground. The clear, sharp clinking of ceramic bowls and wooden chopsticks touching plates is clearly heard as the family members reach for food. This is followed by the faint, muffled thud of a cup being set down on the smooth wooden table, and the subtle, rhythmic rustle of cotton and wool clothing as the family members lean forward and gesture, perfectly capturing the lively, physical atmosphere of the shared meal.
 
 non_diegetic_music: A gentle, heartwarming acoustic guitar melody plays softly in the background, accompanied by the subtle, resonant notes of a traditional Japanese koto. The music maintains a slow, comforting tempo that enhances the cozy, nostalgic, and joyful atmosphere of the family gathering.</pre>
+    <p class="srcnote">出处：<a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-fl2va-request.sh"
+       target="_blank" rel="noopener noreferrer">官方可复现脚本 reproducible-768p-fl2va-request.sh</a></p>
   </details>
 </article>
 <article class="case" id="H3-003">
@@ -397,6 +448,8 @@ non_diegetic_music: A gentle, heartwarming acoustic guitar melody plays softly i
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-H3-003">复制</button>
+      <a class="srclink" href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-ref2va-request.sh"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-H3-003">subject_definitions:
 &lt;Subject 1&gt; is the young man with short wavy blonde hair, wearing a bright pink suit jacket, matching pink trousers, an unbuttoned white shirt, and silver rings, holding a small black lamb in his arms in &lt;Video 1&gt;.
@@ -422,6 +475,8 @@ The soundscape consists of the continuous, atmospheric background music from &lt
 
 non_diegetic_music:
 The atmospheric, sustained background music from &lt;Audio 1&gt; is reused as the continuous score, playing quietly beneath the spoken dialogue.</pre>
+    <p class="srcnote">出处：<a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-ref2va-request.sh"
+       target="_blank" rel="noopener noreferrer">官方可复现脚本 reproducible-768p-ref2va-request.sh</a></p>
   </details>
 </article>
 </section>
@@ -462,12 +517,16 @@ The atmospheric, sustained background music from &lt;Audio 1&gt; is reused as th
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-001">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-001">@Image 1: Push in rapidly toward the milk foam, cocoa particles, and dark liquid texture on the coffee until particles, bubbles, and ripples fill the frame. Keep the macro photography realistic, with extremely shallow depth of field and fine powder drifting through backlight. Let the surface feel suspended between granular sand and fluid.
 
 At the exact moment when the cocoa particles, foam contours, and coffee swirl closely resemble the dune ridges, wind-carved textures, and airborne sand in @Image 2, transition seamlessly into the desert landscape. Continue pushing forward until the full dunes from @Image 2 are revealed.
 
 No tearing, black frames, hard cuts, obvious VFX, or compositing seams. Keep it photoreal, quiet, and restrained—as though one granular material naturally expands from the microscopic coffee surface into a vast desert. One continuous shot with no visible edit.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
 <article class="case" id="C-002">
@@ -501,8 +560,12 @@ No tearing, black frames, hard cuts, obvious VFX, or compositing seams. Keep it 
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-002">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-002">Reference the Hitchcock camera movement from Video 1, have the character in Image 2 sing, with the vocals matching Audio 3.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
 <article class="case" id="C-003">
@@ -536,12 +599,16 @@ No tearing, black frames, hard cuts, obvious VFX, or compositing seams. Keep it 
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-003">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-003">A 16:9 cinematic wuxia mystery set in a bamboo forest at night. Use a low-saturation palette of cold blue, ink green, charcoal, and gray. Thin mist fills the forest and fine snow drifts through the air. The mood is austere, lethal, and controlled, with the tension of a martial-arts sect investigating a case and exchanging secret intelligence.
 
 Deep in the forest, dense vertical bamboo fills the background while cold white mist-light glows in the distance. Soft, out-of-focus leaves partially obscure the foreground, creating the sense of watching from within the grove. A cool, soft front-side key lights the actors’ faces; backlight keeps the foreground dark and the distance luminous. Use shallow depth of field so leaves, snow, and bamboo dissolve into soft bokeh.
 
 Prioritize facial close-ups and measured shot/reverse-shot coverage. Keep the rhythm restrained but tense. Photoreal period-drama production value, cinematic lighting, and no modern elements. No subtitles, on-screen text, watermarks, modern clothing or architecture, animation styling, over-smoothed skin, bright daylight, or comic performance.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
 <article class="case" id="C-004">
@@ -575,6 +642,8 @@ Prioritize facial close-ups and measured shot/reverse-shot coverage. Keep the rh
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-004">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-004">Create a 15-second, 9:16 live-action vampire-romance teaser for an international short-drama audience. Use Image 1 for the leads’ appearance and Image 2 for the setting. Preserve both identities throughout and maintain premium live-action production value.
 
@@ -583,6 +652,8 @@ Story: an innocent human woman strays into a forbidden wing of an old castle and
 Style: ReelShort / DramaBox vampire romance—darkly romantic, fate-bound, oppressive, and charged with dangerous attraction, with a strong hook and a high-impact turn. Keep it polished, restrained, and tightly paced like the opening 15 seconds of a breakout series. No gore, cheap horror, Halloween styling, or modern street aesthetic.
 
 Compose for TikTok / ReelShort / DramaBox. Favor medium-close shots, close-ups, and extreme close-ups that emphasize faces, eye contact, pressure, and relationship tension.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
 <article class="case" id="C-005">
@@ -616,10 +687,14 @@ Compose for TikTok / ReelShort / DramaBox. Favor medium-close shots, close-ups, 
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-005">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-005">Use Image 2 as the locked character reference. Preserve the half-up long black hair, openwork silver crown, indigo ribbon, layered pale hanfu, translucent blue outer robe, deep-blue sash, silver floral fastener, and long tassels. Use Image 1 for storyboard order and pacing.
 
 Render in high-quality 4K, 16:9 Chinese-inspired 3D with cinematic xianxia production value: intense, solemn, and shaped by destiny. Follow the storyboard beat by beat, with natural camera movement and seamless transitions—never a slideshow. Show the face only in close-up or extreme close-up. In wide shots, use back view, rear three-quarter view, or empty environment shots; never show a distant frontal face.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
 <article class="case" id="C-006">
@@ -653,12 +728,16 @@ Render in high-quality 4K, 16:9 Chinese-inspired 3D with cinematic xianxia produ
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-006">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-006">Camera: first-person, eye level, handheld gameplay. Simulate a player operating a modern-warfare FPS, holding an assault rifle and advancing slowly around the perimeter of a military base. Move forward along a road beside cover, sweep the reticle across the passage ahead, pause to fire several rounds at a distant target, then continue pushing forward like authentic player-controlled footage.
 
 Lighting: cool natural light across a modern military base, mixed with smoke and firelight. Keep the image photoreal and crisp, with AAA-quality weapons, materials, dust, and battlefield haze.
 
 Camera movement: subtle player-driven sway while moving; begin with a slow advance, make small checks left and right, add light recoil when firing, then continue forward steadily.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
 <article class="case" id="C-007">
@@ -692,6 +771,8 @@ Camera movement: subtle player-driven sway while moving; begin with a slow advan
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-007">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-007">Use Images 1–4 as sequential keyframes, seen through a vintage binocular viewfinder searching for the MINIMAX installation. Open out of focus with subtle handheld shake, then push in quickly and rack focus onto Image 1. Between keyframes, use fast binocular-scan transitions with whip movement, motion blur, optical smearing, and brief exposure flicker. Cut at peak blur, then settle and snap back into focus. Keep the twin circular lens mask absolutely fixed throughout: identical position, scale, feathered black vignette, and edge softness, with no warping or drift. Only the image inside the mask may move.
 
@@ -700,6 +781,8 @@ In Image 2, let the fabric move gently in the wind while the MINIMAX lettering f
 Red typography should resolve with the focus: begin slightly blurred and at low opacity, then fade into clarity over 0.3–0.5 seconds. A subtle vertical slide or slight tracking expansion is allowed. Fade it out before the next transition or let motion blur carry it away. No spins, bounces, or large fly-ins/outs.
 
 Visual language: a voyeuristic, Wes Anderson-inspired 35 mm film look with fine grain, soft highlight halation, restrained color, and red typographic accents. Minimal, premium, lightly playful. Do not add people, vehicles, buildings, or logos. Preserve the core composition and the MINIMAX installation exactly.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
 <article class="case" id="C-008">
@@ -733,10 +816,66 @@ Visual language: a voyeuristic, Wes Anderson-inspired 35 mm film look with fine 
     </summary>
     <div class="prompt-actions">
       <button class="copy" data-target="p-C-008">复制</button>
+      <a class="srclink" href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
     </div>
     <pre id="p-C-008">Use Images 1–6 as assets. Match Reference Video 1 closely for shot rhythm, transition language, and music.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
   </details>
 </article>
+</section>
+
+<section id="refs">
+  <h2>参考与出处</h2>
+  <p class="lead">本站每条 prompt 的原文出处已标在对应案例的 Prompt 区内。
+     下面是复现过程中实际用到的资料 —— <b>只列真正读过并用上的</b>，不做资源罗列。</p>
+
+  <div class="links-grid">
+    <div class="linkcard">
+      <h4>模型与官方文档</h4>
+      <ul>
+        <li><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3" target="_blank" rel="noopener noreferrer">MiniMaxAI/MiniMax-H3 · Hugging Face</a>
+            <span class="d">模型权重主页，官方可复现脚本也在这里</span></li>
+        <li><a href="https://github.com/MiniMax-AI/MiniMax-H3" target="_blank" rel="noopener noreferrer">MiniMax-AI/MiniMax-H3 · GitHub</a>
+            <span class="d">推理代码与 h3-prompt-writing skill</span></li>
+        <li><a href="https://modelscope.cn/models/MiniMax/MiniMax-H3" target="_blank" rel="noopener noreferrer">MiniMax-H3 · ModelScope</a>
+            <span class="d">国内下载镜像</span></li>
+        <li><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md" target="_blank" rel="noopener noreferrer">Video Prompt Writing Guide（base）</a>
+            <span class="d">官方 prompt 写作规范，Ref 模式另有 ref_en 版</span></li>
+        <li><a href="https://app.notion.com/p/MiniMax-H3-Model-User-Guide-3acbb3a8c3ae8106bdb0fa92a3ee6707" target="_blank" rel="noopener noreferrer">MiniMax-H3 Model User Guide（Notion）</a>
+            <span class="d">官方用户指南，C-001 的原始出处</span></li>
+      </ul>
+    </div>
+
+    <div class="linkcard">
+      <h4>社区实践</h4>
+      <ul>
+        <li><a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts" target="_blank" rel="noopener noreferrer">forgewebO1/awesome-minimax-h3-prompts</a>
+            <span class="d">★ 本站 C-001 ~ C-008 全部八条 prompt 的逐字原文来源</span></li>
+        <li><a href="https://x.com/MiniMax_AI/status/2083008095488516262" target="_blank" rel="noopener noreferrer">MiniMax 官方 X · 希区柯克变焦演示</a>
+            <span class="d">C-002 的原始演示</span></li>
+        <li><a href="https://github.com/wildminder/awesome-minimax-H3" target="_blank" rel="noopener noreferrer">wildminder/awesome-minimax-H3</a>
+            <span class="d">生态索引，用于交叉核对案例出处</span></li>
+      </ul>
+    </div>
+
+    <div class="linkcard">
+      <h4>本地运行环境</h4>
+      <ul>
+        <li><a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3" target="_blank" rel="noopener noreferrer">ComfyUI · MiniMax-H3 官方教程</a>
+            <span class="d">本站成片全部经由 ComfyUI 原生节点生成</span></li>
+        <li><a href="https://modelscope.cn/models/Comfy-Org/MiniMax-H3" target="_blank" rel="noopener noreferrer">Comfy-Org/MiniMax-H3 · ModelScope</a>
+            <span class="d">ComfyUI 适配的权重打包版</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="lead" style="margin-top:20px">
+    ⚠️ 社区流传的案例里，有相当一部分只有<b>效果转述</b>而没有 prompt 原文。
+    这类案例本站<b>一律不收</b> —— 照转述自行编写 prompt 再标成「社区案例复现」，
+    等于用自己写的内容冒充他人的成果。
+  </p>
 </section>
 
 <footer>
