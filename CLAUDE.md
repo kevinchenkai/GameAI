@@ -25,7 +25,7 @@
 
 | 目录 | 状态 |
 |---|---|
-| `garden/` | Garden Match（三消 + 萌宠 + 花园），**Stage 0 功能已齐并已上线** https://g.ismayday.mobi/garden/ 。接口契约冻结见 [garden/CLAUDE.md](./garden/CLAUDE.md) §3，开发记录见 [开发日志](./garden/docs/开发日志%20Stage%200（M0~M7）.md)。当前阶段：UI 美化 → M8 真人测试。 |
+| `garden/` | Garden Match（三消 + 萌宠 + 花园），**Stage 0 功能已齐并已上线** https://g.ismayday.mobi/garden/ 。接口契约冻结见 [garden/CLAUDE.md](./garden/CLAUDE.md) §3，开发记录见 [Stage 0 日志](./garden/docs/开发日志%20Stage%200（M0~M7）.md) 与 [UI 美化日志](./garden/docs/开发日志%20UI%20美化（A%20类%20+%20B1）.md)。当前阶段：**UI 美化已完成，下一步 M8 真人测试**。 |
 
 ---
 
