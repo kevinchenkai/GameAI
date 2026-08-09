@@ -208,10 +208,19 @@ describe('★★ 回归：关卡列数说了算（7×7 必须真的更大）', (
     expect(seven.pieceSizePt / eight.pieceSizePt).toBeGreaterThan(1.13);
   });
 
-  it('★ 棋盘必须铺满可用宽度（不留下右侧空白条）', () => {
+  /**
+   * ⚠️ 「铺满可用宽度」只对**窄屏**成立。
+   *
+   *   宽屏（iPad / 电脑浏览器）上内容区被 maxContentWidthPt 限宽并居中，
+   *   两侧**故意**留白 —— 否则 HUD 会被甩到屏幕两端、棋子长到 150pt
+   *   把其它区域挤成 0 高度（用户实测"header/settings 很乱"）。
+   *   所以这条只在"视口宽度 ≤ 限宽"时断言。
+   */
+  it('★ 窄屏上棋盘必须铺满可用宽度（不留下右侧空白条）', () => {
     for (const d of DEVICES) {
-      const r = computeLayout(d.w, d.h, d.insets, 1, 7);
       const safeW = d.w - d.insets.left - d.insets.right;
+      if (safeW > LAYOUT.maxContentWidthPt) continue; // 宽屏走限宽居中，见上
+      const r = computeLayout(d.w, d.h, d.insets, 1, 7);
       const used = r.boardRect.w + LAYOUT.boardMarginPt * 2;
       // 宽度受限时，棋盘 + 两侧边距应当正好等于可用宽度
       if (!r.belowMinimum && r.boardRect.w >= r.boardRect.h) {
@@ -233,5 +242,85 @@ describe('★★ 回归：关卡列数说了算（7×7 必须真的更大）', (
 
   it('不传列数时保留旧的自选行为（兼容既有调用）', () => {
     expect(computeLayout(390, 844, NO_INSETS).boardCols).toBe(8);
+  });
+});
+
+/**
+ * ★★★ 电脑浏览器适配。
+ *
+ *   ⚠️ 原本布局只有"棋子不小于 38pt"的下限，**没有上限**。
+ *   实测宽屏上棋盘无限放大：
+ *     1280×720  棋子 98pt、棋盘 688px
+ *     1920×1080 棋子 150pt、棋盘 1048px（手机上只有 49pt）
+ *   棋盘吃光高度后 `leftover` 归零，**HUD / 旺财 / 控件全部塌成 0 高度** ——
+ *   这就是用户看到的"header 和 settings 很乱"。
+ */
+describe('★★★ 电脑浏览器（宽屏）适配', () => {
+  const DESKTOP = [
+    { name: '小笔记本', w: 1280, h: 720 },
+    { name: '常见桌面', w: 1920, h: 1080 },
+    { name: '大屏', w: 2560, h: 1440 },
+    { name: '竖着的窄窗口', w: 600, h: 900 },
+  ] as const;
+
+  it('★★★ 棋子不会无限放大（有上限）', () => {
+    for (const d of DESKTOP) {
+      const r = computeLayout(d.w, d.h, NO_INSETS, 1, 7);
+      expect(r.pieceSizePt, `${d.name} 棋子过大`).toBeLessThanOrEqual(LAYOUT.maxPieceSizePt + 0.01);
+    }
+  });
+
+  /**
+   * ★★★ 这条是本次修复的**核心** —— 三个区块都必须有真实高度。
+   *   塌成 0 就意味着 HUD 不见了、旺财不见了、设置按钮点不到。
+   */
+  it('★★★ HUD / 旺财 / 控件在宽屏上都不会塌成 0 高度', () => {
+    for (const d of DESKTOP) {
+      const r = computeLayout(d.w, d.h, NO_INSETS, 1, 7);
+      expect(r.hudRect.h, `${d.name} HUD 塌了`).toBeGreaterThan(0);
+      expect(r.petRect.h, `${d.name} 旺财区塌了`).toBeGreaterThan(0);
+      expect(r.controlsRect.h, `${d.name} 控件区塌了`).toBeGreaterThan(0);
+    }
+  });
+
+  it('★★ 内容区限宽后整体居中（左右留白相等）', () => {
+    for (const d of DESKTOP) {
+      const r = computeLayout(d.w, d.h, NO_INSETS, 1, 7);
+      const left = r.hudRect.x;
+      const right = d.w - (r.hudRect.x + r.hudRect.w);
+      expect(Math.abs(left - right), `${d.name} 未居中`).toBeLessThan(1);
+    }
+  });
+
+  /**
+   * ★★ HUD 与棋盘必须**共用同一条中轴**。
+   *   只居中棋盘、HUD 仍按全屏宽铺开的话，
+   *   "剩余步数"与目标计数会被甩到屏幕两端 —— 那正是"乱"的观感来源。
+   */
+  it('★★ HUD 与棋盘对齐（不是各自居中）', () => {
+    for (const d of DESKTOP) {
+      const r = computeLayout(d.w, d.h, NO_INSETS, 1, 7);
+      const hudMid = r.hudRect.x + r.hudRect.w / 2;
+      const boardMid = r.boardRect.x + r.boardRect.w / 2;
+      expect(Math.abs(hudMid - boardMid), `${d.name} HUD 与棋盘不同轴`).toBeLessThan(1);
+    }
+  });
+
+  it('★ 内容区宽度不超过上限', () => {
+    for (const d of DESKTOP) {
+      const r = computeLayout(d.w, d.h, NO_INSETS, 1, 7);
+      expect(r.hudRect.w).toBeLessThanOrEqual(LAYOUT.maxContentWidthPt + 0.01);
+    }
+  });
+
+  /** ★★ 手机上的表现**一点都不能变** —— 这是已验收的部分 */
+  it('★★ 手机布局不受影响（回归）', () => {
+    for (const d of DEVICES) {
+      const safeW = d.w - d.insets.left - d.insets.right;
+      if (safeW > LAYOUT.maxContentWidthPt) continue; // iPad 属宽屏
+      const r = computeLayout(d.w, d.h, d.insets, 1, 7);
+      expect(r.hudRect.x, `${d.name} 不该有限宽留白`).toBeCloseTo(d.insets.left, 5);
+      expect(r.pieceSizePt).toBeLessThan(LAYOUT.maxPieceSizePt);
+    }
   });
 });

@@ -102,8 +102,23 @@ export function computeLayout(
   // —— 1. 扣 Safe Area ——
   const safeX = insets.left;
   const safeY = insets.top;
-  const safeW = Math.max(0, viewportW - insets.left - insets.right);
+  const rawSafeW = Math.max(0, viewportW - insets.left - insets.right);
   const safeH = Math.max(0, viewportH - insets.top - insets.bottom);
+
+  /**
+   * ★★ 内容区限宽 + 居中 —— 电脑浏览器适配的第一步。
+   *
+   *   ⚠️ 原本内容区就是整个视口宽度。在 1280~1920 的窗口上，
+   *   HUD 的"剩余步数"与目标计数被甩到屏幕两端相距一米远，
+   *   旺财浮在正中一大片空白里 —— 就是用户说的"很乱"。
+   *
+   *   竖屏手机游戏在宽屏上不该拉伸铺满，正确做法是**限宽居中**，
+   *   桌面上呈现为"居中的一条手机版式"。
+   */
+  const maxW = LAYOUT.maxContentWidthPt * scale;
+  const safeW = Math.min(rawSafeW, maxW);
+  /** 限宽后左右多出来的留白，整体居中 */
+  const gutter = (rawSafeW - safeW) / 2;
 
   // —— 2~4. 选棋盘边长：棋子大小是约束，棋盘尺寸是可让步的那一方 ——
   // ★ 显式标注 number：boardFallback 是 readonly [8, 7] 元组，
@@ -130,6 +145,19 @@ export function computeLayout(
     // ★ 连最小棋盘都放不下 —— 触到硬底线，标记出来
     belowMinimum = true;
   }
+
+  /**
+   * ★★ 棋子**上限**：宽屏上棋盘不能无限放大。
+   *
+   *   ⚠️ 原本只有下限。实测 1920×1080 上棋子会长到 150pt
+   *   （手机上 49pt），棋盘吃掉 1048px，把 HUD / 旺财 / 设置
+   *   全挤成 0 高度。上限之外的宽度留白，棋盘居中即可。
+   *
+   *   注意这一步要在下面"高度不足再收缩"**之前**做 ——
+   *   两个约束都是上限，先取小的那个，后面的收缩仍然有效。
+   */
+  const maxPiece = LAYOUT.maxPieceSizePt * scale;
+  if (pieceSizePt > maxPiece) pieceSizePt = maxPiece;
 
   /**
    * ★ 尺寸绝不允许为负。
@@ -179,20 +207,25 @@ export function computeLayout(
   // —— 6. Pet 区不足 → 半身构图 ——
   const petCompact = petH < LAYOUT.petMinHeightPt * scale;
 
-  // —— 竖直堆叠：hud → board → pet → controls ——
-  const boardX = safeX + (safeW - boardW) / 2;
+  /**
+   * ★ 竖直堆叠：hud → board → pet → controls。
+   *   `contentX` 已含限宽留白（gutter），**四个区块用同一个左边界**，
+   *   整条版式才会作为一个整体居中 —— 只居中棋盘会让 HUD 与它错位。
+   */
+  const contentX = safeX + gutter;
+  const boardX = contentX + (safeW - boardW) / 2;
   let cursorY = safeY;
 
-  const hudRect: Rect = { x: safeX, y: cursorY, w: safeW, h: hudH };
+  const hudRect: Rect = { x: contentX, y: cursorY, w: safeW, h: hudH };
   cursorY += hudH + margin;
 
   const boardRect: Rect = { x: boardX, y: cursorY, w: boardW, h: boardH };
   cursorY += boardH + margin;
 
-  const petRect: Rect = { x: safeX, y: cursorY, w: safeW, h: petH };
+  const petRect: Rect = { x: contentX, y: cursorY, w: safeW, h: petH };
   cursorY += petH;
 
-  const controlsRect: Rect = { x: safeX, y: cursorY, w: safeW, h: controlsH };
+  const controlsRect: Rect = { x: contentX, y: cursorY, w: safeW, h: controlsH };
 
   return {
     boardCols: cols,
