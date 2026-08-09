@@ -1,0 +1,32 @@
+garden/orders/codex-redo-batch5-overlays-style.md
+  640fa3cf12a5a767 102-117,136
+garden/tools/check-overlays.py
+  640fa3cf12a5a767 1-243
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "00543f630dd1f3c19e40a2845366e5481f565016",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 1319,
+      "total_deletions": 3,
+      "accepted_lines": 1010,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/903b2eb7f66e11f344abd289eb9a2eda406c64a8363e9516e34bf039a48fcd36",
+      "token_usage": {
+        "input_tokens": 7834,
+        "output_tokens": 1040602,
+        "cache_creation_input_tokens": 7763630,
+        "cache_read_input_tokens": 582622192
+      }
+    }
+  }
+}
