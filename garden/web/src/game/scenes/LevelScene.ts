@@ -28,6 +28,8 @@ import { ResultPanel } from '../ui/ResultPanel';
 import { SettingsPanel } from '../ui/SettingsPanel';
 import { buildHudView, type HudModel } from '../ui/hudModel';
 import { PhaserEventPlayer } from '../render/EventPlayer';
+import { MatchFx } from '../render/MatchFx';
+import { FxQualityMonitor } from '../render/fxQuality';
 import { cellAtPoint, computeLayout, type LayoutResult } from '../render/layout';
 import { buildTimeline, isBufferWindowOpen } from '../render/timeline';
 import {
@@ -57,6 +59,9 @@ export class LevelScene extends Phaser.Scene {
   private hud!: HudView;
   private readonly audio = new WebAudioManager();
   private player!: PhaserEventPlayer;
+  private fx!: MatchFx;
+  /** ★ 画质档位监视器。字段初始化即可，不依赖场景生命周期 */
+  private readonly fxQuality = new FxQualityMonitor();
   private turn: TurnState = createTurnState();
   private gesture: GestureState = createGestureState();
   private tempo: Tempo = loadSettings().tempo;
@@ -146,7 +151,16 @@ export class LevelScene extends Phaser.Scene {
     this.hud = new HudView(this, this.layout);
     this.hud.build(this.hudModel());
 
-    this.player = new PhaserEventPlayer(this, this.view, () => this.tempo);
+    /**
+     * ★ 消除特效（A1）。画质档位由 FxQualityMonitor 持续采样自动降级，
+     *   MatchFx 每次发射前现问一次 —— 中途发热降频也能跟上。
+     */
+    this.fx = new MatchFx(
+      this,
+      () => this.fxQuality.current(),
+      () => this.tempo,
+    );
+    this.player = new PhaserEventPlayer(this, this.view, () => this.tempo, this.fx);
     this.syncPlayerIndex();
 
     /**
@@ -185,6 +199,8 @@ export class LevelScene extends Phaser.Scene {
     this.scale.on(Phaser.Scale.Events.RESIZE, this.onResize, this);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       document.removeEventListener('visibilitychange', this.onVisibility);
+      // ★ 粒子发射器不会随场景自动回收，重开几局就会明显掉帧
+      this.fx?.destroy();
     });
   }
 
@@ -492,6 +508,15 @@ export class LevelScene extends Phaser.Scene {
    *   （否则弹窗停留 5 秒，一关掉就立刻弹提示，很突兀。）
    */
   override update(): void {
+    /**
+     * ★★ 帧率采样必须在下面那个 early return **之前**。
+     *
+     *   放在后面就只会在"玩家能操作"时采样 —— 而那正是画面最闲的时候。
+     *   真正会掉帧的是连锁播放中（粒子最多），恰好被 return 跳过，
+     *   于是永远采不到低帧率，自动降级形同虚设。
+     */
+    this.fxQuality.tick(this.time.now);
+
     if (!this.canPlayerAct()) {
       this.hint = resetHint(this.time.now);
       return;

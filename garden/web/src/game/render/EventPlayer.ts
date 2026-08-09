@@ -15,6 +15,7 @@ import type Phaser from 'phaser';
 import type { CoreGameEvent } from '../../core/types';
 import type { Tempo } from '../../config/tuning';
 import type { BoardView } from './BoardView';
+import type { MatchFx } from './MatchFx';
 import { buildTimeline, type Timeline } from './timeline';
 
 export interface EventPlayer {
@@ -32,10 +33,15 @@ export class PhaserEventPlayer implements EventPlayer {
   private pendingTweens: Phaser.Tweens.Tween[] = [];
   private timers: Phaser.Time.TimerEvent[] = [];
 
+  /**
+   * ★ `fx` 可选 —— 单测里的假场景没有粒子系统，
+   *   特效必须是"锦上添花"，缺了它棋盘逻辑照样跑完整。
+   */
   constructor(
     private readonly scene: Phaser.Scene,
     private readonly view: BoardView,
     private readonly getTempo: () => Tempo,
+    private readonly fx?: MatchFx,
   ) {}
 
   /**
@@ -150,6 +156,25 @@ export class PhaserEventPlayer implements EventPlayer {
       }
 
       case 'match': {
+        /**
+         * ★ 先迸粒子再淡出精灵。
+         *   粒子在**棋子还在的位置**炸开，视觉上才是"它碎了"；
+         *   等淡出完再放，看起来像凭空冒出来的光点。
+         */
+        const pts = e.positions.map((p) => this.view.positionOf(p));
+        this.fx?.burst(pts, e.color, e.cascadeLevel, this.view.pieceSize);
+        /**
+         * ★ 记住这一簇的中心，供随后的 cascadeStart 定位"连击 xN"。
+         *   `cascadeStart` 事件本身**只带 level、不带坐标**，
+         *   而提示文字必须出现在刚消掉的地方 —— 飘在棋盘正中
+         *   会让玩家不知道是哪一步触发的。
+         */
+        if (pts.length > 0) {
+          const sx = pts.reduce((a, p) => a + p.x, 0) / pts.length;
+          const sy = pts.reduce((a, p) => a + p.y, 0) / pts.length;
+          this.lastMatchAt = { x: sx, y: sy };
+        }
+
         // 消除：缩小淡出。精灵在补间结束时销毁
         for (const pos of e.positions) {
           const id = this.idAt(pos);
@@ -230,6 +255,25 @@ export class PhaserEventPlayer implements EventPlayer {
        */
       case 'specialFire':
       case 'comboBlast': {
+        /**
+         * ★ 火箭/炸弹也要迸粒子，否则"用掉一个特殊棋子"这件事
+         *   反而比普通三消还安静 —— 那是反过来的。
+         *
+         * ★ 这里用**中性金色**而不是逐格取水果色：
+         *   渲染层没有（也不该有）"某格是什么颜色"的索引 ——
+         *   棋盘的真相源是 core（冻结契约 2），
+         *   为了特效在渲染层再维护一份颜色表就是第二个真相源。
+         *   金色同时也符合"特殊棋子爆炸"的语义，比水果色更贴切。
+         *
+         * ★ comboBlast（两个特殊棋子合体）当作第 2 层强度，
+         *   它本来就该比单发火箭更热闹。
+         */
+        this.fx?.burstNeutral(
+          e.affected.map((p) => this.view.positionOf(p)),
+          e.t === 'comboBlast' ? 2 : 1,
+          this.view.pieceSize,
+        );
+
         for (const pos of e.affected) {
           const id = this.idAt(pos);
           if (id === null) continue;
@@ -250,10 +294,18 @@ export class PhaserEventPlayer implements EventPlayer {
         break;
       }
 
+      /**
+       * ★★ 连锁反馈 —— A1 的另一半。
+       *   在此之前这里是空分支，于是 5 连锁和 3 消**看起来完全一样**：
+       *   玩家做出了很厉害的一步，游戏却一声不吭。
+       */
+      case 'cascadeStart':
+        this.fx?.cascade(e.level, this.lastMatchAt, this.view.pieceSize);
+        break;
+
       case 'specialSpawn':
       case 'shuffle':
       case 'collect':
-      case 'cascadeStart':
       case 'cascadeEnd':
       case 'settled':
       case 'movesChanged':
@@ -277,6 +329,9 @@ export class PhaserEventPlayer implements EventPlayer {
    *   每次 play() 开头由 LevelScene 用 core 的棋盘重建，不跨回合累积。
    */
   private posIndex = new Map<string, number>();
+
+  /** 最近一簇消除的中心（世界坐标），供 cascadeStart 定位提示文字 */
+  private lastMatchAt: { x: number; y: number } | null = null;
 
   private key(p: { col: number; row: number }): string {
     return `${p.col},${p.row}`;
