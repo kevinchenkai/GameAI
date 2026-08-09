@@ -1,0 +1,36 @@
+garden/web/src/game/scenes/LevelScene.ts
+  640fa3cf12a5a767 134-135
+garden/web/tests/game/sfxPlan.test.ts
+  640fa3cf12a5a767 14,420-469
+garden/web/src/game/audio/sfxPlan.ts
+  640fa3cf12a5a767 52-65,69,81-90,94
+garden/web/src/game/audio/WebAudioManager.ts
+  640fa3cf12a5a767 17-18,33-43,140-154,156
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "831d1dbd85e07a1b2d4244c048a1f1032bf19baa",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 664,
+      "total_deletions": 1699,
+      "accepted_lines": 3377,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/6c0a942666d9f84324c92bc3979a9b3c17409e2350ef27f9961facad6e913d0b",
+      "token_usage": {
+        "input_tokens": 8603,
+        "output_tokens": 1188369,
+        "cache_creation_input_tokens": 9377031,
+        "cache_read_input_tokens": 666167830
+      }
+    }
+  }
+}
