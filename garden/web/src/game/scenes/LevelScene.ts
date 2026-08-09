@@ -131,6 +131,8 @@ export class LevelScene extends Phaser.Scene {
     this.tempo = saved.tempo;
     this.audio.setMuted(saved.muted);
     this.audio.setSfxVolume(saved.sfxVolume);
+    // ★ 音效要和动画对齐，就必须知道当前节奏（舒缓/明快时长差 1.6 倍）
+    this.audio.setTempoSource(() => this.tempo);
 
     this.result = new ResultPanel(this);
     this.settings = new SettingsPanel(this);

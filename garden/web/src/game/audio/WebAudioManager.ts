@@ -14,6 +14,8 @@
 import { AUDIO_DEFAULTS, SFX, type SfxName, type ToneSpec } from '../../config/audio';
 import type { CoreGameEvent } from '../../core/types';
 import { planSfx } from './sfxPlan';
+import { buildTimeline } from '../render/timeline';
+import { DEFAULT_TEMPO, type Tempo } from '../../config/tuning';
 import type { AudioManager } from './AudioManager';
 
 /** 尾音留白，避免 release 被硬切产生咔哒声 */
@@ -27,6 +29,17 @@ export class WebAudioManager implements AudioManager {
   private muted: boolean = AUDIO_DEFAULTS.muted;
   /** context 创建失败过就不再重试 —— 不要每次点击都抛一遍异常 */
   private unavailable = false;
+
+  /**
+   * ★ 节奏由外部注入 —— 音效要和动画对齐，就必须知道动画有多快。
+   *   默认取 DEFAULT_TEMPO，这样测试与未接入场景时也能正常工作。
+   */
+  private getTempo: () => Tempo = () => DEFAULT_TEMPO;
+
+  /** 供 LevelScene 接入当前节奏设置 */
+  setTempoSource(fn: () => Tempo): void {
+    this.getTempo = fn;
+  }
 
   /**
    * ★ 必须在**用户手势的同步调用栈里**调用（pointerdown 等）。
@@ -124,8 +137,23 @@ export class WebAudioManager implements AudioManager {
      */
     if (this.ctx.state !== 'running') this.resumeAndPrime();
 
+    /**
+     * ★★ 音效必须**对齐画面时间轴**，不能自己数节拍。
+     *
+     *   ⚠️ 这里曾经直接 planSfx(events)，游标按"第几个音"递增
+     *   （0、60、80…）。但 consume() 是**一次性把整段排完**的，
+     *   于是舒缓节奏下消除音排在 60ms、而消除动画 234ms 才开始 ——
+     *   声音早了 174ms，正好压在交换音上糊成一声。
+     *   玩家听见交换、听不到消除/火箭/合体（实测反馈 #3 #4 #6 #7）。
+     *
+     *   buildTimeline 算的就是"每个事件在画面上第几毫秒发生"，
+     *   渲染层用它，音频层也用它 —— 两层消费同一份时序才会同步。
+     */
+    const timeline = buildTimeline(events, this.getTempo());
+    const atByIndex = timeline.items.map((i) => i.atMs);
+
     const now = this.ctx.currentTime;
-    for (const cue of planSfx(events)) {
+    for (const cue of planSfx(events, atByIndex)) {
       const spec = SFX[cue.name];
       this.playTone(spec, now + cue.atMs / 1000, cue.pitchScale);
     }

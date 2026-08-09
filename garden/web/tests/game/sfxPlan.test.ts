@@ -11,6 +11,7 @@
 import { describe, expect, it } from 'vitest';
 import { AUDIBLE_BAND, SFX, SFX_THROTTLE_MS, type SfxName } from '../../src/config/audio';
 import { cascadePitch, planSfx } from '../../src/game/audio/sfxPlan';
+import { buildTimeline } from '../../src/game/render/timeline';
 import type { CoreGameEvent, PieceColor } from '../../src/core/types';
 
 const names = Object.keys(SFX) as SfxName[];
@@ -414,5 +415,57 @@ describe('★★ 回归：实测听不到的三个音效', () => {
     expect(SFX.comboBlast.freq).toBeLessThan(SFX.specialFire.freq);
     expect(SFX.comboBlast.durationMs).toBeGreaterThan(SFX.specialFire.durationMs);
     expect(SFX.comboBlast.gain).toBeGreaterThan(SFX.specialFire.gain);
+  });
+});
+
+/**
+ * ★★★ 根因回归：音效必须**对齐画面时间轴**。
+ *
+ *   用户实测 #3/#4/#6/#7 全都"没有音效"，而 #1 交换音正常。
+ *   真相不是这些音没发出来，而是**发早了**：
+ *   consume() 一次性把整段排完，游标按"第几个音"递增（0、60、80…），
+ *   与动画时间轴毫无关系。舒缓节奏下消除动画 234ms 才开始，
+ *   消除音却排在 60ms —— 早了 174ms，正好压在交换音上糊成一声。
+ *   玩家听见交换，于是以为后面这些动作都没有声音。
+ *
+ *   ⚠️ 这类 bug 单测原本查不出来：音确实排进了序列，频率也合规。
+ *   只有把"音效时刻"与"动画时刻"放在一起比才看得见。
+ */
+describe('★★★ 音画同步', () => {
+  const run: CoreGameEvent[] = [
+    swap(),
+    { t: 'cascadeStart', level: 0 } as CoreGameEvent,
+    match('red', 3, 0),
+  ];
+
+  it('★★★ 消除音与消除动画同时发生（不能早于画面）', () => {
+    const tl = buildTimeline(run, 'calm');
+    const cues = planSfx(
+      run,
+      tl.items.map((i) => i.atMs),
+    );
+    const matchCue = cues.find((c) => c.name === 'match');
+    const matchItem = tl.items.find((i) => i.event.t === 'match');
+    expect(matchCue).toBeDefined();
+    expect(matchItem).toBeDefined();
+    const diff = Math.abs(
+      (matchCue as { atMs: number }).atMs - (matchItem as { atMs: number }).atMs,
+    );
+    expect(diff, '消除音与消除动画错开太多，会被听成"没有音效"').toBeLessThanOrEqual(30);
+  });
+
+  it('★★ 明快节奏下同样对齐（时长缩短 1.6 倍也不能错位）', () => {
+    const tl = buildTimeline(run, 'brisk');
+    const cues = planSfx(
+      run,
+      tl.items.map((i) => i.atMs),
+    );
+    const m = cues.find((c) => c.name === 'match');
+    const item = tl.items.find((i) => i.event.t === 'match');
+    expect(Math.abs((m as { atMs: number }).atMs - (item as { atMs: number }).atMs)).toBeLessThanOrEqual(30);
+  });
+
+  it('★ 不传时间轴时仍能工作（降级不崩）', () => {
+    expect(planSfx(run).length).toBeGreaterThan(0);
   });
 });

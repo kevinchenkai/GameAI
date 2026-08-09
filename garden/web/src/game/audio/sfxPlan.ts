@@ -49,10 +49,24 @@ export function cascadePitch(baseFreq: number, depth: number): number {
  * ★ 不是每个事件都发声 —— 声音太密就成了噪音。
  *   只挑玩家**需要确认**的那几件事：动了、消了、破了、结束了。
  */
-export function planSfx(events: readonly CoreGameEvent[]): readonly SfxCue[] {
+export function planSfx(
+  events: readonly CoreGameEvent[],
+  /**
+   * ★★ 每个事件在**画面上**的发生时刻（ms），由 buildTimeline 提供。
+   *
+   *   ⚠️ 不传的话音效会退回"自己数游标"，那正是 #3/#4/#6/#7
+   *   听不到的根因：consume() 一次性把整段排完，而游标只按
+   *   "第几个音"递增（0、60、80…），与动画时间轴**毫无关系**。
+   *   实测舒缓节奏下，消除动画 234ms 才开始，消除音却排在 60ms ——
+   *   **早了 174ms**，正好压在交换音上，两声糊成一声。
+   *   玩家听见的是交换，于是以为消除、火箭、合体都没有声音。
+   */
+  atByIndex?: readonly number[],
+): readonly SfxCue[] {
   const cues: SfxCue[] = [];
   const lastAt = new Map<SfxName, number>();
   let cursor = 0;
+  let index = -1;
 
   const push = (name: SfxName, pitchScale = 1): void => {
     // ★ 节流：连锁会在几十毫秒内产生一串同名事件，
@@ -64,18 +78,20 @@ export function planSfx(events: readonly CoreGameEvent[]): readonly SfxCue[] {
   };
 
   for (const e of events) {
+    index++;
+    /**
+     * ★★ 有时间轴就**对齐画面**，游标只在没有时间轴时兜底。
+     *
+     *   声音必须和它描述的那件事同时发生 —— 早 174ms 响的消除音
+     *   会被玩家归因到上一个动作（交换），于是"消除没声音"。
+     */
+    const at = atByIndex?.[index];
+    if (at !== undefined) cursor = Math.max(cursor, at);
+
     switch (e.t) {
-      /**
-       * ★★ 交换音之后**必须推进游标**。
-       *
-       *   ⚠️ 实测：一步普通消除的音序是 swap@0ms + match@0ms ——
-       *   两个音**完全同时**响。520Hz 与 660Hz 叠在一起糊成一声，
-       *   玩家只听见"交换"，会以为消除根本没有声音（用户实际反馈 #3）。
-       *   `cursor += 20` 原本写在 match 分支的**末尾**，
-       *   只错开了同一段里的第二次 match，对 swap→match 这一对无效。
-       */
       case 'swap':
         push('swap');
+        // ★ 无时间轴时的兜底错开；有时间轴时下一个事件会自己覆盖游标
         cursor += SWAP_TO_MATCH_GAP_MS;
         break;
 
