@@ -196,5 +196,23 @@ export const ELEVATION = {
   releaseMs: 120,
 } as const;
 
+/**
+ * 背景层次（见 game/render/Backdrop.ts）。
+ *
+ * ★★ 所有强度值都**刻意极低**。目的是"画面不平"，不是"背景好看" ——
+ *   背景一旦引人注意，就在和棋子抢注意力，而核心判据是
+ *   "棋子够不够清楚"（50+ 用户）。宁可弱到几乎察觉不到。
+ */
+export const BACKDROP = {
+  /** 背景层深度。★ 必须低于所有内容（棋盘 0 / 旺财 5 / HUD 10 / 弹窗 100+） */
+  depth: -10,
+  /** 暗角：层数越多越柔 */
+  vignetteLayers: 4,
+  /** 每层描边宽度占屏幕长边的比例 */
+  vignetteBandRatio: 0.06,
+  /** 暗角最大不透明度 —— 超过 0.05 就会被看出来 */
+  vignetteAlpha: 0.035,
+} as const;
+
 /** 触发 excited 重反应的连锁层数阈值 */
 export const COMBO_EXCITED_THRESHOLD = 3;

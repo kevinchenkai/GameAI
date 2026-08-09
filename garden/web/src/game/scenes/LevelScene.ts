@@ -20,6 +20,7 @@ import { applyLevelResult, loadSave, saveSave } from '../../meta/save';
 import { focusedProgress } from '../../meta/gardenProgress';
 import type { SessionState } from '../../core/session';
 import { WebAudioManager } from '../audio/WebAudioManager';
+import { Backdrop } from '../render/Backdrop';
 import { BoardView } from '../render/BoardView';
 import { HudView } from '../ui/HudView';
 import { Panel } from '../ui/Panel';
@@ -51,6 +52,7 @@ import { findAllValidMoves } from '../../core/matcher';
 export class LevelScene extends Phaser.Scene {
   private session!: SessionState;
   private layout!: LayoutResult;
+  private backdrop!: Backdrop;
   private view!: BoardView;
   private hud!: HudView;
   private readonly audio = new WebAudioManager();
@@ -133,6 +135,11 @@ export class LevelScene extends Phaser.Scene {
     this.devSeedSpecials();
 
     this.layout = this.measureLayout();
+
+    // ★ 背景先建 —— 它 depth 为负，但创建顺序仍以"先底后面"为宜
+    this.backdrop = new Backdrop(this);
+    this.backdrop.build(this.scale.width, this.scale.height);
+
     this.view = new BoardView(this, this.layout);
     this.view.build(this.session.board);
 
@@ -459,6 +466,8 @@ export class LevelScene extends Phaser.Scene {
 
   private onResize(): void {
     this.layout = this.measureLayout();
+    // ★ 视口变了，渐变纹理的高度也要跟着变
+    this.backdrop.build(this.scale.width, this.scale.height);
     this.view.setLayout(this.layout);
     this.view.build(this.session.board);
     this.hud.setLayout(this.layout);
