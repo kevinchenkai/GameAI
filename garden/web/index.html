@@ -95,6 +95,108 @@
           transition: none;
         }
       }
+
+      /*
+       * ★★ 电脑浏览器专属：给游戏一个**可见的边界**，浮在淡背景上。
+       *
+       *   参考 soulmate 的做法（styles.css 的 min-width:720px 块）：
+       *   竖屏手游在宽屏上不该拉伸铺满，而是做成"一台居中的手机"。
+       *
+       *   ⚠️ 门槛用 **min-width + min-height 双条件**，与 soulmate 一致：
+       *   只判宽度的话，横过来的手机（896×414）会被当成电脑，
+       *   套上边框后本就紧张的高度会更不够用。
+       *   `pointer: fine` 再排除掉触屏设备（平板横屏、二合一）。
+       *
+       *   ★ 背景**全部用 CSS 渐变画**，不引入任何图片 ——
+       *   garden 的红线是不新增美术素材，而且这里也不需要：
+       *   背景要"淡到几乎注意不到"，有细节反而会和棋子抢注意力
+       *   （同 Backdrop.ts 的理由）。
+       */
+      @media (min-width: 720px) and (min-height: 640px) and (pointer: fine) {
+        body {
+          /* 桌面背景：暖色系，比游戏内底色略深，把"手机"衬出来 */
+          background:
+            radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.5), transparent 46%),
+            radial-gradient(circle at 12% 88%, rgba(255, 214, 150, 0.28), transparent 42%),
+            radial-gradient(circle at 88% 12%, rgba(190, 226, 173, 0.24), transparent 40%),
+            linear-gradient(160deg, #f6e7cd, #f2ddc0 54%, #eed8bb);
+        }
+
+        /*
+         * 极淡的圆点纹理，让大片背景不至于死板。
+         * ★ 透明度刻意很低（0.05）—— 它只需要在余光里"有质感"，
+         *   一旦看得清就变成干扰。
+         */
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          opacity: 0.05;
+          background-image: radial-gradient(circle, #8a6a45 0 1.5px, transparent 2px);
+          background-size: 26px 26px;
+        }
+
+        /*
+         * ★★ "手机"本体：#game 是 Phaser 的容器，
+         *   给它加边框与圆角即可 —— main.ts 用 `el.clientWidth`
+         *   量视口，所以**改这里的尺寸游戏会自动跟着重排**，
+         *   不需要动任何 TS 代码。
+         *
+         * ★ 宽度 480px 与 LAYOUT.maxContentWidthPt 对齐：
+         *   布局算法本来就把内容限在 480pt，边框再宽就会出现
+         *   "框比内容宽一圈"的空隙。
+         */
+        /*
+         * ★ 用 flex 居中而不是 translate(-50%,-50%)：
+         *   框比窗口高时，`top:50%` 会把它**上下都切掉**（顶部的
+         *   步数栏先消失）。flex + `margin:auto` 在放得下时居中、
+         *   放不下时从顶部开始，至少保证 HUD 一定看得见。
+         */
+        body {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        #game {
+          position: relative;
+          flex: none;
+          width: min(480px, calc(100vw - 64px));
+          /*
+           * ★★ 高度下限 700px，**不跟着窗口一起缩到底**。
+           *
+           *   ⚠️ 实测 1280×700 的窗口上（框高 636px），
+           *   旺财区被压到 74pt（低于 petMinHeightPt=96）、控件区 37pt ——
+           *   旺财与「设置」按钮**叠在一起**。
+           *
+           *   700 是实测出来的临界值：逐档量下来，
+           *   680px 时旺财区 95pt 仍不达标，700px 时 105pt 才够用。
+           *   宁可让框在矮窗口上贴边（body 用 flex 居中，放不下时从顶部
+           *   开始，HUD 一定看得见），也不要交付元素互相压住的版式。
+           */
+          height: clamp(700px, calc(100dvh - 64px), 920px);
+          padding: 0;
+          border-radius: 28px;
+          background: #fff6e5;
+          border: 1px solid rgba(160, 128, 88, 0.22);
+          box-shadow:
+            0 24px 60px rgba(96, 68, 38, 0.18),
+            0 2px 8px rgba(96, 68, 38, 0.08);
+          overflow: hidden;
+        }
+
+        /* ★ canvas 要跟着圆角裁切，否则四角会戳出方角 */
+        #game canvas {
+          border-radius: inherit;
+        }
+
+        /* 加载层也收进同一个框里，避免"先全屏、后缩成一台手机"的跳变 */
+        #boot {
+          position: absolute;
+          border-radius: inherit;
+        }
+      }
     </style>
   </head>
   <body>
