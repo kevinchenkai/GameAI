@@ -9,7 +9,14 @@
  *   这些都是断言得了的。WebAudio 那半只能靠耳朵。
  */
 
-import { AUDIBLE_BAND, CASCADE_SEMITONE_STEP, SFX, SFX_THROTTLE_MS, type SfxName } from '../../config/audio';
+import {
+  AUDIBLE_BAND,
+  CASCADE_SEMITONE_STEP,
+  CASCADE_SFX_FROM_LEVEL,
+  SFX,
+  SFX_THROTTLE_MS,
+  type SfxName,
+} from '../../config/audio';
 import type { CoreGameEvent } from '../../core/types';
 
 export interface SfxCue {
@@ -81,11 +88,27 @@ export function planSfx(events: readonly CoreGameEvent[]): readonly SfxCue[] {
          *   这是"顺带确认"，抢戏的应该是连锁升调。
          */
         const sizeBonus = Math.min(Math.max(e.positions.length - 3, 0), 2);
-        if (e.cascadeLevel > 0) {
-          push('cascade', cascadePitch(SFX.cascade.freq, e.cascadeLevel + sizeBonus));
-        } else {
-          push('match', cascadePitch(SFX.match.freq, sizeBonus));
-        }
+        /**
+         * ⚠️ 层级升调**由 cascadeStart 负责**，这里只表达"规模"。
+         *
+         *   曾经两边都按层级升调，但 match 还额外加了 sizeBonus，
+         *   于是同一层的两个音**音高不一致**，整串听下来是
+         *   1.26 → 1.12 → 1.41 → 1.26 的锯齿，不是"越来越高"。
+         *   一个信号只由一个地方表达，否则必然打架。
+         */
+        /**
+         * ★ 层级仍然参与，但**权重远低于 cascadeStart**（半档 vs 整档）。
+         *
+         *   为什么不干脆去掉：`cascadeStart` 与 `match` 的先后顺序是
+         *   core 的实现细节。真实序列里两者必然成对出现，可一旦
+         *   将来某条路径只发 match，层级信息就**静默消失**了。
+         *   留半档既保证降级安全，又不会盖过 cascadeStart 的表达。
+         */
+        const lvlBonus = e.cascadeLevel > 0 ? Math.min(e.cascadeLevel, 2) * 0.5 : 0;
+        push(
+          e.cascadeLevel > 0 ? 'cascade' : 'match',
+          cascadePitch(SFX.match.freq, sizeBonus + lvlBonus),
+        );
         cursor += 20; // 同段内轻微错开，避免完全重合
         break;
       }
@@ -103,6 +126,31 @@ export function planSfx(events: readonly CoreGameEvent[]): readonly SfxCue[] {
        */
       case 'specialSpawn':
         cues.push({ name: 'specialSpawn', atMs: cursor + 40, pitchScale: 1 });
+        break;
+
+      /**
+       * ★★ 连锁层级本身要有声音，**不能只靠 match 的升调**。
+       *
+       *   实测：3 层连锁只发出 2 个音 —— 第 3 次 match 与前一次相隔
+       *   仅 20ms，被 SFX_THROTTLE_MS(45ms) 判成重复丢掉了。
+       *   于是"连锁越深越激动"在听觉上**根本不成立**，
+       *   深连锁和普通消除听起来一样 —— 正是 A1 要解决的那个问题。
+       *
+       *   视觉侧靠 `cascadeStart` 解决了（震屏 + 连击文字），
+       *   音频侧也必须消费同一个事件，两边才对称。
+       *
+       * ★ 不走节流：cascadeStart 每层只出现一次，本就不密集；
+       *   而它恰恰是**最不能被丢掉**的那个音。
+       */
+      case 'cascadeStart':
+        if (e.level >= CASCADE_SFX_FROM_LEVEL) {
+          cues.push({
+            name: 'cascade',
+            atMs: cursor,
+            pitchScale: cascadePitch(SFX.cascade.freq, e.level),
+          });
+          cursor += 30;
+        }
         break;
 
       case 'specialFire':

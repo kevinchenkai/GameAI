@@ -249,6 +249,18 @@ export const SFX: Readonly<Record<SfxName, ToneSpec>> = {
  */
 export const CASCADE_SEMITONE_STEP = 2;
 
+/**
+ * `cascadeStart` 从第几层起单独发一声。
+ *
+ * ★ 第 1 层是普通消除（match 已经响过），再补一声就是重复。
+ *   从第 2 层起才是"连上了"，那一刻才值得单独标记。
+ *
+ * ★ 与 CASCADE_FX.labelFromLevel（视觉的"连击 xN"，第 3 层）不同是**故意的**：
+ *   声音比文字更廉价、更不打断，可以早一层给反馈；
+ *   文字占屏幕、会盖住棋盘，门槛要更高。
+ */
+export const CASCADE_SFX_FROM_LEVEL = 2;
+
 /** 音量默认值。★ 默认开，但留出静音入口（M5 的设置面板） */
 export const AUDIO_DEFAULTS = {
   sfxVolume: 0.7,

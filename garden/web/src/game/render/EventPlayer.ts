@@ -14,6 +14,7 @@
 import type Phaser from 'phaser';
 import type { CoreGameEvent } from '../../core/types';
 import type { Tempo } from '../../config/tuning';
+import { SPECIAL_SPAWN } from '../../config/tuning';
 import type { BoardView } from './BoardView';
 import type { MatchFx } from './MatchFx';
 import { buildTimeline, type Timeline } from './timeline';
@@ -303,7 +304,58 @@ export class PhaserEventPlayer implements EventPlayer {
         this.fx?.cascade(e.level, this.lastMatchAt, this.view.pieceSize);
         break;
 
-      case 'specialSpawn':
+      /**
+       * ★★ 特殊棋子**诞生**的一刻要看得见。
+       *
+       *   此前这里是空分支：火箭/炸弹的叠加层是在回合末 reconcile()
+       *   里**凭空出现**的 —— 玩家凑出 match-4 这件事，画面上没有
+       *   任何一帧标记它。音效已经补了（specialSpawn），
+       *   视觉却还是空的，两边不对称。
+       *
+       * ★ 用"放大再回弹"而不是粒子：这是**得到**不是**消失**，
+       *   往外炸的语义是反的。
+       */
+      case 'specialSpawn': {
+        const id = this.idAt(e.pos);
+        const sprite = id === null ? undefined : this.view.spriteOf(id);
+        if (sprite && id !== null) {
+          const base = this.view.pieceSize;
+          /**
+           * ⚠️ **不进 pendingTweens**（故意不用 this.tween）。
+           *
+           *   本事件在时间轴上是零时长的，`play()` 会立刻走到 finish()，
+           *   而 finish() 里的 settleTweens() 会把所有登记在案的补间
+           *   `complete()` 到终点 —— 脉冲还没画出一帧就被推到结尾复位了。
+           *   实测：逐帧尺寸恒为 84.3，**完全看不到**（单测查不出来，
+           *   因为测试里没有真实的补间时钟）。
+           *
+           *   脉冲是纯装饰、不影响棋子最终位置与存亡，
+           *   所以它不需要被"结算"，让它自己播完即可。
+           */
+          this.scene.tweens.add({
+            targets: sprite,
+            displayWidth: base * SPECIAL_SPAWN.peakScale,
+            displayHeight: base * SPECIAL_SPAWN.peakScale,
+            // ★ 用自带时长：本事件在时间轴上是零时长的瞬时标记
+            duration: SPECIAL_SPAWN.riseMs * SPECIAL_SPAWN.riseRatio,
+            yoyo: true,
+            ease: 'Back.easeOut',
+            onUpdate: () => this.view.followOverlay(id),
+            /**
+             * ⚠️ 收尾必须把尺寸**显式复位**。
+             *   yoyo 理论上会回到起点，但补间被 skipAll() 中途
+             *   `complete()` 时会直接跳到"去程终点"（放大态）——
+             *   那颗棋子就会永远比别人大一圈。
+             */
+            onComplete: () => {
+              this.view.resetSpriteSize(sprite);
+              this.view.followOverlay(id);
+            },
+          });
+        }
+        break;
+      }
+
       case 'shuffle':
       case 'collect':
       case 'cascadeEnd':

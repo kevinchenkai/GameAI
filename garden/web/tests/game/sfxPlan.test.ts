@@ -267,14 +267,18 @@ describe('★ 消除规模参与音高', () => {
    * ★★ 幅度必须**小**：抢戏的应该是连锁升调，规模只是顺带确认。
    *   若规模加成过大，一次大消除会听起来像 3 连锁 —— 反而误导。
    */
-  it('★★ 规模加成有上限，且不超过连锁本身的表达力', () => {
+  /**
+   * ★★ 规模只是"顺带确认"，抢戏的必须是连锁。
+   *   若一次大消除听起来比第 3 层连锁还激动，玩家会被误导 ——
+   *   以为自己连上了，其实只是消得多。
+   */
+  it('★★ 规模加成有上限，且不超过连锁层级的表达力', () => {
     const huge = planSfx([match('red', 12)]).find((c) => c.name === 'match');
-    const casc3 = planSfx([match('red', 3, 3)]).find((c) => c.name === 'cascade');
+    const layer3 = planSfx([{ t: 'cascadeStart', level: 3 } as CoreGameEvent])[0];
     expect(huge).toBeDefined();
-    expect(casc3).toBeDefined();
-    // 12 连消的音高加成不应超过第 3 层连锁
+    expect(layer3).toBeDefined();
     expect((huge as { pitchScale: number }).pitchScale).toBeLessThanOrEqual(
-      (casc3 as { pitchScale: number }).pitchScale,
+      (layer3 as { pitchScale: number }).pitchScale,
     );
   });
 
@@ -287,6 +291,75 @@ describe('★ 消除规模参与音高', () => {
         const hz = spec.freq * (cue as { pitchScale: number }).pitchScale;
         expect(hz, `${n} 连 × ${lv} 层`).toBeLessThanOrEqual(AUDIBLE_BAND.maxHz);
       }
+    }
+  });
+});
+
+/**
+ * ★★ 连锁在**听觉上**必须逐层变强。
+ *
+ *   这是 A1 的核心诉求（"5 连锁和 3 消不该一样"）在音频侧的对应。
+ *   视觉侧靠 cascadeStart 做（震屏 + 连击文字），音频侧同理。
+ */
+describe('★★ 连锁的听觉层级', () => {
+  /** 造一段真实形状的连锁事件：每层 cascadeStart + match */
+  const cascadeRun = (layers: number): CoreGameEvent[] => {
+    const out: CoreGameEvent[] = [];
+    for (let lv = 0; lv < layers; lv++) {
+      out.push({ t: 'cascadeStart', level: lv } as CoreGameEvent);
+      out.push(match('red', 3, lv));
+    }
+    return out;
+  };
+
+  /**
+   * ★★ 回归：此前 3 层连锁**只发出 2 个音**。
+   *   第 3 次 match 与前一次只隔 20ms，被 45ms 的节流窗口判成重复丢掉，
+   *   于是深连锁与普通消除听起来一模一样。
+   */
+  it('★★ 3 层连锁不止响 2 声（节流曾把深层吃掉）', () => {
+    expect(planSfx(cascadeRun(3)).length).toBeGreaterThan(2);
+  });
+
+  it('★ 层数越多，声音事件越多', () => {
+    expect(planSfx(cascadeRun(4)).length).toBeGreaterThan(planSfx(cascadeRun(2)).length);
+  });
+
+  /**
+   * ★★ 层级升调只能由 **cascadeStart** 表达。
+   *
+   *   曾经 match 也按层级升调、还额外叠了规模加成，
+   *   结果同一层的两个音**音高不一致**，整串是
+   *   1.26 → 1.12 → 1.41 → 1.26 的锯齿，听感上不是"越来越高"。
+   *   一个信号只由一个地方表达。
+   */
+  /**
+   * ⚠️ 只看**cascadeStart 单独发出**的那些层级音。
+   *   match 也带半档层级加成（降级保险，见实现注释），
+   *   把两者混在一起比较是拿两种信号互比，必然锯齿。
+   *   用「只有 cascadeStart、不带 match」的序列把它们分开。
+   */
+  it('★★ 连锁层级音高单调递增（不能忽高忽低）', () => {
+    const onlyStarts: CoreGameEvent[] = [1, 2, 3, 4].map(
+      (lv) => ({ t: 'cascadeStart', level: lv }) as CoreGameEvent,
+    );
+    const layerPitches = planSfx(onlyStarts).map((c) => c.pitchScale);
+    expect(layerPitches.length).toBeGreaterThanOrEqual(3);
+    for (let i = 1; i < layerPitches.length; i++) {
+      const prev = layerPitches[i - 1] ?? 0;
+      const cur = layerPitches[i] ?? 0;
+      expect(cur, `第 ${i} 个层级音比前一个低`).toBeGreaterThanOrEqual(prev);
+    }
+  });
+
+  it('★ 第 1 层（普通消除）不额外补层级音 —— 那是重复', () => {
+    const cues = planSfx([{ t: 'cascadeStart', level: 0 } as CoreGameEvent, match()]);
+    expect(cues.filter((c) => c.name === 'cascade' && c.pitchScale > 1.05)).toHaveLength(0);
+  });
+
+  it('★ 再深的连锁也不超出中频上限', () => {
+    for (const c of planSfx(cascadeRun(12))) {
+      expect(SFX[c.name].freq * c.pitchScale).toBeLessThanOrEqual(AUDIBLE_BAND.maxHz);
     }
   });
 });
