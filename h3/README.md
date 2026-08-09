@@ -34,7 +34,7 @@ h3/
 ├── index.html         ← 最终页面（单文件，无外部依赖、无 CDN）
 ├── deploy.sh          ← 部署脚本（带边界断言）
 ├── prompts/           ← ★ 唯一的 prompt 真源，11 个 .txt
-├── posters/           ← 视频封面图，由 ffmpeg 从成片第 1 秒抽帧生成
+├── posters/           ← 视频封面图，ffmpeg 从成片第 1 秒抽帧，**原生分辨率**（见 §4.1）
 └── videos/            ← 成片 mp4（**不入 git**，见 §6）
 ```
 
@@ -80,10 +80,17 @@ cp /Users/kk/Work/chenkai_airepo/Juscent/assets/prompts/C-009-xxx.txt prompts/
 # ② 放成片，文件名必须是 <案例号>.mp4
 cp /Users/kk/Work/chenkai_airepo/Juscent/output/C-009-seed0_00001_.mp4 videos/C-009.mp4
 
-# ③ 生成封面（第 1 秒抽帧，宽 640）
+# ③ 生成封面（第 1 秒抽帧，**原生分辨率、不缩放**）
 ffmpeg -v error -y -ss 1.0 -i videos/C-009.mp4 -frames:v 1 \
-       -vf "scale=640:-2" -q:v 4 posters/C-009.jpg
+       -q:v 3 posters/C-009.jpg
 ```
+
+🔴 **不要加 `-vf scale`。** 封面在页面里按 `width:100%` 铺满 1040px 内容区，
+2x 屏实际需要约 2080px。早期版本压到 640 宽，等于让浏览器放大 3.4 倍，
+成片一播放就清晰、封面却是糊的，对比非常明显。
+
+`-q:v 3` 是实测选的：与原始帧比 SSIM 0.989，q=2 只提升到 0.992 却大 31%。
+（作为对照，旧的 640 版按实际显示尺寸还原后只有 **0.937**。）
 
 ④ 在 `build.py` 的 `CASES` 列表里加一行（**顺序即页面顺序**）：
 
@@ -191,7 +198,7 @@ for f in H3-001 H3-002 H3-003 C-001 C-002 C-003 C-004 C-005 C-006 C-007 C-008; d
 done
 ```
 
-`posters/*.jpg` 体积小（共约 316 KB），**入 git**，所以克隆后页面至少有封面可看。
+`posters/*.jpg` 体积不大（共约 815 KB），**入 git**，所以克隆后页面至少有封面可看。
 
 > ⚠️ 服务器上的 `videos/` 是已经部署上去的，`deploy.sh` 的 `--delete` 只作用于 `h3/` 内部。
 > 如果本地 `videos/` 是空的就执行部署，**会把服务器上的视频删掉**。
