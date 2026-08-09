@@ -11,6 +11,7 @@
 import Phaser from 'phaser';
 import { ENV_PALETTE, ENV_HEX } from '../../config/pieces';
 import { fontPx, px } from './uiScale';
+import { ELEVATION } from '../../config/tuning';
 
 const FONT = '"PingFang SC", "Microsoft YaHei", -apple-system, sans-serif';
 
@@ -56,14 +57,64 @@ export class Panel {
     this.add(g);
   }
 
+  /**
+   * 居中卡片。
+   *
+   * ★ 带投影 —— 没有投影的卡片和背景在同一个平面上，"浮不起来"。
+   *   Graphics 没有真模糊，用**几层递减不透明度的圆角矩形**近似柔边，
+   *   成本极低（3 个 fillRoundedRect）且效果够用。
+   */
   card(centerX: number, centerY: number, w: number, h: number): void {
+    const radius = px(this.scene, 20);
+    this.dropShadow(
+      centerX,
+      centerY,
+      w,
+      h,
+      radius,
+      px(this.scene, ELEVATION.cardShadowOffsetPt),
+      ELEVATION.cardShadowAlpha,
+    );
+
     const g = this.scene.add.graphics();
     g.fillStyle(ENV_HEX.panelBg, 1);
-    const radius = px(this.scene, 20);
     g.fillRoundedRect(centerX - w / 2, centerY - h / 2, w, h, radius);
     g.lineStyle(px(this.scene, 3), ENV_HEX.panelStroke, 1);
     g.strokeRoundedRect(centerX - w / 2, centerY - h / 2, w, h, radius);
     this.add(g);
+  }
+
+  /**
+   * 投影：几层向下偏移、不透明度递减的圆角矩形。
+   *
+   * ★ 用 `panelStroke`（暖棕）而非纯黑 —— 纯黑阴影压在暖色背景上会发灰发脏。
+   */
+  private dropShadow(
+    cx: number,
+    cy: number,
+    w: number,
+    h: number,
+    radius: number,
+    offset: number,
+    alpha: number,
+  ): Phaser.GameObjects.Graphics {
+    const g = this.scene.add.graphics();
+    const layers = ELEVATION.cardShadowLayers;
+    for (let i = layers; i >= 1; i--) {
+      // 越外层越淡、越偏下，叠出柔边
+      const t = i / layers;
+      g.fillStyle(ENV_HEX.panelStroke, (alpha * (1 - t * 0.55)) / layers + alpha / (layers * 2));
+      const grow = offset * t;
+      g.fillRoundedRect(
+        cx - w / 2 - grow * 0.35,
+        cy - h / 2 + offset * 0.55 + grow * 0.35,
+        w + grow * 0.7,
+        h + grow * 0.7,
+        radius + grow * 0.35,
+      );
+    }
+    this.add(g);
+    return g;
   }
 
   title(x: number, y: number, text: string, size = 26): Phaser.GameObjects.Text {
@@ -103,6 +154,17 @@ export class Panel {
     const width = Math.max(w, h);
     const radius = px(this.scene, 14);
 
+    // 投影（比卡片浅，否则按钮会显得比卡片还"高"）
+    const shadow = this.dropShadow(
+      x,
+      y,
+      width,
+      h,
+      radius,
+      px(this.scene, ELEVATION.btnShadowOffsetPt),
+      ELEVATION.btnShadowAlpha,
+    );
+
     const g = this.scene.add.graphics();
     if (spec.primary) {
       g.fillStyle(ENV_HEX.btnPrimary, 1);
@@ -120,7 +182,7 @@ export class Panel {
         fontFamily: FONT,
         fontSize: fontPx(this.scene, 19),
         fontStyle: 'bold',
-        color: spec.primary ? '#4A3520' : ENV_PALETTE.textDark,
+        color: spec.primary ? ENV_PALETTE.btnPrimaryText : ENV_PALETTE.textDark,
       })
       .setOrigin(0.5);
     this.add(t);
@@ -128,8 +190,48 @@ export class Panel {
     // ★ 命中区用独立的透明矩形，不依赖文字或图形的边界
     const hit = this.scene.add.zone(x, y, width, h);
     hit.setInteractive({ useHandCursor: true });
-    hit.on('pointerup', spec.onClick);
     this.add(hit);
+
+    /**
+     * ★★ 按下态：按钮**整体下沉**一点点，松开回弹。
+     *
+     *   这是最廉价也最有效的一条 —— 没有它，点下去到动画开始之间
+     *   有一段"什么都没发生"的空白，玩家会怀疑是不是没点中
+     *   （50+ 用户的典型反应是再点一下，于是触发两次）。
+     *
+     *   下沉时**投影同步变浅**，符合"离桌面更近"的物理直觉。
+     */
+    const sink = px(this.scene, ELEVATION.pressSinkPt);
+    const parts = [g, t];
+    const press = (): void => {
+      for (const o of parts) this.scene.tweens.add({ targets: o, y: `+=${sink}`, duration: ELEVATION.pressMs, ease: 'Quad.easeOut' });
+      this.scene.tweens.add({ targets: shadow, alpha: 0.4, duration: ELEVATION.pressMs });
+    };
+    const release = (): void => {
+      for (const o of parts) this.scene.tweens.add({ targets: o, y: `-=${sink}`, duration: ELEVATION.releaseMs, ease: 'Back.easeOut' });
+      this.scene.tweens.add({ targets: shadow, alpha: 1, duration: ELEVATION.releaseMs });
+    };
+
+    let down = false;
+    hit.on('pointerdown', () => {
+      down = true;
+      press();
+    });
+    hit.on('pointerup', () => {
+      if (!down) return;
+      down = false;
+      release();
+      spec.onClick();
+    });
+    /**
+     * ⚠️ 手指滑出按钮再松开**不算点击**，但必须回弹 ——
+     *   否则按钮会永远停在下沉状态（看起来像卡住了）。
+     */
+    hit.on('pointerout', () => {
+      if (!down) return;
+      down = false;
+      release();
+    });
   }
 
   add(obj: Phaser.GameObjects.GameObject): void {

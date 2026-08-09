@@ -169,5 +169,32 @@ export const CELL = {
   backdropAlpha: 0.06,
 } as const;
 
+/**
+ * UI 的"立体感"参数（**设计像素**，用时经 px() 换算）。
+ *
+ * ★ 全项目原本零渐变零阴影 —— 卡片和背景在同一个平面上，
+ *   按钮点下去也没有任何反馈。这几个值就是把层级拉开的最小成本方案。
+ *
+ * ★ 阴影用**同色系深色 + 低不透明度**，不用纯黑：
+ *   纯黑阴影在暖色背景上会发灰发脏。
+ */
+export const ELEVATION = {
+  /** 卡片投影：向下偏移量与模糊近似（用多层矩形模拟，Graphics 没有真模糊） */
+  cardShadowOffsetPt: 6,
+  cardShadowAlpha: 0.13,
+  /** 投影用几层递减的圆角矩形叠出柔边 —— 层数越多越柔，也越费 */
+  cardShadowLayers: 3,
+
+  /** 按钮投影（比卡片浅，否则按钮会比卡片还"高"） */
+  btnShadowOffsetPt: 3,
+  btnShadowAlpha: 0.18,
+
+  /** 按下时下沉的距离与时长 —— 短促才像"点到了" */
+  pressSinkPt: 2,
+  pressMs: 90,
+  /** 松开回弹 */
+  releaseMs: 120,
+} as const;
+
 /** 触发 excited 重反应的连锁层数阈值 */
 export const COMBO_EXCITED_THRESHOLD = 3;
