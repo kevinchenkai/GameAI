@@ -1,0 +1,30 @@
+garden/web/index.html
+  640fa3cf12a5a767 98-199
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "650fc71da56631fdf4d73d656faa323458a988a8",
+  "prompts": {
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 1313,
+      "total_deletions": 221,
+      "accepted_lines": 4773,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/c2de182fe247e6cfab5875353496c045f373dc7b2489fc85ab1a21b287b3f0b7",
+      "token_usage": {
+        "input_tokens": 8763,
+        "output_tokens": 1213564,
+        "cache_creation_input_tokens": 10218366,
+        "cache_read_input_tokens": 700069764
+      }
+    }
+  }
+}
