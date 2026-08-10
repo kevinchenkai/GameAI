@@ -55,8 +55,14 @@ for c in cases:
   </details>
 </article>""")
 
-official = "".join(cards[:3])
-community = "".join(cards[3:])
+# 🔴 按 ID 前缀分组，**不要**按下标切片（cards[:3]/cards[3:]）——
+#    那样一加新系列就会被静默塞进"社区案例"，归错组。
+_by_id = dict(zip((c["id"] for c in cases), cards))
+official  = "".join(h for i, h in _by_id.items() if i.startswith("H3-"))
+community = "".join(h for i, h in _by_id.items() if i.startswith("C-"))
+dseries   = "".join(h for i, h in _by_id.items() if i.startswith("D-"))
+_grouped = sum(1 for i in _by_id if i.split("-")[0] in ("H3", "C", "D"))
+assert _grouped == len(cases), f"有 {len(cases)-_grouped} 个案例未归入任何分组，会在页面上消失"
 
 n_ok = sum(1 for c in cases if c["level"] == "ok")
 n_warn = sum(1 for c in cases if c["level"] == "warn")
@@ -401,6 +407,15 @@ HTML = f"""<!doctype html>
   <p class="lead">社区流传的优秀 prompt 在开源版上的实跑结果。
      标注「部分成功」的案例，说明中写明了具体是哪一项没有达成。</p>
   {community}
+</section>
+
+<section id="dseries">
+  <h2>结构化长 prompt（D 系列）</h2>
+  <p class="lead">同一作者、同一套写法模板的四条长 prompt，全部 15 秒满帧长。
+     它们把镜头结构写死在文本里（分几段、在哪里切、每段用什么焦段），
+     用来看模型对<b>显式分镜指令</b>的执行程度。
+     每条都跑了两个 seed —— 结论只在两个 seed 一致时才作数。</p>
+  {dseries}
 </section>
 
 <section id="refs">

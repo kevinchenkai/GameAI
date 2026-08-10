@@ -41,6 +41,18 @@ CASES = [
     ("C-008", "六素材节奏迁移", "C-008-sixasset.txt", "Ref2VA",
      "1344×768", 192, "8.000s", "部分成功", "warn",
      "六张素材图都用上了，但参考视频的剪辑节奏没有迁移：成片 2 个切点 vs 参考 5 个，切镜密度低了 79.6%。"),
+    # ── D 系列：同作者同模板的结构化长 prompt，各跑双 seed，交付版择优 ──
+    ("D-003", "那不勒斯阳台 · 两次硬切", "D-003-signed-on-tuesday.txt", "T2VA",
+     "1344×768", 362, "15.083s", "部分成功", "warn",
+     "原文声明三段两切。交付版（seed=1）实测正好 2 个切点，分段结构与原文一致；"
+     "机位、眼神光、栏杆上两只咖啡杯等可核对的条款均命中。"
+     "但另一个 seed（seed=0）实测 3 个切点，且两个 seed 的切点位置几乎不重合 —— "
+     "说明 H3 对「切几次、在哪切」并不稳定复现，这条是本系列最重要的负面结论。"),
+    ("D-004", "诺曼底地图室 · 硬切 + 反打", "D-004-take-the-lane.txt", "T2VA",
+     "1344×768", 362, "15.083s", "复现成功", "ok",
+     "两个 seed 都实测 2 个切点，与原文声明一致 —— 是本系列唯一切镜数双 seed 复现的案例。"
+     "交付版取 seed=0：油灯作为动机光真的在照亮地图与人脸，曝光全程守得住；"
+     "另一 seed 后段接近全暗、人物几乎融进背景。注意切点位置仍不重合。"),
 ]
 
 # 每个案例的 prompt 出处（复现记录 h3-oss-REPRODUCTION-LOG.md 里的「来源」行）。
@@ -59,6 +71,12 @@ SOURCES = {
 for _cid in ("C-001", "C-002", "C-003", "C-004", "C-005", "C-006", "C-007", "C-008"):
     SOURCES[_cid] = ("社区 gallery forgewebO1/awesome-minimax-h3-prompts",
                      "https://github.com/forgewebO1/awesome-minimax-h3-prompts")
+# D 系列取自另一个仓库（ecomimagelab 转录自作者 Alex Patrascu 的 X thread）。
+# 🔴 仍按老规矩：写**原文实际取自哪里**（转录仓库），不写"谁最早发的"（作者 X）——
+#    我们核对过的是转录后的文本，没有逐字核对过原推。
+for _cid in ("D-001", "D-002", "D-003", "D-004"):
+    SOURCES[_cid] = ("社区仓库 ecomimagelab/awesome-minimax-h3-prompts（转录自作者 X thread）",
+                     "https://github.com/ecomimagelab/awesome-minimax-h3-prompts")
 
 
 def sha12(p):

@@ -266,9 +266,9 @@
     <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集。
        每个案例都附完整 prompt 原文与逐条判定结论 —— 包括没做到的部分。</p>
     <div class="stats">
-      <span class="stat">共 <b>11</b> 个案例</span>
-      <span class="stat">复现成功 <b>7</b></span>
-      <span class="stat">部分成功 <b>4</b></span>
+      <span class="stat">共 <b>13</b> 个案例</span>
+      <span class="stat">复现成功 <b>8</b></span>
+      <span class="stat">部分成功 <b>5</b></span>
       <span class="stat">NaN / 黑帧 <b>0</b></span>
     </div>
   </div>
@@ -822,6 +822,137 @@ Visual language: a voyeuristic, Wes Anderson-inspired 35 mm film look with fine 
     <pre id="p-C-008">Use Images 1–6 as assets. Match Reference Video 1 closely for shot rhythm, transition language, and music.</pre>
     <p class="srcnote">出处：<a href="https://github.com/forgewebO1/awesome-minimax-h3-prompts"
        target="_blank" rel="noopener noreferrer">社区 gallery forgewebO1/awesome-minimax-h3-prompts</a></p>
+  </details>
+</article>
+</section>
+
+<section id="dseries">
+  <h2>结构化长 prompt（D 系列）</h2>
+  <p class="lead">同一作者、同一套写法模板的四条长 prompt，全部 15 秒满帧长。
+     它们把镜头结构写死在文本里（分几段、在哪里切、每段用什么焦段），
+     用来看模型对<b>显式分镜指令</b>的执行程度。
+     每条都跑了两个 seed —— 结论只在两个 seed 一致时才作数。</p>
+  
+<article class="case" id="D-003">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">D-003</span>
+      <h3>那不勒斯阳台 · 两次硬切</h3>
+    </div>
+    <span class="badge warn">部分成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>362</span>
+    <span><b>时长</b>15.083s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/D-003.jpg"
+           src="videos/D-003.mp4"></video>
+  </div>
+
+  <p class="note">原文声明三段两切。交付版（seed=1）实测正好 2 个切点，分段结构与原文一致；机位、眼神光、栏杆上两只咖啡杯等可核对的条款均命中。但另一个 seed（seed=0）实测 3 个切点，且两个 seed 的切点位置几乎不重合 —— 说明 H3 对「切几次、在哪切」并不稳定复现，这条是本系列最重要的负面结论。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">3182 字符 · sha256 845f5d5bd1e3</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-D-003">复制</button>
+      <a class="srclink" href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
+    </div>
+    <pre id="p-D-003">PROMPT 4:
+
+SCENE CONTEXT On a narrow Naples balcony at blue hour, a woman tells a man she has already taken the job. He does not argue, which is worse.
+
+FORMAT MODE Controlled three-segment sequence, two HARD CUTs. Real-time motion. Restrained camera throughout.
+
+LOCATION MAP Camera on the balcony, 2 m from the couple, facing them with the lit kitchen doorway behind them screen-centre-left. FG: iron rail and two espresso cups. MG: woman and man standing 60 cm apart. BG: alley canyon, drying laundry, a lit window opposite, string lights. Warm light comes from behind them through the doorway; cool dusk fills from camera side.
+
+FIRST FRAME AND SPATIAL BLOCKING Both are in frame from the first visible frame. Woman at x 34%, y 46%, torso facing screen-right, one hand on the iron rail. Man at x 68%, y 44%, three-quarter profile facing her, hands at his sides. Their eyelines meet at x 50%. The two espresso cups sit on the rail at x 52%, y 74%.
+
+OPTICS LENS LOCK SEGMENT 1 = 47°, camera 2.2 m out, natural proportions, both faces and the alley depth readable. LENS LOCK SEGMENT 2 = 29°, camera 4.5 m back along the balcony, close on the woman by lens reach, alley lights compressing into soft round bokeh behind her. LENS LOCK SEGMENT 3 = 84°, camera 1 m from the man, foreground rail presence, the whole balcony and doorway visible to the edges.
+
+CAMERA Segment 1 handheld with almost no travel, operator breath only. Segment 2 locked-off. Segment 3 handheld, a slow 20 cm settle downward as he lowers his head. Camera stays on the dusk side of both faces.
+
+ACTION TIMING BEAT 1 — She speaks her line, then looks at her own hand on the rail rather than at him. He does not move. HARD CUT BEAT 2 — Held on her. A long beat. Her mouth begins a word and abandons it; she swallows and lifts her eyes back to him. HARD CUT BEAT 3 — On him. He nods once, small, and picks up one of the espresso cups without drinking from it. The shot holds on his hand around the cup as the string lights flicker once.
+
+PHYSICS Cool air moves the drying laundry in the background on real cloth delay. Her knit sleeve compresses where her forearm presses the rail. The cup has weight; the saucer chatters faintly when lifted. Loose hair moves independently of her head turn.
+
+LIGHTING Primary source is the warm kitchen bulb behind them through the doorway, motivated, giving both a warm hair and shoulder rim. Fill is cool ambient dusk from camera side. Soft shadow rolloff, not crushed silhouettes — eyes stay readable with visible catchlights. Practical string lights and one lit window across the alley sit in the background.
+
+AUDIO Distant scooter, a television two floors down, pigeons, faint street voices. Ambient ducks under the voice. She speaks exactly this line as the shot opens: &quot;I signed it on Tuesday.&quot; No other dialogue, no score. His lips stay still.
+
+POSITIVE LOCKS Exactly two people are on the balcony and no one appears in the doorway behind them. Their positions, wardrobe, the two cups and the laundry arrangement remain identical across the cuts. Cinematic photorealistic footage shot on ARRI Alexa 35, warm-amber against slate-blue grade, low contrast, natural film grain.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区仓库 ecomimagelab/awesome-minimax-h3-prompts（转录自作者 X thread）</a></p>
+  </details>
+</article>
+<article class="case" id="D-004">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">D-004</span>
+      <h3>诺曼底地图室 · 硬切 + 反打</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>362</span>
+    <span><b>时长</b>15.083s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/D-004.jpg"
+           src="videos/D-004.mp4"></video>
+  </div>
+
+  <p class="note">两个 seed 都实测 2 个切点，与原文声明一致 —— 是本系列唯一切镜数双 seed 复现的案例。交付版取 seed=0：油灯作为动机光真的在照亮地图与人脸，曝光全程守得住；另一 seed 后段接近全暗、人物几乎融进背景。注意切点位置仍不重合。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">3412 字符 · sha256 f40a58db2578</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-D-004">复制</button>
+      <a class="srclink" href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
+    </div>
+    <pre id="p-D-004">PROMPT 5:
+
+SCENE CONTEXT In a shelled Normandy farmhouse at night, a colonel orders a captain to take the lane at first light. The captain accepts the order knowing what it costs.
+
+FORMAT MODE Controlled three-segment sequence, one HARD CUT and one REVERSE CUT. Real-time motion.
+
+LOCATION MAP Camera inside a roofless farmhouse room, 2.5 m from a map table. FG: table edge, tin mug, field telephone. MG: colonel standing screen-left of the table, captain standing screen-right. BG: pinned maps on plaster, splintered beams, a hole in the roof. Primary light is a hurricane lamp on the table between them.
+
+FIRST FRAME AND SPATIAL BLOCKING Both officers are already at the table in the first visible frame. Colonel at x 30%, y 44%, three-quarter profile facing screen-right, index finger planted on the map at x 46%, y 76%. Captain at x 70%, y 42%, torso squared to the colonel, gaze down on the finger, not the face. Lamp at x 50%, y 66%. No empty establishing frame.
+
+OPTICS LENS LOCK SEGMENT 1 = 47°, camera 2.5 m from the table, natural proportions, both officers and the map geography readable. LENS LOCK SEGMENT 2 = 29°, camera 4 m back, close on the captain by lens reach, the pinned map wall compressed soft behind him. LENS LOCK SEGMENT 3 = 84°, camera 1.1 m above the map surface angled up past the lamp, foreground lamp glass looming, both men and the broken roof visible to the edges.
+
+CAMERA Segment 1 locked-off at chest height. Segment 2 handheld with operator breath, camera on the lamp&#x27;s shadow side. Segment 3 handheld low, slow rise past the lamp flame.
+
+ACTION TIMING BEAT 1 — The colonel speaks his line, finger pressing hard enough to crease the map. Plaster dust drifts through the lamp beam. REVERSE CUT BEAT 2 — On the captain. A distant artillery flash strobes blue across his face. A muscle jumps in his cheek; he nods once and looks up. HARD CUT BEAT 3 — Low wide past the lamp. The captain squares his cap, turns and walks out of frame screen-right. The colonel stays, hand flattening the creased map, and the lamp flame leans in the draught of the door.
+
+PHYSICS Paper creases and holds the crease under finger pressure. The lamp flame bends and recovers when air moves; its light level dips accordingly. Plaster dust falls with real settling drift. Boots find rubble with uneven weight transfer and grit sound. Wool uniform holds damp weight and does not billow.
+
+LIGHTING Primary source is the hurricane lamp on the table, motivated, hard and warm, underlighting both faces and leaving eye sockets in shadow. Secondary: cold moonlight through the roof hole rimming shoulders, plus intermittent distant artillery flash on the back wall. Exposure is set for the lamp; shadows are allowed to crush. No added frontal fill.
+
+AUDIO Distant shellfire, a field telephone hum, wind through the broken roof, drip of water. Ambient ducks under the voice. The colonel speaks exactly this line as the shot opens: &quot;You take the lane at first light, with what you have.&quot; No other dialogue, no score. The captain&#x27;s lips stay still.
+
+POSITIVE LOCKS Exactly two officers are in the room and no other figures enter. Both stay on their own side of the table until the captain exits in the final beat. Uniform state, mud, plaster dust and the lamp position remain identical across the cuts. Cinematic photorealistic footage shot on ARRI Alexa 35, desaturated olive-and-amber grade, natural film grain.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区仓库 ecomimagelab/awesome-minimax-h3-prompts（转录自作者 X thread）</a></p>
   </details>
 </article>
 </section>
