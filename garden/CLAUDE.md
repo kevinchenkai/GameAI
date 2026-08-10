@@ -93,8 +93,16 @@ masteryGain = Math.max(0, newRating - bestRating);   // 不倒扣
 > 📌 已加防回归测试：`BootScene` 里 load 的每个 TEX 必须在渲染层被引用。
 > 这类"下载了但没人画"的浪费**没有任何症状**，靠人 review 抓不到。
 
-**UI 美化**：✅ **已完成上线**（2026-08-09）。A1~A6 + B1 全做完，另补音效时序修复与
+**UI 美化**：✅ **已完成上线**（2026-08-09）。A1~A6 + B1 全做完，另补音效修复与
 电脑浏览器适配。详见 [开发日志 UI 美化（A 类 + B1）](./docs/开发日志%20UI%20美化（A%20类%20+%20B1）.md)。
+
+> 🔴 **改音频层前必读**：全项目**只能有一个 AudioContext**，且必须是
+> **Phaser 那一个**（`LevelScene` 里 `adoptContext(this.sound.context)` 接管）。
+> Phaser 在 `new Phaser.Game()` 时就自建了 context 并在 `document.body` 上挂了
+> 解锁 handler；iOS 按 context 逐个授权，**自己再 new 一个必然静默**。
+> 这个坑我归因错了三次才找到，复盘见
+> [M8 §7](./docs/M8%20真人测试准备.md)。
+> 且 **iOS 行为无头浏览器复现不了 —— 音频层改动必须真机复验，单测不作数。**
 
 **当前遗留**（详见[开发日志](./docs/开发日志%20Stage%200（M0~M7）.md) §4）：
 
