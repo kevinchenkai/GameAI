@@ -266,9 +266,9 @@
     <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集。
        每个案例都附完整 prompt 原文与逐条判定结论 —— 包括没做到的部分。</p>
     <div class="stats">
-      <span class="stat">共 <b>13</b> 个案例</span>
-      <span class="stat">复现成功 <b>8</b></span>
-      <span class="stat">部分成功 <b>5</b></span>
+      <span class="stat">共 <b>15</b> 个案例</span>
+      <span class="stat">复现成功 <b>9</b></span>
+      <span class="stat">部分成功 <b>6</b></span>
       <span class="stat">NaN / 黑帧 <b>0</b></span>
     </div>
   </div>
@@ -833,6 +833,128 @@ Visual language: a voyeuristic, Wes Anderson-inspired 35 mm film look with fine 
      用来看模型对<b>显式分镜指令</b>的执行程度。
      每条都跑了两个 seed —— 结论只在两个 seed 一致时才作数。</p>
   
+<article class="case" id="D-001">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">D-001</span>
+      <h3>荒漠对峙 · 单镜头到底</h3>
+    </div>
+    <span class="badge ok">复现成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>362</span>
+    <span><b>时长</b>15.083s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/D-001.jpg"
+           src="videos/D-001.mp4"></video>
+  </div>
+
+  <p class="note">原文声明「单镜头、无内部切镜」。两个 seed 实测都是 0 个切点 —— 是本系列唯一「切镜数与声明值在双 seed 上完全一致」的案例。交付版取 seed=0：全片是一次连续推进（全景 → 面部特写），在持续运动中始终没有切；另一 seed 虽然同样 0 切，但镜头几乎不动。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">6089 字符 · sha256 230465dae22e</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-D-001">复制</button>
+      <a class="srclink" href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
+    </div>
+    <pre id="p-D-001">PROMPT 1:
+
+SCENE CONTEXT A middle-aged man stands in the middle of a dirt road in open desert and holds a pistol level at the person filming him. He gives an instruction, is answered by name, and warns them not to say it again. Nothing is fired.
+
+TIMELINE 0.0–3.0s — he is already aimed and steady; his first line lands. 3.0–6.0s — the off-frame reply uses his name; his jaw sets and the muzzle does not drop. 6.0–9.0s — his second line; he takes half a step forward and re-sights. 9.0–11.0s — the off-frame voice starts his name again and stops. 11.0–15.0s — his last line; wind lifts dust across the road behind him; he holds the aim. Hold to black-free end.
+
+ACTIVE REFERENCES No image or video references are active in this shot. Build the man from description only. Man, fifties, white, average build, standing, thinning brown hair, a brown moustache, thin-rimmed prescription glasses; light green long-sleeved button-down shirt with the sleeves buttoned at the wrist, dark work trousers; stern, brow furrowed, sweat starting at the hairline; frightened underneath and controlling it; speaking voice flat, plain, mid-western American, no theatricality. Second speaker: the unseen person the pistol is aimed at, occupying the camera position, never entering frame and never seen. Voice only — male, forties, close to the lens, low and careful.
+
+LOCATION MAP Camera on the dirt road 3.5 m from him at his chest height, facing him square-on so the muzzle is aligned with the lens axis. FG: rutted dirt and loose gravel across the lower frame. MG: the man alone, centre frame. BG: the dirt road receding to a vanishing point at x 50%, y 44%, low scrub and dry brush from x 0% to x 30% and x 70% to x 100%, a distant fence line at x 62%, y 48%, flat desert horizon at y 46%, overcast sky filling the upper half with one pale blue break low at x 24%, y 36%. He occupies x 50%, y 50%, body frontal, both feet planted, right arm extended toward camera with the silver pistol at x 50%, y 56%, held at the very front of the depth plane. His eyeline is straight down the lens. The first visible frame already has him aimed and in position — no empty establishing frame, no walk-in, no delayed reveal, and he remains the only figure in frame for the entire take.
+
+FORMAT MODE Single continuous take, no internal cuts, no transitions, no fades. Real-time motion. His lines are on camera; the second voice is an intentional off-frame speaker at the camera position. No other voices, no narration, no subtitles, no score.
+
+CAMERA 47° diagonal field of view, camera 3.5 m from him at chest height, natural human-eye perspective, no distortion, natural face and body proportions, the road and horizon readable behind him, comfortable depth of field with the pistol slightly forward of his focal plane. Handheld, shoulder-mounted mass, operator breath and small involuntary settling — the camera is being held by the person he is aiming at, so it flinches minutely rather than gliding. Total travel under 20 cm, no push-in, no zoom, no focus rack. Focus holds his eyes behind the glasses; the pistol stays just soft.
+
+ACTION TIMING He is already sighted along the barrel as the shot opens and speaks without lowering it. The off-frame voice answers with his name; his jaw sets and the muzzle does not waver. He speaks his second line and takes half a step forward on the dirt, re-sighting as his weight lands. The off-frame voice begins his name again and stops. He delivers his last line, and wind lifts a curtain of dust across the road behind him. He holds the aim to the end without firing and without lowering the weapon.
+
+PHYSICS The pistol carries real weight — his wrist and forearm show the load and micro-correct continuously; the muzzle drifts a few millimetres and is pulled back on line. His half step lands heel-first in soft dirt with visible weight transfer and a small dust puff that drifts and thins. Shirt fabric pulls across the extended shoulder and creases at the elbow. Wind moves the loose dust and the dry scrub in the same direction and at the same time. Thinning hair lifts and settles with the gust. Sweat beads at his temple and does not run.
+
+LIGHTING Primary source is the full overcast sky acting as one enormous soft toplight, giving even illumination with minimal harsh shadow — a soft shadow under the brow and the nose only, no hard edges anywhere. Secondary is dry ground bounce filling under the chin and lifting the shadow side of the pistol. Both lenses of his glasses carry a broad soft reflection of the sky, and his eyes stay readable behind them. Exposure is set for his face; the sky sits bright but not clipped. No sun shaft, no lens flare, no added key, no light change during the take.
+
+AUDIO Dry wind across open ground, loose grit moving on the road, dry brush ticking, one distant bird, his own breathing close and unsteady. Ambient ducks under the voices. Exactly this exchange, flat and plain, no shouting — 25 words total: HIM: &quot;Put it on the ground. Slowly.&quot; OFF-FRAME: &quot;You&#x27;re not going to shoot me, Ray.&quot; HIM: &quot;I&#x27;ve been wrong about myself before.&quot; OFF-FRAME: &quot;Ray—&quot; HIM: &quot;Don&#x27;t say my name again.&quot; His first line opens the shot. The off-frame reply lands as his jaw sets. His second line comes as he takes the half step. The off-frame &quot;Ray—&quot; is cut off by his last line, which is quieter than everything before it. His lips move only for his own lines; there is no dialogue in the pauses and no muttering between beats.
+
+POSITIVE LOCKS Exactly one visible person is in frame for the whole take — nobody enters at any edge, no second figure appears on the road, at the fence line or in the reflections on his glasses, and the off-frame speaker is never seen. The pistol stays in his right hand, stays aimed at the lens, and is never fired, never lowered and never re-holstered; no muzzle flash, no recoil, no gunshot. He stays on the road and never turns away from camera. Naturalistic muted palette of dry greens and browns against pale overcast grey. Live-action photoreal footage shot on ARRI Alexa 35, tense neutral mood, natural film grain.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区仓库 ecomimagelab/awesome-minimax-h3-prompts（转录自作者 X thread）</a></p>
+  </details>
+</article>
+<article class="case" id="D-002">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">D-002</span>
+      <h3>霜冻暖房 · 硬切 + 插入</h3>
+    </div>
+    <span class="badge warn">部分成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>1344×768</span>
+    <span><b>帧数</b>362</span>
+    <span><b>时长</b>15.083s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/D-002.jpg"
+           src="videos/D-002.mp4"></video>
+  </div>
+
+  <p class="note">原文声明三段两切（一次 HARD CUT + 一次 INSERT CUT）。交付版（seed=0）实测正好 2 个切点，且插入镜准确落在「戴手套的手 + 信封」上，命中原文戏核（loses it only in her hands）。但另一个 seed 实测 3 个切点、插入镜的主体也不是信 —— 与 D-003 同型，再次印证「切几次、在哪切」不跨 seed 复现。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">3363 字符 · sha256 4df3a916b061</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-D-002">复制</button>
+      <a class="srclink" href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
+    </div>
+    <pre id="p-D-002">PROMPT 2:
+
+SCENE CONTEXT In a frosted country-house conservatory on a grey morning, an older woman tells a younger one that the letter will not be answered. The younger woman holds her composure and loses it only in her hands.
+
+FORMAT MODE Controlled three-segment sequence, one HARD CUT and one INSERT CUT. Real-time motion.
+
+LOCATION MAP Camera inside a glazed conservatory, 3 m from the two women, facing them with the steamed glass wall behind them. FG: potted fern fronds at the frame edge. MG: older woman screen-left, younger woman screen-right, 80 cm apart. BG: glass panes, frost-white winter garden, a cast-iron bench, one low oil lamp. Soft light comes from the whole glass wall behind and above them.
+
+FIRST FRAME AND SPATIAL BLOCKING Both women are in frame from the first visible frame. Older woman at x 32%, y 46%, three-quarter profile facing screen-right, gloved hands folded at her waist. Younger woman at x 68%, y 44%, torso squared to her, gaze locked on her face, a folded letter held in both hands at x 62%, y 76%. No empty establishing frame.
+
+OPTICS LENS LOCK SEGMENT 1 = 47°, camera 3 m out, natural proportions, both faces and the conservatory geography readable. LENS LOCK SEGMENT 2 = 18°, camera 6.5 m back down the conservatory aisle, strong compression, glass panes and ferns stacking behind the younger woman, razor-thin focus on her eyes. LENS LOCK SEGMENT 3 = 29°, camera 4 m out and lower, close on her hands by lens reach, the room dissolving to creamy bokeh behind.
+
+CAMERA Segment 1 locked-off at eye height. Segment 2 long lens with the faintest human drift. Segment 3 handheld, settling downward toward the letter.
+
+ACTION TIMING BEAT 1 — The older woman speaks her line, chin level, hands unmoving. The younger woman does not react in her face. HARD CUT BEAT 2 — Long-lens hold on the younger woman. A long beat. Her eyelids redden; she blinks once and keeps her eyes forward, refusing to look down. INSERT CUT BEAT 3 — Tight on her hands. Her thumbs press and slowly crush the folded letter&#x27;s edge until the paper buckles, then stop. Hold on the buckled paper.
+
+PHYSICS Paper buckles progressively under thumb pressure and holds its new shape. Glove leather stretches over her knuckles. Condensation runs down glass panes in slow irregular tracks. Silk and wool hold real weight; her skirts do not float. Breath fogs faintly in the cold air.
+
+LIGHTING Primary source is vast soft north daylight through the steamed glass wall behind and above them, motivated, wrapping both faces. Secondary: cold blue bounce off the frost outside, and one warm low oil lamp deep in frame. Soft shadow rolloff with clearly readable eyes and catchlights — restrained low contrast, not silhouette.
+
+AUDIO Rain ticking on glass, a distant door, the faint hiss of the oil lamp, a bird outside. Ambient ducks under the voice. The older woman speaks exactly this line as the shot opens: &quot;There will be no reply, and you will not ask again.&quot; No other dialogue, no score. The younger woman&#x27;s lips stay still.
+
+POSITIVE LOCKS Exactly two women appear and no servant or third figure enters. Both hold their positions across all segments. Costume, gloves, the folded letter and the frost state remain identical across the cuts. Cinematic photorealistic footage shot on ARRI Alexa 35, pearl-grey and soft-green grade, low contrast, natural film grain.</pre>
+    <p class="srcnote">出处：<a href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
+       target="_blank" rel="noopener noreferrer">社区仓库 ecomimagelab/awesome-minimax-h3-prompts（转录自作者 X thread）</a></p>
+  </details>
+</article>
 <article class="case" id="D-003">
   <header class="case-head">
     <div class="case-title">

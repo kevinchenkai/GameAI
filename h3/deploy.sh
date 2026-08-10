@@ -105,12 +105,7 @@ RSYNC_FLAGS=(-avz --delete
   --exclude "deploy.sh"
   --exclude "cases.json"
   # README 是内部维护文档（含服务器路径、部署红线），不该随站点公开可读
-  --exclude "README.md"
-  # D-001/D-002 的 seed1 还没跑完，案例未上页。prompt 先留在本地，
-  # 不要单独发上去 —— 站点上不该出现「有原文、没成片、没结论」的悬空文件。
-  # 等这两条上页后删掉这两行。
-  --exclude "prompts/D-001-*.txt"
-  --exclude "prompts/D-002-*.txt")
+  --exclude "README.md")
 
 echo
 echo "==> MiniMax-H3 展示页部署"
