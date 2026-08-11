@@ -77,7 +77,7 @@ HTML = f"""<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MiniMax-H3 作品展示 · 开源复现与原创</title>
-<meta name="description" content="MiniMax-H3 开源版视频生成模型的复现作品集，包含 11 个案例的成片、完整 prompt 原文与逐条判定结论。">
+<meta name="description" content="MiniMax-H3 开源版视频生成模型的复现与原创作品集，含成片、完整 prompt 原文与逐条判定结论。">
 <meta name="theme-color" content="#0b0d12">
 <script>
 /* 🔴 必须在 <style> 之前同步执行：先定主题再首次绘制，否则深色用户会闪一下白屏。
@@ -342,7 +342,7 @@ HTML = f"""<!doctype html>
       <span class="stat">共 <b>{len(cases)}</b> 个案例</span>
       <span class="stat">复现成功 <b>{n_ok}</b></span>
       <span class="stat">部分成功 <b>{n_warn}</b></span>
-      <span class="stat">原创交付 <b>{n_orig}</b></span>
+      <span class="stat">原创案例 <b>{n_orig}</b></span>
       <span class="stat">NaN / 黑帧 <b>0</b></span>
     </div>
   </div>
@@ -430,9 +430,8 @@ HTML = f"""<!doctype html>
      原创看「一份真实需求能不能被完整落地」——
      所以验收标准是<b>需求覆盖矩阵</b>（逐条核对 brief 里的每个要求与每条禁止项），
      而不是与原文的相似度。
-     两条走的路子不同：T-001 是<b>纯文本 T2VA</b>（零输入图），
-     T-002 是<b>首尾帧 FL2VA</b>（形态由素材锁定）——
-     可以直接对比这两种接法在「可控性」上的差别。</p>
+     目前同时记录<b>纯文本 T2VA</b>（零输入图）与<b>首尾帧 FL2VA</b>（形态由素材锁定）。
+     每条均保留对应实跑 prompt，并如实标注尚未达成的动作或画面约束。</p>
   {tseries}
 </section>
 

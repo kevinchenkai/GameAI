@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MiniMax-H3 作品展示 · 开源复现与原创</title>
-<meta name="description" content="MiniMax-H3 开源版视频生成模型的复现作品集，包含 11 个案例的成片、完整 prompt 原文与逐条判定结论。">
+<meta name="description" content="MiniMax-H3 开源版视频生成模型的复现与原创作品集，含成片、完整 prompt 原文与逐条判定结论。">
 <meta name="theme-color" content="#0b0d12">
 <script>
 /* 🔴 必须在 <style> 之前同步执行：先定主题再首次绘制，否则深色用户会闪一下白屏。
@@ -266,10 +266,10 @@
     <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集，以及自有 brief 的原创作品。
        每个案例都附完整 prompt 原文与逐条判定结论 —— 包括没做到的部分。</p>
     <div class="stats">
-      <span class="stat">共 <b>17</b> 个案例</span>
+      <span class="stat">共 <b>18</b> 个案例</span>
       <span class="stat">复现成功 <b>9</b></span>
       <span class="stat">部分成功 <b>6</b></span>
-      <span class="stat">原创交付 <b>2</b></span>
+      <span class="stat">原创案例 <b>3</b></span>
       <span class="stat">NaN / 黑帧 <b>0</b></span>
     </div>
   </div>
@@ -1087,9 +1087,8 @@ POSITIVE LOCKS Exactly two officers are in the room and no other figures enter. 
      原创看「一份真实需求能不能被完整落地」——
      所以验收标准是<b>需求覆盖矩阵</b>（逐条核对 brief 里的每个要求与每条禁止项），
      而不是与原文的相似度。
-     两条走的路子不同：T-001 是<b>纯文本 T2VA</b>（零输入图），
-     T-002 是<b>首尾帧 FL2VA</b>（形态由素材锁定）——
-     可以直接对比这两种接法在「可控性」上的差别。</p>
+     目前同时记录<b>纯文本 T2VA</b>（零输入图）与<b>首尾帧 FL2VA</b>（形态由素材锁定）。
+     每条均保留对应实跑 prompt，并如实标注尚未达成的动作或画面约束。</p>
   
 <article class="case" id="T-001">
   <header class="case-head">
@@ -1193,6 +1192,49 @@ integrated_multimodal_description: [Shot 1] A young woman stands facing the came
 overall_soundscape: Steady offshore wind across an open bridge walkway, the low distant hum of traffic on the bridge deck, faint gulls far off, the soft flutter of fabric in the wind.
 
 non_diegetic_music: A light, warm acoustic piece in a major key at a relaxed easy-going tempo, led by softly fingerpicked nylon-string acoustic guitar with a gentle rolling pattern, joined by light brushed drums and a soft upright bass walking underneath, with a few clean glockenspiel notes sprinkled over the top. The mood is cheerful, unhurried and affectionate. It begins gently with just the guitar, the brushes and bass enter softly as the piece settles, and it keeps its easy forward momentum all the way to the end without slowing down, without a big crescendo and without a final resolving chord, still rolling along as the video ends.</pre>
+    <p class="srcnote">出处：<a href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
+       target="_blank" rel="noopener noreferrer">原创 · 本项目自有 brief（工单与证据清单在 chenkai_airepo）</a></p>
+  </details>
+</article>
+<article class="case" id="T-003">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">T-003</span>
+      <h3>酒红玫瑰墙 · 自拍姿态</h3>
+    </div>
+    <span class="badge warn">部分成功</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>720×1280</span>
+    <span><b>帧数</b>243</span>
+    <span><b>时长</b>10.125s</span>
+  </div>
+
+  <div class="player vertical">
+    <video controls preload="none" playsinline
+           poster="posters/T-003.jpg"
+           src="videos/T-003.mp4"></video>
+  </div>
+
+  <p class="note">竖屏 T2VA 原创单镜头，零输入图。技术验像通过：243 帧、无黑帧/NaN、无镜头切换。人物、礼服、玫瑰墙与结尾的手触头发姿态大体稳定；但关键动作未按要求落地：约 7.3 秒退化为对称托脸且双眼闭合，没有完成指定的单眼 wink。因此作为可观看原型如实收录，未标为验收交付。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">7207 字符 · sha256 5970afc30829</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-T-003">复制</button>
+      <a class="srclink" href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
+    </div>
+    <pre id="p-T-003">integrated_multimodal_description: [Shot 1] Generate a realistic 10.125-second vertical 9:16 portrait video. The video closely reproduces the feeling of a casual social-media selfie video filmed on a smartphone. One continuous shot, one adult East Asian woman, fixed location, fixed camera framing, no cuts and no scene changes. A young adult East Asian woman is seated directly in front of an extremely dense wall of deep burgundy-red roses. The result feels casual, intimate, slightly playful and naturally posed, like a short selfie-style video recorded with a smartphone front camera, not a polished professional fashion campaign, cinematic or overly staged. Prioritize natural relaxed seated posture, accurate action timing, small asymmetrical hand gestures, restrained facial expression, stable identity and anatomy, and realistic smartphone-video appearance. She has long sleek straight black hair with low volume at the crown, naturally close to the head and falling beside both cheeks, over shoulders and chest. A few loose strands softly frame the face. No curls, fluffy hairstyle, dramatic waves or excessive hair volume. She wears a fitted light cream floral strapless bustier dress with absolutely no shoulder straps, a structured bustier upper bodice, curved sweetheart neckline, fitted waist, small delicate vintage floral print and soft cream-ivory base. She wears a thin delicate pendant necklace and simple bracelet. Keep exactly the same face, hairstyle, hair length, dress, jewelry, body proportions, age and anatomy throughout; no identity, clothing or hairstyle change. Her seated posture is relaxed, soft, slightly slouched and asymmetrical, never upright like a formal fashion model. Her torso stays rotated 25–35 degrees away from the camera with one shoulder noticeably closer. Her shoulders are not level. Her upper body makes a gentle natural S-curve through shoulders, waist and torso; she may lean slightly to one side. Her head looks toward the camera while the torso stays sideways. Never straighten her into a centered, front-facing passport-photo posture, rigid professional fashion pose, or perfectly symmetric shoulders. Use a relatively tight, intimate medium-close smartphone portrait: face, shoulders, chest and upper torso occupy most of the frame, with only a small amount of lap and lower body visible. The eye-level front-camera perspective remains nearly fixed with natural smartphone lens perspective and only extremely subtle handheld micro-movement or tiny drift; no zoom, dolly, orbit, push-in, pull-back, camera rotation or cinematic movement. Behind her is an extremely dense deep burgundy, dark-crimson, wine-red and muted-dark-red rose wall, edge-to-edge and almost completely covering the background with very little white wall. Flowers are slightly darker than her, softly rendered through phone-camera optics, recognizable but never hyper-detailed, artificially sharp, vivid pure-red studio roses. Soft indoor smartphone lighting gently lights her face slightly brighter than the background: no dramatic directional light, rim light, HDR, cinematic contrast, harsh shadows, glossy commercial beauty light or strong depth of field. Use realistic smartphone video, subtle front-camera beauty filtering, soft believable skin, slight phone-camera compression, softened fine details, natural indoor exposure and mild exposure breathing. Do not make it high-end commercial studio photography, cinematic color grading or excessively sharp. Her expression is restrained: direct gaze, calm neutral slightly reserved beginning with closed lips, no broad smile in the first half; later only subtle playful expression, brief small pout, one wink, then a very faint closed-mouth final smile. Emotional progression is neutral, slightly soft, subtle pout, playful wink, very faint final smile. From 00:00.000 to 00:03.000 she remains almost still in the relaxed sideways seated pose, hands low near lap or lower torso, direct calm gaze, neutral expression, no hand raise, no broad smile and no wink; only tiny breathing, head and shoulder movement, and minor natural body sway. From 00:03.000 to 00:05.800, very slowly raise exactly one hand toward cheek, ear and side hair. Fingertips lightly touch or hover beside straight black hair, perhaps gently adjusting a few strands. The other hand stays low; do not raise both simultaneously. Torso remains sideways, head tilts only slightly, gaze stays at camera, expression remains neutral with a faint softness, no wink and no obvious smile. From 00:05.800 to 00:07.100, the second hand slowly rises so both hands are briefly near lower cheeks and chin. This is a small, loose, asymmetrical, spontaneous gesture: one hand slightly nearer one lower cheek and the other nearer the chin, fingers naturally bent and relaxed, elbows relatively low. Do not make mirror-image hands, heart or hand-heart gestures, large C-shapes, a flower pose, even palms under the chin, a formal double-hand chin-rest pose, dramatic fingers, or symmetrical under-chin presentation. She gives only a small natural pout; this brief pose is not held long. From 00:07.100 to 00:07.500, while hands remain loosely near the lower face, she performs exactly one quick natural single-eye wink at about 00:07.300. This is the only wink: no early or repeated wink, no two eyes closed, no eye distortion. One eye closes briefly while the other stays naturally open, then both return to normal immediately. From 00:07.500 to 00:08.200, the lower-face pose ends immediately and continuously: hands separate, one hand lowers from the face, the other arm begins rising upward without a pause. From 00:08.200 to 00:10.125, one arm rises above the head and its hand rests lightly on top or back of her head, elbow visible above and beside the head. The pose stays casual, not exaggerated glamour. The other arm lowers naturally. Straight hair shifts only slightly with realistic hair physics. Torso stays in the relaxed asymmetric sideways S-curve, gaze remains direct, and only now is there a very subtle closed-mouth smile. In the final 0.8 seconds she holds the natural ending pose almost still. All movement is slow, smooth, continuous, small, natural and casual: no theatrical acting, dancing, rhythmic choreography, dramatic arms, exaggerated shoulder motion, large head motion, rapid gestures or exaggerated breathing. Maintain natural shoulders, elbows, wrists, finger articulation and hair response. Hands have five natural fingers each with correct spacing and length; no fused, extra, missing, duplicated, reversed or broken fingers, hands, wrists, elbows or limbs. Maintain strong temporal consistency: stable face, eyes, nose, mouth, hairstyle, dress, floral pattern, jewelry, body proportions and rose wall; no face morphing, identity changes, shoulder straps, dress transformation, warped floral patterns, background, flower, clothing or hair flicker, lighting changes, camera/frame jumps, scale changes, text, subtitles, logos, watermarks, interface or UI elements.
+
+overall_soundscape: Quiet indoor room tone with only very soft fabric and hair movement. No speech, dialogue, lyrics, captions, audible words, or music.
+
+non_diegetic_music: N/A</pre>
     <p class="srcnote">出处：<a href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
        target="_blank" rel="noopener noreferrer">原创 · 本项目自有 brief（工单与证据清单在 chenkai_airepo）</a></p>
   </details>
