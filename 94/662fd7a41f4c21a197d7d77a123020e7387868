@@ -1,0 +1,27 @@
+h3/build_html.py
+  s_ed76d3e0dfd2a7::t_4eca7c3eda0e20 80,345,433-434
+h3/build.py
+  s_ed76d3e0dfd2a7::t_4eca7c3eda0e20 86-90,118
+h3/cases.json
+  s_ed76d3e0dfd2a7::t_dd64a2059208a3 290-306
+h3/index.html
+  s_ed76d3e0dfd2a7::t_ffe624722738bb 7,269,272,1090-1091,1197-1239
+h3/prompts/T-003-rose-selfie.txt
+  s_ed76d3e0dfd2a7::t_b63f7f50441b51 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.6",
+  "base_commit_sha": "94662fd7a41f4c21a197d7d77a123020e7387868",
+  "prompts": {},
+  "sessions": {
+    "s_ed76d3e0dfd2a7": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fefd4-aad2-7163-aaad-9ca064651dfd",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
