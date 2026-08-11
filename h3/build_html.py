@@ -61,18 +61,22 @@ _by_id = dict(zip((c["id"] for c in cases), cards))
 official  = "".join(h for i, h in _by_id.items() if i.startswith("H3-"))
 community = "".join(h for i, h in _by_id.items() if i.startswith("C-"))
 dseries   = "".join(h for i, h in _by_id.items() if i.startswith("D-"))
-_grouped = sum(1 for i in _by_id if i.split("-")[0] in ("H3", "C", "D"))
+tseries   = "".join(h for i, h in _by_id.items() if i.startswith("T-"))
+_grouped = sum(1 for i in _by_id if i.split("-")[0] in ("H3", "C", "D", "T"))
 assert _grouped == len(cases), f"有 {len(cases)-_grouped} 个案例未归入任何分组，会在页面上消失"
 
-n_ok = sum(1 for c in cases if c["level"] == "ok")
-n_warn = sum(1 for c in cases if c["level"] == "warn")
+# 🔴 统计分开算：T 系列是**原创**，不是复现，不能并进"复现成功"的计数里。
+_repro = [c for c in cases if not c["id"].startswith("T-")]
+n_ok = sum(1 for c in _repro if c["level"] == "ok")
+n_warn = sum(1 for c in _repro if c["level"] == "warn")
+n_orig = sum(1 for c in cases if c["id"].startswith("T-"))
 
 HTML = f"""<!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MiniMax-H3 作品展示 · 开源复现</title>
+<title>MiniMax-H3 作品展示 · 开源复现与原创</title>
 <meta name="description" content="MiniMax-H3 开源版视频生成模型的复现作品集，包含 11 个案例的成片、完整 prompt 原文与逐条判定结论。">
 <meta name="theme-color" content="#0b0d12">
 <script>
@@ -332,12 +336,13 @@ HTML = f"""<!doctype html>
 <div class="hero">
   <div class="wrap">
     <h1>MiniMax-H3 作品展示</h1>
-    <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集。
+    <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集，以及自有 brief 的原创作品。
        每个案例都附完整 prompt 原文与逐条判定结论 —— 包括没做到的部分。</p>
     <div class="stats">
       <span class="stat">共 <b>{len(cases)}</b> 个案例</span>
       <span class="stat">复现成功 <b>{n_ok}</b></span>
       <span class="stat">部分成功 <b>{n_warn}</b></span>
+      <span class="stat">原创交付 <b>{n_orig}</b></span>
       <span class="stat">NaN / 黑帧 <b>0</b></span>
     </div>
   </div>
@@ -416,6 +421,17 @@ HTML = f"""<!doctype html>
      用来看模型对<b>显式分镜指令</b>的执行程度。
      每条都跑了两个 seed —— 结论只在两个 seed 一致时才作数。</p>
   {dseries}
+</section>
+
+<section id="tseries">
+  <h2>原创作品（T 系列）</h2>
+  <p class="lead"><b>这一组不是复现</b> —— prompt 由自有中文 brief 规范化成官方三字段格式，
+     没有外部出处，也没有任何输入图片（纯文本 T2VA）。
+     与复现案例的区别在于：复现看「模型能不能照着别人的文本做出来」，
+     原创看「一份真实需求能不能被完整落地」——
+     所以验收标准是<b>需求覆盖矩阵</b>（逐条核对 brief 里的每个要求与每条禁止项），
+     而不是与原文的相似度。</p>
+  {tseries}
 </section>
 
 <section id="refs">

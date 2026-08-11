@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MiniMax-H3 作品展示 · 开源复现</title>
+<title>MiniMax-H3 作品展示 · 开源复现与原创</title>
 <meta name="description" content="MiniMax-H3 开源版视频生成模型的复现作品集，包含 11 个案例的成片、完整 prompt 原文与逐条判定结论。">
 <meta name="theme-color" content="#0b0d12">
 <script>
@@ -263,12 +263,13 @@
 <div class="hero">
   <div class="wrap">
     <h1>MiniMax-H3 作品展示</h1>
-    <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集。
+    <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集，以及自有 brief 的原创作品。
        每个案例都附完整 prompt 原文与逐条判定结论 —— 包括没做到的部分。</p>
     <div class="stats">
-      <span class="stat">共 <b>15</b> 个案例</span>
+      <span class="stat">共 <b>16</b> 个案例</span>
       <span class="stat">复现成功 <b>9</b></span>
       <span class="stat">部分成功 <b>6</b></span>
+      <span class="stat">原创交付 <b>1</b></span>
       <span class="stat">NaN / 黑帧 <b>0</b></span>
     </div>
   </div>
@@ -1075,6 +1076,76 @@ AUDIO Distant shellfire, a field telephone hum, wind through the broken roof, dr
 POSITIVE LOCKS Exactly two officers are in the room and no other figures enter. Both stay on their own side of the table until the captain exits in the final beat. Uniform state, mud, plaster dust and the lamp position remain identical across the cuts. Cinematic photorealistic footage shot on ARRI Alexa 35, desaturated olive-and-amber grade, natural film grain.</pre>
     <p class="srcnote">出处：<a href="https://github.com/ecomimagelab/awesome-minimax-h3-prompts"
        target="_blank" rel="noopener noreferrer">社区仓库 ecomimagelab/awesome-minimax-h3-prompts（转录自作者 X thread）</a></p>
+  </details>
+</article>
+</section>
+
+<section id="tseries">
+  <h2>原创作品（T 系列）</h2>
+  <p class="lead"><b>这一组不是复现</b> —— prompt 由自有中文 brief 规范化成官方三字段格式，
+     没有外部出处，也没有任何输入图片（纯文本 T2VA）。
+     与复现案例的区别在于：复现看「模型能不能照着别人的文本做出来」，
+     原创看「一份真实需求能不能被完整落地」——
+     所以验收标准是<b>需求覆盖矩阵</b>（逐条核对 brief 里的每个要求与每条禁止项），
+     而不是与原文的相似度。</p>
+  
+<article class="case" id="T-001">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">T-001</span>
+      <h3>江南古寺 · 阴雨天旅行纪录片</h3>
+    </div>
+    <span class="badge ok">已验收交付</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>T2VA</span>
+    <span><b>分辨率</b>1280×720</span>
+    <span><b>帧数</b>294</span>
+    <span><b>时长</b>12.250s</span>
+  </div>
+
+  <div class="player">
+    <video controls preload="none" playsinline
+           poster="posters/T-001.jpg"
+           src="videos/T-001.mp4"></video>
+  </div>
+
+  <p class="note">本站唯一原创作品：从中文 brief 规范化为官方三字段 T2VA prompt，无任何输入图片。8 镜一次生成，7 个切点实测 1.42/2.96/4.50/6.12/7.42/9.21/10.62s，与写定时间轴逐条比对 7/7 全中，平均误差 0.087s、最大 0.14s（容差 0.5s）。🔴 值得记的是判读教训：初判曾因「邻域安静」过滤器（quiet_multiplier=1.5）把开头两个切点筛掉，误报为「只命中 5 个」——该阈值取自慢节奏样本，未在密集切镜上标定过，而本片 0–3s 恰是全片最碎的段落。改用「跨尖峰帧差」与已验证真硬切比对量级后翻案。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">5531 字符 · sha256 b79d9203f494</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-T-001">复制</button>
+      <a class="srclink" href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
+    </div>
+    <pre id="p-T-001">integrated_multimodal_description: [Shot 1] An approximately 12-second, 16:9 cinematic travel-documentary film of a Chinese Jiangnan ancient temple on an overcast day just after rain. It is real 35mm and 50mm cinematic photography: humid air, soft diffused daylight, restrained stabilizer movement with a barely perceptible natural handheld breath, natural motion blur, subtle film grain, realistic dynamic range, muted cool grey-green color, deep forest green foliage, charcoal-black traditional wood architecture, grey-brown stone, and only restrained vermilion accents. There are no people anywhere. It begins at 00:00.000: from a low angle in the temple courtyard, a huge ancient tree fills the frame with dense deep-green branches and leaves. A few strings of round vermilion paper lanterns hang between the branches and sway subtly in the continuous breeze. One corner of a charcoal-black traditional upturned eave is visible in the distance. The camera slowly trucks right; use an environmental 35mm lens at f/4 to f/5.6.
+
+[Shot 2] At 00:01.500, a direct clean cut takes the viewer to a dark wooden temple corridor. Many white and pale-grey prayer cloth strips and brush-calligraphy paper slips hang from the dark beams and move naturally in the breeze. Foreground strips occasionally pass close across the lens; behind them are wooden columns, eaves, bamboo, and a green courtyard. The camera slowly tracks sideways along the corridor with a shallow but natural 50mm f/4 depth of field.
+
+[Shot 3] At 00:03.100, a direct clean cut reveals a monumental deep charcoal-grey stone calligraphy wall. Many columns of weathered vertical Chinese calligraphy are carved into damp stone; muted dark-red, worn ochre, and grey-white carved marks occur naturally across the surface. The stone has age wear, rain-darkened patches, and a moist texture. No people appear. The camera makes a slow restrained forward push with a 50mm f/4 lens, emphasizing scale and carved detail. The calligraphy is traditional physical carving only: no readable modern signage, subtitles, logos, watermarks, or oversized garbled lettering.
+
+[Shot 4] At 00:04.600, a direct clean cut becomes an establishing view of the temple. A solemn, old, charcoal-black traditional Chinese pavilion with multiple upturned eaves stands among dense ancient trees. A dark porch and wooden columns make a natural foreground frame. Sparse vermilion lanterns hang in the trees, with a traditional stone pagoda or stone incense burner beside the pavilion. The camera slowly pushes forward out of shadow, steady and restrained, with an environmental 35mm f/4 to f/5.6 view.
+
+[Shot 5] At 00:06.200, a direct clean cut shows a detail close-up looking down at an old round bronze basin on a wet stone platform. The basin is deep brown with naturally oxidized green-bronze patina; clear water and a few coins rest inside. One raindrop falls into the center and creates clear, natural concentric ripples. A few leaves or white flower petals lie around it. The camera is almost still, using a 50mm f/2.8 close detail shot with natural shallow depth of field.
+
+[Shot 6] At 00:07.500, a direct clean cut looks from the dim interior of an old temple building toward its courtyard. Nearby dark wooden columns and eaves occupy large shadowed foreground areas. In the middle distance, dense green trees reveal a traditional building with a dark vermilion wall and charcoal-black tiled roof. The camera slowly trucks right, creating clear parallax between the close columns and distant building, with restrained 35mm f/4 documentary framing.
+
+[Shot 7] At 00:09.200, a direct clean cut looks up at a very near charcoal-black Chinese eave and its curved flying tip in the upper-right of frame, against a huge green canopy and pale grey overcast sky. The camera slowly rises and makes a minute natural roll while leaves move gently in the wind.
+
+[Shot 8] At 00:10.500, a direct clean cut reaches the final quiet temple courtyard: an irregular grey-brown stone wall capped with charcoal-black roof tiles, dense bamboo and ancient trees behind it, and a nearby eave and wooden post forming a natural frame. The camera moves with an extremely slow lateral drift or a slight push-in; during the last 0.4 seconds it settles naturally without an artificial freeze, while bamboo and leaves retain subtle wind movement. The film ends calmly.
+
+This is quiet, contemplative, poetic, humid, ancient, peaceful, and understated. Every camera movement is slow, smooth, and restrained. A continuous light breeze gives tiny natural movement to lanterns, prayer strips, bamboo leaves, and tree leaves. Exclude all people and tourists, modern buildings or streets, Japanese shrine architecture, cherry blossoms, xianxia, magic, fantasy effects, glowing particles, harsh sunlight, golden sunset, heavy fog, aerial shots, fast zooms, fast pans, violent handheld shake, time-lapse, excessive HDR, oversaturated red, plastic AI texture, subtitles, logos, and watermarks.
+
+overall_soundscape: A continuous quiet wet-temple ambience: soft damp wind in ancient trees and bamboo, occasional water drops on stone and bronze, gentle prayer-cloth flutter, distant birds, and one very distant subdued temple bell. There are no people, voices, footsteps, crowd sounds, or modern mechanical sounds.
+
+non_diegetic_music: A sparse, low-volume documentary score of breathy bamboo flute, a very soft low string drone, and rare small metal-bowl tones. It remains slow, quiet, and non-dramatic, with no crescendo or emphatic ending.</pre>
+    <p class="srcnote">出处：<a href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
+       target="_blank" rel="noopener noreferrer">原创 · 本项目自有 brief（工单与证据清单在 chenkai_airepo）</a></p>
   </details>
 </article>
 </section>
