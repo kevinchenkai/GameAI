@@ -1,0 +1,52 @@
+h3/build.py
+  36987ed945205faf 78-85,113-115,132-135
+h3/build_html.py
+  36987ed945205faf 428,432-435
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.5",
+  "base_commit_sha": "fc1ca9c5b8187d1eeb84e95064dde3a92f432d74",
+  "prompts": {
+    "36987ed945205faf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "74d1e7f2-8bad-4a23-aef5-3221d34ba9bc",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 20,
+      "total_deletions": 6,
+      "accepted_lines": 20,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/e3e6c05d155f4a373bf15ad9a55ccc859d13490f42cb8502be6cae0a5b23bb8e",
+      "token_usage": {
+        "input_tokens": 2775,
+        "output_tokens": 170136,
+        "cache_creation_input_tokens": 1357033,
+        "cache_read_input_tokens": 71654788
+      }
+    },
+    "640fa3cf12a5a767": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "064aba58-50bd-4e02-907c-ed2facae3ed2",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 4840,
+      "overriden_lines": 0,
+      "messages_url": "http://172.20.103.50:8002/cas/baf5c7af70f34442b3de610110b4ddd5dca89a754cce56879b0344127caefb59",
+      "token_usage": {
+        "input_tokens": 9180,
+        "output_tokens": 1305984,
+        "cache_creation_input_tokens": 11203290,
+        "cache_read_input_tokens": 742773434
+      }
+    }
+  }
+}
