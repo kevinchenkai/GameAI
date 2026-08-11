@@ -75,6 +75,14 @@ CASES = [
      "把开头两个切点筛掉，误报为「只命中 5 个」——"
      "该阈值取自慢节奏样本，未在密集切镜上标定过，"
      "而本片 0–3s 恰是全片最碎的段落。改用「跨尖峰帧差」与已验证真硬切比对量级后翻案。"),
+    ("T-002", "金门大桥 · 蓝调时刻", "T-002-golden-gate.txt", "FL2VA",
+     "736×1312", 277, "11.542s", "已验收交付", "ok",
+     "竖屏 FL2VA 原创：首尾帧驱动，两镜一次生成（微笑 / 转身各一镜），切点 6.04s 实测 116× 中位、硬切干脆。"
+     "本片专门解决「末尾卡死」——把转身写成**没转完的进行时**、尾帧取转身中途，"
+     "实测尾部绝对活跃度 2.25（判定线 1.00），与已知好样本同量级，**结尾是真的在动**而非比值虚高。"
+     "🔴 如实记一条没做到的：微笑只有「起 + 峰」，没有「落」，顶峰持续约 3 秒略显停滞 —— "
+     "提示词三拍都写了，模型把回落压成了保持。"
+     "另附一条负面结论：`never stops turning` 与纯正向措辞**双 seed 无差别**，效应远小于 seed 噪声。"),
 ]
 
 # 每个案例的 prompt 出处（复现记录 h3-oss-REPRODUCTION-LOG.md 里的「来源」行）。
@@ -102,8 +110,9 @@ for _cid in ("D-001", "D-002", "D-003", "D-004"):
 # T 系列是**原创**，不是复现 —— 没有外部出处。
 # 🔴 按老规矩「只写真正取到原文的地址」：原文就产生于本项目自己的仓库，
 #    所以指向该作品的工单与证据清单，而不是编一个外部链接充数。
-SOURCES["T-001"] = ("原创 · 本项目自有 brief（工单与证据清单在 chenkai_airepo）",
-                    "http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo")
+for _cid in ("T-001", "T-002"):
+    SOURCES[_cid] = ("原创 · 本项目自有 brief（工单与证据清单在 chenkai_airepo）",
+                     "http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo")
 
 
 def sha12(p):
@@ -120,7 +129,10 @@ for cid, title, pf, mode, res, frames, dur, verdict, level, note in CASES:
         "frames": frames, "dur": dur, "verdict": verdict, "level": level,
         "note": note, "prompt": text.strip(), "sha": sha12(pp),
         "chars": len(text.strip()),
-        "vertical": res.startswith("768×"),
+        # 🔴 竖屏要真的比长宽，不能按字符串前缀猜。
+        #    原写法是 res.startswith("768×")，只认 768×1344 那一个尺寸；
+        #    加进 736×1312 时会被判成横屏，播放器按横屏满宽渲染 → 画面变形。
+        "vertical": (lambda w, h: h > w)(*map(int, res.split("×"))),
         "src_label": src_label, "src_url": src_url,
     })
 

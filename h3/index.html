@@ -266,10 +266,10 @@
     <p class="sub">开源版 MiniMax-H3 视频生成模型的复现作品集，以及自有 brief 的原创作品。
        每个案例都附完整 prompt 原文与逐条判定结论 —— 包括没做到的部分。</p>
     <div class="stats">
-      <span class="stat">共 <b>16</b> 个案例</span>
+      <span class="stat">共 <b>17</b> 个案例</span>
       <span class="stat">复现成功 <b>9</b></span>
       <span class="stat">部分成功 <b>6</b></span>
-      <span class="stat">原创交付 <b>1</b></span>
+      <span class="stat">原创交付 <b>2</b></span>
       <span class="stat">NaN / 黑帧 <b>0</b></span>
     </div>
   </div>
@@ -1082,12 +1082,14 @@ POSITIVE LOCKS Exactly two officers are in the room and no other figures enter. 
 
 <section id="tseries">
   <h2>原创作品（T 系列）</h2>
-  <p class="lead"><b>这一组不是复现</b> —— prompt 由自有中文 brief 规范化成官方三字段格式，
-     没有外部出处，也没有任何输入图片（纯文本 T2VA）。
+  <p class="lead"><b>这一组不是复现</b> —— prompt 由自有中文 brief 规范化成官方三字段格式，没有外部出处。
      与复现案例的区别在于：复现看「模型能不能照着别人的文本做出来」，
      原创看「一份真实需求能不能被完整落地」——
      所以验收标准是<b>需求覆盖矩阵</b>（逐条核对 brief 里的每个要求与每条禁止项），
-     而不是与原文的相似度。</p>
+     而不是与原文的相似度。
+     两条走的路子不同：T-001 是<b>纯文本 T2VA</b>（零输入图），
+     T-002 是<b>首尾帧 FL2VA</b>（形态由素材锁定）——
+     可以直接对比这两种接法在「可控性」上的差别。</p>
   
 <article class="case" id="T-001">
   <header class="case-head">
@@ -1144,6 +1146,53 @@ This is quiet, contemplative, poetic, humid, ancient, peaceful, and understated.
 overall_soundscape: A continuous quiet wet-temple ambience: soft damp wind in ancient trees and bamboo, occasional water drops on stone and bronze, gentle prayer-cloth flutter, distant birds, and one very distant subdued temple bell. There are no people, voices, footsteps, crowd sounds, or modern mechanical sounds.
 
 non_diegetic_music: A sparse, low-volume documentary score of breathy bamboo flute, a very soft low string drone, and rare small metal-bowl tones. It remains slow, quiet, and non-dramatic, with no crescendo or emphatic ending.</pre>
+    <p class="srcnote">出处：<a href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
+       target="_blank" rel="noopener noreferrer">原创 · 本项目自有 brief（工单与证据清单在 chenkai_airepo）</a></p>
+  </details>
+</article>
+<article class="case" id="T-002">
+  <header class="case-head">
+    <div class="case-title">
+      <span class="cid">T-002</span>
+      <h3>金门大桥 · 蓝调时刻</h3>
+    </div>
+    <span class="badge ok">已验收交付</span>
+  </header>
+
+  <div class="meta">
+    <span><b>模式</b>FL2VA</span>
+    <span><b>分辨率</b>736×1312</span>
+    <span><b>帧数</b>277</span>
+    <span><b>时长</b>11.542s</span>
+  </div>
+
+  <div class="player vertical">
+    <video controls preload="none" playsinline
+           poster="posters/T-002.jpg"
+           src="videos/T-002.mp4"></video>
+  </div>
+
+  <p class="note">竖屏 FL2VA 原创：首尾帧驱动，两镜一次生成（微笑 / 转身各一镜），切点 6.04s 实测 116× 中位、硬切干脆。本片专门解决「末尾卡死」——把转身写成**没转完的进行时**、尾帧取转身中途，实测尾部绝对活跃度 2.25（判定线 1.00），与已知好样本同量级，**结尾是真的在动**而非比值虚高。🔴 如实记一条没做到的：微笑只有「起 + 峰」，没有「落」，顶峰持续约 3 秒略显停滞 —— 提示词三拍都写了，模型把回落压成了保持。另附一条负面结论：`never stops turning` 与纯正向措辞**双 seed 无差别**，效应远小于 seed 噪声。</p>
+
+  <details class="prompt-box">
+    <summary>
+      <span>查看 Prompt 原文</span>
+      <span class="pmeta">2565 字符 · sha256 96313b03dfad</span>
+    </summary>
+    <div class="prompt-actions">
+      <button class="copy" data-target="p-T-002">复制</button>
+      <a class="srclink" href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
+         target="_blank" rel="noopener noreferrer">原文出处 ↗</a>
+    </div>
+    <pre id="p-T-002">How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 11.54-second mark of the target video.
+
+integrated_multimodal_description: [Shot 1] A young woman stands facing the camera on the walkway beside the Golden Gate Bridge at blue hour, framed from the waist up. A steady offshore wind moves continuously through her long dark hair, lifting loose strands across her cheek and forehead throughout the shot. She looks directly into the lens. Her calm expression gradually warms into a small, closed-lip smile. The smile reaches a brief gentle peak, then eases naturally back down, leaving only a faint warmth in her expression. Her chin stays level. The camera remains steady.
+
+[Shot 2] At 00:06.500, the camera cuts to a slightly wider framing that includes her from the knees up, with the orange-red bridge tower and suspension cables clearly readable behind her. She begins a relaxed, continuous turn away from the camera, rotating over her left shoulder at an unhurried and steady pace, and she never stops turning. Her weight shifts onto the ball of her front foot and her trailing heel lifts off the ground. Her arms swing slightly away from her body with the momentum of the rotation, while the wind and the turn carry the ends of her hair and the hem of her coat outward, trailing behind the direction she is turning. Her rotation continues through the final frame toward the orientation established by Picture 2, caught naturally in mid-turn, with her trailing heel still lifted and her hair and coat hem still carrying visible rotational momentum. The camera remains fixed as she rotates through the frame.
+
+overall_soundscape: Steady offshore wind across an open bridge walkway, the low distant hum of traffic on the bridge deck, faint gulls far off, the soft flutter of fabric in the wind.
+
+non_diegetic_music: A light, warm acoustic piece in a major key at a relaxed easy-going tempo, led by softly fingerpicked nylon-string acoustic guitar with a gentle rolling pattern, joined by light brushed drums and a soft upright bass walking underneath, with a few clean glockenspiel notes sprinkled over the top. The mood is cheerful, unhurried and affectionate. It begins gently with just the guitar, the brushes and bass enter softly as the piece settles, and it keeps its easy forward momentum all the way to the end without slowing down, without a big crescendo and without a final resolving chord, still rolling along as the video ends.</pre>
     <p class="srcnote">出处：<a href="http://ezone.kingsoft.com/ksyun/game-ai/chenkai_airepo"
        target="_blank" rel="noopener noreferrer">原创 · 本项目自有 brief（工单与证据清单在 chenkai_airepo）</a></p>
   </details>
