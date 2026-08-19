@@ -1,0 +1,20 @@
+"garden/docs/Garden Match 代码审查与优化反馈（Codex）2026-08-19.md"
+  s_36cac890e18da7::t_58b47688b0cc6f 1-2,8-491
+  s_36cac890e18da7::t_347cef98d7b014 3-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.6",
+  "base_commit_sha": "2e482d7bbdf8cd99ec16acaba273d4d9425fe4e3",
+  "prompts": {},
+  "sessions": {
+    "s_36cac890e18da7": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a000cf-e0cf-7de1-898a-8069277222a4",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
