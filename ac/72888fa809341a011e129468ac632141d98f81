@@ -1,0 +1,19 @@
+stack/docs/BGM_windy_选段与加工记录.md
+  s_3a713e661cdfe8::t_6721da202a62cf 129-167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "ac72888fa809341a011e129468ac632141d98f81",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
