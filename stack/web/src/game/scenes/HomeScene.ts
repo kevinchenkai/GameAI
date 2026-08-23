@@ -3,6 +3,7 @@ import { SCENE_TEXTURES } from '../config/assets';
 import { COLORS, LAYOUT, PROTOTYPE_UI } from '../config/layout';
 import { getSaveManager } from '../systems/SaveManager';
 import { fontPx, px } from '../ui/uiScale';
+import { syncBackgroundMusic } from './BackgroundMusicScene';
 
 export class HomeScene extends Phaser.Scene {
   constructor() {
@@ -11,6 +12,7 @@ export class HomeScene extends Phaser.Scene {
 
   create(): void {
     this.renderHome();
+    syncBackgroundMusic(this, getSaveManager().snapshot.settings.music);
     this.scale.on(Phaser.Scale.Events.RESIZE, this.renderHome, this);
     this.events.on(Phaser.Scenes.Events.RESUME, this.renderHome, this);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {

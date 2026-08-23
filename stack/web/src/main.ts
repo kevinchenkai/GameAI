@@ -8,6 +8,7 @@ import { HowToPlayScene } from './game/scenes/HowToPlayScene';
 import { GameScene } from './game/scenes/GameScene';
 import { LevelSelectScene } from './game/scenes/LevelSelectScene';
 import { SettingsScene } from './game/scenes/SettingsScene';
+import { BackgroundMusicScene } from './game/scenes/BackgroundMusicScene';
 
 /**
  * ★★ 渲染倍率上限。
@@ -66,7 +67,7 @@ const config: Phaser.Types.Core.GameConfig = {
     antialias: true,
     powerPreference: 'low-power',
   },
-  scene: [BootScene, PreloadScene, HomeScene, HowToPlayScene, LevelSelectScene, GameScene, SettingsScene],
+  scene: [BootScene, PreloadScene, HomeScene, HowToPlayScene, LevelSelectScene, GameScene, SettingsScene, BackgroundMusicScene],
 };
 
 const game = new Phaser.Game(config);

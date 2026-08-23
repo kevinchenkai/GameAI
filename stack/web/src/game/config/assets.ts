@@ -5,8 +5,17 @@ export interface AssetDefinition {
   readonly path: string;
 }
 
+export interface AudioAssetDefinition {
+  readonly key: string;
+  readonly paths: readonly string[];
+}
+
 function asset(key: string, path: string): AssetDefinition {
   return { key, path };
+}
+
+function audioAsset(key: string, paths: readonly string[]): AudioAssetDefinition {
+  return { key, paths };
 }
 
 export const ASSETS = {
@@ -39,6 +48,13 @@ export const ASSETS = {
     sparkle01: asset('fx-sparkle-01', 'assets/fx/sparkle_01.webp'),
     sparkle02: asset('fx-sparkle-02', 'assets/fx/sparkle_02.webp'),
     star: asset('fx-star', 'assets/fx/star.webp'),
+  },
+  audio: {
+    // M4A 优先以减少约 24% 传输量；不支持时由 Phaser 回退到 MP3。
+    backgroundMusic: audioAsset('bgm-windy-v1', [
+      'assets/audio/windy_loop_v1.m4a',
+      'assets/audio/windy_loop_v1.mp3',
+    ]),
   },
 } as const;
 
@@ -96,6 +112,11 @@ export const PRELOAD_ASSETS: readonly AssetDefinition[] = [
   SCENE_TEXTURES.Game.sparkle01,
   SCENE_TEXTURES.Game.sparkle02,
   SCENE_TEXTURES.Game.star,
+];
+
+/** 首屏完成后再加载，不得加入 PRELOAD_ASSETS。 */
+export const DEFERRED_AUDIO_ASSETS: readonly AudioAssetDefinition[] = [
+  ASSETS.audio.backgroundMusic,
 ];
 
 export const RENDERED_TEXTURE_KEYS: readonly string[] = [

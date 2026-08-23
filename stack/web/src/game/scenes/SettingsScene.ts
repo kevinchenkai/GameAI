@@ -4,6 +4,7 @@ import { COLORS, LAYOUT } from '../config/layout';
 import { getSaveManager } from '../systems/SaveManager';
 import type { PlayerSettingKey } from '../types/save';
 import { fontPx, px } from '../ui/uiScale';
+import { syncBackgroundMusic } from './BackgroundMusicScene';
 
 export interface SettingsSceneData {
   sourceScene: 'Home' | 'Game';
@@ -75,7 +76,9 @@ export class SettingsScene extends Phaser.Scene {
       fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 12), color: enabled ? '#3a9561' : '#8f989e',
     }).setOrigin(1, 0.5);
     hit.on(Phaser.Input.Events.POINTER_UP, () => {
-      getSaveManager().setSetting(key, !enabled);
+      const nextValue = !enabled;
+      getSaveManager().setSetting(key, nextValue);
+      if (key === 'music') syncBackgroundMusic(this, nextValue);
       this.renderSettings();
     });
   }

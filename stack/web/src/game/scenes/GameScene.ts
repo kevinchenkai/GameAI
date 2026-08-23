@@ -20,6 +20,7 @@ import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
 import type { TileData } from '../types/tile';
+import { syncBackgroundMusic } from './BackgroundMusicScene';
 
 interface GameSceneData {
   levelId?: number;
@@ -716,7 +717,9 @@ export class GameScene extends Phaser.Scene {
   }
 
   private applyPreferences(): void {
-    this.audioSystem.setEnabled(this.saveManager.snapshot.settings.sound);
+    const preferences = this.saveManager.snapshot.settings;
+    this.audioSystem.setEnabled(preferences.sound);
+    if (!this.layoutFixture) syncBackgroundMusic(this, preferences.music);
   }
 
   private persistAfterStateChange(): void {
