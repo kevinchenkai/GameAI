@@ -12,6 +12,7 @@
     "lint": "eslint src tests tools --max-warnings 0",
     "generate-levels": "tsx tools/generateLevels.ts",
     "validate-levels": "tsx tools/validateLevels.ts",
+    "validate-levels:stable": "tsx tools/validateStable.ts",
     "simulate": "tsx tools/simulate.ts"
   },
   "dependencies": {

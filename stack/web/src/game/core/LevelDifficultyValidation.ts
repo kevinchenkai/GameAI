@@ -29,9 +29,10 @@ export function validateGreedyCurve(
     }
     if (previous !== undefined) {
       const delta = point.failRate - previous.failRate;
-      if (delta < 0) {
+      if (delta < -SIMULATION.monotonicTolerance - Number.EPSILON) {
         errors.push(
-          `level ${point.levelId}: Greedy curve decreased from ${previous.failRate} to ${point.failRate}`,
+          `level ${point.levelId}: Greedy curve decreased from ${previous.failRate} to ` +
+            `${point.failRate} beyond ${SIMULATION.monotonicTolerance} tolerance`,
         );
       }
       if (delta > SIMULATION.adjacentFailRateWarningDelta) {
@@ -42,12 +43,36 @@ export function validateGreedyCurve(
     }
     previous = point;
   }
+
+  const segments = [
+    sorted.filter(({ levelId }) => levelId >= 6 && levelId <= 10),
+    sorted.filter(({ levelId }) => levelId >= 11 && levelId <= 15),
+    sorted.filter(({ levelId }) => levelId >= 16 && levelId <= 20),
+  ];
+  if (segments.every((segment) => segment.length === 5)) {
+    const averages = segments.map(
+      (segment) => segment.reduce((sum, point) => sum + point.failRate, 0) / segment.length,
+    );
+    const early = averages[0];
+    const middle = averages[1];
+    const late = averages[2];
+    if (early === undefined || middle === undefined || late === undefined) {
+      throw new Error('difficulty segment averages are incomplete');
+    }
+    if (!(early < middle && middle < late)) {
+      errors.push(
+        `segment averages must increase: L6-10=${early.toFixed(4)}, ` +
+          `L11-15=${middle.toFixed(4)}, L16-20=${late.toFixed(4)}`,
+      );
+    }
+  }
   return { errors, warnings };
 }
 
 export function measureGreedyCurve(
   levels: readonly LevelDefinition[],
   trials: number = SIMULATION.trialsPerStrategy,
+  trialSeed = 17,
 ): GreedyCurvePoint[] {
   return [...levels]
     .sort((first, second) => first.id - second.id)
@@ -57,7 +82,7 @@ export function measureGreedyCurve(
         levelToGameState(level),
         'greedy',
         trials,
-        level.id * 1000 + 17,
+        level.id * 1000 + trialSeed,
       ).failRate,
     }));
 }

@@ -16,73 +16,73 @@
   ],
   "columns": [
     [
+      "watering",
+      "watering",
+      "fish",
       "paw",
-      "fish",
-      "bell",
-      "paw",
-      "bell",
-      "yarn",
-      "yarn",
-      "yarn",
-      "fish",
-      "grass",
-      "fish"
-    ],
-    [
-      "fish",
-      "fish",
-      "bell",
-      "paw",
-      "yarn",
       "paw",
       "yarn",
       "grass",
-      "fish",
-      "watering",
-      "grass"
-    ],
-    [
-      "watering",
-      "watering",
-      "paw",
-      "grass",
-      "bell",
-      "bell",
-      "grass",
-      "fish",
-      "watering",
-      "watering"
-    ],
-    [
-      "watering",
-      "watering",
-      "paw",
-      "yarn",
-      "grass",
-      "yarn",
-      "bell",
-      "grass",
-      "grass"
-    ],
-    [
-      "paw",
-      "watering",
-      "paw",
       "bell",
       "yarn",
-      "paw",
-      "fish",
+      "yarn",
       "yarn"
     ],
     [
+      "fish",
+      "watering",
+      "watering",
+      "fish",
+      "paw",
+      "bell",
+      "bell",
+      "bell",
+      "paw",
+      "yarn",
+      "yarn"
+    ],
+    [
+      "watering",
+      "grass",
+      "paw",
+      "paw",
+      "fish",
+      "bell",
+      "bell",
+      "grass",
+      "yarn",
+      "paw"
+    ],
+    [
+      "watering",
+      "fish",
       "paw",
       "watering",
       "paw",
+      "yarn",
+      "yarn",
+      "grass",
+      "paw"
+    ],
+    [
+      "watering",
+      "fish",
+      "fish",
+      "fish",
+      "paw",
+      "bell",
+      "bell",
+      "grass"
+    ],
+    [
+      "grass",
+      "grass",
+      "watering",
+      "paw",
+      "fish",
       "bell",
       "grass",
-      "bell",
-      "paw",
-      "fish"
+      "grass"
     ]
   ],
   "tools": {
@@ -96,95 +96,23 @@
   },
   "solution": [
     {
-      "columnIndex": 0,
-      "expectedTileType": "fish"
-    },
-    {
       "columnIndex": 1,
-      "expectedTileType": "grass"
-    },
-    {
-      "columnIndex": 2,
-      "expectedTileType": "watering"
-    },
-    {
-      "columnIndex": 1,
-      "expectedTileType": "watering"
-    },
-    {
-      "columnIndex": 0,
-      "expectedTileType": "grass"
-    },
-    {
-      "columnIndex": 1,
-      "expectedTileType": "fish"
-    },
-    {
-      "columnIndex": 2,
-      "expectedTileType": "watering"
-    },
-    {
-      "columnIndex": 0,
-      "expectedTileType": "fish"
-    },
-    {
-      "columnIndex": 3,
-      "expectedTileType": "grass"
-    },
-    {
-      "columnIndex": 4,
       "expectedTileType": "yarn"
-    },
-    {
-      "columnIndex": 2,
-      "expectedTileType": "fish"
-    },
-    {
-      "columnIndex": 3,
-      "expectedTileType": "grass"
-    },
-    {
-      "columnIndex": 5,
-      "expectedTileType": "fish"
-    },
-    {
-      "columnIndex": 1,
-      "expectedTileType": "grass"
     },
     {
       "columnIndex": 0,
       "expectedTileType": "yarn"
     },
     {
-      "columnIndex": 1,
-      "expectedTileType": "yarn"
-    },
-    {
-      "columnIndex": 4,
-      "expectedTileType": "fish"
-    },
-    {
       "columnIndex": 2,
-      "expectedTileType": "grass"
-    },
-    {
-      "columnIndex": 0,
-      "expectedTileType": "yarn"
-    },
-    {
-      "columnIndex": 5,
       "expectedTileType": "paw"
     },
     {
-      "columnIndex": 3,
-      "expectedTileType": "bell"
+      "columnIndex": 1,
+      "expectedTileType": "yarn"
     },
     {
-      "columnIndex": 5,
-      "expectedTileType": "bell"
-    },
-    {
-      "columnIndex": 3,
+      "columnIndex": 0,
       "expectedTileType": "yarn"
     },
     {
@@ -192,23 +120,31 @@
       "expectedTileType": "paw"
     },
     {
-      "columnIndex": 4,
-      "expectedTileType": "paw"
+      "columnIndex": 2,
+      "expectedTileType": "yarn"
     },
     {
       "columnIndex": 0,
       "expectedTileType": "yarn"
     },
     {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
       "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
       "expectedTileType": "bell"
     },
     {
       "columnIndex": 4,
-      "expectedTileType": "yarn"
+      "expectedTileType": "grass"
     },
     {
-      "columnIndex": 2,
+      "columnIndex": 0,
       "expectedTileType": "bell"
     },
     {
@@ -220,20 +156,136 @@
       "expectedTileType": "grass"
     },
     {
-      "columnIndex": 1,
-      "expectedTileType": "yarn"
+      "columnIndex": 0,
+      "expectedTileType": "grass"
     },
     {
-      "columnIndex": 0,
+      "columnIndex": 5,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 2,
       "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "yarn"
     },
     {
       "columnIndex": 5,
       "expectedTileType": "bell"
     },
     {
+      "columnIndex": 0,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bell"
+    },
+    {
       "columnIndex": 3,
       "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
     },
     {
       "columnIndex": 2,
@@ -241,54 +293,18 @@
     },
     {
       "columnIndex": 0,
-      "expectedTileType": "paw"
-    },
-    {
-      "columnIndex": 4,
-      "expectedTileType": "bell"
-    },
-    {
-      "columnIndex": 1,
-      "expectedTileType": "paw"
-    },
-    {
-      "columnIndex": 2,
-      "expectedTileType": "paw"
-    },
-    {
-      "columnIndex": 4,
-      "expectedTileType": "paw"
-    },
-    {
-      "columnIndex": 0,
-      "expectedTileType": "bell"
-    },
-    {
-      "columnIndex": 5,
-      "expectedTileType": "paw"
-    },
-    {
-      "columnIndex": 1,
-      "expectedTileType": "bell"
-    },
-    {
-      "columnIndex": 3,
-      "expectedTileType": "paw"
-    },
-    {
-      "columnIndex": 5,
       "expectedTileType": "watering"
     },
     {
-      "columnIndex": 0,
+      "columnIndex": 4,
       "expectedTileType": "fish"
     },
     {
-      "columnIndex": 3,
-      "expectedTileType": "watering"
+      "columnIndex": 5,
+      "expectedTileType": "grass"
     },
     {
-      "columnIndex": 4,
+      "columnIndex": 3,
       "expectedTileType": "watering"
     },
     {
@@ -296,37 +312,21 @@
       "expectedTileType": "fish"
     },
     {
-      "columnIndex": 2,
-      "expectedTileType": "watering"
-    },
-    {
-      "columnIndex": 1,
-      "expectedTileType": "fish"
-    },
-    {
-      "columnIndex": 3,
+      "columnIndex": 0,
       "expectedTileType": "watering"
     },
     {
       "columnIndex": 2,
       "expectedTileType": "watering"
-    },
-    {
-      "columnIndex": 5,
-      "expectedTileType": "paw"
     },
     {
       "columnIndex": 4,
-      "expectedTileType": "paw"
-    },
-    {
-      "columnIndex": 0,
-      "expectedTileType": "paw"
+      "expectedTileType": "watering"
     }
   ],
   "meta": {
     "generationKind": "generated",
-    "seed": 365138,
+    "seed": 697736,
     "targetDepthSpread": 2,
     "achievedDepthSpread": 2,
     "targetSeconds": 77,

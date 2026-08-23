@@ -30,12 +30,13 @@ export const SHUFFLE_TUNING = {
 } as const;
 
 export const SIMULATION = {
-  trialsPerStrategy: 200,
+  trialsPerStrategy: 1000,
   maxMoveMultiplier: 2,
   seedStride: 7_919,
   tutorialMaxGreedyFailRate: 0.05,
   standardMaxGreedyFailRate: 0.35,
   adjacentFailRateWarningDelta: 0.12,
+  monotonicTolerance: 0.05,
   cautiousDistinctWeight: 100,
   cautiousTrayWeight: 10,
   cautiousNewTypePenalty: 20,

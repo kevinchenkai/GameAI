@@ -99,15 +99,32 @@ describe('level validation', () => {
     expect(Math.max(...counts.values())).toBeLessThanOrEqual(2);
   });
 
-  it('V0.3.2 Greedy 曲线下降时报错，单次上升超过 12pp 只告警', () => {
+  it('V0.3.4 Greedy 曲线允许 5pp 回落，超过才报错，单次上升超过 12pp 只告警', () => {
     expect(validateGreedyCurve([
-      { levelId: 5, failRate: 0.05 },
-      { levelId: 6, failRate: 0.18 },
+      { levelId: 21, failRate: 0.05 },
+      { levelId: 22, failRate: 0.18 },
     ])).toEqual({ errors: [], warnings: [expect.stringContaining('13.0pp')] });
     expect(validateGreedyCurve([
-      { levelId: 6, failRate: 0.2 },
-      { levelId: 7, failRate: 0.19 },
+      { levelId: 21, failRate: 0.2 },
+      { levelId: 22, failRate: 0.15 },
+    ]).errors).toEqual([]);
+    expect(validateGreedyCurve([
+      { levelId: 21, failRate: 0.2 },
+      { levelId: 22, failRate: 0.149 },
     ]).errors).toContainEqual(expect.stringContaining('decreased'));
+  });
+
+  it('V0.3.4 只保留红线硬门槛，三个五关分段均值必须递增', () => {
+    expect(validateGreedyCurve([{ levelId: 6, failRate: 0.3 }]).errors).toEqual([]);
+
+    const points = Array.from({ length: 15 }, (_, index) => {
+      const levelId = index + 6;
+      const failRate = levelId <= 10 ? 0.1 : levelId <= 15 ? 0.09 : 0.2;
+      return { levelId, failRate };
+    });
+    expect(validateGreedyCurve(points).errors).toContainEqual(
+      expect.stringContaining('segment averages must increase'),
+    );
   });
 
   it('真实 20 关满足 Greedy 门槛且 Greedy/Cautious 有实质分化', () => {

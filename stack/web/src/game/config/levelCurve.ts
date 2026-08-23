@@ -9,6 +9,7 @@ export interface LevelCurveEntry {
   targetSeconds: number;
   seed: number;
   targetDepthSpread: number;
+  targetGreedyFailRate?: number;
   kind: 'manual' | 'generated';
   designGoal: string;
   manualGroupOrder?: readonly TileType[];
@@ -53,21 +54,39 @@ const MANUAL_GROUPS: Readonly<Record<number, readonly TileType[]>> = {
 const SELECTED_SEEDS: Readonly<Record<number, number>> = {
   3: 118_758,
   5: 130_785,
-  6: 204_110,
-  7: 1_441_528,
+  6: 164_515,
+  7: 198_245,
   8: 184_461,
-  9: 1_334_770,
-  10: 2_168_319,
-  11: 1_156_741,
-  12: 1_847_748,
-  13: 440_220,
-  14: 3_467_332,
-  15: 365_138,
-  16: 375_111,
-  17: 6_466_876,
-  18: 1_234_471,
-  19: 302_083,
-  20: 3_622_198,
+  9: 234_029,
+  10: 331_111,
+  11: 222_299,
+  12: 2_322_888,
+  13: 463_977,
+  14: 1_107_470,
+  15: 697_736,
+  16: 2_299_428,
+  17: 1_010_685,
+  18: 624_708,
+  19: 5_789_950,
+  20: 4_984_266,
+};
+
+const GREEDY_FAIL_RATE_TARGETS: Readonly<Record<number, number>> = {
+  6: 0.08,
+  7: 0.1,
+  8: 0.12,
+  9: 0.14,
+  10: 0.16,
+  11: 0.18,
+  12: 0.2,
+  13: 0.21,
+  14: 0.22,
+  15: 0.24,
+  16: 0.25,
+  17: 0.26,
+  18: 0.28,
+  19: 0.29,
+  20: 0.3,
 };
 
 function entry(
@@ -82,6 +101,7 @@ function entry(
 ): LevelCurveEntry {
   const kind = id <= 5 ? 'manual' : 'generated';
   const manualGroupOrder = MANUAL_GROUPS[id];
+  const targetGreedyFailRate = GREEDY_FAIL_RATE_TARGETS[id];
   return {
     id,
     typeCount,
@@ -94,6 +114,7 @@ function entry(
     kind,
     designGoal,
     ...(manualGroupOrder === undefined ? {} : { manualGroupOrder }),
+    ...(targetGreedyFailRate === undefined ? {} : { targetGreedyFailRate }),
   };
 }
 

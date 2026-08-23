@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createDemoState } from '../src/game/config/demoLevel';
+import { SIMULATION } from '../src/game/config/tuning';
 import { applyPickToState } from '../src/game/core/rules/applyPick';
 import { canPick } from '../src/game/core/rules/canPick';
 import { SeededRandom } from '../src/game/core/SeededRandom';
@@ -13,6 +14,10 @@ import {
 } from '../src/game/core/Simulator';
 
 describe('Simulator', () => {
+  it('V0.3.3 每种策略固定使用 1000 次样本', () => {
+    expect(SIMULATION.trialsPerStrategy).toBe(1000);
+  });
+
   it('Simulator 与 Game/RuleEngine 使用同一套规则函数引用', () => {
     expect(SIMULATOR_APPLY_PICK).toBe(applyPickToState);
     expect(SIMULATOR_CAN_PICK).toBe(canPick);
