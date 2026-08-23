@@ -1,5 +1,6 @@
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
+import { stackpopUiPlugin } from './eslint-rules/requireScaledFontSize.js';
 
 export default [
   { ignores: ['dist/**', 'node_modules/**', 'public/assets/**'] },
@@ -33,6 +34,13 @@ export default [
         { name: 'document', message: 'core/config 必须能在 Node 环境运行。' },
         { name: 'localStorage', message: '持久化不属于 core/config。' },
       ],
+    },
+  },
+  {
+    files: ['src/game/scenes/**/*.ts'],
+    plugins: { 'stackpop-ui': stackpopUiPlugin },
+    rules: {
+      'stackpop-ui/require-scaled-font-size': 'error',
     },
   },
   {

@@ -7,7 +7,12 @@ import { GameModel } from '../core/GameModel';
 import { calculateStarRating, type StarRating } from '../core/StarRating';
 import { UndoManager } from '../core/UndoManager';
 import { LEVEL_LOADER } from '../levelRegistry';
-import { calculateGameLayout, scaleLayout, type GameLayout } from '../layout/GameLayout';
+import {
+  calculateCenteredBoardTop,
+  calculateGameLayout,
+  scaleLayout,
+  type GameLayout,
+} from '../layout/GameLayout';
 import { AudioSystem } from '../systems/AudioSystem';
 import { fontPx, px, uiScale } from '../ui/uiScale';
 import { InputQueue } from '../systems/InputQueue';
@@ -19,6 +24,12 @@ import type { TileData } from '../types/tile';
 interface GameSceneData {
   levelId?: number;
   resume?: boolean;
+}
+
+interface ToolButtonOptions {
+  textureKey?: string;
+  variant?: 'primary' | 'secondary' | 'danger';
+  badge?: number;
 }
 
 export class GameScene extends Phaser.Scene {
@@ -38,6 +49,7 @@ export class GameScene extends Phaser.Scene {
   private lastShuffleStrategy = 'none';
   private lastShuffleDurationMs = 0;
   private completionStars: StarRating | null = null;
+  private restartConfirmVisible = false;
 
   constructor() {
     super('Game');
@@ -58,6 +70,7 @@ export class GameScene extends Phaser.Scene {
     this.configuredMaxDepth = level.maxDepth;
     this.undoManager.clear();
     this.completionStars = null;
+    this.restartConfirmVisible = false;
     const shouldResume = !this.layoutFixture && (data.resume ?? !urlHasLevel);
     const restored = shouldResume ? this.saveManager.restoreCurrentRun(levelId) : null;
     if (restored !== null) this.undoManager.import(restored.undoStack);
@@ -151,6 +164,7 @@ export class GameScene extends Phaser.Scene {
     this.drawBoard(state);
     this.drawTray(state);
     this.drawTools(state);
+    if (this.restartConfirmVisible) this.drawRestartConfirmation();
     if (showResult && (state.status === 'won' || state.status === 'failed')) {
       this.drawResult(state.status);
     }
@@ -167,6 +181,7 @@ export class GameScene extends Phaser.Scene {
 
   private drawHeader(state: GameState): void {
     const { contentLeft, contentWidth, headerTop } = this.currentLayout;
+    const remainingTiles = state.columns.reduce((total, column) => total + column.length, 0);
     this.add
       .rectangle(contentLeft, headerTop, contentWidth, px(this, 64), 0xfffbf2, 0.78)
       .setStrokeStyle(px(this, 1.5), 0xffffff, 0.88)
@@ -181,7 +196,9 @@ export class GameScene extends Phaser.Scene {
       .setOrigin(0, 0);
     const layoutTag = this.layoutFixture
       ? `布局验证 · 深度12 · overlap ${this.overlapRatio.toFixed(2)}`
-      : `步数 ${state.moveCount}  ·  找到三枚同类卡片`;
+      : state.levelId === 1 && state.moveCount < 3
+        ? `步数 ${state.moveCount}  ·  点击每列最下方露出的卡牌`
+        : `步数 ${state.moveCount}`;
     this.add
       .text(contentLeft + px(this, 14), headerTop + px(this, 39), layoutTag, {
         fontFamily: 'PingFang SC, sans-serif',
@@ -190,11 +207,11 @@ export class GameScene extends Phaser.Scene {
       })
       .setOrigin(0, 0);
     this.add
-      .text(contentLeft + contentWidth - px(this, 56), headerTop + px(this, 16), `${state.tray.length}/${state.traySize}`, {
+      .text(contentLeft + contentWidth - px(this, 56), headerTop + px(this, 18), `剩余 ${remainingTiles}`, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: fontPx(this, 17),
+        fontSize: fontPx(this, 13),
         fontStyle: 'bold',
-        color: state.tray.length >= 6 ? '#d66b4d' : '#6e8ca0',
+        color: '#6e8ca0',
       })
       .setOrigin(1, 0);
     const settings = this.add
@@ -211,10 +228,16 @@ export class GameScene extends Phaser.Scene {
   }
 
   private drawBoard(state: GameState): void {
-    const { contentLeft, boardTop, tileSize, rowStep } = this.currentLayout;
+    const { contentLeft, tileSize, rowStep } = this.currentLayout;
+    const actualMaxDepth = Math.max(1, ...state.columns.map((column) => column.length));
+    const boardTop = calculateCenteredBoardTop(
+      this.currentLayout,
+      actualMaxDepth,
+      px(this, LAYOUT.trayLabelOffset + LAYOUT.sectionGap),
+    );
     for (let columnIndex = 0; columnIndex < state.columns.length; columnIndex += 1) {
       const column = state.columns[columnIndex] ?? [];
-      const x = contentLeft + columnIndex * (tileSize + LAYOUT.tileGap);
+      const x = contentLeft + columnIndex * (tileSize + px(this, LAYOUT.tileGap));
       column.forEach((tile, depth) => {
         const y = boardTop + depth * rowStep;
         const isTop = depth === column.length - 1;
@@ -239,13 +262,16 @@ export class GameScene extends Phaser.Scene {
       .image(size / 2, size / 2, SCENE_TEXTURES.Game.tiles[tile.type].key)
       .setDisplaySize(size * 0.7, size * 0.7);
     container.add([frame, icon]);
-    container.setAlpha(isTop ? 1 : 0.9);
+    if (!isTop) {
+      container.add(this.add.rectangle(size / 2, size / 2, size * 0.92, size * 0.92, 0x000000, 0.07));
+      container.setAlpha(0.76);
+    }
     return container;
   }
 
   private makeTileInteractive(container: Phaser.GameObjects.Container, columnIndex: number, x: number, y: number): void {
     const frame = container.getByName('hit-frame') as Phaser.GameObjects.Image;
-    const extension = 6 / frame.scaleX;
+    const extension = px(this, 6) / frame.scaleX;
     frame.setInteractive(
       new Phaser.Geom.Rectangle(
         -extension,
@@ -258,7 +284,7 @@ export class GameScene extends Phaser.Scene {
     );
     frame.input!.cursor = 'pointer';
     frame.on(Phaser.Input.Events.POINTER_OVER, () => {
-      if (window.matchMedia('(pointer: fine)').matches) container.setY(y - 4).setScale(1.04);
+      if (window.matchMedia('(pointer: fine)').matches) container.setY(y - px(this, 4)).setScale(1.04);
     });
     frame.on(Phaser.Input.Events.POINTER_OUT, () => container.setPosition(x, y).setScale(1));
     frame.on(Phaser.Input.Events.POINTER_UP, () => {
@@ -272,24 +298,41 @@ export class GameScene extends Phaser.Scene {
     const warning = state.tray.length >= state.traySize - 1;
     const root = this.add.container(contentLeft, trayTop);
     this.trayRoot = root;
+    const panel = this.add.graphics();
+    const panelLeft = -px(this, 10);
+    const panelTop = -px(this, 34);
+    const panelWidth = contentWidth + px(this, 20);
+    const panelHeight = traySlotSize + px(this, 42);
+    panel.fillStyle(warning ? 0xffeee8 : 0xfff8e9, warning ? 0.82 : 0.66);
+    panel.fillRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, 16));
+    panel.lineStyle(px(this, 1.5), warning ? 0xd66b4d : 0xffffff, 0.8);
+    panel.strokeRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, 16));
+    root.add(panel);
     root.add(
       this.add
-        .text(0, -LAYOUT.trayLabelOffset, `暂存槽  ${state.tray.length}/${state.traySize}`, {
+        .text(0, -px(this, 27), '暂存槽', {
           fontFamily: 'PingFang SC, sans-serif',
-          fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize),
+          fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 2),
           fontStyle: 'bold',
-          color: warning ? '#c95e46' : COLORS.text,
+          color: COLORS.text,
         })
         .setOrigin(0, 0),
     );
+    root.add(
+      this.add.text(contentWidth, -px(this, 27), `${state.tray.length}/${state.traySize}`, {
+        fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
+        fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 2),
+        fontStyle: 'bold',
+        color: warning ? '#c95e46' : COLORS.title,
+      }).setOrigin(1, 0),
+    );
     for (let slot = 0; slot < GAMEPLAY.traySize; slot += 1) {
-      const x = slot * (traySlotSize + LAYOUT.trayGap);
+      const x = slot * (traySlotSize + px(this, LAYOUT.trayGap));
       const slotTexture = warning ? SCENE_TEXTURES.Game.traySlotWarn.key : SCENE_TEXTURES.Game.traySlot.key;
       root.add(this.add.image(x, 0, slotTexture).setOrigin(0, 0).setDisplaySize(traySlotSize, traySlotSize));
       const tile = state.tray[slot];
       if (tile !== undefined) root.add(this.createTrayTile(tile, x, 0, traySlotSize));
     }
-    root.add(this.add.rectangle(0, traySlotSize + px(this, 7), contentWidth, px(this, 1), 0xffffff, 0.55).setOrigin(0, 0));
     if (state.tray.length === state.traySize - 1 && !this.busy) {
       this.trayWarningTween = this.tweens.add({
         targets: root,
@@ -316,33 +359,67 @@ export class GameScene extends Phaser.Scene {
 
   private drawTools(state: GameState): void {
     const { contentLeft, contentWidth, toolsTop, toolButtonSize } = this.currentLayout;
-    const width = (contentWidth - PROTOTYPE_UI.toolButtonGap * 2) / 3;
+    const gap = px(this, PROTOTYPE_UI.toolButtonGap);
+    const usableWidth = contentWidth - gap * 2;
+    const shuffleWidth = usableWidth * 0.31;
+    const undoWidth = usableWidth * 0.42;
+    const restartWidth = usableWidth - shuffleWidth - undoWidth;
     const playing = state.status === 'playing' && !this.busy && !this.layoutFixture;
     const remainingShuffles = GAMEPLAY.shuffleLimit - state.shuffleUsed;
-    this.drawToolButton(contentLeft, toolsTop, width, toolButtonSize, this.busy ? '处理中…' : `打乱 ${remainingShuffles}`, playing && remainingShuffles > 0, () => void this.performShuffle(), SCENE_TEXTURES.Game.shuffle.key);
-    this.drawToolButton(contentLeft + width + PROTOTYPE_UI.toolButtonGap, toolsTop, width, toolButtonSize, '撤回', !this.busy && this.undoManager.canUndo && !this.layoutFixture, () => this.performUndo(), SCENE_TEXTURES.Game.undo.key);
-    this.drawToolButton(contentLeft + (width + PROTOTYPE_UI.toolButtonGap) * 2, toolsTop, width, toolButtonSize, '重来', !this.busy && !this.layoutFixture, () => this.restart());
+    this.drawToolButton(contentLeft, toolsTop, shuffleWidth, toolButtonSize, this.busy ? '处理中…' : '打乱', playing && remainingShuffles > 0, () => void this.performShuffle(), {
+      textureKey: SCENE_TEXTURES.Game.shuffle.key,
+      badge: remainingShuffles,
+    });
+    this.drawToolButton(contentLeft + shuffleWidth + gap, toolsTop, undoWidth, toolButtonSize, '撤回', !this.busy && this.undoManager.canUndo && !this.layoutFixture, () => this.performUndo(), {
+      textureKey: SCENE_TEXTURES.Game.undo.key,
+      variant: 'primary',
+    });
+    this.drawToolButton(contentLeft + shuffleWidth + undoWidth + gap * 2, toolsTop, restartWidth, toolButtonSize, '重来', !this.busy && !this.layoutFixture, () => this.requestRestart(), {
+      variant: 'danger',
+    });
   }
 
-  private drawToolButton(x: number, y: number, width: number, height: number, label: string, enabled: boolean, onTap: () => void, textureKey?: string): void {
+  private drawToolButton(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    label: string,
+    enabled: boolean,
+    onTap: () => void,
+    options: ToolButtonOptions = {},
+  ): void {
+    const variant = options.variant ?? 'secondary';
     const container = this.add.container(x, y);
-    const background = this.add.rectangle(0, 0, width, height, 0xfffbf2, enabled ? 0.94 : 0.55).setOrigin(0, 0).setStrokeStyle(px(this, 1.5), COLORS.tileStroke, enabled ? 0.74 : 0.3);
+    const fill = variant === 'primary' ? 0xffd76b : variant === 'danger' ? 0xf2f0ed : 0xfffbf2;
+    const background = this.add.rectangle(0, 0, width, height, fill, enabled ? 0.96 : 0.55).setOrigin(0, 0).setStrokeStyle(px(this, variant === 'primary' ? 2 : 1.5), variant === 'danger' ? 0xa9a099 : COLORS.tileStroke, enabled ? 0.74 : 0.3);
     container.add(background);
     let labelCenter = width / 2;
-    if (textureKey !== undefined) {
+    if (options.textureKey !== undefined) {
       const iconSize = Math.min(height - px(this, 10), px(this, 34));
-      container.add(this.add.image(px(this, 8), (height - iconSize) / 2, textureKey).setOrigin(0, 0).setDisplaySize(iconSize, iconSize));
-      labelCenter = 8 + iconSize + (width - 8 - iconSize) / 2;
+      container.add(this.add.image(px(this, 8), (height - iconSize) / 2, options.textureKey).setOrigin(0, 0).setDisplaySize(iconSize, iconSize));
+      labelCenter = px(this, 8) + iconSize + (width - px(this, 8) - iconSize) / 2;
     }
     container.add(this.add.text(labelCenter, height / 2, label, {
       fontFamily: 'PingFang SC, sans-serif',
       fontSize: `${Math.round(Math.min(px(this, PROTOTYPE_UI.buttonFontSize), width * 0.16))}px`,
       fontStyle: 'bold',
-      color: COLORS.text,
+      color: variant === 'danger' ? '#887a70' : COLORS.text,
     }).setAlpha(enabled ? 1 : 0.5).setOrigin(0.5));
+    if (options.badge !== undefined) {
+      const badgeX = width - px(this, 13);
+      const badgeY = px(this, 12);
+      container.add(this.add.circle(badgeX, badgeY, px(this, 10), 0xe9a83a, enabled ? 1 : 0.45));
+      container.add(this.add.text(badgeX, badgeY, String(Math.max(0, options.badge)), {
+        fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
+        fontSize: fontPx(this, 10),
+        fontStyle: 'bold',
+        color: '#ffffff',
+      }).setOrigin(0.5));
+    }
     if (!enabled) return;
     background.setInteractive({ useHandCursor: true });
-    background.on(Phaser.Input.Events.POINTER_OVER, () => container.setY(y - 3).setScale(1.02));
+    background.on(Phaser.Input.Events.POINTER_OVER, () => container.setY(y - px(this, 3)).setScale(1.02));
     background.on(Phaser.Input.Events.POINTER_OUT, () => container.setY(y).setScale(1));
     background.on(Phaser.Input.Events.POINTER_DOWN, () => container.setScale(0.96));
     background.on(Phaser.Input.Events.POINTER_UP, () => {
@@ -350,6 +427,54 @@ export class GameScene extends Phaser.Scene {
       this.audioSystem.play('button');
       onTap();
     });
+  }
+
+  private drawRestartConfirmation(): void {
+    const centerX = this.scale.width / 2;
+    const centerY = this.scale.height / 2;
+    const panelWidth = Math.min(px(this, 330), this.currentLayout.contentWidth - px(this, 24));
+    const panelHeight = px(this, 210);
+    this.add.rectangle(centerX, centerY, this.scale.width, this.scale.height, 0x34516b, 0.5)
+      .setInteractive()
+      .setDepth(300);
+    this.add.rectangle(centerX, centerY, panelWidth, panelHeight, 0xfff8e9, 1)
+      .setStrokeStyle(px(this, 2), COLORS.tileStroke, 0.75)
+      .setDepth(301);
+    this.add.text(centerX, centerY - px(this, 58), '重新开始本关？', {
+      fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
+      fontSize: fontPx(this, 24),
+      fontStyle: 'bold',
+      color: COLORS.title,
+    }).setOrigin(0.5).setDepth(302);
+    this.add.text(centerX, centerY - px(this, 18), '当前局面和撤回记录都会清空', {
+      fontFamily: 'PingFang SC, sans-serif',
+      fontSize: fontPx(this, 14),
+      color: COLORS.text,
+    }).setOrigin(0.5).setDepth(302);
+    const gap = px(this, 10);
+    const buttonWidth = (panelWidth - px(this, 48) - gap) / 2;
+    const left = centerX - gap / 2 - buttonWidth;
+    const top = centerY + px(this, 35);
+    this.drawConfirmationButton(left, top, buttonWidth, '取消', 0xffffff, () => {
+      this.restartConfirmVisible = false;
+      this.renderGame();
+    });
+    this.drawConfirmationButton(centerX + gap / 2, top, buttonWidth, '确认重来', 0xffd0c3, () => this.restart());
+  }
+
+  private drawConfirmationButton(x: number, y: number, width: number, label: string, fill: number, onTap: () => void): void {
+    const button = this.add.rectangle(x, y, width, px(this, 46), fill, 1)
+      .setOrigin(0, 0)
+      .setStrokeStyle(px(this, 1.5), COLORS.tileStroke, 0.65)
+      .setInteractive({ useHandCursor: true })
+      .setDepth(303);
+    this.add.text(x + width / 2, y + px(this, 23), label, {
+      fontFamily: 'PingFang SC, sans-serif',
+      fontSize: fontPx(this, 14),
+      fontStyle: 'bold',
+      color: COLORS.text,
+    }).setOrigin(0.5).setDepth(304);
+    button.on(Phaser.Input.Events.POINTER_UP, onTap);
   }
 
   private drawResult(status: 'won' | 'failed'): void {
@@ -456,12 +581,18 @@ export class GameScene extends Phaser.Scene {
   }
 
   private async playPickAnimation(before: GameState, result: PickResult): Promise<void> {
-    const { contentLeft, boardTop, tileSize, rowStep, trayTop, traySlotSize } = this.currentLayout;
+    const { contentLeft, tileSize, rowStep, trayTop, traySlotSize } = this.currentLayout;
+    const beforeMaxDepth = Math.max(1, ...before.columns.map((column) => column.length));
+    const boardTop = calculateCenteredBoardTop(
+      this.currentLayout,
+      beforeMaxDepth,
+      px(this, LAYOUT.trayLabelOffset + LAYOUT.sectionGap),
+    );
     const sourceColumn = before.columns[result.sourceColumnIndex] ?? [];
-    const startX = contentLeft + result.sourceColumnIndex * (tileSize + LAYOUT.tileGap);
+    const startX = contentLeft + result.sourceColumnIndex * (tileSize + px(this, LAYOUT.tileGap));
     const startY = boardTop + Math.max(0, sourceColumn.length - 1) * rowStep;
     const targetSlot = Math.min(GAMEPLAY.traySize - 1, result.insertedTrayIndex);
-    const targetX = contentLeft + targetSlot * (traySlotSize + LAYOUT.trayGap) + traySlotSize * 0.08;
+    const targetX = contentLeft + targetSlot * (traySlotSize + px(this, LAYOUT.trayGap)) + traySlotSize * 0.08;
     const targetY = trayTop + traySlotSize * 0.08;
     const flying = this.createTileVisual(result.pickedTile, startX, startY, tileSize, true).setDepth(250);
     const progress = { value: 0 };
@@ -483,7 +614,7 @@ export class GameScene extends Phaser.Scene {
     });
     flying.destroy();
     if (this.trayRoot !== null) {
-      this.trayRoot.x += 8;
+      this.trayRoot.x += px(this, 8);
       this.tweens.add({ targets: this.trayRoot, x: this.currentLayout.contentLeft, alpha: 1, duration: ANIMATION.trayShiftMs, ease: 'Quad.easeOut' });
     }
     if (result.matches.length > 0) {
@@ -499,8 +630,8 @@ export class GameScene extends Phaser.Scene {
   private playMatchParticles(x: number, y: number): void {
     for (let index = 0; index < 8; index += 1) {
       const angle = (Math.PI * 2 * index) / 8;
-      const distance = 30 + (index % 2) * 14;
-      const sparkle = this.add.image(x, y, index % 2 === 0 ? SCENE_TEXTURES.Game.sparkle01.key : SCENE_TEXTURES.Game.sparkle02.key).setDisplaySize(22, 22).setDepth(260).setScale(0.4);
+      const distance = px(this, 30 + (index % 2) * 14);
+      const sparkle = this.add.image(x, y, index % 2 === 0 ? SCENE_TEXTURES.Game.sparkle01.key : SCENE_TEXTURES.Game.sparkle02.key).setDisplaySize(px(this, 22), px(this, 22)).setDepth(260).setScale(0.4);
       this.tweens.add({
         targets: sparkle, x: x + Math.cos(angle) * distance, y: y + Math.sin(angle) * distance, scale: 1, alpha: 0,
         duration: ANIMATION.matchMs, ease: 'Quad.easeOut', onComplete: () => sparkle.destroy(),
@@ -513,7 +644,7 @@ export class GameScene extends Phaser.Scene {
     const originX = this.trayRoot.x;
     await new Promise<void>((resolve) => {
       this.tweens.add({
-        targets: this.trayRoot, x: originX + 4, duration: ANIMATION.trayShakeMs, yoyo: true, repeat: 3, ease: 'Sine.easeInOut',
+        targets: this.trayRoot, x: originX + px(this, 4), duration: ANIMATION.trayShakeMs, yoyo: true, repeat: 3, ease: 'Sine.easeInOut',
         onComplete: () => { this.trayRoot?.setX(originX); resolve(); },
       });
     });
@@ -562,6 +693,7 @@ export class GameScene extends Phaser.Scene {
   private restart(): void {
     this.clearInputQueue('restart');
     this.busy = false;
+    this.restartConfirmVisible = false;
     this.undoManager.clear();
     this.lastShuffleStrategy = 'none';
     this.lastShuffleDurationMs = 0;
@@ -569,6 +701,12 @@ export class GameScene extends Phaser.Scene {
     this.completionStars = null;
     this.persistCurrentRun();
     this.renderGame();
+  }
+
+  private requestRestart(): void {
+    if (this.busy || this.layoutFixture || this.model.state.status !== 'playing') return;
+    this.restartConfirmVisible = true;
+    this.renderGame(false);
   }
 
   private vibrate(pattern: number | number[]): void {

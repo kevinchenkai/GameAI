@@ -15,8 +15,8 @@ export const HOW_TO_PLAY_PAGES: readonly HowToPlayPage[] = [
     subtitle: '清空卡牌，也清空暂存槽',
     sections: [
       {
-        title: '1  选择露出的卡牌',
-        body: '每列只能点击最前面、完整露出的那张卡牌。取走后，被它挡住的下一张才会变为可选。',
+        title: '1  点击每列最下方露出的卡牌',
+        body: '卡列向下叠放，只能点击画面中每列最下方、完整露出的那张。取走后，被它挡住的上一张才会变为可选。',
       },
       {
         title: '2  卡牌进入暂存槽',

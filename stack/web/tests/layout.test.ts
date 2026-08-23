@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { LAYOUT } from '../src/game/config/layout';
-import { calculateGameLayout, isDesktopViewport, isLandscapePhone } from '../src/game/layout/GameLayout';
+import {
+  calculateCenteredBoardTop,
+  calculateGameLayout,
+  isDesktopViewport,
+  isLandscapePhone,
+} from '../src/game/layout/GameLayout';
 import { hitTestTopTile, type TileHitArea } from '../src/game/layout/hitTest';
 
 const MOBILE_VIEWPORTS = [
@@ -53,5 +58,23 @@ describe('responsive layout', () => {
       { tileId: 'top', columnIndex: 0, depth: 1, x: 0, y: 40, width: 50, height: 50 },
     ];
     expect(hitTestTopTile(areas, 25, 45)?.tileId).toBe('top');
+  });
+
+  it('六列 ground truth 保持不变', () => {
+    const layout = calculateGameLayout(375, 812, 6, 12);
+    expect(layout.tileSize).toBeCloseTo(52.1667, 3);
+    expect(layout.rowStep).toBeCloseTo(44.3417, 3);
+  });
+
+  it('实际深度变浅时只居中内容，不改变布局尺寸或 Tray', () => {
+    const layout = calculateGameLayout(414, 760, 5, 8);
+    const spaceBeforeTray = LAYOUT.trayLabelOffset + LAYOUT.sectionGap;
+    const centeredTop = calculateCenteredBoardTop(layout, 5, spaceBeforeTray);
+    const contentBottom = centeredTop + layout.tileSize + 4 * layout.rowStep;
+    const boardAreaBottom = layout.trayTop - spaceBeforeTray;
+    expect(centeredTop).toBeGreaterThan(layout.boardTop);
+    expect(centeredTop - layout.boardTop).toBeCloseTo(boardAreaBottom - contentBottom, 6);
+    expect(layout.tileSize).toBeCloseTo(calculateGameLayout(414, 760, 5, 8).tileSize, 8);
+    expect(layout.trayTop).toBeCloseTo(calculateGameLayout(414, 760, 5, 8).trayTop, 8);
   });
 });

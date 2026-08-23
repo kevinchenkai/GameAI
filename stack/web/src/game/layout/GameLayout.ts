@@ -117,3 +117,21 @@ export function scaleLayout(layout: GameLayout, scale: number): GameLayout {
     toolButtonSize: layout.toolButtonSize * scale,
   };
 }
+
+/**
+ * 在固定的棋盘预留区中垂直居中当前实际卡牌。
+ *
+ * 布局仍按关卡声明的最大深度求解，卡片尺寸与 Tray 位置不会逐步变化；
+ * 这里只移动实际棋盘内容，把空白平均分到上下两侧。
+ */
+export function calculateCenteredBoardTop(
+  layout: GameLayout,
+  actualMaxDepth: number,
+  spaceBeforeTray: number,
+): number {
+  const depth = Math.max(1, actualMaxDepth);
+  const contentHeight = layout.tileSize + Math.max(0, depth - 1) * layout.rowStep;
+  const boardAreaBottom = layout.trayTop - Math.max(0, spaceBeforeTray);
+  const availableHeight = Math.max(0, boardAreaBottom - layout.boardTop);
+  return layout.boardTop + Math.max(0, (availableHeight - contentHeight) / 2);
+}

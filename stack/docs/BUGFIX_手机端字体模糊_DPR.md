@@ -237,6 +237,12 @@ grep -rnE "fontSize: *['\`][0-9]" src/game/scenes/
 
 应无输出。建议后续加入 lint 规则或 CI 检查。
 
+**已固化**：`eslint-rules/requireScaledFontSize.js` 提供
+`stackpop-ui/require-scaled-font-size` 规则，并只对 `src/game/scenes/**/*.ts`
+启用。场景中的 `fontSize` 属性和 `setFontSize()` 参数必须包含 `fontPx()`
+或 `px()` 换算；硬编码字符串、数字和未换算常量都会令 `npm run lint` 失败。
+`tests/uiLint.test.ts` 同时保留正反例，避免门禁本身静默失效。
+
 ### 7.4 用户的直觉描述往往精准指向根因
 
 「字体很模糊，图片也不清晰」——**先说字体、后说图片**，
