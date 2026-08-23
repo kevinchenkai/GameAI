@@ -1,0 +1,19 @@
+stack/docs/UI优化建议_iPhone实测.md
+  s_3a713e661cdfe8::t_a2ea54249ff27b 1-226
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "29789f87870990e808fb49da041f3e6dd438c176",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
