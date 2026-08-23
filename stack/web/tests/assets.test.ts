@@ -18,9 +18,9 @@ describe('M4 asset manifest', () => {
     }
   });
 
-  it('M5 preloads settings art while hint remains deferred', () => {
+  it('preloads the settings and how-to-play artwork', () => {
     const loaded = new Set(PRELOAD_ASSETS.map(({ key }) => key));
     expect(loaded.has(ASSETS.ui.settings.key)).toBe(true);
-    expect(loaded.has(ASSETS.ui.hint.key)).toBe(false);
+    expect(loaded.has(ASSETS.ui.hint.key)).toBe(true);
   });
 });

@@ -7,8 +7,9 @@ import { GameModel } from '../core/GameModel';
 import { calculateStarRating, type StarRating } from '../core/StarRating';
 import { UndoManager } from '../core/UndoManager';
 import { LEVEL_LOADER } from '../levelRegistry';
-import { calculateGameLayout, type GameLayout } from '../layout/GameLayout';
+import { calculateGameLayout, scaleLayout, type GameLayout } from '../layout/GameLayout';
 import { AudioSystem } from '../systems/AudioSystem';
+import { fontPx, px, uiScale } from '../ui/uiScale';
 import { InputQueue } from '../systems/InputQueue';
 import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
@@ -124,12 +125,26 @@ export class GameScene extends Phaser.Scene {
     this.trayRoot = null;
     const state = this.model.state;
     const maxDepth = Math.max(1, ...state.columns.map((column) => column.length));
-    this.currentLayout = calculateGameLayout(
-      this.scale.width,
-      this.scale.height,
-      state.columns.length,
-      this.layoutFixture ? GAMEPLAY.maxColumnDepth : Math.max(maxDepth, this.configuredMaxDepth),
-      this.overlapRatio,
+    /**
+     * ★ 布局按 **CSS 像素** 计算，再整体乘倍率放大到物理像素。
+     *
+     *   画布缓冲已按 DPR 放大（见 main.ts），`this.scale.width` 是物理像素。
+     *   若直接把物理像素喂给 calculateGameLayout，它会以为屏幕变宽了一倍，
+     *   于是排出「更大的棋盘」而不是「更清晰的棋盘」——
+     *   tileSize 会撞上 tileSizeMax 上限，布局与设计稿脱节。
+     *
+     *   所以：换算回 CSS 像素求解，再把结果放大。布局算法与其单测均不受影响。
+     */
+    const scale = uiScale(this);
+    this.currentLayout = scaleLayout(
+      calculateGameLayout(
+        this.scale.width / scale,
+        this.scale.height / scale,
+        state.columns.length,
+        this.layoutFixture ? GAMEPLAY.maxColumnDepth : Math.max(maxDepth, this.configuredMaxDepth),
+        this.overlapRatio,
+      ),
+      scale,
     );
     this.drawBackground();
     this.drawHeader(state);
@@ -153,13 +168,13 @@ export class GameScene extends Phaser.Scene {
   private drawHeader(state: GameState): void {
     const { contentLeft, contentWidth, headerTop } = this.currentLayout;
     this.add
-      .rectangle(contentLeft, headerTop, contentWidth, 64, 0xfffbf2, 0.78)
-      .setStrokeStyle(1.5, 0xffffff, 0.88)
+      .rectangle(contentLeft, headerTop, contentWidth, px(this, 64), 0xfffbf2, 0.78)
+      .setStrokeStyle(px(this, 1.5), 0xffffff, 0.88)
       .setOrigin(0, 0);
     this.add
-      .text(contentLeft + 14, headerTop + 9, `第 ${state.levelId} 关`, {
+      .text(contentLeft + px(this, 14), headerTop + px(this, 9), `第 ${state.levelId} 关`, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: `${PROTOTYPE_UI.titleFontSize}px`,
+        fontSize: fontPx(this, PROTOTYPE_UI.titleFontSize),
         fontStyle: 'bold',
         color: COLORS.title,
       })
@@ -168,23 +183,23 @@ export class GameScene extends Phaser.Scene {
       ? `布局验证 · 深度12 · overlap ${this.overlapRatio.toFixed(2)}`
       : `步数 ${state.moveCount}  ·  找到三枚同类卡片`;
     this.add
-      .text(contentLeft + 14, headerTop + 39, layoutTag, {
+      .text(contentLeft + px(this, 14), headerTop + px(this, 39), layoutTag, {
         fontFamily: 'PingFang SC, sans-serif',
-        fontSize: `${PROTOTYPE_UI.subtitleFontSize}px`,
+        fontSize: fontPx(this, PROTOTYPE_UI.subtitleFontSize),
         color: '#55798f',
       })
       .setOrigin(0, 0);
     this.add
-      .text(contentLeft + contentWidth - 56, headerTop + 16, `${state.tray.length}/${state.traySize}`, {
+      .text(contentLeft + contentWidth - px(this, 56), headerTop + px(this, 16), `${state.tray.length}/${state.traySize}`, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: '17px',
+        fontSize: fontPx(this, 17),
         fontStyle: 'bold',
         color: state.tray.length >= 6 ? '#d66b4d' : '#6e8ca0',
       })
       .setOrigin(1, 0);
     const settings = this.add
-      .image(contentLeft + contentWidth - 28, headerTop + 32, SCENE_TEXTURES.Game.settings.key)
-      .setDisplaySize(34, 34);
+      .image(contentLeft + contentWidth - px(this, 28), headerTop + px(this, 32), SCENE_TEXTURES.Game.settings.key)
+      .setDisplaySize(px(this, 34), px(this, 34));
     if (!this.busy && !this.layoutFixture) {
       settings.setInteractive({ useHandCursor: true });
       settings.on(Phaser.Input.Events.POINTER_OVER, () => settings.setScale(1.08));
@@ -261,7 +276,7 @@ export class GameScene extends Phaser.Scene {
       this.add
         .text(0, -LAYOUT.trayLabelOffset, `暂存槽  ${state.tray.length}/${state.traySize}`, {
           fontFamily: 'PingFang SC, sans-serif',
-          fontSize: `${PROTOTYPE_UI.trayLabelMinSize}px`,
+          fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize),
           fontStyle: 'bold',
           color: warning ? '#c95e46' : COLORS.text,
         })
@@ -274,7 +289,7 @@ export class GameScene extends Phaser.Scene {
       const tile = state.tray[slot];
       if (tile !== undefined) root.add(this.createTrayTile(tile, x, 0, traySlotSize));
     }
-    root.add(this.add.rectangle(0, traySlotSize + 7, contentWidth, 1, 0xffffff, 0.55).setOrigin(0, 0));
+    root.add(this.add.rectangle(0, traySlotSize + px(this, 7), contentWidth, px(this, 1), 0xffffff, 0.55).setOrigin(0, 0));
     if (state.tray.length === state.traySize - 1 && !this.busy) {
       this.trayWarningTween = this.tweens.add({
         targets: root,
@@ -311,17 +326,17 @@ export class GameScene extends Phaser.Scene {
 
   private drawToolButton(x: number, y: number, width: number, height: number, label: string, enabled: boolean, onTap: () => void, textureKey?: string): void {
     const container = this.add.container(x, y);
-    const background = this.add.rectangle(0, 0, width, height, 0xfffbf2, enabled ? 0.94 : 0.55).setOrigin(0, 0).setStrokeStyle(1.5, COLORS.tileStroke, enabled ? 0.74 : 0.3);
+    const background = this.add.rectangle(0, 0, width, height, 0xfffbf2, enabled ? 0.94 : 0.55).setOrigin(0, 0).setStrokeStyle(px(this, 1.5), COLORS.tileStroke, enabled ? 0.74 : 0.3);
     container.add(background);
     let labelCenter = width / 2;
     if (textureKey !== undefined) {
-      const iconSize = Math.min(height - 10, 34);
-      container.add(this.add.image(8, (height - iconSize) / 2, textureKey).setOrigin(0, 0).setDisplaySize(iconSize, iconSize));
+      const iconSize = Math.min(height - px(this, 10), px(this, 34));
+      container.add(this.add.image(px(this, 8), (height - iconSize) / 2, textureKey).setOrigin(0, 0).setDisplaySize(iconSize, iconSize));
       labelCenter = 8 + iconSize + (width - 8 - iconSize) / 2;
     }
     container.add(this.add.text(labelCenter, height / 2, label, {
       fontFamily: 'PingFang SC, sans-serif',
-      fontSize: `${Math.min(PROTOTYPE_UI.buttonFontSize, width * 0.16)}px`,
+      fontSize: `${Math.round(Math.min(px(this, PROTOTYPE_UI.buttonFontSize), width * 0.16))}px`,
       fontStyle: 'bold',
       color: COLORS.text,
     }).setAlpha(enabled ? 1 : 0.5).setOrigin(0.5));
@@ -342,36 +357,36 @@ export class GameScene extends Phaser.Scene {
     const centerX = this.scale.width / 2;
     const centerY = this.scale.height / 2;
     const panelWidth = Math.min(this.currentLayout.contentWidth * 0.88, this.scale.width - LAYOUT.contentPadding * 2);
-    const panelHeight = Math.min(360, this.scale.height * 0.48);
+    const panelHeight = Math.min(px(this, 360), this.scale.height * 0.48);
     this.add.rectangle(centerX, centerY, this.scale.width, this.scale.height, 0x34516b, 0.42).setInteractive().setDepth(300);
     this.add.image(centerX, centerY, status === 'won' ? SCENE_TEXTURES.Game.winPanel.key : SCENE_TEXTURES.Game.failPanel.key).setDisplaySize(panelWidth, panelHeight).setDepth(301);
     if (status === 'won') {
       const earnedStars = this.completionStars ?? calculateStarRating(state.undoUsed, state.shuffleUsed);
       for (let index = 0; index < 3; index += 1) {
-        const star = this.add.image(centerX + (index - 1) * 48, centerY - panelHeight * 0.31, SCENE_TEXTURES.Game.star.key).setDisplaySize(42, 42).setDepth(302);
+        const star = this.add.image(centerX + (index - 1) * px(this, 48), centerY - panelHeight * 0.31, SCENE_TEXTURES.Game.star.key).setDisplaySize(px(this, 42), px(this, 42)).setDepth(302);
         if (index >= earnedStars) star.setTint(0xaebbc5).setAlpha(0.48);
       }
     }
     this.add.text(centerX, centerY - (status === 'won' ? 54 : 68), status === 'won' ? `第 ${state.levelId} 关完成` : '这一步卡住啦！', {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: `${PROTOTYPE_UI.resultTitleSize}px`, fontStyle: 'bold', color: status === 'won' ? '#d88b21' : COLORS.title,
+      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, PROTOTYPE_UI.resultTitleSize), fontStyle: 'bold', color: status === 'won' ? '#d88b21' : COLORS.title,
     }).setOrigin(0.5).setDepth(302);
     const resultBody = status === 'won'
       ? `步数 ${state.moveCount}  ·  撤回 ${state.undoUsed}  ·  打乱 ${state.shuffleUsed}`
       : '暂存槽已经放满 7 格';
     this.add.text(centerX, centerY + (status === 'won' ? 4 : -22), resultBody, {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: `${PROTOTYPE_UI.resultBodySize}px`, color: COLORS.text,
+      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, PROTOTYPE_UI.resultBodySize), color: COLORS.text,
     }).setOrigin(0.5).setDepth(302);
     if (status === 'failed') {
-      const buttonWidth = (panelWidth - 52) / 3;
-      const left = centerX - panelWidth / 2 + 20;
-      const top = centerY + 46;
+      const buttonWidth = (panelWidth - px(this, 52)) / 3;
+      const left = centerX - panelWidth / 2 + px(this, 20);
+      const top = centerY + px(this, 46);
       this.drawResultButton(left, top, buttonWidth, '撤回一步', this.undoManager.canUndo, () => this.performUndo());
       this.drawResultButton(left + buttonWidth + 6, top, buttonWidth, '打乱', false, () => void this.performShuffle());
       this.drawResultButton(left + (buttonWidth + 6) * 2, top, buttonWidth, '重新开始', true, () => this.restart());
     } else {
-      const buttonWidth = (panelWidth - 52) / 3;
-      const left = centerX - panelWidth / 2 + 20;
-      const top = centerY + 62;
+      const buttonWidth = (panelWidth - px(this, 52)) / 3;
+      const left = centerX - panelWidth / 2 + px(this, 20);
+      const top = centerY + px(this, 62);
       const hasNext = state.levelId < LEVEL_LOADER.count;
       this.drawResultButton(left, top, buttonWidth, '下一关', hasNext, () => this.startLevel(state.levelId + 1));
       this.drawResultButton(left + buttonWidth + 6, top, buttonWidth, '再玩一次', true, () => this.restart());
@@ -380,9 +395,9 @@ export class GameScene extends Phaser.Scene {
   }
 
   private drawResultButton(x: number, y: number, width: number, label: string, enabled: boolean, onTap: () => void): void {
-    const button = this.add.rectangle(x, y, width, 48, enabled ? 0xffd76b : 0xd8d5cf, enabled ? 1 : 0.72).setOrigin(0, 0).setStrokeStyle(2, COLORS.tileStroke, enabled ? 0.85 : 0.3).setDepth(303);
-    this.add.text(x + width / 2, y + 24, label, {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: `${Math.max(11, Math.min(14, width * 0.13))}px`, fontStyle: 'bold', color: COLORS.text,
+    const button = this.add.rectangle(x, y, width, px(this, 48), enabled ? 0xffd76b : 0xd8d5cf, enabled ? 1 : 0.72).setOrigin(0, 0).setStrokeStyle(px(this, 2), COLORS.tileStroke, enabled ? 0.85 : 0.3).setDepth(303);
+    this.add.text(x + width / 2, y + px(this, 24), label, {
+      fontFamily: 'PingFang SC, sans-serif', fontSize: `${Math.round(Math.max(px(this, 11), Math.min(px(this, 14), width * 0.13)))}px`, fontStyle: 'bold', color: COLORS.text,
     }).setAlpha(enabled ? 1 : 0.48).setOrigin(0.5).setDepth(304);
     if (!enabled) return;
     button.setInteractive({ useHandCursor: true });
@@ -450,7 +465,7 @@ export class GameScene extends Phaser.Scene {
     const targetY = trayTop + traySlotSize * 0.08;
     const flying = this.createTileVisual(result.pickedTile, startX, startY, tileSize, true).setDepth(250);
     const progress = { value: 0 };
-    const controlY = Math.min(startY, targetY) - Math.min(60, tileSize * 0.9);
+    const controlY = Math.min(startY, targetY) - Math.min(px(this, 60), tileSize * 0.9);
     this.audioSystem.play('jump');
     await new Promise<void>((resolve) => {
       this.tweens.add({

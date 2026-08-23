@@ -46,8 +46,6 @@ const TILE_ASSETS = Object.values(ASSETS.tiles);
 
 /**
  * Scene-owned texture declarations are the single source for both preloading and rendering.
- * Scene-owned texture declarations remain the single source for preloading and rendering.
- * Hint stays deferred until the hint feature is implemented.
  */
 export const SCENE_TEXTURES = {
   Home: {
@@ -60,6 +58,10 @@ export const SCENE_TEXTURES = {
   },
   Settings: {
     settings: ASSETS.ui.settings,
+  },
+  HowToPlay: {
+    background: ASSETS.bg.home,
+    hint: ASSETS.ui.hint,
   },
   Game: {
     background: ASSETS.bg.game,
@@ -88,6 +90,7 @@ export const PRELOAD_ASSETS: readonly AssetDefinition[] = [
   SCENE_TEXTURES.Game.shuffle,
   SCENE_TEXTURES.Game.undo,
   SCENE_TEXTURES.Game.settings,
+  SCENE_TEXTURES.HowToPlay.hint,
   SCENE_TEXTURES.Game.winPanel,
   SCENE_TEXTURES.Game.failPanel,
   SCENE_TEXTURES.Game.sparkle01,
@@ -105,6 +108,7 @@ export const RENDERED_TEXTURE_KEYS: readonly string[] = [
   SCENE_TEXTURES.Game.shuffle.key,
   SCENE_TEXTURES.Game.undo.key,
   SCENE_TEXTURES.Game.settings.key,
+  SCENE_TEXTURES.HowToPlay.hint.key,
   SCENE_TEXTURES.Game.winPanel.key,
   SCENE_TEXTURES.Game.failPanel.key,
   SCENE_TEXTURES.Game.sparkle01.key,

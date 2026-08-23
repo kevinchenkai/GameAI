@@ -3,6 +3,7 @@ import { SCENE_TEXTURES } from '../config/assets';
 import { COLORS, LAYOUT } from '../config/layout';
 import { LEVEL_LOADER } from '../levelRegistry';
 import { getSaveManager } from '../systems/SaveManager';
+import { fontPx, px } from '../ui/uiScale';
 
 export class LevelSelectScene extends Phaser.Scene {
   constructor() {
@@ -23,29 +24,29 @@ export class LevelSelectScene extends Phaser.Scene {
     const height = this.scale.height;
     const centerX = width / 2;
     this.add.image(centerX, height / 2, SCENE_TEXTURES.LevelSelect.background.key).setDisplaySize(width, height);
-    this.add.rectangle(centerX, height / 2, Math.min(LAYOUT.maxContentWidth, width), height, 0xffffff, 0.12);
+    this.add.rectangle(centerX, height / 2, Math.min(px(this, LAYOUT.maxContentWidth), width), height, 0xffffff, 0.12);
 
-    const contentWidth = Math.min(440, width - LAYOUT.contentPadding * 2);
+    const contentWidth = Math.min(px(this, 440), width - px(this, LAYOUT.contentPadding) * 2);
     const left = centerX - contentWidth / 2;
-    this.drawBackButton(left, 26);
-    this.add.text(centerX, 42, '选择关卡', {
+    this.drawBackButton(left, px(this, 26));
+    this.add.text(centerX, px(this, 42), '选择关卡', {
       fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-      fontSize: '28px',
+      fontSize: fontPx(this, 28),
       fontStyle: 'bold',
       color: COLORS.title,
       stroke: '#ffffff',
-      strokeThickness: 4,
+      strokeThickness: px(this, 4),
     }).setOrigin(0.5);
 
     const save = getSaveManager().snapshot;
     const levels = LEVEL_LOADER.list();
     const columns = 4;
-    const gap = 8;
-    const gridTop = 86;
+    const gap = px(this, 8);
+    const gridTop = px(this, 86);
     const rows = Math.ceil(levels.length / columns);
     const cardWidth = (contentWidth - gap * (columns - 1)) / columns;
-    const availableHeight = height - gridTop - 36;
-    const cardHeight = Math.max(68, Math.min(96, (availableHeight - gap * (rows - 1)) / rows));
+    const availableHeight = height - gridTop - px(this, 36);
+    const cardHeight = Math.max(px(this, 68), Math.min(px(this, 96), (availableHeight - gap * (rows - 1)) / rows));
 
     levels.forEach((level, index) => {
       const column = index % columns;
@@ -59,9 +60,9 @@ export class LevelSelectScene extends Phaser.Scene {
   }
 
   private drawBackButton(x: number, y: number): void {
-    const button = this.add.rectangle(x, y, 64, 34, 0xfffbf2, 0.9).setOrigin(0, 0).setStrokeStyle(1.5, COLORS.tileStroke, 0.75).setInteractive({ useHandCursor: true });
-    this.add.text(x + 32, y + 17, '‹ 首页', {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: '14px', fontStyle: 'bold', color: COLORS.text,
+    const button = this.add.rectangle(x, y, px(this, 64), px(this, 34), 0xfffbf2, 0.9).setOrigin(0, 0).setStrokeStyle(px(this, 1.5), COLORS.tileStroke, 0.75).setInteractive({ useHandCursor: true });
+    this.add.text(x + px(this, 32), y + px(this, 17), '‹ 首页', {
+      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 14), fontStyle: 'bold', color: COLORS.text,
     }).setOrigin(0.5);
     button.on(Phaser.Input.Events.POINTER_UP, () => this.scene.start('Home'));
   }
@@ -79,17 +80,17 @@ export class LevelSelectScene extends Phaser.Scene {
     const completed = stars > 0;
     const fill = !unlocked ? 0xd7dce0 : current && !completed ? 0xffd76b : 0xfff8e9;
     const alpha = unlocked ? 0.96 : 0.7;
-    const card = this.add.rectangle(x, y, width, height, fill, alpha).setOrigin(0, 0).setStrokeStyle(current ? 2.5 : 1.5, current ? 0xe29a2f : COLORS.tileStroke, unlocked ? 0.8 : 0.28);
+    const card = this.add.rectangle(x, y, width, height, fill, alpha).setOrigin(0, 0).setStrokeStyle(px(this, current ? 2.5 : 1.5), current ? 0xe29a2f : COLORS.tileStroke, unlocked ? 0.8 : 0.28);
     this.add.text(x + width / 2, y + height * 0.32, unlocked ? String(levelId) : '🔒', {
       fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-      fontSize: `${Math.max(20, Math.min(28, height * 0.34))}px`,
+      fontSize: `${Math.round(Math.max(px(this, 20), Math.min(px(this, 28), height * 0.34)))}px`,
       fontStyle: 'bold',
       color: unlocked ? COLORS.title : '#8d989f',
     }).setOrigin(0.5);
     const status = completed ? `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}` : current ? '当前可玩' : unlocked ? '可重玩' : '未解锁';
     this.add.text(x + width / 2, y + height * 0.72, status, {
       fontFamily: 'PingFang SC, sans-serif',
-      fontSize: `${Math.max(10, Math.min(13, width * 0.15))}px`,
+      fontSize: `${Math.round(Math.max(px(this, 10), Math.min(px(this, 13), width * 0.15)))}px`,
       fontStyle: completed || current ? 'bold' : 'normal',
       color: completed ? '#d89223' : unlocked ? '#6e8ca0' : '#9ba4aa',
     }).setOrigin(0.5);
