@@ -7,7 +7,7 @@
 | 现象 | 「字体很模糊，图片也不清晰」 |
 | 严重度 | **高** —— 影响全部移动端用户，且是上线后第一印象 |
 | 影响范围 | 所有 DPR > 1 的设备（几乎全部手机） |
-| 状态 | 已修复，待部署 |
+| 状态 | **已修复并上线** |
 
 ---
 
@@ -158,12 +158,38 @@ buffer 750×1624   CSS 375×812   ratio 2.000   ✅
 
 ---
 
-## 5. 未处理项
+## 5. 附带修复：WebP 缓存响应头
 
-### WebP 缺少缓存响应头
+nginx 的 30 天图片缓存规则未包含 `webp`，22 张资源（173 KB）每次访问都重新下载。
+**不影响清晰度**，属独立的性能问题。经授权已在服务器直接修改。
 
-nginx 的 30 天图片缓存规则未包含 `webp`，当前 22 张资源（173 KB）每次访问都重新下载。
-**不影响清晰度**，属独立的性能问题。已授权在服务器直接改配置并重启。
+```nginx
+# /www/server/panel/vhost/nginx/g.ismayday.mobi.conf:117
+-  location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
++  location ~ .*\.(gif|jpg|jpeg|png|bmp|svg|ico|webp)$
+   {
+       expires      30d;
+```
+
+顺带补上 `svg` / `ico`（同样是静态图，之前也漏了）。
+
+操作纪律：
+
+1. 先备份 `g.ismayday.mobi.conf.bak-webp-20260823`
+2. 改前确认该规则在文件中**只出现 1 处**、`server_name` 只含 `g.ismayday.mobi`
+3. `sudo nginx -t` 通过后才 `nginx -s reload`（graceful，不断连接，比 restart 安全）
+4. 改后逐个验证 9 个站点均 200 —— **含 mimo / mystock 两个非本仓库项目**
+
+验证：
+
+```
+cache-control: max-age=2592000   ✅
+expires: Tue, 22 Sep 2026 ...     ✅
+```
+
+> ⚠️ 该配置由 `g.ismayday.mobi` 下**所有项目共享**。
+> 本次改动是**追加扩展名**（纯增量），不影响既有行为；
+> 若日后需要改动其它规则，仍须先确认影响范围。
 
 ---
 
