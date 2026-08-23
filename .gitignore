@@ -40,6 +40,10 @@ venv/
 chrome-profile*/
 playwright-report/
 test-results/
+.playwright-cli/
+blob-report/
+.vitest/
+*.tsbuildinfo
 
 # Logs and temp files
 *.log
