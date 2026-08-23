@@ -1,0 +1,27 @@
+stack/docs/H5_StackPop_游戏策划和执行方案_V0.3.md
+  s_3a713e661cdfe8::t_5885d1adaa4aa4 1118-1124,1860,2239-2242,2483-2485,2907
+  s_3a713e661cdfe8::t_9e30d5b1bb0c9b 865-867,873,876-904,906-917
+  s_3a713e661cdfe8::t_acff36bdd675bf 467-469,474-476,520-576,579-598,602,604-607,611-618
+  s_3a713e661cdfe8::t_4a52ca752edb52 642-658,833,839-840,842,844-864,868-872,874-875,918-945
+  s_3a713e661cdfe8::t_64f3d140fc8137 2614-2619
+  s_3a713e661cdfe8::t_0a9296010d2033 89,133,163,666,1225,2074,2234-2235,2249,2628-2629,2686,2942
+  s_3a713e661cdfe8::t_ce0be2f6de497d 577-578
+  s_3a713e661cdfe8::t_bea61f7274aa70 1227,1229-1234,1236-1237
+  s_3a713e661cdfe8::t_2cee6d19225f7b 1125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.6",
+  "base_commit_sha": "4e1217e12a732343829fd04cb054661930ebce3c",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
