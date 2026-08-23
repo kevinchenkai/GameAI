@@ -1803,6 +1803,11 @@ export const LAYOUT = {
    逐档量下来 680px 仍不够，**700px 才够**。StackPop 的 Tray 是最不能被压缩的区块（§17.2），
    M0 布局验证时必须专门量一次桌面最小高度并回写本节。
 
+> ✅ **StackPop M0 实测确认（2026-08-23）**：1280×700 下游戏容器为 480×700，
+> 深度 10 时 `tileSize = 49.51px`、棋盘底部 `y = 520.29px`、Tray 标题起点
+> `y = 534.29px`，保留 14px 间距；Tray 7 格与工具栏完整可见。因此桌面最小可用高度
+> 正式锁定为 **700px**。
+
 ## 45.4 桌面输入适配
 
 MVP 只需三条，成本很低：
@@ -2933,5 +2938,5 @@ ssh ubuntu@211.159.177.55 "ls /www/wwwroot/g.ismayday.mobi/"
 | B3 | Simulator 的 Cautious 策略细节 | M2 | 「尽量避免引入新 type」的具体权重需实测调参 |
 | B4 | generateSafeState 的兜底质量 | M2 | 退化路径「按 type 排序顺序回填」必定可解但局面很丑，需确认触发频率是否足够低 |
 | B5 | 20 关是否需要 variant | M3 | 若 Generator 产出的关卡人工试玩不满意，是否允许同一 config 换 seed 重生成 |
-| B6 | 桌面最小可用高度 | M0 | §45.3 暂用 garden 的 700px。StackPop 的 Tray 不可压缩，需在 M0 实测后回写本文档 |
+| B6 | 桌面最小可用高度 | M0 | ✅ 已确认 700px；StackPop M0 在 1280×700 下实测通过，详见 §45.3 |
 | B7 | 是否加入站点首页入口 | M6 | 站点根 `index.html` 目前不含 garden 与 stack 卡片。**属站点根写操作，须用户确认** |
