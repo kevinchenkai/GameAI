@@ -126,3 +126,42 @@ BGM 请求晚于首屏 `load` 约 855 ms，不在首屏关键路径；BGM 下载
 因此发布文件不再携带可读取的网易 ID3 标记。这里指文件 metadata；若发行方在音频信号
 中使用不可见的声学水印，常规 FFmpeg/ffprobe 无法证明其存在或不存在，但当前文件没有
 发现这类水印的外部声明或可验证证据。
+
+---
+
+## 7. 上线记录（2026-08-23）
+
+提交 `4595e6c`，已推送双远端并部署至 https://g.ismayday.mobi/stack/ 。
+
+### 部署验证
+
+| 项 | 结果 |
+|---|---|
+| `windy_loop_v1.m4a` | 200 · `audio/x-m4a` · 409,486 B · md5 与本地一致 ✅ |
+| `windy_loop_v1.mp3` | 200 · `audio/mpeg` · 537,561 B · md5 与本地一致 ✅ |
+| 线上 bundle | 含 `bgm-windy-v1`，与本地构建 md5 一致 ✅ |
+
+### 附带修复：音频缺少缓存响应头
+
+部署后发现音频**没有 `cache-control`** —— 此前扩展 nginx 图片缓存规则时
+只加了 `webp|svg|ico`，未覆盖音频。400 KB 每次访问重新下载，代价比图片大得多。
+
+```nginx
+# /www/server/panel/vhost/nginx/g.ismayday.mobi.conf:117
+-  location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|webp|svg|ico)$
++  location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|webp|svg|ico|mp3|m4a|ogg|wav)$
+   {
+       expires      30d;
+```
+
+同 BUGFIX 文档 §5 的操作纪律：确认规则唯一 → `nginx -t` 通过 → `nginx -s reload`
+（graceful）→ 逐个验证 9 个站点均 200（含 mimo / mystock）。
+
+验证：`cache-control: max-age=2592000` ✅
+
+> ⚠️ 音频现已纳入 30 天缓存，**重制必须改用 `v2` 文件名**（§4 已述），
+> 否则用户 30 天内仍听到旧音频。
+
+### 权利
+
+项目方（Kevin）已确认该音乐可用于本项目发布。
