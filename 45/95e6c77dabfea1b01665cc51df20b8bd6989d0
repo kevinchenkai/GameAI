@@ -1,0 +1,51 @@
+stack/docs/BGM_windy_选段与加工记录.md
+  s_d321df54fe1b3e::t_ddba5b74cb62be 1-54,56,59-62,64-66,68-69,73-74,93,115,125
+  s_d321df54fe1b3e::t_59b8095d5a213b 96-99,103-105
+  s_d321df54fe1b3e::t_4d2c200a6acec5 55,57-58,63,67,70-72,75-92,94-95,100-102,106-114,116-124,126-128
+stack/web/tests/assets.test.ts
+  s_d321df54fe1b3e::t_e298d723143f3e 44-46
+  s_d321df54fe1b3e::t_50d6ef24b45da6 4-9,31-43,47
+  s_d321df54fe1b3e::t_58acdede885a7d 48
+stack/web/src/game/scenes/HomeScene.ts
+  s_d321df54fe1b3e::t_bc0fcac6f6521f 6,15
+stack/web/src/game/config/assets.ts
+  s_d321df54fe1b3e::t_bc0fcac6f6521f 8-12,17-20,52-58,117-119
+  s_3a713e661cdfe8::t_0abc620a9affe1 120-121
+stack/web/src/game/scenes/SettingsScene.ts
+  s_d321df54fe1b3e::t_bc0fcac6f6521f 7,79-81
+stack/web/tests/m4Contracts.test.ts
+  s_d321df54fe1b3e::t_50d6ef24b45da6 13-16,21-32
+stack/web/src/game/scenes/BackgroundMusicScene.ts
+  s_d321df54fe1b3e::t_4dda31e21e2dfe 12-13,21,81,107
+  s_d321df54fe1b3e::t_8ca9dde91968de 127,131
+  s_d321df54fe1b3e::t_bc0fcac6f6521f 1-11,14-20,22-25,27-80,82-92,94-98,100-104,106,108-109,132-137,139-151
+  s_d321df54fe1b3e::t_60c2710b8cf28a 26,93,99,105,110-126,128-130,138
+stack/web/src/game/scenes/GameScene.ts
+  s_d321df54fe1b3e::t_bc0fcac6f6521f 23,720-722
+stack/web/src/main.ts
+  s_d321df54fe1b3e::t_bc0fcac6f6521f 11,70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "4595e6c77dabfea1b01665cc51df20b8bd6989d0",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    },
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
