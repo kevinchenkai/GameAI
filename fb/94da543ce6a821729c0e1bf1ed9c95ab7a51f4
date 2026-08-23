@@ -1,0 +1,40 @@
+stack/docs/BUGFIX_手机端字体模糊_DPR.md
+  s_d321df54fe1b3e::t_26e00051d7ed7c 240-245
+stack/web/src/game/config/howToPlay.ts
+  s_d321df54fe1b3e::t_1f2c022d82b002 18-19
+stack/web/src/game/layout/GameLayout.ts
+  s_d321df54fe1b3e::t_1f2c022d82b002 120-137
+stack/web/eslint.config.js
+  s_d321df54fe1b3e::t_26e00051d7ed7c 3,39-43
+  s_d321df54fe1b3e::t_a539b07711ecb3 44-45
+stack/web/tests/layout.test.ts
+  s_d321df54fe1b3e::t_1f2c022d82b002 3-8,62-79
+stack/web/eslint-rules/requireScaledFontSize.js
+  s_d321df54fe1b3e::t_26e00051d7ed7c 1-49
+stack/web/src/game/scenes/GameScene.ts
+  s_d321df54fe1b3e::t_389fb5d39334fc 29-34,301-310,313,315,317,321-328,330,362-366,369-379,382-392,394-395,398,400-401,407,409-419,422
+  s_d321df54fe1b3e::t_7e07bf2ef3f6ad 432-479,696,706-710
+  s_d321df54fe1b3e::t_9ed3ebe5fa9269 10-15,52,73,167,184,199-201,210,212,214,231-237,240,265-268,287
+  s_d321df54fe1b3e::t_0603c2cb1bee91 274,584-590,592,595,617,633-634,647
+  s_d321df54fe1b3e::t_fa0296b70af8ab 711
+stack/web/tests/uiLint.test.ts
+  s_d321df54fe1b3e::t_26e00051d7ed7c 1-34
+stack/web/eslint-rules/requireScaledFontSize.d.ts
+  s_d321df54fe1b3e::t_75b90902ca47e5 1-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "fb94da543ce6a821729c0e1bf1ed9c95ab7a51f4",
+  "prompts": {},
+  "sessions": {
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
