@@ -46,11 +46,20 @@ const TILE_ASSETS = Object.values(ASSETS.tiles);
 
 /**
  * Scene-owned texture declarations are the single source for both preloading and rendering.
- * Assets not used by M4 (settings and hint) stay in the manifest but are intentionally deferred.
+ * Scene-owned texture declarations remain the single source for preloading and rendering.
+ * Hint stays deferred until the hint feature is implemented.
  */
 export const SCENE_TEXTURES = {
   Home: {
     background: ASSETS.bg.home,
+    settings: ASSETS.ui.settings,
+  },
+  LevelSelect: {
+    background: ASSETS.bg.home,
+    star: ASSETS.fx.star,
+  },
+  Settings: {
+    settings: ASSETS.ui.settings,
   },
   Game: {
     background: ASSETS.bg.game,
@@ -60,6 +69,7 @@ export const SCENE_TEXTURES = {
     traySlotWarn: ASSETS.ui.traySlotWarn,
     shuffle: ASSETS.ui.shuffle,
     undo: ASSETS.ui.undo,
+    settings: ASSETS.ui.settings,
     winPanel: ASSETS.ui.winPanel,
     failPanel: ASSETS.ui.failPanel,
     sparkle01: ASSETS.fx.sparkle01,
@@ -77,6 +87,7 @@ export const PRELOAD_ASSETS: readonly AssetDefinition[] = [
   SCENE_TEXTURES.Game.traySlotWarn,
   SCENE_TEXTURES.Game.shuffle,
   SCENE_TEXTURES.Game.undo,
+  SCENE_TEXTURES.Game.settings,
   SCENE_TEXTURES.Game.winPanel,
   SCENE_TEXTURES.Game.failPanel,
   SCENE_TEXTURES.Game.sparkle01,
@@ -93,6 +104,7 @@ export const RENDERED_TEXTURE_KEYS: readonly string[] = [
   SCENE_TEXTURES.Game.traySlotWarn.key,
   SCENE_TEXTURES.Game.shuffle.key,
   SCENE_TEXTURES.Game.undo.key,
+  SCENE_TEXTURES.Game.settings.key,
   SCENE_TEXTURES.Game.winPanel.key,
   SCENE_TEXTURES.Game.failPanel.key,
   SCENE_TEXTURES.Game.sparkle01.key,

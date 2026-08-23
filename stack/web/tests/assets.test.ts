@@ -18,9 +18,9 @@ describe('M4 asset manifest', () => {
     }
   });
 
-  it('deferred settings and hint art remain in the manifest without entering first-screen preload', () => {
+  it('M5 preloads settings art while hint remains deferred', () => {
     const loaded = new Set(PRELOAD_ASSETS.map(({ key }) => key));
-    expect(loaded.has(ASSETS.ui.settings.key)).toBe(false);
+    expect(loaded.has(ASSETS.ui.settings.key)).toBe(true);
     expect(loaded.has(ASSETS.ui.hint.key)).toBe(false);
   });
 });

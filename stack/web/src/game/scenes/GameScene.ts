@@ -4,19 +4,27 @@ import { ANIMATION, GAMEPLAY } from '../config/tuning';
 import { COLORS, LAYOUT, PROTOTYPE_UI } from '../config/layout';
 import { createDepthTwelveLayoutState } from '../config/demoLevel';
 import { GameModel } from '../core/GameModel';
+import { calculateStarRating, type StarRating } from '../core/StarRating';
 import { UndoManager } from '../core/UndoManager';
 import { LEVEL_LOADER } from '../levelRegistry';
 import { calculateGameLayout, type GameLayout } from '../layout/GameLayout';
 import { AudioSystem } from '../systems/AudioSystem';
 import { InputQueue } from '../systems/InputQueue';
+import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
 import type { TileData } from '../types/tile';
+
+interface GameSceneData {
+  levelId?: number;
+  resume?: boolean;
+}
 
 export class GameScene extends Phaser.Scene {
   private model!: GameModel;
   private currentLayout!: GameLayout;
   private inputQueue!: InputQueue;
+  private saveManager!: SaveManager;
   private busy = false;
   private layoutFixture = false;
   private configuredMaxDepth = 1;
@@ -28,38 +36,56 @@ export class GameScene extends Phaser.Scene {
   private trayWarningTween: Phaser.Tweens.Tween | null = null;
   private lastShuffleStrategy = 'none';
   private lastShuffleDurationMs = 0;
+  private completionStars: StarRating | null = null;
 
   constructor() {
     super('Game');
   }
 
-  create(): void {
+  create(data: GameSceneData = {}): void {
     const params = new URLSearchParams(window.location.search);
+    this.saveManager = getSaveManager();
     this.layoutFixture = params.get('layout') === 'depth12';
     this.overlapRatio = this.parseOverlap(params.get('overlap'));
-    const requestedLevel = Number(params.get('level') ?? '1');
+    const urlHasLevel = params.has('level');
+    const savedRunLevel = this.saveManager.snapshot.currentRun?.levelId;
+    const requestedLevel = data.levelId ?? (urlHasLevel ? Number(params.get('level')) : savedRunLevel ?? 1);
     const levelId = Number.isInteger(requestedLevel) && requestedLevel >= 1 && requestedLevel <= LEVEL_LOADER.count
       ? requestedLevel
       : 1;
     const level = LEVEL_LOADER.get(levelId);
     this.configuredMaxDepth = level.maxDepth;
-    this.model = new GameModel(
-      this.layoutFixture ? createDepthTwelveLayoutState() : LEVEL_LOADER.createState(levelId),
-    );
+    this.undoManager.clear();
+    this.completionStars = null;
+    const shouldResume = !this.layoutFixture && (data.resume ?? !urlHasLevel);
+    const restored = shouldResume ? this.saveManager.restoreCurrentRun(levelId) : null;
+    if (restored !== null) this.undoManager.import(restored.undoStack);
+    const freshState = this.layoutFixture ? createDepthTwelveLayoutState() : LEVEL_LOADER.createState(levelId);
+    this.model = new GameModel(freshState);
+    if (restored !== null) this.model.replaceState(restored.state);
     this.inputQueue = new InputQueue((columnIndex) => this.handleQueuedPick(columnIndex));
     if (this.sound instanceof Phaser.Sound.WebAudioSoundManager) {
       this.audioSystem.adoptContext(this.sound.context);
     }
+    this.applyPreferences();
+    if (!this.layoutFixture && restored === null) this.persistCurrentRun();
     this.renderGame();
     this.installDebugApi();
     this.scale.on(Phaser.Scale.Events.RESIZE, this.handleResize, this);
+    this.events.on(Phaser.Scenes.Events.RESUME, this.handleResume, this);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.clearInputQueue('shutdown');
       this.trayWarningTween?.stop();
       this.tweens.killAll();
       this.scale.off(Phaser.Scale.Events.RESIZE, this.handleResize, this);
+      this.events.off(Phaser.Scenes.Events.RESUME, this.handleResume, this);
       delete window.__STACKPOP__;
     });
+  }
+
+  private handleResume(): void {
+    this.applyPreferences();
+    if (!this.busy) this.renderGame();
   }
 
   private handleResize(): void {
@@ -149,13 +175,24 @@ export class GameScene extends Phaser.Scene {
       })
       .setOrigin(0, 0);
     this.add
-      .text(contentLeft + contentWidth - 14, headerTop + 16, `${state.tray.length}/${state.traySize}`, {
+      .text(contentLeft + contentWidth - 56, headerTop + 16, `${state.tray.length}/${state.traySize}`, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
         fontSize: '17px',
         fontStyle: 'bold',
         color: state.tray.length >= 6 ? '#d66b4d' : '#6e8ca0',
       })
       .setOrigin(1, 0);
+    const settings = this.add
+      .image(contentLeft + contentWidth - 28, headerTop + 32, SCENE_TEXTURES.Game.settings.key)
+      .setDisplaySize(34, 34);
+    if (!this.busy && !this.layoutFixture) {
+      settings.setInteractive({ useHandCursor: true });
+      settings.on(Phaser.Input.Events.POINTER_OVER, () => settings.setScale(1.08));
+      settings.on(Phaser.Input.Events.POINTER_OUT, () => settings.setScale(1));
+      settings.on(Phaser.Input.Events.POINTER_UP, () => this.openSettings());
+    } else {
+      settings.setAlpha(0.5);
+    }
   }
 
   private drawBoard(state: GameState): void {
@@ -301,6 +338,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private drawResult(status: 'won' | 'failed'): void {
+    const state = this.model.state;
     const centerX = this.scale.width / 2;
     const centerY = this.scale.height / 2;
     const panelWidth = Math.min(this.currentLayout.contentWidth * 0.88, this.scale.width - LAYOUT.contentPadding * 2);
@@ -308,12 +346,19 @@ export class GameScene extends Phaser.Scene {
     this.add.rectangle(centerX, centerY, this.scale.width, this.scale.height, 0x34516b, 0.42).setInteractive().setDepth(300);
     this.add.image(centerX, centerY, status === 'won' ? SCENE_TEXTURES.Game.winPanel.key : SCENE_TEXTURES.Game.failPanel.key).setDisplaySize(panelWidth, panelHeight).setDepth(301);
     if (status === 'won') {
-      this.add.image(centerX, centerY - panelHeight * 0.3, SCENE_TEXTURES.Game.star.key).setDisplaySize(72, 72).setDepth(302);
+      const earnedStars = this.completionStars ?? calculateStarRating(state.undoUsed, state.shuffleUsed);
+      for (let index = 0; index < 3; index += 1) {
+        const star = this.add.image(centerX + (index - 1) * 48, centerY - panelHeight * 0.31, SCENE_TEXTURES.Game.star.key).setDisplaySize(42, 42).setDepth(302);
+        if (index >= earnedStars) star.setTint(0xaebbc5).setAlpha(0.48);
+      }
     }
-    this.add.text(centerX, centerY - (status === 'won' ? 48 : 68), status === 'won' ? '清空啦！' : '这一步卡住啦！', {
+    this.add.text(centerX, centerY - (status === 'won' ? 54 : 68), status === 'won' ? `第 ${state.levelId} 关完成` : '这一步卡住啦！', {
       fontFamily: 'PingFang SC, sans-serif', fontSize: `${PROTOTYPE_UI.resultTitleSize}px`, fontStyle: 'bold', color: status === 'won' ? '#d88b21' : COLORS.title,
     }).setOrigin(0.5).setDepth(302);
-    this.add.text(centerX, centerY + (status === 'won' ? 2 : -22), status === 'won' ? '所有卡片都已消除' : '暂存槽已经放满 7 格', {
+    const resultBody = status === 'won'
+      ? `步数 ${state.moveCount}  ·  撤回 ${state.undoUsed}  ·  打乱 ${state.shuffleUsed}`
+      : '暂存槽已经放满 7 格';
+    this.add.text(centerX, centerY + (status === 'won' ? 4 : -22), resultBody, {
       fontFamily: 'PingFang SC, sans-serif', fontSize: `${PROTOTYPE_UI.resultBodySize}px`, color: COLORS.text,
     }).setOrigin(0.5).setDepth(302);
     if (status === 'failed') {
@@ -324,7 +369,13 @@ export class GameScene extends Phaser.Scene {
       this.drawResultButton(left + buttonWidth + 6, top, buttonWidth, '打乱', false, () => void this.performShuffle());
       this.drawResultButton(left + (buttonWidth + 6) * 2, top, buttonWidth, '重新开始', true, () => this.restart());
     } else {
-      this.drawResultButton(centerX - 92, centerY + 62, 184, '再玩一次', true, () => this.restart());
+      const buttonWidth = (panelWidth - 52) / 3;
+      const left = centerX - panelWidth / 2 + 20;
+      const top = centerY + 62;
+      const hasNext = state.levelId < LEVEL_LOADER.count;
+      this.drawResultButton(left, top, buttonWidth, '下一关', hasNext, () => this.startLevel(state.levelId + 1));
+      this.drawResultButton(left + buttonWidth + 6, top, buttonWidth, '再玩一次', true, () => this.restart());
+      this.drawResultButton(left + (buttonWidth + 6) * 2, top, buttonWidth, '选择关卡', true, () => this.scene.start('LevelSelect'));
     }
   }
 
@@ -359,6 +410,7 @@ export class GameScene extends Phaser.Scene {
     const before = this.model.state;
     this.undoManager.push(before);
     const result = this.model.pick(columnIndex);
+    this.persistAfterStateChange();
     this.renderGame(false);
     await this.playPickAnimation(before, result);
     const status = this.model.state.status;
@@ -458,6 +510,7 @@ export class GameScene extends Phaser.Scene {
     const restored = this.undoManager.undo(this.model.state);
     if (restored === null) return false;
     this.model.replaceState(restored);
+    this.persistCurrentRun();
     this.audioSystem.play('undo');
     this.renderGame();
     return true;
@@ -475,6 +528,7 @@ export class GameScene extends Phaser.Scene {
       const [result] = await Promise.all([shuffleInWorker(state, state.rngState), this.wait(ANIMATION.shuffleMs)]);
       this.undoManager.push(state);
       this.model.replaceState({ ...result.nextState, undoUsed: state.undoUsed, shuffleUsed: state.shuffleUsed + 1, status: 'playing' });
+      this.persistCurrentRun();
       this.lastShuffleStrategy = result.strategy;
       this.lastShuffleDurationMs = performance.now() - startedAt;
       this.busy = false;
@@ -497,12 +551,46 @@ export class GameScene extends Phaser.Scene {
     this.lastShuffleStrategy = 'none';
     this.lastShuffleDurationMs = 0;
     this.model.restart();
+    this.completionStars = null;
+    this.persistCurrentRun();
     this.renderGame();
   }
 
   private vibrate(pattern: number | number[]): void {
+    if (!this.saveManager.snapshot.settings.vibration) return;
     if (window.matchMedia('(pointer: fine)').matches) return;
     if (typeof navigator.vibrate === 'function') navigator.vibrate(pattern);
+  }
+
+  private applyPreferences(): void {
+    this.audioSystem.setEnabled(this.saveManager.snapshot.settings.sound);
+  }
+
+  private persistAfterStateChange(): void {
+    if (this.layoutFixture) return;
+    const state = this.model.state;
+    if (state.status === 'won') {
+      this.completionStars = calculateStarRating(state.undoUsed, state.shuffleUsed);
+      this.saveManager.completeLevel(state.levelId, this.completionStars);
+    } else {
+      this.persistCurrentRun();
+    }
+  }
+
+  private persistCurrentRun(): void {
+    if (this.layoutFixture || !this.model) return;
+    this.saveManager.saveCurrentRun(this.model.state, this.undoManager.exportRecent());
+  }
+
+  private startLevel(levelId: number): void {
+    if (levelId < 1 || levelId > LEVEL_LOADER.count) return;
+    this.scene.start('Game', { levelId, resume: false });
+  }
+
+  private openSettings(): void {
+    if (this.busy || this.layoutFixture) return;
+    this.scene.pause();
+    this.scene.launch('Settings', { sourceScene: 'Game', levelId: this.model.state.levelId });
   }
 
   private clearInputQueue(

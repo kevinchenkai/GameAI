@@ -5,6 +5,8 @@ import { BootScene } from './game/scenes/BootScene';
 import { PreloadScene } from './game/scenes/PreloadScene';
 import { HomeScene } from './game/scenes/HomeScene';
 import { GameScene } from './game/scenes/GameScene';
+import { LevelSelectScene } from './game/scenes/LevelSelectScene';
+import { SettingsScene } from './game/scenes/SettingsScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -20,7 +22,7 @@ const config: Phaser.Types.Core.GameConfig = {
     antialias: true,
     powerPreference: 'low-power',
   },
-  scene: [BootScene, PreloadScene, HomeScene, GameScene],
+  scene: [BootScene, PreloadScene, HomeScene, LevelSelectScene, GameScene, SettingsScene],
 };
 
 const game = new Phaser.Game(config);

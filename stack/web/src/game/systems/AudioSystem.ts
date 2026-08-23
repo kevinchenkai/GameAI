@@ -23,12 +23,18 @@ const CUE_FREQUENCIES: Readonly<Record<SoundCue, number>> = {
 
 export class AudioSystem {
   private context: AudioContext | null = null;
+  private enabled = true;
 
   adoptContext(context: AudioContext): void {
     this.context = context;
   }
 
+  setEnabled(enabled: boolean): void {
+    this.enabled = enabled;
+  }
+
   play(cue: SoundCue): void {
+    if (!this.enabled) return;
     const context = this.context;
     if (context === null) return;
     const playTone = (): void => {
