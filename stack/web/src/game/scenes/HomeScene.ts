@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { SCENE_TEXTURES } from '../config/assets';
 import { COLORS, LAYOUT, PROTOTYPE_UI } from '../config/layout';
 
 export class HomeScene extends Phaser.Scene {
@@ -20,14 +21,18 @@ export class HomeScene extends Phaser.Scene {
     const height = this.scale.height;
     const centerX = width / 2;
     const centerY = height / 2;
-    const graphics = this.add.graphics();
-    graphics.fillGradientStyle(COLORS.skyTop, COLORS.skyTop, COLORS.skyBottom, COLORS.skyBottom, 1);
-    graphics.fillRect(0, 0, width, height);
-    this.drawCloud(graphics, width * 0.22, height * 0.19, Math.min(width, height) * 0.07);
-    this.drawCloud(graphics, width * 0.78, height * 0.29, Math.min(width, height) * 0.05);
+    this.add
+      .image(centerX, centerY, SCENE_TEXTURES.Home.background.key)
+      .setDisplaySize(width, height);
+
+    const panelWidth = Math.min(356, width - LAYOUT.contentPadding * 2);
+    this.add
+      .rectangle(centerX, centerY - 38, panelWidth, 330, 0xfff9ec, 0.82)
+      .setStrokeStyle(2, 0xffffff, 0.85)
+      .setOrigin(0.5);
 
     this.add
-      .text(centerX, centerY - 128, 'StackPop', {
+      .text(centerX, centerY - 146, 'StackPop', {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
         fontSize: '46px',
         fontStyle: 'bold',
@@ -37,7 +42,7 @@ export class HomeScene extends Phaser.Scene {
       })
       .setOrigin(0.5);
     this.add
-      .text(centerX, centerY - 72, '萌宠叠叠消 · 规则原型', {
+      .text(centerX, centerY - 86, '萌宠叠叠消', {
         fontFamily: 'PingFang SC, sans-serif',
         fontSize: '17px',
         color: COLORS.text,
@@ -45,7 +50,7 @@ export class HomeScene extends Phaser.Scene {
       .setOrigin(0.5);
 
     const buttonWidth = Math.min(280, width - LAYOUT.contentPadding * 4);
-    const button = this.add.container(centerX, centerY + 34);
+    const button = this.add.container(centerX, centerY + 42);
     const buttonBackground = this.add
       .rectangle(0, 0, buttonWidth, 58, 0xffc93c)
       .setStrokeStyle(2, 0xb08355)
@@ -57,13 +62,13 @@ export class HomeScene extends Phaser.Scene {
       color: '#62452f',
     }).setOrigin(0.5);
     button.add([buttonBackground, label]);
-    buttonBackground.on(Phaser.Input.Events.POINTER_OVER, () => button.setScale(1.03));
-    buttonBackground.on(Phaser.Input.Events.POINTER_OUT, () => button.setScale(1));
+    buttonBackground.on(Phaser.Input.Events.POINTER_OVER, () => button.setY(centerY + 38).setScale(1.04));
+    buttonBackground.on(Phaser.Input.Events.POINTER_OUT, () => button.setY(centerY + 42).setScale(1));
     buttonBackground.on(Phaser.Input.Events.POINTER_DOWN, () => button.setScale(0.96));
     buttonBackground.on(Phaser.Input.Events.POINTER_UP, () => this.scene.start('Game'));
 
     this.add
-      .text(centerX, height - 34, 'M0 + M1 · 色块与字母占位', {
+      .text(centerX, height - 34, '软萌花园 · 轻松三消', {
         fontFamily: 'PingFang SC, sans-serif',
         fontSize: `${PROTOTYPE_UI.subtitleFontSize}px`,
         color: '#7591a6',
@@ -71,11 +76,4 @@ export class HomeScene extends Phaser.Scene {
       .setOrigin(0.5);
   }
 
-  private drawCloud(graphics: Phaser.GameObjects.Graphics, x: number, y: number, radius: number): void {
-    graphics.fillStyle(COLORS.cloud, 0.62);
-    graphics.fillCircle(x - radius * 0.7, y, radius * 0.62);
-    graphics.fillCircle(x, y - radius * 0.18, radius);
-    graphics.fillCircle(x + radius * 0.86, y, radius * 0.7);
-    graphics.fillRoundedRect(x - radius * 1.35, y, radius * 2.75, radius, radius * 0.45);
-  }
 }

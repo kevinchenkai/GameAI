@@ -9,8 +9,14 @@ export const GAMEPLAY = {
 } as const;
 
 export const ANIMATION = {
-  tapMs: 80,
-  settleMs: 140,
+  tapDownMs: 80,
+  tapUpMs: 90,
+  jumpMs: 270,
+  trayShiftMs: 120,
+  matchMs: 220,
+  shuffleMs: 500,
+  trayWarningCycleMs: 1200,
+  trayShakeMs: 80,
   resultDelayMs: 300,
 } as const;
 
