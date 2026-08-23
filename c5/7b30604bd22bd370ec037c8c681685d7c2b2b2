@@ -1,0 +1,21 @@
+stack/deploy.sh
+  s_d321df54fe1b3e::t_817a3be00c4f5a 1-120
+stack/docs/StackPop_M6_执行记录.md
+  s_d321df54fe1b3e::t_3e59956dc11d5f 1-62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "c57b30604bd22bd370ec037c8c681685d7c2b2b2",
+  "prompts": {},
+  "sessions": {
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
