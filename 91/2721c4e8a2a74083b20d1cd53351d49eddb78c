@@ -1,0 +1,56 @@
+stack/web/src/game/scenes/HomeScene.ts
+  s_d321df54fe1b3e::t_bbb1f08bf24766 2,24-26,28,30-35,45,53,65-66,71
+stack/web/src/game/scenes/GameScene.ts
+  s_d321df54fe1b3e::t_e5468850c45f9f 2,10-11,13,19,25-28,49-52,55,58-60,65-68,80,92,94-95,97-98,113-115,119-124,130-134,143,145,151-158,169-174,179,182,184-192,194-195,209,211,213-214,220-223,225-236,238-250,254-262,270-272,275-290,292-300,306-318,320-325,327,331-349,351-354,357-366,368-371,373-451,461,469,471-472,475,477,502-505,512-516
+  s_d321df54fe1b3e::t_3962e3a398b90e 196,198-203
+  s_d321df54fe1b3e::t_d1948758d23ddf 57,367,372,456,467,494,506-511
+stack/web/tests/inputQueue.test.ts
+  s_d321df54fe1b3e::t_9847d8ec4a62ae 1-61
+stack/web/src/game/config/tuning.ts
+  s_d321df54fe1b3e::t_bbb1f08bf24766 12-19
+stack/web/tests/m4Contracts.test.ts
+  s_d321df54fe1b3e::t_d1948758d23ddf 1-32
+stack/docs/art_review/MA0_REVIEW.md
+  s_d321df54fe1b3e::t_2e66390e9f32bc 1-45
+  s_3a713e661cdfe8::t_e67b838d493ab2 46-93
+stack/web/src/game/systems/InputQueue.ts
+  s_d321df54fe1b3e::t_9847d8ec4a62ae 1-38
+stack/web/src/game/config/assets.ts
+  s_d321df54fe1b3e::t_9847d8ec4a62ae 1-101
+stack/web/src/game/scenes/PreloadScene.ts
+  s_d321df54fe1b3e::t_bbb1f08bf24766 2,9-31
+  s_d321df54fe1b3e::t_9bf4a0b27b6606 32-33
+stack/web/src/game/systems/AudioSystem.ts
+  s_d321df54fe1b3e::t_9847d8ec4a62ae 1-57
+stack/web/tests/assets.test.ts
+  s_d321df54fe1b3e::t_9847d8ec4a62ae 1-26
+stack/web/tools/generatePlaceholderAssets.py
+  s_d321df54fe1b3e::t_e8d9ccaa5c4a59 1-213
+stack/docs/art_review/ma1/MA1_REVIEW.md
+  s_d321df54fe1b3e::t_57bc3c0790d610 1-27,29-47
+  s_d321df54fe1b3e::t_9c3a32fb1eb1e6 28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "912721c4e8a2a74083b20d1cd53351d49eddb78c",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    },
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
