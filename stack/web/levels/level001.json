@@ -1,0 +1,131 @@
+{
+  "id": 1,
+  "name": "StackPop 01",
+  "schemaVersion": 1,
+  "levelRevision": 1,
+  "columnCount": 4,
+  "maxDepth": 6,
+  "traySize": 7,
+  "tileTypes": [
+    "paw",
+    "grass",
+    "watering"
+  ],
+  "columns": [
+    [
+      "watering",
+      "paw",
+      "watering",
+      "grass",
+      "grass",
+      "paw"
+    ],
+    [
+      "grass",
+      "grass",
+      "watering",
+      "grass",
+      "paw"
+    ],
+    [
+      "watering",
+      "paw",
+      "watering",
+      "paw"
+    ],
+    [
+      "watering",
+      "grass",
+      "paw"
+    ]
+  ],
+  "tools": {
+    "undo": -1,
+    "shuffle": 3,
+    "hint": 0
+  },
+  "stars": {
+    "three": 25,
+    "two": 32
+  },
+  "solution": [
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "watering"
+    }
+  ],
+  "meta": {
+    "generationKind": "manual",
+    "source": "hand-authored",
+    "targetSeconds": 25,
+    "designGoal": "教「只点顶部」"
+  }
+}

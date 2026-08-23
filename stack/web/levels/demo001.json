@@ -1,0 +1,35 @@
+{
+  "id": 1,
+  "name": "M2 Demo 验收关",
+  "schemaVersion": 1,
+  "levelRevision": 1,
+  "columnCount": 6,
+  "maxDepth": 3,
+  "traySize": 7,
+  "tileTypes": ["paw", "grass", "watering", "bell"],
+  "columns": [
+    ["bell", "paw"],
+    ["grass", "paw"],
+    ["watering", "paw"],
+    ["bell", "grass"],
+    ["watering", "grass"],
+    ["bell", "watering"]
+  ],
+  "tools": { "undo": -1, "shuffle": 3, "hint": 0 },
+  "stars": { "three": 0, "two": 2 },
+  "solution": [
+    { "columnIndex": 0, "expectedTileType": "paw" },
+    { "columnIndex": 0, "expectedTileType": "bell" },
+    { "columnIndex": 1, "expectedTileType": "paw" },
+    { "columnIndex": 1, "expectedTileType": "grass" },
+    { "columnIndex": 2, "expectedTileType": "paw" },
+    { "columnIndex": 2, "expectedTileType": "watering" },
+    { "columnIndex": 3, "expectedTileType": "grass" },
+    { "columnIndex": 3, "expectedTileType": "bell" },
+    { "columnIndex": 4, "expectedTileType": "grass" },
+    { "columnIndex": 4, "expectedTileType": "watering" },
+    { "columnIndex": 5, "expectedTileType": "watering" },
+    { "columnIndex": 5, "expectedTileType": "bell" }
+  ],
+  "meta": { "kind": "m2-fixture", "source": "§64" }
+}

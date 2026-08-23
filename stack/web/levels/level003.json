@@ -1,0 +1,194 @@
+{
+  "id": 3,
+  "name": "StackPop 03",
+  "schemaVersion": 1,
+  "levelRevision": 1,
+  "columnCount": 5,
+  "maxDepth": 8,
+  "traySize": 7,
+  "tileTypes": [
+    "paw",
+    "grass",
+    "watering",
+    "bell"
+  ],
+  "columns": [
+    [
+      "grass",
+      "grass",
+      "watering",
+      "watering",
+      "paw",
+      "grass",
+      "watering",
+      "watering"
+    ],
+    [
+      "paw",
+      "paw",
+      "paw",
+      "watering",
+      "grass",
+      "paw",
+      "grass"
+    ],
+    [
+      "grass",
+      "paw",
+      "bell",
+      "bell",
+      "grass",
+      "paw"
+    ],
+    [
+      "bell",
+      "bell",
+      "grass",
+      "bell",
+      "bell"
+    ],
+    [
+      "paw",
+      "watering",
+      "grass",
+      "paw"
+    ]
+  ],
+  "tools": {
+    "undo": -1,
+    "shuffle": 3,
+    "hint": 0
+  },
+  "stars": {
+    "three": 40,
+    "two": 50
+  },
+  "solution": [
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    }
+  ],
+  "meta": {
+    "generationKind": "manual",
+    "source": "hand-authored",
+    "targetSeconds": 40,
+    "designGoal": "教「槽位可暂存不同类」"
+  }
+}

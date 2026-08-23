@@ -1,0 +1,351 @@
+{
+  "id": 18,
+  "name": "StackPop 18",
+  "schemaVersion": 1,
+  "levelRevision": 1,
+  "columnCount": 6,
+  "maxDepth": 12,
+  "traySize": 7,
+  "tileTypes": [
+    "paw",
+    "grass",
+    "watering",
+    "bell",
+    "fish",
+    "yarn",
+    "bone"
+  ],
+  "columns": [
+    [
+      "paw",
+      "bell",
+      "grass",
+      "watering",
+      "paw",
+      "fish",
+      "fish",
+      "yarn",
+      "yarn",
+      "watering",
+      "watering",
+      "bone"
+    ],
+    [
+      "paw",
+      "grass",
+      "grass",
+      "watering",
+      "fish",
+      "yarn",
+      "yarn",
+      "grass",
+      "bone",
+      "bone",
+      "bone"
+    ],
+    [
+      "paw",
+      "bell",
+      "bell",
+      "bell",
+      "fish",
+      "yarn",
+      "yarn",
+      "grass",
+      "grass",
+      "bone"
+    ],
+    [
+      "paw",
+      "bell",
+      "watering",
+      "bell",
+      "fish",
+      "fish",
+      "yarn",
+      "watering",
+      "watering",
+      "bone"
+    ],
+    [
+      "paw",
+      "bell",
+      "bell",
+      "grass",
+      "fish",
+      "fish",
+      "yarn",
+      "yarn",
+      "watering"
+    ],
+    [
+      "paw",
+      "grass",
+      "bell",
+      "grass",
+      "paw",
+      "paw",
+      "fish",
+      "watering"
+    ]
+  ],
+  "tools": {
+    "undo": -1,
+    "shuffle": 3,
+    "hint": 0
+  },
+  "stars": {
+    "three": 81,
+    "two": 102
+  },
+  "solution": [
+    {
+      "columnIndex": 0,
+      "expectedTileType": "bone"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "bone"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "bone"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bone"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bone"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "bone"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "yarn"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "fish"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "paw"
+    }
+  ],
+  "meta": {
+    "generationKind": "generated",
+    "seed": 1234471,
+    "targetDepthSpread": 2,
+    "achievedDepthSpread": 2,
+    "targetSeconds": 81,
+    "designGoal": "高压"
+  }
+}

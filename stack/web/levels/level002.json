@@ -1,0 +1,163 @@
+{
+  "id": 2,
+  "name": "StackPop 02",
+  "schemaVersion": 1,
+  "levelRevision": 1,
+  "columnCount": 5,
+  "maxDepth": 7,
+  "traySize": 7,
+  "tileTypes": [
+    "paw",
+    "grass",
+    "watering"
+  ],
+  "columns": [
+    [
+      "paw",
+      "grass",
+      "watering",
+      "watering",
+      "watering",
+      "paw",
+      "paw"
+    ],
+    [
+      "grass",
+      "grass",
+      "watering",
+      "watering",
+      "paw",
+      "grass"
+    ],
+    [
+      "grass",
+      "paw",
+      "paw",
+      "paw",
+      "grass"
+    ],
+    [
+      "paw",
+      "grass",
+      "grass",
+      "grass"
+    ],
+    [
+      "paw",
+      "watering"
+    ]
+  ],
+  "tools": {
+    "undo": -1,
+    "shuffle": 3,
+    "hint": 0
+  },
+  "stars": {
+    "three": 32,
+    "two": 40
+  },
+  "solution": [
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    }
+  ],
+  "meta": {
+    "generationKind": "manual",
+    "source": "hand-authored",
+    "targetSeconds": 32,
+    "designGoal": "教「三枚同类自动消除」"
+  }
+}

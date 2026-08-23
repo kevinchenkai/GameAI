@@ -1,0 +1,256 @@
+{
+  "id": 5,
+  "name": "StackPop 05",
+  "schemaVersion": 1,
+  "levelRevision": 1,
+  "columnCount": 6,
+  "maxDepth": 9,
+  "traySize": 7,
+  "tileTypes": [
+    "paw",
+    "grass",
+    "watering",
+    "bell"
+  ],
+  "columns": [
+    [
+      "grass",
+      "grass",
+      "watering",
+      "grass",
+      "watering",
+      "bell",
+      "paw",
+      "bell",
+      "grass"
+    ],
+    [
+      "paw",
+      "bell",
+      "paw",
+      "watering",
+      "bell",
+      "grass",
+      "watering",
+      "grass"
+    ],
+    [
+      "paw",
+      "watering",
+      "bell",
+      "paw",
+      "paw",
+      "watering",
+      "grass"
+    ],
+    [
+      "grass",
+      "bell",
+      "grass",
+      "bell",
+      "paw",
+      "watering",
+      "paw"
+    ],
+    [
+      "grass",
+      "paw",
+      "watering",
+      "bell",
+      "watering",
+      "grass"
+    ],
+    [
+      "grass",
+      "bell",
+      "paw",
+      "paw",
+      "paw"
+    ]
+  ],
+  "tools": {
+    "undo": -1,
+    "shuffle": 3,
+    "hint": 0
+  },
+  "stars": {
+    "three": 57,
+    "two": 72
+  },
+  "solution": [
+    {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 3,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "bell"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "watering"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 2,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 0,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "paw"
+    },
+    {
+      "columnIndex": 5,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 4,
+      "expectedTileType": "grass"
+    },
+    {
+      "columnIndex": 1,
+      "expectedTileType": "paw"
+    }
+  ],
+  "meta": {
+    "generationKind": "manual",
+    "source": "hand-authored",
+    "targetSeconds": 57,
+    "designGoal": "巩固"
+  }
+}
