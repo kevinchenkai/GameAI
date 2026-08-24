@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Codex Games: Star Fighter, Soulmate, Wulin Tavern, and Journey Ludo, four original AI Native games crafted with Codex." />
+  <meta name="description" content="Codex Games: Star Fighter, Soulmate, Wulin Tavern, Journey Ludo, Garden Match, and StackPop, six original AI Native games crafted with Codex." />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; block-all-mixed-content" />
   <link rel="icon" href="data:," />
   <title>Codex Games | AI Native Game Studio</title>
@@ -91,8 +91,32 @@
       text-decoration: none;
     }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+    }
+
     button {
       font: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      background: var(--cyan);
+      color: #06101d;
+      font-weight: 800;
+      transform: translateY(-160%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
     .ambient {
@@ -199,6 +223,28 @@
       line-height: 1.2;
     }
 
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-left: auto;
+    }
+
+    .site-nav a {
+      border-radius: var(--radius);
+      padding: 9px 11px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 720;
+      transition: color 160ms ease, background 160ms ease;
+    }
+
+    .site-nav a:hover {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
     .lang-toggle {
       display: inline-grid;
       grid-template-columns: 1fr 1fr;
@@ -235,11 +281,11 @@
       grid-template-columns: 1fr;
       gap: 34px;
       align-items: start;
-      padding: 30px 0 66px;
+      padding: 30px 0 58px;
     }
 
     .hero-copy {
-      max-width: 1040px;
+      max-width: 1120px;
       margin: 0 auto;
       text-align: center;
     }
@@ -328,7 +374,7 @@
 
     .showcase {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
       perspective: 1200px;
     }
@@ -385,6 +431,20 @@
         linear-gradient(180deg, rgba(10, 8, 4, 0.14), rgba(12, 10, 20, 0.9) 58%),
         radial-gradient(circle at 24% 24%, rgba(255, 209, 102, 0.28), transparent 32%),
         url("images/promo/journey-ludo-cover.jpg") center / cover;
+    }
+
+    .game-card.garden::before {
+      background:
+        linear-gradient(180deg, rgba(4, 20, 16, 0.14), rgba(7, 22, 18, 0.88) 58%),
+        radial-gradient(circle at 24% 24%, rgba(114, 240, 197, 0.24), transparent 30%),
+        url("images/promo/garden-match-cover.jpg") center / cover;
+    }
+
+    .game-card.stack::before {
+      background:
+        linear-gradient(180deg, rgba(9, 12, 20, 0.12), rgba(8, 12, 24, 0.9) 58%),
+        radial-gradient(circle at 24% 24%, rgba(255, 209, 102, 0.2), transparent 30%),
+        url("images/promo/stackpop-cover.jpg") center / cover;
     }
 
     .game-card::after {
@@ -535,6 +595,14 @@
       color: #ffd166;
     }
 
+    .garden .tagline {
+      color: #72f0c5;
+    }
+
+    .stack .tagline {
+      color: #ffe28a;
+    }
+
     .tagline::before {
       content: "";
       width: 6px;
@@ -634,29 +702,75 @@
 
     .details-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
     .detail {
+      position: relative;
+      display: flex;
+      min-height: 218px;
+      flex-direction: column;
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 22px;
       background: rgba(9, 18, 38, 0.58);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .detail::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: var(--mood-accent, var(--cyan));
+      box-shadow: 0 0 22px var(--mood-accent, var(--cyan));
+      opacity: 0.88;
+    }
+
+    .detail:nth-child(1) { --mood-accent: #64efff; }
+    .detail:nth-child(2) { --mood-accent: #ff8fbd; }
+    .detail:nth-child(3) { --mood-accent: #ffd166; }
+    .detail:nth-child(4) { --mood-accent: #a88cff; }
+    .detail:nth-child(5) { --mood-accent: #72f0c5; }
+    .detail:nth-child(6) { --mood-accent: #ff9f6e; }
+
+    .detail:hover,
+    .detail:focus-visible {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--mood-accent) 58%, transparent);
+      background: rgba(13, 25, 50, 0.78);
+    }
+
+    .detail:focus-visible {
+      outline: 2px solid var(--mood-accent);
+      outline-offset: 3px;
+    }
+
+    .detail-game {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--mood-accent);
+      font: 760 11px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .detail strong {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       color: #ffffff;
-      font-size: 17px;
+      font-size: 20px;
+      line-height: 1.25;
     }
 
     .detail p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.72;
+      line-height: 1.68;
       font-size: 14px;
     }
 
@@ -666,14 +780,8 @@
 
     .flow-panel {
       position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background:
-        radial-gradient(circle at 18% 10%, rgba(100, 239, 255, 0.12), transparent 30%),
-        radial-gradient(circle at 85% 20%, rgba(255, 209, 102, 0.1), transparent 24%),
-        rgba(9, 18, 38, 0.62);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--line);
+      padding-top: 34px;
     }
 
     .flow-copy {
@@ -681,7 +789,7 @@
       grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.28fr);
       gap: 24px;
       align-items: end;
-      padding: 24px;
+      padding: 0 0 24px;
     }
 
     .flow-copy h2 {
@@ -698,10 +806,8 @@
     }
 
     .flow-note {
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius);
-      padding: 16px;
-      background: rgba(255, 255, 255, 0.055);
+      border-left: 2px solid var(--cyan);
+      padding: 2px 0 2px 16px;
       color: #dcecff;
       font-size: 14px;
       line-height: 1.65;
@@ -709,7 +815,13 @@
 
     .flow-visual {
       margin: 0;
-      padding: 0 24px 24px;
+      padding: 0;
+    }
+
+    .flow-image-link {
+      display: block;
+      border-radius: var(--radius);
+      cursor: zoom-in;
     }
 
     .flow-visual img {
@@ -721,6 +833,12 @@
       border-radius: var(--radius);
       box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
       background: rgba(0, 0, 0, 0.22);
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .flow-image-link:hover img {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
     }
 
     .footer {
@@ -753,7 +871,17 @@
       display: none !important;
     }
 
+    @media (max-width: 1100px) {
+      .showcase {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     @media (max-width: 920px) {
+      .site-nav {
+        display: none;
+      }
+
       .hero {
         padding-top: 24px;
       }
@@ -799,6 +927,10 @@
     @media (max-width: 700px) {
       .details-grid {
         grid-template-columns: 1fr;
+      }
+
+      .detail {
+        min-height: 0;
       }
     }
 
@@ -861,17 +993,17 @@
 
       .flow-copy,
       .flow-visual {
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 0;
+        padding-right: 0;
       }
 
       .flow-copy {
-        padding-top: 18px;
+        padding-top: 0;
         padding-bottom: 18px;
       }
 
       .flow-visual {
-        padding-bottom: 16px;
+        padding-bottom: 0;
       }
 
       .footer {
@@ -892,6 +1024,10 @@
   </style>
 </head>
 <body data-lang="en">
+  <a class="skip-link" href="#games">
+    <span class="zh">跳到游戏列表</span>
+    <span class="en">Skip to games</span>
+  </a>
   <div class="ambient" aria-hidden="true">
     <span></span><span></span><span></span><span></span><span></span><span></span>
   </div>
@@ -902,10 +1038,24 @@
         <span class="mark" aria-hidden="true"></span>
         <span>
           <strong>Codex Games</strong>
-          <span class="zh">四款由 Codex 打磨的浏览器游戏</span>
-          <span class="en">Four browser games crafted with Codex</span>
+          <span class="zh">六款由 Codex 打磨的浏览器游戏</span>
+          <span class="en">Six browser games crafted with Codex</span>
         </span>
       </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#games">
+          <span class="zh">游戏</span>
+          <span class="en">Games</span>
+        </a>
+        <a href="#moods">
+          <span class="zh">心情</span>
+          <span class="en">Moods</span>
+        </a>
+        <a href="#process">
+          <span class="zh">AI 制作</span>
+          <span class="en">AI Process</span>
+        </a>
+      </nav>
       <div class="lang-toggle" role="group" aria-label="Language">
         <button type="button" data-set-lang="zh" aria-pressed="false">中文</button>
         <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
@@ -923,30 +1073,22 @@
           <span class="en gradient-text">A tiny game universe made with Codex</span>
         </h1>
         <p class="lead">
-          <span class="zh">这是四款原创 AI Native 游戏：驾驶战机冲进霓虹深空，和温柔陪伴一起度过日常，去武侠酒馆碰见一桌奇妙大侠，或掷一把骰子踏上西游取经路。</span>
-          <span class="en">Four original AI Native games: launch into neon deep space, spend a quiet moment with a warm companion, wander into a wuxia tavern full of unpredictable heroes, or roll the dice along the pilgrimage west.</span>
+          <span class="zh">这是六款原创 AI Native 游戏：从霓虹深空、温柔陪伴、武侠酒馆，到西游棋盘、治愈花园和萌宠叠叠消，每一款都是一次不同方向的可玩实验。</span>
+          <span class="en">Six original AI Native games: from neon deep space, soft companionship, and wuxia taverns to pilgrimage boards, cozy gardens, and pet-themed stack puzzles, each one explores a different playable mood.</span>
         </p>
-        <div class="hero-actions" aria-label="Game shortcuts">
-          <a class="button primary" href="https://g.ismayday.mobi/star_fighter">
-            <span class="zh">进入星际突击队</span>
-            <span class="en">Play Star Fighter</span>
+        <div class="hero-actions" aria-label="Page shortcuts">
+          <a class="button primary" href="#games">
+            <span class="zh">探索六款游戏</span>
+            <span class="en">Explore Six Games</span>
           </a>
-          <a class="button" href="https://g.ismayday.mobi/soulmate">
-            <span class="zh">进入心动陪伴</span>
-            <span class="en">Play Soulmate</span>
-          </a>
-          <a class="button" href="https://g.ismayday.mobi/tavern/">
-            <span class="zh">进入武侠酒馆</span>
-            <span class="en">Enter Wulin Tavern</span>
-          </a>
-          <a class="button" href="https://g.ismayday.mobi/journey/">
-            <span class="zh">进入西游取经棋</span>
-            <span class="en">Play Journey Ludo</span>
+          <a class="button" href="#process">
+            <span class="zh">了解 AI Native 制作</span>
+            <span class="en">See How They Are Made</span>
           </a>
         </div>
       </div>
 
-      <div class="showcase" aria-label="Games">
+      <div class="showcase" id="games" aria-label="Games">
         <article class="game-card star">
           <div class="card-inner">
             <div class="visual" aria-hidden="true">
@@ -1083,65 +1225,159 @@
             </div>
           </div>
         </article>
+        <article class="game-card garden">
+          <div class="card-inner">
+            <div class="visual" aria-hidden="true">
+              <div class="board-frame">
+                <img src="images/promo/garden-match-cover.jpg" alt="" loading="lazy" />
+              </div>
+            </div>
+            <div>
+              <div class="tagline">
+                <span class="zh">治愈花园三消</span>
+                <span class="en">Cozy Garden Match</span>
+              </div>
+              <h2>
+                <span class="zh">Garden Match<br />治愈花园</span>
+                <span class="en">Garden Match<br />Pet &amp; Bloom</span>
+              </h2>
+              <p>
+                <span class="zh">和萌宠旺财一起玩一局不催促的三消。慢慢完成目标、触发连锁、获得提示，再把每一次通关都变成花园里一点点长出来的新风景。</span>
+                <span class="en">Play a calm match-3 round with Wangcai by your side. Clear goals, trigger cascades, take gentle hints, and turn each win into a little new growth in your garden.</span>
+              </p>
+              <div class="meta">
+                <span class="chip">Cozy Match</span>
+                <span class="chip">Pet Companion</span>
+                <span class="chip">Garden</span>
+              </div>
+              <div class="card-actions">
+                <a class="mini-link play" href="https://g.ismayday.mobi/garden/">
+                  <span class="zh">去花园玩</span>
+                  <span class="en">Visit the Garden</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="game-card stack">
+          <div class="card-inner">
+            <div class="visual" aria-hidden="true">
+              <div class="board-frame">
+                <img src="images/promo/stackpop-cover.jpg" alt="" loading="lazy" />
+              </div>
+            </div>
+            <div>
+              <div class="tagline">
+                <span class="zh">萌宠叠叠消</span>
+                <span class="en">Pet Stack Puzzle</span>
+              </div>
+              <h2>
+                <span class="zh">StackPop<br />萌宠叠叠消</span>
+                <span class="en">StackPop<br />Seven-Slot Tension</span>
+              </h2>
+              <p>
+                <span class="zh">从层层叠起的牌堆里取出最上方图案，塞进 7 格暂存槽，凑齐三枚同类就“啪”地清掉。每一步都在赌空间，也在等下一次松一口气。</span>
+                <span class="en">Pull top tiles from layered stacks into a seven-slot tray, then pop three of a kind to breathe again. Every pick is a small bet on space, timing, and the next satisfying clear.</span>
+              </p>
+              <div class="meta">
+                <span class="chip">Triple Match</span>
+                <span class="chip">20 Levels</span>
+                <span class="chip">Solvable</span>
+              </div>
+              <div class="card-actions">
+                <a class="mini-link play" href="https://g.ismayday.mobi/stack/">
+                  <span class="zh">开始叠消</span>
+                  <span class="en">Pop the Stack</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="craft-title">
+    <section class="section mood-section" id="moods" aria-labelledby="craft-title">
       <div class="section-head">
         <h2 id="craft-title">
-          <span class="zh">四种心情，四种打开方式</span>
-          <span class="en">Four moods, four ways to play</span>
+          <span class="zh">六种心情，六种打开方式</span>
+          <span class="en">Six moods, six ways to play</span>
         </h2>
         <p>
-          <span class="zh">想立刻进入战斗，就启动星际突击队；想被轻轻陪着，就进入心动陪伴；想看江湖热闹，就进武侠酒馆；想和人斗一局运气，就摇骰子上路。</span>
-          <span class="en">Launch Star Fighter when you want action right away, choose Soulmate when you want something gentle beside you, enter Wulin Tavern when you want a lively wuxia crowd, or roll the dice when you want a game of luck and turns.</span>
+          <span class="zh">想追一阵热血、留在温柔里、入席江湖、让骰子带路、慢慢种花，或再来一次漂亮的三连？挑一种心情，直接开玩。</span>
+          <span class="en">Chasing a rush, a quiet connection, jianghu banter, a lucky roll, a garden to tend, or one more satisfying clear? Pick the mood and step in.</span>
         </p>
       </div>
       <div class="details-grid">
-        <div class="detail">
+        <a class="detail" href="https://g.ismayday.mobi/star_fighter">
+          <span class="detail-game">Star Fighter</span>
           <strong>
-            <span class="zh">一个偏热血</span>
-            <span class="en">One Is Intense</span>
+            <span class="zh">越战越上头</span>
+            <span class="en">Chase the Rush</span>
           </strong>
           <p>
-            <span class="zh">星际突击队更强调手感和节奏，越往后越紧张，越想再来一局。</span>
-            <span class="en">Star Fighter is about feel and rhythm: the longer you last, the tighter it gets, and the stronger the urge to try again.</span>
+            <span class="zh">穿过弹幕、抢下强化，在越来越快的节奏里把反应推到极限。每次坠落，都只会让下一局来得更快。</span>
+            <span class="en">Thread through incoming fire, grab the next power-up, and ride the pace as it keeps climbing. Every crash makes the next run harder to resist.</span>
           </p>
-        </div>
-        <div class="detail">
+        </a>
+        <a class="detail" href="https://g.ismayday.mobi/soulmate">
+          <span class="detail-game">Soulmate</span>
           <strong>
-            <span class="zh">一个偏温柔</span>
-            <span class="en">One Is Gentle</span>
+            <span class="zh">留在温柔里</span>
+            <span class="en">Stay a Little Longer</span>
           </strong>
           <p>
-            <span class="zh">心动陪伴更像一段安静的日常，把聊天、表情和时间感做成轻轻的陪同。</span>
-            <span class="en">Soulmate plays like a quiet everyday ritual, turning chat, expressions, and time into a soft sense of company.</span>
+            <span class="zh">聊几句心事，等一个表情，听她在夜里说晚安。这里没有催促，只有一段愿意陪你慢下来的日常。</span>
+            <span class="en">Share a thought, wait for a smile, or hear a soft good night. Nothing rushes you here; it is simply a quiet moment made for two.</span>
           </p>
-        </div>
-        <div class="detail">
+        </a>
+        <a class="detail" href="https://g.ismayday.mobi/tavern/">
+          <span class="detail-game">Wulin Tavern</span>
           <strong>
-            <span class="zh">一个有江湖烟火气</span>
-            <span class="en">One Feels Like Jianghu</span>
+            <span class="zh">入席江湖</span>
+            <span class="en">Pull Up a Chair</span>
           </strong>
           <p>
-            <span class="zh">武侠酒馆像一场随时开席的江湖盲盒，每次进门都可能遇到新的拼桌、新的八卦和新的神回复。</span>
-            <span class="en">Wulin Tavern feels like a living jianghu lucky draw, where each visit can bring new tablemates, rumors, and sharp replies.</span>
+            <span class="zh">推门就是一桌新故事：大侠拼桌、旧闻翻篇、妙语接连上菜。坐下来，看看今晚的江湖会聊到哪里。</span>
+            <span class="en">Every table opens a new story: wandering heroes, old rumors, and replies sharp enough to steal the scene. Sit down and see where tonight leads.</span>
           </p>
-        </div>
-        <div class="detail">
+        </a>
+        <a class="detail" href="https://g.ismayday.mobi/journey/">
+          <span class="detail-game">Journey Ludo</span>
           <strong>
-            <span class="zh">一个看运气</span>
-            <span class="en">One Is Luck</span>
+            <span class="zh">让骰子带路</span>
+            <span class="en">Let Luck Lead</span>
           </strong>
           <p>
-            <span class="zh">西游取经棋适合和 AI 同行斗一局：一颗骰子、一串事件格，领先和垫底随时对调。</span>
-            <span class="en">Journey Ludo is a race against AI companions: one die, a trail of event tiles, and a lead that can flip at any turn.</span>
+            <span class="zh">和 AI 同伴踏上西游棋盘，一颗骰子就能让领先与垫底瞬间互换。下一格是奇遇，还是翻车？</span>
+            <span class="en">Race AI companions across a Journey to the West board where one roll can rewrite the lead. The next tile may be a blessing or beautiful trouble.</span>
           </p>
-        </div>
+        </a>
+        <a class="detail" href="https://g.ismayday.mobi/garden/">
+          <span class="detail-game">Garden Match</span>
+          <strong>
+            <span class="zh">慢慢种出好心情</span>
+            <span class="en">Grow at Your Own Pace</span>
+          </strong>
+          <p>
+            <span class="zh">旺财陪你轻松三消，花园也在一次次通关中悄悄长大。不赶时间，只收集一点今天的好心情。</span>
+            <span class="en">Match at an easy pace with Wangcai beside you, then watch the garden grow with every clear. No hurry, just a little progress for today.</span>
+          </p>
+        </a>
+        <a class="detail" href="https://g.ismayday.mobi/stack/">
+          <span class="detail-game">StackPop</span>
+          <strong>
+            <span class="zh">七格之间，步步取舍</span>
+            <span class="en">Make Every Slot Count</span>
+          </strong>
+          <p>
+            <span class="zh">七格暂存槽把每一次点击都变成取舍。留对位置，等三枚同类“啪”地清空，压力也跟着一起消失。</span>
+            <span class="en">Seven tray slots turn every tap into a choice. Save the right space, line up a triple, and feel the whole puzzle exhale with the pop.</span>
+          </p>
+        </a>
       </div>
     </section>
 
-    <section class="section flow-section" aria-labelledby="flow-title">
+    <section class="section flow-section" id="process" aria-labelledby="flow-title">
       <div class="flow-panel">
         <div class="flow-copy">
           <div>
@@ -1160,8 +1396,12 @@
           </div>
         </div>
         <figure class="flow-visual">
-          <img class="zh" src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-cn.jpg" alt="AI Native 游戏制作流程图" />
-          <img class="en" src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" alt="AI Native game creation flow diagram" />
+          <a class="flow-image-link zh" href="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-cn.jpg" target="_blank" rel="noopener" aria-label="打开中文版 AI Native 游戏制作流程大图">
+            <img src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-cn.jpg" alt="AI Native 游戏制作流程图" />
+          </a>
+          <a class="flow-image-link en" href="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" target="_blank" rel="noopener" aria-label="Open the full-size AI Native game creation flow diagram">
+            <img src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" alt="AI Native game creation flow diagram" />
+          </a>
         </figure>
       </div>
     </section>
