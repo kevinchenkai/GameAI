@@ -2,7 +2,9 @@
 
 GameAI is an AI-native game creation project built around Codex. It explores how coding agents can support end-to-end browser game development, from concept and worldbuilding to gameplay design, art direction, implementation, and iteration.
 
-The repository currently contains four original browser game projects presented through the Codex Games hub: **Wulin Tavern**, **Soulmate**, **Star Fighter**, and **Journey Ludo**. Each game represents a different mood and design direction, while sharing the same broader goal: turning small creative ideas into playable AI-assisted game experiences.
+The repository currently contains six original browser game projects presented through the Codex Games hub: **Wulin Tavern**, **Soulmate**, **Star Fighter**, **Journey Ludo**, **Garden Match**, and **StackPop**. Each game represents a different mood and design direction, while sharing the same broader goal: turning small creative ideas into playable AI-assisted game experiences.
+
+The two most recent projects, Garden Match and StackPop, were built through a **multi-agent workflow**: one agent implements while a second independently reviews and accepts against quantified gates, with the human making product decisions and verifying on real devices.
 
 Live hub: [Codex Games](https://g.ismayday.mobi/)
 
@@ -49,6 +51,28 @@ Players pick one of four pilgrims — Sun Wukong, Zhu Bajie, Tang Seng, or Sha S
 - Engine: Godot 4.x (GL Compatibility, HTML5 export)
 - Source: [`journey/`](./journey/)
 
+### Garden Match
+
+**Garden Match** is a low-pressure match-3 game combining puzzle play, a companion pet, and a growing garden.
+
+Players clear tiles across handcrafted levels while a pet companion reacts, offers hints, and keeps the pace gentle. The project targets players at both ends of the age range — over-50 and 8-15 — so it favors readability and calm progression over time pressure. Built with a strict engine-free core layer so level logic stays scriptable and unit-testable.
+
+- Live: [Garden Match](https://g.ismayday.mobi/garden/)
+- Focus: Match-3 cascades, pet companion, garden progression
+- Stack: Phaser 3 + TypeScript + Vite
+- Source: [`garden/`](./garden/)
+
+### StackPop
+
+**StackPop** is a portrait-mode triple-match puzzle: pull tiles off a layered board into a seven-slot tray, where three of a kind clear automatically.
+
+Twenty levels are all verified solvable by an exhaustive solver, and the shuffle only fires when a solvable arrangement actually exists — the board cannot strand you. The project pushed hard on mobile polish: DPR-correct rendering for crisp text on high-density screens, a single shared AudioContext for reliable iOS audio, and eight tile patterns that stay distinguishable in grayscale at 32px.
+
+- Live: [StackPop](https://g.ismayday.mobi/stack/)
+- Focus: Triple-match rules, solvability guarantees, mobile polish
+- Stack: Phaser 3 + TypeScript + Vite
+- Source: [`stack/`](./stack/)
+
 ## Repository
 
 | Path | Project |
@@ -57,7 +81,8 @@ Players pick one of four pilgrims — Sun Wukong, Zhu Bajie, Tang Seng, or Sha S
 | [`soulmate/`](./soulmate/) | Soulmate (HTML5) |
 | [`star_fighter/`](./star_fighter/) | Star Fighter (HTML5) |
 | [`journey/`](./journey/) | Journey Ludo (Godot 4) |
-| [`garden/`](./garden/) | Garden Match (Phaser 3 + TS) — in development |
+| [`garden/`](./garden/) | Garden Match (Phaser 3 + TS) |
+| [`stack/`](./stack/) | StackPop (Phaser 3 + TS) |
 | [`index.html`](./index.html) | Codex Games hub page |
 | [`scripts/`](./scripts/) | Shared deploy and utility scripts |
 
