@@ -1,0 +1,25 @@
+stack/web/src/game/scenes/GameScene.ts
+  s_3a713e661cdfe8::t_e2e0b83f899c19 315,524,540,684,792
+stack/web/src/game/config/layout.ts
+  s_3a713e661cdfe8::t_e2e0b83f899c19 96-97,113,128-129
+  s_3a713e661cdfe8::t_a406209076e991 23-24
+  s_3a713e661cdfe8::t_7717101dbcabb5 130
+stack/web/tests/uiTokens.test.ts
+  s_3a713e661cdfe8::t_9529c0e481c9be 1-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "e6bfc60c6748221fe29ffca0090ae8766794ea4c",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
