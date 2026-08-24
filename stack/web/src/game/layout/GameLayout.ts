@@ -18,6 +18,20 @@ export interface GameLayout {
   toolButtonSize: number;
 }
 
+export interface BoardTilePlacement {
+  columnIndex: number;
+  depth: number;
+  x: number;
+  y: number;
+  isTop: boolean;
+  hitArea: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+}
+
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
@@ -134,4 +148,45 @@ export function calculateCenteredBoardTop(
   const boardAreaBottom = layout.trayTop - Math.max(0, spaceBeforeTray);
   const availableHeight = Math.max(0, boardAreaBottom - layout.boardTop);
   return layout.boardTop + Math.max(0, (availableHeight - contentHeight) / 2);
+}
+
+/**
+ * 把每列数组末位（当前可点击 Tile）锚定在 Tray 上方的同一条底部基线，
+ * 其余 Tile 由该基线向上生长。返回值同时包含实际命中区，渲染与测试共用
+ * 同一套坐标，避免出现“画面改了但点击仍留在旧位置”的静默回归。
+ */
+export function calculateBottomAlignedBoardPlacements(
+  layout: GameLayout,
+  columnDepths: readonly number[],
+  tileGap: number,
+  spaceBeforeTray: number,
+  hitExtension: number,
+): BoardTilePlacement[] {
+  const baselineY = layout.trayTop - Math.max(0, spaceBeforeTray) - layout.tileSize;
+  const extension = Math.max(0, hitExtension);
+  const placements: BoardTilePlacement[] = [];
+
+  columnDepths.forEach((rawDepth, columnIndex) => {
+    const columnDepth = Math.max(0, Math.floor(rawDepth));
+    const x = layout.contentLeft + columnIndex * (layout.tileSize + tileGap);
+    for (let depth = 0; depth < columnDepth; depth += 1) {
+      const isTop = depth === columnDepth - 1;
+      const y = baselineY - (columnDepth - 1 - depth) * layout.rowStep;
+      placements.push({
+        columnIndex,
+        depth,
+        x,
+        y,
+        isTop,
+        hitArea: {
+          x: x - extension,
+          y: y - extension,
+          width: layout.tileSize + extension * 2,
+          height: layout.tileSize + extension * 2,
+        },
+      });
+    }
+  });
+
+  return placements;
 }

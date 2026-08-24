@@ -1,16 +1,17 @@
 import Phaser from 'phaser';
 import { SCENE_TEXTURES } from '../config/assets';
 import { ANIMATION, GAMEPLAY } from '../config/tuning';
-import { COLORS, LAYOUT, PROTOTYPE_UI } from '../config/layout';
+import { COLORS, GAME_UI, LAYOUT, PROTOTYPE_UI } from '../config/layout';
 import { createDepthTwelveLayoutState } from '../config/demoLevel';
 import { GameModel } from '../core/GameModel';
 import { calculateStarRating, type StarRating } from '../core/StarRating';
 import { UndoManager } from '../core/UndoManager';
 import { LEVEL_LOADER } from '../levelRegistry';
 import {
-  calculateCenteredBoardTop,
+  calculateBottomAlignedBoardPlacements,
   calculateGameLayout,
   scaleLayout,
+  type BoardTilePlacement,
   type GameLayout,
 } from '../layout/GameLayout';
 import { AudioSystem } from '../systems/AudioSystem';
@@ -20,6 +21,8 @@ import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
 import type { TileData } from '../types/tile';
+import { resolveToolButtonStyle, type ToolButtonVariant } from '../ui/toolButtonStyle';
+import { resolveTrayPresentation } from '../ui/trayPresentation';
 import { syncBackgroundMusic } from './BackgroundMusicScene';
 
 interface GameSceneData {
@@ -29,7 +32,7 @@ interface GameSceneData {
 
 interface ToolButtonOptions {
   textureKey?: string;
-  variant?: 'primary' | 'secondary' | 'danger';
+  variant?: ToolButtonVariant;
   badge?: number;
 }
 
@@ -176,21 +179,36 @@ export class GameScene extends Phaser.Scene {
       .image(this.scale.width / 2, this.scale.height / 2, SCENE_TEXTURES.Game.background.key)
       .setDisplaySize(this.scale.width, this.scale.height);
     const wash = this.add.graphics();
-    wash.fillGradientStyle(0xffffff, 0xffffff, COLORS.skyBottom, COLORS.skyBottom, 0.08, 0.08, 0.28, 0.28);
+    wash.fillGradientStyle(
+      0xffffff,
+      0xffffff,
+      COLORS.skyBottom,
+      COLORS.skyBottom,
+      GAME_UI.backgroundWashTopAlpha,
+      GAME_UI.backgroundWashTopAlpha,
+      GAME_UI.backgroundWashBottomAlpha,
+      GAME_UI.backgroundWashBottomAlpha,
+    );
     wash.fillRect(0, 0, this.scale.width, this.scale.height);
   }
 
   private drawHeader(state: GameState): void {
     const { contentLeft, contentWidth, headerTop } = this.currentLayout;
     const remainingTiles = state.columns.reduce((total, column) => total + column.length, 0);
+    const panelHeight = px(this, 64);
+    const radius = px(this, GAME_UI.surfaceRadius);
+    const shadow = this.add.graphics();
+    shadow.fillStyle(GAME_UI.softShadow, 0.12);
+    shadow.fillRoundedRect(contentLeft, headerTop + px(this, 3), contentWidth, panelHeight, radius);
+    const panel = this.add.graphics();
+    panel.fillStyle(GAME_UI.surfaceCream, 0.9);
+    panel.fillRoundedRect(contentLeft, headerTop, contentWidth, panelHeight, radius);
+    panel.lineStyle(px(this, 1.5), GAME_UI.surfaceStroke, 0.72);
+    panel.strokeRoundedRect(contentLeft, headerTop, contentWidth, panelHeight, radius);
     this.add
-      .rectangle(contentLeft, headerTop, contentWidth, px(this, 64), 0xfffbf2, 0.78)
-      .setStrokeStyle(px(this, 1.5), 0xffffff, 0.88)
-      .setOrigin(0, 0);
-    this.add
-      .text(contentLeft + px(this, 14), headerTop + px(this, 9), `第 ${state.levelId} 关`, {
+      .text(contentLeft + px(this, 14), headerTop + px(this, 8), `第${state.levelId}关`, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: fontPx(this, PROTOTYPE_UI.titleFontSize),
+        fontSize: fontPx(this, 22),
         fontStyle: 'bold',
         color: COLORS.title,
       })
@@ -204,51 +222,65 @@ export class GameScene extends Phaser.Scene {
       .text(contentLeft + px(this, 14), headerTop + px(this, 39), layoutTag, {
         fontFamily: 'PingFang SC, sans-serif',
         fontSize: fontPx(this, PROTOTYPE_UI.subtitleFontSize),
-        color: '#55798f',
+        color: GAME_UI.textSecondary,
       })
       .setOrigin(0, 0);
     this.add
-      .text(contentLeft + contentWidth - px(this, 56), headerTop + px(this, 18), `剩余 ${remainingTiles}`, {
+      .text(contentLeft + contentWidth - px(this, 64), headerTop + px(this, 20), `剩余 ${remainingTiles}张`, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
         fontSize: fontPx(this, 13),
         fontStyle: 'bold',
-        color: '#6e8ca0',
+        color: GAME_UI.textSecondary,
       })
       .setOrigin(1, 0);
+    const settingsX = contentLeft + contentWidth - px(this, 28);
+    const settingsY = headerTop + px(this, 32);
     const settings = this.add
-      .image(contentLeft + contentWidth - px(this, 28), headerTop + px(this, 32), SCENE_TEXTURES.Game.settings.key)
-      .setDisplaySize(px(this, 34), px(this, 34));
+      .image(settingsX, settingsY, SCENE_TEXTURES.Game.settings.key)
+      .setDisplaySize(px(this, GAME_UI.settingsVisualSize), px(this, GAME_UI.settingsVisualSize));
+    const settingsHit = this.add
+      .rectangle(
+        settingsX,
+        settingsY,
+        px(this, GAME_UI.settingsHitSize),
+        px(this, GAME_UI.settingsHitSize),
+        0xffffff,
+        0.001,
+      );
     if (!this.busy && !this.layoutFixture) {
-      settings.setInteractive({ useHandCursor: true });
-      settings.on(Phaser.Input.Events.POINTER_OVER, () => settings.setScale(1.08));
-      settings.on(Phaser.Input.Events.POINTER_OUT, () => settings.setScale(1));
-      settings.on(Phaser.Input.Events.POINTER_UP, () => this.openSettings());
+      settingsHit.setInteractive({ useHandCursor: true });
+      settingsHit.on(Phaser.Input.Events.POINTER_OVER, () => settings.setScale(1.08));
+      settingsHit.on(Phaser.Input.Events.POINTER_OUT, () => settings.setScale(1));
+      settingsHit.on(Phaser.Input.Events.POINTER_UP, () => this.openSettings());
     } else {
       settings.setAlpha(0.5);
     }
   }
 
   private drawBoard(state: GameState): void {
-    const { contentLeft, tileSize, rowStep } = this.currentLayout;
-    const actualMaxDepth = Math.max(1, ...state.columns.map((column) => column.length));
-    const boardTop = calculateCenteredBoardTop(
+    const { tileSize } = this.currentLayout;
+    const placements = calculateBottomAlignedBoardPlacements(
       this.currentLayout,
-      actualMaxDepth,
+      state.columns.map((column) => column.length),
+      px(this, LAYOUT.tileGap),
       px(this, LAYOUT.trayLabelOffset + LAYOUT.sectionGap),
+      px(this, 6),
     );
-    for (let columnIndex = 0; columnIndex < state.columns.length; columnIndex += 1) {
-      const column = state.columns[columnIndex] ?? [];
-      const x = contentLeft + columnIndex * (tileSize + px(this, LAYOUT.tileGap));
-      column.forEach((tile, depth) => {
-        const y = boardTop + depth * rowStep;
-        const isTop = depth === column.length - 1;
-        const container = this.createTileVisual(tile, x, y, tileSize, isTop);
-        container.setDepth(depth + 2);
-        if (isTop && !this.layoutFixture) {
-          this.topTileContainers.set(columnIndex, container);
-          this.makeTileInteractive(container, columnIndex, x, y);
-        }
-      });
+    for (const placement of placements) {
+      const tile = state.columns[placement.columnIndex]?.[placement.depth];
+      if (tile === undefined) continue;
+      const container = this.createTileVisual(
+        tile,
+        placement.x,
+        placement.y,
+        tileSize,
+        placement.isTop,
+      );
+      container.setDepth(placement.depth + 2);
+      if (placement.isTop && !this.layoutFixture) {
+        this.topTileContainers.set(placement.columnIndex, container);
+        this.makeTileInteractive(container, placement);
+      }
     }
   }
 
@@ -261,7 +293,7 @@ export class GameScene extends Phaser.Scene {
       .setName('hit-frame');
     const icon = this.add
       .image(size / 2, size / 2, SCENE_TEXTURES.Game.tiles[tile.type].key)
-      .setDisplaySize(size * 0.7, size * 0.7);
+      .setDisplaySize(size * GAME_UI.boardIconCanvasRatio, size * GAME_UI.boardIconCanvasRatio);
     container.add([frame, icon]);
     if (!isTop) {
       container.add(this.add.rectangle(size / 2, size / 2, size * 0.92, size * 0.92, 0x000000, 0.07));
@@ -270,9 +302,12 @@ export class GameScene extends Phaser.Scene {
     return container;
   }
 
-  private makeTileInteractive(container: Phaser.GameObjects.Container, columnIndex: number, x: number, y: number): void {
+  private makeTileInteractive(
+    container: Phaser.GameObjects.Container,
+    placement: BoardTilePlacement,
+  ): void {
     const frame = container.getByName('hit-frame') as Phaser.GameObjects.Image;
-    const extension = px(this, 6) / frame.scaleX;
+    const extension = (placement.x - placement.hitArea.x) / frame.scaleX;
     frame.setInteractive(
       new Phaser.Geom.Rectangle(
         -extension,
@@ -285,18 +320,24 @@ export class GameScene extends Phaser.Scene {
     );
     frame.input!.cursor = 'pointer';
     frame.on(Phaser.Input.Events.POINTER_OVER, () => {
-      if (window.matchMedia('(pointer: fine)').matches) container.setY(y - px(this, 4)).setScale(1.04);
+      if (window.matchMedia('(pointer: fine)').matches) {
+        container.setY(placement.y - px(this, 4)).setScale(1.04);
+      }
     });
-    frame.on(Phaser.Input.Events.POINTER_OUT, () => container.setPosition(x, y).setScale(1));
+    frame.on(Phaser.Input.Events.POINTER_OUT, () => {
+      container.setPosition(placement.x, placement.y).setScale(1);
+    });
     frame.on(Phaser.Input.Events.POINTER_UP, () => {
-      container.setPosition(x, y).setScale(1);
-      this.enqueuePick(columnIndex);
+      container.setPosition(placement.x, placement.y).setScale(1);
+      this.enqueuePick(placement.columnIndex);
     });
   }
 
   private drawTray(state: GameState): void {
     const { contentLeft, contentWidth, trayTop, traySlotSize } = this.currentLayout;
-    const warning = state.tray.length >= state.traySize - 1;
+    const presentation = resolveTrayPresentation(state.tray.length, state.traySize);
+    const pressure = presentation.level !== 'normal';
+    const danger = presentation.level === 'danger' || presentation.level === 'full';
     const root = this.add.container(contentLeft, trayTop);
     this.trayRoot = root;
     const panel = this.add.graphics();
@@ -304,10 +345,10 @@ export class GameScene extends Phaser.Scene {
     const panelTop = -px(this, 34);
     const panelWidth = contentWidth + px(this, 20);
     const panelHeight = traySlotSize + px(this, 42);
-    panel.fillStyle(warning ? 0xffeee8 : 0xfff8e9, warning ? 0.82 : 0.66);
-    panel.fillRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, 16));
-    panel.lineStyle(px(this, 1.5), warning ? 0xd66b4d : 0xffffff, 0.8);
-    panel.strokeRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, 16));
+    panel.fillStyle(danger ? 0xffeee8 : pressure ? 0xfff3df : GAME_UI.surfaceCream, pressure ? 0.88 : 0.82);
+    panel.fillRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, GAME_UI.surfaceRadius));
+    panel.lineStyle(px(this, 1.5), danger ? 0xd66b4d : pressure ? 0xd99a3c : 0xffffff, 0.8);
+    panel.strokeRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, GAME_UI.surfaceRadius));
     root.add(panel);
     root.add(
       this.add
@@ -320,21 +361,21 @@ export class GameScene extends Phaser.Scene {
         .setOrigin(0, 0),
     );
     root.add(
-      this.add.text(contentWidth, -px(this, 27), `${state.tray.length}/${state.traySize}`, {
+      this.add.text(contentWidth, -px(this, 27), presentation.label, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
         fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 2),
         fontStyle: 'bold',
-        color: warning ? '#c95e46' : COLORS.title,
+        color: danger ? '#c95e46' : pressure ? '#a9681f' : COLORS.title,
       }).setOrigin(1, 0),
     );
     for (let slot = 0; slot < GAMEPLAY.traySize; slot += 1) {
       const x = slot * (traySlotSize + px(this, LAYOUT.trayGap));
-      const slotTexture = warning ? SCENE_TEXTURES.Game.traySlotWarn.key : SCENE_TEXTURES.Game.traySlot.key;
+      const slotTexture = danger ? SCENE_TEXTURES.Game.traySlotWarn.key : SCENE_TEXTURES.Game.traySlot.key;
       root.add(this.add.image(x, 0, slotTexture).setOrigin(0, 0).setDisplaySize(traySlotSize, traySlotSize));
       const tile = state.tray[slot];
       if (tile !== undefined) root.add(this.createTrayTile(tile, x, 0, traySlotSize));
     }
-    if (state.tray.length === state.traySize - 1 && !this.busy) {
+    if (presentation.level === 'danger' && !this.busy) {
       this.trayWarningTween = this.tweens.add({
         targets: root,
         scale: 1.025,
@@ -347,15 +388,10 @@ export class GameScene extends Phaser.Scene {
     }
   }
 
-  private createTrayTile(tile: TileData, x: number, y: number, size: number): Phaser.GameObjects.Container {
-    const inset = size * 0.09;
-    const container = this.add.container(x + inset, y + inset);
-    container.add([
-      this.add.image(0, 0, SCENE_TEXTURES.Game.tileFrame.key).setOrigin(0, 0).setDisplaySize(size - inset * 2, size - inset * 2),
-      this.add.image((size - inset * 2) / 2, (size - inset * 2) / 2, SCENE_TEXTURES.Game.tiles[tile.type].key)
-        .setDisplaySize((size - inset * 2) * 0.72, (size - inset * 2) * 0.72),
-    ]);
-    return container;
+  private createTrayTile(tile: TileData, x: number, y: number, size: number): Phaser.GameObjects.Image {
+    return this.add
+      .image(x + size / 2, y + size / 2, SCENE_TEXTURES.Game.tiles[tile.type].key)
+      .setDisplaySize(size * GAME_UI.trayIconCanvasRatio, size * GAME_UI.trayIconCanvasRatio);
   }
 
   private drawTools(state: GameState): void {
@@ -391,22 +427,39 @@ export class GameScene extends Phaser.Scene {
     options: ToolButtonOptions = {},
   ): void {
     const variant = options.variant ?? 'secondary';
+    const style = resolveToolButtonStyle(variant, enabled);
     const container = this.add.container(x, y);
-    const fill = variant === 'primary' ? 0xffd76b : variant === 'danger' ? 0xf2f0ed : 0xfffbf2;
-    const background = this.add.rectangle(0, 0, width, height, fill, enabled ? 0.96 : 0.55).setOrigin(0, 0).setStrokeStyle(px(this, variant === 'primary' ? 2 : 1.5), variant === 'danger' ? 0xa9a099 : COLORS.tileStroke, enabled ? 0.74 : 0.3);
+    const radius = px(this, GAME_UI.buttonRadius);
+    if (enabled) {
+      const shadow = this.add.graphics();
+      shadow.fillStyle(GAME_UI.softShadow, variant === 'primary' ? 0.14 : 0.08);
+      shadow.fillRoundedRect(0, px(this, 3), width, height, radius);
+      container.add(shadow);
+    }
+    const background = this.add.graphics();
+    background.fillStyle(style.fill, style.fillAlpha);
+    background.fillRoundedRect(0, 0, width, height, radius);
+    background.lineStyle(px(this, variant === 'primary' && enabled ? 2 : 1.5), style.stroke, style.strokeAlpha);
+    background.strokeRoundedRect(0, 0, width, height, radius);
     container.add(background);
     let labelCenter = width / 2;
     if (options.textureKey !== undefined) {
       const iconSize = Math.min(height - px(this, 10), px(this, 34));
-      container.add(this.add.image(px(this, 8), (height - iconSize) / 2, options.textureKey).setOrigin(0, 0).setDisplaySize(iconSize, iconSize));
+      container.add(
+        this.add
+          .image(px(this, 8), (height - iconSize) / 2, options.textureKey)
+          .setOrigin(0, 0)
+          .setDisplaySize(iconSize, iconSize)
+          .setAlpha(enabled ? 1 : 0.42),
+      );
       labelCenter = px(this, 8) + iconSize + (width - px(this, 8) - iconSize) / 2;
     }
     container.add(this.add.text(labelCenter, height / 2, label, {
       fontFamily: 'PingFang SC, sans-serif',
       fontSize: `${Math.round(Math.min(px(this, PROTOTYPE_UI.buttonFontSize), width * 0.16))}px`,
       fontStyle: 'bold',
-      color: variant === 'danger' ? '#887a70' : COLORS.text,
-    }).setAlpha(enabled ? 1 : 0.5).setOrigin(0.5));
+      color: style.labelColor,
+    }).setOrigin(0.5));
     if (options.badge !== undefined) {
       const badgeX = width - px(this, 13);
       const badgeY = px(this, 12);
@@ -419,7 +472,11 @@ export class GameScene extends Phaser.Scene {
       }).setOrigin(0.5));
     }
     if (!enabled) return;
-    background.setInteractive({ useHandCursor: true });
+    background.setInteractive(
+      new Phaser.Geom.Rectangle(0, 0, width, height),
+      Phaser.Geom.Rectangle.Contains,
+    );
+    background.input!.cursor = 'pointer';
     background.on(Phaser.Input.Events.POINTER_OVER, () => container.setY(y - px(this, 3)).setScale(1.02));
     background.on(Phaser.Input.Events.POINTER_OUT, () => container.setY(y).setScale(1));
     background.on(Phaser.Input.Events.POINTER_DOWN, () => container.setScale(0.96));
@@ -493,7 +550,7 @@ export class GameScene extends Phaser.Scene {
         if (index >= earnedStars) star.setTint(0xaebbc5).setAlpha(0.48);
       }
     }
-    this.add.text(centerX, centerY - (status === 'won' ? 54 : 68), status === 'won' ? `第 ${state.levelId} 关完成` : '这一步卡住啦！', {
+    this.add.text(centerX, centerY - (status === 'won' ? 54 : 68), status === 'won' ? `第${state.levelId}关完成` : '这一步卡住啦！', {
       fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, PROTOTYPE_UI.resultTitleSize), fontStyle: 'bold', color: status === 'won' ? '#d88b21' : COLORS.title,
     }).setOrigin(0.5).setDepth(302);
     const resultBody = status === 'won'
@@ -582,16 +639,21 @@ export class GameScene extends Phaser.Scene {
   }
 
   private async playPickAnimation(before: GameState, result: PickResult): Promise<void> {
-    const { contentLeft, tileSize, rowStep, trayTop, traySlotSize } = this.currentLayout;
-    const beforeMaxDepth = Math.max(1, ...before.columns.map((column) => column.length));
-    const boardTop = calculateCenteredBoardTop(
+    const { contentLeft, tileSize, trayTop, traySlotSize } = this.currentLayout;
+    const placements = calculateBottomAlignedBoardPlacements(
       this.currentLayout,
-      beforeMaxDepth,
+      before.columns.map((column) => column.length),
+      px(this, LAYOUT.tileGap),
       px(this, LAYOUT.trayLabelOffset + LAYOUT.sectionGap),
+      px(this, 6),
     );
     const sourceColumn = before.columns[result.sourceColumnIndex] ?? [];
-    const startX = contentLeft + result.sourceColumnIndex * (tileSize + px(this, LAYOUT.tileGap));
-    const startY = boardTop + Math.max(0, sourceColumn.length - 1) * rowStep;
+    const sourcePlacement = placements.find(
+      ({ columnIndex, depth }) =>
+        columnIndex === result.sourceColumnIndex && depth === sourceColumn.length - 1,
+    );
+    const startX = sourcePlacement?.x ?? contentLeft;
+    const startY = sourcePlacement?.y ?? this.currentLayout.boardTop;
     const targetSlot = Math.min(GAMEPLAY.traySize - 1, result.insertedTrayIndex);
     const targetX = contentLeft + targetSlot * (traySlotSize + px(this, LAYOUT.trayGap)) + traySlotSize * 0.08;
     const targetY = trayTop + traySlotSize * 0.08;

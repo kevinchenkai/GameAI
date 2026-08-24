@@ -39,6 +39,35 @@ export const COLORS = {
   flowerpot: 0xc97b4a,
 } as const;
 
+/**
+ * R1 视觉参数集中在这里，避免 Scene 内再次出现彼此冲突的临时倍率与颜色。
+ * Tile 源素材的非透明主体占 256px 画布的 174px（67.97%）。
+ */
+export const GAME_UI = {
+  tileSourceSubjectRatio: 174 / 256,
+  tileFrameSafeRatio: 206 / 256,
+  boardIconCanvasRatio: 1,
+  trayIconCanvasRatio: 0.9,
+  surfaceCream: 0xfff8e9,
+  surfaceRadius: 16,
+  buttonRadius: 12,
+  surfaceStroke: 0xffffff,
+  controlStroke: 0xb08355,
+  softShadow: 0x56758a,
+  disabledFill: 0xebe7de,
+  disabledStroke: 0xbab1a6,
+  primaryFill: 0xffd76b,
+  secondaryFill: 0xfffbf2,
+  dangerFill: 0xf4f0ec,
+  textSecondary: '#496d83',
+  textMuted: '#6b5c52',
+  textDisabled: '#8c847a',
+  backgroundWashTopAlpha: 0.04,
+  backgroundWashBottomAlpha: 0.14,
+  settingsVisualSize: 34,
+  settingsHitSize: 48,
+} as const;
+
 export const PROTOTYPE_UI = {
   cornerRatio: 0.12,
   tileStrokeWidth: 2,

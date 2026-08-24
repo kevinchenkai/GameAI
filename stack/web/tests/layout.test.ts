@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { LAYOUT } from '../src/game/config/layout';
 import {
+  calculateBottomAlignedBoardPlacements,
   calculateCenteredBoardTop,
   calculateGameLayout,
   isDesktopViewport,
@@ -77,4 +78,63 @@ describe('responsive layout', () => {
     expect(layout.tileSize).toBeCloseTo(calculateGameLayout(414, 760, 5, 8).tileSize, 8);
     expect(layout.trayTop).toBeCloseTo(calculateGameLayout(414, 760, 5, 8).trayTop, 8);
   });
+
+  it('底部基线让每列可点 Tile 逐位对齐，并由基线向上生长', () => {
+    const layout = calculateGameLayout(390, 844, 5, 8);
+    const depths = [8, 7, 5, 2, 0] as const;
+    const gap = LAYOUT.tileGap;
+    const spaceBeforeTray = LAYOUT.trayLabelOffset + LAYOUT.sectionGap;
+    const hitExtension = 6;
+    const placements = calculateBottomAlignedBoardPlacements(
+      layout,
+      depths,
+      gap,
+      spaceBeforeTray,
+      hitExtension,
+    );
+    const expectedBaseline = layout.trayTop - spaceBeforeTray - layout.tileSize;
+    const topTiles = placements.filter(({ isTop }) => isTop);
+
+    expect(topTiles).toHaveLength(4);
+    expect(topTiles.map(({ columnIndex }) => columnIndex)).toEqual([0, 1, 2, 3]);
+    expect(topTiles.map(({ y }) => y)).toEqual(topTiles.map(() => expectedBaseline));
+    expect(placements.find(({ columnIndex, depth }) => columnIndex === 0 && depth === 0)?.y)
+      .toBeCloseTo(expectedBaseline - 7 * layout.rowStep, 8);
+    expect(placements.find(({ columnIndex, depth }) => columnIndex === 3 && depth === 0)?.y)
+      .toBeCloseTo(expectedBaseline - layout.rowStep, 8);
+  });
+
+  it('每列只有列尾命中区可点，边界内外反向验证明确', () => {
+    const layout = calculateGameLayout(375, 812, 6, 12);
+    const placements = calculateBottomAlignedBoardPlacements(
+      layout,
+      [12, 10, 8, 6, 4, 2],
+      LAYOUT.tileGap,
+      LAYOUT.trayLabelOffset + LAYOUT.sectionGap,
+      6,
+    );
+    const topAreas: readonly TileHitArea[] = placements
+      .filter(({ isTop }) => isTop)
+      .map(({ columnIndex, depth, hitArea }) => ({
+        tileId: `c${columnIndex}-d${depth}`,
+        columnIndex,
+        depth,
+        ...hitArea,
+      }));
+
+    expect(topAreas).toHaveLength(6);
+    for (const area of topAreas) {
+      expect(
+        hitTestTopTile(areasForColumn(topAreas, area.columnIndex), area.x + area.width / 2, area.y + area.height / 2),
+      ).toEqual(area);
+      expect(
+        hitTestTopTile(areasForColumn(topAreas, area.columnIndex), area.x - 0.01, area.y + area.height / 2),
+      ).toBeNull();
+    }
+    expect(placements.filter(({ isTop }) => !isTop)).toHaveLength(36);
+  });
 });
+
+function areasForColumn(areas: readonly TileHitArea[], columnIndex: number): readonly TileHitArea[] {
+  return areas.filter((area) => area.columnIndex === columnIndex);
+}
