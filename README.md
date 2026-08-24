@@ -57,10 +57,12 @@ Players pick one of four pilgrims — Sun Wukong, Zhu Bajie, Tang Seng, or Sha S
 
 Players clear tiles across handcrafted levels while a pet companion reacts, offers hints, and keeps the pace gentle. The project targets players at both ends of the age range — over-50 and 8-15 — so it favors readability and calm progression over time pressure. Built with a strict engine-free core layer so level logic stays scriptable and unit-testable.
 
+Eight levels on a 7x7 board, all verified by a solvability simulator. Refill avoids creating dead boards at the source, cutting the deadlock rate from 8% to 0.5%, and the first-load payload was reduced 95% (4276 KB to 206 KB).
+
 - Live: [Garden Match](https://g.ismayday.mobi/garden/)
 - Focus: Match-3 cascades, pet companion, garden progression
-- Stack: Phaser 3 + TypeScript + Vite
-- Source: [`garden/`](./garden/)
+- Stack: Phaser 3 + TypeScript + Vite, 680 tests across 40 files
+- Source: [`garden/`](./garden/) - [README](./garden/README.md)
 
 ### StackPop
 
@@ -70,8 +72,8 @@ Twenty levels are all verified solvable by an exhaustive solver, and the shuffle
 
 - Live: [StackPop](https://g.ismayday.mobi/stack/)
 - Focus: Triple-match rules, solvability guarantees, mobile polish
-- Stack: Phaser 3 + TypeScript + Vite
-- Source: [`stack/`](./stack/)
+- Stack: Phaser 3 + TypeScript + Vite, 140 tests across 20 files
+- Source: [`stack/`](./stack/) - [README](./stack/README.md)
 
 ## Repository
 

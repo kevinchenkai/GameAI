@@ -20,6 +20,7 @@
 | **8 类图案** | 灰度 32px 下仍可辨——色盲玩家可玩 |
 | **高分屏适配** | 缓冲区按 DPR 放大（封顶 2×），文字锐利 |
 | **BGM + 音效** | 全局单 AudioContext，iOS 静音路径已排除 |
+| **回访更新降 92%** | Phaser 单独切 chunk——业务代码更新只需重下几十 KB，而非整包 |
 
 ---
 
@@ -53,6 +54,7 @@ web/src/game/
 │   ├── StarRating.ts      三星评级
 │   └── SeededRandom.ts    可种子化随机
 ├── render/          纯绘制模块（只吃 layout + state，只产出 GameObject）
+│   └── BoardRenderer / TrayRenderer / DialogRenderer
 ├── ui/              uiScale / RoundedButton / tileVisualStyle / toolButtonStyle / trayPresentation
 ├── layout/          GameLayout —— 纯函数布局求解
 ├── systems/         AudioSystem / SaveManager / InputQueue / SolverWorkerClient

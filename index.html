@@ -5,8 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content="Codex Games: Star Fighter, Soulmate, Wulin Tavern, Journey Ludo, Garden Match, and StackPop, six original AI Native games crafted with Codex." />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; block-all-mixed-content" />
+  <meta name="theme-color" content="#050713" />
+  <link rel="canonical" href="https://g.ismayday.mobi/" />
   <link rel="icon" href="data:," />
   <title>Codex Games | AI Native Game Studio</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Codex Games" />
+  <meta property="og:url" content="https://g.ismayday.mobi/" />
+  <meta property="og:title" content="Codex Games | AI Native Game Studio" />
+  <meta property="og:description" content="Six original AI Native browser games crafted with Codex: Star Fighter, Soulmate, Wulin Tavern, Journey Ludo, Garden Match, and StackPop." />
+  <meta property="og:image" content="https://g.ismayday.mobi/images/promo/journey-ludo-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="900" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Codex Games | AI Native Game Studio" />
+  <meta name="twitter:description" content="Six original AI Native browser games crafted with Codex: Star Fighter, Soulmate, Wulin Tavern, Journey Ludo, Garden Match, and StackPop." />
+  <meta name="twitter:image" content="https://g.ismayday.mobi/images/promo/journey-ludo-cover.jpg" />
   <style>
     :root {
       color-scheme: dark;
@@ -480,13 +497,16 @@
 
     .visual {
       position: relative;
-      min-height: 216px;
+      height: 250px;
       display: grid;
       place-items: center;
     }
 
+    /* Every frame is capped by the shared .visual height, so all six cards
+       keep the same media rhythm regardless of source aspect ratio. */
     .portrait {
       width: min(100%, 250px);
+      max-height: 100%;
       aspect-ratio: 1;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.28);
@@ -505,6 +525,7 @@
 
     .tavern-promo {
       width: min(100%, 320px);
+      max-height: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
       border: 1px solid rgba(255, 238, 189, 0.34);
@@ -523,6 +544,7 @@
 
     .board-frame {
       width: min(100%, 320px);
+      max-height: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
       border: 1px solid rgba(255, 226, 168, 0.38);
@@ -542,6 +564,7 @@
     .ship-stage {
       position: relative;
       width: min(100%, 250px);
+      max-height: 100%;
       aspect-ratio: 1;
       display: grid;
       place-items: center;
@@ -561,6 +584,9 @@
       position: relative;
       width: 64%;
       max-width: 150px;
+      height: auto;
+      max-height: 86%;
+      object-fit: contain;
       filter: drop-shadow(0 0 20px rgba(100, 239, 255, 0.55));
       animation: floatShip 3.5s ease-in-out infinite;
     }
@@ -971,11 +997,23 @@
       }
 
       .visual {
-        min-height: 178px;
+        height: 200px;
       }
 
-      .portrait {
-        width: min(74vw, 220px);
+      /* Height is the binding constraint here, so let each frame derive its
+         width from the 200px band instead of a hardcoded per-breakpoint width. */
+      .portrait,
+      .ship-stage {
+        width: auto;
+        height: 100%;
+        max-width: min(74vw, 220px);
+      }
+
+      .tavern-promo,
+      .board-frame {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
       }
 
       .game-card {
@@ -1093,7 +1131,7 @@
           <div class="card-inner">
             <div class="visual" aria-hidden="true">
               <div class="ship-stage">
-                <img src="star_fighter/images/player-level-5.png" alt="" />
+                <img src="star_fighter/images/player-level-5.png" alt="" width="435" height="554" decoding="async" fetchpriority="high" />
               </div>
             </div>
             <div>
@@ -1127,7 +1165,7 @@
           <div class="card-inner">
             <div class="visual" aria-hidden="true">
               <div class="portrait">
-                <img src="soulmate/images/mate001.jpg" alt="" />
+                <img src="soulmate/images/mate001.jpg" alt="" width="2172" height="724" decoding="async" fetchpriority="high" />
               </div>
             </div>
             <div>
@@ -1161,7 +1199,7 @@
           <div class="card-inner">
             <div class="visual" aria-hidden="true">
               <div class="tavern-promo">
-                <img src="tavern/images/promo/wulin-tavern-homepage.jpg" alt="" />
+                <img src="tavern/images/promo/wulin-tavern-homepage.jpg" alt="" width="1200" height="900" decoding="async" fetchpriority="high" />
               </div>
             </div>
             <div>
@@ -1195,7 +1233,7 @@
           <div class="card-inner">
             <div class="visual" aria-hidden="true">
               <div class="board-frame">
-                <img src="images/promo/journey-ludo-cover.jpg" alt="" loading="lazy" />
+                <img src="images/promo/journey-ludo-cover.jpg" alt="" width="1200" height="900" loading="lazy" decoding="async" />
               </div>
             </div>
             <div>
@@ -1229,7 +1267,7 @@
           <div class="card-inner">
             <div class="visual" aria-hidden="true">
               <div class="board-frame">
-                <img src="images/promo/garden-match-cover.jpg" alt="" loading="lazy" />
+                <img src="images/promo/garden-match-cover.jpg" alt="" width="1200" height="900" loading="lazy" decoding="async" />
               </div>
             </div>
             <div>
@@ -1263,7 +1301,7 @@
           <div class="card-inner">
             <div class="visual" aria-hidden="true">
               <div class="board-frame">
-                <img src="images/promo/stackpop-cover.jpg" alt="" loading="lazy" />
+                <img src="images/promo/stackpop-cover.jpg" alt="" width="1200" height="900" loading="lazy" decoding="async" />
               </div>
             </div>
             <div>
@@ -1397,10 +1435,10 @@
         </div>
         <figure class="flow-visual">
           <a class="flow-image-link zh" href="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-cn.jpg" target="_blank" rel="noopener" aria-label="打开中文版 AI Native 游戏制作流程大图">
-            <img src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-cn.jpg" alt="AI Native 游戏制作流程图" />
+            <img src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-cn.jpg" alt="AI Native 游戏制作流程图" loading="lazy" decoding="async" />
           </a>
           <a class="flow-image-link en" href="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" target="_blank" rel="noopener" aria-label="Open the full-size AI Native game creation flow diagram">
-            <img src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" alt="AI Native game creation flow diagram" />
+            <img src="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" alt="AI Native game creation flow diagram" loading="lazy" decoding="async" />
           </a>
         </figure>
       </div>
