@@ -99,6 +99,7 @@ export const GAME_UI = {
   trayPairGlowDuration: 400,
   tileCoveredFrameAlpha: 0.86,
   tileCoveredIconAlpha: 1,
+  tileCoveredOverlay: 0x253746,
   tileCoveredOverlayAlpha: 0.03,
   tileActiveShadowAlpha: 0.12,
   tileActiveShadowOffset: 3,

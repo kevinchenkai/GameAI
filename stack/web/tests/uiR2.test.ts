@@ -32,8 +32,8 @@ describe('UI R2 material contracts', () => {
   });
 
   it('Tile 渲染不再用 Container 整体 alpha 压灰 covered 状态', () => {
-    const source = readSource('src/game/scenes/GameScene.ts');
-    const method = source.match(/private createTileVisual[\s\S]*?(?=\n  private makeTileInteractive)/)?.[0];
+    const source = readSource('src/game/render/BoardRenderer.ts');
+    const method = source.match(/export function createTileVisual[\s\S]*?(?=\nfunction makeTileInteractive)/)?.[0];
     expect(method).toBeDefined();
     expect(method).not.toContain('container.setAlpha');
     expect(method).toContain('resolveTileVisualStyle');

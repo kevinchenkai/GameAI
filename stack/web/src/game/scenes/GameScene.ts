@@ -11,7 +11,6 @@ import {
   calculateBottomAlignedBoardPlacements,
   calculateGameLayout,
   scaleLayout,
-  type BoardTilePlacement,
   type GameLayout,
 } from '../layout/GameLayout';
 import { AudioSystem } from '../systems/AudioSystem';
@@ -24,7 +23,7 @@ import type { TileData } from '../types/tile';
 import { createRoundedButton } from '../ui/RoundedButton';
 import type { ToolButtonVariant } from '../ui/toolButtonStyle';
 import { findTrayPairRuns, resolveTrayPresentation } from '../ui/trayPresentation';
-import { resolveTileVisualStyle } from '../ui/tileVisualStyle';
+import { drawBoard, createTileVisual } from '../render/BoardRenderer';
 import { syncBackgroundMusic } from './BackgroundMusicScene';
 
 interface GameSceneData {
@@ -317,107 +316,14 @@ export class GameScene extends Phaser.Scene {
   }
 
   private drawBoard(state: GameState): void {
-    const { tileSize } = this.currentLayout;
-    const placements = calculateBottomAlignedBoardPlacements(
-      this.currentLayout,
-      state.columns.map((column) => column.length),
-      px(this, LAYOUT.tileGap),
-      px(this, LAYOUT.trayLabelOffset + LAYOUT.sectionGap),
-      px(this, 6),
-    );
-    for (const placement of placements) {
-      const tile = state.columns[placement.columnIndex]?.[placement.depth];
-      if (tile === undefined) continue;
-      const container = this.createTileVisual(
-        tile,
-        placement.x,
-        placement.y,
-        tileSize,
-        placement.isTop,
-      );
-      container.setDepth(placement.depth + 2);
-      if (placement.isTop && !this.layoutFixture) {
-        this.topTileContainers.set(placement.columnIndex, container);
-        this.makeTileInteractive(container, placement);
-      }
-    }
-  }
-
-  private createTileVisual(tile: TileData, x: number, y: number, size: number, isTop: boolean): Phaser.GameObjects.Container {
-    const container = this.add.container(x, y);
-    const style = resolveTileVisualStyle(isTop);
-    const radius = size * PROTOTYPE_UI.cornerRatio;
-    if (style.shadowAlpha > 0) {
-      const shadow = this.add.graphics();
-      shadow.fillStyle(GAME_UI.softShadow, style.shadowAlpha);
-      shadow.fillRoundedRect(
-        0,
-        px(this, GAME_UI.tileActiveShadowOffset),
-        size,
-        size,
-        radius,
-      );
-      container.add(shadow);
-    }
-    const frame = this.add
-      .image(0, 0, SCENE_TEXTURES.Game.tileFrame.key)
-      .setOrigin(0, 0)
-      .setDisplaySize(size, size)
-      .setAlpha(style.frameAlpha)
-      .setName('hit-frame');
-    container.add(frame);
-    if (style.overlayAlpha > 0) {
-      container.add(
-        this.add.rectangle(size / 2, size / 2, size * 0.9, size * 0.9, 0x253746, style.overlayAlpha),
-      );
-    }
-    const icon = this.add
-      .image(size / 2, size / 2, SCENE_TEXTURES.Game.tiles[tile.type].key)
-      .setDisplaySize(size * GAME_UI.boardIconCanvasRatio, size * GAME_UI.boardIconCanvasRatio)
-      .setAlpha(style.iconAlpha);
-    container.add(icon);
-    if (style.outlineAlpha > 0) {
-      const outline = this.add.graphics();
-      outline.lineStyle(
-        px(this, GAME_UI.tileActiveOutlineWidth),
-        GAME_UI.tileActiveOutline,
-        style.outlineAlpha,
-      );
-      outline.strokeRoundedRect(0, 0, size, size, radius);
-      container.add(outline);
-    }
-    return container;
-  }
-
-  private makeTileInteractive(
-    container: Phaser.GameObjects.Container,
-    placement: BoardTilePlacement,
-  ): void {
-    const frame = container.getByName('hit-frame') as Phaser.GameObjects.Image;
-    const extension = (placement.x - placement.hitArea.x) / frame.scaleX;
-    frame.setInteractive(
-      new Phaser.Geom.Rectangle(
-        -extension,
-        -extension,
-        frame.width + extension * 2,
-        frame.height + extension * 2,
-      ),
-      Phaser.Geom.Rectangle.Contains,
-      true,
-    );
-    frame.input!.cursor = 'pointer';
-    frame.on(Phaser.Input.Events.POINTER_OVER, () => {
-      if (window.matchMedia('(pointer: fine)').matches) {
-        container.setY(placement.y - px(this, 4)).setScale(1.04);
-      }
+    const { topTileContainers } = drawBoard(this, this.currentLayout, state, {
+      interactive: !this.layoutFixture,
+      onPick: (columnIndex) => this.enqueuePick(columnIndex),
     });
-    frame.on(Phaser.Input.Events.POINTER_OUT, () => {
-      container.setPosition(placement.x, placement.y).setScale(1);
-    });
-    frame.on(Phaser.Input.Events.POINTER_UP, () => {
-      container.setPosition(placement.x, placement.y).setScale(1);
-      this.enqueuePick(placement.columnIndex);
-    });
+    this.topTileContainers.clear();
+    for (const [columnIndex, container] of topTileContainers) {
+      this.topTileContainers.set(columnIndex, container);
+    }
   }
 
   private drawTray(state: GameState): void {
@@ -954,7 +860,7 @@ export class GameScene extends Phaser.Scene {
     const targetSlot = Math.min(GAMEPLAY.traySize - 1, result.insertedTrayIndex);
     const targetX = contentLeft + targetSlot * (traySlotSize + px(this, LAYOUT.trayGap)) + traySlotSize * 0.08;
     const targetY = trayTop + traySlotSize * 0.08;
-    const flying = this.createTileVisual(result.pickedTile, startX, startY, tileSize, true).setDepth(250);
+    const flying = createTileVisual(this, result.pickedTile, startX, startY, tileSize, true).setDepth(250);
     const progress = { value: 0 };
     const controlY = Math.min(startY, targetY) - Math.min(px(this, 60), tileSize * 0.9);
     this.audioSystem.play('jump');

@@ -52,9 +52,11 @@ describe('UI R1 visual contracts', () => {
   });
 
   it('运行时可点 Tile 直接使用布局返回的命中区扩展量', () => {
-    const gameScene = readSource('src/game/scenes/GameScene.ts');
-    expect(gameScene).toContain('placement.x - placement.hitArea.x');
-    expect(gameScene).toContain('this.makeTileInteractive(container, placement)');
+    // 绘制代码已抽到 render/BoardRenderer（CodeReview §1），断言随之改指该文件；
+    // 守的仍是同一条：命中区由布局返回，不在渲染层另算一份。
+    const renderer = readSource('src/game/render/BoardRenderer.ts');
+    expect(renderer).toContain('placement.x - placement.hitArea.x');
+    expect(renderer).toContain('makeTileInteractive(scene, container, placement');
   });
 
   it('背景 wash 使用已批准的 4%~14% 低冲淡档', () => {
