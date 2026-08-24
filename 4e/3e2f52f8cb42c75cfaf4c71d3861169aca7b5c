@@ -1,0 +1,22 @@
+stack/docs/CodeReview_整体_Claude_20260824.md
+  s_3a713e661cdfe8::t_b0fb477dcccef3 6-17,19-27,30
+  s_3a713e661cdfe8::t_e04081bf71b75f 18,28-29
+stack/README.md
+  s_3a713e661cdfe8::t_f246a5f3c2e10b 33,36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "4e3e2f52f8cb42c75cfaf4c71d3861169aca7b5c",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
