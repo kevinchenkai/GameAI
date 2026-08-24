@@ -312,7 +312,7 @@ export class GameScene extends Phaser.Scene {
         this.openSettings();
       });
     } else {
-      settings.setAlpha(0.5);
+      settings.setAlpha(GAME_UI.settingsDisabledAlpha);
     }
   }
 
@@ -521,7 +521,7 @@ export class GameScene extends Phaser.Scene {
       );
       root.add(glow);
       if (!this.previousTrayPairKeys.has(key)) {
-        glow.setAlpha(0.25);
+        glow.setAlpha(GAME_UI.trayPairGlowEnterAlpha);
         this.tweens.add({
           targets: glow,
           alpha: 1,
@@ -537,7 +537,7 @@ export class GameScene extends Phaser.Scene {
       this.trayWarningTween = this.tweens.add({
         targets: root,
         scale: 1.025,
-        alpha: 0.82,
+        alpha: GAME_UI.trayWarningPulseAlpha,
         duration: ANIMATION.trayWarningCycleMs / 2,
         yoyo: true,
         repeat: -1,
@@ -681,7 +681,7 @@ export class GameScene extends Phaser.Scene {
           panelTop + px(this, 43),
           SCENE_TEXTURES.Game.star.key,
         ).setDisplaySize(px(this, GAME_UI.resultStarSize), px(this, GAME_UI.resultStarSize)).setDepth(302);
-        if (earnedStars !== null && index >= earnedStars) star.setTint(0xaebbc5).setAlpha(0.48);
+        if (earnedStars !== null && index >= earnedStars) star.setTint(COLORS.resultStarUnearnedTint).setAlpha(GAME_UI.resultStarUnearnedAlpha);
         starImages.push(star);
       }
     }
@@ -789,7 +789,7 @@ export class GameScene extends Phaser.Scene {
     overlay: Phaser.GameObjects.Rectangle,
   ): void {
     const finalStarAlphas = stars.map((star) => star.alpha);
-    panel.setScale(0.86).setAlpha(0.72);
+    panel.setScale(GAME_UI.resultPanelEnterScale).setAlpha(GAME_UI.resultPanelEnterAlpha);
     contentTargets.forEach((target) => target.setAlpha(0));
     stars.forEach((star) => star.setScale(0.35).setAlpha(0));
 

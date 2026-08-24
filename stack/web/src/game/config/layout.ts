@@ -20,6 +20,8 @@ export const LAYOUT = {
 
 export const COLORS = {
   skyTop: 0x8fd0ff,
+  /** 未获得的星星：去色偏冷灰，与已获得的暖金拉开对比 */
+  resultStarUnearnedTint: 0xaebbc5,
   skyBottom: 0xe8f5ff,
   cloud: 0xffffff,
   tileBase: 0xfff6e3,
@@ -91,6 +93,8 @@ export const GAME_UI = {
   trayOccupiedHighlightAlpha: 0.14,
   trayPairGlow: 0xffc45c,
   trayPairGlowAlpha: 0.58,
+  trayPairGlowEnterAlpha: 0.25,
+  trayWarningPulseAlpha: 0.82,
   trayPairGlowWidth: 2,
   trayPairGlowDuration: 400,
   tileCoveredFrameAlpha: 0.86,
@@ -106,6 +110,7 @@ export const GAME_UI = {
   settingsVisualSize: 32,
   settingsHitSize: 48,
   settingsRestAlpha: 0.9,
+  settingsDisabledAlpha: 0.5,
   helpPanelRadius: 18,
   helpPanelFillAlpha: 0.95,
   helpPanelShadowAlpha: 0.12,
@@ -120,6 +125,9 @@ export const GAME_UI = {
   resultPanelHeight: 310,
   resultFailPanelHeight: 250,
   resultStarSize: 38,
+  resultStarUnearnedAlpha: 0.48,
+  resultPanelEnterAlpha: 0.72,
+  resultPanelEnterScale: 0.86,
   resultStarGap: 44,
   resultTitleSize: 26,
   resultBodySize: 14,
