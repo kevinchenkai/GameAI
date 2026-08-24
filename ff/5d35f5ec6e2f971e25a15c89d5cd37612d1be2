@@ -1,0 +1,21 @@
+stack/docs/CodeReview_整体_Claude_20260824.md
+  s_3a713e661cdfe8::t_87e1e3be9b6a23 1-205
+stack/docs/UI_R3_美化建议_Claude_20260824.md
+  s_3a713e661cdfe8::t_24b4b9dc61fd5a 1-254
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "ff5d35f5ec6e2f971e25a15c89d5cd37612d1be2",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
