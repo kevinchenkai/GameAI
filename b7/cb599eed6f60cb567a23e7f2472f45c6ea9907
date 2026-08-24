@@ -1,0 +1,60 @@
+stack/web/src/game/scenes/GameScene.ts
+  s_d321df54fe1b3e::t_85d25454b1d6c4 591-593
+  s_d321df54fe1b3e::t_8c8bc11feced4a 803,810,820,837,857,902,1035
+  s_d321df54fe1b3e::t_352333fb3efc52 24-25,584-590,595,598,763-772,774-778
+  s_d321df54fe1b3e::t_6ed8b2d2af24b0 594,773
+  s_d321df54fe1b3e::t_09bc78615e35f1 667,780-802,804-809,811-819,821-836,838-856,858-861
+  s_d321df54fe1b3e::t_a3177f9af5ad1c 60,82
+  s_d321df54fe1b3e::t_a6cb3d5576366c 652-655
+  s_d321df54fe1b3e::t_1ace1b8131d75c 647-651,656-658,669-670,672-673,676-680,686-689,692-698,706-707,716-718,720,723,736-737,740,742,746,749,752-761,779
+  s_d321df54fe1b3e::t_dcccb8d6394587 662-666,668,671,682,685,691,699-703,705,708-715,719,722,725-729,731
+  s_d321df54fe1b3e::t_fcabacbaffddf6 735,738-739,741,743-745,747-748,750-751,762
+  s_d321df54fe1b3e::t_12c699c2f7675f 659-661,681,704
+  s_d321df54fe1b3e::t_0a6c54a5c416c6 605-610,613-621,623,626-627,629,631,633-637,641
+  s_d321df54fe1b3e::t_9822ac133f0951 596-597
+  s_d321df54fe1b3e::t_b1e250672400ca 690
+stack/web/src/game/ui/RoundedButton.ts
+  s_d321df54fe1b3e::t_035783bbca9f5a 1-17,19-63,65-129
+  s_d321df54fe1b3e::t_6ed8b2d2af24b0 18,64
+stack/web/src/game/scenes/HowToPlayScene.ts
+  s_d321df54fe1b3e::t_000ee5eaf3a068 4-5,35,38,41-49,51-54,56,60,62,65-70,72-75,78-86,89,93-107,109-137,145-179,181-182,184,188-221,223,225,227-228,234-235,239-241,248-256,269
+  s_d321df54fe1b3e::t_ae28bb3813fc1a 180
+  s_d321df54fe1b3e::t_a0344c0b53a69b 138-144,183
+  s_d321df54fe1b3e::t_6ed8b2d2af24b0 266
+  s_d321df54fe1b3e::t_64edcd4bde2077 6-7,257-265,267-268
+stack/web/tests/shuffle.test.ts
+  s_d321df54fe1b3e::t_14d462737170b9 8,70-98
+  s_d321df54fe1b3e::t_c72b7286cc0551 99-100
+stack/web/tests/uiR2.test.ts
+  s_d321df54fe1b3e::t_69cfa1d639596b 58
+stack/web/src/game/config/layout.ts
+  s_d321df54fe1b3e::t_f82f9481628643 109-112,114-120,122-130
+  s_d321df54fe1b3e::t_0a6c54a5c416c6 139-141
+  s_d321df54fe1b3e::t_a6cb3d5576366c 113,121
+  s_d321df54fe1b3e::t_a3177f9af5ad1c 131-132,134,136
+  s_d321df54fe1b3e::t_8c8bc11feced4a 133,135,137-138
+stack/web/src/game/config/howToPlay.ts
+  s_d321df54fe1b3e::t_65aac62b1f2542 18-19,22-23,26-27,37,41,45,55,59,63,73,77,81
+stack/web/tests/uiR3.test.ts
+  s_d321df54fe1b3e::t_69cfa1d639596b 30,34-47
+  s_d321df54fe1b3e::t_0a6c54a5c416c6 77-85
+  s_d321df54fe1b3e::t_a6cb3d5576366c 20-21,52
+  s_d321df54fe1b3e::t_c9a3d455f7c5e6 1-19,22-29,31-33,48-51,53-65,67-71,74,97-98
+  s_d321df54fe1b3e::t_8c8bc11feced4a 66,72-73,75-76,86-96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "b7cb599eed6f60cb567a23e7f2472f45c6ea9907",
+  "prompts": {},
+  "sessions": {
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
