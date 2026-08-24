@@ -151,9 +151,9 @@ export function calculateCenteredBoardTop(
 }
 
 /**
- * 把每列数组末位（当前可点击 Tile）锚定在 Tray 上方的同一条底部基线，
- * 其余 Tile 由该基线向上生长。返回值同时包含实际命中区，渲染与测试共用
- * 同一套坐标，避免出现“画面改了但点击仍留在旧位置”的静默回归。
+ * 把每列数组末位（当前可点击 Tile）对齐在同一条公共基线，整块棋盘在预留区
+ * 严格垂直居中，其余 Tile 由该基线向上生长。返回值同时包含实际命中区，
+ * 渲染与测试共用同一套坐标，避免出现“画面改了但点击仍留在旧位置”的静默回归。
  */
 export function calculateBottomAlignedBoardPlacements(
   layout: GameLayout,
@@ -162,12 +162,20 @@ export function calculateBottomAlignedBoardPlacements(
   spaceBeforeTray: number,
   hitExtension: number,
 ): BoardTilePlacement[] {
-  const baselineY = layout.trayTop - Math.max(0, spaceBeforeTray) - layout.tileSize;
+  const normalizedDepths = columnDepths.map((depth) => Math.max(0, Math.floor(depth)));
+  const actualMaxDepth = Math.max(1, ...normalizedDepths);
+  const centeredTop = calculateCenteredBoardTop(layout, actualMaxDepth, spaceBeforeTray);
+
+  // Strictly center the current board content while keeping every column's clickable
+  // tile on one shared baseline. The total slack originates earlier: calculateGameLayout
+  // reserves the board region using maxDepth while trayTop stays anchored to the viewport.
+  // R2-0 only redistributes that slack; recovering it would change the layout contract and
+  // the six-column ground truth, so do not move trayTop from this placement helper.
+  const baselineY = centeredTop + (actualMaxDepth - 1) * layout.rowStep;
   const extension = Math.max(0, hitExtension);
   const placements: BoardTilePlacement[] = [];
 
-  columnDepths.forEach((rawDepth, columnIndex) => {
-    const columnDepth = Math.max(0, Math.floor(rawDepth));
+  normalizedDepths.forEach((columnDepth, columnIndex) => {
     const x = layout.contentLeft + columnIndex * (layout.tileSize + tileGap);
     for (let depth = 0; depth < columnDepth; depth += 1) {
       const isTop = depth === columnDepth - 1;
