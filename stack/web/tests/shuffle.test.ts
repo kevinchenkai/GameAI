@@ -5,6 +5,7 @@ import { SeededRandom } from '../src/game/core/SeededRandom';
 import {
   findSolvableShuffle,
   generateSafeState,
+  SafeStateUnavailable,
 } from '../src/game/core/Shuffle';
 import { canSolve, solverStateFromGame } from '../src/game/core/Solver';
 import { UndoManager } from '../src/game/core/UndoManager';
@@ -64,6 +65,37 @@ describe('Shuffle', () => {
     expect(restored?.columns).toEqual(state.columns);
     expect(restored?.tray).toEqual(state.tray);
     expect(restored?.shuffleUsed).toBe(1);
+  });
+
+  it('Tray 已满的失败局面不能靠只重排列的打乱恢复', () => {
+    const state = createDemoState();
+    const failedState = {
+      ...state,
+      columns: [
+        [{ id: 'column-paw', type: 'paw' as const }],
+        [{ id: 'column-grass', type: 'grass' as const }],
+        [{ id: 'column-watering', type: 'watering' as const }],
+        [
+          { id: 'column-bell-1', type: 'bell' as const },
+          { id: 'column-bell-2', type: 'bell' as const },
+        ],
+      ],
+      tray: [
+        { id: 'tray-paw-1', type: 'paw' as const },
+        { id: 'tray-grass-1', type: 'grass' as const },
+        { id: 'tray-watering-1', type: 'watering' as const },
+        { id: 'tray-bell-1', type: 'bell' as const },
+        { id: 'tray-paw-2', type: 'paw' as const },
+        { id: 'tray-grass-2', type: 'grass' as const },
+        { id: 'tray-watering-2', type: 'watering' as const },
+      ],
+      status: 'failed' as const,
+    };
+
+    expect(() => findSolvableShuffle(failedState, new SeededRandom(23), 0))
+      .toThrowError(SafeStateUnavailable);
+    expect(() => findSolvableShuffle(failedState, new SeededRandom(23), 0))
+      .toThrowError('Current tray cannot be rescued by any next pick');
   });
 
   it('Worker 超时终止并走确定性安全兜底', async () => {

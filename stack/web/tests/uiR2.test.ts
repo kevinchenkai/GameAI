@@ -55,7 +55,7 @@ describe('UI R2 material contracts', () => {
   it('工具按钮 pressed 只下移并减弱阴影，disabled 完全无 enabled 阴影', () => {
     const primary = resolveToolButtonStyle('primary', true);
     const disabled = resolveToolButtonStyle('primary', false);
-    const source = readSource('src/game/scenes/GameScene.ts');
+    const source = readSource('src/game/ui/RoundedButton.ts');
 
     expect(primary.pressedOffset).toBe(2);
     expect(primary.pressedShadowScale).toBeLessThan(1);

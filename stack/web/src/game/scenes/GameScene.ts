@@ -21,7 +21,8 @@ import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
 import type { TileData } from '../types/tile';
-import { resolveToolButtonStyle, type ToolButtonVariant } from '../ui/toolButtonStyle';
+import { createRoundedButton } from '../ui/RoundedButton';
+import type { ToolButtonVariant } from '../ui/toolButtonStyle';
 import { findTrayPairRuns, resolveTrayPresentation } from '../ui/trayPresentation';
 import { resolveTileVisualStyle } from '../ui/tileVisualStyle';
 import { syncBackgroundMusic } from './BackgroundMusicScene';
@@ -56,6 +57,7 @@ export class GameScene extends Phaser.Scene {
   private completionStars: StarRating | null = null;
   private restartConfirmVisible = false;
   private previousTrayPairKeys = new Set<string>();
+  private pendingWinCelebration = false;
 
   constructor() {
     super('Game');
@@ -77,6 +79,7 @@ export class GameScene extends Phaser.Scene {
     this.undoManager.clear();
     this.completionStars = null;
     this.restartConfirmVisible = false;
+    this.pendingWinCelebration = false;
     this.previousTrayPairKeys.clear();
     const shouldResume = !this.layoutFixture && (data.resume ?? !urlHasLevel);
     const restored = shouldResume ? this.saveManager.restoreCurrentRun(levelId) : null;
@@ -578,181 +581,284 @@ export class GameScene extends Phaser.Scene {
     onTap: () => void,
     options: ToolButtonOptions = {},
   ): void {
-    const variant = options.variant ?? 'secondary';
-    const style = resolveToolButtonStyle(variant, enabled);
-    const container = this.add.container(x, y);
-    const radius = px(this, GAME_UI.buttonRadius);
-    let shadow: Phaser.GameObjects.Graphics | null = null;
-    if (style.shadowAlpha > 0) {
-      shadow = this.add.graphics();
-      shadow.fillStyle(GAME_UI.softShadow, style.shadowAlpha);
-      shadow.fillRoundedRect(0, px(this, style.shadowOffset), width, height, radius);
-      container.add(shadow);
-    }
-    const background = this.add.graphics();
-    background.fillStyle(style.fill, style.fillAlpha);
-    background.fillRoundedRect(0, 0, width, height, radius);
-    background.lineStyle(px(this, style.strokeWidth), style.stroke, style.strokeAlpha);
-    background.strokeRoundedRect(0, 0, width, height, radius);
-    container.add(background);
-    const labelText = this.add.text(0, height / 2, label, {
-      fontFamily: 'PingFang SC, sans-serif',
-      fontSize: `${Math.round(Math.min(px(this, PROTOTYPE_UI.buttonFontSize), width * 0.16))}px`,
-      fontStyle: 'bold',
-      color: style.labelColor,
-    });
-    if (options.textureKey !== undefined) {
-      const iconSize = Math.min(height - px(this, 10), px(this, GAME_UI.toolIconSize));
-      const iconGap = px(this, GAME_UI.toolIconGap);
-      const groupWidth = iconSize + iconGap + labelText.width;
-      const groupLeft = Math.max(px(this, 8), (width - groupWidth) / 2);
-      container.add(
-        this.add
-          .image(groupLeft, (height - iconSize) / 2, options.textureKey)
-          .setOrigin(0, 0)
-          .setDisplaySize(iconSize, iconSize)
-          .setAlpha(enabled ? 1 : 0.42),
-      );
-      labelText.setPosition(groupLeft + iconSize + iconGap, height / 2).setOrigin(0, 0.5);
-    } else {
-      labelText.setPosition(width / 2, height / 2).setOrigin(0.5);
-    }
-    container.add(labelText);
-    if (options.badge !== undefined) {
-      const badgeRadius = px(this, GAME_UI.toolBadgeRadius);
-      const badgeX = width - badgeRadius - px(this, GAME_UI.toolBadgeEdgeInset);
-      const badgeY = badgeRadius + px(this, GAME_UI.toolBadgeEdgeInset);
-      container.add(this.add.circle(badgeX, badgeY, badgeRadius, 0xe9a83a, enabled ? 1 : 0.45));
-      container.add(this.add.text(badgeX, badgeY, String(Math.max(0, options.badge)), {
-        fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: fontPx(this, 10),
-        fontStyle: 'bold',
-        color: '#ffffff',
-      }).setOrigin(0.5));
-    }
-    if (!enabled) return;
-    background.setInteractive(
-      new Phaser.Geom.Rectangle(0, 0, width, height),
-      Phaser.Geom.Rectangle.Contains,
-    );
-    background.input!.cursor = 'pointer';
-    background.on(Phaser.Input.Events.POINTER_OVER, () => {
-      if (window.matchMedia('(pointer: fine)').matches) container.setY(y - px(this, 2));
-    });
-    background.on(Phaser.Input.Events.POINTER_OUT, () => {
-      container.setY(y);
-      shadow?.setAlpha(1);
-    });
-    background.on(Phaser.Input.Events.POINTER_DOWN, () => {
-      container.setY(y + px(this, style.pressedOffset));
-      shadow?.setAlpha(style.pressedShadowScale);
-    });
-    background.on(Phaser.Input.Events.POINTER_UP, () => {
-      container.setY(y);
-      shadow?.setAlpha(1);
-      this.audioSystem.play('button');
-      onTap();
+    createRoundedButton(this, {
+      x,
+      y,
+      width,
+      height,
+      label,
+      enabled,
+      variant: options.variant ?? 'secondary',
+      ...(options.textureKey === undefined ? {} : { textureKey: options.textureKey }),
+      ...(options.badge === undefined ? {} : { badge: options.badge }),
+      labelSize: PROTOTYPE_UI.buttonFontSize,
+      onTap: () => {
+        this.audioSystem.play('button');
+        onTap();
+      },
     });
   }
 
   private drawRestartConfirmation(): void {
     const centerX = this.scale.width / 2;
     const centerY = this.scale.height / 2;
-    const panelWidth = Math.min(px(this, 330), this.currentLayout.contentWidth - px(this, 24));
-    const panelHeight = px(this, 210);
-    this.add.rectangle(centerX, centerY, this.scale.width, this.scale.height, 0x34516b, 0.5)
+    const panelWidth = Math.min(px(this, GAME_UI.confirmationPanelMaxWidth), this.currentLayout.contentWidth - px(this, 24));
+    const panelHeight = px(this, GAME_UI.confirmationPanelHeight);
+    const panelLeft = centerX - panelWidth / 2;
+    const panelTop = centerY - panelHeight / 2;
+    const radius = px(this, GAME_UI.confirmationPanelRadius);
+    this.add.rectangle(centerX, centerY, this.scale.width, this.scale.height, 0x34516b, GAME_UI.resultOverlayAlpha)
       .setInteractive()
       .setDepth(300);
-    this.add.rectangle(centerX, centerY, panelWidth, panelHeight, 0xfff8e9, 1)
-      .setStrokeStyle(px(this, 2), COLORS.tileStroke, 0.75)
-      .setDepth(301);
-    this.add.text(centerX, centerY - px(this, 58), '重新开始本关？', {
+    const shadow = this.add.graphics().setDepth(301);
+    shadow.fillStyle(GAME_UI.softShadow, 0.14);
+    shadow.fillRoundedRect(panelLeft, panelTop + px(this, 4), panelWidth, panelHeight, radius);
+    const panel = this.add.graphics().setDepth(302);
+    panel.fillStyle(0xfff8e9, 0.98);
+    panel.fillRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, radius);
+    panel.lineStyle(px(this, 1.5), COLORS.tileStroke, 0.58);
+    panel.strokeRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, radius);
+    this.add.text(centerX, centerY - px(this, 51), '重新开始本关？', {
       fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-      fontSize: fontPx(this, 24),
+      fontSize: fontPx(this, 23),
       fontStyle: 'bold',
       color: COLORS.title,
-    }).setOrigin(0.5).setDepth(302);
-    this.add.text(centerX, centerY - px(this, 18), '当前局面和撤回记录都会清空', {
+    }).setOrigin(0.5).setDepth(303);
+    this.add.text(centerX, centerY - px(this, 14), '当前局面和撤回记录都会清空', {
       fontFamily: 'PingFang SC, sans-serif',
-      fontSize: fontPx(this, 14),
+      fontSize: fontPx(this, 13),
       color: COLORS.text,
-    }).setOrigin(0.5).setDepth(302);
+    }).setOrigin(0.5).setDepth(303);
     const gap = px(this, 10);
-    const buttonWidth = (panelWidth - px(this, 48) - gap) / 2;
-    const left = centerX - gap / 2 - buttonWidth;
-    const top = centerY + px(this, 35);
-    this.drawConfirmationButton(left, top, buttonWidth, '取消', 0xffffff, () => {
+    const panelPadding = px(this, GAME_UI.resultPanelPadding);
+    const buttonWidth = (panelWidth - panelPadding * 2 - gap) / 2;
+    const left = panelLeft + panelPadding;
+    const top = centerY + px(this, 31);
+    this.drawResultButton(left, top, buttonWidth, '取消', true, 'secondary', () => {
       this.restartConfirmVisible = false;
       this.renderGame();
     });
-    this.drawConfirmationButton(centerX + gap / 2, top, buttonWidth, '确认重来', 0xffd0c3, () => this.restart());
-  }
-
-  private drawConfirmationButton(x: number, y: number, width: number, label: string, fill: number, onTap: () => void): void {
-    const button = this.add.rectangle(x, y, width, px(this, 46), fill, 1)
-      .setOrigin(0, 0)
-      .setStrokeStyle(px(this, 1.5), COLORS.tileStroke, 0.65)
-      .setInteractive({ useHandCursor: true })
-      .setDepth(303);
-    this.add.text(x + width / 2, y + px(this, 23), label, {
-      fontFamily: 'PingFang SC, sans-serif',
-      fontSize: fontPx(this, 14),
-      fontStyle: 'bold',
-      color: COLORS.text,
-    }).setOrigin(0.5).setDepth(304);
-    button.on(Phaser.Input.Events.POINTER_UP, onTap);
+    this.drawResultButton(left + buttonWidth + gap, top, buttonWidth, '确认重来', true, 'danger', () => this.restart());
   }
 
   private drawResult(status: 'won' | 'failed'): void {
     const state = this.model.state;
     const centerX = this.scale.width / 2;
-    const centerY = this.scale.height / 2;
-    const panelWidth = Math.min(this.currentLayout.contentWidth * 0.88, this.scale.width - LAYOUT.contentPadding * 2);
-    const panelHeight = Math.min(px(this, 360), this.scale.height * 0.48);
-    this.add.rectangle(centerX, centerY, this.scale.width, this.scale.height, 0x34516b, 0.42).setInteractive().setDepth(300);
-    this.add.image(centerX, centerY, status === 'won' ? SCENE_TEXTURES.Game.winPanel.key : SCENE_TEXTURES.Game.failPanel.key).setDisplaySize(panelWidth, panelHeight).setDepth(301);
+    const panelCenterY = this.scale.height / 2 - px(this, 8);
+    const panelWidth = Math.min(
+      px(this, GAME_UI.resultPanelMaxWidth),
+      this.currentLayout.contentWidth * GAME_UI.resultPanelWidthRatio,
+    );
+    const configuredPanelHeight = status === 'won'
+      ? GAME_UI.resultPanelHeight
+      : GAME_UI.resultFailPanelHeight;
+    const panelHeight = Math.min(px(this, configuredPanelHeight), this.scale.height * 0.44);
+    const panelTop = panelCenterY - panelHeight / 2;
+    const panelLeft = centerX - panelWidth / 2;
+    const panelPadding = px(this, GAME_UI.resultPanelPadding);
+    const earnedStars = status === 'won'
+      ? this.completionStars ?? calculateStarRating(state.undoUsed, state.shuffleUsed)
+      : null;
+    const animateWin = status === 'won'
+      && this.pendingWinCelebration
+      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.pendingWinCelebration = false;
+    const starImages: Phaser.GameObjects.Image[] = [];
+    const contentTargets: Array<Phaser.GameObjects.Text | Phaser.GameObjects.Container> = [];
+    const overlay = this.add.rectangle(centerX, this.scale.height / 2, this.scale.width, this.scale.height, 0x34516b, GAME_UI.resultOverlayAlpha)
+      .setInteractive()
+      .setDepth(300);
+    const panel = this.add.image(centerX, panelCenterY, status === 'won' ? SCENE_TEXTURES.Game.winPanel.key : SCENE_TEXTURES.Game.failPanel.key)
+      .setDisplaySize(panelWidth, panelHeight)
+      .setDepth(301);
     if (status === 'won') {
-      const earnedStars = this.completionStars ?? calculateStarRating(state.undoUsed, state.shuffleUsed);
       for (let index = 0; index < 3; index += 1) {
-        const star = this.add.image(centerX + (index - 1) * px(this, 48), centerY - panelHeight * 0.31, SCENE_TEXTURES.Game.star.key).setDisplaySize(px(this, 42), px(this, 42)).setDepth(302);
-        if (index >= earnedStars) star.setTint(0xaebbc5).setAlpha(0.48);
+        const star = this.add.image(
+          centerX + (index - 1) * px(this, GAME_UI.resultStarGap),
+          panelTop + px(this, 43),
+          SCENE_TEXTURES.Game.star.key,
+        ).setDisplaySize(px(this, GAME_UI.resultStarSize), px(this, GAME_UI.resultStarSize)).setDepth(302);
+        if (earnedStars !== null && index >= earnedStars) star.setTint(0xaebbc5).setAlpha(0.48);
+        starImages.push(star);
       }
     }
-    this.add.text(centerX, centerY - (status === 'won' ? 54 : 68), status === 'won' ? `第${state.levelId}关完成` : '这一步卡住啦！', {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, PROTOTYPE_UI.resultTitleSize), fontStyle: 'bold', color: status === 'won' ? '#d88b21' : COLORS.title,
+    const title = this.add.text(centerX, panelTop + px(this, status === 'won' ? 88 : 72), status === 'won' ? `第${state.levelId}关完成` : '这一步卡住啦！', {
+      fontFamily: 'PingFang SC, sans-serif',
+      fontSize: fontPx(this, GAME_UI.resultTitleSize),
+      fontStyle: 'bold',
+      color: status === 'won' ? '#d88b21' : COLORS.title,
     }).setOrigin(0.5).setDepth(302);
-    const resultBody = status === 'won'
-      ? `步数 ${state.moveCount}  ·  撤回 ${state.undoUsed}  ·  打乱 ${state.shuffleUsed}`
-      : '暂存槽已经放满 7 格';
-    this.add.text(centerX, centerY + (status === 'won' ? 4 : -22), resultBody, {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, PROTOTYPE_UI.resultBodySize), color: COLORS.text,
-    }).setOrigin(0.5).setDepth(302);
-    if (status === 'failed') {
-      const buttonWidth = (panelWidth - px(this, 52)) / 3;
-      const left = centerX - panelWidth / 2 + px(this, 20);
-      const top = centerY + px(this, 46);
-      this.drawResultButton(left, top, buttonWidth, '撤回一步', this.undoManager.canUndo, () => this.performUndo());
-      this.drawResultButton(left + buttonWidth + 6, top, buttonWidth, '打乱', false, () => void this.performShuffle());
-      this.drawResultButton(left + (buttonWidth + 6) * 2, top, buttonWidth, '重新开始', true, () => this.restart());
-    } else {
-      const buttonWidth = (panelWidth - px(this, 52)) / 3;
-      const left = centerX - panelWidth / 2 + px(this, 20);
-      const top = centerY + px(this, 62);
+    contentTargets.push(title);
+
+    const gap = px(this, GAME_UI.resultButtonGap);
+    const buttonWidth = (panelWidth - panelPadding * 2 - gap * 2) / 3;
+    const buttonTop = panelTop + panelHeight - panelPadding - px(this, GAME_UI.resultButtonHeight);
+    const left = panelLeft + panelPadding;
+    if (status === 'won') {
+      const statTop = panelTop + px(this, 119);
+      contentTargets.push(
+        this.drawResultStat(left, statTop, buttonWidth, '步数', state.moveCount),
+        this.drawResultStat(left + buttonWidth + gap, statTop, buttonWidth, '撤回', state.undoUsed),
+        this.drawResultStat(left + (buttonWidth + gap) * 2, statTop, buttonWidth, '打乱', state.shuffleUsed),
+      );
+      const achievement = earnedStars === 3 ? '完美通关 · 没有使用工具' : earnedStars === 2 ? '漂亮！再试试三星挑战' : '顺利过关 · 最好成绩已保存';
+      const achievementText = this.add.text(centerX, statTop + px(this, GAME_UI.resultStatHeight + 22), achievement, {
+        fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 12), color: '#7d7569',
+      }).setOrigin(0.5).setDepth(302);
+      contentTargets.push(achievementText);
       const hasNext = state.levelId < LEVEL_LOADER.count;
-      this.drawResultButton(left, top, buttonWidth, '下一关', hasNext, () => this.startLevel(state.levelId + 1));
-      this.drawResultButton(left + buttonWidth + 6, top, buttonWidth, '再玩一次', true, () => this.restart());
-      this.drawResultButton(left + (buttonWidth + 6) * 2, top, buttonWidth, '选择关卡', true, () => this.scene.start('LevelSelect'));
+      contentTargets.push(
+        this.drawResultButton(left, buttonTop, buttonWidth, '下一关', hasNext, 'primary', () => this.startLevel(state.levelId + 1)),
+        this.drawResultButton(left + buttonWidth + gap, buttonTop, buttonWidth, '再玩一次', true, 'secondary', () => this.restart()),
+        this.drawResultButton(left + (buttonWidth + gap) * 2, buttonTop, buttonWidth, '选择关卡', true, 'danger', () => this.scene.start('LevelSelect')),
+      );
+      if (animateWin) this.animateWinResult(panel, starImages, contentTargets, overlay);
+      return;
+    }
+
+    const failedBody = this.add.text(centerX, panelTop + px(this, 116), '暂存槽已经放满 7 格', {
+      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, GAME_UI.resultBodySize), color: COLORS.text,
+    }).setOrigin(0.5).setDepth(302);
+    const failedHint = this.add.text(centerX, panelTop + px(this, 145), this.undoManager.canUndo ? '撤回一步，回到槽位未满时' : '重新开始本关再试一次', {
+      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 12), color: '#7d7569',
+    }).setOrigin(0.5).setDepth(302);
+    contentTargets.push(failedBody, failedHint);
+    if (this.undoManager.canUndo) {
+      const recoveryButtonWidth = (panelWidth - panelPadding * 2 - gap) / 2;
+      this.drawResultButton(left, buttonTop, recoveryButtonWidth, '撤回一步', true, 'primary', () => this.performUndo());
+      this.drawResultButton(left + recoveryButtonWidth + gap, buttonTop, recoveryButtonWidth, '重新开始', true, 'danger', () => this.restart());
+    } else {
+      this.drawResultButton(left, buttonTop, panelWidth - panelPadding * 2, '重新开始', true, 'primary', () => this.restart());
     }
   }
 
-  private drawResultButton(x: number, y: number, width: number, label: string, enabled: boolean, onTap: () => void): void {
-    const button = this.add.rectangle(x, y, width, px(this, 48), enabled ? 0xffd76b : 0xd8d5cf, enabled ? 1 : 0.72).setOrigin(0, 0).setStrokeStyle(px(this, 2), COLORS.tileStroke, enabled ? 0.85 : 0.3).setDepth(303);
-    this.add.text(x + width / 2, y + px(this, 24), label, {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: `${Math.round(Math.max(px(this, 11), Math.min(px(this, 14), width * 0.13)))}px`, fontStyle: 'bold', color: COLORS.text,
-    }).setAlpha(enabled ? 1 : 0.48).setOrigin(0.5).setDepth(304);
-    if (!enabled) return;
-    button.setInteractive({ useHandCursor: true });
-    button.on(Phaser.Input.Events.POINTER_UP, onTap);
+  private drawResultStat(x: number, y: number, width: number, label: string, value: number): Phaser.GameObjects.Container {
+    const height = px(this, GAME_UI.resultStatHeight);
+    const radius = px(this, GAME_UI.resultStatRadius);
+    const container = this.add.container(x, y).setDepth(302);
+    const card = this.add.graphics();
+    card.fillStyle(0xffffff, 0.64);
+    card.fillRoundedRect(0, 0, width, height, radius);
+    card.lineStyle(px(this, 1), COLORS.tileStroke, 0.18);
+    card.strokeRoundedRect(0, 0, width, height, radius);
+    container.add(card);
+    container.add(this.add.text(width / 2, px(this, 13), label, {
+      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 10), color: '#877b6d',
+    }).setOrigin(0.5));
+    container.add(this.add.text(width / 2, px(this, 31), String(value), {
+      fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif', fontSize: fontPx(this, 16), fontStyle: 'bold', color: COLORS.title,
+    }).setOrigin(0.5));
+    return container;
+  }
+
+  private drawResultButton(
+    x: number,
+    y: number,
+    width: number,
+    label: string,
+    enabled: boolean,
+    variant: ToolButtonVariant,
+    onTap: () => void,
+  ): Phaser.GameObjects.Container {
+    return createRoundedButton(this, {
+      x,
+      y,
+      width,
+      height: px(this, GAME_UI.resultButtonHeight),
+      label,
+      enabled,
+      variant,
+      depth: 303,
+      radius: 11,
+      labelSize: 12,
+      hoverOffset: 1,
+      onTap: () => {
+        this.audioSystem.play('button');
+        onTap();
+      },
+    });
+  }
+
+  private animateWinResult(
+    panel: Phaser.GameObjects.Image,
+    stars: readonly Phaser.GameObjects.Image[],
+    contentTargets: readonly (Phaser.GameObjects.Text | Phaser.GameObjects.Container)[],
+    overlay: Phaser.GameObjects.Rectangle,
+  ): void {
+    const finalStarAlphas = stars.map((star) => star.alpha);
+    panel.setScale(0.86).setAlpha(0.72);
+    contentTargets.forEach((target) => target.setAlpha(0));
+    stars.forEach((star) => star.setScale(0.35).setAlpha(0));
+
+    this.tweens.add({
+      targets: panel,
+      scale: 1,
+      alpha: 1,
+      duration: GAME_UI.resultPanelEnterMs,
+      ease: 'Back.easeOut',
+    });
+    this.tweens.add({
+      targets: contentTargets,
+      alpha: 1,
+      delay: GAME_UI.resultContentDelayMs,
+      duration: GAME_UI.resultContentFadeMs,
+      ease: 'Quad.easeOut',
+    });
+
+    const particleTimers: Phaser.Time.TimerEvent[] = [];
+    stars.forEach((star, index) => {
+      const delay = GAME_UI.resultStarInitialDelayMs + index * GAME_UI.resultStarStaggerMs;
+      this.tweens.add({
+        targets: star,
+        scale: 1,
+        alpha: finalStarAlphas[index] ?? 1,
+        delay,
+        duration: GAME_UI.resultStarEnterMs,
+        ease: 'Back.easeOut',
+      });
+      if ((finalStarAlphas[index] ?? 0) >= 0.9) {
+        particleTimers.push(this.time.delayedCall(delay + GAME_UI.resultParticleDelayMs, () => this.playVictoryParticles(star.x, star.y)));
+      }
+    });
+
+    const skipLayer = this.add.rectangle(overlay.x, overlay.y, overlay.width, overlay.height, 0xffffff, 0.001)
+      .setInteractive()
+      .setDepth(399);
+    const finish = (): void => {
+      this.tweens.killTweensOf([panel, ...stars, ...contentTargets]);
+      particleTimers.forEach((timer) => timer.remove(false));
+      panel.setScale(1).setAlpha(1);
+      stars.forEach((star, index) => star.setScale(1).setAlpha(finalStarAlphas[index] ?? 1));
+      contentTargets.forEach((target) => target.setAlpha(1));
+      skipLayer.destroy();
+    };
+    skipLayer.once(Phaser.Input.Events.POINTER_UP, finish);
+    this.time.delayedCall(
+      GAME_UI.resultStarInitialDelayMs + stars.length * GAME_UI.resultStarStaggerMs + GAME_UI.resultStarEnterMs,
+      () => skipLayer.destroy(),
+    );
+  }
+
+  private playVictoryParticles(x: number, y: number): void {
+    for (let index = 0; index < 6; index += 1) {
+      const angle = Math.PI * (1.08 + (index / 5) * 0.84);
+      const distance = px(this, 24 + (index % 2) * 12);
+      const sparkle = this.add.image(
+        x,
+        y,
+        index % 2 === 0 ? SCENE_TEXTURES.Game.sparkle01.key : SCENE_TEXTURES.Game.sparkle02.key,
+      ).setDisplaySize(px(this, 16), px(this, 16)).setScale(0.45).setDepth(306);
+      this.tweens.add({
+        targets: sparkle,
+        x: x + Math.cos(angle) * distance,
+        y: y + Math.sin(angle) * distance,
+        scale: 0.9,
+        alpha: 0,
+        duration: GAME_UI.resultParticleMs,
+        ease: 'Quad.easeOut',
+        onComplete: () => sparkle.destroy(),
+      });
+    }
   }
 
   private enqueuePick(columnIndex: number): boolean {
@@ -793,6 +899,7 @@ export class GameScene extends Phaser.Scene {
       }
       await this.wait(ANIMATION.resultDelayMs);
     }
+    this.pendingWinCelebration = status === 'won';
     this.busy = false;
     this.renderGame();
   }
@@ -925,6 +1032,7 @@ export class GameScene extends Phaser.Scene {
     this.clearInputQueue('restart');
     this.busy = false;
     this.restartConfirmVisible = false;
+    this.pendingWinCelebration = false;
     this.undoManager.clear();
     this.lastShuffleStrategy = 'none';
     this.lastShuffleDurationMs = 0;
