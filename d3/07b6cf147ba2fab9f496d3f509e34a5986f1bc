@@ -1,0 +1,32 @@
+stack/web/tests/uiR3.test.ts
+  s_d321df54fe1b3e::t_05db41d865184a 98-112
+stack/web/src/game/scenes/GameScene.ts
+  s_d321df54fe1b3e::t_170ef0ca04c502 61,104,147-148,822-827,836,843-850,854-862
+  s_3a713e661cdfe8::t_edf25530c46247 863
+stack/docs/UI_R3_玩法页与结果页_执行与验收记录.md
+  s_d321df54fe1b3e::t_7a6417e9e9b8f8 79,84,93-95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "d307b6cf147ba2fab9f496d3f509e34a5986f1bc",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    },
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
