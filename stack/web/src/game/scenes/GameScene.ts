@@ -19,10 +19,9 @@ import { InputQueue } from '../systems/InputQueue';
 import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
-import type { TileData } from '../types/tile';
 import { createRoundedButton } from '../ui/RoundedButton';
 import type { ToolButtonVariant } from '../ui/toolButtonStyle';
-import { findTrayPairRuns, resolveTrayPresentation } from '../ui/trayPresentation';
+import { drawTray } from '../render/TrayRenderer';
 import { drawBoard, createTileVisual } from '../render/BoardRenderer';
 import { syncBackgroundMusic } from './BackgroundMusicScene';
 
@@ -327,135 +326,13 @@ export class GameScene extends Phaser.Scene {
   }
 
   private drawTray(state: GameState): void {
-    const { contentLeft, contentWidth, trayTop, traySlotSize } = this.currentLayout;
-    const presentation = resolveTrayPresentation(state.tray.length, state.traySize);
-    const pressure = presentation.level !== 'normal';
-    const danger = presentation.level === 'danger' || presentation.level === 'full';
-    const root = this.add.container(contentLeft, trayTop);
+    const { root, pairKeys, warningTween } = drawTray(this, this.currentLayout, state, {
+      previousPairKeys: this.previousTrayPairKeys,
+      busy: this.busy,
+    });
     this.trayRoot = root;
-    const panel = this.add.graphics();
-    const panelLeft = -px(this, 10);
-    const panelTop = -px(this, 34);
-    const panelWidth = contentWidth + px(this, 20);
-    const panelHeight = traySlotSize + px(this, 42);
-    panel.fillStyle(
-      danger ? 0xffeee8 : pressure ? 0xfff3df : GAME_UI.surfaceCream,
-      GAME_UI.trayPanelAlpha,
-    );
-    panel.fillRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, GAME_UI.surfaceRadius));
-    panel.lineStyle(px(this, 1.5), danger ? 0xd66b4d : pressure ? 0xd99a3c : 0xffffff, 0.8);
-    panel.strokeRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, GAME_UI.surfaceRadius));
-    root.add(panel);
-    root.add(
-      this.add
-        .text(0, -px(this, 27), '暂存槽', {
-          fontFamily: 'PingFang SC, sans-serif',
-          fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 2),
-          fontStyle: 'bold',
-          color: COLORS.text,
-        })
-        .setOrigin(0, 0),
-    );
-    if (presentation.level === 'normal') {
-      const suffix = this.add.text(contentWidth, -px(this, 18), `/${state.traySize}`, {
-        fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize),
-        color: GAME_UI.textSecondary,
-      }).setOrigin(1, 0.5);
-      const count = this.add.text(
-        contentWidth - suffix.width - px(this, 1),
-        -px(this, 18),
-        String(state.tray.length),
-        {
-          fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-          fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 4),
-          fontStyle: 'bold',
-          color: COLORS.title,
-        },
-      ).setOrigin(1, 0.5);
-      root.add([suffix, count]);
-    } else {
-      root.add(this.add.text(contentWidth, -px(this, 27), presentation.label, {
-        fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 2),
-        fontStyle: 'bold',
-        color: danger ? '#c95e46' : pressure ? '#a9681f' : COLORS.title,
-      }).setOrigin(1, 0));
-    }
-    for (let slot = 0; slot < GAMEPLAY.traySize; slot += 1) {
-      const x = slot * (traySlotSize + px(this, LAYOUT.trayGap));
-      const slotTexture = danger ? SCENE_TEXTURES.Game.traySlotWarn.key : SCENE_TEXTURES.Game.traySlot.key;
-      const tile = state.tray[slot];
-      root.add(
-        this.add
-          .image(x, 0, slotTexture)
-          .setOrigin(0, 0)
-          .setDisplaySize(traySlotSize, traySlotSize)
-          .setAlpha(tile === undefined ? GAME_UI.trayEmptySlotAlpha : GAME_UI.trayOccupiedSlotAlpha),
-      );
-      if (tile !== undefined) {
-        const highlight = this.add.graphics();
-        highlight.fillStyle(GAME_UI.trayOccupiedHighlight, GAME_UI.trayOccupiedHighlightAlpha);
-        highlight.fillRoundedRect(
-          x + px(this, 2),
-          px(this, 2),
-          traySlotSize - px(this, 4),
-          traySlotSize - px(this, 4),
-          traySlotSize * 0.18,
-        );
-        root.add(highlight);
-        root.add(this.createTrayTile(tile, x, 0, traySlotSize));
-      }
-    }
-    const currentPairKeys = new Set<string>();
-    for (const run of findTrayPairRuns(state.tray)) {
-      const key = `${run.type}:${run.start}:${run.length}`;
-      currentPairKeys.add(key);
-      const startX = run.start * (traySlotSize + px(this, LAYOUT.trayGap));
-      const endX = (run.start + run.length - 1) * (traySlotSize + px(this, LAYOUT.trayGap));
-      const glow = this.add.graphics();
-      glow.lineStyle(
-        px(this, GAME_UI.trayPairGlowWidth),
-        GAME_UI.trayPairGlow,
-        GAME_UI.trayPairGlowAlpha,
-      );
-      glow.lineBetween(
-        startX + px(this, 4),
-        traySlotSize - px(this, 3),
-        endX + traySlotSize - px(this, 4),
-        traySlotSize - px(this, 3),
-      );
-      root.add(glow);
-      if (!this.previousTrayPairKeys.has(key)) {
-        glow.setAlpha(GAME_UI.trayPairGlowEnterAlpha);
-        this.tweens.add({
-          targets: glow,
-          alpha: 1,
-          duration: GAME_UI.trayPairGlowDuration / 2,
-          yoyo: true,
-          repeat: 0,
-          ease: 'Sine.easeInOut',
-        });
-      }
-    }
-    this.previousTrayPairKeys = currentPairKeys;
-    if (presentation.level === 'danger' && !this.busy) {
-      this.trayWarningTween = this.tweens.add({
-        targets: root,
-        scale: 1.025,
-        alpha: GAME_UI.trayWarningPulseAlpha,
-        duration: ANIMATION.trayWarningCycleMs / 2,
-        yoyo: true,
-        repeat: -1,
-        ease: 'Sine.easeInOut',
-      });
-    }
-  }
-
-  private createTrayTile(tile: TileData, x: number, y: number, size: number): Phaser.GameObjects.Image {
-    return this.add
-      .image(x + size / 2, y + size / 2, SCENE_TEXTURES.Game.tiles[tile.type].key)
-      .setDisplaySize(size * GAME_UI.trayIconCanvasRatio, size * GAME_UI.trayIconCanvasRatio);
+    this.previousTrayPairKeys = pairKeys;
+    this.trayWarningTween = warningTween ?? null;
   }
 
   private drawTools(state: GameState): void {

@@ -23,9 +23,10 @@ describe('UI R1 visual contracts', () => {
   });
 
   it('Tray 只保留槽位与单层图案倍率，不再嵌套 tile_frame', () => {
-    const gameScene = readSource('src/game/scenes/GameScene.ts');
-    const trayTileMethod = gameScene.match(
-      /private createTrayTile[\s\S]*?(?=\n  private drawTools)/,
+    // 绘制代码已抽到 render/TrayRenderer（CodeReview §1），断言随之改指该文件。
+    const renderer = readSource('src/game/render/TrayRenderer.ts');
+    const trayTileMethod = renderer.match(
+      /export function createTrayTile[\s\S]*$/,
     )?.[0];
 
     expect(trayTileMethod).toBeDefined();
