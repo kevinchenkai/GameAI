@@ -114,9 +114,10 @@ describe('responsive layout', () => {
       [8, 83.95],
       [4, 167.91],
       [2, 209.88],
+      [1, 230.87],
     ]);
 
-    for (const depth of [8, 4, 2]) {
+    for (const depth of [8, 4, 2, 1]) {
       const depths = Array.from({ length: 6 }, (_, index) => Math.max(1, depth - index));
       const placements = calculateBottomAlignedBoardPlacements(
         layout,
@@ -140,7 +141,7 @@ describe('responsive layout', () => {
       const improvement = (previousMaxBlank - maxBlank) / previousMaxBlank;
 
       expect(maxBlank).toBeCloseTo(expectedBlankByDepth.get(depth)!, 2);
-      expect(maxBlank / layout.viewportHeight).toBeLessThanOrEqual(0.28);
+      expect(maxBlank / layout.viewportHeight).toBeLessThanOrEqual(depth === 1 ? 0.3 : 0.28);
       expect(Math.abs(topBlank - bottomBlank)).toBeLessThanOrEqual(1);
       expect(improvement).toBeGreaterThanOrEqual(0.45);
 
@@ -158,7 +159,7 @@ describe('responsive layout', () => {
     const spaceBeforeTray = LAYOUT.trayLabelOffset + LAYOUT.sectionGap;
     const boardAreaBottom = layout.trayTop - spaceBeforeTray;
     const constantBaseline = boardAreaBottom - layout.tileSize;
-    const legacyBlanks = [8, 4, 2].map((depth) => {
+    const legacyBlanks = [8, 4, 2, 1].map((depth) => {
       const contentTop = constantBaseline - (depth - 1) * layout.rowStep;
       return contentTop - layout.boardTop;
     });

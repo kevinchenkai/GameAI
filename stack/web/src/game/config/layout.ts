@@ -40,7 +40,7 @@ export const COLORS = {
 } as const;
 
 /**
- * R1 视觉参数集中在这里，避免 Scene 内再次出现彼此冲突的临时倍率与颜色。
+ * 成品 UI 视觉参数集中在这里，避免 Scene 内再次出现彼此冲突的临时倍率与颜色。
  * Tile 源素材的非透明主体占 256px 画布的 174px（67.97%）。
  */
 export const GAME_UI = {
@@ -50,7 +50,29 @@ export const GAME_UI = {
   trayIconCanvasRatio: 0.9,
   surfaceCream: 0xfff8e9,
   surfaceRadius: 16,
-  buttonRadius: 12,
+  surfaceFillAlpha: 0.92,
+  surfaceStrokeAlpha: 0.72,
+  surfaceHighlightAlpha: 0.78,
+  surfaceShadowAlpha: 0.11,
+  surfaceShadowOffset: 3,
+  headerTitleSize: 22,
+  headerMetaSize: 13,
+  headerCountSize: 17,
+  buttonRadius: 13,
+  buttonStrokeWidth: 1.5,
+  buttonShadowOffset: 3,
+  buttonPressedOffset: 2,
+  buttonPressedShadowScale: 0.35,
+  buttonPrimaryStrokeAlpha: 0.65,
+  buttonSecondaryStrokeAlpha: 0.45,
+  buttonDangerStrokeAlpha: 0.45,
+  buttonPrimaryShadowAlpha: 0.14,
+  buttonSecondaryShadowAlpha: 0.08,
+  buttonDangerShadowAlpha: 0.04,
+  toolIconSize: 33,
+  toolIconGap: 8,
+  toolBadgeRadius: 9,
+  toolBadgeEdgeInset: 7,
   surfaceStroke: 0xffffff,
   controlStroke: 0xb08355,
   softShadow: 0x56758a,
@@ -62,10 +84,28 @@ export const GAME_UI = {
   textSecondary: '#496d83',
   textMuted: '#6b5c52',
   textDisabled: '#8c847a',
+  trayPanelAlpha: 0.88,
+  trayEmptySlotAlpha: 0.66,
+  trayOccupiedSlotAlpha: 1,
+  trayOccupiedHighlight: 0xffe5a8,
+  trayOccupiedHighlightAlpha: 0.14,
+  trayPairGlow: 0xffc45c,
+  trayPairGlowAlpha: 0.58,
+  trayPairGlowWidth: 2,
+  trayPairGlowDuration: 400,
+  tileCoveredFrameAlpha: 0.86,
+  tileCoveredIconAlpha: 1,
+  tileCoveredOverlayAlpha: 0.03,
+  tileActiveShadowAlpha: 0.12,
+  tileActiveShadowOffset: 3,
+  tileActiveOutline: 0xd4a657,
+  tileActiveOutlineAlpha: 0.35,
+  tileActiveOutlineWidth: 1,
   backgroundWashTopAlpha: 0.04,
   backgroundWashBottomAlpha: 0.14,
-  settingsVisualSize: 34,
+  settingsVisualSize: 32,
   settingsHitSize: 48,
+  settingsRestAlpha: 0.9,
 } as const;
 
 export const PROTOTYPE_UI = {

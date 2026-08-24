@@ -22,7 +22,8 @@ import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
 import type { TileData } from '../types/tile';
 import { resolveToolButtonStyle, type ToolButtonVariant } from '../ui/toolButtonStyle';
-import { resolveTrayPresentation } from '../ui/trayPresentation';
+import { findTrayPairRuns, resolveTrayPresentation } from '../ui/trayPresentation';
+import { resolveTileVisualStyle } from '../ui/tileVisualStyle';
 import { syncBackgroundMusic } from './BackgroundMusicScene';
 
 interface GameSceneData {
@@ -54,6 +55,7 @@ export class GameScene extends Phaser.Scene {
   private lastShuffleDurationMs = 0;
   private completionStars: StarRating | null = null;
   private restartConfirmVisible = false;
+  private previousTrayPairKeys = new Set<string>();
 
   constructor() {
     super('Game');
@@ -75,6 +77,7 @@ export class GameScene extends Phaser.Scene {
     this.undoManager.clear();
     this.completionStars = null;
     this.restartConfirmVisible = false;
+    this.previousTrayPairKeys.clear();
     const shouldResume = !this.layoutFixture && (data.resume ?? !urlHasLevel);
     const restored = shouldResume ? this.saveManager.restoreCurrentRun(levelId) : null;
     if (restored !== null) this.undoManager.import(restored.undoStack);
@@ -198,17 +201,31 @@ export class GameScene extends Phaser.Scene {
     const panelHeight = px(this, 64);
     const radius = px(this, GAME_UI.surfaceRadius);
     const shadow = this.add.graphics();
-    shadow.fillStyle(GAME_UI.softShadow, 0.12);
-    shadow.fillRoundedRect(contentLeft, headerTop + px(this, 3), contentWidth, panelHeight, radius);
+    shadow.fillStyle(GAME_UI.softShadow, GAME_UI.surfaceShadowAlpha);
+    shadow.fillRoundedRect(
+      contentLeft,
+      headerTop + px(this, GAME_UI.surfaceShadowOffset),
+      contentWidth,
+      panelHeight,
+      radius,
+    );
     const panel = this.add.graphics();
-    panel.fillStyle(GAME_UI.surfaceCream, 0.9);
+    panel.fillStyle(GAME_UI.surfaceCream, GAME_UI.surfaceFillAlpha);
     panel.fillRoundedRect(contentLeft, headerTop, contentWidth, panelHeight, radius);
-    panel.lineStyle(px(this, 1.5), GAME_UI.surfaceStroke, 0.72);
+    panel.lineStyle(px(this, 1.5), GAME_UI.surfaceStroke, GAME_UI.surfaceStrokeAlpha);
     panel.strokeRoundedRect(contentLeft, headerTop, contentWidth, panelHeight, radius);
+    const highlight = this.add.graphics();
+    highlight.lineStyle(px(this, 1), GAME_UI.surfaceStroke, GAME_UI.surfaceHighlightAlpha);
+    highlight.lineBetween(
+      contentLeft + radius,
+      headerTop + px(this, 1),
+      contentLeft + contentWidth - radius,
+      headerTop + px(this, 1),
+    );
     this.add
       .text(contentLeft + px(this, 14), headerTop + px(this, 8), `第${state.levelId}关`, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: fontPx(this, 22),
+        fontSize: fontPx(this, GAME_UI.headerTitleSize),
         fontStyle: 'bold',
         color: COLORS.title,
       })
@@ -225,11 +242,26 @@ export class GameScene extends Phaser.Scene {
         color: GAME_UI.textSecondary,
       })
       .setOrigin(0, 0);
-    this.add
-      .text(contentLeft + contentWidth - px(this, 64), headerTop + px(this, 20), `剩余 ${remainingTiles}张`, {
+    const remainingRight = contentLeft + contentWidth - px(this, 62);
+    const remainingUnit = this.add
+      .text(remainingRight, headerTop + px(this, 22), '张', {
+        fontFamily: 'PingFang SC, sans-serif',
+        fontSize: fontPx(this, GAME_UI.headerMetaSize),
+        color: GAME_UI.textSecondary,
+      })
+      .setOrigin(1, 0);
+    const remainingCount = this.add
+      .text(remainingRight - remainingUnit.width - px(this, 2), headerTop + px(this, 17), String(remainingTiles), {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
-        fontSize: fontPx(this, 13),
+        fontSize: fontPx(this, GAME_UI.headerCountSize),
         fontStyle: 'bold',
+        color: GAME_UI.textSecondary,
+      })
+      .setOrigin(1, 0);
+    this.add
+      .text(remainingCount.x - remainingCount.width - px(this, 3), headerTop + px(this, 22), '剩余', {
+        fontFamily: 'PingFang SC, sans-serif',
+        fontSize: fontPx(this, GAME_UI.headerMetaSize),
         color: GAME_UI.textSecondary,
       })
       .setOrigin(1, 0);
@@ -237,7 +269,8 @@ export class GameScene extends Phaser.Scene {
     const settingsY = headerTop + px(this, 32);
     const settings = this.add
       .image(settingsX, settingsY, SCENE_TEXTURES.Game.settings.key)
-      .setDisplaySize(px(this, GAME_UI.settingsVisualSize), px(this, GAME_UI.settingsVisualSize));
+      .setDisplaySize(px(this, GAME_UI.settingsVisualSize), px(this, GAME_UI.settingsVisualSize))
+      .setAlpha(GAME_UI.settingsRestAlpha);
     const settingsHit = this.add
       .rectangle(
         settingsX,
@@ -249,9 +282,29 @@ export class GameScene extends Phaser.Scene {
       );
     if (!this.busy && !this.layoutFixture) {
       settingsHit.setInteractive({ useHandCursor: true });
-      settingsHit.on(Phaser.Input.Events.POINTER_OVER, () => settings.setScale(1.08));
-      settingsHit.on(Phaser.Input.Events.POINTER_OUT, () => settings.setScale(1));
-      settingsHit.on(Phaser.Input.Events.POINTER_UP, () => this.openSettings());
+      settingsHit.on(Phaser.Input.Events.POINTER_OVER, () => {
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+        settings
+          .setDisplaySize(px(this, GAME_UI.settingsVisualSize + 1), px(this, GAME_UI.settingsVisualSize + 1))
+          .setAlpha(1);
+      });
+      settingsHit.on(Phaser.Input.Events.POINTER_OUT, () => {
+        settings
+          .setDisplaySize(px(this, GAME_UI.settingsVisualSize), px(this, GAME_UI.settingsVisualSize))
+          .setAlpha(GAME_UI.settingsRestAlpha);
+      });
+      settingsHit.on(Phaser.Input.Events.POINTER_DOWN, () => {
+        settings.setDisplaySize(
+          px(this, GAME_UI.settingsVisualSize - 1),
+          px(this, GAME_UI.settingsVisualSize - 1),
+        );
+      });
+      settingsHit.on(Phaser.Input.Events.POINTER_UP, () => {
+        settings
+          .setDisplaySize(px(this, GAME_UI.settingsVisualSize), px(this, GAME_UI.settingsVisualSize))
+          .setAlpha(GAME_UI.settingsRestAlpha);
+        this.openSettings();
+      });
     } else {
       settings.setAlpha(0.5);
     }
@@ -286,18 +339,46 @@ export class GameScene extends Phaser.Scene {
 
   private createTileVisual(tile: TileData, x: number, y: number, size: number, isTop: boolean): Phaser.GameObjects.Container {
     const container = this.add.container(x, y);
+    const style = resolveTileVisualStyle(isTop);
+    const radius = size * PROTOTYPE_UI.cornerRatio;
+    if (style.shadowAlpha > 0) {
+      const shadow = this.add.graphics();
+      shadow.fillStyle(GAME_UI.softShadow, style.shadowAlpha);
+      shadow.fillRoundedRect(
+        0,
+        px(this, GAME_UI.tileActiveShadowOffset),
+        size,
+        size,
+        radius,
+      );
+      container.add(shadow);
+    }
     const frame = this.add
       .image(0, 0, SCENE_TEXTURES.Game.tileFrame.key)
       .setOrigin(0, 0)
       .setDisplaySize(size, size)
+      .setAlpha(style.frameAlpha)
       .setName('hit-frame');
+    container.add(frame);
+    if (style.overlayAlpha > 0) {
+      container.add(
+        this.add.rectangle(size / 2, size / 2, size * 0.9, size * 0.9, 0x253746, style.overlayAlpha),
+      );
+    }
     const icon = this.add
       .image(size / 2, size / 2, SCENE_TEXTURES.Game.tiles[tile.type].key)
-      .setDisplaySize(size * GAME_UI.boardIconCanvasRatio, size * GAME_UI.boardIconCanvasRatio);
-    container.add([frame, icon]);
-    if (!isTop) {
-      container.add(this.add.rectangle(size / 2, size / 2, size * 0.92, size * 0.92, 0x000000, 0.07));
-      container.setAlpha(0.76);
+      .setDisplaySize(size * GAME_UI.boardIconCanvasRatio, size * GAME_UI.boardIconCanvasRatio)
+      .setAlpha(style.iconAlpha);
+    container.add(icon);
+    if (style.outlineAlpha > 0) {
+      const outline = this.add.graphics();
+      outline.lineStyle(
+        px(this, GAME_UI.tileActiveOutlineWidth),
+        GAME_UI.tileActiveOutline,
+        style.outlineAlpha,
+      );
+      outline.strokeRoundedRect(0, 0, size, size, radius);
+      container.add(outline);
     }
     return container;
   }
@@ -345,7 +426,10 @@ export class GameScene extends Phaser.Scene {
     const panelTop = -px(this, 34);
     const panelWidth = contentWidth + px(this, 20);
     const panelHeight = traySlotSize + px(this, 42);
-    panel.fillStyle(danger ? 0xffeee8 : pressure ? 0xfff3df : GAME_UI.surfaceCream, pressure ? 0.88 : 0.82);
+    panel.fillStyle(
+      danger ? 0xffeee8 : pressure ? 0xfff3df : GAME_UI.surfaceCream,
+      GAME_UI.trayPanelAlpha,
+    );
     panel.fillRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, GAME_UI.surfaceRadius));
     panel.lineStyle(px(this, 1.5), danger ? 0xd66b4d : pressure ? 0xd99a3c : 0xffffff, 0.8);
     panel.strokeRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, px(this, GAME_UI.surfaceRadius));
@@ -360,21 +444,89 @@ export class GameScene extends Phaser.Scene {
         })
         .setOrigin(0, 0),
     );
-    root.add(
-      this.add.text(contentWidth, -px(this, 27), presentation.label, {
+    if (presentation.level === 'normal') {
+      const suffix = this.add.text(contentWidth, -px(this, 18), `/${state.traySize}`, {
+        fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
+        fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize),
+        color: GAME_UI.textSecondary,
+      }).setOrigin(1, 0.5);
+      const count = this.add.text(
+        contentWidth - suffix.width - px(this, 1),
+        -px(this, 18),
+        String(state.tray.length),
+        {
+          fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
+          fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 4),
+          fontStyle: 'bold',
+          color: COLORS.title,
+        },
+      ).setOrigin(1, 0.5);
+      root.add([suffix, count]);
+    } else {
+      root.add(this.add.text(contentWidth, -px(this, 27), presentation.label, {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
         fontSize: fontPx(this, PROTOTYPE_UI.trayLabelMinSize + 2),
         fontStyle: 'bold',
         color: danger ? '#c95e46' : pressure ? '#a9681f' : COLORS.title,
-      }).setOrigin(1, 0),
-    );
+      }).setOrigin(1, 0));
+    }
     for (let slot = 0; slot < GAMEPLAY.traySize; slot += 1) {
       const x = slot * (traySlotSize + px(this, LAYOUT.trayGap));
       const slotTexture = danger ? SCENE_TEXTURES.Game.traySlotWarn.key : SCENE_TEXTURES.Game.traySlot.key;
-      root.add(this.add.image(x, 0, slotTexture).setOrigin(0, 0).setDisplaySize(traySlotSize, traySlotSize));
       const tile = state.tray[slot];
-      if (tile !== undefined) root.add(this.createTrayTile(tile, x, 0, traySlotSize));
+      root.add(
+        this.add
+          .image(x, 0, slotTexture)
+          .setOrigin(0, 0)
+          .setDisplaySize(traySlotSize, traySlotSize)
+          .setAlpha(tile === undefined ? GAME_UI.trayEmptySlotAlpha : GAME_UI.trayOccupiedSlotAlpha),
+      );
+      if (tile !== undefined) {
+        const highlight = this.add.graphics();
+        highlight.fillStyle(GAME_UI.trayOccupiedHighlight, GAME_UI.trayOccupiedHighlightAlpha);
+        highlight.fillRoundedRect(
+          x + px(this, 2),
+          px(this, 2),
+          traySlotSize - px(this, 4),
+          traySlotSize - px(this, 4),
+          traySlotSize * 0.18,
+        );
+        root.add(highlight);
+        root.add(this.createTrayTile(tile, x, 0, traySlotSize));
+      }
     }
+    const currentPairKeys = new Set<string>();
+    for (const run of findTrayPairRuns(state.tray)) {
+      const key = `${run.type}:${run.start}:${run.length}`;
+      currentPairKeys.add(key);
+      const startX = run.start * (traySlotSize + px(this, LAYOUT.trayGap));
+      const endX = (run.start + run.length - 1) * (traySlotSize + px(this, LAYOUT.trayGap));
+      const glow = this.add.graphics();
+      glow.lineStyle(
+        px(this, GAME_UI.trayPairGlowWidth),
+        GAME_UI.trayPairGlow,
+        GAME_UI.trayPairGlowAlpha,
+      );
+      glow.lineBetween(
+        startX + px(this, 4),
+        traySlotSize - px(this, 3),
+        endX + traySlotSize - px(this, 4),
+        traySlotSize - px(this, 3),
+      );
+      root.add(glow);
+      if (!this.previousTrayPairKeys.has(key)) {
+        glow.setAlpha(0.25);
+        this.tweens.add({
+          targets: glow,
+          alpha: 1,
+          duration: GAME_UI.trayPairGlowDuration / 2,
+          yoyo: true,
+          repeat: 0,
+          ease: 'Sine.easeInOut',
+        });
+      }
+    }
+    this.previousTrayPairKeys = currentPairKeys;
     if (presentation.level === 'danger' && !this.busy) {
       this.trayWarningTween = this.tweens.add({
         targets: root,
@@ -430,40 +582,47 @@ export class GameScene extends Phaser.Scene {
     const style = resolveToolButtonStyle(variant, enabled);
     const container = this.add.container(x, y);
     const radius = px(this, GAME_UI.buttonRadius);
-    if (enabled) {
-      const shadow = this.add.graphics();
-      shadow.fillStyle(GAME_UI.softShadow, variant === 'primary' ? 0.14 : 0.08);
-      shadow.fillRoundedRect(0, px(this, 3), width, height, radius);
+    let shadow: Phaser.GameObjects.Graphics | null = null;
+    if (style.shadowAlpha > 0) {
+      shadow = this.add.graphics();
+      shadow.fillStyle(GAME_UI.softShadow, style.shadowAlpha);
+      shadow.fillRoundedRect(0, px(this, style.shadowOffset), width, height, radius);
       container.add(shadow);
     }
     const background = this.add.graphics();
     background.fillStyle(style.fill, style.fillAlpha);
     background.fillRoundedRect(0, 0, width, height, radius);
-    background.lineStyle(px(this, variant === 'primary' && enabled ? 2 : 1.5), style.stroke, style.strokeAlpha);
+    background.lineStyle(px(this, style.strokeWidth), style.stroke, style.strokeAlpha);
     background.strokeRoundedRect(0, 0, width, height, radius);
     container.add(background);
-    let labelCenter = width / 2;
-    if (options.textureKey !== undefined) {
-      const iconSize = Math.min(height - px(this, 10), px(this, 34));
-      container.add(
-        this.add
-          .image(px(this, 8), (height - iconSize) / 2, options.textureKey)
-          .setOrigin(0, 0)
-          .setDisplaySize(iconSize, iconSize)
-          .setAlpha(enabled ? 1 : 0.42),
-      );
-      labelCenter = px(this, 8) + iconSize + (width - px(this, 8) - iconSize) / 2;
-    }
-    container.add(this.add.text(labelCenter, height / 2, label, {
+    const labelText = this.add.text(0, height / 2, label, {
       fontFamily: 'PingFang SC, sans-serif',
       fontSize: `${Math.round(Math.min(px(this, PROTOTYPE_UI.buttonFontSize), width * 0.16))}px`,
       fontStyle: 'bold',
       color: style.labelColor,
-    }).setOrigin(0.5));
+    });
+    if (options.textureKey !== undefined) {
+      const iconSize = Math.min(height - px(this, 10), px(this, GAME_UI.toolIconSize));
+      const iconGap = px(this, GAME_UI.toolIconGap);
+      const groupWidth = iconSize + iconGap + labelText.width;
+      const groupLeft = Math.max(px(this, 8), (width - groupWidth) / 2);
+      container.add(
+        this.add
+          .image(groupLeft, (height - iconSize) / 2, options.textureKey)
+          .setOrigin(0, 0)
+          .setDisplaySize(iconSize, iconSize)
+          .setAlpha(enabled ? 1 : 0.42),
+      );
+      labelText.setPosition(groupLeft + iconSize + iconGap, height / 2).setOrigin(0, 0.5);
+    } else {
+      labelText.setPosition(width / 2, height / 2).setOrigin(0.5);
+    }
+    container.add(labelText);
     if (options.badge !== undefined) {
-      const badgeX = width - px(this, 13);
-      const badgeY = px(this, 12);
-      container.add(this.add.circle(badgeX, badgeY, px(this, 10), 0xe9a83a, enabled ? 1 : 0.45));
+      const badgeRadius = px(this, GAME_UI.toolBadgeRadius);
+      const badgeX = width - badgeRadius - px(this, GAME_UI.toolBadgeEdgeInset);
+      const badgeY = badgeRadius + px(this, GAME_UI.toolBadgeEdgeInset);
+      container.add(this.add.circle(badgeX, badgeY, badgeRadius, 0xe9a83a, enabled ? 1 : 0.45));
       container.add(this.add.text(badgeX, badgeY, String(Math.max(0, options.badge)), {
         fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
         fontSize: fontPx(this, 10),
@@ -477,11 +636,20 @@ export class GameScene extends Phaser.Scene {
       Phaser.Geom.Rectangle.Contains,
     );
     background.input!.cursor = 'pointer';
-    background.on(Phaser.Input.Events.POINTER_OVER, () => container.setY(y - px(this, 3)).setScale(1.02));
-    background.on(Phaser.Input.Events.POINTER_OUT, () => container.setY(y).setScale(1));
-    background.on(Phaser.Input.Events.POINTER_DOWN, () => container.setScale(0.96));
+    background.on(Phaser.Input.Events.POINTER_OVER, () => {
+      if (window.matchMedia('(pointer: fine)').matches) container.setY(y - px(this, 2));
+    });
+    background.on(Phaser.Input.Events.POINTER_OUT, () => {
+      container.setY(y);
+      shadow?.setAlpha(1);
+    });
+    background.on(Phaser.Input.Events.POINTER_DOWN, () => {
+      container.setY(y + px(this, style.pressedOffset));
+      shadow?.setAlpha(style.pressedShadowScale);
+    });
     background.on(Phaser.Input.Events.POINTER_UP, () => {
-      container.setY(y).setScale(1);
+      container.setY(y);
+      shadow?.setAlpha(1);
       this.audioSystem.play('button');
       onTap();
     });
