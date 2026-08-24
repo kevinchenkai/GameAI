@@ -1,0 +1,19 @@
+stack/docs/StackPop_项目总结_V1.md
+  s_3a713e661cdfe8::t_7e5f2405ae63b4 1-479
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "e40244dea9c793353cab78f915de7f27c406f425",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
