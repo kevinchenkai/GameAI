@@ -1,0 +1,28 @@
+stack/web/src/game/render/BoardRenderer.ts
+  s_3a713e661cdfe8::t_62afb8a44a2daa 1-148
+stack/web/tests/uiR1.test.ts
+  s_3a713e661cdfe8::t_5025416042462e 55-59
+stack/web/src/game/scenes/GameScene.ts
+  s_3a713e661cdfe8::t_fdd32c6ab27e9b 26,319-321
+  s_3a713e661cdfe8::t_63e35f3fd28cea 323-326,863
+stack/web/tests/uiR2.test.ts
+  s_3a713e661cdfe8::t_5025416042462e 35-36
+stack/web/src/game/config/layout.ts
+  s_3a713e661cdfe8::t_94c8b3a5ece3dc 102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "14c86ceca991b17fc8a61bf8ee5b030eb986a5a4",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
