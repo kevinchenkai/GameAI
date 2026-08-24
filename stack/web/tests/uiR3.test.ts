@@ -95,4 +95,19 @@ describe('UI R3 help and result contracts', () => {
       + GAME_UI.resultParticleMs;
     expect(totalMs).toBeLessThanOrEqual(1200);
   });
+
+  it('每次重绘先终止 Tween 与胜利延迟任务，再销毁 children', () => {
+    const scene = readSource('src/game/scenes/GameScene.ts');
+    const renderMethod = scene.match(/private renderGame\([\s\S]*?(?=\n  private drawBackground)/)?.[0] ?? '';
+    const cleanupMethod = scene.match(/private clearRenderAnimations\([\s\S]*?(?=\n  private clearResultAnimationTimers)/)?.[0] ?? '';
+    const timerCleanupMethod = scene.match(/private clearResultAnimationTimers\([\s\S]*?(?=\n  private playVictoryParticles)/)?.[0] ?? '';
+
+    expect(renderMethod).toContain('clearRenderAnimations');
+    expect(renderMethod.indexOf('clearRenderAnimations')).toBeLessThan(
+      renderMethod.indexOf('children.removeAll'),
+    );
+    expect(cleanupMethod).toContain('this.tweens.killAll()');
+    expect(cleanupMethod).toContain('clearResultAnimationTimers');
+    expect(timerCleanupMethod).toContain('timer.remove(false)');
+  });
 });

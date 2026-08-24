@@ -76,12 +76,12 @@
 ## 6. 自动验证
 
 - `npm run lint`：通过，0 warning；
-- `npm test`：19 个测试文件、130 项测试全部通过；
+- `npm test`：19 个测试文件、131 项测试全部通过；
 - `npm run build`：通过；
 - `git diff --check`：通过；
 - Playwright 运行时控制台：0 warning / error。
 
-新增 `uiR3.test.ts` 8 项契约，覆盖：
+新增 `uiR3.test.ts` 9 项契约，覆盖：
 
 1. 玩法页操作命中区 ≥44px；
 2. 四类图示确实引用真实游戏纹理；
@@ -90,7 +90,9 @@
 5. 失败页不存在不可执行的“打乱”按钮；
 6. 胜利动画可跳过、≤1.2s 且尊重减少动态效果。
 7. 重来确认复用结果按钮材质，不保留旧的第三套矩形按钮；
-8. 工具栏、结果弹窗与玩法页共同引用 `RoundedButton` 唯一实现。
+8. 工具栏、结果弹窗与玩法页共同引用 `RoundedButton` 唯一实现；
+9. 每次 `renderGame()` 在 `children.removeAll(true)` 前终止全部 Scene Tween，并
+   注销胜利动画的延迟粒子任务，防止 resize / 重绘后旧对象继续回调。
 
 另外在 `shuffle.test.ts` 新增核心回归：构造 Tray 7/7 且每种 Tile 总数仍满足
 三消的失败局面，`findSolvableShuffle(..., maxAttempts=0)` 必须抛出

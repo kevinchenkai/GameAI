@@ -58,6 +58,7 @@ export class GameScene extends Phaser.Scene {
   private restartConfirmVisible = false;
   private previousTrayPairKeys = new Set<string>();
   private pendingWinCelebration = false;
+  private resultAnimationTimers: Phaser.Time.TimerEvent[] = [];
 
   constructor() {
     super('Game');
@@ -100,7 +101,7 @@ export class GameScene extends Phaser.Scene {
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.clearInputQueue('shutdown');
       this.trayWarningTween?.stop();
-      this.tweens.killAll();
+      this.clearRenderAnimations();
       this.scale.off(Phaser.Scale.Events.RESIZE, this.handleResize, this);
       this.events.off(Phaser.Scenes.Events.RESUME, this.handleResume, this);
       delete window.__STACKPOP__;
@@ -143,6 +144,8 @@ export class GameScene extends Phaser.Scene {
     if (!this.model) return;
     this.trayWarningTween?.stop();
     this.trayWarningTween = null;
+    // Tween 和延迟粒子都必须先停，再销毁它们指向的 GameObject。
+    this.clearRenderAnimations();
     this.children.removeAll(true);
     this.topTileContainers.clear();
     this.trayRoot = null;
@@ -805,7 +808,6 @@ export class GameScene extends Phaser.Scene {
       ease: 'Quad.easeOut',
     });
 
-    const particleTimers: Phaser.Time.TimerEvent[] = [];
     stars.forEach((star, index) => {
       const delay = GAME_UI.resultStarInitialDelayMs + index * GAME_UI.resultStarStaggerMs;
       this.tweens.add({
@@ -817,7 +819,12 @@ export class GameScene extends Phaser.Scene {
         ease: 'Back.easeOut',
       });
       if ((finalStarAlphas[index] ?? 0) >= 0.9) {
-        particleTimers.push(this.time.delayedCall(delay + GAME_UI.resultParticleDelayMs, () => this.playVictoryParticles(star.x, star.y)));
+        this.resultAnimationTimers.push(
+          this.time.delayedCall(
+            delay + GAME_UI.resultParticleDelayMs,
+            () => this.playVictoryParticles(star.x, star.y),
+          ),
+        );
       }
     });
 
@@ -826,17 +833,32 @@ export class GameScene extends Phaser.Scene {
       .setDepth(399);
     const finish = (): void => {
       this.tweens.killTweensOf([panel, ...stars, ...contentTargets]);
-      particleTimers.forEach((timer) => timer.remove(false));
+      this.clearResultAnimationTimers();
       panel.setScale(1).setAlpha(1);
       stars.forEach((star, index) => star.setScale(1).setAlpha(finalStarAlphas[index] ?? 1));
       contentTargets.forEach((target) => target.setAlpha(1));
       skipLayer.destroy();
     };
     skipLayer.once(Phaser.Input.Events.POINTER_UP, finish);
-    this.time.delayedCall(
-      GAME_UI.resultStarInitialDelayMs + stars.length * GAME_UI.resultStarStaggerMs + GAME_UI.resultStarEnterMs,
-      () => skipLayer.destroy(),
+    this.resultAnimationTimers.push(
+      this.time.delayedCall(
+        GAME_UI.resultStarInitialDelayMs + stars.length * GAME_UI.resultStarStaggerMs + GAME_UI.resultStarEnterMs,
+        () => {
+          skipLayer.destroy();
+          this.resultAnimationTimers = [];
+        },
+      ),
     );
+  }
+
+  private clearRenderAnimations(): void {
+    this.tweens.killAll();
+    this.clearResultAnimationTimers();
+  }
+
+  private clearResultAnimationTimers(): void {
+    this.resultAnimationTimers.forEach((timer) => timer.remove(false));
+    this.resultAnimationTimers = [];
   }
 
   private playVictoryParticles(x: number, y: number): void {
