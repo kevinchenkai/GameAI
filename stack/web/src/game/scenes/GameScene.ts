@@ -20,6 +20,7 @@ import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
 import { createRoundedButton } from '../ui/RoundedButton';
+import { drawDialogOverlay, drawDialogPanel, drawResultStat } from '../render/DialogRenderer';
 import type { ToolButtonVariant } from '../ui/toolButtonStyle';
 import { drawTray } from '../render/TrayRenderer';
 import { drawBoard, createTileVisual } from '../render/BoardRenderer';
@@ -393,17 +394,8 @@ export class GameScene extends Phaser.Scene {
     const panelLeft = centerX - panelWidth / 2;
     const panelTop = centerY - panelHeight / 2;
     const radius = px(this, GAME_UI.confirmationPanelRadius);
-    this.add.rectangle(centerX, centerY, this.scale.width, this.scale.height, 0x34516b, GAME_UI.resultOverlayAlpha)
-      .setInteractive()
-      .setDepth(300);
-    const shadow = this.add.graphics().setDepth(301);
-    shadow.fillStyle(GAME_UI.softShadow, 0.14);
-    shadow.fillRoundedRect(panelLeft, panelTop + px(this, 4), panelWidth, panelHeight, radius);
-    const panel = this.add.graphics().setDepth(302);
-    panel.fillStyle(0xfff8e9, 0.98);
-    panel.fillRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, radius);
-    panel.lineStyle(px(this, 1.5), COLORS.tileStroke, 0.58);
-    panel.strokeRoundedRect(panelLeft, panelTop, panelWidth, panelHeight, radius);
+    drawDialogOverlay(this, 300);
+    drawDialogPanel(this, panelLeft, panelTop, panelWidth, panelHeight, radius, 301);
     this.add.text(centerX, centerY - px(this, 51), '重新开始本关？', {
       fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
       fontSize: fontPx(this, 23),
@@ -451,7 +443,7 @@ export class GameScene extends Phaser.Scene {
     this.pendingWinCelebration = false;
     const starImages: Phaser.GameObjects.Image[] = [];
     const contentTargets: Array<Phaser.GameObjects.Text | Phaser.GameObjects.Container> = [];
-    const overlay = this.add.rectangle(centerX, this.scale.height / 2, this.scale.width, this.scale.height, 0x34516b, GAME_UI.resultOverlayAlpha)
+    const overlay = this.add.rectangle(centerX, this.scale.height / 2, this.scale.width, this.scale.height, GAME_UI.dialogOverlay, GAME_UI.resultOverlayAlpha)
       .setInteractive()
       .setDepth(300);
     const panel = this.add.image(centerX, panelCenterY, status === 'won' ? SCENE_TEXTURES.Game.winPanel.key : SCENE_TEXTURES.Game.failPanel.key)
@@ -472,7 +464,7 @@ export class GameScene extends Phaser.Scene {
       fontFamily: 'PingFang SC, sans-serif',
       fontSize: fontPx(this, GAME_UI.resultTitleSize),
       fontStyle: 'bold',
-      color: status === 'won' ? '#d88b21' : COLORS.title,
+      color: status === 'won' ? GAME_UI.resultWinTitleColor : COLORS.title,
     }).setOrigin(0.5).setDepth(302);
     contentTargets.push(title);
 
@@ -483,13 +475,13 @@ export class GameScene extends Phaser.Scene {
     if (status === 'won') {
       const statTop = panelTop + px(this, 119);
       contentTargets.push(
-        this.drawResultStat(left, statTop, buttonWidth, '步数', state.moveCount),
-        this.drawResultStat(left + buttonWidth + gap, statTop, buttonWidth, '撤回', state.undoUsed),
-        this.drawResultStat(left + (buttonWidth + gap) * 2, statTop, buttonWidth, '打乱', state.shuffleUsed),
+        drawResultStat(this, left, statTop, buttonWidth, '步数', state.moveCount),
+        drawResultStat(this, left + buttonWidth + gap, statTop, buttonWidth, '撤回', state.undoUsed),
+        drawResultStat(this, left + (buttonWidth + gap) * 2, statTop, buttonWidth, '打乱', state.shuffleUsed),
       );
       const achievement = earnedStars === 3 ? '完美通关 · 没有使用工具' : earnedStars === 2 ? '漂亮！再试试三星挑战' : '顺利过关 · 最好成绩已保存';
       const achievementText = this.add.text(centerX, statTop + px(this, GAME_UI.resultStatHeight + 22), achievement, {
-        fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 12), color: '#7d7569',
+        fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 12), color: GAME_UI.resultHintColor,
       }).setOrigin(0.5).setDepth(302);
       contentTargets.push(achievementText);
       const hasNext = state.levelId < LEVEL_LOADER.count;
@@ -506,7 +498,7 @@ export class GameScene extends Phaser.Scene {
       fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, GAME_UI.resultBodySize), color: COLORS.text,
     }).setOrigin(0.5).setDepth(302);
     const failedHint = this.add.text(centerX, panelTop + px(this, 145), this.undoManager.canUndo ? '撤回一步，回到槽位未满时' : '重新开始本关再试一次', {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 12), color: '#7d7569',
+      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 12), color: GAME_UI.resultHintColor,
     }).setOrigin(0.5).setDepth(302);
     contentTargets.push(failedBody, failedHint);
     if (this.undoManager.canUndo) {
@@ -516,25 +508,6 @@ export class GameScene extends Phaser.Scene {
     } else {
       this.drawResultButton(left, buttonTop, panelWidth - panelPadding * 2, '重新开始', true, 'primary', () => this.restart());
     }
-  }
-
-  private drawResultStat(x: number, y: number, width: number, label: string, value: number): Phaser.GameObjects.Container {
-    const height = px(this, GAME_UI.resultStatHeight);
-    const radius = px(this, GAME_UI.resultStatRadius);
-    const container = this.add.container(x, y).setDepth(302);
-    const card = this.add.graphics();
-    card.fillStyle(0xffffff, 0.64);
-    card.fillRoundedRect(0, 0, width, height, radius);
-    card.lineStyle(px(this, 1), COLORS.tileStroke, 0.18);
-    card.strokeRoundedRect(0, 0, width, height, radius);
-    container.add(card);
-    container.add(this.add.text(width / 2, px(this, 13), label, {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 10), color: '#877b6d',
-    }).setOrigin(0.5));
-    container.add(this.add.text(width / 2, px(this, 31), String(value), {
-      fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif', fontSize: fontPx(this, 16), fontStyle: 'bold', color: COLORS.title,
-    }).setOrigin(0.5));
-    return container;
   }
 
   private drawResultButton(

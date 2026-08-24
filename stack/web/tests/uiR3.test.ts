@@ -59,8 +59,13 @@ describe('UI R3 help and result contracts', () => {
     expect(resultBlock).toBeDefined();
     expect(resultBlock).toContain('drawResultStat');
     expect(resultBlock).toContain('GAME_UI.resultPanelHeight');
-    expect(resultBlock).toContain('fillRoundedRect');
     expect(resultBlock).not.toContain('buttonWidth + 6');
+
+    // 面板底的绘制已抽到 render/DialogRenderer（CodeReview §1），
+    // 「结果面板是一块圆角面板」这条改在该模块上守。
+    const dialogs = readSource('src/game/render/DialogRenderer.ts');
+    expect(dialogs).toContain('fillRoundedRect');
+    expect(dialogs).toContain('drawResultStat');
   });
 
   it('结果按钮保留主次、危险状态且失败页不展示无效打乱操作', () => {
