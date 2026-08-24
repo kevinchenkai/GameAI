@@ -1,0 +1,48 @@
+stack/web/tests/uiR2.test.ts
+  s_d321df54fe1b3e::t_e091e7e32ebe8e 1-94
+stack/web/src/game/config/layout.ts
+  s_d321df54fe1b3e::t_f9d994a5513fe2 99
+  s_d321df54fe1b3e::t_dc76ad96c4cc2f 101
+  s_d321df54fe1b3e::t_1f5fce95afe3a1 43,53-75,87-98,100,102-103,106,108
+stack/web/src/game/ui/trayPresentation.ts
+  s_d321df54fe1b3e::t_1f5fce95afe3a1 8-13,23-37
+stack/web/src/game/ui/tileVisualStyle.ts
+  s_d321df54fe1b3e::t_1f5fce95afe3a1 1-29
+stack/web/tests/layout.test.ts
+  s_d321df54fe1b3e::t_c52d91898ba612 117,120,144,162
+stack/web/src/game/ui/toolButtonStyle.ts
+  s_d321df54fe1b3e::t_1f5fce95afe3a1 10-14,29-33,38-48,57-62
+stack/web/src/game/scenes/GameScene.ts
+  s_d321df54fe1b3e::t_6e1cbe65933a5a 342-355,360,362-367,370-381
+  s_d321df54fe1b3e::t_dc76ad96c4cc2f 25-26,58,80
+  s_d321df54fe1b3e::t_74bdd6fcaa3d48 204-211,213,215,217-224,228,245-254,256,261-267,272-273,285-307
+  s_d321df54fe1b3e::t_6f55781a0b9d27 585-589,595,598-603,605-608,611,616-618,620,622-625,639-649,651-652
+  s_d321df54fe1b3e::t_b87e0727b8f051 429-432,447-466,471-472,477-496,498-529
+stack/docs/UI_R2-A_执行与验收记录.md
+  s_d321df54fe1b3e::t_3f1299fec2768a 1-130
+  s_3a713e661cdfe8::t_0333a462647d2e 131-205
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.7",
+  "base_commit_sha": "f98fa379718399d5b07d13ff2f3324d54c9f12e6",
+  "prompts": {},
+  "sessions": {
+    "s_3a713e661cdfe8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43ac8f2b-77d4-465b-b62d-c53acc17e393",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    },
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
