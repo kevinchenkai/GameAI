@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+LOCAL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REMOTE_HOST=ubuntu@211.159.177.55
+REMOTE_DIR=/www/wwwroot/g.ismayday.mobi/apec26
+[[ "$REMOTE_DIR" == /www/wwwroot/g.ismayday.mobi/apec26 ]] || exit 1
+node --check "$LOCAL_DIR/app.js"
+flags=(-avz --no-owner --no-group --no-perms --chmod=D755,F644 --rsync-path="sudo rsync")
+if [[ "${1:-}" != --apply ]]; then
+  flags+=(--dry-run)
+else
+  ssh "$REMOTE_HOST" "sudo mkdir -p '$REMOTE_DIR'"
+fi
+# Explicit allowlist: only the web entrypoint, CSS, JS and generated assets.
+rsync "${flags[@]}" "$LOCAL_DIR/index.html" "$LOCAL_DIR/style.css" "$LOCAL_DIR/app.js" "$LOCAL_DIR/assets" "$REMOTE_HOST:$REMOTE_DIR/"
+if [[ "${1:-}" == --apply ]]; then
+  ssh "$REMOTE_HOST" "sudo chown -R www:www '$REMOTE_DIR'; sudo find '$REMOTE_DIR' -type d -exec chmod 755 {} +; sudo find '$REMOTE_DIR' -type f -exec chmod 644 {} +"
+  curl --fail --silent --show-error --location --output /dev/null https://g.ismayday.mobi/apec26
+fi
