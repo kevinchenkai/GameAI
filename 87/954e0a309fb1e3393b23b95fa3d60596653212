@@ -1,0 +1,34 @@
+apec26/style.css
+  s_63cb3e122796a0::t_f8576e8399051a 1-5
+  s_63cb3e122796a0::t_da45f778565c29 6-8
+apec26/.gitignore
+  s_63cb3e122796a0::t_da45f778565c29 1-3
+apec26/app.js
+  s_63cb3e122796a0::t_f71330a211cea2 1-48
+apec26/IMAGE_PROMPTS.md
+  s_63cb3e122796a0::t_da45f778565c29 1-37
+apec26/README.md
+  s_63cb3e122796a0::t_da45f778565c29 1-40
+apec26/index.html
+  s_63cb3e122796a0::t_f8576e8399051a 1-24
+apec26/deploy.sh
+  s_63cb3e122796a0::t_da45f778565c29 1-19
+apec26/assets/favicon.svg
+  s_63cb3e122796a0::t_f71330a211cea2 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.9",
+  "base_commit_sha": "87954e0a309fb1e3393b23b95fa3d60596653212",
+  "prompts": {},
+  "sessions": {
+    "s_63cb3e122796a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a09f2a-7878-72b1-986b-a9f627221419",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
