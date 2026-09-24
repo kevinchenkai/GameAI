@@ -1,0 +1,56 @@
+[
+  {
+    "name": "tea-green",
+    "prompt": "Loose flat Chinese green tea leaves in a small cream ceramic dish beside a clear glass of pale green tea. Editorial product still life, soft natural light, linen background, full objects visible, no labels text logo, square. Generic category illustration not a brand.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-25af0c94-53dc-4df0-8afd-081364f99341.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/tea-green-v4.webp"
+  },
+  {
+    "name": "tea-oolong",
+    "prompt": "Rolled Chinese oolong tea dry leaves beside a tiny white porcelain cup of golden amber tea, warm limestone surface, editorial product still life, full objects visible, no labels text logo, square. Generic category illustration.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-4746c781-3ab0-49a0-a79f-c6917cb48743.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/tea-oolong-v4.webp"
+  },
+  {
+    "name": "tea-dark",
+    "prompt": "A small compressed dark tea cake, some loose dark tea leaves and a glass cup of reddish brown tea, elegant travel gift still life, full objects visible, no labels text logo, square, neutral background.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-494d117a-f888-4db1-9aee-8648dbcfab84.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/tea-dark-v4.webp"
+  },
+  {
+    "name": "silk-brocade",
+    "prompt": "Folded silk scarves with refined geometric Chinese brocade-inspired floral motifs in jade and gold, visible weave, upscale editorial still life, full scarves visible, light neutral background, no text logos, square. Generic fabric illustration.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-03bdf8bd-205e-467e-8653-11a454d3f674.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/silk-brocade-v4.webp"
+  },
+  {
+    "name": "silk-dark",
+    "prompt": "A beautifully folded dark brown and black Chinese gambiered silk scarf, subtle sheen and textured fabric, neutral warm background, product still life, full object visible, no text logos, square.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-9cbd996a-c429-4f92-ac68-77968632966e.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/silk-dark-v4.webp"
+  },
+  {
+    "name": "ceramic-celadon",
+    "prompt": "A small celadon green ceramic tea tasting cup with a matching serving pitcher, elegant quiet studio still life, neutral ivory background, full objects visible, no text no brand, square.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-c4862d97-0ec2-4f8c-9ea5-67e1108e877f.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/ceramic-celadon-v4.webp"
+  },
+  {
+    "name": "ceramic-clay",
+    "prompt": "Small reddish brown Chinese clay teacup and matching serving pitcher, subtle earthy unglazed surface, full objects visible, neutral stone background, editorial still life, no text no brand, square.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-c7a7571d-ca47-4b10-97df-297bbb558a7b.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/ceramic-clay-v4.webp"
+  },
+  {
+    "name": "food-pastry",
+    "prompt": "Chinese rose-filled flaky pastries on a cream plate one gently split to reveal rose petal filling, full plate visible, warm linen table, appetizing product still life, no packaging logos or text, square.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-016f4da9-26b2-4d49-a0c9-ac4bc2f7356d.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/food-pastry-v4.webp"
+  },
+  {
+    "name": "food-peel",
+    "prompt": "Dried Chinese mandarin peel pieces in a small clear glass jar and cream dish, full objects visible, neutral natural background, detailed texture, editorial product still life, no logos text, square.",
+    "path": "/Users/kk/.codex/generated_images/01a09f2a-7878-72b1-986b-a9f627221419/exec-ee7c7be7-a16a-4e3c-a009-e62e6a9454ba.png",
+    "asset": "/Users/kk/Work/GameAI/apec26/assets/food-peel-v4.webp"
+  }
+]

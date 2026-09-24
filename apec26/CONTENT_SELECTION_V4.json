@@ -1,0 +1,94 @@
+{
+  "excludedForIncompleteGallery": [
+    {
+      "id": "local-015",
+      "name": "农耕记·湖南土菜（坂田店）",
+      "photos": 0
+    },
+    {
+      "id": "local-016",
+      "name": "老湖南·乡村土菜（西乡店）",
+      "photos": 2
+    },
+    {
+      "id": "local-022",
+      "name": "重庆乌江活鱼·川菜（公明店）",
+      "photos": 2
+    },
+    {
+      "id": "local-023",
+      "name": "鹏城印象",
+      "photos": 1
+    },
+    {
+      "id": "local-024",
+      "name": "千里客家情（福永店）",
+      "photos": 2
+    },
+    {
+      "id": "local-026",
+      "name": "蜀一蜀二（保利店）",
+      "photos": 2
+    },
+    {
+      "id": "local-031",
+      "name": "乡情客家·客家菜·粤菜（坑梓店）",
+      "photos": 2
+    },
+    {
+      "id": "local-033",
+      "name": "陈鹏鹏潮汕菜（大冲店）",
+      "photos": 2
+    },
+    {
+      "id": "local-035",
+      "name": "新晶合潮汕菜（深圳店）",
+      "photos": 2
+    },
+    {
+      "id": "local-038",
+      "name": "点都德（观澜湖新城店）",
+      "photos": 3
+    },
+    {
+      "id": "local-040",
+      "name": "云味特色餐厅（长圳店）",
+      "photos": 2
+    },
+    {
+      "id": "local-041",
+      "name": "春满园大酒楼",
+      "photos": 0
+    },
+    {
+      "id": "local-045",
+      "name": "八合里潮汕鲜牛肉火锅（深圳民治优城店）",
+      "photos": 2
+    },
+    {
+      "id": "local-048",
+      "name": "金稻园砂锅粥（海岸城店）",
+      "photos": 2
+    },
+    {
+      "id": "ta-7221175",
+      "name": "深圳 JW 万豪 Shizuku",
+      "photos": 0
+    },
+    {
+      "id": "ta-25196015",
+      "name": "Charlie's And M 拉美餐厅",
+      "photos": 0
+    },
+    {
+      "id": "ta-34505778",
+      "name": "Hyphen 餐酒咖啡",
+      "photos": 0
+    }
+  ],
+  "counts": {
+    "local": 52,
+    "ta": 52
+  },
+  "overlapNote": "Chinese-cuisine venues can appear in both local-flavor and Tripadvisor lists."
+}
