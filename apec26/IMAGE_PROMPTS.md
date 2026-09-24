@@ -35,3 +35,52 @@ Style: premium editorial still life photography, authentic tactile paper and pas
 Composition: landscape 3:2, tasteful balanced arrangement on a cyan and warm cream surface, soft natural daylight with gentle shadows.
 Constraints: no text or lettering anywhere, no logos, no watermark, no border, no website UI.
 ```
+
+
+# V2 · Fictional guide portraits
+
+Generated via built-in Image Gen on 2026-09-23 (local date). Six adult women and four adult men; fictional demo profiles, not real guides. Final assets: `assets/guide-01-v2.webp` through `assets/guide-10-v2.webp`, resized to 640×640 WebP.
+
+# Shenzhen guide portraits — v2
+
+Mode: built-in image_gen. Ten original fictional adult guide portraits, six women and four men.
+
+## guide-01
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Lin, an attractive adult Chinese woman aged 29, short neat black bob haircut, white linen shirt. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-02
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Yue, an attractive adult Chinese woman aged 31, long straight dark hair, navy shirt. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-03
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: An, an attractive adult Chinese woman aged 28, black ponytail, warm beige casual jacket. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-04
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Qiao, an attractive adult Chinese woman aged 33, shoulder-length wavy dark hair, teal blouse. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-05
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Ning, an attractive adult Chinese woman aged 30, thin tasteful glasses, dark hair, cream knit top. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-06
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Su, an attractive adult Chinese woman aged 35, short textured black hair, terracotta shirt. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-07
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Chen, an attractive adult Chinese man aged 32, glasses, navy overshirt. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-08
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Hao, an attractive adult Chinese man aged 28, short black hair, pale blue polo. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-09
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Jun, an attractive adult Chinese man aged 34, slightly wavy black hair, olive overshirt. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
+
+## guide-10
+
+Use case: photorealistic-natural. Asset type: separate square profile portrait for a fictional Shenzhen private travel guide demo website. Subject: Kai, an attractive adult Chinese man aged 30, cropped black hair, white tee and tan jacket. Approachable, stylish professional casual appearance, gentle confident natural smile. Tasteful premium editorial natural photography with real skin texture and soft daylight. Head-and-shoulders framing, centered face, some space around hair, square 1:1 image. Muted teal and urban Shenzhen blurred background, shallow depth of field. One person only, clearly adult, fictional original identity. No text, logos, watermarks, collage, or graphics. This is a project asset; provide a locally saved image file path in the result.
