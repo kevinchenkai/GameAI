@@ -1,0 +1,3894 @@
+[
+  {
+    "id": "ta-10787269",
+    "name": "Azzurro 意大利餐厅",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Alberto P",
+        "date": "2025-09-30",
+        "score": 5.0,
+        "id": "ta-web-c2f7810044e86865",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "0cb4e92bd988d3d696d893e765a5dc9fc1cc799bcb0aa2b156bed934df794f72",
+        "summary": {
+          "zh": "喜欢意面、披萨与店主交流。",
+          "en": "Enjoys pasta, pizza and owner conversations."
+        }
+      },
+      {
+        "author": "Jelena A",
+        "date": "2025-02-25",
+        "score": 5.0,
+        "id": "ta-web-8308a4af869de26c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9fc3a84dbb92cbeff27875ab6d679bba8c975be67223300a1a96c7e90c9423c2",
+        "summary": {
+          "zh": "生日安排贴心，酒单丰富。",
+          "en": "Appreciates birthday touches and wine choices."
+        }
+      },
+      {
+        "author": "Jelena A",
+        "date": "2024-12-29",
+        "score": 4.0,
+        "id": "ta-web-a36858c383eaa599",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "67802326a7915693b08285b3ea3466cf69d2497b66fca8fcf726763929952afb",
+        "summary": {
+          "zh": "食物不错，露台天气偏凉。",
+          "en": "Enjoys food; terrace feels cool."
+        }
+      },
+      {
+        "author": "Joe",
+        "date": "2024-06-17",
+        "score": 2.0,
+        "id": "ta-web-fd3f30105c90dac7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f21f1d3a540dc432e0410e307aeab809493f5817b298b802c4467e3875df3acd",
+        "summary": {
+          "zh": "披萨平淡，觉得价格偏高。",
+          "en": "Finds pizza average and prices high."
+        }
+      },
+      {
+        "author": "Alexandre S",
+        "date": "2024-03-12",
+        "score": 2.0,
+        "id": "ta-web-d6f82706829f331e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bc09d05d791aea8755e7f528d76b0764383553d451a0be5cd9de59e62428f160",
+        "summary": {
+          "zh": "音乐吵，食物服务令人失望。",
+          "en": "Dislikes loud music, food and service."
+        }
+      },
+      {
+        "author": "Kevin L",
+        "date": "2021-02-28",
+        "score": 5.0,
+        "id": "ta-web-513155c2d93ce80d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3e8a2950c0126015720fd74ce19705f250a24010d1415002f042a93e44256f79",
+        "summary": {
+          "zh": "常来吃披萨，店主友善。",
+          "en": "Returns for pizza and friendly hospitality."
+        }
+      },
+      {
+        "author": "Maxim B",
+        "date": "2020-12-04",
+        "score": 3.0,
+        "id": "ta-web-2681656cebe328a5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3d9efabff78e3489cb07b3ce2165a8445b2313c41b38ce3738ffad225a17bc4c",
+        "summary": {
+          "zh": "食物好，晚间音乐太响。",
+          "en": "Good food; evening music too loud."
+        }
+      },
+      {
+        "author": "Francesco Ciappina",
+        "date": "2021-01-01",
+        "score": 5.0,
+        "id": "ta-web-67e63e02d05e3b39",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6622005a8cb4cb81f778429dfc30521b5396ad054e77ace3cd1d479441aed49b",
+        "summary": {
+          "zh": "喜欢芝士面疙瘩与甜品。",
+          "en": "Enjoys cheese gnocchi and desserts."
+        }
+      },
+      {
+        "author": "Doug C",
+        "date": "2021-07-28",
+        "score": 5.0,
+        "id": "ta-web-2009b64080ce56f5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d45de56185d5babb57695c528edc01e91911bf8ff4b8f1315d888f34bc0871cc",
+        "summary": {
+          "zh": "赞赏食物、空间与服务。",
+          "en": "Praises food, space and service."
+        }
+      },
+      {
+        "author": "Alex BB",
+        "date": "2020-05-17",
+        "score": 3.0,
+        "id": "ta-web-816e0566c8b9992d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d10787269-Reviews-Azzurro_Italian_Restaurant_Homemade-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e5ef9eb8eb504c1286293a31ca78356e6c81b6eb53febfdf7b2d8540ecb06bbf",
+        "summary": {
+          "zh": "前菜好吃，主菜较普通。",
+          "en": "Likes starters; main courses average."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 16
+  },
+  {
+    "id": "ta-32764734",
+    "name": "Latina 巴西烤肉（深业上城）",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Zheng H",
+        "date": "2025-09-28",
+        "score": 5.0,
+        "id": "ta-web-0f035453313d1e1e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7a305b8b459c419edea5fdcb3d16ad492cb4a5d9bbd5b8ec309abda56e47a80f",
+        "summary": {
+          "zh": "肉类丰富，部分出品不稳定。",
+          "en": "Varied meats; some dishes inconsistent."
+        }
+      },
+      {
+        "author": "Jirou K",
+        "date": "2025-09-18",
+        "score": 5.0,
+        "id": "ta-web-649be0b095e90339",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c6897922ec3b7d537095ab16172bc64aab01c1262f03593ae53794001bd02a8a",
+        "summary": {
+          "zh": "肉质嫩，服务友好。",
+          "en": "Enjoys tender meats and friendly staff."
+        }
+      },
+      {
+        "author": "Lalin j",
+        "date": "2025-08-08",
+        "score": 5.0,
+        "id": "ta-web-59306d76d8f0428a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e75b3482a125adadb498c5c43cbe35aa97a20f2d501e824903d5a30b8fbf864c",
+        "summary": {
+          "zh": "英文沟通顺畅，喜欢烤肉海鲜。",
+          "en": "English assistance complements meats and seafood."
+        }
+      },
+      {
+        "author": "Julia",
+        "date": "2025-08-06",
+        "score": 5.0,
+        "id": "ta-web-489a33d727396025",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8b47a99ce602282824a9128a3b352098c8b8edd59e6bd0d09dd8ec4c90e7f5b4",
+        "summary": {
+          "zh": "巴西客人喜欢烤肉与家乡甜品。",
+          "en": "Brazilian guest enjoys meats and familiar desserts."
+        }
+      },
+      {
+        "author": "Marie B",
+        "date": "2025-09-26",
+        "score": 5.0,
+        "id": "ta-web-8413a8077226ed69",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "cad1571572c7bb9e06231b12795db4f7338828bee7b9348277b9b1889ee413fc",
+        "summary": {
+          "zh": "带孩子用餐也获热情帮助。",
+          "en": "Helpful staff welcome families."
+        }
+      },
+      {
+        "author": "Suryansh",
+        "date": "2025-04-28",
+        "score": 5.0,
+        "id": "ta-web-53ab6094e8dee42b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7dbaa9df7513f7168aeda4d452b093b2347a9eda982f6a782aee98d953eb522a",
+        "summary": {
+          "zh": "喜欢肉质与沙拉吧。",
+          "en": "Praises meats and salad choices."
+        }
+      },
+      {
+        "author": "Felipe B",
+        "date": "2025-08-08",
+        "score": 5.0,
+        "id": "ta-web-7c22f359e27f70b9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d5e9d86d349dd6f49c3ffb18369614b950678a24ab1d1e86e6604295b092c80a",
+        "summary": {
+          "zh": "多次回访，喜欢烤肉自助。",
+          "en": "Repeated visits for barbecue and buffet."
+        }
+      },
+      {
+        "author": "Salma E",
+        "date": "2025-03-20",
+        "score": 5.0,
+        "id": "ta-web-4b828a24a6485cef",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "96e1372692bb71b2c5bb710400aab3cb8a8a4f9cebe0df6490fbdaec4869eaa6",
+        "summary": {
+          "zh": "不吃肉，获协助准备海鲜意面。",
+          "en": "Staff arrange seafood pasta for non-meat eater."
+        }
+      },
+      {
+        "author": "kattyta",
+        "date": "2025-05-24",
+        "score": 5.0,
+        "id": "ta-web-90e5ab3b92de5c5f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "456a1ea9686a474b70f479d0e4eb191b453c61332b3bcc1e127cc880ccc7edd3",
+        "summary": {
+          "zh": "喜欢烤菠萝与快速上肉。",
+          "en": "Enjoys grilled pineapple and prompt barbecue."
+        }
+      },
+      {
+        "author": "Sightsee47237219678",
+        "date": "2025-08-30",
+        "score": 5.0,
+        "id": "ta-web-c1b9a7e372c96fcb",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32764734-Reviews-Latina_Brazilian_Steakhouse_upperhills-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bbe076bcf84e268824b73d32695fc2055c8e46c1243363bb523fe62e33839ef5",
+        "summary": {
+          "zh": "食物充足，店员沟通友善。",
+          "en": "Generous food and welcoming communication."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 14
+  },
+  {
+    "id": "ta-32911125",
+    "name": "Pamukkale Mutfak 土耳其餐厅",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Li L",
+        "date": "2025-10-11",
+        "score": 5.0,
+        "id": "ta-web-769ec8583f74283f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "dc4fbeb52659ecf4e6c6da009417d988afe86e4abc271081fd2c0303dacc3570",
+        "summary": {
+          "zh": "喜欢烤肉、薄饼与酸奶酱。",
+          "en": "Enjoys roast meats, flatbread and yogurt sauce."
+        }
+      },
+      {
+        "author": "mn",
+        "date": "2026-01-11",
+        "score": 5.0,
+        "id": "ta-web-d8dc8cf8bbb071a0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7b81043aaa3e61ecd0d0d04b3c84b94be6591e02097cd89db2a31bd5f3a17898",
+        "summary": {
+          "zh": "肉香浓，茶与薄饼合口味。",
+          "en": "Likes spiced meat, tea and flatbread."
+        }
+      },
+      {
+        "author": "Sarah C",
+        "date": "2025-08-17",
+        "score": 5.0,
+        "id": "ta-web-ff472065160efbd7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f24b8ba6a0d356319faa72327a021ef013171d1c28674beabefcf4cb3f7fcbd6",
+        "summary": {
+          "zh": "菜肴与装潢带来土耳其氛围。",
+          "en": "Enjoys Turkish flavors and décor."
+        }
+      },
+      {
+        "author": "Wang M",
+        "date": "2025-12-31",
+        "score": 5.0,
+        "id": "ta-web-51dfa8d594e33275",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ed8407fab8cca6b585bc654d43b1a2a895c944ee76f8c9b755b6a9692eb4ee18",
+        "summary": {
+          "zh": "喜欢烤串与鹰嘴豆泥。",
+          "en": "Enjoys kebabs and hummus."
+        }
+      },
+      {
+        "author": "Gulruh A",
+        "date": "2025-03-27",
+        "score": 5.0,
+        "id": "ta-web-5dbc4c8d312e5951",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2b9ab09621dbf449e66ff86287b3290f1bb523ace0c01d436879b58e79c30c30",
+        "summary": {
+          "zh": "喜欢食物和服务，关注清真选项。",
+          "en": "Enjoys food, service and halal options."
+        }
+      },
+      {
+        "author": "林 景",
+        "date": "2025-11-24",
+        "score": 5.0,
+        "id": "ta-web-b491992ff00e200a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1d6e78b86537c33b93070543db0bda2ccfbd2adec6c3d02d2950a8b76128b42e",
+        "summary": {
+          "zh": "烤肉多汁，甜品配红茶不错。",
+          "en": "Enjoys juicy roast meats and tea."
+        }
+      },
+      {
+        "author": "Safari23025206869",
+        "date": "2025-10-12",
+        "score": 5.0,
+        "id": "ta-web-704f6d7d3edd753c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bf4c8578d4764b1144b5c40e9334c9059752e47d30f63501f6fc72879d808e51",
+        "summary": {
+          "zh": "喜欢汤与牛肉馅饼。",
+          "en": "Likes soup and beef pastries."
+        }
+      },
+      {
+        "author": "Saima M",
+        "date": "2025-04-05",
+        "score": 5.0,
+        "id": "ta-web-ec38d4e2f5611acf",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "05367381c15245faf1e1e51eb4189cbd250ab4ce3b1b9a9205fa9f26075128c6",
+        "summary": {
+          "zh": "喜欢鹰嘴豆泥与果仁蜜饼。",
+          "en": "Enjoys hummus and baklava."
+        }
+      },
+      {
+        "author": "zz z",
+        "date": "2025-10-11",
+        "score": 5.0,
+        "id": "ta-web-c1b7368b0182872a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32911125-Reviews-Pamukkale_Mutfak-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d37022da52a08b2df031d3b75ca36453992952da469bc58f9d3c9441d201aa1e",
+        "summary": {
+          "zh": "环境适合与朋友聚餐。",
+          "en": "Enjoys the setting for friends."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 16
+  },
+  {
+    "id": "ta-26731850",
+    "name": "Taal 印度餐厅",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Sightseer39082643829",
+        "date": "2024-06-07",
+        "score": 5.0,
+        "id": "ta-web-6b7c1608609a3279",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2fced0b375217b54090e0fb92e29a3b7c2e56cf8948f1d9fa7499bce84e7f31c",
+        "summary": {
+          "zh": "喜欢调味奶酪与炒饭。",
+          "en": "Enjoys spiced paneer and fried rice."
+        }
+      },
+      {
+        "author": "Jainumesh",
+        "date": "2025-09-02",
+        "score": 4.0,
+        "id": "ta-web-3e94ba9ddbcc13b6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6a8fbc1c1a4fc14420fed300a8522ea3be79a37a542204d2f11d954ec4e3d79c",
+        "summary": {
+          "zh": "喜欢印度厨师制作的素食。",
+          "en": "Enjoys vegetarian dishes by Indian chef."
+        }
+      },
+      {
+        "author": "IP D",
+        "date": "2024-10-31",
+        "score": 5.0,
+        "id": "ta-web-3435d4f89c87950c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7e11583450b1c0d0b6addb434adb81433657aa5bbea1f5ac58a41a1905fb6274",
+        "summary": {
+          "zh": "喜欢奶酪、豆类与用餐氛围。",
+          "en": "Enjoys paneer, lentils and atmosphere."
+        }
+      },
+      {
+        "author": "Divik Agrawal",
+        "date": "2024-07-04",
+        "score": 1.0,
+        "id": "ta-web-a01a9b6f80dfef1f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "55dcf272752dc19d75324dda2019480fa65e83e51c2a034547c76d9bdd0357fd",
+        "summary": {
+          "zh": "员工友善，但菜品调味欠佳。",
+          "en": "Friendly staff; seasoning disappoints."
+        }
+      },
+      {
+        "author": "Yasir Khan",
+        "date": "2024-05-18",
+        "score": 5.0,
+        "id": "ta-web-fa209cecfa4937a4",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "be27a09b9d358e15fb2f7bc7367413430cbd8e2ad039c5afa3dfdce858a7c1dc",
+        "summary": {
+          "zh": "小吃不错，建议提供辣度选择。",
+          "en": "Enjoys snacks; wants adjustable heat."
+        }
+      },
+      {
+        "author": "Manzoor A",
+        "date": "2024-05-19",
+        "score": 4.0,
+        "id": "ta-web-85fb718117bcb674",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2209f7b6e833822b71cd1ae1afb9e226b2cae3081a7e8dff736ae57ba6a18259",
+        "summary": {
+          "zh": "烤炉前菜好，部分主菜待改善。",
+          "en": "Good tandoori starters; some mains disappoint."
+        }
+      },
+      {
+        "author": "Megan K",
+        "date": "2024-07-09",
+        "score": 5.0,
+        "id": "ta-web-ac710690995963a0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9c77e503fca7134ce53e75c6a36997aca32cd57782cf8d105f5d5f754543dafe",
+        "summary": {
+          "zh": "喜欢烤虾、咖喱与温暖氛围。",
+          "en": "Enjoys prawns, curries and warm atmosphere."
+        }
+      },
+      {
+        "author": "ErezGam",
+        "date": "2024-05-22",
+        "score": 5.0,
+        "id": "ta-web-4242f64412730f48",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "57c14d0b6bce9c60b3b3c1ada9891fb3395bac1593fc9b4677894fcf820be6b1",
+        "summary": {
+          "zh": "喜欢食物，厨师协助选菜。",
+          "en": "Enjoys food and chef recommendations."
+        }
+      },
+      {
+        "author": "RPI Germany",
+        "date": "2024-06-07",
+        "score": 5.0,
+        "id": "ta-web-7a823774e27c1dce",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3998231b31de58347a7f89eaddc6845a8a507b6afab1316270f363b94f3b6974",
+        "summary": {
+          "zh": "菜肴有风味，价格合理。",
+          "en": "Flavorful cooking at reasonable prices."
+        }
+      },
+      {
+        "author": "Makarand J",
+        "date": "2024-08-14",
+        "score": 5.0,
+        "id": "ta-web-f7d8998e725ec37d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d26731850-Reviews-Taal_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "48d09074ed7f5f1b9316160d39a4bc279f734ef92ac50ac52f9d2c97dd860e27",
+        "summary": {
+          "zh": "食物有家乡感，经理热心。",
+          "en": "Home-style flavors and helpful management."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 16
+  },
+  {
+    "id": "ta-3491165",
+    "name": "George & Dragon 英式酒吧",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Ryland",
+        "date": "2025-12-03",
+        "score": null,
+        "id": "ta-web-f4d237de1ba0bbb2",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bfce6f8b0ebca1706b4305230941d3da602fd1428dd787a067773fe41c3b9b41",
+        "summary": {
+          "zh": "对饮品、分量和价格失望。",
+          "en": "Disappointed with drinks, portions and prices."
+        }
+      },
+      {
+        "author": "Chris",
+        "date": "2025-08-17",
+        "score": null,
+        "id": "ta-web-349b44ca052bc908",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "44868eef0ffb2f2d22673e0981221f556df527a33581a584292bd413f98d289e",
+        "summary": {
+          "zh": "乐队出色，部分服务态度欠佳。",
+          "en": "Enjoys band; some hospitality disappoints."
+        }
+      },
+      {
+        "author": "Johnnie Dela",
+        "date": "2026-04-09",
+        "score": null,
+        "id": "ta-web-c5ce979128a76eb2",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a635db6961f36a30fff1b5ec7e71145418947424eb7c670b4f54b0fbc6f1508f",
+        "summary": {
+          "zh": "喜欢食物、啤酒与友好氛围。",
+          "en": "Enjoys food, beer and friendly atmosphere."
+        }
+      },
+      {
+        "author": "Curious Karen's Capers",
+        "date": "2024-10-04",
+        "score": null,
+        "id": "ta-web-7c104b2514bb4617",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a83d52065090f6d7ffe3ca78960c7f3bffdde295849919d6f5f71461db9c850b",
+        "summary": {
+          "zh": "午餐和饮品的用餐体验。",
+          "en": "Describes a lunch-and-drinks visit."
+        }
+      },
+      {
+        "author": "Jeff I",
+        "date": "2026-04-13",
+        "score": null,
+        "id": "ta-web-75144b90b8977065",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "25fcf20a674be93c67a76b16f79760be41c92011675a85947b3fc03229fa869e",
+        "summary": {
+          "zh": "喜欢乐队和看球氛围。",
+          "en": "Enjoys the band and sports viewing."
+        }
+      },
+      {
+        "author": "WanderingGuest",
+        "date": "2025-06-30",
+        "score": null,
+        "id": "ta-web-dd5f2179b5a857db",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c7075e4de053e12768bd208a5807bee08a63652ac8ff7088f12265dd97165507",
+        "summary": {
+          "zh": "认为英式装潢与生啤不错。",
+          "en": "Likes British décor and draught beer."
+        }
+      },
+      {
+        "author": "Carol",
+        "date": "2023-10-23",
+        "score": null,
+        "id": "ta-web-2c0d9d96e0e23357",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "db83af618482d8317d107b44e244e0f8463d48f9b03d3a0a5d7127f51ac1ae42",
+        "summary": {
+          "zh": "喜欢冰啤酒、食物与服务。",
+          "en": "Enjoys cold beer, food and service."
+        }
+      },
+      {
+        "author": "Smjlewis",
+        "date": "2025-10-27",
+        "score": null,
+        "id": "ta-web-5cb616c2aa8545af",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "73834c8997d029d50de90e7d9800e01820be43887fa822a56441a685cfd36729",
+        "summary": {
+          "zh": "喜欢摇滚乐队与酒吧管理。",
+          "en": "Praises the rock band and hospitality."
+        }
+      },
+      {
+        "author": "FHM F",
+        "date": "2023-10-14",
+        "score": null,
+        "id": "ta-web-efdda16dbce4ccc2",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c66c8ccbefb43ff08b78f98c4c777f951ac820937ca2b5879497aa68a787a846",
+        "summary": {
+          "zh": "食物、啤酒和氛围合心意。",
+          "en": "Enjoys food, beer and atmosphere."
+        }
+      },
+      {
+        "author": "SzsteveC",
+        "date": "2023-10-30",
+        "score": null,
+        "id": "ta-web-6142dcb7b3083e77",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3491165-Reviews-George_Dragon_British_Pub-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "142f5a9eb5b5ef9b1172831ab8db290e3613331445056ab67306c1c72942e7dc",
+        "summary": {
+          "zh": "认为新址恢复了熟悉体验。",
+          "en": "Welcomes the experience at the newer location."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-4419424",
+    "name": "La Maison 法式餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Charlene S",
+        "date": "2025-04-09",
+        "score": null,
+        "id": "ta-web-7df25a8b09fcc3c9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c1080cbd623436a4e411b951b4949648a34d4ac49a2949320299d8346e6d0898",
+        "summary": {
+          "zh": "服务热情，菜肴呈现用心。",
+          "en": "Warm service and careful food presentation."
+        }
+      },
+      {
+        "author": "Lloyd D",
+        "date": "2025-10-19",
+        "score": null,
+        "id": "ta-web-6984a17431ba0d13",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a928391fcac217247608be27c2c8250c630a2b054068288eb02a468761140dca",
+        "summary": {
+          "zh": "喜欢安静环境与合理价格。",
+          "en": "Enjoys quiet surroundings and reasonable prices."
+        }
+      },
+      {
+        "author": "MJellick",
+        "date": "2021-06-07",
+        "score": null,
+        "id": "ta-web-3dcda1797e391b1a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "52231d865b51f0fb86059a11eb72af210eb7aaa700c83990b52c540e26a9b9e6",
+        "summary": {
+          "zh": "喜欢这家店的宁静氛围。",
+          "en": "Enjoys the peaceful setting."
+        }
+      },
+      {
+        "author": "Jbl",
+        "date": "2020-03-23",
+        "score": null,
+        "id": "ta-web-6bdb9cc91bd08111",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9dfbd279df7ef6b813d64e2bb436c62db738c8179b3ae3be7cd37c68a3acd491",
+        "summary": {
+          "zh": "认为法式菜肴和服务不错。",
+          "en": "Likes French cooking and friendly service."
+        }
+      },
+      {
+        "author": "Xavier L",
+        "date": "2020-02-18",
+        "score": null,
+        "id": "ta-web-9e42c0499e9490c8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4c8f02bec0de96e15ec29f257248ff6afd6420169177391f451abe1c57345f1e",
+        "summary": {
+          "zh": "对甜点与后续服务不满。",
+          "en": "Disappointed with dessert and follow-up service."
+        }
+      },
+      {
+        "author": "nathalie a",
+        "date": "2026-09-16",
+        "score": null,
+        "id": "ta-web-6e02cbd84712e459",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ec2939dd5d1a218f86d81f452baf514b16feecac991e2f2e3eabc6634e94e5ef",
+        "summary": {
+          "zh": "喜欢鹅肝与松露意面。",
+          "en": "Enjoys foie gras and truffle pasta."
+        }
+      },
+      {
+        "author": "Retroscan",
+        "date": "2026-07-17",
+        "score": null,
+        "id": "ta-web-9503acd8fb44c773",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1fc9f5f98e3aa1559d85ea4cd14c415626cadfe033d2272089920358543b4cb7",
+        "summary": {
+          "zh": "等候太久，未能用餐便离开。",
+          "en": "Long wait leads to leaving without eating."
+        }
+      },
+      {
+        "author": "D.0s0",
+        "date": "2025-04-09",
+        "score": null,
+        "id": "ta-web-e9470434741a38e9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "fb963e3855fa472f2a95de59e950d6bb6926d606b2265ceaff1d6a21cda1c529",
+        "summary": {
+          "zh": "多年后回访仍有好体验。",
+          "en": "Enjoys a return visit after years."
+        }
+      },
+      {
+        "author": "Marine M",
+        "date": "2021-08-14",
+        "score": null,
+        "id": "ta-web-c12d0edd25765cc2",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2a43595fbd76ac1bb00654b044251362fe1d430693b069bc46eb6608505a6793",
+        "summary": {
+          "zh": "再次用餐仍有不愉快体验。",
+          "en": "Reports disappointment on a return visit."
+        }
+      },
+      {
+        "author": "Jorge Rezende",
+        "date": "2019-12-02",
+        "score": null,
+        "id": "ta-web-9cf6993e26ca6d20",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4419424-Reviews-La_Maison-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5c7caf0a929afb1b1b01371f1779b318693195d1bc5cf161dfe77e216a76ed67",
+        "summary": {
+          "zh": "食物新鲜，员工努力照顾客人。",
+          "en": "Fresh food and attentive staff."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-17423944",
+    "name": "Bombay Adda 印度素食",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Santhosh Sreenivasan",
+        "date": "2023-11-26",
+        "score": null,
+        "id": "ta-web-d1310d316057f374",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4b751b4a6048db917bb7e5218c98f51460d3561dbf891598e30cb5313e65809c",
+        "summary": {
+          "zh": "外卖素食让人有家乡感。",
+          "en": "Vegetarian delivery brings familiar Indian flavors."
+        }
+      },
+      {
+        "author": "Deepika Paatali M",
+        "date": "2025-04-23",
+        "score": null,
+        "id": "ta-web-9fd7da545b15d96c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "82cd0b0f9bb5f9e70dc21e3fc3b112fb85b16daef19baa46734e71f8534383bd",
+        "summary": {
+          "zh": "环境干净，价格实惠，员工有礼。",
+          "en": "Clean setting, affordable food and courteous staff."
+        }
+      },
+      {
+        "author": "jalthar",
+        "date": "2019-10-29",
+        "score": null,
+        "id": "ta-web-1a3a4d17acaa9c53",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f4e1bbc3840945c34af17fd1b959de73cbf929132c00059b65eadccdb9842832",
+        "summary": {
+          "zh": "喜欢素食种类与特色披萨。",
+          "en": "Enjoys vegetarian variety and specialty pizza."
+        }
+      },
+      {
+        "author": "Niral Rajput",
+        "date": "2019-10-20",
+        "score": null,
+        "id": "ta-web-ec543b03e886f66a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "26f1da1bb6cefc5f8d755550b6a49fd36b1bd0cd9d24b3cab300799da60ff268",
+        "summary": {
+          "zh": "食物品质与分量令其满意。",
+          "en": "Satisfied with food quality and portions."
+        }
+      },
+      {
+        "author": "Mrdharshah",
+        "date": "2019-10-19",
+        "score": null,
+        "id": "ta-web-b32091bd5552ea81",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3eadb91b17829688b5cb17bb8db0cec9455064fab0630cc7f5b506eafb86be51",
+        "summary": {
+          "zh": "喜欢印度风味与亲切服务。",
+          "en": "Enjoys Indian flavors and warm service."
+        }
+      },
+      {
+        "author": "Vicky",
+        "date": "2019-10-16",
+        "score": null,
+        "id": "ta-web-dd2389d7375029a3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5394750f6536044bd182506dde3cc42c0b3833640dc20853baeb57f7fcff563b",
+        "summary": {
+          "zh": "关注水贝分店的纯素食选项。",
+          "en": "Describes vegetarian options at Shuibei branch."
+        }
+      },
+      {
+        "author": "Trusha Gala",
+        "date": "2019-10-16",
+        "score": null,
+        "id": "ta-web-07fe7df285569e39",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e0be150c958a180bf71d5c6a97443fca05fc9e8f6a988a383422d986cc409054",
+        "summary": {
+          "zh": "多次到访，喜欢印度菜。",
+          "en": "Returns for enjoyable Indian cooking."
+        }
+      },
+      {
+        "author": "Simonsachin",
+        "date": "2019-10-16",
+        "score": null,
+        "id": "ta-web-078c732a7da32de4",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a88e998d8d37cc77af97cb59318003e2c1c8dbdf957388bdd38de82d928625e3",
+        "summary": {
+          "zh": "在罗湖吃到熟悉的印度味道。",
+          "en": "Finds familiar Indian flavors in Luohu."
+        }
+      },
+      {
+        "author": "Vishwas Joshi",
+        "date": "2019-10-16",
+        "score": null,
+        "id": "ta-web-c6a75fb209aea0e7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c23da9d020a8fd6d5e39bf362fd509655d64a0494f7efdb62a57e98c1804d112",
+        "summary": {
+          "zh": "初次到访，喜欢印度风味。",
+          "en": "Enjoys familiar flavors on a first visit."
+        }
+      },
+      {
+        "author": "Prasham",
+        "date": "2019-10-16",
+        "score": null,
+        "id": "ta-web-eb801b5cd5042c3f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17423944-Reviews-Bombay_Adda_Vegetarian_Cuisine-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1025feedc69962ae143a43ce82b5f4b8c2e61eb0ee91013c075ae71d636f3802",
+        "summary": {
+          "zh": "分享印度素食用餐体验。",
+          "en": "Shares an Indian vegetarian dining experience."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-14790113",
+    "name": "Magpie 喜鹊",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Ross",
+        "date": "2026-04-04",
+        "score": null,
+        "id": "ta-web-3436f6bb24b1689d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4fbebc8751139118caf86b1339121c19359b966de0aab56f090c243bb9c3c8b9",
+        "summary": {
+          "zh": "菜单有创意，华夫饼令人失望。",
+          "en": "Creative menu; waffles disappoint."
+        }
+      },
+      {
+        "author": "Rad S",
+        "date": "2025-09-23",
+        "score": null,
+        "id": "ta-web-6a8f0d7bbcfcb49e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2dad66d50cfc151e34ed14ebc1adaa3c1504009aba2ed62f8c6cff4e5da03531",
+        "summary": {
+          "zh": "位置低调，菜肴风味大胆。",
+          "en": "Hidden setting with bold flavors."
+        }
+      },
+      {
+        "author": "Julie H",
+        "date": "2022-06-08",
+        "score": null,
+        "id": "ta-web-e63229a6335e95f9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a15a8e376deea9cbb4da9cd1313a88e96cd35870965f089cd975b6fa0e621691",
+        "summary": {
+          "zh": "露台宽敞，店主友好。",
+          "en": "Spacious patio and friendly owners."
+        }
+      },
+      {
+        "author": "PTrew",
+        "date": "2020-05-16",
+        "score": null,
+        "id": "ta-web-5b5c5200748fdaf0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e0a52db5758c8a1557c5369d503af2d18221b7898bb0b826df0d26093aa4c5fe",
+        "summary": {
+          "zh": "喜欢时令菜单与贴心服务。",
+          "en": "Enjoys seasonal creativity and personal service."
+        }
+      },
+      {
+        "author": "Amanda H",
+        "date": "2023-06-21",
+        "score": null,
+        "id": "ta-web-94e7c622067fa11c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4b270833b6a21b5a710756ca8dc47ca72fe46bb808aa6e1c13a15b5457151b68",
+        "summary": {
+          "zh": "回访仍喜欢独特菜肴。",
+          "en": "Enjoys distinctive food on a return visit."
+        }
+      },
+      {
+        "author": "scdBudapest",
+        "date": "2021-01-08",
+        "score": null,
+        "id": "ta-web-87fffd17a0d841bb",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d2505efb91d70ec2667c386dd872d78face615a59d07a7a2dfb2721383ae58f4",
+        "summary": {
+          "zh": "环境优雅，晚餐体验满意。",
+          "en": "Enjoys dinner in an elegant setting."
+        }
+      },
+      {
+        "author": "greg b",
+        "date": "2019-09-23",
+        "score": null,
+        "id": "ta-web-b3f4d58e6d51493b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "14f97e0ba70d33e8683dfa84dd714513e725386a02ca17a77e46f079f909d42a",
+        "summary": {
+          "zh": "喜欢美式早午餐选择。",
+          "en": "Enjoys American-style brunch choices."
+        }
+      },
+      {
+        "author": "II_Globe_Trotter_II",
+        "date": "2019-08-13",
+        "score": null,
+        "id": "ta-web-3fa4479b021b56b8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6a71b698ec543e441bc5ae1348fc4cb836a4931131101295ced088a8982ef0fe",
+        "summary": {
+          "zh": "食物、饮品和服务都不错。",
+          "en": "Praises food, drinks and service."
+        }
+      },
+      {
+        "author": "G..",
+        "date": "2019-07-05",
+        "score": null,
+        "id": "ta-web-00e9bd4cf0f0987d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "0d2061c1db5f71b927fdc86f51b32fd1947ea2aa22c5df70b5ab926c952ebbf9",
+        "summary": {
+          "zh": "关注中西融合的菜单。",
+          "en": "Discusses Chinese-European fusion cooking."
+        }
+      },
+      {
+        "author": "HongKongFrenchie",
+        "date": "2019-06-04",
+        "score": null,
+        "id": "ta-web-4c008f20086dfa86",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d14790113-Reviews-Magpie-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6df1ac0e2bf86a1f4fd53e17f6e9c6bf16f1a42b73ccd1ddf4c950c4e01ec180",
+        "summary": {
+          "zh": "早午餐未达期待。",
+          "en": "Brunch falls short of expectations."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 14
+  },
+  {
+    "id": "ta-10749988",
+    "name": "Artisans 披萨",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Andrei D",
+        "date": "2026-05-19",
+        "score": null,
+        "id": "ta-web-0095883df8ee88d8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "fe2d8afa43ed8483de72bbb1c7f40641ea262841128b9ccdd9c2dbdf0b15a036",
+        "summary": {
+          "zh": "喜欢披萨，部分配菜和体验待改善。",
+          "en": "Likes pizza; some details need improvement."
+        }
+      },
+      {
+        "author": "dodgers24",
+        "date": "2025-03-02",
+        "score": null,
+        "id": "ta-web-3048bc38387f3d32",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "07486a77f8bd0a11d17e44c39717fc0308a0f7f33c0b8d56e66a4ddce3753145",
+        "summary": {
+          "zh": "好莱坞披萨有熟悉的美式味道。",
+          "en": "Enjoys familiar American-style pizza."
+        }
+      },
+      {
+        "author": "Alex",
+        "date": "2021-05-04",
+        "score": null,
+        "id": "ta-web-1406ae10679a07cd",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d939e7491449a12ae753341ad696f0f819213531388e89c0bc62ca8e8796bf23",
+        "summary": {
+          "zh": "等候久，披萨与薯条欠佳。",
+          "en": "Long wait; pizza and fries disappoint."
+        }
+      },
+      {
+        "author": "Miguel S",
+        "date": "2020-07-07",
+        "score": null,
+        "id": "ta-web-431f34815fac77a7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "0a46817a4d420b0a6d16029c2ef2ec677bb84a597d6b50f23b88ddfe5aab1979",
+        "summary": {
+          "zh": "喜欢厚底披萨、酒和爵士氛围。",
+          "en": "Enjoys deep pizza, wine and jazz."
+        }
+      },
+      {
+        "author": "Tanya",
+        "date": "2020-07-12",
+        "score": null,
+        "id": "ta-web-68c0c49110bf73d8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "628f434f25e4c08e23cb5f077fb258b19382078881f355c2ae933c16c9d158c9",
+        "summary": {
+          "zh": "披萨好吃，店主热情。",
+          "en": "Enjoys pizza and welcoming owner."
+        }
+      },
+      {
+        "author": "Dustin H",
+        "date": "2020-07-09",
+        "score": null,
+        "id": "ta-web-a55eebef5c89c2e7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3da305af17a8c3992e1c5d2d672db560a5cdfeae0ef33137a250d46f4d0c7b7d",
+        "summary": {
+          "zh": "喜欢深盘披萨与葡萄酒。",
+          "en": "Enjoys deep-dish pizza and wine."
+        }
+      },
+      {
+        "author": "mtcole",
+        "date": "2020-06-13",
+        "score": null,
+        "id": "ta-web-eb2eeb5138b363b7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "aa46aeba06732115d1803379b4b178476e9a02f4826afc955e69ab143964db85",
+        "summary": {
+          "zh": "喜欢酸面团披萨与精酿。",
+          "en": "Enjoys sourdough pizza and craft beer."
+        }
+      },
+      {
+        "author": "Max N",
+        "date": "2020-10-11",
+        "score": null,
+        "id": "ta-web-3c83ddfffc756f4d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "da22330ea4f8a73c7343d8f505ccc768d1a6464e0cff77ef94f9cb17ae4f8c72",
+        "summary": {
+          "zh": "认为披萨原料品质不错。",
+          "en": "Praises the pizza ingredients."
+        }
+      },
+      {
+        "author": "Jacklynn P",
+        "date": "2023-12-23",
+        "score": null,
+        "id": "ta-web-d919333e20dd26fe",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "35748fea61976c86e85d3dc6a2abfbbee50674dd19abfd93e5da24553e5fd111",
+        "summary": {
+          "zh": "分享对美式披萨的体验。",
+          "en": "Describes an American-pizza dining experience."
+        }
+      },
+      {
+        "author": "ShannonGrif",
+        "date": "2023-05-07",
+        "score": null,
+        "id": "ta-web-4f2bf884b1aabc01",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10749988-Reviews-Artisans-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1f06b76f4b5204424900403fc4ac79c04116592d933a05ec4ffd409ca0e570c2",
+        "summary": {
+          "zh": "过去常来，仍喜欢披萨。",
+          "en": "Fond memories of repeated pizza visits."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-10666363",
+    "name": "Dawat 印度餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Harsh S",
+        "date": "2025-01-18",
+        "score": null,
+        "id": "ta-web-69633b872f2815c7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f0f49d77413103319b112244c32056a8c95f4f89e9c1696e93c23d7706a62e9c",
+        "summary": {
+          "zh": "三天连续来吃，喜欢味道。",
+          "en": "Returns three evenings for enjoyable food."
+        }
+      },
+      {
+        "author": "Dream24932749815",
+        "date": "2024-12-08",
+        "score": null,
+        "id": "ta-web-c83eea131ace0db5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d33dd70c105d4336b8db1eee223028cfbd6a8012f2f2a30efd9fd2918d413b29",
+        "summary": {
+          "zh": "菜肴不合其口味。",
+          "en": "Food does not suit this diner."
+        }
+      },
+      {
+        "author": "TrailBlazer291084",
+        "date": "2024-04-16",
+        "score": null,
+        "id": "ta-web-33c828cabddabd26",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9ee9a393f7371205dda8aea8723e16c086ec6a47d55081aa94abd3598d89caae",
+        "summary": {
+          "zh": "食物不错，但位置较难找。",
+          "en": "Enjoys food; location is harder to find."
+        }
+      },
+      {
+        "author": "SAURAV001",
+        "date": "2024-03-07",
+        "score": null,
+        "id": "ta-web-2c93430b14098d22",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5edcd5552ff3fdc708a58dc3d43d68c701399f2f0637af8364042f5f128ac918",
+        "summary": {
+          "zh": "喜欢食物，建议旅行时到访。",
+          "en": "Enjoys the food during a visit."
+        }
+      },
+      {
+        "author": "Discover57154045492",
+        "date": "2026-07-16",
+        "score": null,
+        "id": "ta-web-c33b358dacd77a7d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2d506474af1f0f264a1264ff8d52cb79405064807dc17a6ed0a0c1f65a320ba9",
+        "summary": {
+          "zh": "菜肴、服务速度和环境不错。",
+          "en": "Enjoys food, quick service and atmosphere."
+        }
+      },
+      {
+        "author": "ABHISHEK A",
+        "date": "2025-04-26",
+        "score": null,
+        "id": "ta-web-a50be42eba2181ed",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2d6be8bc0d7134c2b707020fe11ca858c18c6712c1d52116b0e13920927dd4e9",
+        "summary": {
+          "zh": "认为印度菜品质不错。",
+          "en": "Praises the Indian cooking."
+        }
+      },
+      {
+        "author": "Bhuvnesh Mendha",
+        "date": "2025-02-12",
+        "score": null,
+        "id": "ta-web-189f3a40072bf90a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9c4e53af0d70ba602adc9c06f01ba7d12db046dd252d175cb0088731cea3360f",
+        "summary": {
+          "zh": "喜欢市中心的印度风味。",
+          "en": "Enjoys Indian flavors in the city center."
+        }
+      },
+      {
+        "author": "Yadveer K",
+        "date": "2024-12-12",
+        "score": null,
+        "id": "ta-web-80ed4e2139e337c3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b18227b543e55e918f609f249b3f2f44686308e07cd4fdca66425c577a1a41a9",
+        "summary": {
+          "zh": "喜欢旁遮普风味的菜肴。",
+          "en": "Enjoys Punjabi-style dishes."
+        }
+      },
+      {
+        "author": "sachins912",
+        "date": "2024-10-10",
+        "score": null,
+        "id": "ta-web-d47246cf05774420",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9425238d78881e671591db1cbc878a4decd2217ae0413b2a9d2318363fd12b44",
+        "summary": {
+          "zh": "认为豆类与奶酪菜调味欠佳。",
+          "en": "Disappointed with lentil and paneer dishes."
+        }
+      },
+      {
+        "author": "The Sacrilicious",
+        "date": "2021-02-07",
+        "score": null,
+        "id": "ta-web-1df830a739dfca5a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10666363-Reviews-Dawat_Indian_Resturant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "cdb6fbc22483efd787bf46704987ad81a6f8e0fdfd831fc18a293919bf4d883f",
+        "summary": {
+          "zh": "喜欢北印度菜与馕。",
+          "en": "Enjoys North Indian cooking and naan."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-27508794",
+    "name": "Golden Olives 希腊餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Girgis B",
+        "date": "2026-07-09",
+        "score": null,
+        "id": "ta-web-c8d0bf659bd7f968",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8040a1f1f913365b684776a3b61e1c794c140d7390090a2db92236f7c2e75569",
+        "summary": {
+          "zh": "希腊菜、甜品和服务令人满意。",
+          "en": "Enjoys Greek food, desserts and service."
+        }
+      },
+      {
+        "author": "Constantinos L",
+        "date": "2025-04-17",
+        "score": null,
+        "id": "ta-web-a66ee978116b2069",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "fe0d81e9aeb03200c15d205c75207b21aeff459dd0d378b72ba2af6a6f59c042",
+        "summary": {
+          "zh": "认为希腊风味地道。",
+          "en": "Enjoys authentic-seeming Greek flavors."
+        }
+      },
+      {
+        "author": "Ioannis K",
+        "date": "2024-03-26",
+        "score": null,
+        "id": "ta-web-95e06fa4dc788f38",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5088ebfb632f5f710658a7eaf6eb79bdbfdd53291f6b7a4c422d9acc8ac20b27",
+        "summary": {
+          "zh": "关注希腊菜与葡萄酒。",
+          "en": "Discusses Greek cooking and wine."
+        }
+      },
+      {
+        "author": "Christina B",
+        "date": "2026-05-16",
+        "score": null,
+        "id": "ta-web-1412cbe0756a6910",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9f798debf7f549706a829c47bdda024938ac0111dd38d7f8daec822fb132e67d",
+        "summary": {
+          "zh": "喜欢菜肴呈现与用餐氛围。",
+          "en": "Enjoys presentation and atmosphere."
+        }
+      },
+      {
+        "author": "Reservas - V",
+        "date": "2025-11-25",
+        "score": null,
+        "id": "ta-web-9be8b5c532744e1d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6c3df057b3e9d4753fdfd6376f80da671865d626c48a2ca4ea4392ca9c3274d4",
+        "summary": {
+          "zh": "认为品质价格相称。",
+          "en": "Finds good food and value."
+        }
+      },
+      {
+        "author": "Thomas",
+        "date": "2025-11-04",
+        "score": null,
+        "id": "ta-web-b9ef1605ef021a06",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "cd6178068770c502df03ce9d6982a9ae12e3887c4a69d2ac26b8057aad8dc7be",
+        "summary": {
+          "zh": "喜欢酸奶黄瓜酱与环境。",
+          "en": "Enjoys tzatziki and the setting."
+        }
+      },
+      {
+        "author": "GiT",
+        "date": "2025-04-24",
+        "score": null,
+        "id": "ta-web-4ab2e221399080df",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5a7f436ff6de26b08cdf475f0cd48341d34830340b904cc9bf85e95929915749",
+        "summary": {
+          "zh": "喜欢希腊菜与特色鸡尾酒。",
+          "en": "Enjoys Greek dishes and cocktails."
+        }
+      },
+      {
+        "author": "Vacation785246",
+        "date": "2025-03-03",
+        "score": null,
+        "id": "ta-web-dd90d2a16f01592e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e5dd6748d1ad78de12bc4985559ce081431fe26270e964dfd3615f88de580644",
+        "summary": {
+          "zh": "气氛舒服，酒类选择多。",
+          "en": "Comfortable atmosphere and varied drinks."
+        }
+      },
+      {
+        "author": "Yannis Kalogeropoulos",
+        "date": "2024-08-24",
+        "score": null,
+        "id": "ta-web-b45c920f3e831e96",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27508794-Reviews-Golden_Olives_greek_Resturant_In_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "97a7d76057a3058bbf19c2c12221fcaf27c0d7e56bf49c3fb30823f4aa8ae4f4",
+        "summary": {
+          "zh": "赞赏厨师的烹饪表现。",
+          "en": "Praises the chef's cooking."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 9
+  },
+  {
+    "id": "ta-25560152",
+    "name": "Il Faro 意大利餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Dandan80s",
+        "date": "2026-01-02",
+        "score": null,
+        "id": "ta-web-b6d0f5e27d1e8d4b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "24e8e7737bb959e2bc409abc3ac4162029402452f4dfdba0102981a2e7091c90",
+        "summary": {
+          "zh": "认为披萨有意大利风味。",
+          "en": "Enjoys Italian-style pizza."
+        }
+      },
+      {
+        "author": "Ferdinando R",
+        "date": "",
+        "score": null,
+        "id": "ta-web-b79c32cfccb082e6",
+        "idKind": "source_author_body_fingerprint",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "dc91fc02ea65751e5c07705adbefa72481831f27036da32a5cc6a2daeb973d75",
+        "summary": {
+          "zh": "觉得蛇口店适合亲友聚餐。",
+          "en": "Finds Shekou branch suited to friends and families."
+        }
+      },
+      {
+        "author": "Laura",
+        "date": "2026-04-14",
+        "score": null,
+        "id": "ta-web-ed923ff83d3fd5b8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6c4feb7df9867ce17ce51454938c535c85673dfefb735b7fae958a3e286d1652",
+        "summary": {
+          "zh": "喜欢披萨、意面与酒单。",
+          "en": "Enjoys pizza, pasta and wine choices."
+        }
+      },
+      {
+        "author": "Nicolas Williams",
+        "date": "2025-07-12",
+        "score": null,
+        "id": "ta-web-78df60b434991baa",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "97378b61e41e4e69e1d300aa32b5480d683017b2d1f41e568785dd53a8f586c5",
+        "summary": {
+          "zh": "多年居住后认可这里的意餐。",
+          "en": "Resident appreciates the Italian cooking."
+        }
+      },
+      {
+        "author": "Alessandro M",
+        "date": "2024-12-12",
+        "score": null,
+        "id": "ta-web-c8688d6ba78ece41",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4361b8490bbe47b9daa7356d96b2f127b549e9ac70d562b9bf65ca236a711fdf",
+        "summary": {
+          "zh": "喜欢意大利厨师的菜肴。",
+          "en": "Enjoys dishes by the Italian chef."
+        }
+      },
+      {
+        "author": "Stefano A",
+        "date": "2024-07-11",
+        "score": null,
+        "id": "ta-web-04bd1159c70ba156",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "637ef0a8d2d468144587dfd4d59432bd8bba36a96f90ad6e14153859cfb7a371",
+        "summary": {
+          "zh": "试过多种菜，品质满意。",
+          "en": "Enjoys several dishes and food quality."
+        }
+      },
+      {
+        "author": "Mauro R",
+        "date": "2024-06-01",
+        "score": null,
+        "id": "ta-web-f5b300d48088ae4d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d25560152-Reviews-Il_Faro-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "319a10e08454e22ab46945fe06f96bbda7f9e0f69f809c3126dec1f109a078e9",
+        "summary": {
+          "zh": "喜欢那不勒斯风味披萨与甜品。",
+          "en": "Enjoys Naples-style pizza and desserts."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 7
+  },
+  {
+    "id": "ta-17783957",
+    "name": "繁楼（振华路）",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17783957-Reviews-Fanlou-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Leonhkny",
+        "date": "",
+        "score": null,
+        "id": "ta-web-802d4310c32ab2c7",
+        "idKind": "source_author_body_fingerprint",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17783957-Reviews-Fanlou-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9773d3d03eceb6420fa77516dcc5c6a0f3a26d207694a03c6e0b4eae5fc97afd",
+        "summary": {
+          "zh": "喜欢华强北店的传统点心。",
+          "en": "Enjoys traditional dim sum in Huaqiangbei."
+        }
+      },
+      {
+        "author": "Sue",
+        "date": "2024-11-16",
+        "score": null,
+        "id": "ta-web-c0a80ab88fa75a97",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17783957-Reviews-Fanlou-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "85a0fa1fc0ec40b83ef85427b5e5a24c004c74f3de98a9ed37873b0d68083f35",
+        "summary": {
+          "zh": "图文菜单有帮助，手机点餐不便。",
+          "en": "Illustrated menu helps; app ordering frustrates."
+        }
+      },
+      {
+        "author": "RL21",
+        "date": "2025-04-26",
+        "score": null,
+        "id": "ta-web-48b2e06053b623f6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17783957-Reviews-Fanlou-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2fb02eaf7af47ca0f82d35d5c89aafa1243cc8ba67eadab7e7eea78986f69621",
+        "summary": {
+          "zh": "喜欢传统早茶体验。",
+          "en": "Enjoys traditional yum cha."
+        }
+      },
+      {
+        "author": "Tom Q",
+        "date": "2019-09-06",
+        "score": null,
+        "id": "ta-web-64eb0e19bf12154e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17783957-Reviews-Fanlou-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4ef6cc4385e411d21c301dfd68ddee1d7f710f62c5906aa86249e472c39f876e",
+        "summary": {
+          "zh": "认为粤菜出品品质不错。",
+          "en": "Praises the Cantonese cooking."
+        }
+      },
+      {
+        "author": "Dailo1",
+        "date": "2019-08-19",
+        "score": null,
+        "id": "ta-web-d9a9a03fa458c7b7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d17783957-Reviews-Fanlou-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a179532c55e9b319f057d2a1e912ea8ac21d055b5165163fd0bc21be13ed7a05",
+        "summary": {
+          "zh": "周五午餐较拥挤，服务礼貌。",
+          "en": "Busy Friday lunch with polite service."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 6
+  },
+  {
+    "id": "ta-32846849",
+    "name": "La Piana 意大利餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Pan M",
+        "date": "2026-05-15",
+        "score": null,
+        "id": "ta-web-8b3b605d7ca0d79b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3262aecf85974a60a3fb4abbcb03d76210b5f2cc2a4cf305f43885a4311970b1",
+        "summary": {
+          "zh": "认可意大利菜的品质。",
+          "en": "Praises the Italian cooking."
+        }
+      },
+      {
+        "author": "Daydream08209599936",
+        "date": "2025-10-29",
+        "score": null,
+        "id": "ta-web-e4a4134404ad88b5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7c1dd51cda7d2e9e8fd1d57a31d229be3882186bc64c04bd06b6cdbb44c91967",
+        "summary": {
+          "zh": "大学城附近安静的小店。",
+          "en": "A quiet find near University Town."
+        }
+      },
+      {
+        "author": "Mars_Gos",
+        "date": "2025-02-06",
+        "score": null,
+        "id": "ta-web-3c1574e564efb63d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1580a43b3251529566a328430867278361d136fc1d7ec909d8fbd25a6af88e5b",
+        "summary": {
+          "zh": "多次回访，喜欢披萨。",
+          "en": "Returns for the pizza."
+        }
+      },
+      {
+        "author": "Edona D",
+        "date": "2025-01-17",
+        "score": null,
+        "id": "ta-web-064dea3084287ec1",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8dc7a76d10719607b14e68abe31d9e994529dcee416a44efdf76825b815e0a2b",
+        "summary": {
+          "zh": "喜欢意面、披萨与提拉米苏。",
+          "en": "Enjoys pasta, pizza and tiramisu."
+        }
+      },
+      {
+        "author": "Ardi H",
+        "date": "2025-03-30",
+        "score": null,
+        "id": "ta-web-ba0b8ba258b26191",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c5c2373604dbb4464aa166492c5a4eefd37cbc561ce83c0651d2357667151474",
+        "summary": {
+          "zh": "喜欢肉类拼盘、葡萄酒和环境。",
+          "en": "Enjoys meat platters, wine and atmosphere."
+        }
+      },
+      {
+        "author": "Angela T",
+        "date": "",
+        "score": null,
+        "id": "ta-web-9c9bd84bb9da5328",
+        "idKind": "source_author_body_fingerprint",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e84353a6679b820c1908786192e1babfdb30fad17f268396a99ec785436e8da7",
+        "summary": {
+          "zh": "户外环境舒服，服务友好。",
+          "en": "Enjoys outdoor seating and friendly service."
+        }
+      },
+      {
+        "author": "hamidou k",
+        "date": "2025-12-04",
+        "score": null,
+        "id": "ta-web-18ca49579a5cb150",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5604f8af2d84383113bcaa904629398451a4263bd013d7617e6e16b07bcf6998",
+        "summary": {
+          "zh": "披萨好吃，店铺干净。",
+          "en": "Enjoys pizza in a clean setting."
+        }
+      },
+      {
+        "author": "pendry",
+        "date": "2025-11-26",
+        "score": null,
+        "id": "ta-web-dc3cb61fb3a2b994",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ade37050432412fe073ed4ebee924e01e7da71804cf4ab176495fd02d2bc5491",
+        "summary": {
+          "zh": "服务快捷专业，意餐不错。",
+          "en": "Quick, professional service and Italian food."
+        }
+      },
+      {
+        "author": "El Mehdi M",
+        "date": "2025-02-24",
+        "score": null,
+        "id": "ta-web-5916c939a17ba001",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "0161debd23b23b53e03116a4e235c4917293280421d76aa42252f3bec57294ec",
+        "summary": {
+          "zh": "喜欢意面、披萨与咖啡。",
+          "en": "Enjoys pasta, pizza and coffee."
+        }
+      },
+      {
+        "author": "Resi Q",
+        "date": "2025-02-17",
+        "score": null,
+        "id": "ta-web-7c81e3528b36db77",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d32846849-Reviews-La_Piana_Restaurant_Pizza_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f15917417f51d8e22d424c1491aef4d1eb2b1fad8a4ef762b845dc07649f1245",
+        "summary": {
+          "zh": "适合家庭用餐，气氛不错。",
+          "en": "Enjoys a family meal and atmosphere."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 13
+  },
+  {
+    "id": "ta-12816703",
+    "name": "深圳 Hard Rock Café",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "DMC1958",
+        "date": "2025-08-30",
+        "score": null,
+        "id": "ta-web-8b809b1e96320c74",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e56261ad606f091e6c03304306ef4b6be5ff7d42f989c7034ad459af4446318e",
+        "summary": {
+          "zh": "酒店楼下用餐，喜欢食物与服务。",
+          "en": "Enjoys food and service beneath the hotel."
+        }
+      },
+      {
+        "author": "sseitz94",
+        "date": "2021-05-02",
+        "score": null,
+        "id": "ta-web-e58c3d277a398803",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1beaefab89ae85025bdfd538d4296f863fdf34d655a3fe6a823c1fdccdb9ebcc",
+        "summary": {
+          "zh": "喜欢三文鱼与饮品。",
+          "en": "Enjoys salmon and drinks."
+        }
+      },
+      {
+        "author": "Lisvil",
+        "date": "2025-07-23",
+        "score": null,
+        "id": "ta-web-5b1833e1ec529f70",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "61ad08084250e41a4becff6ac88536101f47396b8d49606f44c8272dbaf4755b",
+        "summary": {
+          "zh": "喜欢音乐与食物。",
+          "en": "Enjoys the music and food."
+        }
+      },
+      {
+        "author": "Christiianita",
+        "date": "2024-06-11",
+        "score": null,
+        "id": "ta-web-0975ffcc86e12ff2",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3befe4c9eb4e9433c9796cd15320905cf7668bb1399ab7fe0ba9ca266c2f4d62",
+        "summary": {
+          "zh": "服务友好，菜肴热腾腾。",
+          "en": "Friendly staff serve hot food."
+        }
+      },
+      {
+        "author": "mattdouhan",
+        "date": "2021-03-10",
+        "score": null,
+        "id": "ta-web-b93a87b18919b356",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3be3bd6cc9a65190197a349eaa5e398eeb87ab12115abe219820e4959f495132",
+        "summary": {
+          "zh": "食物与服务令人满意。",
+          "en": "Enjoys the food and service."
+        }
+      },
+      {
+        "author": "Dejafan",
+        "date": "2019-12-21",
+        "score": null,
+        "id": "ta-web-26d6a47e6f399e26",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ba6df487e60a0f8889881c9f474a1651ac976d39a0f708487664dcc054cf57db",
+        "summary": {
+          "zh": "四人聚餐体验令人失望。",
+          "en": "A disappointing meal for four diners."
+        }
+      },
+      {
+        "author": "Skiddie95",
+        "date": "2019-12-18",
+        "score": null,
+        "id": "ta-web-e20b1beeea97c800",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bb9d3940ca68c017136109fc1d80bbd548ff914ad9d2144769f196251a99239d",
+        "summary": {
+          "zh": "等待菜肴很久，体验欠佳。",
+          "en": "Long food waits disappoint."
+        }
+      },
+      {
+        "author": "Rachel",
+        "date": "2019-12-11",
+        "score": null,
+        "id": "ta-web-3e7f1ce22331a1ba",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "badae573530dd5ed19673f4c06b08b9f3461ae2990446b12b7eba2bd451ffe10",
+        "summary": {
+          "zh": "乐队不错，意面价格偏高。",
+          "en": "Enjoys the band; pasta seems expensive."
+        }
+      },
+      {
+        "author": "17tankov",
+        "date": "2019-11-24",
+        "score": null,
+        "id": "ta-web-26ca48abef763bf4",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ee928dd2d907998e4bdd6facd013b762a04c295ce7273636a503e76cc7b04f48",
+        "summary": {
+          "zh": "喜欢现场摇滚，食物尚可。",
+          "en": "Enjoys live rock; food is acceptable."
+        }
+      },
+      {
+        "author": "ToroFarm",
+        "date": "2019-10-12",
+        "score": null,
+        "id": "ta-web-9befb3e043644bb6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12816703-Reviews-Hard_Rock_Cafe_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "24b9923f6cf65a50046421a67eae49bb39788bf1f851bb240f7b7db2dfe8f4ce",
+        "summary": {
+          "zh": "美式菜分量足，英文菜单不便。",
+          "en": "Generous American dishes; English menu problems."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-2514786",
+    "name": "中发源清真餐厅（春风路）",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2514786-Reviews-ZhongFa_Yuan_QingZhen_Restaurant_ChunFeng_Road-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Leonhkny",
+        "date": "2023-07-05",
+        "score": null,
+        "id": "ta-web-2f80c0542f9217a9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2514786-Reviews-ZhongFa_Yuan_QingZhen_Restaurant_ChunFeng_Road-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "95e0cc9a93e70b73ddd2afcea7eae45f5dc1cb9ab97765c1bd120cebf9550586",
+        "summary": {
+          "zh": "喜欢招牌羊肉，菜单丰富。",
+          "en": "Enjoys signature lamb and varied choices."
+        }
+      },
+      {
+        "author": "kate L",
+        "date": "2012-11-13",
+        "score": null,
+        "id": "ta-web-6c47d0391933f777",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2514786-Reviews-ZhongFa_Yuan_QingZhen_Restaurant_ChunFeng_Road-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7b74afc66a6a54bc36d490cf5f1255efd877824c2a2cdc6a1f76265ceb269bce",
+        "summary": {
+          "zh": "分享朴素环境中的维吾尔风味。",
+          "en": "Describes Uyghur cooking in a simple setting."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 2
+  },
+  {
+    "id": "ta-7050174",
+    "name": "Tequila Coyote's 墨西哥餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Claire Li",
+        "date": "2026-08-16",
+        "score": null,
+        "id": "ta-web-f457df0276eae2dc",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9302a86bef61308bd88c4648bdc8cf079cb808985c56e6a6e4456129a3f2b1f1",
+        "summary": {
+          "zh": "再次来吃墨西哥菜。",
+          "en": "Returns for Mexican food."
+        }
+      },
+      {
+        "author": "LisanneMeulendijks",
+        "date": "2026-09-19",
+        "score": null,
+        "id": "ta-web-cf9f18528eaa865a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ef176656425671ae7c4506f9d04818f80708abd5f321a5b45d2fad9468a79ddc",
+        "summary": {
+          "zh": "认为墨西哥风味地道。",
+          "en": "Enjoys authentic-seeming Mexican flavors."
+        }
+      },
+      {
+        "author": "Simon P",
+        "date": "2026-04-18",
+        "score": null,
+        "id": "ta-web-095a10e4fe307bea",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "716e0ced493f95140e4a054a76dbfb59ea467412900e445f785ad4ea8183a8af",
+        "summary": {
+          "zh": "偶然到访，体验愉快。",
+          "en": "Enjoys an unplanned visit."
+        }
+      },
+      {
+        "author": "Arthur N",
+        "date": "2026-09-13",
+        "score": null,
+        "id": "ta-web-587a64c14b25f56d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "da060ece0f4f7d1b98300b233bb0c31726e433639d1bb9714b1102bbf0e6dbc0",
+        "summary": {
+          "zh": "店主协助安排团体菜单。",
+          "en": "Owner helps arrange a group menu."
+        }
+      },
+      {
+        "author": "Connector64717444289",
+        "date": "2026-04-30",
+        "score": null,
+        "id": "ta-web-416147f7b71e4d63",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "00990d34595dfb8627ededce6abbaf17d1d014ea3876b8f26ee161080d2b3e18",
+        "summary": {
+          "zh": "喜欢拉美风味。",
+          "en": "Enjoys Latin American flavors."
+        }
+      },
+      {
+        "author": "Rodolfo S",
+        "date": "2026-05-16",
+        "score": null,
+        "id": "ta-web-5ee9835b9906f7c0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5608a3a07674e1a49492221566e0bd48d4f5f70484ee08d63b71b87eeb49eb5d",
+        "summary": {
+          "zh": "熟悉的墨西哥味道，服务不错。",
+          "en": "Familiar Mexican flavors and good service."
+        }
+      },
+      {
+        "author": "Fern",
+        "date": "2026-03-18",
+        "score": null,
+        "id": "ta-web-7fb2f26758137c4b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "429cc8a29214bf09c218feb82cf3b9b0f504ffe9a18b05f6e2953f6ead4e5848",
+        "summary": {
+          "zh": "出差期间喜欢这里的食物与人情。",
+          "en": "Enjoys food and hospitality while traveling."
+        }
+      },
+      {
+        "author": "Ryland",
+        "date": "2025-12-04",
+        "score": null,
+        "id": "ta-web-7c7e3347a3b4b6fd",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3a31fb7a02bfb58955f2671db96d673db75989e3881d47ce7f056e2d6ed39dcd",
+        "summary": {
+          "zh": "酸橘汁腌鱼不错，地道程度存疑。",
+          "en": "Enjoys ceviche; questions authenticity."
+        }
+      },
+      {
+        "author": "Lira Maciel J",
+        "date": "2026-05-16",
+        "score": null,
+        "id": "ta-web-b57a2631a7e2b9c2",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3a14e3c48a054e58a814042030d40af2bd92eecfe8388c843744346b7302b67a",
+        "summary": {
+          "zh": "喜欢墨西哥菜与聚餐氛围。",
+          "en": "Enjoys Mexican food and a pleasant visit."
+        }
+      },
+      {
+        "author": "Odyssey30190419700",
+        "date": "2026-03-25",
+        "score": null,
+        "id": "ta-web-38e96706fb163576",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7050174-Reviews-Tequila_Coyote_s_Mexican_Food_Grill-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6cbe1b6527d11bf1cfeceffbaf32227ffb5afdffb9d4d6006ef1dfbaa2f3fabf",
+        "summary": {
+          "zh": "晚间景观让用餐更愉快。",
+          "en": "Enjoys the evening setting and views."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-11916999",
+    "name": "Bus Grill 土耳其牛排餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Michael C",
+        "date": "2026-08-22",
+        "score": null,
+        "id": "ta-web-e8c4e5e34f871a82",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b44ba8c584acc25cba92a35ee951b04950ee9c505de7303f3c1ef7ff635a8457",
+        "summary": {
+          "zh": "旅行期间喜欢这里的食物。",
+          "en": "Enjoys the food while traveling."
+        }
+      },
+      {
+        "author": "Abdullah qadir",
+        "date": "2026-06-27",
+        "score": null,
+        "id": "ta-web-6ea5837771295c2c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4c5a14010bae9829034349435ac5c57c912cc794d6a7cdda3ccfd9fa18dbb2e0",
+        "summary": {
+          "zh": "对服务体验非常失望。",
+          "en": "Very disappointed with service."
+        }
+      },
+      {
+        "author": "TridentFishBar",
+        "date": "2026-08-25",
+        "score": null,
+        "id": "ta-web-209c4db1f5ef268a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "37b0b6c76aa75536706d33c37b2d46f84e67e057a4e6fa3c01ebb1e8915b3ed3",
+        "summary": {
+          "zh": "喜欢土耳其风味用餐。",
+          "en": "Enjoys a Turkish dining experience."
+        }
+      },
+      {
+        "author": "Nevada M",
+        "date": "2026-08-29",
+        "score": null,
+        "id": "ta-web-8993d1df2f9a87f7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9f27ede6866037c6e7eca6f16114f5de9b05501098c3eabec0bc46d4440b06c8",
+        "summary": {
+          "zh": "喜欢肉类拼盘与面包。",
+          "en": "Enjoys meat platters and bread."
+        }
+      },
+      {
+        "author": "Imran M",
+        "date": "2026-09-03",
+        "score": null,
+        "id": "ta-web-2f6e7575b71f8932",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d6a3e95debfc8688034733e6a4e2bd36d2f819d886ff79ccb9db83b1d45ad7de",
+        "summary": {
+          "zh": "为清真菜而来，体验满意。",
+          "en": "Enjoys finding halal food."
+        }
+      },
+      {
+        "author": "Jaden P",
+        "date": "2026-08-15",
+        "score": null,
+        "id": "ta-web-466e7ce55902c766",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "04eb5a9f540d84c674c1c42bc799f294c4dd2b090158aa72a38ef9bf12bdf5ae",
+        "summary": {
+          "zh": "认可食物品质与用餐体验。",
+          "en": "Enjoys food quality and the visit."
+        }
+      },
+      {
+        "author": "Shareen M",
+        "date": "2026-09-03",
+        "score": null,
+        "id": "ta-web-a3744bebfac96381",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e268c8511d6447ff13e78c62ea0cb9b7847e387030c700cbcf0996184bf204bf",
+        "summary": {
+          "zh": "喜欢清真菜肴。",
+          "en": "Enjoys the halal cooking."
+        }
+      },
+      {
+        "author": "GREY S",
+        "date": "2026-09-12",
+        "score": null,
+        "id": "ta-web-a0a7a513bea4ca5a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1bab116524f1af62d70289cc1bf1cbaf4e98d314a63bf5f489b48aa9f89c603e",
+        "summary": {
+          "zh": "氛围舒服，服务及时。",
+          "en": "Enjoys atmosphere and quick service."
+        }
+      },
+      {
+        "author": "Matt F",
+        "date": "2026-09-09",
+        "score": null,
+        "id": "ta-web-c92c89c7b3c822a5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "84b7385a00292f3e86fcca57747f0dd8b8cb507a8b9e4f60164907c3f2a16b90",
+        "summary": {
+          "zh": "喜欢前菜、烤肉与羊肩。",
+          "en": "Enjoys mezze, grills and lamb shoulder."
+        }
+      },
+      {
+        "author": "Nicolas R",
+        "date": "2026-08-15",
+        "score": null,
+        "id": "ta-web-6475189fda8da01f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d11916999-Reviews-Bus_Grill_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b08fa7936760301eaffc9f8d7c5c6d595726acca465dba7c77145b6ab312e0a9",
+        "summary": {
+          "zh": "食材新鲜，服务不错。",
+          "en": "Enjoys fresh food and good service."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-3511968",
+    "name": "Capri 意大利餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Stefano C",
+        "date": "2019-08-15",
+        "score": null,
+        "id": "ta-web-c12e75985742914f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "dde23fd71fae41aa67da417fe29eba0c0112312b7b6f4c4b862b17d3ddbf278a",
+        "summary": {
+          "zh": "食物未达预期，体验欠佳。",
+          "en": "Food falls below expectations."
+        }
+      },
+      {
+        "author": "rich_wils50",
+        "date": "2019-04-20",
+        "score": null,
+        "id": "ta-web-23487fbb056331da",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "757880d921f98f3e13f07206c5b17967ac647df9be3e596c7afccfdb97df1d73",
+        "summary": {
+          "zh": "海边环境、食物与服务不错。",
+          "en": "Enjoys food, service and beach setting."
+        }
+      },
+      {
+        "author": "Juan",
+        "date": "2019-03-11",
+        "score": null,
+        "id": "ta-web-2678131d879c0ee9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bf23ebbcd5219f680523fbdef7cfcbff05d42b17c3915d8a69161b175ab73107",
+        "summary": {
+          "zh": "喜欢牛柳，傍晚不太拥挤。",
+          "en": "Enjoys tenderloin during a quiet evening."
+        }
+      },
+      {
+        "author": "Belosnezka902",
+        "date": "2018-07-13",
+        "score": null,
+        "id": "ta-web-d7bf326da688f8f3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "fdc6f3a9345ac2c48af2d840c0d856d8c77015459d350a518d1c40fb11b1dbe3",
+        "summary": {
+          "zh": "周日早午餐选择与音乐不错。",
+          "en": "Enjoys Sunday brunch choices and music."
+        }
+      },
+      {
+        "author": "bluecastle12",
+        "date": "2018-07-02",
+        "score": null,
+        "id": "ta-web-f9c517e710fa4b93",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "41da96590883ba27a8427f3a9737f171526a0b14127bd0423ea917b9eb2a883c",
+        "summary": {
+          "zh": "对预约安排体验不满意。",
+          "en": "Disappointed with reservation arrangements."
+        }
+      },
+      {
+        "author": "taylorshenzhen",
+        "date": "2018-01-29",
+        "score": null,
+        "id": "ta-web-741ba8d833be9d8c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "50ef106df9b316ac3347692a6d04ce73e96c1a9898d0eea7352b5f856d6e257d",
+        "summary": {
+          "zh": "多次回访，仍然喜欢这里。",
+          "en": "Enjoys repeated visits."
+        }
+      },
+      {
+        "author": "Nwcccc",
+        "date": "2017-12-25",
+        "score": null,
+        "id": "ta-web-c7f1a50f23842fc5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9f19b5a925a5eb2557ec07d62fb622138c5f57ede2b9caf9656857d3ac3c599f",
+        "summary": {
+          "zh": "服务热情，令人舒服。",
+          "en": "Appreciates welcoming service."
+        }
+      },
+      {
+        "author": "76272058",
+        "date": "2017-12-02",
+        "score": null,
+        "id": "ta-web-f97650590eca0ab3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "413d56ef88e553df177dd54507c69c6bc564944d4b6720ca17542087b911e30b",
+        "summary": {
+          "zh": "喜欢牛柳和服务。",
+          "en": "Enjoys tenderloin and service."
+        }
+      },
+      {
+        "author": "Patrick Lam",
+        "date": "2017-11-07",
+        "score": null,
+        "id": "ta-web-c9290824cdd466bc",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f9bb5cdcc64e597f2ec2f9d70659f047f7494b5144df09822b2cd7056bb4bd9c",
+        "summary": {
+          "zh": "海景漂亮，员工友善。",
+          "en": "Enjoys sea views and friendly staff."
+        }
+      },
+      {
+        "author": "foodie_wanderlust",
+        "date": "2017-10-29",
+        "score": null,
+        "id": "ta-web-279a2f9bd11a3271",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3511968-Reviews-Capri_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6e857ed10ad1313d62e7473ae9ecd5f58a941c6855fe41c3a81d372b346af2a5",
+        "summary": {
+          "zh": "景观不错，食物较普通。",
+          "en": "Good views; food seems ordinary."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-7701171",
+    "name": "SHARK 牛排及葡萄酒餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Ray W",
+        "date": "2026-09-03",
+        "score": null,
+        "id": "ta-web-42eeb5970c55be06",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3e4ac7d9247e4df3c05666e0429efe9cd4be63dc2909efb12e5e31cc3dd34649",
+        "summary": {
+          "zh": "喜欢意大利菜和葡萄酒。",
+          "en": "Enjoys Italian food and wine."
+        }
+      },
+      {
+        "author": "DVVLAP",
+        "date": "2026-02-23",
+        "score": null,
+        "id": "ta-web-fb1677cce26eccdf",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "24cdd09f1db4fb9256beddafe7374deb99e1deed4b6d1089dd97276ce4152f04",
+        "summary": {
+          "zh": "牛排与披萨令人满意。",
+          "en": "Enjoys steak and pizza."
+        }
+      },
+      {
+        "author": "bob b",
+        "date": "2025-03-11",
+        "score": null,
+        "id": "ta-web-100f1daec072de7c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8dac8d85baea4b55a27f984429ccc7ef68f9958e5f1dab18376582d4835bd039",
+        "summary": {
+          "zh": "欢迎热情，菜肴不错。",
+          "en": "Warm welcome and enjoyable dishes."
+        }
+      },
+      {
+        "author": "Mary B",
+        "date": "2025-03-10",
+        "score": null,
+        "id": "ta-web-fe22511ffbaa4b6f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "cc2b75a47225d9613a92e393aa5841baccfe0589b87d5f0b0a337de4c030cbd1",
+        "summary": {
+          "zh": "食材新鲜，鸡尾酒不错。",
+          "en": "Enjoys fresh ingredients and cocktails."
+        }
+      },
+      {
+        "author": "focoso",
+        "date": "2020-08-22",
+        "score": null,
+        "id": "ta-web-429837e886887aee",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "cdf91df8fbcec791159a08dedac4bcda0b39f9c5b9b2c4ccc1e0749b2892c8d8",
+        "summary": {
+          "zh": "出品不稳定，价格感受欠佳。",
+          "en": "Inconsistent food and disappointing value."
+        }
+      },
+      {
+        "author": "Charsenal",
+        "date": "2020-06-22",
+        "score": null,
+        "id": "ta-web-2fc35e2d79af8f3e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "25d375ffbbe5168ac137edf091956bd6dc0833d08cdd252ca989098c123a9434",
+        "summary": {
+          "zh": "难以获得服务员关注。",
+          "en": "Struggles to get staff attention."
+        }
+      },
+      {
+        "author": "Mike T",
+        "date": "2020-06-21",
+        "score": null,
+        "id": "ta-web-8e483cea5d567f6b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "edce7c37dbc583aba584c4a7f1f0fc2741ecbcafb4cb99ae792d5c601301f297",
+        "summary": {
+          "zh": "牛排海鲜不错，价格偏高。",
+          "en": "Enjoys steak and seafood despite higher prices."
+        }
+      },
+      {
+        "author": "Fabio B",
+        "date": "2026-09-12",
+        "score": null,
+        "id": "ta-web-6756434f06f9bf1e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "32b34cd91ea1b62488c137a02643ba894778990b273428d1371455bcb866e253",
+        "summary": {
+          "zh": "喜欢食物与店内氛围。",
+          "en": "Enjoys food and atmosphere."
+        }
+      },
+      {
+        "author": "kelley m",
+        "date": "2026-09-06",
+        "score": null,
+        "id": "ta-web-31020ef3e042b183",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f48a44f8601f69822fb1411b5c9bea9c4e0d2d3b0560b80720bda8c0805f3565",
+        "summary": {
+          "zh": "晚间用餐愉快，员工友好。",
+          "en": "Enjoys an evening with friendly staff."
+        }
+      },
+      {
+        "author": "Fredy E",
+        "date": "2026-09-05",
+        "score": null,
+        "id": "ta-web-8a08c4538866db36",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d7701171-Reviews-SHARK_Steakhouse_Wine_Lounge-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d6d12d4538260b5758c341bb24206e78fd01c5f2abbafc84e57c5ded10f4c9c3",
+        "summary": {
+          "zh": "食物与招待令人满意。",
+          "en": "Enjoys food and hospitality."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 16
+  },
+  {
+    "id": "ta-27507270",
+    "name": "Birol 土耳其牛排餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Serena C",
+        "date": "2026-09-14",
+        "score": null,
+        "id": "ta-web-5aeaed27d87de372",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1ae46987a402a66daa5ea38583bc3ac168d4ba76c47c747abbf2e460a8d244c2",
+        "summary": {
+          "zh": "多年居住后仍认可家庭般的招待。",
+          "en": "Resident appreciates consistent, family-like hospitality."
+        }
+      },
+      {
+        "author": "Даниял К",
+        "date": "2026-08-27",
+        "score": null,
+        "id": "ta-web-c585568e9487ac91",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ed36c0ae11467936fa65ee628431561e0c726db339dcd58402c14d288f98dbbb",
+        "summary": {
+          "zh": "喜欢土耳其风味食物。",
+          "en": "Enjoys Turkish food."
+        }
+      },
+      {
+        "author": "Chris S",
+        "date": "2026-09-21",
+        "score": null,
+        "id": "ta-web-6e8d5ec6b83d9173",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "18474c7c0820abfc30665d3e4d624b60d55daaf7938ba2d00eaf166f15c92477",
+        "summary": {
+          "zh": "鸡肉串与烤羊肉不错。",
+          "en": "Enjoys chicken shish and grilled lamb."
+        }
+      },
+      {
+        "author": "Batuhan Y",
+        "date": "2026-09-08",
+        "score": null,
+        "id": "ta-web-4b694737cd130daf",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1349d7f89d3e32917a57a2f1a510a86480c13b3f1896495b16e7448920eb4f98",
+        "summary": {
+          "zh": "店主友善，菜肴好吃。",
+          "en": "Friendly owner and enjoyable food."
+        }
+      },
+      {
+        "author": "Enisa K",
+        "date": "2026-09-16",
+        "score": null,
+        "id": "ta-web-fb0a89fcaf09faf9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b715feea6b3b8b4f4bfa7206d305f8795d91d7a01cc2b7386ab8f695aa499656",
+        "summary": {
+          "zh": "喜欢热情招待和菜肴。",
+          "en": "Enjoys warm hospitality and food."
+        }
+      },
+      {
+        "author": "mehmetbarangers",
+        "date": "2026-09-06",
+        "score": null,
+        "id": "ta-web-b28d2f4a9148122c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "43c8f2f40c4ce7a19d5431e65ef85b526b372009d43af1001dec3dd6ce69fc4c",
+        "summary": {
+          "zh": "喜欢菜肴呈现与风味。",
+          "en": "Enjoys presentation and flavors."
+        }
+      },
+      {
+        "author": "Dags M",
+        "date": "2026-09-16",
+        "score": null,
+        "id": "ta-web-0165f939e84023b9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c5b95d75541b20e40f5c704781dfe75d9f7f0001a12d70602366149e85c82fdd",
+        "summary": {
+          "zh": "喜欢烤肉与土耳其沙拉。",
+          "en": "Enjoys kebab and Turkish salad."
+        }
+      },
+      {
+        "author": "azra Khan",
+        "date": "2025-08-03",
+        "score": null,
+        "id": "ta-web-ae812e91a07dd467",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "51772a6940a4cf4b5543db6d363372e36cce7a316b252d06ac9c5d31b4efe0f5",
+        "summary": {
+          "zh": "食物不错，店主友善。",
+          "en": "Enjoys food and a friendly owner."
+        }
+      },
+      {
+        "author": "Cenk J",
+        "date": "2025-02-25",
+        "score": null,
+        "id": "ta-web-17463b80002426b1",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d27507270-Reviews-Birol_Turkish_Steakhouse-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "982a5232f248b8bb905062e38563bdb2cda0c1fe17c247065c2b69ca9f25f572",
+        "summary": {
+          "zh": "分享土耳其菜用餐体验。",
+          "en": "Describes a Turkish dining experience."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-10235035",
+    "name": "Baia 餐酒吧",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Nehemiah M",
+        "date": "2025-02-28",
+        "score": null,
+        "id": "ta-web-b4162bf676cac0c4",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bbcc99baf010ce942e2ec37a475b1b3f3a5c5bf1693908acec5804cb4894a158",
+        "summary": {
+          "zh": "食物好吃，环境温馨。",
+          "en": "Enjoys food and a cozy setting."
+        }
+      },
+      {
+        "author": "Gia T",
+        "date": "2025-01-25",
+        "score": null,
+        "id": "ta-web-05ed123b2fda9f0c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5de9c36d3e40c4dd218f46b804f78ea37d8c2d4e4697cada9569772db0421d09",
+        "summary": {
+          "zh": "喜欢味道与用餐氛围。",
+          "en": "Enjoys flavors and atmosphere."
+        }
+      },
+      {
+        "author": "Curious Karen's Capers",
+        "date": "2024-10-04",
+        "score": null,
+        "id": "ta-web-1b63af32db3ddae9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "03c40c479e843463c4ed876c3f988262300cb0893e3e28d620d05dbffaf4189d",
+        "summary": {
+          "zh": "景观漂亮，饮品贵但值得。",
+          "en": "Enjoys views despite expensive drinks."
+        }
+      },
+      {
+        "author": "Alex W",
+        "date": "2022-02-23",
+        "score": null,
+        "id": "ta-web-f67b1c68564f955f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "16988d01a2dfda931c0f6168a6fec45237e76568c281cd144cbfa22f0b2be09c",
+        "summary": {
+          "zh": "鸡尾酒不错，汉堡偏干。",
+          "en": "Enjoys cocktails; burgers seem dry."
+        }
+      },
+      {
+        "author": "Adventure Crafter",
+        "date": "2020-08-18",
+        "score": null,
+        "id": "ta-web-ee97f4b75f86e7b7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4e346f20e4086e02f47b5d955a58bbd67c17ecf64bc2300b48e914250ab2aad9",
+        "summary": {
+          "zh": "喜欢和牛汉堡。",
+          "en": "Enjoys the wagyu burger."
+        }
+      },
+      {
+        "author": "Stian H",
+        "date": "2020-05-14",
+        "score": null,
+        "id": "ta-web-f1ba429587215506",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a70434a937ed68d385c29ff20872ed877e979c83cabeb2139a029fe7a03e42ec",
+        "summary": {
+          "zh": "喜欢海上世界景观与汉堡。",
+          "en": "Enjoys Sea World views and burgers."
+        }
+      },
+      {
+        "author": "Falk Haarig",
+        "date": "2020-03-22",
+        "score": null,
+        "id": "ta-web-fb3d790c7efa0395",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f13f15ccf05b376697159443612fa4b51e68b32d19f3d2cf13b81ca21e6088f7",
+        "summary": {
+          "zh": "食物不错，忙时需再次提醒。",
+          "en": "Enjoys food; busy service needs reminders."
+        }
+      },
+      {
+        "author": "Steffen",
+        "date": "2020-05-15",
+        "score": null,
+        "id": "ta-web-4f8baf11dda83b2e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a287383087a85e31f6e2ca436f24ba2230e0f36586f1c85546569da8ba44a00c",
+        "summary": {
+          "zh": "位置、食物和员工令人满意。",
+          "en": "Enjoys location, food and staff."
+        }
+      },
+      {
+        "author": "Thomas",
+        "date": "2020-03-20",
+        "score": null,
+        "id": "ta-web-9d997319fbcf8d40",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4d41fb25380da35cbef38b57321b9946e292e10c3d2e1868a158e514bbc7c030",
+        "summary": {
+          "zh": "喜欢汉堡，包括素食款。",
+          "en": "Enjoys burgers, including vegetarian options."
+        }
+      },
+      {
+        "author": "Noemi P",
+        "date": "2020-03-20",
+        "score": null,
+        "id": "ta-web-5f6b7546a0890c03",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d10235035-Reviews-Baia-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e580e24e9f7032ff2ec9b52570912fcc00e88f1d36d66401d23ddf214d00dbaa",
+        "summary": {
+          "zh": "居民喜欢这里的新鲜汉堡。",
+          "en": "Resident enjoys the fresh burgers."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-33357734",
+    "name": "Latina 巴西烤肉（深圳大悦城）",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Michelle G",
+        "date": "2026-07-05",
+        "score": null,
+        "id": "ta-web-a4285014d329f369",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a27c667f95233c3e9308e27b5511ac61524df5c0ce0235d69963a721c28e8ec1",
+        "summary": {
+          "zh": "喜欢烤肉品质。",
+          "en": "Enjoys the meat quality."
+        }
+      },
+      {
+        "author": "Reynaldo D",
+        "date": "2026-07-05",
+        "score": null,
+        "id": "ta-web-0c1c22e3eb35ba91",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "836a5f505bfc8a5e380f2a632a833787eca8bf0046f48a69024acf1b376a672f",
+        "summary": {
+          "zh": "肉类与服务令人满意。",
+          "en": "Enjoys meats and service."
+        }
+      },
+      {
+        "author": "Juliano",
+        "date": "2026-04-03",
+        "score": null,
+        "id": "ta-web-e0bcbb851282a671",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "18c9032d29ff85cdcdc9acc03032fff94714cf3c896bd7b5d8c60eeee80ff3fc",
+        "summary": {
+          "zh": "认可厨师的巴西烤肉。",
+          "en": "Praises the chef's Brazilian barbecue."
+        }
+      },
+      {
+        "author": "Mark",
+        "date": "2025-09-06",
+        "score": null,
+        "id": "ta-web-a8dfc0196b2cdbdd",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8555731335236b290f6be58db1764faccdb204f9255634d8986d4f1f5dcc36ca",
+        "summary": {
+          "zh": "认为巴西烧烤风味地道。",
+          "en": "Enjoys authentic-seeming Brazilian barbecue."
+        }
+      },
+      {
+        "author": "Aljoe C",
+        "date": "2026-05-01",
+        "score": null,
+        "id": "ta-web-abfee5999150f803",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2bf6f122e77113752a5fe759de5ecbf2e18b6ed9af24d3f01afaf82b11af3ac8",
+        "summary": {
+          "zh": "喜欢自助肉类与服务。",
+          "en": "Enjoys buffet meats and service."
+        }
+      },
+      {
+        "author": "Evgeny P",
+        "date": "2026-03-23",
+        "score": null,
+        "id": "ta-web-5a7d5d6d423e436a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2a85bbf151b3684ba5f2e7b81193b7de037b3ce45f535c54ffe2f0f3c2978045",
+        "summary": {
+          "zh": "对肉类品质感到失望。",
+          "en": "Disappointed with meat quality."
+        }
+      },
+      {
+        "author": "Robson D",
+        "date": "2025-10-08",
+        "score": null,
+        "id": "ta-web-6a49cc6e88b30dff",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c7d22e1bffe33a9d79cc26ac18de813b83309b939ddd6d1ef241d9d9e0b15f29",
+        "summary": {
+          "zh": "喜欢巴西风味与肉类选择。",
+          "en": "Enjoys Brazilian flavors and meat choices."
+        }
+      },
+      {
+        "author": "Happiness44637178611",
+        "date": "2026-09-20",
+        "score": null,
+        "id": "ta-web-bde0461280a39443",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "443125e2280ec626ca156b6b3f399d38cf74083fa9c775cf8acf5ede88b6c2d3",
+        "summary": {
+          "zh": "纪念日用餐，服务专业。",
+          "en": "Appreciates professional anniversary service."
+        }
+      },
+      {
+        "author": "毕 魏",
+        "date": "2026-09-14",
+        "score": null,
+        "id": "ta-web-dbe78a7485745af7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f284b85fab7ffd069474f2e6923734236e6907ca70181da9265ad5d3895cd2ee",
+        "summary": {
+          "zh": "喜欢烤肉与用餐环境。",
+          "en": "Enjoys barbecue and the setting."
+        }
+      },
+      {
+        "author": "闻洲 王",
+        "date": "2026-09-14",
+        "score": null,
+        "id": "ta-web-9240b4335d8da569",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d33357734-Reviews-Latina_Brazilian_Steakhouse_Joy_City_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "20f8b11a5c8a6dbe58671afbcdc92bf15bc516d9231822d9a3cf6a4a20810f73",
+        "summary": {
+          "zh": "牛肉鲜嫩，水果沙拉不错。",
+          "en": "Enjoys tender beef and fruit salad."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  },
+  {
+    "id": "ta-26837435",
+    "name": "Toro Toro 柴火厨房",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Farid",
+        "date": "2025-04-27",
+        "score": null,
+        "id": "ta-web-30e31f9c38293481",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "01482e99c655cd735996cf3ea68b9e2f2cb68c9005e1bc4fbed322dd4c7ad2e3",
+        "summary": {
+          "zh": "喜欢食物与用餐氛围。",
+          "en": "Enjoys food and atmosphere."
+        }
+      },
+      {
+        "author": "Afaf M",
+        "date": "2025-04-27",
+        "score": null,
+        "id": "ta-web-2a2bf6f4d0a0898f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f3a62ec1330ab34e0ff36d1add18f4c575c058e72bbfe5c4a04f6667cc62f9ac",
+        "summary": {
+          "zh": "食物新鲜，呈现与员工不错。",
+          "en": "Enjoys fresh food, presentation and staff."
+        }
+      },
+      {
+        "author": "Habib R",
+        "date": "2025-04-30",
+        "score": null,
+        "id": "ta-web-34aa1ee05c2d92c6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "397b3ae3e74b61e2f9f912e84febdcf6ab9eecbf18b4e7ee4919d3a36a873110",
+        "summary": {
+          "zh": "喜欢鹰嘴豆泥与中东风味。",
+          "en": "Enjoys hummus and Middle Eastern flavors."
+        }
+      },
+      {
+        "author": "rami r",
+        "date": "2025-05-04",
+        "score": null,
+        "id": "ta-web-52b4717945e634a8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7438f78e01794acbef2313d0addf55c06c1a9cbffb0420bb4966062f6565ef86",
+        "summary": {
+          "zh": "多语服务与装潢令人满意。",
+          "en": "Appreciates multilingual staff and decor."
+        }
+      },
+      {
+        "author": "Othmane_B07",
+        "date": "2025-05-01",
+        "score": null,
+        "id": "ta-web-92b604c7c2d2364c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e4593e70306fe1ff563289b9cc84faf7cbb8fe39c463ddf809be879e896ff330",
+        "summary": {
+          "zh": "西餐价格合理。",
+          "en": "Finds the Western food reasonably priced."
+        }
+      },
+      {
+        "author": "ANAS H",
+        "date": "2025-04-26",
+        "score": null,
+        "id": "ta-web-770dd4ea6f9dba4a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "98a260e3672412d53b2f7c27b75551b89d6b5afd2cbc40982bb08fc990323d0c",
+        "summary": {
+          "zh": "食物新鲜，炭烤与招待不错。",
+          "en": "Enjoys fresh grills and hospitality."
+        }
+      },
+      {
+        "author": "Abouch Y",
+        "date": "2025-09-04",
+        "score": null,
+        "id": "ta-web-93800af8085c0db7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "560981739c563fbe4c0af11e13e5c9572e3ae4b8c9250fbceee984eb3aecd582",
+        "summary": {
+          "zh": "喜欢清真地中海风味。",
+          "en": "Enjoys halal Mediterranean flavors."
+        }
+      },
+      {
+        "author": "Wanderer37468524874",
+        "date": "2025-05-07",
+        "score": null,
+        "id": "ta-web-a3f5612088f34e57",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f496873e1796828844af00883279fa8af3c0a9ef1fc1cd2b22c3d37c3898695f",
+        "summary": {
+          "zh": "环境安静，清真用餐体验愉快。",
+          "en": "Enjoys a quiet, welcoming halal meal."
+        }
+      },
+      {
+        "author": "nnnnnicole",
+        "date": "2025-04-28",
+        "score": null,
+        "id": "ta-web-443f5eb1e5f7379f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d26837435-Reviews-Toro_Toro_WoodFire_Kitchen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8dd6faa53f0c42bc64da0d639ce602148c047f074891775e8f7dc25e30d571e4",
+        "summary": {
+          "zh": "喜欢摩洛哥与地中海风味。",
+          "en": "Enjoys Moroccan and Mediterranean flavors."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 10
+  },
+  {
+    "id": "ta-3466912",
+    "name": "Mercado 餐厅及咖啡馆",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Tejas Kothari",
+        "date": "2025-06-13",
+        "score": null,
+        "id": "ta-web-e9d11fcf53be46e4",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2f4820b8c265c4f8001e2c6ebf50775dfe782b30a78738b587731c17feee3e89",
+        "summary": {
+          "zh": "认为早餐品质不错。",
+          "en": "Enjoys the breakfast quality."
+        }
+      },
+      {
+        "author": "Карина К",
+        "date": "2025-06-27",
+        "score": null,
+        "id": "ta-web-5b3dc5e7a75b4185",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d3e5479f22c56017eefbec4ac058a3af69c1eb3bf438b318177456d2b7a6f4ef",
+        "summary": {
+          "zh": "亚洲与欧洲菜选择多，服务快。",
+          "en": "Enjoys Asian-European choices and quick service."
+        }
+      },
+      {
+        "author": "Mobile07092928910",
+        "date": "2020-07-20",
+        "score": null,
+        "id": "ta-web-b9587e54da398cfd",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a75baf2a722158007e7b3561e0d863ed4194b250a0c6cdb0b1a68144905c64f4",
+        "summary": {
+          "zh": "西班牙海鲜饭未达预期。",
+          "en": "Seafood rice falls below expectations."
+        }
+      },
+      {
+        "author": "Destination614643",
+        "date": "2025-09-20",
+        "score": null,
+        "id": "ta-web-24fa26aa029ccbe3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ad58b81c575b5c489a186043cb15f06161a8d852023d301532bb3757e5bb1870",
+        "summary": {
+          "zh": "改期安排灵活，食物新鲜。",
+          "en": "Flexible booking changes and fresh food."
+        }
+      },
+      {
+        "author": "Shaza FK",
+        "date": "2025-09-18",
+        "score": null,
+        "id": "ta-web-42facfa0429989fe",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ca88dc880a9237354cb64259bcf0e37c3272f46c6d68197d97c16b673d74d42c",
+        "summary": {
+          "zh": "早餐多样，环境宽敞。",
+          "en": "Enjoys breakfast variety and the setting."
+        }
+      },
+      {
+        "author": "Paolo M",
+        "date": "2025-06-12",
+        "score": null,
+        "id": "ta-web-93d71539b6b0be32",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "251fcf07a39715b1e858890529d36516a39771ca4b102353553f8231d7a9cbb3",
+        "summary": {
+          "zh": "服务与英语沟通表现不错。",
+          "en": "Appreciates service and English communication."
+        }
+      },
+      {
+        "author": "leo",
+        "date": "2025-06-12",
+        "score": null,
+        "id": "ta-web-b0838e58b5897ad8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bc57a911feb8ef431976d29cf21c9144b0d95361adc16666b599e6879238dc5a",
+        "summary": {
+          "zh": "喜欢丰富的菜肴选择。",
+          "en": "Enjoys varied food choices."
+        }
+      },
+      {
+        "author": "Robert B",
+        "date": "2019-10-14",
+        "score": null,
+        "id": "ta-web-036999626e2ed40a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3466912-Reviews-Mercado_Restaurant_Cafe-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "916a2989b6ee79dcdcce859f5682e5b0b611df5a9f98cc902bcda6e509400219",
+        "summary": {
+          "zh": "西餐选择多，价格偏高。",
+          "en": "Varied Western food at higher prices."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 13
+  },
+  {
+    "id": "ta-2357477",
+    "name": "深圳香格里拉 360° 餐厅及酒廊",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Wingss",
+        "date": "2023-12-07",
+        "score": null,
+        "id": "ta-web-c98e203b40d3b2ff",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ffc23327c9152b714710a0ee9979ef59393ac772f536eba399164d13c244d2ab",
+        "summary": {
+          "zh": "高层全景与日落令人印象深刻。",
+          "en": "Enjoys panoramic views and sunset."
+        }
+      },
+      {
+        "author": "ZackExpat",
+        "date": "2022-07-10",
+        "score": null,
+        "id": "ta-web-073f533a13f148fc",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "09d1c1aa1139b3a28d47a851e68cfcf1b586e3cb83e4a04c9913db752875329e",
+        "summary": {
+          "zh": "喜欢城市景观与服务。",
+          "en": "Enjoys city views and service."
+        }
+      },
+      {
+        "author": "Deepansh J",
+        "date": "2020-02-21",
+        "score": null,
+        "id": "ta-web-4b715afaac417a9c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "676e7d13f2037e2f9ca0d227631448e91519a63c2374e51601b98c87fc4444e8",
+        "summary": {
+          "zh": "全景视野是到访亮点。",
+          "en": "Panoramic views stand out."
+        }
+      },
+      {
+        "author": "Biztraveller HK",
+        "date": "2019-07-27",
+        "score": null,
+        "id": "ta-web-9cffe4bd2518e971",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "eb2ffee5c07e355627a704765a8d5a35560ecdb051a3940f0a8ddcfce53f2ee3",
+        "summary": {
+          "zh": "景观服务不错，环境需要翻新。",
+          "en": "Enjoys views; setting needs refreshing."
+        }
+      },
+      {
+        "author": "Francesco Z",
+        "date": "2018-10-25",
+        "score": null,
+        "id": "ta-web-5e1b1aa358208361",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d97fa4111881245b8596f1be3f6435ca3a2943c8687ec65ea8f4f07df24a16d2",
+        "summary": {
+          "zh": "查看菜单与景观，未用餐。",
+          "en": "Visits for the menu and views; no meal."
+        }
+      },
+      {
+        "author": "Tommy Kin Nam T",
+        "date": "2018-09-11",
+        "score": null,
+        "id": "ta-web-4096b4987d9396d8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b90f506a0d1cea15c3f566a4fd005badf4662690590b41eb85b28999c51e321c",
+        "summary": {
+          "zh": "晚餐与景观令人满意。",
+          "en": "Enjoys dinner and views."
+        }
+      },
+      {
+        "author": "davidruben",
+        "date": "2018-05-24",
+        "score": null,
+        "id": "ta-web-c13b00043942355e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3faf23569e3d333513103fb6224afcf54fdec08e6cab7da7ee0680a223799344",
+        "summary": {
+          "zh": "对酒店餐厅的变化感到失望。",
+          "en": "Disappointed with changes at the restaurant."
+        }
+      },
+      {
+        "author": "Paul C",
+        "date": "2018-03-15",
+        "score": null,
+        "id": "ta-web-00efb41437dca8c4",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e060002745790faf838589c5baf5ed8d4eb68b411cea265b6e1162bf85cd7a41",
+        "summary": {
+          "zh": "安静地喝一杯，客人较少。",
+          "en": "Enjoys a quiet drink with few guests."
+        }
+      },
+      {
+        "author": "Mithila D",
+        "date": "2017-06-26",
+        "score": null,
+        "id": "ta-web-7703815a9f5de814",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "09b70a96da53956394ea4b8b842b87e8d3e4963adbd093fcd619645f61ce0c48",
+        "summary": {
+          "zh": "氛围平静，景观服务不错。",
+          "en": "Enjoys calm atmosphere, views and service."
+        }
+      },
+      {
+        "author": "TLEAVES27",
+        "date": "2017-05-27",
+        "score": null,
+        "id": "ta-web-7d61af70116cf17d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d2357477-Reviews-360o_Bar_Restaurant_and_Lounge_Shangri_La_Hotel_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b4d1c6b59d25d180c8f846d690f5473089cd7385934378623d1d578e3795c0a8",
+        "summary": {
+          "zh": "十八人聚餐，服务令人满意。",
+          "en": "Appreciates service for a large group."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 16
+  },
+  {
+    "id": "ta-13919321",
+    "name": "莫尔顿扒房（平安金融中心）",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "UkHk",
+        "date": "2025-03-30",
+        "score": null,
+        "id": "ta-web-603137aba0022464",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "76a53c8469462e208e02ddd758b0da1492de89cfdda2ebc7ef1eb2291c903f0c",
+        "summary": {
+          "zh": "再次来喝饮品，招待热情。",
+          "en": "Returns for drinks and a warm welcome."
+        }
+      },
+      {
+        "author": "Explorer51243278856",
+        "date": "2024-10-12",
+        "score": null,
+        "id": "ta-web-9e5c9d8dd1e21baf",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "77e8fa5e201b18d005cceb0d340a42f6aeb9ee2da78365a8f392ffca693ccdcd",
+        "summary": {
+          "zh": "家庭用餐，食物环境不错。",
+          "en": "Enjoys family dining, food and setting."
+        }
+      },
+      {
+        "author": "Andy C",
+        "date": "2023-08-09",
+        "score": null,
+        "id": "ta-web-7be3f919191247ed",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1731201f86fd532cda5f7c7cf76535e063774710fb8fd2e304d24e68c7440317",
+        "summary": {
+          "zh": "服务有待改善，氛围不如以往。",
+          "en": "Service and atmosphere need improvement."
+        }
+      },
+      {
+        "author": "Seth P",
+        "date": "2020-12-29",
+        "score": null,
+        "id": "ta-web-e0cd823299adf9b6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a70269dfa0369bef1681fbe72ea10286646e7998e02b16587640ee4eae4e0aa7",
+        "summary": {
+          "zh": "饮品划算，汉堡令人失望。",
+          "en": "Good drink value; burger disappoints."
+        }
+      },
+      {
+        "author": "Kal A",
+        "date": "2019-12-26",
+        "score": null,
+        "id": "ta-web-8a9650040f75670c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "fee85f7419633d712ea4014b2c4fb3b2ee1e4eb1f12a83da5fa6df4ad1ecda99",
+        "summary": {
+          "zh": "喜欢汉堡与纽约客牛排。",
+          "en": "Enjoys burgers and New York strip."
+        }
+      },
+      {
+        "author": "PMCM",
+        "date": "2019-07-13",
+        "score": null,
+        "id": "ta-web-4b475b6ea398791e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4088e4e6bc5cb2adb92a6f4ed31a2893ea73f668b445e53fde6a6c35c9dd1936",
+        "summary": {
+          "zh": "认可员工对细节的关注。",
+          "en": "Appreciates attentive service details."
+        }
+      },
+      {
+        "author": "Kevin L",
+        "date": "2019-04-01",
+        "score": null,
+        "id": "ta-web-48afe20d7d82f3df",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7a01505c9d846cf13371de961c705de98028337d1e5d19e3b684778130b68daf",
+        "summary": {
+          "zh": "分享当年的欢乐时光体验。",
+          "en": "Describes a historical happy-hour visit."
+        }
+      },
+      {
+        "author": "zac62",
+        "date": "2019-03-23",
+        "score": null,
+        "id": "ta-web-91b6da0cf7d20482",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "28ccff7311b9ef07e7695da5f52c313896c11dbd5efd587254221f9bb31517e1",
+        "summary": {
+          "zh": "牛排柔嫩，菜单选择有限。",
+          "en": "Enjoys tender steak; menu seems limited."
+        }
+      },
+      {
+        "author": "lou_schreurs",
+        "date": "2019-02-28",
+        "score": null,
+        "id": "ta-web-b30bcd3f770f0478",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "eb815e7424fd91a19a0fca7b52f6d95e4be43a19d44c83766a54a218e7f4f5f9",
+        "summary": {
+          "zh": "认可牛排品质。",
+          "en": "Praises the steak quality."
+        }
+      },
+      {
+        "author": "M.T. Wentz",
+        "date": "2019-01-28",
+        "score": null,
+        "id": "ta-web-66e2dc2697b2b9e0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d13919321-Reviews-Morton_s_Grille_Ping_an_Finance_Center-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e70ae24e367d788cd562dfa27868adcd179ed34513e30b35b1e78f5ea3517bbf",
+        "summary": {
+          "zh": "连锁牛排出品比较稳定。",
+          "en": "Finds the steak cooking consistent."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 16
+  },
+  {
+    "id": "ta-3786961",
+    "name": "HH Bagels 贝果餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "亦童 SukiYeung",
+        "date": "2026-06-14",
+        "score": null,
+        "id": "ta-web-d464d06423e786d6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "91654e3b5410e157617dff2c689739f94e27063350b14ef2aab84649cbc73793",
+        "summary": {
+          "zh": "贝果新鲜好吃。",
+          "en": "Enjoys fresh bagels."
+        }
+      },
+      {
+        "author": "ThaiCookingRocks",
+        "date": "2021-07-30",
+        "score": null,
+        "id": "ta-web-50ec1ab83fbfa140",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d0006b2234a80263c3a535b205d993b4f19ec709b58efc860b67e2efdf913316",
+        "summary": {
+          "zh": "贝果和配送不错，店内朴素。",
+          "en": "Enjoys bagels and delivery; setting is simple."
+        }
+      },
+      {
+        "author": "Mark D",
+        "date": "2021-06-17",
+        "score": null,
+        "id": "ta-web-a6a4c63e930f98f3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f24d95523da35dadb374ac941fae2df16b2104d5eb1741a2a80db36aca0c5747",
+        "summary": {
+          "zh": "早餐贝果选择丰富。",
+          "en": "Enjoys varied breakfast bagels."
+        }
+      },
+      {
+        "author": "Anthony",
+        "date": "2020-07-17",
+        "score": null,
+        "id": "ta-web-ba8e6150ede06b3f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "99ee429b01cb5f8ca972dde2f2ea691bfee8184bb0559ae8824ae0f4ae011d42",
+        "summary": {
+          "zh": "喜欢煎蛋、贝果与鲜榨果汁。",
+          "en": "Enjoys omelettes, bagels and fresh juice."
+        }
+      },
+      {
+        "author": "MJellick",
+        "date": "2020-06-29",
+        "score": null,
+        "id": "ta-web-ee07b93beafd7642",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d1b92006bd0280fcb045f841d3b315d1d5a36c1e821686db7815a5d9b6b3bb4d",
+        "summary": {
+          "zh": "喜欢早餐贝果。",
+          "en": "Enjoys breakfast bagels."
+        }
+      },
+      {
+        "author": "Pam",
+        "date": "2020-04-23",
+        "score": null,
+        "id": "ta-web-495332ab7443c2ed",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5fbf086e1480b3d0b7838a442b25120b19da449c8eaaeda2bbcd22e876d6ecac",
+        "summary": {
+          "zh": "贝果与薯饼令人满意。",
+          "en": "Enjoys bagels and hash browns."
+        }
+      },
+      {
+        "author": "Emily P",
+        "date": "2020-03-06",
+        "score": null,
+        "id": "ta-web-f2979d52a9870c37",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "585fec8a69bb11d45a98436c51e9f938585c09bc86520731862f3ca02574156e",
+        "summary": {
+          "zh": "喜欢每日新鲜制作的贝果。",
+          "en": "Enjoys freshly made daily bagels."
+        }
+      },
+      {
+        "author": "Jay Adaams",
+        "date": "2020-05-07",
+        "score": null,
+        "id": "ta-web-18fd3895b8406346",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2ecf6d23f894ad78833d3d8e40939e05c12a3099555325eed955ad26552f3178",
+        "summary": {
+          "zh": "喜欢土豆沙拉。",
+          "en": "Enjoys the potato salad."
+        }
+      },
+      {
+        "author": "Sunshine799030",
+        "date": "2020-04-18",
+        "score": null,
+        "id": "ta-web-5b852b0b83003184",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "979c5a0ea334840684faf4a2dfc7a3a6aa0767149517153d8141ba5967782c76",
+        "summary": {
+          "zh": "喜欢纽约风味贝果与涂酱。",
+          "en": "Enjoys New York bagels and spreads."
+        }
+      },
+      {
+        "author": "Angelo",
+        "date": "2020-05-23",
+        "score": null,
+        "id": "ta-web-7c220465a32fd6e5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3786961-Reviews-HH_Bagels_Baking_Comapny-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "005c7d3539900b279fcacffa6f6fabba8846a28ba87ddd1f487565dc163d2a4b",
+        "summary": {
+          "zh": "店内制作新鲜，带纽约感觉。",
+          "en": "Enjoys house-made bagels and New York atmosphere."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15
+  }
+]

@@ -4,3 +4,6 @@ output/
 
 # Transient full review bodies; the repository contains only attributed summaries.
 research/v5/.review-cache/
+
+research/v6/.raw-cache/
+.playwright-cli/

@@ -1,0 +1,85 @@
+[
+  {
+    "id": "local-008",
+    "business": "78089971",
+    "poi": "78089971",
+    "nameTokens": [
+      "火璽"
+    ],
+    "addressTokens": [
+      "深南大道",
+      "4019"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "火璽",
+      "address": "深南大道4019号航天大厦A座一楼",
+      "poi": 78089971,
+      "business": 78089971
+    },
+    "comments": [
+      {
+        "id": "167041265",
+        "author": "真诚7577",
+        "date": "2021-07-05",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/78089971/12/167041265.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "喜欢菜品做法与店内氛围。",
+          "en": "Enjoys the cooking style and restaurant atmosphere."
+        },
+        "fingerprint": "9e449832f5bcbc7cbed95c72ff6e1e28aa94aaffca716471141c8d129e861418"
+      },
+      {
+        "id": "655239230",
+        "author": "Gracxx",
+        "date": "2026-03-13",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/78089971/74/655239230.html",
+        "platform": "Trip.com",
+        "sourceVisibility": "public_folded",
+        "summary": {
+          "zh": "觉得食物好吃。",
+          "en": "Enjoys the food."
+        },
+        "fingerprint": "1100e9e66e610893be45ce3d04f4a715bc8ed0a0d121f45e48f97a5c9b2ded3d"
+      },
+      {
+        "id": "167024099",
+        "author": "真诚7577",
+        "date": "2021-07-03",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/78089971/12/167024099.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "public_folded",
+        "summary": {
+          "zh": "喜欢花胶鸡汤与用餐环境。",
+          "en": "Enjoys fish-maw chicken soup and the setting."
+        },
+        "fingerprint": "e67357ffc2af25457d28245b3989dfe25ea8daf198e58f4bfe41ddeac0b638a3"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=78089971&businessType=12",
+        "ids": [
+          "167041265"
+        ]
+      },
+      {
+        "kind": "public_folded",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/foldCommentList?businessId=78089971&businessType=12&tag=0",
+        "ids": [
+          "655239230",
+          "167024099"
+        ],
+        "hasMore": false
+      }
+    ],
+    "platformTotal": 3,
+    "pagination": "Normal main page and visible folded-review link; initial public batch only, no synthetic pagination."
+  }
+]

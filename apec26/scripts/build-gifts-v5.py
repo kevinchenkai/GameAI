@@ -4,6 +4,7 @@ import json,re
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 data=json.loads((root/'research/v5/products-public.json').read_text());out=[]
+verified={r['sku']:r for r in json.loads((root/'research/v6/product-verification.json').read_text())}
 labels={'tea':('中国茶叶','Chinese tea'),'magnet':('文创冰箱贴','Souvenir magnets'),'scarf':('丝巾','Silk scarves'),'fan':('折扇','Folding fans'),'porcelain':('中国瓷器','Chinese porcelain'),'panda':('熊猫玩偶','Panda plush'),'incense':('东方香薰','Chinese fragrance'),'seal':('篆刻印章','Carved seals')}
 terms=[('金骏眉','Jin Jun Mei'),('龙井','Longjing'),('碧螺春','Biluochun'),('铁观音','Tieguanyin'),('正山小种','Lapsang Souchong'),('普洱','Pu’er'),('白茶','White tea'),('绿茶','Green tea'),('红茶','Black tea'),('苏绣','Suzhou embroidery'),('牡丹','Peony'),('荷花','Lotus'),('牡丹时','Peony Time'),('中国风','Chinese motif'),('千里江山','A Thousand Miles of Rivers and Mountains'),('宁静致远','Quiet contemplation'),('水墨竹','Ink bamboo'),('清风翠竹','Bamboo breeze'),('上善若水','Water-inspired calligraphy'),('青田石','Qingtian stone'),('寿山石','Shoushan stone'),('玉石','Jade-style stone'),('青花','Blue-and-white'),('影青','Yingqing glaze'),('青瓷','Celadon'),('白瓷','White porcelain'),('鹅梨','Pear-inspired incense'),('桂花','Osmanthus'),('桂雨','Osmanthus rain'),('檀香','Sandalwood'),('沉香','Agarwood'),('茶清','Tea scent'),('母子熊猫','Parent & baby panda'),('花花熊猫','Huahua panda'),('趴趴','Lying panda'),('挂件','Bag charm'),('抱枕','Cushion')]
 notes={
@@ -18,7 +19,7 @@ notes={
 for cat,rows in data.items():
  assert len(rows)==20,(cat,len(rows))
  for rank,row in enumerate(rows,1):
-  title=row['title'];spec=row['selectedSpec'] or '款式请联系确认';brand=re.sub(r'【[^】]+】','',title).split()[0][:8]
+  title=row['title'];spec=row['selectedSpec'] or '款式请联系确认';brand=verified.get(row['sku'],{}).get('brand',{}).get('value')
   materials={'tea':[],'scarf':['桑蚕丝','真丝'],'fan':['绢布','宣纸','竹','木质'],'magnet':['金属','陶瓷'],'porcelain':['陶瓷','瓷'],'seal':['青田石','寿山石'],'panda':['毛绒'],'incense':[]}
   material=next((w for w in materials[cat] if w in title),None)
   keywords=[en for zh,en in terms if zh in title+' '+spec][:2]
@@ -34,7 +35,7 @@ for cat,rows in data.items():
   descriptionZh=' / '.join(x for x in [region[0] if region[0]!='未标明产地' else '',material,size] if x)+(' · ' if material or size or region[0]!='未标明产地' else '')+spec+'。'+notes[cat][0]
   matEn={'桑蚕丝':'Mulberry silk','真丝':'Silk','绢布':'Fabric','宣纸':'Xuan paper','竹':'Bamboo','青田石':'Qingtian stone','寿山石':'Shoushan stone','陶瓷':'Ceramic','瓷':'Porcelain','金属':'Metal','木质':'Wood','毛绒':'Plush'}.get(material,'')
   descriptionEn=' / '.join(x for x in [region[1] if region[1]!='Origin not specified' else '',matEn,size,' & '.join(keywords)] if x)+'. '+notes[cat][1]
-  out.append({'id':'jd-'+row['sku'],'sku':row['sku'],'category':cat,'rank':rank,'name':{'zh':nameZh,'en':nameEn},'merchantTitle':title,'origin':{'zh':region[0],'en':region[1]},'region':{'zh':region[0],'en':region[1]},'desc':{'zh':descriptionZh,'en':descriptionEn},'tip':dict(zip(['zh','en'],notes[cat])),'spec':{'zh':spec,'en':size or 'Design '+str(rank)+' · confirm exact specification'},'image':row['images'][0],'images':row['images'],'brand':brand,'material':material,'dimensions':size or None,'variants':row['variants'],'price':None,'source':row['detailUrl'],'listingSource':row['listing'],'collected':row['collected'],'detailStatus':row['detailStatus'],'scores':{'gift':5,'portable':4 if cat not in ['porcelain','panda'] else 3,'culture':5},'audience':'friends','family':rank})
+  out.append({'id':'jd-'+row['sku'],'sku':row['sku'],'category':cat,'rank':rank,'name':{'zh':nameZh,'en':nameEn},'merchantTitle':title,'origin':{'zh':region[0],'en':region[1]},'region':{'zh':region[0],'en':region[1]},'desc':{'zh':descriptionZh,'en':descriptionEn},'tip':dict(zip(['zh','en'],notes[cat])),'spec':{'zh':spec,'en':size or 'Design '+str(rank)+' · confirm exact specification'},'image':row['images'][0],'images':row['images'],'brand':brand,'verification':verified.get(row['sku']),'material':material,'dimensions':size or None,'variants':row['variants'],'price':None,'source':row['detailUrl'],'listingSource':row['listing'],'collected':row['collected'],'detailStatus':row['detailStatus'],'scores':{'gift':5,'portable':4 if cat not in ['porcelain','panda'] else 3,'culture':5},'audience':'friends','family':rank})
 assert len({g['id'] for g in out})==160
 (root/'gifts-v5.js').write_text('/* Public JD listing facts, not a live sales ranking or verified stock. */\nconst V5_GIFTS='+json.dumps(out,ensure_ascii=False,separators=(',',':'))+';\n')
 print('Built',len(out),'source-backed products')

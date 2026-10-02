@@ -1,0 +1,1191 @@
+[
+  {
+    "id": "local-017",
+    "source": "https://tw.trip.com/restaurant/china/shenzhen/detail/sense-8-cantonese-cuisine-42122305/",
+    "poi": "42122305",
+    "business": "18726306",
+    "nameTokens": [
+      "誉八仙",
+      "万象天地"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "深南大道万象天地六楼",
+      "trip": "深南大道萬象天地六樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "42122305",
+      "business": "18726306",
+      "name": "誉八仙茶室(万象天地店)",
+      "address": "深南大道萬象天地六樓"
+    },
+    "mobileIdentity": {
+      "poi": 42122305,
+      "business": 18726306,
+      "name": "誉八仙茶室(万象天地店)",
+      "address": "深南大道万象天地六楼"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "177484072",
+          "168087487",
+          "163221149"
+        ],
+        "platformTotal": 11,
+        "hiddenTotal": 4
+      },
+      {
+        "page": 2,
+        "ids": [
+          "163304020",
+          "162843733",
+          "165531800"
+        ],
+        "platformTotal": 11,
+        "hiddenTotal": 4
+      },
+      {
+        "page": 3,
+        "ids": [
+          "165910410"
+        ],
+        "platformTotal": 11,
+        "hiddenTotal": 4
+      }
+    ],
+    "comments": [
+      {
+        "id": "177484072",
+        "author": "Ann chau",
+        "score": 5,
+        "date": "2023-07-06",
+        "source": "https://tw.trip.com/review/sense-8-cantonese-cuisine-42122305-177484072?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到早茶点心、服务。",
+          "en": "Discusses dim sum and service."
+        },
+        "fingerprint": "fa037dd202f1362bf1cb513bc52236a9af91ef293f0889b3ccb57ed12d8bf585"
+      },
+      {
+        "id": "168087487",
+        "author": "TaleTell",
+        "score": 4,
+        "date": "2021-10-23",
+        "source": "https://tw.trip.com/review/sense-8-cantonese-cuisine-42122305-168087487?locale=zh-TW",
+        "summary": {
+          "zh": "复古装潢吸引人，脆皮豆腐推荐。",
+          "en": "Likes the ornate retro setting and recommends crisp tofu."
+        },
+        "fingerprint": "5a1715147c97157de62b1832213bbddade19dfed9793d9e42e9c86bb2739cab6"
+      },
+      {
+        "id": "163221149",
+        "author": "M36***21",
+        "score": 5,
+        "date": "2020-04-12",
+        "source": "https://tw.trip.com/review/sense-8-cantonese-cuisine-42122305-163221149?locale=zh-TW",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "eaff74b0cf7d190ae8190b5c10c94ecfcbaf7abcfe52c9943d69e24c83f54ebe"
+      },
+      {
+        "id": "163304020",
+        "author": "M36***21",
+        "score": 5,
+        "date": "2020-04-25",
+        "source": "https://tw.trip.com/review/sense-8-cantonese-cuisine-42122305-163304020?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "9d0d6e7f8b30fcc9da0be1bd6bb70d91545d39584d6eeae859fae187e76a739d"
+      },
+      {
+        "id": "162843733",
+        "author": "M36***21",
+        "score": 5,
+        "date": "2020-02-14",
+        "source": "https://tw.trip.com/review/sense-8-cantonese-cuisine-42122305-162843733?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "830f8bb547a3dbe762517eac9147f01ef1bed0b91b0eaea1240ef2d12571c912"
+      },
+      {
+        "id": "165531800",
+        "author": "133***61",
+        "score": 4,
+        "date": "2021-01-13",
+        "source": "https://tw.trip.com/review/sense-8-cantonese-cuisine-42122305-165531800?locale=zh-TW",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "ea609cea5fe43aba4f0f87fc4de17292fc1a4fe01830c3833a741e02b9409415"
+      },
+      {
+        "id": "165910410",
+        "author": "159***80",
+        "score": 4,
+        "date": "2021-03-07",
+        "source": "https://tw.trip.com/review/sense-8-cantonese-cuisine-42122305-165910410?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "1afcd1e1e73df4bf54981b27c00fa1fc56d8a61d0db61489bbcf691a8a9d838f"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-028",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-122690649/",
+    "poi": "122690649",
+    "business": "122690649",
+    "nameTokens": [
+      "小辣椒",
+      "文锦"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "文锦南路文锦渡文锦花园25A栋一楼",
+      "trip": "文錦南路文錦渡文錦花園25A棟一樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "122690649",
+      "business": "122690649",
+      "name": "小辣椒·湖南乡里菜(文锦花园店)",
+      "address": "文錦南路文錦渡文錦花園25A棟一樓"
+    },
+    "mobileIdentity": {
+      "poi": 122690649,
+      "business": 122690649,
+      "name": "小辣椒·湖南乡里菜(文锦花园店)",
+      "address": "文锦南路文锦渡文锦花园25A栋一楼"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "709862812",
+          "709862791",
+          "709862805"
+        ],
+        "platformTotal": 5,
+        "hiddenTotal": 0
+      },
+      {
+        "page": 2,
+        "ids": [
+          "709862784",
+          "709862798"
+        ],
+        "platformTotal": 5,
+        "hiddenTotal": 0
+      }
+    ],
+    "comments": [
+      {
+        "id": "709862812",
+        "author": "XCN***88",
+        "score": 5,
+        "date": "2026-01-16",
+        "source": "https://hk.trip.com/review/city-122690649-709862812?locale=zh-HK",
+        "summary": {
+          "zh": "大圆桌适合朋友聚餐，上菜快。",
+          "en": "Large round tables and quick service suit group dining."
+        },
+        "fingerprint": "e8497d08f5e8a1d0067dd80c23a12adfaf46f0803dcd1634dad08dd8c7718aad"
+      },
+      {
+        "id": "709862791",
+        "author": "XCN***28",
+        "score": 4,
+        "date": "2026-02-19",
+        "source": "https://hk.trip.com/review/city-122690649-709862791?locale=zh-HK",
+        "summary": {
+          "zh": "现炒湘菜下饭，建议多备米饭。",
+          "en": "Freshly cooked spicy Hunan dishes pair well with rice."
+        },
+        "fingerprint": "78e30e8fec1ba28cad5ee6c8bcd1bd26b717b86e1ea35a0905701ab467dc4f85"
+      },
+      {
+        "id": "709862805",
+        "author": "XCN***10",
+        "score": 4,
+        "date": "2025-07-19",
+        "source": "https://hk.trip.com/review/city-122690649-709862805?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "6dceaea9849d99dfad77200acf39da736fa05f7b867013a0a54271f3e547a6e2"
+      },
+      {
+        "id": "709862784",
+        "author": "XCN***39",
+        "score": 3,
+        "date": "2025-07-19",
+        "source": "https://hk.trip.com/review/city-122690649-709862784?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "fe556b3764f208313b09ed3caee4d3d4d86b27f58df8aed292ca434e04ef0c2a"
+      },
+      {
+        "id": "709862798",
+        "author": "XCN***02",
+        "score": 3,
+        "date": "2025-10-22",
+        "source": "https://hk.trip.com/review/city-122690649-709862798?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "44fb7f58594103e6a320656eb8742106b3dce717f6d4888ea3e732e9f8fdd1fe"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-029",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-130379198/",
+    "poi": "130379198",
+    "business": "130379198",
+    "nameTokens": [
+      "宇德隆记",
+      "宝安"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "上合社区32区上川村2栋101号",
+      "trip": "廣東省深圳市寶安區流塘路上川村32區2棟101室"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "130379198",
+      "business": "130379198",
+      "name": "宇德隆记客家食府(宝安店)",
+      "address": "廣東省深圳市寶安區流塘路上川村32區2棟101室"
+    },
+    "mobileIdentity": {
+      "poi": 130379198,
+      "business": 130379198,
+      "name": "宇德隆记客家食府(宝安店)",
+      "address": "上合社区32区上川村2栋101号"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "711970589",
+          "711970582",
+          "711970610"
+        ],
+        "platformTotal": 5,
+        "hiddenTotal": 0
+      },
+      {
+        "page": 2,
+        "ids": [
+          "711970603",
+          "711970596"
+        ],
+        "platformTotal": 5,
+        "hiddenTotal": 0
+      }
+    ],
+    "comments": [
+      {
+        "id": "711970589",
+        "author": "XCN***81",
+        "score": 5,
+        "date": "2026-05-03",
+        "source": "https://hk.trip.com/review/city-130379198-711970589?locale=zh-HK",
+        "summary": {
+          "zh": "酿豆腐柔软入味，周末建议早到。",
+          "en": "Enjoys tender stuffed tofu; suggests arriving early on weekends."
+        },
+        "fingerprint": "4e876dd4f54da294c4457f180e40662372bfb94d7b695bd341725104e2f5f6ce"
+      },
+      {
+        "id": "711970582",
+        "author": "XCN***78",
+        "score": 5,
+        "date": "2025-12-06",
+        "source": "https://hk.trip.com/review/city-130379198-711970582?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "d16f85b519abe755408f4f69c25820edc73ab5c08311371f7f6e8042614fd4d2"
+      },
+      {
+        "id": "711970610",
+        "author": "XCN***36",
+        "score": 5,
+        "date": "2026-03-21",
+        "source": "https://hk.trip.com/review/city-130379198-711970610?locale=zh-HK",
+        "summary": {
+          "zh": "菜量足，适合家庭或朋友聚餐。",
+          "en": "Generous portions suit a family or small group."
+        },
+        "fingerprint": "ac2d5427e035d71d3df934e9a5a75506cf8f8296c72a0fb1b3d0da8b008cb6f7"
+      },
+      {
+        "id": "711970603",
+        "author": "XCN***11",
+        "score": 5,
+        "date": "2025-06-30",
+        "source": "https://hk.trip.com/review/city-130379198-711970603?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "499fd358d4d67d3bf789795f9f2019afd333c272f0b19a3f328468c4f1cd8dd7"
+      },
+      {
+        "id": "711970596",
+        "author": "XCN***48",
+        "score": 4,
+        "date": "2026-02-05",
+        "source": "https://hk.trip.com/review/city-130379198-711970596?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到环境氛围。",
+          "en": "Discusses atmosphere."
+        },
+        "fingerprint": "be4bcd2efe6cda2d34a1123519ccb33a512c44715f5160707c67afc4e4b6bd4e"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-030",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-26635743/",
+    "poi": "26635743",
+    "business": "13434332",
+    "nameTokens": [
+      "爱碗亭",
+      "粤商"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "东环二路8号粤商中心A座L2层C8015号",
+      "trip": "東環二路8號粵商中心A座L2層C8015號"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "26635743",
+      "business": "13434332",
+      "name": "爱碗亭·鲜炒湖南菜(粤商中心店)",
+      "address": "東環二路8號粵商中心A座L2層C8015號"
+    },
+    "mobileIdentity": {
+      "poi": 26635743,
+      "business": 13434332,
+      "name": "爱碗亭·鲜炒湖南菜(粤商中心店)",
+      "address": "东环二路8号粤商中心A座L2层C8015号"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "163237491",
+          "166274178",
+          "165475246"
+        ],
+        "platformTotal": 589,
+        "hiddenTotal": 585
+      },
+      {
+        "page": 2,
+        "ids": [
+          "164994796"
+        ],
+        "platformTotal": 589,
+        "hiddenTotal": 585
+      }
+    ],
+    "comments": [
+      {
+        "id": "163237491",
+        "author": "M59***01",
+        "score": 5,
+        "date": "2020-04-14",
+        "source": "https://hk.trip.com/review/city-26635743-163237491?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "f3c62878ea1bc9d6b04f5660d2c1c8b4a0a7d171051ecf85e74b5fdabf179d26"
+      },
+      {
+        "id": "166274178",
+        "author": "159***80",
+        "score": 4,
+        "date": "2021-04-19",
+        "source": "https://hk.trip.com/review/city-26635743-166274178?locale=zh-HK",
+        "summary": {
+          "zh": "湘菜辣度可选，口味较地道。",
+          "en": "Finds the Hunan cooking fairly authentic with varied heat levels."
+        },
+        "fingerprint": "8ad2bb3f68b22886e13aa56070fea5057b9c32924af187e6c2cc18e6016c7ca7"
+      },
+      {
+        "id": "165475246",
+        "author": "M43***52",
+        "score": 5,
+        "date": "2021-01-05",
+        "source": "https://hk.trip.com/review/city-26635743-165475246?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "79f5313c310bda41cfc88de868e730741461623b78b5e403e8bdf26f698841b6"
+      },
+      {
+        "id": "164994796",
+        "author": "鲁树良",
+        "score": 3,
+        "date": "2020-11-05",
+        "source": "https://hk.trip.com/review/city-26635743-164994796?locale=zh-HK",
+        "summary": {
+          "zh": "湘菜味道与价格适中，店内干净。",
+          "en": "Finds the Hunan dishes reasonably priced in a clean setting."
+        },
+        "fingerprint": "26f7ce814502c62d7d0c4596f9f998961791fd4363eee5230649655922c79927"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-034",
+    "source": "https://tw.trip.com/restaurant/china/shenzhen/detail/restaurant-31152571/",
+    "poi": "31152571",
+    "business": "15590836",
+    "nameTokens": [
+      "陈鹏鹏",
+      "天利"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "天利中央商务广场（二期）209商铺",
+      "trip": "海德二道天利名城2樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "31152571",
+      "business": "15590836",
+      "name": "陈鹏鹏潮汕菜(天利店)",
+      "address": "海德二道天利名城2樓"
+    },
+    "mobileIdentity": {
+      "poi": 31152571,
+      "business": 15590836,
+      "name": "陈鹏鹏潮汕菜(天利店)",
+      "address": "天利中央商务广场（二期）209商铺"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "163654964",
+          "162115896",
+          "161757853"
+        ],
+        "platformTotal": 160,
+        "hiddenTotal": 156
+      },
+      {
+        "page": 2,
+        "ids": [
+          "163376897"
+        ],
+        "platformTotal": 160,
+        "hiddenTotal": 156
+      }
+    ],
+    "comments": [
+      {
+        "id": "163654964",
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2020-06-15",
+        "source": "https://tw.trip.com/review/city-31152571-163654964?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到烧卤鹅。",
+          "en": "Discusses roast or braised goose."
+        },
+        "fingerprint": "d2fa648efbf20ab03d297e5289d2a1581dee87f072f0ec700dc011c176aa7c84"
+      },
+      {
+        "id": "162115896",
+        "author": "花叔叔",
+        "score": 5,
+        "date": "2019-11-26",
+        "source": "https://tw.trip.com/review/city-31152571-162115896?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到烧卤鹅。",
+          "en": "Discusses roast or braised goose."
+        },
+        "fingerprint": "24cd4950eb775b969a6a5ef845235ec2afe5910f80c19c83f5b20c8900ebe8a0"
+      },
+      {
+        "id": "161757853",
+        "author": "噼里啪啦",
+        "score": 4,
+        "date": "2019-10-29",
+        "source": "https://tw.trip.com/review/city-31152571-161757853?locale=zh-TW",
+        "summary": {
+          "zh": "鹅肉味道不错，服务及时。",
+          "en": "Likes the goose and prompt, responsive service."
+        },
+        "fingerprint": "5580ba330e62470335130c75dee2d4ede95639e1e3989056118b2baf2302fdaf"
+      },
+      {
+        "id": "163376897",
+        "author": "烟雨梨花",
+        "score": 5,
+        "date": "2020-05-05",
+        "source": "https://tw.trip.com/review/city-31152571-163376897?locale=zh-TW",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "fbe6f4e822e475f679663bb6fbb13b709c55a0f68c63d65b8a4e8de5203f3538"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-039",
+    "source": "https://tw.trip.com/restaurant/china/shenzhen/detail/restaurant-50501552/",
+    "poi": "50501552",
+    "business": "21402644",
+    "nameTokens": [
+      "点都德",
+      "A8"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "科园路1002号A8音乐大厦4楼",
+      "trip": "深圳市南山區科園路1002號A8音樂大廈4樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "50501552",
+      "business": "21402644",
+      "name": "点都德(A8店)",
+      "address": "深圳市南山區科園路1002號A8音樂大廈4樓"
+    },
+    "mobileIdentity": {
+      "poi": 50501552,
+      "business": 21402644,
+      "name": "点都德(A8店)",
+      "address": "科园路1002号A8音乐大厦4楼"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "180866759",
+          "164737082",
+          "163963301",
+          "160818361"
+        ],
+        "platformTotal": 9,
+        "hiddenTotal": 4
+      },
+      {
+        "page": 2,
+        "ids": [
+          "175363880"
+        ],
+        "platformTotal": 9,
+        "hiddenTotal": 4
+      }
+    ],
+    "comments": [
+      {
+        "id": "180866759",
+        "author": "kxjwz",
+        "score": 5,
+        "date": "2024-02-23",
+        "source": "https://tw.trip.com/review/city-50501552-180866759?locale=zh-TW",
+        "summary": {
+          "zh": "红米肠、虾饺与椰汁糕值得点。",
+          "en": "Recommends red rice rolls, shrimp dumplings and coconut cake."
+        },
+        "fingerprint": "11d59d5bcb03c2ff5df4a983dcdd3dd561a0673e64f53e4acf39aa5fb6447598"
+      },
+      {
+        "id": "164737082",
+        "author": "噼里啪啦",
+        "score": 4,
+        "date": "2020-10-10",
+        "source": "https://tw.trip.com/review/city-50501552-164737082?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到肠粉、早茶点心。",
+          "en": "Discusses rice rolls and dim sum."
+        },
+        "fingerprint": "4405f93b530a8deb8eb286d329dbc7ee04b78a6651476df85113840163582a56"
+      },
+      {
+        "id": "163963301",
+        "author": "噼里啪啦",
+        "score": 4,
+        "date": "2020-07-30",
+        "source": "https://tw.trip.com/review/city-50501552-163963301?locale=zh-TW",
+        "summary": {
+          "zh": "点评提到早茶点心、服务。",
+          "en": "Discusses dim sum and service."
+        },
+        "fingerprint": "5b34aba4309212d637ce55e28100548f28e1ebe14154ad8487dbda61807ffe11"
+      },
+      {
+        "id": "160818361",
+        "author": "Doom毁灭",
+        "score": 4,
+        "date": "2019-09-07",
+        "source": "https://tw.trip.com/review/city-50501552-160818361?locale=zh-TW",
+        "summary": {
+          "zh": "茶点有亮点，手机点餐不方便。",
+          "en": "Some dim sum stands out; mobile ordering feels awkward."
+        },
+        "fingerprint": "632544e47530317998702fbb14a16c1a6afd9381e9abf1efc5971d784ad62f65"
+      },
+      {
+        "id": "175363880",
+        "author": "@paula",
+        "score": 5,
+        "date": "2023-03-31",
+        "source": "https://tw.trip.com/review/city-50501552-175363880?locale=zh-TW",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "d2450093541453c53972feedc200d4759500e8f31695396829e3b8784f250454"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-043",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-42165106/",
+    "poi": "42165106",
+    "business": "18769107",
+    "nameTokens": [
+      "点都德",
+      "龙华"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "民治大道567号UONE优城北区二层",
+      "trip": "深圳市龍華區民治街道民治大道567號UONE優城北區二層L2-12-19號"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "42165106",
+      "business": "18769107",
+      "name": "点都德(龙华优城店)",
+      "address": "深圳市龍華區民治街道民治大道567號UONE優城北區二層L2-12-19號"
+    },
+    "mobileIdentity": {
+      "poi": 42165106,
+      "business": 18769107,
+      "name": "点都德(龙华优城店)",
+      "address": "民治大道567号UONE优城北区二层"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "163195537",
+          "163183580",
+          "163175964",
+          "162896338"
+        ],
+        "platformTotal": 11,
+        "hiddenTotal": 4
+      },
+      {
+        "page": 2,
+        "ids": [
+          "161813094",
+          "173939303"
+        ],
+        "platformTotal": 11,
+        "hiddenTotal": 4
+      },
+      {
+        "page": 3,
+        "ids": [
+          "160850584"
+        ],
+        "platformTotal": 11,
+        "hiddenTotal": 4
+      }
+    ],
+    "comments": [
+      {
+        "id": "163195537",
+        "author": "亭亭向阳",
+        "score": 5,
+        "date": "2020-04-08",
+        "source": "https://hk.trip.com/review/city-42165106-163195537?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "1047dc31323c42fb4a1cd52d3567565a3914771f3e5237aa3dfecec43b4dd60d"
+      },
+      {
+        "id": "163183580",
+        "author": "启航yyy",
+        "score": 5,
+        "date": "2020-04-06",
+        "source": "https://hk.trip.com/review/city-42165106-163183580?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到早茶点心。",
+          "en": "Discusses dim sum."
+        },
+        "fingerprint": "9d32594d6bcb6309016d639f1e7dfca34eeb402880d23c417474f9e7b36f6a09"
+      },
+      {
+        "id": "163175964",
+        "author": "fish505",
+        "score": 5,
+        "date": "2020-04-05",
+        "source": "https://hk.trip.com/review/city-42165106-163175964?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到早茶点心。",
+          "en": "Discusses dim sum."
+        },
+        "fingerprint": "a322df90cc25ccabdf951f4031b1927f64c4ab4aa41a72d0d99828a20e5d589f"
+      },
+      {
+        "id": "162896338",
+        "author": "百合1203",
+        "score": 5,
+        "date": "2020-02-24",
+        "source": "https://hk.trip.com/review/city-42165106-162896338?locale=zh-HK",
+        "summary": {
+          "zh": "上菜快，建议人齐后点餐。",
+          "en": "Service is quick; suggests ordering after everyone arrives."
+        },
+        "fingerprint": "b2df2d09fec292a8c3f000b901702128b9fcb49439ecdef5ca7130412f11394d"
+      },
+      {
+        "id": "161813094",
+        "author": "ma-mndy",
+        "score": 5,
+        "date": "2019-11-02",
+        "source": "https://hk.trip.com/review/city-42165106-161813094?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到排队等位。",
+          "en": "Discusses waiting times."
+        },
+        "fingerprint": "72fae3be59cbe133e1561480c802a4b41cf12ef3e7610720bfbb66bb6f2f7847"
+      },
+      {
+        "id": "173939303",
+        "author": "最后的青木",
+        "score": 5,
+        "date": "2022-12-02",
+        "source": "https://hk.trip.com/review/city-42165106-173939303?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "8d22c0322ea983fab0c26ddac038a1fad64f279bc895c75783f8374a04d9f10f"
+      },
+      {
+        "id": "160850584",
+        "author": "M13***89",
+        "score": 4,
+        "date": "2019-09-09",
+        "source": "https://hk.trip.com/review/city-42165106-160850584?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "732ea9866d2f07454c79f09950d2258431c4c4c1d024a0af874ffd08080c3c7c"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-051",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/bingsheng-private-kitchen-133677667/",
+    "poi": "133677667",
+    "business": "133677667",
+    "nameTokens": [
+      "炳胜",
+      "万象前海"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "桂湾四路万象前海购物中心L324",
+      "trip": "桂灣四路萬象前海購物中心L324"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "133677667",
+      "business": "133677667",
+      "name": "炳胜私厨(万象前海店)",
+      "address": "桂灣四路萬象前海購物中心L324"
+    },
+    "mobileIdentity": {
+      "poi": 133677667,
+      "business": 133677667,
+      "name": "炳胜私厨(万象前海店)",
+      "address": "桂湾四路万象前海购物中心L324"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "672390063"
+        ],
+        "platformTotal": 1,
+        "hiddenTotal": 0
+      }
+    ],
+    "comments": [
+      {
+        "id": "672390063",
+        "author": "_GG***42",
+        "score": 1,
+        "date": "2026-04-11",
+        "source": "https://hk.trip.com/review/bingsheng-private-kitchen-133677667-672390063?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到乳鸽。",
+          "en": "Discusses roast pigeon."
+        },
+        "fingerprint": "85ae5b221ad36944e7ee0dc2fa506e0269242242d1354c00414fba63a418daa4"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-052",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/si-chuan-lu-zhou-dou-hua-26012436/",
+    "poi": "26012436",
+    "business": "12812570",
+    "nameTokens": [
+      "高三姐"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "梅村路上梅林新村56栋102号铺",
+      "trip": "上梅林新村56棟102號鋪"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "26012436",
+      "business": "12812570",
+      "name": "高三姐豆花店(上梅林店)",
+      "address": "上梅林新村56棟102號鋪"
+    },
+    "mobileIdentity": {
+      "poi": 26012436,
+      "business": 12812570,
+      "name": "高三姐豆花店(上梅林店)",
+      "address": "梅村路上梅林新村56栋102号铺"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "708394856",
+          "708394863",
+          "708394870"
+        ],
+        "platformTotal": 5,
+        "hiddenTotal": 0
+      },
+      {
+        "page": 2,
+        "ids": [
+          "708394884",
+          "708394877"
+        ],
+        "platformTotal": 5,
+        "hiddenTotal": 0
+      }
+    ],
+    "comments": [
+      {
+        "id": "708394856",
+        "author": "XCN***64",
+        "score": 4,
+        "date": "2025-05-28",
+        "source": "https://hk.trip.com/review/si-chuan-lu-zhou-dou-hua-26012436-708394856?locale=zh-HK",
+        "summary": {
+          "zh": "店铺较隐蔽，饭点建议早到。",
+          "en": "Finds it tucked away; recommends arriving before lunch crowds."
+        },
+        "fingerprint": "9280f1f23c81474c516e81611f3eac8f9d62ebd452ca36d86bcdd89c6738c4f8"
+      },
+      {
+        "id": "708394863",
+        "author": "XCN***30",
+        "score": 5,
+        "date": "2026-01-17",
+        "source": "https://hk.trip.com/review/si-chuan-lu-zhou-dou-hua-26012436-708394863?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "2575452a071d9ee423e1d053acc3a385114cb316ad43759721309561842c8964"
+      },
+      {
+        "id": "708394870",
+        "author": "XCN***08",
+        "score": 5,
+        "date": "2025-09-25",
+        "source": "https://hk.trip.com/review/si-chuan-lu-zhou-dou-hua-26012436-708394870?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "15f7575a8fed60a144f21ddb2894071125036f44475fa9a1d81f65e01e0214b3"
+      },
+      {
+        "id": "708394884",
+        "author": "XCN***84",
+        "score": 4,
+        "date": "2025-10-07",
+        "source": "https://hk.trip.com/review/si-chuan-lu-zhou-dou-hua-26012436-708394884?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        },
+        "fingerprint": "af069cf355c9f01760a7185fd7636f84a15a880b236927dae6b0ceb18a58c516"
+      },
+      {
+        "id": "708394877",
+        "author": "XCN***96",
+        "score": 3,
+        "date": "2026-05-16",
+        "source": "https://hk.trip.com/review/si-chuan-lu-zhou-dou-hua-26012436-708394877?locale=zh-HK",
+        "summary": {
+          "zh": "市井氛围熟悉，桌椅干净。",
+          "en": "Likes the everyday neighborhood feel and clean tables."
+        },
+        "fingerprint": "77a44c945968dc724e93198d9ee75e07720c6dce045089073f526ab28f84511e"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  },
+  {
+    "id": "local-053",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-15562053/",
+    "poi": "15562053",
+    "business": "7404824",
+    "nameTokens": [
+      "金稻园",
+      "壹海城"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "海山路壹海城四区1栋101号",
+      "trip": "深鹽路與海山路交叉口(海山街道壹海城四區1棟101號)"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation.",
+    "status": "verified",
+    "identity": {
+      "poi": "15562053",
+      "business": "7404824",
+      "name": "金稻园砂锅粥(壹海城店)",
+      "address": "深鹽路與海山路交叉口(海山街道壹海城四區1棟101號)"
+    },
+    "mobileIdentity": {
+      "poi": 15562053,
+      "business": 7404824,
+      "name": "金稻园砂锅粥(壹海城店)",
+      "address": "海山路壹海城四区1栋101号"
+    },
+    "pages": [
+      {
+        "page": 1,
+        "ids": [
+          "166928322",
+          "161162877",
+          "168279615"
+        ],
+        "platformTotal": 62,
+        "hiddenTotal": 53
+      },
+      {
+        "page": 2,
+        "ids": [
+          "165764212",
+          "165443446",
+          "167708595"
+        ],
+        "platformTotal": 62,
+        "hiddenTotal": 53
+      },
+      {
+        "page": 3,
+        "ids": [
+          "167148290",
+          "166283491",
+          "165722185"
+        ],
+        "platformTotal": 62,
+        "hiddenTotal": 53
+      }
+    ],
+    "comments": [
+      {
+        "id": "166928322",
+        "author": "我是鼠老大",
+        "score": 4,
+        "date": "2021-06-25",
+        "source": "https://hk.trip.com/review/city-15562053-166928322?locale=zh-HK",
+        "summary": {
+          "zh": "环境适合家庭，觉得粥价格偏高。",
+          "en": "Likes the family-friendly setting; finds the congee pricey."
+        },
+        "fingerprint": "d2b48a9ec9b15d7b06d3f0a9520b90de7a4a7a3e8aa5161c72f84b951c21d925"
+      },
+      {
+        "id": "161162877",
+        "author": "我是鼠老大",
+        "score": 4,
+        "date": "2019-09-26",
+        "source": "https://hk.trip.com/review/city-15562053-161162877?locale=zh-HK",
+        "summary": {
+          "zh": "户外环境舒服，人多时上菜偏慢。",
+          "en": "Enjoys outdoor seating; service slows when busy."
+        },
+        "fingerprint": "ea9ef606b9f12e44af12f3fdae4805919da7d73125e4f24c91630df08e10fe42"
+      },
+      {
+        "id": "168279615",
+        "author": "长空血乱",
+        "score": 5,
+        "date": "2021-11-06",
+        "source": "https://hk.trip.com/review/city-15562053-168279615?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "bbe40b230ce6da8c887821e5601b61532bfce25fc6f886e09540d47ce4773766"
+      },
+      {
+        "id": "165764212",
+        "author": "怪兽花园",
+        "score": 5,
+        "date": "2021-02-17",
+        "source": "https://hk.trip.com/review/city-15562053-165764212?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到环境氛围、价格感受。",
+          "en": "Discusses atmosphere and value."
+        },
+        "fingerprint": "714ca9a96daa90246721eda7c4ca71d2f263200e0fa80c72a47c1e03a0b0c0df"
+      },
+      {
+        "id": "165443446",
+        "author": "爱旅游的小A",
+        "score": 5,
+        "date": "2021-01-01",
+        "source": "https://hk.trip.com/review/city-15562053-165443446?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        },
+        "fingerprint": "83297471455b28c3dac19620bf918e320d4ce5816f37f3bb77ca7798b7ef67af"
+      },
+      {
+        "id": "167708595",
+        "author": "wan19740813",
+        "score": 5,
+        "date": "2021-09-18",
+        "source": "https://hk.trip.com/review/city-15562053-167708595?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        },
+        "fingerprint": "580d03a7c8a7dfb39ce362b289391a85e35ed43972ef0de62106a398700fddfc"
+      },
+      {
+        "id": "167148290",
+        "author": "月盈韵",
+        "score": 5,
+        "date": "2021-07-14",
+        "source": "https://hk.trip.com/review/city-15562053-167148290?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到海鲜、粥品。",
+          "en": "Discusses seafood and congee."
+        },
+        "fingerprint": "0178ad4e20eab4bfa845a27712ff41a1b9a3ec71d1477286b95200c725c26ded"
+      },
+      {
+        "id": "166283491",
+        "author": "爱旅游的小A",
+        "score": 4,
+        "date": "2021-04-20",
+        "source": "https://hk.trip.com/review/city-15562053-166283491?locale=zh-HK",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        },
+        "fingerprint": "b21688a10b2b18e226c5782a923c4dfe56f2255c10980498c002eaa2491d300a"
+      },
+      {
+        "id": "165722185",
+        "author": "彧帝",
+        "score": 5,
+        "date": "2021-02-13",
+        "source": "https://hk.trip.com/review/city-15562053-165722185?locale=zh-HK",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "5d603c22814a641c25ba7c21dfaab315c465b7c6a051319dbc17e9ee6b761f5a"
+      }
+    ],
+    "terminalNotice": "",
+    "pagination": "normal Next page button; stop on disabled, no new IDs, empty page or access restriction"
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "local-002",
+    "source": "https://www.tripadvisor.com.tw/Restaurant_Review-g297415-d10586362-Reviews-Jianingna_GuiBin_Lou_HaoRi_Zi-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "retrieval": "Readable cached web document, not live browser pagination",
+    "identity": {
+      "platformRestaurantId": "10586362",
+      "name": "佳宁娜贵宾楼(好日子店)",
+      "address": "福田区福华一路马哥孛罗好日子酒店3楼"
+    },
+    "platformTotal": 5,
+    "visibleTotal": 4,
+    "publicResultNotice": "显示第1-4笔搜索结果，共4笔",
+    "comments": [
+      {
+        "id": "ta-web-472306b8f85d9253",
+        "idKind": "source_author_written_date",
+        "author": "Rich_0705",
+        "date": "2019-10-24",
+        "summary": {
+          "zh": "包房适合多人聚餐，喜欢卤鹅与豆腐。",
+          "en": "Enjoys group dining, braised goose and tofu."
+        },
+        "score": null,
+        "source": "https://www.tripadvisor.com.tw/Restaurant_Review-g297415-d10586362-Reviews-Jianingna_GuiBin_Lou_HaoRi_Zi-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor"
+      },
+      {
+        "id": "ta-web-e7efad807e6ad910",
+        "idKind": "source_author_written_date",
+        "author": "cai213",
+        "date": "2019-01-19",
+        "summary": {
+          "zh": "环境不错，员工多，上菜快。",
+          "en": "Enjoys the setting, available staff and quick service."
+        },
+        "score": null,
+        "source": "https://www.tripadvisor.com.tw/Restaurant_Review-g297415-d10586362-Reviews-Jianingna_GuiBin_Lou_HaoRi_Zi-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor"
+      },
+      {
+        "id": "ta-web-bbf0bb40ef343434",
+        "idKind": "source_author_written_date",
+        "author": "cai213",
+        "date": "2018-07-29",
+        "summary": {
+          "zh": "排骨与粥不错，部分点心偏油。",
+          "en": "Enjoys ribs and congee; some dim sum seems oily."
+        },
+        "score": null,
+        "source": "https://www.tripadvisor.com.tw/Restaurant_Review-g297415-d10586362-Reviews-Jianingna_GuiBin_Lou_HaoRi_Zi-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor"
+      },
+      {
+        "id": "ta-web-84c22a5cfc7d195b",
+        "idKind": "source_author_written_date",
+        "author": "63663678",
+        "date": "2016-10-17",
+        "summary": {
+          "zh": "服务不错，卤味偏咸，蟹价偏高。",
+          "en": "Good service; braised dishes salty and crab expensive."
+        },
+        "score": null,
+        "source": "https://www.tripadvisor.com.tw/Restaurant_Review-g297415-d10586362-Reviews-Jianingna_GuiBin_Lou_HaoRi_Zi-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor"
+      }
+    ]
+  }
+]

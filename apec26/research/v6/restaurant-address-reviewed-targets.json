@@ -1,0 +1,171 @@
+[
+  {
+    "id": "local-017",
+    "source": "https://tw.trip.com/restaurant/china/shenzhen/detail/sense-8-cantonese-cuisine-42122305/",
+    "poi": "42122305",
+    "business": "18726306",
+    "nameTokens": [
+      "誉八仙",
+      "万象天地"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "深南大道万象天地六楼",
+      "trip": "深南大道萬象天地六樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-028",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-122690649/",
+    "poi": "122690649",
+    "business": "122690649",
+    "nameTokens": [
+      "小辣椒",
+      "文锦"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "文锦南路文锦渡文锦花园25A栋一楼",
+      "trip": "文錦南路文錦渡文錦花園25A棟一樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-029",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-130379198/",
+    "poi": "130379198",
+    "business": "130379198",
+    "nameTokens": [
+      "宇德隆记",
+      "宝安"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "上合社区32区上川村2栋101号",
+      "trip": "廣東省深圳市寶安區流塘路上川村32區2棟101室"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-030",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-26635743/",
+    "poi": "26635743",
+    "business": "13434332",
+    "nameTokens": [
+      "爱碗亭",
+      "粤商"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "东环二路8号粤商中心A座L2层C8015号",
+      "trip": "東環二路8號粵商中心A座L2層C8015號"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-034",
+    "source": "https://tw.trip.com/restaurant/china/shenzhen/detail/restaurant-31152571/",
+    "poi": "31152571",
+    "business": "15590836",
+    "nameTokens": [
+      "陈鹏鹏",
+      "天利"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "天利中央商务广场（二期）209商铺",
+      "trip": "海德二道天利名城2樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-039",
+    "source": "https://tw.trip.com/restaurant/china/shenzhen/detail/restaurant-50501552/",
+    "poi": "50501552",
+    "business": "21402644",
+    "nameTokens": [
+      "点都德",
+      "A8"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "科园路1002号A8音乐大厦4楼",
+      "trip": "深圳市南山區科園路1002號A8音樂大廈4樓"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-043",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-42165106/",
+    "poi": "42165106",
+    "business": "18769107",
+    "nameTokens": [
+      "点都德",
+      "龙华"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "民治大道567号UONE优城北区二层",
+      "trip": "深圳市龍華區民治街道民治大道567號UONE優城北區二層L2-12-19號"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-051",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/bingsheng-private-kitchen-133677667/",
+    "poi": "133677667",
+    "business": "133677667",
+    "nameTokens": [
+      "炳胜",
+      "万象前海"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "桂湾四路万象前海购物中心L324",
+      "trip": "桂灣四路萬象前海購物中心L324"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-052",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/si-chuan-lu-zhou-dou-hua-26012436/",
+    "poi": "26012436",
+    "business": "12812570",
+    "nameTokens": [
+      "高三姐"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "梅村路上梅林新村56栋102号铺",
+      "trip": "上梅林新村56棟102號鋪"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  },
+  {
+    "id": "local-053",
+    "source": "https://hk.trip.com/restaurant/china/shenzhen/detail/restaurant-15562053/",
+    "poi": "15562053",
+    "business": "7404824",
+    "nameTokens": [
+      "金稻园",
+      "壹海城"
+    ],
+    "addressTokens": [],
+    "confirmMobile": true,
+    "approvedAddressPair": {
+      "mobile": "海山路壹海城四区1栋101号",
+      "trip": "深鹽路與海山路交叉口(海山街道壹海城四區1棟101號)"
+    },
+    "addressReview": "Reviewed same branch and matching mall/building/unit; traditional characters or shorter street description. These sources do not verify current operation."
+  }
+]

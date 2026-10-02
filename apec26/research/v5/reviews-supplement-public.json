@@ -15,7 +15,8 @@
         "summary": {
           "zh": "看重粤菜基本功与稳定出品。",
           "en": "Appreciates solid Cantonese technique and consistent cooking."
-        }
+        },
+        "fingerprint": "6755a8ad41b098457eff67b91d44215e82303e6e6671f1a9a3e05e0530d1d10c"
       },
       {
         "id": 161889253,
@@ -26,7 +27,8 @@
         "summary": {
           "zh": "菜品服务稳定，价格较高但觉得值得。",
           "en": "Finds the food and service polished despite higher prices."
-        }
+        },
+        "fingerprint": "4072371fbb69fccfb4192c8b9e291d01e092c5b3d0e676d7dc859fe2cfac04e0"
       },
       {
         "id": 163393824,
@@ -37,7 +39,8 @@
         "summary": {
           "zh": "点评提到甜品、服务。",
           "en": "Discusses desserts and service."
-        }
+        },
+        "fingerprint": "b280d9f161133d88c7188a27b3c1321e64f18d9231f70c6d8eead87b2f2cd7ea"
       },
       {
         "id": 162180286,
@@ -48,7 +51,8 @@
         "summary": {
           "zh": "点评提到羊肉菜品、服务。",
           "en": "Discusses lamb and service."
-        }
+        },
+        "fingerprint": "5c3ba33bf2d831e0a649851996fed889f76809f923d69debcda7f58dc186d5ae"
       },
       {
         "id": 176318691,
@@ -59,7 +63,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "9ea3f48027c04cf50fff97a66acda31081e03bc4663484f1ff0d31826165667e"
       },
       {
         "id": 175855939,
@@ -70,7 +75,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "56d4445933c69033095312e4792fed624e49c79ee3d70f135a592a38470dcf49"
       },
       {
         "id": 178702114,
@@ -81,7 +87,8 @@
         "summary": {
           "zh": "点评提到早茶点心。",
           "en": "Discusses dim sum."
-        }
+        },
+        "fingerprint": "5d01c7fec14addf3ac56ddcd94b87e0e788c8104cc81831023e6a5551de96f14"
       },
       {
         "id": 165079922,
@@ -92,7 +99,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "8e2802274fe5a0448b74f7446bd75c4e0ad456231b135c6283fa9c03d4934c5b"
       },
       {
         "id": 165607533,
@@ -103,7 +111,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "8c5961683e4adbb13ee5005ea972b5fde535afb9c39cd65cc7c9eac6b1072ee5"
       },
       {
         "id": 174741602,
@@ -114,7 +123,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "d91f7cba7c0caa07536a71d933c78ea5f49f2d6d5c0c7a2d16853266464650dc"
       }
     ]
   },
@@ -134,7 +144,8 @@
         "summary": {
           "zh": "复古装潢吸引人，脆皮豆腐推荐。",
           "en": "Likes the ornate retro setting and recommends crisp tofu."
-        }
+        },
+        "fingerprint": "5a1715147c97157de62b1832213bbddade19dfed9793d9e42e9c86bb2739cab6"
       },
       {
         "id": 163183254,
@@ -145,7 +156,8 @@
         "summary": {
           "zh": "喜欢中式庭院氛围与精致粤菜。",
           "en": "Enjoys the traditional-style setting and refined Cantonese dishes."
-        }
+        },
+        "fingerprint": "95d113ae2fb48b9a87069f0ce7ff23d7d680e84e1414743f62598a8be4d8eef0"
       },
       {
         "id": 163304020,
@@ -156,7 +168,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "6b16f59e344d05dc6f22c226e52e16c76f014d9350a5b623f56d03b1e322ca1a"
       },
       {
         "id": 163221149,
@@ -167,7 +180,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "0b983314e8757a0a1022514fcfe32b38f10f8c39e9d513effb1fb6e4997a249a"
       },
       {
         "id": 162843733,
@@ -178,7 +192,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "f98bbb85cd3cac55f2e6c1b2ace4e4d7ad5525add4f8ffedc0de8b50853b8b7e"
       },
       {
         "id": 165531800,
@@ -189,7 +204,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "42ecd90a5d88a65e54e183551f9f11e0b822777e3e45d1d3d988b593b07aa513"
       },
       {
         "id": 165910410,
@@ -200,7 +216,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "c452323bfefc11b6556c01e75fe79af3365c916a04183993d1039c6b8337c685"
       }
     ]
   },
@@ -220,7 +237,8 @@
         "summary": {
           "zh": "环境与服务体验令人满意。",
           "en": "Praises the setting and service."
-        }
+        },
+        "fingerprint": "f705eef70fa0c2faa052868105cb6bac69ef4d6e362bb0b3031c0c1d998ca663"
       },
       {
         "id": 174663630,
@@ -231,7 +249,8 @@
         "summary": {
           "zh": "凤爪与咸水角不错，肠粉和速度欠佳。",
           "en": "Likes chicken feet and dumplings; rice rolls and speed disappoint."
-        }
+        },
+        "fingerprint": "2d60dfc001732d91e16d97cb097ec041977cc0a5ee31f5fa777ad9c987b306ea"
       },
       {
         "id": 163785203,
@@ -242,7 +261,8 @@
         "summary": {
           "zh": "点评提到虾饺、环境氛围。",
           "en": "Discusses shrimp dumplings and atmosphere."
-        }
+        },
+        "fingerprint": "cca0a3066d539b469390eb5d28ba1a134646dec2eb1177ebba1ea8de23e2be23"
       },
       {
         "id": 166206208,
@@ -253,7 +273,8 @@
         "summary": {
           "zh": "点评提到环境氛围、排队等位。",
           "en": "Discusses atmosphere and waiting times."
-        }
+        },
+        "fingerprint": "a01d0ad0491d8fd1daf37d0d201b1f3105bdc601e4838d1be57a681b9ba609ca"
       },
       {
         "id": 163333656,
@@ -264,7 +285,8 @@
         "summary": {
           "zh": "点评提到肠粉、早茶点心。",
           "en": "Discusses rice rolls and dim sum."
-        }
+        },
+        "fingerprint": "4d7ad1732b71ad04803bf14046c1562efb591b3d6c337ebe6370e42be81b6bab"
       },
       {
         "id": 168255353,
@@ -275,7 +297,8 @@
         "summary": {
           "zh": "点评提到虾饺、肠粉。",
           "en": "Discusses shrimp dumplings and rice rolls."
-        }
+        },
+        "fingerprint": "2047e2cebbf064d757adddd1f0be79b9ffb0dfd5e3caf19486d6bf6696a3f0e8"
       },
       {
         "id": 162619860,
@@ -286,7 +309,8 @@
         "summary": {
           "zh": "点评提到虾饺、早茶点心。",
           "en": "Discusses shrimp dumplings and dim sum."
-        }
+        },
+        "fingerprint": "097ff58ebe07c1bf83b9d086b180dd2df7f9b39dbddc179e530b38cb47032f51"
       },
       {
         "id": 165753232,
@@ -297,7 +321,8 @@
         "summary": {
           "zh": "点评提到早茶点心、服务。",
           "en": "Discusses dim sum and service."
-        }
+        },
+        "fingerprint": "8a390d53210276ebd0926465d6cca7ceb3ade97b2c35c8836a0ec086c8c5d79c"
       },
       {
         "id": 166813091,
@@ -308,7 +333,8 @@
         "summary": {
           "zh": "点评提到海鲜、粥品。",
           "en": "Discusses seafood and congee."
-        }
+        },
+        "fingerprint": "23b053b5441f58bc88a1cf21ded65b5a05ec6f9b6035592684823cfabbd22ab7"
       },
       {
         "id": 164096649,
@@ -319,7 +345,8 @@
         "summary": {
           "zh": "点评提到肠粉、早茶点心。",
           "en": "Discusses rice rolls and dim sum."
-        }
+        },
+        "fingerprint": "7137c5fae283fd366e23a45e93f83a5316be539d41e582e1438edca8a4dc81b4"
       }
     ]
   },
@@ -339,7 +366,8 @@
         "summary": {
           "zh": "湘菜辣度可选，口味较地道。",
           "en": "Finds the Hunan cooking fairly authentic with varied heat levels."
-        }
+        },
+        "fingerprint": "4deba828830187a4a38ed9c277ce403487a0fbbffdeb967fe795777fd4359779"
       },
       {
         "id": 164994796,
@@ -350,7 +378,8 @@
         "summary": {
           "zh": "湘菜味道与价格适中，店内干净。",
           "en": "Finds the Hunan dishes reasonably priced in a clean setting."
-        }
+        },
+        "fingerprint": "d403c380bdf6e87baa8e2b93ca767e3bf4fb2dde5639302cea7f40c692101095"
       },
       {
         "id": 163237491,
@@ -361,7 +390,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "c9020aad975ef6925506d3557103007161429cf3928e2b5f44ca4e8be6c3fa75"
       },
       {
         "id": 165475246,
@@ -372,7 +402,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "88673045976f24af8208e0a3a007d4626483c2fd706becb5ade9d5c4f9782d13"
       }
     ]
   },
@@ -392,7 +423,8 @@
         "summary": {
           "zh": "喜欢鹅的味道，分量足到打包。",
           "en": "Enjoys the goose; generous portions leave leftovers."
-        }
+        },
+        "fingerprint": "33a9056caaccb87ef2bea027daf88db1e622dc1fc8bade3cf8f63d38bc79c6ae"
       },
       {
         "id": 161757853,
@@ -403,7 +435,8 @@
         "summary": {
           "zh": "鹅肉味道不错，服务及时。",
           "en": "Likes the goose and prompt, responsive service."
-        }
+        },
+        "fingerprint": "22f11f56cdcbee7f427bb8d8459d53f7381c5a069964cd9350b596f15e89f700"
       },
       {
         "id": 162115896,
@@ -414,7 +447,8 @@
         "summary": {
           "zh": "点评提到烧卤鹅。",
           "en": "Discusses roast or braised goose."
-        }
+        },
+        "fingerprint": "7d9ab4d89529eced9da12e4dac17299c1efc91403cfe61590b8908fce65084b4"
       },
       {
         "id": 163654964,
@@ -425,7 +459,8 @@
         "summary": {
           "zh": "点评提到烧卤鹅。",
           "en": "Discusses roast or braised goose."
-        }
+        },
+        "fingerprint": "a11b16cbc5367691c10d13b8dd2e8298a11ae9bc94ca7bf8da95eb9028c4c828"
       },
       {
         "id": 164256355,
@@ -436,7 +471,8 @@
         "summary": {
           "zh": "点评提到烧卤鹅。",
           "en": "Discusses roast or braised goose."
-        }
+        },
+        "fingerprint": "f0f7e7eb30c59f8a19baef598876a5f430832efe02f1adda17afbe9c4cbd643b"
       },
       {
         "id": 163376897,
@@ -447,7 +483,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "2d34e48ebc277fd332db7f2454c6ff2edd5590a27894414896f4f56bbd8a32eb"
       }
     ]
   },
@@ -467,7 +504,8 @@
         "summary": {
           "zh": "关注潮菜传承与新派菜肴。",
           "en": "Discusses traditional and contemporary Chaozhou cooking."
-        }
+        },
+        "fingerprint": "055da1d0695ea1c50ce5775dfebc088ee551b5ac87ee7f2d58934242e0e8925f"
       },
       {
         "id": 206945544,
@@ -478,7 +516,8 @@
         "summary": {
           "zh": "服务专业热情，推荐贴合需求。",
           "en": "Appreciates warm, professional service and tailored recommendations."
-        }
+        },
+        "fingerprint": "8152569fec408a6fb2217e3e83e0639bd5600b54b339cd47ae0e028f11782677"
       },
       {
         "id": 206945530,
@@ -489,7 +528,8 @@
         "summary": {
           "zh": "点评提到菠萝包。",
           "en": "Discusses pineapple buns."
-        }
+        },
+        "fingerprint": "991513b77ff8bdb8cc8b26a153c8e2ad156eb981dc882f265aee46c078d3029a"
       },
       {
         "id": 206945551,
@@ -500,7 +540,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "f9a9fcffe0293b6daca2f7aba92fba87ce3696383ecc929a460c12bd7b1c7343"
       },
       {
         "id": 792373926,
@@ -511,7 +552,8 @@
         "summary": {
           "zh": "点评提到鹅掌、服务。",
           "en": "Discusses goose feet and service."
-        }
+        },
+        "fingerprint": "7b920c69ae78f5ae292f43940ce0ca2f59aa4037a22961d5136263efaa29678c"
       },
       {
         "id": 206945523,
@@ -522,7 +564,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "816828f664b9d06d0d7323779905fae70905a684d105b8de75803df54c965adf"
       },
       {
         "id": 168581222,
@@ -533,7 +576,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "8efdaea11d5102a1c4030da86aac2ec97dd35fe7c013c271f67e3a32ec531238"
       },
       {
         "id": 180768967,
@@ -544,7 +588,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "aacfbef4dcb22bb8f9af25cf92058d66ecb64a8d7a28624f1e247b6785b0078a"
       },
       {
         "id": 821494661,
@@ -555,7 +600,8 @@
         "summary": {
           "zh": "点评提到鹅掌。",
           "en": "Discusses goose feet."
-        }
+        },
+        "fingerprint": "a02db858a6bfa432ec1c5909f848b9bf2fae8b34001825c3297689c24b3304aa"
       },
       {
         "id": 171311319,
@@ -566,7 +612,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "d06a26d19a3591d6d0aa9c833d098b3e86bd0b8f13107ebbe977adbe07b4b99f"
       }
     ]
   },
@@ -586,7 +633,8 @@
         "summary": {
           "zh": "一人早茶体验不错，人多更易分摊。",
           "en": "Enjoys solo dim sum; groups can share the cost."
-        }
+        },
+        "fingerprint": "6d4c5823248ab500581ecf239d7b669f85b967ec4f1aeecc8f44284027bf7d29"
       },
       {
         "id": 161504096,
@@ -597,7 +645,8 @@
         "summary": {
           "zh": "茶点经典，节假日建议提前取号。",
           "en": "Likes classic dim sum; suggests joining the holiday queue early."
-        }
+        },
+        "fingerprint": "69903a066b77b690c8e41eaf38d54c4bf4c29701f62b30364c795275bb90c288"
       }
     ]
   },
@@ -617,7 +666,8 @@
         "summary": {
           "zh": "红米肠、虾饺与椰汁糕值得点。",
           "en": "Recommends red rice rolls, shrimp dumplings and coconut cake."
-        }
+        },
+        "fingerprint": "693d1de0ff2d7fc1845f2284c47b05dfab24cc57293dc17e4a411cd23c531feb"
       },
       {
         "id": 160818361,
@@ -628,7 +678,8 @@
         "summary": {
           "zh": "茶点有亮点，手机点餐不方便。",
           "en": "Some dim sum stands out; mobile ordering feels awkward."
-        }
+        },
+        "fingerprint": "0f1901b3845cf0b7a1b4270907fb86541e7fcdf1b82849307b1f2378c8813891"
       },
       {
         "id": 163963301,
@@ -639,7 +690,8 @@
         "summary": {
           "zh": "点评提到早茶点心、服务。",
           "en": "Discusses dim sum and service."
-        }
+        },
+        "fingerprint": "353be5bbd3cda80e87a4a91d4bc812ecf301c07561796e32c21a158e9575cd9d"
       },
       {
         "id": 166690618,
@@ -650,7 +702,8 @@
         "summary": {
           "zh": "点评提到服务、价格感受。",
           "en": "Discusses service and value."
-        }
+        },
+        "fingerprint": "44f7ba369d8d7379062eb1f0a14393304b13fdf12b654ec22fcfdcde8a6c0c26"
       },
       {
         "id": 164737082,
@@ -661,7 +714,8 @@
         "summary": {
           "zh": "点评提到肠粉、早茶点心。",
           "en": "Discusses rice rolls and dim sum."
-        }
+        },
+        "fingerprint": "c6d558e6ccd7974372e0667918d96a7151158b675904eb5cb742d8d7c94d2503"
       }
     ]
   },
@@ -681,7 +735,8 @@
         "summary": {
           "zh": "乳鸽酥嫩，蚝仔泡饭鲜美。",
           "en": "Enjoys crisp pigeon and flavorful oyster rice soup."
-        }
+        },
+        "fingerprint": "cfc57e9c05f8d9dc54f95febaf119018321061eea245f07346aa27724f17b52d"
       },
       {
         "id": 165092904,
@@ -692,7 +747,8 @@
         "summary": {
           "zh": "喜欢趁热油条和鲍汁凤爪。",
           "en": "Enjoys hot dough sticks and chicken feet in abalone sauce."
-        }
+        },
+        "fingerprint": "9b9eb284fecf867955d79c71a65f4cf4f6d6e96440198bdaa08c8fd5eebcb404"
       },
       {
         "id": 173968116,
@@ -703,7 +759,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "b95f79b3225cf748d7c6cb4df4af78b17ca86c967c8b3a43f62ec01040f93a90"
       },
       {
         "id": 162871173,
@@ -714,7 +771,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "efbcb806f617571b80b6107ab3d06f4df95708f2c2d4b33a8c24691117e9c6b0"
       },
       {
         "id": 174308560,
@@ -725,7 +783,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "aafd1eb3b36cb05dad7bb7efc3f575497d8b844cc5027fd2cc2fd55b4f8bbdc4"
       },
       {
         "id": 172469444,
@@ -736,7 +795,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "3df95d75adf687204780a111b3e3b41a6ed70b99587df4602742ac92f3a7f7be"
       },
       {
         "id": 162897535,
@@ -747,7 +807,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "574a696389c02c8aff433b0c10b94c0ab557cc94d78ce129ca5c464e629e4709"
       },
       {
         "id": 162854850,
@@ -758,7 +819,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "feaed412d5aa1e4207bdec2cc321f5d428143315708a18c1876609e2aeb7f502"
       },
       {
         "id": 163624113,
@@ -769,7 +831,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "8393a396fb33448e3d7802e7dedfc69656a3d12133cc70abe4cd4394d9eb0e0c"
       },
       {
         "id": 170029631,
@@ -780,7 +843,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "f976c7b0874b43667cac9bdcd76d447ed50ebf19d5c54bc8dff21a093dae0593"
       }
     ]
   },
@@ -800,7 +864,8 @@
         "summary": {
           "zh": "点心选择多，茶位费和收碟声欠佳。",
           "en": "Likes dim sum variety; tea charges and clearing noise disappoint."
-        }
+        },
+        "fingerprint": "f0ffe756bab36b74c2cef02be231085c0dd68cc434e73a34e58574d6ad761f7d"
       },
       {
         "id": 162896338,
@@ -811,7 +876,8 @@
         "summary": {
           "zh": "上菜快，建议人齐后点餐。",
           "en": "Service is quick; suggests ordering after everyone arrives."
-        }
+        },
+        "fingerprint": "4edcc4d93ab412c838027e63cd7a0639228f195dcce3b6e9baccd6a545b5ae2e"
       },
       {
         "id": 163175964,
@@ -822,7 +888,8 @@
         "summary": {
           "zh": "点评提到早茶点心。",
           "en": "Discusses dim sum."
-        }
+        },
+        "fingerprint": "018db2507472bf17f0aebe465b6018eadd858a2269d3153675c60edc59545b3c"
       },
       {
         "id": 163195537,
@@ -833,7 +900,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "a0648e534b6b281da8f5d5c8e843cf0a3e40bb563fd2a303983b262c279da0bd"
       },
       {
         "id": 163183580,
@@ -844,7 +912,8 @@
         "summary": {
           "zh": "点评提到早茶点心。",
           "en": "Discusses dim sum."
-        }
+        },
+        "fingerprint": "29f7c8d487a6390569593a21e3eb3002188db7a12cc1cff482303a5a7d2524a5"
       },
       {
         "id": 163530994,
@@ -855,7 +924,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "40c6cedabf1f32dcc3aa33846f4b49f04f9430adb39cba49545f0cee0c6180ef"
       },
       {
         "id": 161813094,
@@ -866,7 +936,8 @@
         "summary": {
           "zh": "点评提到排队等位。",
           "en": "Discusses waiting times."
-        }
+        },
+        "fingerprint": "622e272f1764196c174273dcd97bcdb14ded216c8052873ee87ec1a90ab4b7a5"
       },
       {
         "id": 160850584,
@@ -877,7 +948,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "f4c4e6d3e128405093513e06f9669421eca0d1fc0b746c3fb7146cc6d121058d"
       },
       {
         "id": 173939303,
@@ -888,7 +960,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "0d010b2b60bbd30699d9794ed4664e708bd99b0ec1594c72c3fdb3fdcaca9bd2"
       }
     ]
   },
@@ -908,7 +981,8 @@
         "summary": {
           "zh": "火锅与服务不错，价格稍高。",
           "en": "Enjoys the hot pot and service despite higher prices."
-        }
+        },
+        "fingerprint": "3e3f73750eceb1cfa3b55a539e279d47f55940d3d63dc1a488c5b5a83e9dea28"
       },
       {
         "id": 680190148,
@@ -919,7 +993,8 @@
         "summary": {
           "zh": "服务热情周到，让人觉得贴心。",
           "en": "Finds the staff warm and attentive."
-        }
+        },
+        "fingerprint": "3c82fc4b9d64691db7f7e6926b0a3adb227b7248f3b96078da090e3ac356bdae"
       },
       {
         "id": 680190232,
@@ -930,7 +1005,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "783b1af7e5aeb98715d2143d9a35da4d4d13cf0b816acb93b16537bc6c97510d"
       },
       {
         "id": 680190218,
@@ -941,7 +1017,8 @@
         "summary": {
           "zh": "点评提到服务、价格感受。",
           "en": "Discusses service and value."
-        }
+        },
+        "fingerprint": "156dccd6784faa1ab25491455501ddf848d6690189b13f9f889d2c1a664658d9"
       },
       {
         "id": 680190176,
@@ -952,7 +1029,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "621f33b58edadd1c28e492f4482402398c1bd87fece6a3aaf156b778d3ca9347"
       },
       {
         "id": 680190197,
@@ -963,7 +1041,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "7a2d6ba39186d2f0dc26e55572c84d234be3e1bccd879e9b43f2448f9b65b3de"
       }
     ]
   },
@@ -983,7 +1062,8 @@
         "summary": {
           "zh": "菜品新鲜、服务好，建议提前预约。",
           "en": "Praises fresh dishes and service; recommends a reservation."
-        }
+        },
+        "fingerprint": "b7a7605d1166922139ef42f4d68a10dd63231049894860e138fdcec3eb907e74"
       },
       {
         "id": 167422176,
@@ -994,7 +1074,8 @@
         "summary": {
           "zh": "喜欢汤与大块牛肉的搭配。",
           "en": "Enjoys the soup and generous beef pieces."
-        }
+        },
+        "fingerprint": "578f7e4b6a3f1ea63bcbdf63648aca2bfdf42503fa280c9ac10dcfb4dcdfbdd7"
       },
       {
         "id": 167021543,
@@ -1005,7 +1086,8 @@
         "summary": {
           "zh": "点评提到乳鸽、服务。",
           "en": "Discusses roast pigeon and service."
-        }
+        },
+        "fingerprint": "da45105d2649825a441e8788e2563667a4b68b92b0fc2e03c6e8c2e896ca427a"
       },
       {
         "id": 166215814,
@@ -1016,7 +1098,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "340dee4e1fead7dd8825f398804090235d2bb5e6336f1b4ce9d2aa3f5ab2f7cf"
       },
       {
         "id": 178769887,
@@ -1027,7 +1110,8 @@
         "summary": {
           "zh": "点评提到乳鸽、叉烧。",
           "en": "Discusses roast pigeon and char siu."
-        }
+        },
+        "fingerprint": "1981330b8ff6a48b9b6b3f0657d0b4a6a13e13db2f360698563b293046fbfec1"
       },
       {
         "id": 160351413,
@@ -1038,7 +1122,8 @@
         "summary": {
           "zh": "点评提到服务、价格感受。",
           "en": "Discusses service and value."
-        }
+        },
+        "fingerprint": "ff43935efcfb1b458f4853a08b26f749a6a33322bfff5269a264ec9e3957320f"
       },
       {
         "id": 163036742,
@@ -1049,7 +1134,8 @@
         "summary": {
           "zh": "点评提到乳鸽、环境氛围。",
           "en": "Discusses roast pigeon and atmosphere."
-        }
+        },
+        "fingerprint": "1b0f3dd04f793ea613c35886f98e801276374abddcab73006c72ed2bb80449c8"
       },
       {
         "id": 162225585,
@@ -1060,7 +1146,8 @@
         "summary": {
           "zh": "点评提到肠粉、早茶点心。",
           "en": "Discusses rice rolls and dim sum."
-        }
+        },
+        "fingerprint": "0486634ba4dfc64c841ad346c146b82e02330d1ef5e950bdb25522e4c3235283"
       },
       {
         "id": 176001774,
@@ -1071,7 +1158,8 @@
         "summary": {
           "zh": "点评提到虾饺、早茶点心。",
           "en": "Discusses shrimp dumplings and dim sum."
-        }
+        },
+        "fingerprint": "4b273930ffce94f1bf1cffdd32b033ae3c56a36bc80076857f4781b53718abe0"
       },
       {
         "id": 176029492,
@@ -1082,7 +1170,8 @@
         "summary": {
           "zh": "点评提到叉烧、价格感受。",
           "en": "Discusses char siu and value."
-        }
+        },
+        "fingerprint": "96c20e47c99c960b03703ef885b79b6bde543eb4dbd2ba91bb79c949998b658c"
       }
     ]
   },
@@ -1102,7 +1191,8 @@
         "summary": {
           "zh": "椰子鸡汤清甜，煲仔饭锅巴香。",
           "en": "Enjoys sweet coconut broth and crisp claypot-rice edges."
-        }
+        },
+        "fingerprint": "c7b598e2cd68aee28164edaf08866c3c75a4347932b90f704b7c65df748deb02"
       },
       {
         "id": 166206203,
@@ -1113,7 +1203,8 @@
         "summary": {
           "zh": "鸡肉配沙姜好吃，推荐香芋煲仔饭。",
           "en": "Likes chicken with sand ginger and taro claypot rice."
-        }
+        },
+        "fingerprint": "9e05702a153305ec07cc271e9149a01cce2c2b665671055265694cb3407df2d6"
       },
       {
         "id": 160246099,
@@ -1124,7 +1215,8 @@
         "summary": {
           "zh": "点评提到自助选择。",
           "en": "Discusses buffet selection."
-        }
+        },
+        "fingerprint": "f1181d1fc0c21ad4bfb1f67857c734b155e76382fb79be616e67fab8e655d6f6"
       },
       {
         "id": 161959335,
@@ -1135,7 +1227,8 @@
         "summary": {
           "zh": "点评提到椰子鸡汤。",
           "en": "Discusses coconut chicken broth."
-        }
+        },
+        "fingerprint": "fa48271472cf1ca523d05bfb7bca72e041cf85a4d89eda83f248660b936fa004"
       },
       {
         "id": 163692622,
@@ -1146,7 +1239,8 @@
         "summary": {
           "zh": "点评提到椰子鸡汤。",
           "en": "Discusses coconut chicken broth."
-        }
+        },
+        "fingerprint": "757bbe4c6fa41bdb2f63983029b5344464232fc6dff2839780471c6d8e06676c"
       },
       {
         "id": 163178931,
@@ -1157,7 +1251,8 @@
         "summary": {
           "zh": "点评提到椰子鸡汤。",
           "en": "Discusses coconut chicken broth."
-        }
+        },
+        "fingerprint": "99e381be22096df8ef2bcaa31f38d4dad4afdf1b536c32be57325229d4fd0472"
       },
       {
         "id": 166783226,
@@ -1168,7 +1263,8 @@
         "summary": {
           "zh": "点评提到椰子鸡汤。",
           "en": "Discusses coconut chicken broth."
-        }
+        },
+        "fingerprint": "ec5361402fd6f23042231ca4e4a3b66be8af7f4811c03aa55ab8074b724415ff"
       },
       {
         "id": 165446266,
@@ -1179,7 +1275,8 @@
         "summary": {
           "zh": "点评提到椰子鸡汤。",
           "en": "Discusses coconut chicken broth."
-        }
+        },
+        "fingerprint": "773e2898273330fc7a8fbe4a217821a0b1030e9c36c426bba914c6cae6b9412b"
       },
       {
         "id": 170313806,
@@ -1190,7 +1287,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "b76eaf6895c948d04c3a7f2b293b9efc170db025413630facb8793fdd5895c52"
       },
       {
         "id": 166225322,
@@ -1201,7 +1299,8 @@
         "summary": {
           "zh": "点评提到椰子鸡汤。",
           "en": "Discusses coconut chicken broth."
-        }
+        },
+        "fingerprint": "a72c2f2f9a72e64223ef8d19ad7451d959bd1b188ad337cb864b148943a43094"
       }
     ]
   },
@@ -1221,7 +1320,8 @@
         "summary": {
           "zh": "古典环境配川菜，价格可接受。",
           "en": "Enjoys Sichuan cooking in a traditional setting at acceptable prices."
-        }
+        },
+        "fingerprint": "fa98988b9f3f3d1b27c769ab2c64ab6be982ae0c43c052549280adafdba39863"
       },
       {
         "id": 167166489,
@@ -1232,7 +1332,8 @@
         "summary": {
           "zh": "对甜品体验评价尚可。",
           "en": "Finds the dessert experience acceptable."
-        }
+        },
+        "fingerprint": "b39222b44182a14d0da741f7bbd557145a6e8b31e682432feed23adb90a865bb"
       },
       {
         "id": 163344699,
@@ -1243,7 +1344,8 @@
         "summary": {
           "zh": "点评提到排队等位。",
           "en": "Discusses waiting times."
-        }
+        },
+        "fingerprint": "150d9f2f9aa15be115f46b923675c56ec0e1265cc7082487c443780d6a571899"
       },
       {
         "id": 167581384,
@@ -1254,7 +1356,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "c17c76b53780072a7989bb1d51d8de432094300c8ba7f1e73ef5f51ccf7e73fb"
       },
       {
         "id": 163963102,
@@ -1265,7 +1368,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "34f9e87fd6e569cce18a68e75d535de1088aa0d384e032688a4aab74fc599c35"
       },
       {
         "id": 163391935,
@@ -1276,7 +1380,8 @@
         "summary": {
           "zh": "点评提到排队等位。",
           "en": "Discusses waiting times."
-        }
+        },
+        "fingerprint": "22488debc419a8e018bd3b554afff0a70d59c20c0f2b64c499663942e232b320"
       },
       {
         "id": 166067804,
@@ -1287,7 +1392,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "4e4137a2767921daed32a4839350dfbf8d3274b589e9fda23b30a35769e3f2f2"
       },
       {
         "id": 168521218,
@@ -1298,7 +1404,8 @@
         "summary": {
           "zh": "点评提到价格感受。",
           "en": "Discusses value."
-        }
+        },
+        "fingerprint": "287b26f0e01bc2abdd4b0e9daff5a94c397308aa6836dc9957be8486e61fba9e"
       },
       {
         "id": 167510468,
@@ -1309,7 +1416,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "e3a7fe8578fc4e7e5572ed5bb53e4dcd0ca1a230014fd0a884e6fc396d0d9473"
       },
       {
         "id": 167784687,
@@ -1320,7 +1428,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "e63e24f57b79f4d232736d94bd4e01be73377f6eecddff388eed569e04dc983f"
       }
     ]
   },
@@ -1340,7 +1449,8 @@
         "summary": {
           "zh": "市井氛围熟悉，桌椅干净。",
           "en": "Likes the everyday neighborhood feel and clean tables."
-        }
+        },
+        "fingerprint": "567ac09c4bb92955e147a46520ec85c907198036e7d90c02ad2aeff117e0b809"
       },
       {
         "id": 708394856,
@@ -1351,7 +1461,8 @@
         "summary": {
           "zh": "店铺较隐蔽，饭点建议早到。",
           "en": "Finds it tucked away; recommends arriving before lunch crowds."
-        }
+        },
+        "fingerprint": "b9bb9c6e9b1daf3154a5cef573d3c53c2efa4aca3d5d343296bd756f4617a902"
       },
       {
         "id": 708394863,
@@ -1362,7 +1473,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "704f077ce24a598bbabdd11c9c63f16333df4639338d2020b78148766dcccafc"
       },
       {
         "id": 708394884,
@@ -1373,7 +1485,8 @@
         "summary": {
           "zh": "点评提到价格感受。",
           "en": "Discusses value."
-        }
+        },
+        "fingerprint": "42c4a21a3b86942dc2b8c97e573f4ac9b8cc9ec7b5972ed34437a0d9e8c2c0a0"
       },
       {
         "id": 708394870,
@@ -1384,7 +1497,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "7b1196188170b6d2b370f39af0c4c0b93566b63444ab0b94826aad04e86493d5"
       }
     ]
   },
@@ -1404,7 +1518,8 @@
         "summary": {
           "zh": "环境适合家庭，觉得粥价格偏高。",
           "en": "Likes the family-friendly setting; finds the congee pricey."
-        }
+        },
+        "fingerprint": "6e0e19fa88a02f1f7187b6a26861f737761c3b1385e6df30c65aa3bfc0236fe2"
       },
       {
         "id": 161162877,
@@ -1415,7 +1530,8 @@
         "summary": {
           "zh": "户外环境舒服，人多时上菜偏慢。",
           "en": "Enjoys outdoor seating; service slows when busy."
-        }
+        },
+        "fingerprint": "fcaa0058cbef20a3fdc09d23264d4c7dc72760e3ead8473f45d8787896a12dd8"
       },
       {
         "id": 168279615,
@@ -1426,7 +1542,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "2bbd7eac59f12166fcbf1481cf8f02d157ec10a96601d5c75b9c05149a6dc0d1"
       },
       {
         "id": 166283491,
@@ -1437,7 +1554,8 @@
         "summary": {
           "zh": "点评提到价格感受。",
           "en": "Discusses value."
-        }
+        },
+        "fingerprint": "73cf30a956b60cc530feb6c608547071c4a29f611b01fb8b83214bfa0f9e8df4"
       },
       {
         "id": 165764212,
@@ -1448,7 +1566,8 @@
         "summary": {
           "zh": "点评提到环境氛围、价格感受。",
           "en": "Discusses atmosphere and value."
-        }
+        },
+        "fingerprint": "ef8787d525588637a3ee5a1f98ca7f14ba60a2d5fc4d0a7737aa566735a4b984"
       },
       {
         "id": 165443446,
@@ -1459,7 +1578,8 @@
         "summary": {
           "zh": "点评提到价格感受。",
           "en": "Discusses value."
-        }
+        },
+        "fingerprint": "bcd2f89f80d62b569537e1a12aaace93c5391243c6d5dd68d40e443bbd0e849a"
       },
       {
         "id": 167708595,
@@ -1470,7 +1590,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "39750fc87fb3ab62aaffe701bddd96144fc78ea2d99cc5a39b57a205e8beff07"
       },
       {
         "id": 167148290,
@@ -1481,7 +1602,8 @@
         "summary": {
           "zh": "点评提到海鲜、粥品。",
           "en": "Discusses seafood and congee."
-        }
+        },
+        "fingerprint": "3ab6009a4345e7cf59dd6d100dd95737fe4dd9f8d2333450076d91f44035d2cb"
       },
       {
         "id": 165722185,
@@ -1492,7 +1614,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "19df6de0f197944b122b1566947bec0b3b7dd9f3eb6ec5a753bb6bb75762e335"
       }
     ]
   },
@@ -1512,7 +1635,8 @@
         "summary": {
           "zh": "虾饺与甜品好吃，服务热情。",
           "en": "Enjoys shrimp dumplings, desserts and attentive service."
-        }
+        },
+        "fingerprint": "6a4094642e543797d6f7ff7486539f0966b075b208ebdbe4b69d53ea55051f28"
       },
       {
         "id": 179642368,
@@ -1523,7 +1647,8 @@
         "summary": {
           "zh": "推荐虾饺和松软马拉糕。",
           "en": "Recommends shrimp dumplings and soft steamed sponge cake."
-        }
+        },
+        "fingerprint": "23befdd1e78a091777133955d27132268c61478fda705c6ef980c172f86b9610"
       },
       {
         "id": 162779404,
@@ -1534,7 +1659,8 @@
         "summary": {
           "zh": "点评提到叉烧、肠粉。",
           "en": "Discusses char siu and rice rolls."
-        }
+        },
+        "fingerprint": "4a5f31c0cdfc5da1c279e74e13dd7d6919904a202a45618287d11fc6c2c7fad5"
       },
       {
         "id": 166461026,
@@ -1545,7 +1671,8 @@
         "summary": {
           "zh": "点评提到早茶点心、下午茶。",
           "en": "Discusses dim sum and afternoon tea."
-        }
+        },
+        "fingerprint": "d38de2f5ec4baae57c938921d62e1fa45b4590b7bfb597fafa6132bf4f7aeb5e"
       },
       {
         "id": 179649476,
@@ -1556,7 +1683,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "b13c3a63560aa49bdb83789b56efc6b22ecebd27c53f9644e08e48d174e7e01d"
       },
       {
         "id": 179612603,
@@ -1567,7 +1695,8 @@
         "summary": {
           "zh": "点评提到乳鸽、豆腐。",
           "en": "Discusses roast pigeon and tofu."
-        }
+        },
+        "fingerprint": "66231260703ae3e07ca5db04c197189eee965a78cd5ca8d7107d9f04f43e7471"
       },
       {
         "id": 180193478,
@@ -1578,7 +1707,8 @@
         "summary": {
           "zh": "点评提到早茶点心、服务。",
           "en": "Discusses dim sum and service."
-        }
+        },
+        "fingerprint": "461c77aeac14de3b8bdf54351f9ceef07a256688a92de98508e55a4f1fe14d6b"
       },
       {
         "id": 179958624,
@@ -1589,7 +1719,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "a72f15fed75fa870a62b3d46b513a07bdbf0f7d589401d508b7bb192dd39cd85"
       },
       {
         "id": 179623502,
@@ -1600,7 +1731,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "a4fd007f4b6a0ceaae72dd7365ee67515effa03ed7cba62bd000896986815b52"
       },
       {
         "id": 167054197,
@@ -1611,7 +1743,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "91bc05561f92255bdd905ea3b53ecd88fcc5e0318b6849fcd932b8b107b4eeb1"
       }
     ]
   },
@@ -1631,7 +1764,8 @@
         "summary": {
           "zh": "牛羊扒与寿司选择丰富，服务热情。",
           "en": "Enjoys the steak, lamb and sushi selection with warm service."
-        }
+        },
+        "fingerprint": "bc0d5c1132a57d391c7241bc1c95040dc958a2810143a0517ba6654b52cc157b"
       },
       {
         "id": 175144008,
@@ -1642,7 +1776,8 @@
         "summary": {
           "zh": "品种丰富，可请服务员协助取饮品。",
           "en": "Likes the variety and staff help with drinks."
-        }
+        },
+        "fingerprint": "17035b9fc64153db907dfa54fec4f1ebf50fea9d6d89dfcdc92fe000cf6556cc"
       },
       {
         "id": 166386820,
@@ -1653,7 +1788,8 @@
         "summary": {
           "zh": "点评提到粥品、牛肉菜品。",
           "en": "Discusses congee and beef dishes."
-        }
+        },
+        "fingerprint": "c9024e953e74a1ac59ae77a35ddf136e26b47a8122ac1bc5f770619e29484bd4"
       },
       {
         "id": 163371270,
@@ -1664,7 +1800,8 @@
         "summary": {
           "zh": "点评提到自助选择、服务。",
           "en": "Discusses buffet selection and service."
-        }
+        },
+        "fingerprint": "c95cb55daa7ade6a691ee7f7794ea0bf254e3fde578d514fcf71f12b2b612ef7"
       },
       {
         "id": 171623367,
@@ -1675,7 +1812,8 @@
         "summary": {
           "zh": "点评提到海鲜。",
           "en": "Discusses seafood."
-        }
+        },
+        "fingerprint": "4eceb28bdd2dd5deea6c4d2a51c4b9e8b9b8d7ceeaca0c849acc460e19fff381"
       },
       {
         "id": 170183290,
@@ -1686,7 +1824,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "1fdfdddab466cc96451e8311e8821eae7d71a2df6e14cda1d7f3a1855599f3fe"
       },
       {
         "id": 165009733,
@@ -1697,7 +1836,8 @@
         "summary": {
           "zh": "点评提到自助选择、价格感受。",
           "en": "Discusses buffet selection and value."
-        }
+        },
+        "fingerprint": "864b768a04553953651b40bffb682320e1480deb46a76ff745245d2fcdab3310"
       },
       {
         "id": 543621884,
@@ -1708,7 +1848,8 @@
         "summary": {
           "zh": "点评提到海鲜、蚝鲜。",
           "en": "Discusses seafood and oysters."
-        }
+        },
+        "fingerprint": "df1578b5e2ce57d88e9909545c83c40e0b91ea9d45dfc3b56f362998156555a4"
       },
       {
         "id": 543622633,
@@ -1719,7 +1860,8 @@
         "summary": {
           "zh": "点评提到肠粉、服务。",
           "en": "Discusses rice rolls and service."
-        }
+        },
+        "fingerprint": "8306ba2eb861cb1e3124722a91267f82c6756fb543c987d9e3f175b9deb98230"
       },
       {
         "id": 543621142,
@@ -1730,7 +1872,8 @@
         "summary": {
           "zh": "点评提到甜品。",
           "en": "Discusses desserts."
-        }
+        },
+        "fingerprint": "56c3efee672a3b6ae6a3d968ac831ac9e06f4bbe1610102009ee4b258de98cbc"
       }
     ]
   },
@@ -1750,7 +1893,8 @@
         "summary": {
           "zh": "高空景观、蛋糕与家庭服务加分。",
           "en": "Appreciates high-floor views, cakes and family-friendly service."
-        }
+        },
+        "fingerprint": "b8a7932ec0d25a44bd79842f5e0d804f92c698c371a3a27677af31add8aa4dc2"
       },
       {
         "id": 171780268,
@@ -1761,7 +1905,8 @@
         "summary": {
           "zh": "景观服务出色，午餐没有刺身略遗憾。",
           "en": "Praises views and service; misses sashimi at weekday lunch."
-        }
+        },
+        "fingerprint": "14f627c3dd4af245760f0985df453db34f1cd411d61a967d37d4fbeeb0232790"
       },
       {
         "id": 166295360,
@@ -1772,7 +1917,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "eeb3aca113724dd77038d861edb0c9efc1ae076836a7ebf3fddc5c4c98a6348c"
       },
       {
         "id": 165192900,
@@ -1783,7 +1929,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "ee31a3122b217dc756dbf91488d802da6f36f283c088cd9d682c10221c2a3e8e"
       },
       {
         "id": 170799487,
@@ -1794,7 +1941,8 @@
         "summary": {
           "zh": "点评提到甜品、服务。",
           "en": "Discusses desserts and service."
-        }
+        },
+        "fingerprint": "a3dab0ab7a961cf3bc2c48089afabbffb83de05495509ced51ac0857cc6c2224"
       },
       {
         "id": 168805092,
@@ -1805,7 +1953,8 @@
         "summary": {
           "zh": "点评提到海鲜、意式面食。",
           "en": "Discusses seafood and pasta."
-        }
+        },
+        "fingerprint": "1ed99fcefc50fc77bb9d700a2a8a4014c01533d01f4d9373f786a810496d32f6"
       },
       {
         "id": 167946965,
@@ -1816,7 +1965,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "8c908af70d8c0606c3932a656adf2ef75c25362fdef5cb9f86491d095b45569c"
       },
       {
         "id": 174189736,
@@ -1827,7 +1977,8 @@
         "summary": {
           "zh": "点评提到景观。",
           "en": "Discusses views."
-        }
+        },
+        "fingerprint": "36b97f4f5c743fc537fb2ef34b540d5e33dd59f9a23c93fe2ab331d4d81becf8"
       },
       {
         "id": 163843773,
@@ -1838,7 +1989,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "c2b9edb2871cc3320b1aae2fcf1fefb0da945886433f59cef4441de9fa635398"
       },
       {
         "id": 167937057,
@@ -1849,7 +2001,8 @@
         "summary": {
           "zh": "点评提到自助选择。",
           "en": "Discusses buffet selection."
-        }
+        },
+        "fingerprint": "15b3d284704fec5fb59dc015ec0b9786c2b3e05cfa0482491d229cdc9d9a6cce"
       }
     ]
   },
@@ -1869,7 +2022,8 @@
         "summary": {
           "zh": "喜欢京味烤鸭与川菜的融合。",
           "en": "Enjoys the combination of Beijing-style duck and Sichuan cooking."
-        }
+        },
+        "fingerprint": "4fa454b2367dabb0e942f0f4c15a4e57dab9593ead48628fbbc06d7003b98cfb"
       },
       {
         "id": 164920182,
@@ -1880,7 +2034,8 @@
         "summary": {
           "zh": "烤鸭现场片切，虾球与鳕鱼也不错。",
           "en": "Enjoys carved roast duck, prawns and cod."
-        }
+        },
+        "fingerprint": "77337dbab837ade38750237f828d1a2c729b5d09c0427891b771e2392c517356"
       },
       {
         "id": 221569048,
@@ -1891,7 +2046,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "b0b137bf6d7a00978053d927719c60e76359ff06b2601d5e9ce841bd4948fd42"
       },
       {
         "id": 163692081,
@@ -1902,7 +2058,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "ceb60525a81b712377587ca58e2cb65dbf0029270b998004a2f7304b3da18a1e"
       }
     ]
   },
@@ -1922,7 +2079,8 @@
         "summary": {
           "zh": "赞赏虾球、文思豆腐等创新。",
           "en": "Appreciates creative prawns and finely cut tofu."
-        }
+        },
+        "fingerprint": "05e703754cb5947960e9b8de2f8a925fdafea3f6cf0eb9e2dcedba1b876921cb"
       },
       {
         "id": 219875209,
@@ -1933,7 +2091,8 @@
         "summary": {
           "zh": "关注淮扬手艺与潮汕食材的交流。",
           "en": "Discusses Huaiyang technique and Chaozhou ingredients."
-        }
+        },
+        "fingerprint": "67c43d08c5a187b9db024a3f7c08c1a07143dcce36b353bb32904da008d1a140"
       },
       {
         "id": 215609969,
@@ -1944,7 +2103,8 @@
         "summary": {
           "zh": "点评提到景观。",
           "en": "Discusses views."
-        }
+        },
+        "fingerprint": "71a5913d5dfc7587c38e35666aad3253afaa736c5fae5e5db885bbba8f2d891d"
       },
       {
         "id": 163393840,
@@ -1955,7 +2115,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "17ec26a0cccf3b8dac28048b519e31c5e754d03295cc321db2c4c8fd3e2c4878"
       },
       {
         "id": 173855100,
@@ -1966,7 +2127,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "56c4f6a8c188fadcdcb367367cc3878be88c82af4e584744060c05d9ddab4c82"
       },
       {
         "id": 163235632,
@@ -1977,7 +2139,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "fa2bb9e9f69ecc17f0b8db81485a67eedae80bf3867377b82934f8f6147cc1ec"
       },
       {
         "id": 162612353,
@@ -1988,7 +2151,8 @@
         "summary": {
           "zh": "点评提到价格感受。",
           "en": "Discusses value."
-        }
+        },
+        "fingerprint": "999c19a4a9b114afc10da64655ef85949c99995a62943957fe289eaeb72eba91"
       },
       {
         "id": 164886250,
@@ -1999,7 +2163,8 @@
         "summary": {
           "zh": "点评提到环境氛围、价格感受。",
           "en": "Discusses atmosphere and value."
-        }
+        },
+        "fingerprint": "4a0a0276274b9ed2e7dd09c235076ddecc8ade96cbd18eafb667a96bbd1a11cb"
       }
     ]
   },
@@ -2019,7 +2184,8 @@
         "summary": {
           "zh": "上菜快、口味清爽，店员帮忙拍照。",
           "en": "Likes quick service, lighter flavors and staff help with photos."
-        }
+        },
+        "fingerprint": "9d26378e88fc27d00ebc7cc038027fcc8d7e5f417cbae53add95abd77d6c22f1"
       },
       {
         "id": 175938053,
@@ -2030,7 +2196,8 @@
         "summary": {
           "zh": "高空景观与纪念日安排令人满意。",
           "en": "Enjoys the high-floor views and thoughtful anniversary touches."
-        }
+        },
+        "fingerprint": "07f6d181bb5c924f332e9476b7c81cdb997bb8cb5b8f05cdfd11c00bd304a0ab"
       },
       {
         "id": 175912225,
@@ -2041,7 +2208,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "22dd6f47294c458775b0ec67b080522509517fdea527d7c757ea0956b3ad1652"
       },
       {
         "id": 178634398,
@@ -2052,7 +2220,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "91da9ed32dbb3d35585fcbe4970e27fe78f33fc2931d9ba1efb13c7a33f256f4"
       },
       {
         "id": 176220034,
@@ -2063,7 +2232,8 @@
         "summary": {
           "zh": "点评提到景观、价格感受。",
           "en": "Discusses views and value."
-        }
+        },
+        "fingerprint": "45ff371c365e667e82a3ca47dc1643394c24bbaa48ffd269c457e80bec829fdb"
       },
       {
         "id": 169947707,
@@ -2074,7 +2244,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "d59368c33c42e60e3e624a01d0a0e498f337938ffb594f0141aa6312081bb45f"
       },
       {
         "id": 164870944,
@@ -2085,7 +2256,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "55665fc697ef7fe995e3c1a7fd8c2800c587dd571d860ee0837b7718034f2867"
       },
       {
         "id": 162699969,
@@ -2096,7 +2268,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "13e346c73f4451a8b4c1a3921f7b23ccef7c5599e286bf778cb88ea828295284"
       },
       {
         "id": 173059204,
@@ -2107,7 +2280,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "0dbef6e6e713bf8eb850b6b8a49a2617614973783e2074dd268b1c0dfc32afa2"
       },
       {
         "id": 165416574,
@@ -2118,7 +2292,8 @@
         "summary": {
           "zh": "点评提到服务。",
           "en": "Discusses service."
-        }
+        },
+        "fingerprint": "4685e0b1964d001f3676d5795dcc31a2c4d3a9f2778bdeb5b1779f7d9463ff13"
       }
     ]
   }

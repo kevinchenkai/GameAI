@@ -13,7 +13,7 @@
 
 ## 内容边界
 
-餐厅评论有真实作者与来源，展示摘要／译文。现有 70 条榜单记录取得 2+ 条，24 条取得 10+ 条；其余按实际可取得数量展示。完整京东详情页受访问限制，商品资料只展示取得的图片、SKU、款式及标题规格，价格和库存联系确认。榜单不伪造销量或投票名次。POI 仍为片区近似坐标。地陪档案均为虚构演示。
+餐厅评论有真实作者与来源，展示摘要／译文。现有 102 条榜单记录取得 2+ 条，51 条取得 10+ 条（独立门店为89/91与46/91）；其余按实际可取得数量展示。完整京东详情页受访问限制，商品资料只展示取得的图片、SKU、款式及标题规格，价格和库存联系确认。榜单不伪造销量或投票名次。POI 仍为片区近似坐标。地陪档案均为虚构演示。
 
 [内容来源](CONTENT_SOURCES_V5.md) · [验证记录](QA_V5.md) · [内置 Image Gen 资产与提示词](IMAGE_PROMPTS_V5.json)。此前版本资料保存在 CONTENT_SOURCES_V3.md、CONTENT_SOURCES_V4.md、QA_V2.md 至 QA_V4.md。
 
@@ -25,6 +25,12 @@
 
 ## 发布
 
-先运行 `./apec26/deploy.sh` 核对 dry-run，再运行 `./apec26/deploy.sh --apply`。仅同步 `/www/wwwroot/g.ismayday.mobi/apec26/` 的入口、CSS、JS 与 assets，资源先于入口。不修改 Nginx，不删除其他目录文件；新图片使用新文件名，HTML 资源版本为 `?v=5`。
+先运行 `./apec26/deploy.sh` 核对 dry-run，再运行 `./apec26/deploy.sh --apply`。仅同步 `/www/wwwroot/g.ismayday.mobi/apec26/` 的入口、CSS、JS 与 assets，资源先于入口。不修改 Nginx，不删除其他目录文件；新图片使用新文件名，本轮变更资源使用 `?v=6`，其余沿用 `?v=5`。
 
-用户授权提交与推送：GitHub `main` 和 Ezone `main:master`。保留用户 Git author／committer，每次提交附 `Co-authored-by: Codex <codex@openai.com>`。
+2026-10-02 用户已明确授权本轮数据补齐的 Git 提交、推送和部署。推送目标为 GitHub `main` 和 Ezone `main:master`。保留用户 Git author／committer，每次提交附 `Co-authored-by: Codex <codex@openai.com>`。
+
+## 数据补齐审核
+
+[新增数量与逐店缺口](research/v6/REPORT.md) · [商品小样核对](research/v6/product-verification.json) · [测试记录](research/v6/tests-v6.json)。评论共751个独立键，净增265；仍有45家独立门店不足10条，累计缺192条。商品小样6个同SKU列表匹配、2个当前未确认，未取得完整官方参数页。原文缓存不入Git。
+
+复现：`python3 apec26/scripts/build-reviews-v5.py`、`python3 apec26/scripts/build-gifts-v5.py`。公开采集适配器只跟随正常页面/按钮；遇403/429/432停止该域名。Tripadvisor可读缓存由离线解析器提取，并人工逐条写短摘要；不将缓存称为实时分页。

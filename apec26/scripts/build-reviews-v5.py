@@ -2,18 +2,21 @@
 """Produce short bilingual review summaries from attributed public records.
 Topic summaries are deliberately neutral: a star rating is not a sentiment label.
 """
-import json,re,datetime
+import json,re,datetime,hashlib,unicodedata
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 venues=json.loads((root/'restaurants-v4.js').read_text().split('=',1)[1].strip().rstrip(';'))
 raw=[]
-sourceFiles=list((root/'research/v5').glob('reviews-*-public.json'))+list((root/'research/v5').glob('reviews-public.json'))
+sourceFiles=sorted({f.name:f for f in (root/'research/v5').glob('reviews*public.json')}.values())
 cache=root/'research/v5/.review-cache';cache.mkdir(exist_ok=True)
-sourceFiles=list({f.name:root/'research/v5'/f.name for f in sourceFiles+list(cache.glob('reviews-*-public.json'))+list(cache.glob('reviews-public.json'))}.values())
 for f in sourceFiles:
- cached=cache/f.name
- rows=json.loads((cached if cached.exists() else f).read_text())
- if any(c.get('content') for v in rows for c in v.get('comments',[])) and not cached.exists():cached.write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+ rows=json.loads((cache/f.name if (cache/f.name).exists() else f).read_text())
+ raw.extend(rows)
+# V6 sources are fully reproducible from committed summaries. Raw bodies are optional.
+v6=root/'research/v6';v6Cache=v6/'.raw-cache'
+v6Files=sorted({f.name:v6/f.name for f in list(v6.glob('reviews-*.json'))+list(v6Cache.glob('reviews-*.json'))}.values()) if v6.exists() else []
+for f in v6Files:
+ rows=json.loads((v6Cache/f.name if (v6Cache/f.name).exists() else f).read_text())
  raw.extend(rows)
 topics=[('椰子鸡|椰子雞','椰子鸡汤','coconut chicken broth'),('乳鸽|乳鴿','乳鸽','roast pigeon'),('虾饺|蝦餃','虾饺','shrimp dumplings'),('烧鹅|燒鵝|卤鹅|鹵鵝','烧卤鹅','roast or braised goose'),('叉烧|叉燒','叉烧','char siu'),('肠粉|腸粉|红米肠|紅米腸','肠粉','rice rolls'),('奶茶','奶茶','milk tea'),('菠萝|菠蘿','菠萝包','pineapple buns'),('蛋挞|蛋撻','蛋挞','egg tarts'),('豆腐','豆腐','tofu'),('火腿','火腿','ham'),('海鲜|海鮮','海鲜','seafood'),('生蚝|生蠔|鲜蚝|鮮蠔','蚝鲜','oysters'),('鹅掌|鵝掌','鹅掌','goose feet'),('火锅|火鍋','火锅','hot pot'),('粥','粥品','congee'),('早茶|点心|點心','早茶点心','dim sum'),('烤鸭|燒鴨|烧鸭','烤鸭','roast duck'),('牛排|牛扒|牛肉','牛肉菜品','beef dishes'),('羊排|羊肉','羊肉菜品','lamb'),('披萨|披薩|pizza','披萨','pizza'),('意面|意粉|千层面|千層麵|pasta','意式面食','pasta'),('咖喱|curry','咖喱','curry'),('烤饼|烤餅|馕|naan','烤饼','naan'),('下午茶','下午茶','afternoon tea'),('蛋糕|甜品|甜点|甜點','甜品','desserts'),('自助','自助选择','buffet selection'),('服务|服務','服务','service'),('环境|環境|装修|裝修|氛围|氛圍','环境氛围','atmosphere'),('风景|風景|景色|海景|夜景|高空|视野|視野','景观','views'),('排队|排隊|等位|等候','排队等位','waiting times'),('贵|貴|价格|價格|价钱|價錢|性价比|性價比','价格感受','value')]
 # Hand-edited summaries of the first visible records. Each is a paraphrase, not a quote.
@@ -119,8 +122,12 @@ for venue in raw:
  if not venue.get('comments'):continue
  items=records.setdefault(venue['id'],[]);seen={str(x['id']) for x in items}
  for c in venue['comments']:
-  if not c.get('content','').strip() or str(c['id']) in seen:continue
-  seen.add(str(c['id']));items.append({'id':str(c['id']),'author':c.get('author') or 'Platform user','text':summarize(c),'score':c.get('score'),'date':date(c.get('date')),'source':c['source'],'platform':'Trip.com' if 'trip.com/' in c['source'] and 'ctrip.com' not in c['source'] else '携程 / Ctrip'})
+  if not (c.get('content','').strip() or c.get('summary')) or str(c['id']) in seen:continue
+  if c.get('content'):
+   body=unicodedata.normalize('NFKC',c['content']).casefold()
+   c['fingerprint']=hashlib.sha256(re.sub(r'[^\w]','',body).encode()).hexdigest()
+  if c.get('fingerprint') and any(x.get('fingerprint')==c['fingerprint'] for x in items):continue
+  seen.add(str(c['id']));items.append({'id':str(c['id']),'author':c.get('author') or 'Platform user','text':summarize(c),'score':c.get('score'),'date':date(c.get('date')),'source':c['source'],'fingerprint':c.get('fingerprint'),'idKind':c.get('idKind','platform_review_id'),'sourceVisibility':c.get('sourceVisibility','main'),'platform':c.get('platform') or ('Trip.com' if 'trip.com/' in c['source'] and 'ctrip.com' not in c['source'] else '携程 / Ctrip')})
 # Preserve the earlier attributed review when it is a different author.
 for r in venues:
  sourceId=r['id'].replace('local-v4-','')
@@ -132,10 +139,13 @@ for r in venues:
 counts=[len(records[r['id']]) for r in venues]
 print('Venues',len(venues),'with 2+ reviews',sum(n>=2 for n in counts),'with 10+ reviews',sum(n>=10 for n in counts),'unique review IDs',len({c['id'] for rs in records.values() for c in rs}))
 # Commit attribution facts and brief summaries, without republishing full review bodies.
-for f in sourceFiles:
- rows=json.loads((cache/f.name if (cache/f.name).exists() else f).read_text())
+for f in sourceFiles+v6Files:
+ rawDir=cache if f.parent.name=='v5' else v6Cache
+ rows=json.loads((rawDir/f.name if (rawDir/f.name).exists() else f).read_text())
  for v in rows:
   v.pop('taComments',None)
   for c in v.get('comments',[]):
-   c['summary']=summarize(c);c['date']=date(c.get('date'));c.pop('content',None);c.pop('translated',None)
+   c['summary']=summarize(c);c['date']=date(c.get('date'));
+   if c.get('content'):c['fingerprint']=hashlib.sha256(re.sub(r'[^\w]','',unicodedata.normalize('NFKC',c['content']).casefold()).encode()).hexdigest()
+   c.pop('content',None);c.pop('translated',None);c.pop('title',None)
  f.write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')

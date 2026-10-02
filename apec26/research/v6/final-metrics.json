@@ -1,0 +1,16 @@
+{
+  "baselineCommit": "52398d6",
+  "before": 486,
+  "after": 751,
+  "newKeys": 294,
+  "removedLegacyKeys": 29,
+  "netAdded": 265,
+  "uniqueVenues": 91,
+  "boardEntries": 104,
+  "listComplete": 102,
+  "detailComplete": 51,
+  "uniqueListComplete": 89,
+  "uniqueDetailComplete": 46,
+  "remainingDetailRecords": 192,
+  "remainingListRecords": 2
+}

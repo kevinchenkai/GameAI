@@ -1,0 +1,440 @@
+[
+  {
+    "id": "ta-6001897",
+    "source": "https://www.trip.com/restaurant/china/shenzhen/detail/din-tai-fung-11334307/",
+    "poi": "11334307",
+    "business": "5184593",
+    "nameTokens": [
+      "鼎泰丰",
+      "万象城"
+    ],
+    "addressTokens": [
+      "宝安南路",
+      "万象城"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "鼎泰丰(万象城店)",
+      "address": "宝安南路1881号万象城一期5层568铺",
+      "poi": 11334307,
+      "business": 5184593
+    },
+    "comments": [
+      {
+        "id": "165443972",
+        "author": "那那岛",
+        "date": "2021-01-01",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5184593/12/165443972.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "7b5504a620700ffc7074a819195c8dd397d8ad7b6eb156c59b8cafe4ed6474fd"
+      },
+      {
+        "id": "165574224",
+        "author": "那那岛",
+        "date": "2021-01-19",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5184593/12/165574224.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        },
+        "fingerprint": "e2563f2b0d9d673a403c12c23cf388cf4c69293c946ea618dc53a988bf6fc9e4"
+      },
+      {
+        "id": "153048781",
+        "author": "阳光般的希望",
+        "date": "2018-01-28",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5184593/12/153048781.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到牛肉菜品。",
+          "en": "Discusses beef dishes."
+        },
+        "fingerprint": "719528ff186d0ef91b5bee1382bfab8433435b1a50994b3d4a6ef1e7480fb325"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=5184593&businessType=12",
+        "ids": [
+          "165443972",
+          "165574224",
+          "153048781"
+        ]
+      }
+    ],
+    "platformTotal": 116,
+    "pagination": "Normal main page and visible folded-review link; initial public batch only, no synthetic pagination."
+  },
+  {
+    "id": "ta-4964616",
+    "source": "https://www.trip.com/restaurant/china/shenzhen/detail/haidilao-hotpot-11327817/",
+    "poi": "11327817",
+    "business": "5178103",
+    "nameTokens": [
+      "海底捞",
+      "卓越"
+    ],
+    "addressTokens": [
+      "卓越",
+      "F4"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "海底捞火锅(深圳卓越店)",
+      "address": "广东省深圳市福田区福华三路与海田路交叉口卓越INTOWN东区(intown店)F4",
+      "poi": 11327817,
+      "business": 5178103
+    },
+    "comments": [
+      {
+        "id": "167251157",
+        "author": "YoYo_8P8B6O6S",
+        "date": "2021-07-23",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5178103/12/167251157.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到牛肉菜品。",
+          "en": "Discusses beef dishes."
+        },
+        "fingerprint": "c50ccd936042d890d48b0e5d0c5b82f56a1bc6479c579e461ccd6389fa655b42"
+      },
+      {
+        "id": "167338842",
+        "author": "那蓝1900",
+        "date": "2021-08-01",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5178103/12/167338842.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到奶茶。",
+          "en": "Discusses milk tea."
+        },
+        "fingerprint": "fc33ca1724975c449ae2c5897ac044293ec5f2045f0467c831f1df2172bbce00"
+      },
+      {
+        "id": "163007549",
+        "author": "天涯海角之浪漫",
+        "date": "2020-03-14",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5178103/12/163007549.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、价格感受。",
+          "en": "Discusses service and value."
+        },
+        "fingerprint": "b07cb07a6e7c0938cde487aee9ed5baa03f39a56da0427b0ec0946fa250bbf80"
+      },
+      {
+        "id": "163167037",
+        "author": "流浪的风景",
+        "date": "2020-04-04",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5178103/12/163167037.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "6ddff46f885c3a2ba39b83e4a4de2883268cbf81871577ceef905c5e18e22589"
+      },
+      {
+        "id": "177646903",
+        "author": "展日吴胜中Nick Wu",
+        "date": "2023-07-18",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5178103/12/177646903.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        },
+        "fingerprint": "81ac31cbc0db8b8672e65746a0f32c96212c009e0a98e931d7eb1f4155847825"
+      },
+      {
+        "id": "74305879",
+        "author": "Gracie",
+        "date": "2016-05-21",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5178103/12/74305879.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "1119f1eb49f8a7b14cde5b41d6ae0eb789c7bc8c978700f5c72e9faa0595ce8e"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=5178103&businessType=12",
+        "ids": [
+          "167251157",
+          "167338842",
+          "163007549",
+          "163167037",
+          "177646903",
+          "74305879"
+        ]
+      }
+    ],
+    "platformTotal": 540,
+    "pagination": "Normal main page and visible folded-review link; initial public batch only, no synthetic pagination."
+  },
+  {
+    "id": "ta-15264134",
+    "source": "https://www.trip.com/restaurant/china/shenzhen/detail/taotaoju-56563705/",
+    "poi": "56563705",
+    "business": "22404263",
+    "nameTokens": [
+      "陶陶居",
+      "海岸城"
+    ],
+    "addressTokens": [
+      "海岸城",
+      "517"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "陶陶居酒家(海岸城店)",
+      "address": "粤海街道文心三路海岸城广场五层517号",
+      "poi": 56563705,
+      "business": 22404263
+    },
+    "comments": [
+      {
+        "id": "164312075",
+        "author": "天一小宁",
+        "date": "2020-09-01",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/164312075.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到虾饺、烧卤鹅。",
+          "en": "Discusses shrimp dumplings and roast or braised goose."
+        },
+        "fingerprint": "f89a86873ce48dffce0d3b5e410e983482704f3074a9a73c0fe4358515c58a9b"
+      },
+      {
+        "id": "161713537",
+        "author": "YoYo_2T6W2X4M",
+        "date": "2019-10-26",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/161713537.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到烧卤鹅。",
+          "en": "Discusses roast or braised goose."
+        },
+        "fingerprint": "eeb69d5ad26a016ca40aa9aeda0d78e501a9eeaccb7d42daf564867dad7ca001"
+      },
+      {
+        "id": "164206665",
+        "author": "噼里啪啦",
+        "date": "2020-08-22",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/164206665.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、排队等位。",
+          "en": "Discusses service and waiting times."
+        },
+        "fingerprint": "d700195241b5db650fc0ce263d7c005d9f3f6a52bd61c05bd694ef1c78648de2"
+      },
+      {
+        "id": "163918422",
+        "author": "迪斯卡沃",
+        "date": "2020-07-25",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163918422.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到虾饺、烧卤鹅。",
+          "en": "Discusses shrimp dumplings and roast or braised goose."
+        },
+        "fingerprint": "6d16094da6c48f003638a377c62e1ff7f5232ccb87c5ef7a9433e90470c9a664"
+      },
+      {
+        "id": "163130831",
+        "author": "迪斯卡沃",
+        "date": "2020-03-29",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163130831.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到虾饺、豆腐。",
+          "en": "Discusses shrimp dumplings and tofu."
+        },
+        "fingerprint": "7b103cb19da4820c057a2d6c75494bcaac7d9e15c2c69508a1c04e7426611a92"
+      },
+      {
+        "id": "163285569",
+        "author": "YoYo_0E2G8R1A",
+        "date": "2020-04-22",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163285569.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到豆腐、环境氛围。",
+          "en": "Discusses tofu and atmosphere."
+        },
+        "fingerprint": "8bfee106b65764c1d89996470e10fb9a4259f17c1b6cf7ab602c1f57d7d2302b"
+      },
+      {
+        "id": "163734776",
+        "author": "YoYo_8J5Z7T2A",
+        "date": "2020-06-29",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163734776.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到排队等位。",
+          "en": "Discusses waiting times."
+        },
+        "fingerprint": "d7c28ee45080e10094f98080d43ed66e0aa3171515290ba71c0c6b348b7017f8"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=22404263&businessType=12",
+        "ids": [
+          "164312075",
+          "161713537",
+          "164206665",
+          "163918422",
+          "163130831",
+          "163285569",
+          "163734776"
+        ]
+      }
+    ],
+    "platformTotal": 14,
+    "pagination": "Normal main page and visible folded-review link; initial public batch only, no synthetic pagination."
+  },
+  {
+    "id": "local-006",
+    "business": "136215478",
+    "poi": "136215478",
+    "nameTokens": [
+      "谭厨",
+      "红岭"
+    ],
+    "addressTokens": [
+      "红岭中路",
+      "1008"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "谭厨中山传家菜(红岭店)",
+      "address": "红岭中路1008号荔景大厦1楼（近红宝路口）",
+      "poi": 136215478,
+      "business": 136215478
+    },
+    "comments": [
+      {
+        "id": "183291788",
+        "author": "YoYo_2F8K2D5F",
+        "date": "2024-05-02",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/136215478/12/183291788.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "空间虽小，适合朋友聚会和拍照。",
+          "en": "A small, attractive setting for gathering with friends."
+        },
+        "fingerprint": "47e8bd73a2a5e23ca372f287e6e33c987eb1edde33f3951cf036128b5bbbebb6"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=136215478&businessType=12",
+        "ids": [
+          "183291788"
+        ]
+      }
+    ],
+    "platformTotal": 1,
+    "pagination": "Normal main page and visible folded-review link; initial public batch only, no synthetic pagination."
+  },
+  {
+    "id": "local-008",
+    "business": "78089971",
+    "poi": "78089971",
+    "nameTokens": [
+      "火璽"
+    ],
+    "addressTokens": [
+      "深南大道",
+      "4019"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "火璽",
+      "address": "深南大道4019号航天大厦A座一楼",
+      "poi": 78089971,
+      "business": 78089971
+    },
+    "comments": [
+      {
+        "id": "167041265",
+        "author": "真诚7577",
+        "date": "2021-07-05",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/78089971/12/167041265.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "喜欢菜品做法与店内氛围。",
+          "en": "Enjoys the cooking style and restaurant atmosphere."
+        },
+        "fingerprint": "9e449832f5bcbc7cbed95c72ff6e1e28aa94aaffca716471141c8d129e861418"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=78089971&businessType=12",
+        "ids": [
+          "167041265"
+        ]
+      },
+      {
+        "kind": "public_folded",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/foldCommentList?businessId=78089971&businessType=12&tag=0",
+        "ids": [],
+        "hasMore": false
+      }
+    ],
+    "platformTotal": 3,
+    "pagination": "Normal main page and visible folded-review link; initial public batch only, no synthetic pagination."
+  }
+]

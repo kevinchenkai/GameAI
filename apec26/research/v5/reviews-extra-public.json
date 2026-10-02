@@ -15,7 +15,8 @@
         "summary": {
           "zh": "点评提到咖喱。",
           "en": "Discusses curry."
-        }
+        },
+        "fingerprint": "0c9c1e1e19600c55c0866dd8dc3dc08e332c1d299e02e765f4501880d36af14b"
       },
       {
         "id": 166739944,
@@ -26,7 +27,8 @@
         "summary": {
           "zh": "点评提到奶茶、烤饼。",
           "en": "Discusses milk tea and naan."
-        }
+        },
+        "fingerprint": "869f94980b6d96f1b9ca27656aa3a9d9603951a8f4e146400805aa90002cb9d2"
       },
       {
         "id": 163490059,
@@ -37,7 +39,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "a4e9248342c28ffa2b9b422f37e33283c8c0b0e58c6e1bde5d34ff5637511416"
       },
       {
         "id": 167569030,
@@ -48,7 +51,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "871caea716c67da969ce3020c932cf527dfa1103e57ca4944d12f5d457bb8575"
       },
       {
         "id": 168619541,
@@ -59,7 +63,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "b237e36d026ff377a0c7a9154445b75e74e465c8273956805892d9a909a396e9"
       },
       {
         "id": 169567772,
@@ -70,7 +75,8 @@
         "summary": {
           "zh": "点评提到服务、环境氛围。",
           "en": "Discusses service and atmosphere."
-        }
+        },
+        "fingerprint": "83c2717dc793f075b8e5d0ba386fae66d9ccbdb58d1993985b99e6544e6bf5c8"
       },
       {
         "id": 167710483,
@@ -81,7 +87,8 @@
         "summary": {
           "zh": "点评提到环境氛围。",
           "en": "Discusses atmosphere."
-        }
+        },
+        "fingerprint": "d71862256c689cabc3fd95facdc695fab7fac910f711a73538fef0992d117435"
       },
       {
         "id": 162355226,
@@ -92,7 +99,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "cef57dc69b04fad9eba9d7e07b94a240af0fe0772b4b849c96cf5865c3cc72da"
       },
       {
         "id": 166617411,
@@ -103,7 +111,8 @@
         "summary": {
           "zh": "点评提到咖喱。",
           "en": "Discusses curry."
-        }
+        },
+        "fingerprint": "c768fc8fb7a97cd1a14eea390b85dfbc2fe6e0884c82c065a7da51623f604e27"
       },
       {
         "id": 167309358,
@@ -114,7 +123,8 @@
         "summary": {
           "zh": "分享了这家店的用餐体验。",
           "en": "Shares a personal dining experience at this venue."
-        }
+        },
+        "fingerprint": "376c3b3a83874870c026efe1247da79d7c93173153deb0b515f3505fce8caf4a"
       }
     ]
   },
@@ -134,7 +144,8 @@
         "summary": {
           "zh": "点评提到服务、价格感受。",
           "en": "Discusses service and value."
-        }
+        },
+        "fingerprint": "3a1c5d987a10f722f41dd46a3f7ff5e4ce94b17e6ca8cc975e9a1ca357a46e94"
       }
     ]
   },

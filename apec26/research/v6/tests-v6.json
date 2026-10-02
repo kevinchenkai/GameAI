@@ -1,0 +1,63 @@
+{
+  "checked": "2026-10-01",
+  "offline": {
+    "status": "passed",
+    "command": "python3 apec26/scripts/test-data-v6.py",
+    "checks": [
+      "aggregate and owner-response exclusion",
+      "missing score/date preserved",
+      "same author different dates preserved",
+      "wrong branch and near-duplicate exclusions",
+      "per-venue ID and original-body fingerprint dedup",
+      "alias equality",
+      "all review attribution and HTTPS source links",
+      "exact SKU/title/style matching",
+      "cache-independent deterministic builds",
+      "JS syntax and git diff whitespace"
+    ]
+  },
+  "browser": {
+    "status": "passed",
+    "mobileViewport": [
+      390,
+      844
+    ],
+    "desktopViewport": [
+      1440,
+      900
+    ],
+    "mobileNoHorizontalOverflow": true,
+    "desktopNoHorizontalOverflow": true,
+    "sampleDetailCounts": {
+      "ta-6001897": 12,
+      "ta-4964616": 15,
+      "ta-15264134": 17,
+      "local-008": 3,
+      "local-006": 1
+    },
+    "firstListCardReviews": 2,
+    "firstListCardPhotos": 5,
+    "productSampleDetailsTested": 8,
+    "languagesTested": [
+      "zh",
+      "en"
+    ],
+    "productPhotosLoaded": true,
+    "buyContactDialogOpened": true,
+    "contactProviders": [
+      "Telegram",
+      "WhatsApp"
+    ],
+    "runtimeErrorsDuringContactCheck": [],
+    "notes": [
+      "Two automation locator attempts timed out because labels included navigation text/arrow; corrected against observed UI, reruns passed.",
+      "External source completeness limits are recorded in REPORT.md; these are not UI failures."
+    ]
+  },
+  "scope": {
+    "onlyApec26Modified": true,
+    "commitCreated": false,
+    "pushed": false,
+    "deployed": false
+  }
+}

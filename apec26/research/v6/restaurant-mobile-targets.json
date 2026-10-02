@@ -1,0 +1,69 @@
+[
+  {
+    "id": "ta-6001897",
+    "source": "https://www.trip.com/restaurant/china/shenzhen/detail/din-tai-fung-11334307/",
+    "poi": "11334307",
+    "business": "5184593",
+    "nameTokens": [
+      "鼎泰丰",
+      "万象城"
+    ],
+    "addressTokens": [
+      "宝安南路",
+      "万象城"
+    ]
+  },
+  {
+    "id": "ta-4964616",
+    "source": "https://www.trip.com/restaurant/china/shenzhen/detail/haidilao-hotpot-11327817/",
+    "poi": "11327817",
+    "business": "5178103",
+    "nameTokens": [
+      "海底捞",
+      "卓越"
+    ],
+    "addressTokens": [
+      "卓越",
+      "F4"
+    ]
+  },
+  {
+    "id": "ta-15264134",
+    "source": "https://www.trip.com/restaurant/china/shenzhen/detail/taotaoju-56563705/",
+    "poi": "56563705",
+    "business": "22404263",
+    "nameTokens": [
+      "陶陶居",
+      "海岸城"
+    ],
+    "addressTokens": [
+      "海岸城",
+      "517"
+    ]
+  },
+  {
+    "id": "local-006",
+    "business": "136215478",
+    "poi": "136215478",
+    "nameTokens": [
+      "谭厨",
+      "红岭"
+    ],
+    "addressTokens": [
+      "红岭中路",
+      "1008"
+    ]
+  },
+  {
+    "id": "local-008",
+    "business": "78089971",
+    "poi": "78089971",
+    "nameTokens": [
+      "火璽"
+    ],
+    "addressTokens": [
+      "深南大道",
+      "4019"
+    ]
+  }
+]
