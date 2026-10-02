@@ -1,0 +1,710 @@
+[
+  {
+    "id": "ta-6001897",
+    "business": "5184593",
+    "expected": "鼎泰丰万象城",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=5184593&businessType=12",
+    "poiName": "鼎泰丰(万象城店)",
+    "comments": [
+      {
+        "id": 165443972,
+        "author": "那那岛",
+        "score": 4,
+        "date": "2021-01-01",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5184593/12/165443972.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      },
+      {
+        "id": 165574224,
+        "author": "那那岛",
+        "score": 4,
+        "date": "2021-01-19",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5184593/12/165574224.html",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        }
+      },
+      {
+        "id": 153048781,
+        "author": "阳光般的希望",
+        "score": 4,
+        "date": "2018-01-28",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5184593/12/153048781.html",
+        "summary": {
+          "zh": "点评提到牛肉菜品。",
+          "en": "Discusses beef dishes."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-15264134",
+    "business": "22404263",
+    "expected": "陶陶居海岸城",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=22404263&businessType=12",
+    "poiName": "陶陶居酒家(海岸城店)",
+    "comments": [
+      {
+        "id": 164312075,
+        "author": "天一小宁",
+        "score": 4,
+        "date": "2020-09-01",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/164312075.html",
+        "summary": {
+          "zh": "点评提到虾饺、烧卤鹅。",
+          "en": "Discusses shrimp dumplings and roast or braised goose."
+        }
+      },
+      {
+        "id": 161713537,
+        "author": "YoYo_2T6W2X4M",
+        "score": 4,
+        "date": "2019-10-26",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/161713537.html",
+        "summary": {
+          "zh": "点评提到烧卤鹅。",
+          "en": "Discusses roast or braised goose."
+        }
+      },
+      {
+        "id": 164206665,
+        "author": "噼里啪啦",
+        "score": 4,
+        "date": "2020-08-22",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/164206665.html",
+        "summary": {
+          "zh": "点评提到服务、排队等位。",
+          "en": "Discusses service and waiting times."
+        }
+      },
+      {
+        "id": 163918422,
+        "author": "迪斯卡沃",
+        "score": 3,
+        "date": "2020-07-25",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163918422.html",
+        "summary": {
+          "zh": "点评提到虾饺、烧卤鹅。",
+          "en": "Discusses shrimp dumplings and roast or braised goose."
+        }
+      },
+      {
+        "id": 163130831,
+        "author": "迪斯卡沃",
+        "score": 3,
+        "date": "2020-03-29",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163130831.html",
+        "summary": {
+          "zh": "点评提到虾饺、豆腐。",
+          "en": "Discusses shrimp dumplings and tofu."
+        }
+      },
+      {
+        "id": 163285569,
+        "author": "YoYo_0E2G8R1A",
+        "score": 5,
+        "date": "2020-04-22",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163285569.html",
+        "summary": {
+          "zh": "点评提到豆腐、环境氛围。",
+          "en": "Discusses tofu and atmosphere."
+        }
+      },
+      {
+        "id": 163734776,
+        "author": "YoYo_8J5Z7T2A",
+        "score": 4,
+        "date": "2020-06-29",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22404263/12/163734776.html",
+        "summary": {
+          "zh": "点评提到排队等位。",
+          "en": "Discusses waiting times."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-4962484",
+    "business": "5179582",
+    "expected": "瑞吉闲逸廊",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=5179582&businessType=12",
+    "poiName": "深圳瑞吉酒店·The Drawing Room闲逸廊",
+    "comments": [
+      {
+        "id": 162172378,
+        "author": "噼里啪啦",
+        "score": 4,
+        "date": "2019-12-02",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5179582/12/162172378.html",
+        "summary": {
+          "zh": "点评提到下午茶、服务。",
+          "en": "Discusses afternoon tea and service."
+        }
+      },
+      {
+        "id": 160734254,
+        "author": "SophyJiang漫旅绘",
+        "score": 4,
+        "date": "2019-09-02",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5179582/12/160734254.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 162256157,
+        "author": "噼里啪啦",
+        "score": 4,
+        "date": "2019-12-10",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5179582/12/162256157.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 163980711,
+        "author": "小巫婆乖乖",
+        "score": 1,
+        "date": "2020-08-01",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5179582/12/163980711.html",
+        "summary": {
+          "zh": "点评提到下午茶、甜品。",
+          "en": "Discusses afternoon tea and desserts."
+        }
+      },
+      {
+        "id": 178311731,
+        "author": "YoYo_8H6E5R8J",
+        "score": 5,
+        "date": "2023-08-15",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5179582/12/178311731.html",
+        "summary": {
+          "zh": "点评提到下午茶、服务。",
+          "en": "Discusses afternoon tea and service."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-4422188",
+    "business": "118823509",
+    "expected": "富苑Prego",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=118823509&businessType=12",
+    "poiName": "深圳富苑皇冠假日套房酒店·Prego意大利餐厅",
+    "comments": [
+      {
+        "id": 206862160,
+        "author": "YoYo_0Q8Q6X2P",
+        "score": 5,
+        "date": "2025-03-24",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118823509/12/206862160.html",
+        "summary": {
+          "zh": "点评提到牛肉菜品、服务。",
+          "en": "Discusses beef dishes and service."
+        }
+      },
+      {
+        "id": 175181611,
+        "author": "YoYo_5N5D7S0P",
+        "score": 5,
+        "date": "2023-03-14",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118823509/12/175181611.html",
+        "summary": {
+          "zh": "点评提到环境氛围、价格感受。",
+          "en": "Discusses atmosphere and value."
+        }
+      },
+      {
+        "id": 175433722,
+        "author": "YoYo_8I9H6V0K",
+        "score": 5,
+        "date": "2023-04-07",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118823509/12/175433722.html",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        }
+      },
+      {
+        "id": 174797839,
+        "author": "藍色橄欖",
+        "score": 5,
+        "date": "2023-02-02",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118823509/12/174797839.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 175135588,
+        "author": "YoYo_8L7T6O1L",
+        "score": 5,
+        "date": "2023-03-09",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118823509/12/175135588.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 174582477,
+        "author": "YoYo_2L4X7G3W",
+        "score": 5,
+        "date": "2023-01-13",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118823509/12/174582477.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-3512826",
+    "business": "7381250",
+    "expected": "深圳威斯汀中国元素",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=7381250&businessType=12",
+    "poiName": "深圳益田威斯汀酒店·中国元素粤菜馆",
+    "comments": [
+      {
+        "id": 189487635,
+        "author": "YoYo_7K2M5F9Q",
+        "score": 4,
+        "date": "2024-08-12",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381250/12/189487635.html",
+        "summary": {
+          "zh": "点评提到豆腐、环境氛围。",
+          "en": "Discusses tofu and atmosphere."
+        }
+      },
+      {
+        "id": 161267076,
+        "author": "健康美丽的芳芳",
+        "score": 4,
+        "date": "2019-10-02",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381250/12/161267076.html",
+        "summary": {
+          "zh": "点评提到烧卤鹅、粥品。",
+          "en": "Discusses roast or braised goose and congee."
+        }
+      },
+      {
+        "id": 180193492,
+        "author": "YoYo_7O9B0A6O",
+        "score": 5,
+        "date": "2023-12-26",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381250/12/180193492.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 162248139,
+        "author": "埃尔滕司马颖",
+        "score": 5,
+        "date": "2019-12-10",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381250/12/162248139.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 174735343,
+        "author": "嘉西亚",
+        "score": 5,
+        "date": "2023-01-28",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381250/12/174735343.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-3459768",
+    "business": "5170939",
+    "expected": "福田香格里拉鲜咖啡",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=5170939&businessType=12",
+    "poiName": "深圳福田香格里拉大酒店·鲜咖啡餐厅",
+    "comments": [
+      {
+        "id": 181865445,
+        "author": "M7***96",
+        "score": 5,
+        "date": "2024-05-15",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/181865445.html",
+        "summary": {
+          "zh": "点评提到海鲜、火锅。",
+          "en": "Discusses seafood and hot pot."
+        }
+      },
+      {
+        "id": 166077867,
+        "author": "广州中奖小锦鲤",
+        "score": 4,
+        "date": "2021-03-29",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/166077867.html",
+        "summary": {
+          "zh": "点评提到海鲜。",
+          "en": "Discusses seafood."
+        }
+      },
+      {
+        "id": 166077868,
+        "author": "第二号爱人",
+        "score": 4,
+        "date": "2021-03-29",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/166077868.html",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        }
+      },
+      {
+        "id": 166077865,
+        "author": "努力的三号",
+        "score": 4,
+        "date": "2021-03-29",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/166077865.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      },
+      {
+        "id": 165838480,
+        "author": "caicaiw",
+        "score": 5,
+        "date": "2021-02-26",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/165838480.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      },
+      {
+        "id": 171597955,
+        "author": "赤城AKAGI",
+        "score": 5,
+        "date": "2022-07-17",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/171597955.html",
+        "summary": {
+          "zh": "点评提到蚝鲜、甜品。",
+          "en": "Discusses oysters and desserts."
+        }
+      },
+      {
+        "id": 165793637,
+        "author": "吃货也喜欢玩",
+        "score": 5,
+        "date": "2021-02-20",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/165793637.html",
+        "summary": {
+          "zh": "点评提到环境氛围。",
+          "en": "Discusses atmosphere."
+        }
+      },
+      {
+        "id": 165943432,
+        "author": "云天地盘",
+        "score": 3,
+        "date": "2021-03-12",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/165943432.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 166971868,
+        "author": "云天地盘",
+        "score": 3,
+        "date": "2021-06-29",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/166971868.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 165422251,
+        "author": "天涯海角之浪漫",
+        "score": 5,
+        "date": "2020-12-30",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170939/12/165422251.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-3467079",
+    "business": "5170174",
+    "expected": "华侨城洲际华膳",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=5170174&businessType=12",
+    "poiName": "华膳中餐厅·粤菜(深圳华侨城洲际大酒店)",
+    "comments": [
+      {
+        "id": 164786341,
+        "author": "fooler0809",
+        "score": 5,
+        "date": "2020-10-15",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170174/12/164786341.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 164039282,
+        "author": "星座男女",
+        "score": 4,
+        "date": "2020-08-07",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170174/12/164039282.html",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        }
+      },
+      {
+        "id": 166125105,
+        "author": "YoYo_6D2B5C6R",
+        "score": 4,
+        "date": "2021-04-04",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/5170174/12/166125105.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-3511937",
+    "business": "12154125",
+    "expected": "大梅沙洲际源咖啡",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=12154125&businessType=12",
+    "poiName": "深圳大梅沙京基洲际度假酒店·源·咖啡全日制餐厅",
+    "comments": [
+      {
+        "id": 216230876,
+        "author": "人间伊甸园拥护者",
+        "score": 5,
+        "date": "2025-07-07",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/216230876.html",
+        "summary": {
+          "zh": "点评提到蚝鲜、自助选择。",
+          "en": "Discusses oysters and buffet selection."
+        }
+      },
+      {
+        "id": 174661236,
+        "author": "YoYo_0W1G4X5T",
+        "score": 5,
+        "date": "2023-01-22",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/174661236.html",
+        "summary": {
+          "zh": "点评提到海鲜、甜品。",
+          "en": "Discusses seafood and desserts."
+        }
+      },
+      {
+        "id": 167246469,
+        "author": "YoYo_1C2T2R5Q",
+        "score": 5,
+        "date": "2021-07-22",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/167246469.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 178606432,
+        "author": "Kurt Chang HK",
+        "score": 5,
+        "date": "2023-08-26",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/178606432.html",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        }
+      },
+      {
+        "id": 170208973,
+        "author": "NANA",
+        "score": 5,
+        "date": "2022-04-10",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/170208973.html",
+        "summary": {
+          "zh": "点评提到下午茶。",
+          "en": "Discusses afternoon tea."
+        }
+      },
+      {
+        "id": 170179618,
+        "author": "YoYo_3B7O2J8F",
+        "score": 5,
+        "date": "2022-04-07",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/170179618.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      },
+      {
+        "id": 174695215,
+        "author": "YoYo_1G0R3F0L",
+        "score": 5,
+        "date": "2023-01-25",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/174695215.html",
+        "summary": {
+          "zh": "点评提到自助选择、服务。",
+          "en": "Discusses buffet selection and service."
+        }
+      },
+      {
+        "id": 762311551,
+        "author": "Susi L",
+        "score": 3,
+        "date": "2026-07-24",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/762311551.html",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        }
+      },
+      {
+        "id": 174665376,
+        "author": "YoYo_8V0A7O5J",
+        "score": 5,
+        "date": "2023-01-23",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/174665376.html",
+        "summary": {
+          "zh": "点评提到甜品、自助选择。",
+          "en": "Discusses desserts and buffet selection."
+        }
+      },
+      {
+        "id": 178582665,
+        "author": "YoYo_8H1P6R8Z",
+        "score": 3,
+        "date": "2023-08-25",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12154125/12/178582665.html",
+        "summary": {
+          "zh": "点评提到海鲜。",
+          "en": "Discusses seafood."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ta-7701549",
+    "business": "11174730",
+    "expected": "前海华侨城JW万豪大堂酒廊",
+    "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=11174730&businessType=12",
+    "poiName": "前海华侨城JW万豪酒店大堂酒廊",
+    "comments": [
+      {
+        "id": 185296868,
+        "author": "YoYo_9Z0N3J6B",
+        "score": 5,
+        "date": "2024-07-06",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/185296868.html",
+        "summary": {
+          "zh": "点评提到火锅、下午茶。",
+          "en": "Discusses hot pot and afternoon tea."
+        }
+      },
+      {
+        "id": 166296003,
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2021-04-22",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/166296003.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      },
+      {
+        "id": 165661180,
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2021-02-03",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/165661180.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      },
+      {
+        "id": 165618494,
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2021-01-27",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/165618494.html",
+        "summary": {
+          "zh": "点评提到自助选择。",
+          "en": "Discusses buffet selection."
+        }
+      },
+      {
+        "id": 163415090,
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2020-05-10",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/163415090.html",
+        "summary": {
+          "zh": "点评提到自助选择。",
+          "en": "Discusses buffet selection."
+        }
+      },
+      {
+        "id": 165531254,
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2021-01-13",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/165531254.html",
+        "summary": {
+          "zh": "点评提到自助选择。",
+          "en": "Discusses buffet selection."
+        }
+      },
+      {
+        "id": 164116188,
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2020-08-14",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/164116188.html",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        }
+      },
+      {
+        "id": 165511681,
+        "author": "真诚7577",
+        "score": 4,
+        "date": "2021-01-10",
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/11174730/12/165511681.html",
+        "summary": {
+          "zh": "点评提到自助选择。",
+          "en": "Discusses buffet selection."
+        }
+      }
+    ]
+  }
+]

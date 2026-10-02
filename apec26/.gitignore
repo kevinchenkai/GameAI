@@ -1,3 +1,6 @@
 output/
 .sites-runtime/
 .DS_Store
+
+# Transient full review bodies; the repository contains only attributed summaries.
+research/v5/.review-cache/
