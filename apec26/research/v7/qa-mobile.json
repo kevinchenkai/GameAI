@@ -1,0 +1,229 @@
+{
+  "results": [
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "茶叶",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/2598168.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "冰箱贴",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/453761.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "丝巾",
+      "cards": 20,
+      "detailImages": 2,
+      "listingSource": "https://www.jd.com/chanpin/2172974.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "折扇",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/451539.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "瓷器",
+      "cards": 20,
+      "detailImages": 5,
+      "listingSource": "https://www.jd.com/chanpin/90600.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "熊猫礼物",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/1164281.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "香薰",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/2625641.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "category": "印章",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/2258501.html",
+      "overflow": false
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "correctedType": true,
+      "contact": {
+        "images": 3,
+        "links": [
+          "https://t.me/contact/1790227360:tEtChuUibxGdgc6z",
+          "https://wa.me/qr/ZRPLQL65ZIOQF1"
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "language": "zh",
+      "width": 390,
+      "food": {
+        "comments": 2,
+        "photos": 5,
+        "sliderWidth": 1760,
+        "viewport": 352
+      },
+      "detail": {
+        "comments": 10,
+        "photos": 5,
+        "overflow": false,
+        "sources": [
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/165183366.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/169847681.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/166985899.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/166092133.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/164428316.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/152992554.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/166612258.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/168707706.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/163140872.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/162448126.html"
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Tea",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/2598168.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Magnets",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/453761.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Scarves",
+      "cards": 20,
+      "detailImages": 2,
+      "listingSource": "https://www.jd.com/chanpin/2172974.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Folding fans",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/451539.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Porcelain",
+      "cards": 20,
+      "detailImages": 5,
+      "listingSource": "https://www.jd.com/chanpin/90600.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Panda gifts",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/1164281.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Fragrance",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/2625641.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "category": "Seals",
+      "cards": 20,
+      "detailImages": 1,
+      "listingSource": "https://www.jd.com/chanpin/2258501.html",
+      "overflow": false
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "correctedType": true,
+      "contact": {
+        "images": 3,
+        "links": [
+          "https://t.me/contact/1790227360:tEtChuUibxGdgc6z",
+          "https://wa.me/qr/ZRPLQL65ZIOQF1"
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "food": {
+        "comments": 2,
+        "photos": 5,
+        "sliderWidth": 1760,
+        "viewport": 352
+      },
+      "detail": {
+        "comments": 10,
+        "photos": 5,
+        "overflow": false,
+        "sources": [
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/165183366.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/169847681.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/166985899.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/166092133.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/164428316.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/152992554.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/166612258.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/168707706.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/163140872.html",
+          "https://m.ctrip.com/webapp/you/comment/detail/5169908/12/162448126.html"
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,88 @@
+{
+  "checkedAt": "2026-10-02T13:40:58.959512+00:00",
+  "scope": "apec26 only; V7 pre-publication verification snapshot",
+  "offline": {
+    "status": "passed",
+    "command": "python3 apec26/scripts/test-data-v7.py",
+    "checks": [
+      "strict parser and inline line markers",
+      "navigation/recommendation blocks excluded",
+      "16 branch/venue exclusions",
+      "13 legacy excerpts matched to original bodies",
+      "review ID and normalized body fingerprint dedup",
+      "cross-board alias equality",
+      "160 SKU identity/style correspondence",
+      "material/quantity/location and variant regressions",
+      "empty public review batch distinguished from identity",
+      "byte-identical builds without V5/V6/V7 ignored source caches",
+      "all deployed JavaScript syntax",
+      "git diff whitespace"
+    ]
+  },
+  "browser": {
+    "status": "passed",
+    "viewports": [
+      {
+        "width": 390,
+        "height": 900
+      },
+      {
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "cases": 40,
+    "casesFiles": [
+      "qa-mobile.json",
+      "qa-desktop.json"
+    ],
+    "checked": [
+      "eight categories × twenty cards",
+      "product detail sources, dates and unknown models",
+      "actual bracelet type and SKU included in inquiry",
+      "WhatsApp and Telegram links / QR images",
+      "two list reviews and five horizontally scrollable venue photos",
+      "ten detail reviews in Shengji sample",
+      "no page or modal horizontal overflow",
+      "no JavaScript page errors"
+    ],
+    "additional": [
+      {
+        "venue": "ta-9989898",
+        "name": "Alla Torre Seaworld",
+        "comments": 15,
+        "photos": 5,
+        "overflow": false
+      },
+      {
+        "sku": "100353514106",
+        "correctedType": true,
+        "weight": "approx. 9 g",
+        "missingFieldsCorrect": true,
+        "overflow": false
+      }
+    ],
+    "visualScreenshots": [
+      "output/playwright/v7-food-mobile.png",
+      "output/playwright/v7-product-mobile.png"
+    ],
+    "visualInspection": "Both mobile screenshots inspected; photos retain full content, text and review rows fit the screen."
+  },
+  "artifacts": {
+    "reviews-v5.js": "3eec5ea3f4f09607bb6f68d93f798c7fc9d463387c423b681b77f432de96c3eb",
+    "gifts-v5.js": "47135a8c04b31ff090a6c442e17f1a365395e73997fa77c0106feb346c9b85e3",
+    "v5.js": "1f82c508135618ffccdd32c661247243739398820bf6b752c6567b36271e986e",
+    "index.html": "bc884a338f0fb8af80c0e6db10176de2417d0919c1a2ba07ee35da0f93747aad"
+  },
+  "publication": {
+    "gitCommit": false,
+    "push": false,
+    "deploy": false,
+    "reason": "User has subsequently authorized Git commit, push and deployment.",
+    "phase": "Status at the recorded pre-publication test time"
+  }
+}

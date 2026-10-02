@@ -18,6 +18,13 @@ v6Files=sorted({f.name:v6/f.name for f in list(v6.glob('reviews-*.json'))+list(v
 for f in v6Files:
  rows=json.loads((v6Cache/f.name if (v6Cache/f.name).exists() else f).read_text())
  raw.extend(rows)
+# Later research batches retain the same reproducible summary format.
+v7=root/'research/v7';v7Cache=v7/'.raw-cache'
+v7Files=sorted({f.name:v7/f.name for f in list(v7.glob('reviews-*.json'))+list(v7Cache.glob('reviews-*.json'))}.values()) if v7.exists() else []
+for f in v7Files:
+ rows=json.loads((v7Cache/f.name if (v7Cache/f.name).exists() else f).read_text());raw.extend(rows)
+v7Venues={v['id'] for f in v7Files for v in json.loads((v7Cache/f.name if (v7Cache/f.name).exists() else f).read_text()) if v.get('retrieval','').startswith('Readable web')}
+v7LegacyReplacementIds={c['id'] for v in raw if v['id'] in v7Venues for c in v.get('comments',[]) if c.get('replacesLegacy')=='legacy-'+v['id']}
 topics=[('椰子鸡|椰子雞','椰子鸡汤','coconut chicken broth'),('乳鸽|乳鴿','乳鸽','roast pigeon'),('虾饺|蝦餃','虾饺','shrimp dumplings'),('烧鹅|燒鵝|卤鹅|鹵鵝','烧卤鹅','roast or braised goose'),('叉烧|叉燒','叉烧','char siu'),('肠粉|腸粉|红米肠|紅米腸','肠粉','rice rolls'),('奶茶','奶茶','milk tea'),('菠萝|菠蘿','菠萝包','pineapple buns'),('蛋挞|蛋撻','蛋挞','egg tarts'),('豆腐','豆腐','tofu'),('火腿','火腿','ham'),('海鲜|海鮮','海鲜','seafood'),('生蚝|生蠔|鲜蚝|鮮蠔','蚝鲜','oysters'),('鹅掌|鵝掌','鹅掌','goose feet'),('火锅|火鍋','火锅','hot pot'),('粥','粥品','congee'),('早茶|点心|點心','早茶点心','dim sum'),('烤鸭|燒鴨|烧鸭','烤鸭','roast duck'),('牛排|牛扒|牛肉','牛肉菜品','beef dishes'),('羊排|羊肉','羊肉菜品','lamb'),('披萨|披薩|pizza','披萨','pizza'),('意面|意粉|千层面|千層麵|pasta','意式面食','pasta'),('咖喱|curry','咖喱','curry'),('烤饼|烤餅|馕|naan','烤饼','naan'),('下午茶','下午茶','afternoon tea'),('蛋糕|甜品|甜点|甜點','甜品','desserts'),('自助','自助选择','buffet selection'),('服务|服務','服务','service'),('环境|環境|装修|裝修|氛围|氛圍','环境氛围','atmosphere'),('风景|風景|景色|海景|夜景|高空|视野|視野','景观','views'),('排队|排隊|等位|等候','排队等位','waiting times'),('贵|貴|价格|價格|价钱|價錢|性价比|性價比','价格感受','value')]
 # Hand-edited summaries of the first visible records. Each is a paraphrase, not a quote.
 curated={
@@ -132,15 +139,16 @@ for venue in raw:
 for r in venues:
  sourceId=r['id'].replace('local-v4-','')
  items=records.setdefault(sourceId,[])
- if r.get('reviewTextEn') and not any(x['author']==r['reviewAuthor'] for x in items):
+ replaced=any(x['id'] in v7LegacyReplacementIds for x in items) if sourceId in v7Venues else any(x['author']==r['reviewAuthor'] for x in items)
+ if r.get('reviewTextEn') and not replaced:
   items.insert(0,{'id':'legacy-'+sourceId,'author':r['reviewAuthor'],'text':{'zh':r['reviewTextZh'],'en':r['reviewTextEn']},'score':None,'date':r.get('reviewDate',''),'source':r['reviewSource'],'platform':'Tripadvisor' if 'tripadvisor' in r['reviewSource'] else 'Ctrip / Trip.com'})
  if r['id'].startswith('local-v4-'):records[r['id']]=items
 (root/'reviews-v5.js').write_text('/* Public review summaries with author/date/score/source. No synthetic reviewers. */\nconst V5_REVIEWS='+json.dumps(records,ensure_ascii=False,separators=(',',':'))+';\n')
 counts=[len(records[r['id']]) for r in venues]
 print('Venues',len(venues),'with 2+ reviews',sum(n>=2 for n in counts),'with 10+ reviews',sum(n>=10 for n in counts),'unique review IDs',len({c['id'] for rs in records.values() for c in rs}))
 # Commit attribution facts and brief summaries, without republishing full review bodies.
-for f in sourceFiles+v6Files:
- rawDir=cache if f.parent.name=='v5' else v6Cache
+for f in sourceFiles+v6Files+v7Files:
+ rawDir=cache if f.parent.name=='v5' else (v7Cache if f.parent.name=='v7' else v6Cache)
  rows=json.loads((rawDir/f.name if (rawDir/f.name).exists() else f).read_text())
  for v in rows:
   v.pop('taComments',None)

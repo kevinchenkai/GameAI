@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "ta-9989898",
+    "name": "Alla Torre（海上世界）",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Santhosh Sreenivasan",
+        "date": "2023-12-04",
+        "score": 4.0,
+        "id": "ta-web-316126740aeac7a7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "43e5fd021f58c657473bf07622350ee741a6a877ca9945df5b3b40d0f01a40ed",
+        "replacesLegacy": "legacy-ta-9989898",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "喜欢披萨与意面，服务偏慢。",
+          "en": "Enjoys pizza and pasta; service slow."
+        }
+      },
+      {
+        "author": "giraybozkaya",
+        "date": "2020-01-19",
+        "score": 4.0,
+        "id": "ta-web-bbf94a0612cd8421",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e78167a584137ebcca2daa2c8ab477bbff2992e6d2ec04581a69b55113618be3",
+        "summary": {
+          "zh": "喜欢披萨、啤酒与临水景观。",
+          "en": "Enjoys pizza, beer and waterfront views."
+        }
+      },
+      {
+        "author": "Downtown83",
+        "date": "2020-11-12",
+        "score": 3.0,
+        "id": "ta-web-ff7754b0f6b20b3f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "292ece8825687fdb9c6096c80d8b797140114eef4c0f2011761c9bda288a3148",
+        "summary": {
+          "zh": "食物尚可，员工动作偏慢。",
+          "en": "Acceptable food; slow staff."
+        }
+      },
+      {
+        "author": "NotTheLastJedi",
+        "date": "2025-03-14",
+        "score": 5.0,
+        "id": "ta-web-1c3168dd5938bc0e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ae3a11713af62dba9e680f649631d182d31ecd6267f0151426f9a91bf06342a3",
+        "summary": {
+          "zh": "露台适合欣赏水景。",
+          "en": "Enjoys the terrace and water views."
+        }
+      },
+      {
+        "author": "Jonathan S.",
+        "date": "2020-07-26",
+        "score": 1.0,
+        "id": "ta-web-6563e848a3eca240",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4ed0409d2d19b3e112e1f65466459b7840396387a8b313d405332e05c83aa8da",
+        "summary": {
+          "zh": "对服务与食物失望。",
+          "en": "Disappointed with service and food."
+        }
+      },
+      {
+        "author": "Rachel K",
+        "date": "2019-11-23",
+        "score": 3.0,
+        "id": "ta-web-9508f2ead9ef56d8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f16873cb1f92fea25e0ef34a8bcb5f5a577118e106c42226c8d393def1ecdddc",
+        "summary": {
+          "zh": "喜欢汉堡与露台，服务需提速。",
+          "en": "Enjoys burgers and terrace; service slow."
+        }
+      },
+      {
+        "author": "Michelle D",
+        "date": "2019-05-19",
+        "score": 1.0,
+        "id": "ta-web-e80169fe4f5680b7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a306d15c1e14d5a03c24cf86c2e068e480e4fcbcbbadaff91e0eb3f856b325c3",
+        "summary": {
+          "zh": "景观漂亮，服务体验欠佳。",
+          "en": "Good views; disappointing service."
+        }
+      },
+      {
+        "author": "braier o",
+        "date": "2018-12-24",
+        "score": 1.0,
+        "id": "ta-web-6b4034f6419bb884",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3fce97fbea27fd4fb43ad782944128c1a3d04f08f6caf25b74b025afeb244091",
+        "summary": {
+          "zh": "等待很久，食物与价格欠佳。",
+          "en": "Long waits, disappointing food and value."
+        }
+      },
+      {
+        "author": "plum9195",
+        "date": "2018-11-12",
+        "score": 3.0,
+        "id": "ta-web-6e5876c0eb9618c0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ebff41e5039e314c3d5625754990e8d04df2949180fd212acfb7140cf724bf46",
+        "summary": {
+          "zh": "食物普通，服务过慢。",
+          "en": "Average food and very slow service."
+        }
+      },
+      {
+        "author": "Peide77",
+        "date": "2018-08-29",
+        "score": 3.0,
+        "id": "ta-web-6260afe06800f737",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d9989898-Reviews-Alla_Torre_seaworld-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e1acb0ff293e14bf37047c237f9bbe05481dde6807cdde5a6b818275c9e1e7f6",
+        "summary": {
+          "zh": "菜品供应与服务未达预期。",
+          "en": "Dish availability and service disappoint."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 14,
+    "cacheAgeLabel": "5 months ago",
+    "sourceAddress": "Unit B, No.1128 Wanghai Road, Nanshan District Nanshan District, Sea World Stern Plaza, Area B, Shenzhen China"
+  },
+  {
+    "id": "ta-32991374",
+    "name": "Doors 土耳其餐厅",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32991374-Reviews-Doors_Turkish_Restaurant-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Burak D",
+        "date": "2026-03-26",
+        "score": 5.0,
+        "id": "ta-web-5db93bfb98d3fa62",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32991374-Reviews-Doors_Turkish_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c9257a77cfd23ef914c456b2d8e866e3dc5d86630ebf94dee57cd673241286de",
+        "replacesLegacy": "legacy-ta-32991374",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "出品稳定，喜欢持续更新的环境。",
+          "en": "Consistent food and changing decor."
+        }
+      },
+      {
+        "author": "Emir",
+        "date": "2025-12-02",
+        "score": null,
+        "id": "ta-web-60cb63cfebb6d24c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32991374-Reviews-Doors_Turkish_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4bde5da4fa04048d699b1a1ecd4b433b9e90f8f9de0fffbf63ca85b021e6816e",
+        "summary": {
+          "zh": "食物新鲜，价格与服务不错。",
+          "en": "Fresh food, good value and service."
+        }
+      },
+      {
+        "author": "李敬 l",
+        "date": "2025-12-19",
+        "score": 5.0,
+        "id": "ta-web-904c2011bb5aa0f0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32991374-Reviews-Doors_Turkish_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "202c9761b64fa5649754f8bbf1a2906df78210f3b7ee1cb98d7b506f1cfd32d4",
+        "summary": {
+          "zh": "喜欢牛排与热情招待。",
+          "en": "Enjoys steak and attentive hospitality."
+        }
+      },
+      {
+        "author": "Ryland",
+        "date": "2025-12-03",
+        "score": 2.0,
+        "id": "ta-web-c154e9f63167f270",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32991374-Reviews-Doors_Turkish_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3139429e5974555408d367d5ab4dada0f40c0832411164438a3a1e9a3fa11ef2",
+        "summary": {
+          "zh": "服务欠佳，分量与价格不相称。",
+          "en": "Poor service and disappointing portion value."
+        }
+      },
+      {
+        "author": "Said",
+        "date": "2025-12-04",
+        "score": 5.0,
+        "id": "ta-web-40db1b46aa1d94ed",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32991374-Reviews-Doors_Turkish_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c86db4b1e89a19b6cafe4dece9d3207543e8eb2f9c5dbd86a852f0ae5a9ede3a",
+        "summary": {
+          "zh": "临近打烊仍获热情接待。",
+          "en": "Warm hospitality near closing time."
+        }
+      },
+      {
+        "author": "Nory Paulina M",
+        "date": "2025-12-24",
+        "score": 5.0,
+        "id": "ta-web-bb4ad70eb790ecb3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d32991374-Reviews-Doors_Turkish_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8c392c4bbd6728171c69b508b4d4b6a6c8394b96ee7f443f2949f340413d8824",
+        "summary": {
+          "zh": "节日聚餐，食物服务令人满意。",
+          "en": "Enjoys festive dining and service."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 6,
+    "cacheAgeLabel": "6 months ago",
+    "sourceAddress": "Merchants Street 1st Floor, No.2, Zone A, Qianqian Plaza, Sea World, Shenzhen 518067 China"
+  },
+  {
+    "id": "ta-7701549",
+    "name": "宝安 JW 万豪大堂酒廊",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7701549-Reviews-The_Lounge_JW_Marriott_Hotel_Shenzhen_Bao_an-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "chen jing",
+        "date": "2024-02-07",
+        "score": 5.0,
+        "id": "ta-web-11690a20cea61876",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7701549-Reviews-The_Lounge_JW_Marriott_Hotel_Shenzhen_Bao_an-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "38d220784023b45eec92baefbc1824f7d06e1c6895a24448f742ecc937905c9d",
+        "replacesLegacy": "legacy-ta-7701549",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "喜欢下午茶与员工服务。",
+          "en": "Enjoys afternoon tea and service."
+        }
+      },
+      {
+        "author": "Christian G",
+        "date": "2020-09-21",
+        "score": 2.0,
+        "id": "ta-web-3bb222c95e13b9fe",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7701549-Reviews-The_Lounge_JW_Marriott_Hotel_Shenzhen_Bao_an-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f3a56e670568cb19f883f7733a9eae9a168fe9f8c4a68b38b84187e0502162d7",
+        "summary": {
+          "zh": "喝咖啡时，服务关注不足。",
+          "en": "Insufficient attention during a coffee visit."
+        }
+      },
+      {
+        "author": "Rene D. R",
+        "date": "2019-02-25",
+        "score": 5.0,
+        "id": "ta-web-2d406132c79372dd",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7701549-Reviews-The_Lounge_JW_Marriott_Hotel_Shenzhen_Bao_an-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3a9fc582f9c9ea719549b62a246da284dd0730947a2d10df73046e6dff1d685d",
+        "summary": {
+          "zh": "喜欢休息空间与咖啡选择。",
+          "en": "Enjoys the lounge and coffee selection."
+        }
+      },
+      {
+        "author": "Joyanne C",
+        "date": "2018-11-15",
+        "score": 4.0,
+        "id": "ta-web-62c7c7e1a9db1490",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7701549-Reviews-The_Lounge_JW_Marriott_Hotel_Shenzhen_Bao_an-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "69d1cb6a97b1cd9ecaa45f1798a1d4605cab44dc7eaa1ba9787d3fa0913b3a81",
+        "summary": {
+          "zh": "适合同事聊天、饮品和轻食。",
+          "en": "Enjoys drinks and snacks with colleagues."
+        }
+      },
+      {
+        "author": "BIJ",
+        "date": "2019-02-14",
+        "score": 5.0,
+        "id": "ta-web-816e57d3ea0a0891",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7701549-Reviews-The_Lounge_JW_Marriott_Hotel_Shenzhen_Bao_an-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6826a792f5c527e4a1887768b7a32e1bd4b6c4315a26ba56f5ac4391bea5844f",
+        "summary": {
+          "zh": "赞赏寿司，适合商务午餐。",
+          "en": "Praises sushi for business lunches."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 12,
+    "cacheAgeLabel": "11 months ago",
+    "sourceAddress": "1/F, JW Marriott Hotel Shenzhen Bao'an, No.8 Baoxing Road, Bao'an District, Shenzhen 518101 China"
+  },
+  {
+    "id": "ta-7050208",
+    "name": "Sugo 意大利餐厅",
+    "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Curious Karen's Capers",
+        "date": "2025-01-04",
+        "score": 4.0,
+        "id": "ta-web-3803b8f89b1298b8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8dbaae23f786ae58eaee5c663c63b415adb8ba23143edd5d051bd6a60e3e7d24",
+        "replacesLegacy": "legacy-ta-7050208",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "环境温馨，喜欢鸡尾酒选择。",
+          "en": "Cozy setting and enjoyable cocktails."
+        }
+      },
+      {
+        "author": "RMLtravels",
+        "date": "2021-02-14",
+        "score": 4.0,
+        "id": "ta-web-5e3e83e52778ff8d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4186153f0f75e9d4154536c8725a15890553453a1da0c822b466326fb505ac33",
+        "summary": {
+          "zh": "喜欢披萨、沙拉与店主交流。",
+          "en": "Enjoys pizza, salads and owner conversations."
+        }
+      },
+      {
+        "author": "AmyMel1981",
+        "date": "2020-08-15",
+        "score": 5.0,
+        "id": "ta-web-837593c966f4d455",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "dbaad4d653869ae0c10b903b73def2d7c27b9012ac60004a3715fc38f726426f",
+        "summary": {
+          "zh": "披萨沙拉好吃，员工细心。",
+          "en": "Enjoys pizza, salads and attentive staff."
+        }
+      },
+      {
+        "author": "Sempietro",
+        "date": "2015-06-14",
+        "score": 5.0,
+        "id": "ta-web-dbbb4d6a86edc00b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ef1b74ca769d935fb3c43e95a30124a1f657b40c4a9b934218341d3ab95ca072",
+        "summary": {
+          "zh": "喜欢薄脆披萨与亲切招待。",
+          "en": "Enjoys crisp pizza and friendly hospitality."
+        }
+      },
+      {
+        "author": "Jonny B",
+        "date": "2018-06-18",
+        "score": 4.0,
+        "id": "ta-web-83971ffa9aad241e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "fe19cafa0ebb0b7af020698516a67b83918883f039f6f91b85f5652330fe26c9",
+        "summary": {
+          "zh": "披萨、意面与饮品令人失望。",
+          "en": "Disappointed with pizza, pasta and drinks."
+        }
+      },
+      {
+        "author": "bubusettete83",
+        "date": "2017-09-24",
+        "score": 4.0,
+        "id": "ta-web-85f0555e6a13610f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "caf4bea5be38cf25c5347090e96913fc7f26871f10db90a3e184fa0c5c1ee3ca",
+        "summary": {
+          "zh": "小店披萨不错，店主友好。",
+          "en": "Good pizza and friendly owner."
+        }
+      },
+      {
+        "author": "Fliesenthal",
+        "date": "2019-09-21",
+        "score": 5.0,
+        "id": "ta-web-58a288c1f217b0d1",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5470e1aa06b1d3ab52656f097541dfd1d1762dc8795246418c6b0af470c552c4",
+        "summary": {
+          "zh": "喜欢帕尼尼与沙拉。",
+          "en": "Enjoys panini and salads."
+        }
+      },
+      {
+        "author": "Edward L",
+        "date": "2018-10-20",
+        "score": 5.0,
+        "id": "ta-web-5ac3533a7f0c7d0b",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3a691e7135663acc46d3fa6539a4b8bf4245f41dae7d82c54772de1038c6e0a8",
+        "summary": {
+          "zh": "认可意餐品质与用心经营。",
+          "en": "Appreciates Italian cooking and care."
+        }
+      },
+      {
+        "author": "indeciferable",
+        "date": "2018-09-01",
+        "score": 5.0,
+        "id": "ta-web-81870579da5ae9d9",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "531904e867455eb425c5310a7fb8dd338dc9ab6e41ef6026c1fe2bc5567ce49c",
+        "summary": {
+          "zh": "喜欢食物品质与合理定价。",
+          "en": "Enjoys food quality and value."
+        }
+      },
+      {
+        "author": "Daniel D",
+        "date": "2018-08-14",
+        "score": 5.0,
+        "id": "ta-web-4b39b97db61cadc8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com/Restaurant_Review-g297415-d7050208-Reviews-Sugo-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b49b98f825cee53f2a68244e6b6817a6a92e9b39175ae853a656d141a9acf611",
+        "summary": {
+          "zh": "再次到访，喜欢披萨与提拉米苏。",
+          "en": "Returns for pizza and tiramisu."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 11,
+    "cacheAgeLabel": "6 months ago",
+    "sourceAddress": "Building 1, Nanhai Yiku, No.6 Xinghua Road, Nanshan District Gongye 3 Road, Nanhai E-cool block 3# shop 116, Shenzhen 518067 China"
+  },
+  {
+    "id": "ta-4008332",
+    "name": "深圳君悦 1881 中餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Leonhkny",
+        "date": "2023-03-26",
+        "score": null,
+        "id": "ta-web-36d4123a65f008e8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f7b60dd2abd125c53587d0d8a74095733950d2061b316e11ba2b1080a5441be9",
+        "replacesLegacy": "legacy-ta-4008332",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "喜欢脆皮烤鸭，价格较高。",
+          "en": "Enjoys crisp roast duck despite higher prices."
+        }
+      },
+      {
+        "author": "4EverHungry115",
+        "date": "2020-03-02",
+        "score": null,
+        "id": "ta-web-cfe4916acc2e31a7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b33de70ff8d50fff0a4e6a7d67b5eae1dc85ba5003461bb8bb416e61d4724bbe",
+        "summary": {
+          "zh": "喜欢菜肴与细致服务。",
+          "en": "Enjoys food and careful service."
+        }
+      },
+      {
+        "author": "mtcole",
+        "date": "2021-01-24",
+        "score": null,
+        "id": "ta-web-742df2a1027d71f8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4acf39583034f8e0390e482ec379854c7b4fad00b8eb6305cc6853caaa1e0baf",
+        "summary": {
+          "zh": "烤鸭与开放厨房是亮点。",
+          "en": "Roast duck and open kitchen stand out."
+        }
+      },
+      {
+        "author": "Worldtravel-Derek",
+        "date": "2020-09-16",
+        "score": null,
+        "id": "ta-web-f1183e0ac0a7c0cc",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8d1fb0c0c94639f2b4de80245c91541993417e1cc4fc663c472414f6220bbe97",
+        "summary": {
+          "zh": "提前预订烤鸭，体验不错。",
+          "en": "Enjoys preordered roast duck."
+        }
+      },
+      {
+        "author": "nyavtech",
+        "date": "2019-12-23",
+        "score": null,
+        "id": "ta-web-e0fb77577d3358fc",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3102bb12876d25dc38c82becb1b0c0f6dec08514d1c0d7b488ce89be73fe522f",
+        "summary": {
+          "zh": "员工照顾食物不耐受需求。",
+          "en": "Staff accommodates food intolerances."
+        }
+      },
+      {
+        "author": "kunsaha",
+        "date": "2019-11-26",
+        "score": null,
+        "id": "ta-web-de7d0a3a25ab1933",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4a9e80065114437e6a7b3a1e5362095145661403236d32804f42ac765cc44601",
+        "summary": {
+          "zh": "食物环境不错，英语沟通有限。",
+          "en": "Enjoys food; English communication limited."
+        }
+      },
+      {
+        "author": "ej0727",
+        "date": "2019-10-06",
+        "score": null,
+        "id": "ta-web-7c7f98a3385e5460",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c74d0c1ad49e1f004ba2f49cedc716ad869b09e51559fbd4a60e01a93f72d4af",
+        "summary": {
+          "zh": "午餐推荐烤鸭，服务不错。",
+          "en": "Enjoys roast duck and lunch service."
+        }
+      },
+      {
+        "author": "gregrsmith",
+        "date": "2019-09-14",
+        "score": null,
+        "id": "ta-web-7377725ee0677177",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bbb24497c05f2b7e97fe56c1bc74149ce8c4218c691cc3c430e7065073a99ac8",
+        "summary": {
+          "zh": "生日聚餐，烤鸭与饺子出色。",
+          "en": "Enjoys birthday duck and dumplings."
+        }
+      },
+      {
+        "author": "thomas88k",
+        "date": "2019-08-11",
+        "score": null,
+        "id": "ta-web-187ebe1c86e840ed",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4008332-Reviews-1881_Chinese_Restaurant_Grand_Hyatt_Shenzhen-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "2dbec7c88def8ab793b30dbf2dbbc3eb91646fa54f4d62cb6a804fbfe50f2700",
+        "summary": {
+          "zh": "喜欢装潢、摆盘和服务。",
+          "en": "Enjoys decor, presentation and service."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 14,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "1881 Baoan Nan Road Luohu District, Shenzhen 518001 China"
+  },
+  {
+    "id": "ta-6754166",
+    "name": "富苑中餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d6754166-Reviews-Fortune_Court_Chinese_Restaurant-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Grant R",
+        "date": "2026-08-03",
+        "score": null,
+        "id": "ta-web-d4779ee0ff3e0d2d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d6754166-Reviews-Fortune_Court_Chinese_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f8aaa990833b893cc8f23b47ca51a503111aba4d71c3d252c9af95966517d6ff",
+        "replacesLegacy": "legacy-ta-6754166",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "喜欢粤菜、葡萄酒与安静环境。",
+          "en": "Enjoys Cantonese food, wine and quiet atmosphere."
+        }
+      },
+      {
+        "author": "Дмитрий",
+        "date": "2026-01-23",
+        "score": null,
+        "id": "ta-web-d34bc2ea6199744c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d6754166-Reviews-Fortune_Court_Chinese_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "540e162bfc00bfb188b6fc8dee43586b4abd3a14f1fe40c2b9dd8a94eaf3ebff",
+        "summary": {
+          "zh": "菜肴不错，茶水服务及时。",
+          "en": "Enjoys food and prompt tea service."
+        }
+      },
+      {
+        "author": "judsl61",
+        "date": "2023-10-25",
+        "score": null,
+        "id": "ta-web-c003c892416ad318",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d6754166-Reviews-Fortune_Court_Chinese_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a850bb9b5b3122f6aa8d71b5e3c36393f43d4a5c1a59e41d227ce77af06130ac",
+        "summary": {
+          "zh": "招待热情，点菜建议有帮助。",
+          "en": "Warm welcome and helpful menu advice."
+        }
+      },
+      {
+        "author": "NadineG2003",
+        "date": "2016-09-29",
+        "score": null,
+        "id": "ta-web-83b692e3c982d0c6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d6754166-Reviews-Fortune_Court_Chinese_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "63e6b4feea0285010a13e9fa9e10211b9024d123d8f6a21f6688441852d17f53",
+        "summary": {
+          "zh": "认可中餐品质与细致服务。",
+          "en": "Enjoys Chinese food and attentive service."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 4,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "No.3018 Nanhu Road, Luohu District 2nd Floor, Crowne Plaza Hotel & Suites Landmark Shenzhen, Shenzhen 518001 China"
+  },
+  {
+    "id": "ta-4962484",
+    "name": "深圳瑞吉闲逸廊及瑞吉吧",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Merryheart",
+        "date": "2025-01-27",
+        "score": null,
+        "id": "ta-web-43fd1965ac5aa6ec",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5ad0fc773aeb0d7e3faf059d44fd70c2bc5f85d273da0d9854d023e16c4aeab3",
+        "replacesLegacy": "legacy-ta-4962484",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "喜欢高层全景与鸡尾酒。",
+          "en": "Enjoys panoramic views and cocktails."
+        }
+      },
+      {
+        "author": "TheOExpress🏴󠁧󠁢󠁷󠁬󠁳󠁿🇭🇰",
+        "date": "2025-01-27",
+        "score": null,
+        "id": "ta-web-a170c26167149715",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6a128d3bae29e6165cfa96b5ff3a6c1c883845565a1b3cad80bf38eab290b747",
+        "summary": {
+          "zh": "喜欢夜景与特色血腥玛丽。",
+          "en": "Enjoys night views and signature cocktails."
+        }
+      },
+      {
+        "author": "Footprints767952",
+        "date": "2024-09-12",
+        "score": null,
+        "id": "ta-web-e1a5ecdb9ad9e795",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "9cb7c694700f9581ed3e010fbcbbe330921364a55eceef21794346618d620e51",
+        "summary": {
+          "zh": "沙拉不错，咖啡奶泡令人失望。",
+          "en": "Good salad; cappuccino foam disappoints."
+        }
+      },
+      {
+        "author": "Esper",
+        "date": "2024-01-19",
+        "score": null,
+        "id": "ta-web-d3bd8e45e3d1409e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "6a81e1f275a74202bddf13ed9589501e94d6539581ea328ee1290e10bbdcbc7f",
+        "summary": {
+          "zh": "全景、菜肴与服务令人满意。",
+          "en": "Enjoys panoramic views, food and service."
+        }
+      },
+      {
+        "author": "Nancy",
+        "date": "2023-12-08",
+        "score": null,
+        "id": "ta-web-83ee423a46a9de66",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "219ab2c07c8c7f9dbc9309ebced59cddc254121b2dd7442ecc06a2cce8125ef2",
+        "summary": {
+          "zh": "喜欢下午茶与鸡尾酒服务。",
+          "en": "Enjoys afternoon tea and cocktail service."
+        }
+      },
+      {
+        "author": "Fred N",
+        "date": "2020-07-06",
+        "score": null,
+        "id": "ta-web-dc1fc468f01e4365",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "98680195833e636e995508285159621754b260e4440c01c598e27178e5e279fd",
+        "summary": {
+          "zh": "早餐鲍鱼粥出色，服务热情。",
+          "en": "Enjoys abalone congee and warm service."
+        }
+      },
+      {
+        "author": "Ioannis Georgoulis",
+        "date": "2020-06-25",
+        "score": null,
+        "id": "ta-web-582ee264e06a341f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e80d44f23826d08c9b14dc9b8f3bffe22c52d971c6150cdcda07e4d8875995a8",
+        "summary": {
+          "zh": "喜欢金汤力、芝士盘与景观。",
+          "en": "Enjoys gin, cheese and skyline views."
+        }
+      },
+      {
+        "author": "852AMB",
+        "date": "2020-01-25",
+        "score": null,
+        "id": "ta-web-91d98a52411d574e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5996ea118af6a6861372a090c1635fb0fb7306b2c7c7f35af45055cc7f6303a2",
+        "summary": {
+          "zh": "饮品与服务不错，景观加分。",
+          "en": "Enjoys drinks, service and views."
+        }
+      },
+      {
+        "author": "Dutchtraveller007",
+        "date": "2019-11-23",
+        "score": null,
+        "id": "ta-web-1b536820234482fa",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "66703a13d348b05f4de57e937c58c8e6d7022b3d7afe1e2fc629a24ce3e372d9",
+        "summary": {
+          "zh": "咖啡蛋糕好吃，噪声与服务欠佳。",
+          "en": "Good coffee and cake; noise and service disappoint."
+        }
+      },
+      {
+        "author": "NoahJoe",
+        "date": "2019-09-24",
+        "score": null,
+        "id": "ta-web-6075ab24587c3a6d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4962484-Reviews-The_Drawing_Room_St_Regis_Bar-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "4c7d0b909bf931aa64220361b7ea42aa1b38aac4f1846a4dbfa98a326d1e072e",
+        "summary": {
+          "zh": "喜欢下午茶与专业接待。",
+          "en": "Enjoys afternoon tea and professional hospitality."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 12,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "No.5016 Shennan East Road, Luohu District 96F, Kingkey 100 Building, Shenzhen 518000 China"
+  },
+  {
+    "id": "ta-3457031",
+    "name": "香乐园",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Wingss",
+        "date": "2023-08-23",
+        "score": null,
+        "id": "ta-web-731b6d4a8c54a7e8",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "10f78a6c995738fa9abdcf387591e6b1b9eeba2d249e944ada152046b65fc9cc",
+        "replacesLegacy": "legacy-ta-3457031",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "喜欢淮扬菜与创新呈现。",
+          "en": "Enjoys Huaiyang cooking and creative presentation."
+        }
+      },
+      {
+        "author": "Leonhkny",
+        "date": "2023-07-30",
+        "score": null,
+        "id": "ta-web-6de0a485c9637859",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "e2420cd97a4ae3faa103a46076ca801f511447003035dd065c6821143109d022",
+        "summary": {
+          "zh": "熏鱼与鳝鱼出色，服务细致。",
+          "en": "Enjoys smoked fish, eel and attentive service."
+        }
+      },
+      {
+        "author": "Best food best hotel",
+        "date": "2025-07-06",
+        "score": null,
+        "id": "ta-web-8021d09effcd207e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "465bf182ebb0e0a020ac066c258c7387d7b493f7b29270986e76ed0f1acde105",
+        "summary": {
+          "zh": "喜欢红烧肉与酥饼。",
+          "en": "Enjoys braised pork and crisp pastries."
+        }
+      },
+      {
+        "author": "foodiephilip",
+        "date": "2025-06-18",
+        "score": null,
+        "id": "ta-web-a21e490f0ef4f91e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b6d25ede2b29412e78845a471e833c9036f1943b51014c005f6a4ebe67bdf9cb",
+        "summary": {
+          "zh": "多次回访，认可创新与服务。",
+          "en": "Returns for creative cooking and service."
+        }
+      },
+      {
+        "author": "girlgoneworld",
+        "date": "2021-06-12",
+        "score": null,
+        "id": "ta-web-23d42d3a0f0f8135",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "646448dfece9d416f3b97bd6f3164d629b60bebda28ba1a17ef34448632e9f44",
+        "summary": {
+          "zh": "喜欢蔬菜与素鸭。",
+          "en": "Enjoys vegetable dishes and vegan duck."
+        }
+      },
+      {
+        "author": "sti8k",
+        "date": "2019-10-21",
+        "score": null,
+        "id": "ta-web-afff2230084be53f",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "674da5d52ddb8ce119e37f369755aaf47af01443ecad2386edbc6e1e625bc7d5",
+        "summary": {
+          "zh": "喜欢早茶与服务安排。",
+          "en": "Enjoys dim sum and accommodating service."
+        }
+      },
+      {
+        "author": "hobsononholiday",
+        "date": "2019-03-12",
+        "score": null,
+        "id": "ta-web-518d32b4719a00af",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "8d0f9214d710d6af9c088ab601b92bb5c10911571a3db95adda9037f2e9f6f62",
+        "summary": {
+          "zh": "食物与服务令人失望。",
+          "en": "Disappointed with food and service."
+        }
+      },
+      {
+        "author": "Branimir R",
+        "date": "2018-07-05",
+        "score": null,
+        "id": "ta-web-2ff96b898d65999d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3457031-Reviews-Shang_Garden-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "33f7bbe6df91126e737cd919915a9d31bdd9bfc4c138c593d45587dae29ccc2b",
+        "summary": {
+          "zh": "认可餐厅与英语服务。",
+          "en": "Enjoys dining and English-speaking service."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 15,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "4088 Yitian Road, Futian District 2f, Futian Shangri-la, Shenzhen 518048 China"
+  },
+  {
+    "id": "ta-3512826",
+    "name": "南山威斯汀 Five Sen5es 中餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Nelsonfrosty",
+        "date": "2026-05-09",
+        "score": null,
+        "id": "ta-web-de4afacedac85bf5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "3b78156304f45a0fb295d14258e9375d28aefcf246931c078e92202e4455f241",
+        "summary": {
+          "zh": "喜欢菜肴与摆盘。",
+          "en": "Enjoys dishes and presentation."
+        }
+      },
+      {
+        "author": "tonnyf69",
+        "date": "2019-07-31",
+        "score": null,
+        "id": "ta-web-1f62d2fd2fb9f817",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "540cbba5d54b3802bcc5e2bbc68809416e0ba7c3200160ffebcfb0233a839e12",
+        "summary": {
+          "zh": "点心味道与呈现未达预期。",
+          "en": "Dim sum taste and presentation disappoint."
+        }
+      },
+      {
+        "author": "tamtammy",
+        "date": "2019-01-06",
+        "score": null,
+        "id": "ta-web-f3aae75e09b7e5c6",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "63d7a8539546b7019a985a53d5c8bcfe39ed4e7aab0e1809345077d23b8d6d50",
+        "summary": {
+          "zh": "家庭聚餐，喜欢点心。",
+          "en": "Enjoys dim sum with family."
+        }
+      },
+      {
+        "author": "TT2Web",
+        "date": "2017-10-23",
+        "score": null,
+        "id": "ta-web-6669f0462940a13e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "f65cd94e654c379e0d4a124fcf553f1bc335abc5789668daadd535dc33b41157",
+        "summary": {
+          "zh": "环境偏暗，食物与招待欠佳。",
+          "en": "Dark setting, bland food and poor welcome."
+        }
+      },
+      {
+        "author": "1234567411",
+        "date": "2017-07-23",
+        "score": null,
+        "id": "ta-web-fb9b07ce24547e66",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "323143ba64e21ec70a807ca234e81f1c916344289f57f24ed44d9022d3ae5848",
+        "summary": {
+          "zh": "环境漂亮，喜欢蘑菇与服务。",
+          "en": "Enjoys decor, mushrooms and service."
+        }
+      },
+      {
+        "author": "Carsten Damgaar... P",
+        "date": "2015-07-25",
+        "score": null,
+        "id": "ta-web-9e0f144d6e55771e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1d31aa7084355319b062a3bb43b228acb7fb05f7c9ac843af8bca08f85b9dfe8",
+        "replacesLegacy": "legacy-ta-3512826",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "点心不错，后上菜肴变凉。",
+          "en": "Enjoys dim sum; later dishes cool."
+        }
+      },
+      {
+        "author": "Michaelchs",
+        "date": "2014-09-21",
+        "score": null,
+        "id": "ta-web-d826744ef61e7ddc",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3512826-Reviews-Five_Sen5es_at_The_Westin_Shenzhen_Nanshan-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "83911593791a17edd109e143c0203c2cc0b7f640922c50e57a3493231f6a2ba8",
+        "summary": {
+          "zh": "员工不够主动，菜肴不够热。",
+          "en": "Inattentive staff and insufficiently hot dishes."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 7,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "9028-2 Shennai Road, Nanshan District, The Westin Shenzhen Nanshan, Shenzhen 518053 China"
+  },
+  {
+    "id": "ta-3467079",
+    "name": "华侨城洲际 El Chino 中餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3467079-Reviews-El_Chino-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "djeenergy",
+        "date": "2018-07-25",
+        "score": null,
+        "id": "ta-web-75b9d0b32372b41c",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3467079-Reviews-El_Chino-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "5f506e0c8e3e587e010d4fe4a77428a9f5895dae4dc52ba7ea2dff549e83ef46",
+        "summary": {
+          "zh": "喜欢点心、环境与员工服务。",
+          "en": "Enjoys dim sum, atmosphere and staff."
+        }
+      },
+      {
+        "author": "PTrew",
+        "date": "2017-02-22",
+        "score": null,
+        "id": "ta-web-30e937ab583e190e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3467079-Reviews-El_Chino-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "925791e2a758d67eec91cd5638c5d793d7e7719a16062e5f22d120f0a0cb1270",
+        "summary": {
+          "zh": "喜欢点心与开放厨房。",
+          "en": "Enjoys dim sum and the open kitchen."
+        }
+      },
+      {
+        "author": "familyfoodfun",
+        "date": "2016-09-07",
+        "score": null,
+        "id": "ta-web-87e48d33d7a681c3",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d3467079-Reviews-El_Chino-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7982824e049ed25c1ba322f4e7875e721b3c1bbcc02673967c4aa5d8c8cafc44",
+        "replacesLegacy": "legacy-ta-3467079",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "图文英文菜单方便，点心好吃。",
+          "en": "Illustrated English menu helps; enjoyable dim sum."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 12,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "Shen Nan Avenue 9009, G Floor, Shenzhen HuaQiaoCheng Intercontinental Hotel, Shenzhen 518053 China"
+  },
+  {
+    "id": "ta-4422188",
+    "name": "Prego 意大利餐厅",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Neto Nas",
+        "date": "2026-04-16",
+        "score": null,
+        "id": "ta-web-b538870fd843bbe5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "906163aa000effa6da03ad616085c5294e4099ae23a17234d6d40e6fbd48bd2d",
+        "replacesLegacy": "legacy-ta-4422188",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "沙拉与肉酱意面用料令人意外。",
+          "en": "Unexpected ingredients in salad and bolognese."
+        }
+      },
+      {
+        "author": "brianfe",
+        "date": "2017-07-27",
+        "score": null,
+        "id": "ta-web-6960d295c679dca5",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "fa3942ac6f3069be25f980ae291714d6c71089ea1f6953c89d29a334bdf9cd5c",
+        "summary": {
+          "zh": "上菜慢，食物平淡且贵。",
+          "en": "Slow service, bland food and high prices."
+        }
+      },
+      {
+        "author": "llo2016",
+        "date": "2017-04-07",
+        "score": null,
+        "id": "ta-web-c28059bea7275c5e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "152893ee9f7772abf7919e605be581ea7b6f891607f2c687071f04fe4c02a40c",
+        "summary": {
+          "zh": "套餐的牛肉与鱼不错。",
+          "en": "Enjoys beef and fish in the set meal."
+        }
+      },
+      {
+        "author": "Allan Page",
+        "date": "2016-12-20",
+        "score": null,
+        "id": "ta-web-92c7f94001352032",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c6cae6a054fa2bf83607583fa53bd33f9e2ec973ede0ab127117aede38889ec2",
+        "summary": {
+          "zh": "喜欢安静环境、菜肴与服务。",
+          "en": "Enjoys quiet atmosphere, food and service."
+        }
+      },
+      {
+        "author": "NadineG2003",
+        "date": "2016-09-29",
+        "score": null,
+        "id": "ta-web-2d72bb9b650de118",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "bed6483ba25aac8f59b97c0c53326790fb0d7ae72b3e117877ed0dc5f433ac65",
+        "summary": {
+          "zh": "喜欢披萨与细致服务。",
+          "en": "Enjoys pizza and attentive service."
+        }
+      },
+      {
+        "author": "Sun D",
+        "date": "2016-07-26",
+        "score": null,
+        "id": "ta-web-642989b8e7869fa0",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "1571309d7387d10acc40d6715b17fc6d2b8a267fd635e2c6e40593154bf8669b",
+        "summary": {
+          "zh": "认可意大利风味菜肴。",
+          "en": "Enjoys the Italian cooking."
+        }
+      },
+      {
+        "author": "SkyDK",
+        "date": "2015-09-21",
+        "score": null,
+        "id": "ta-web-88dae87141eee054",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "c22c3606728af96be375c438186c9108c22d9264aadd63c39899618cd3e2e482",
+        "summary": {
+          "zh": "环境平静，食物与价格较普通。",
+          "en": "Calm setting; average food and value."
+        }
+      },
+      {
+        "author": "1960EnricoP",
+        "date": "2014-08-16",
+        "score": null,
+        "id": "ta-web-e493a9a3ab39ba9a",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "b9664182c22f6bd42367b22be6f001cba2101c5cda2fcf6d8a6e88ce0d644c9e",
+        "summary": {
+          "zh": "意面调味与意式风味未达预期。",
+          "en": "Pasta seasoning and Italian flavors disappoint."
+        }
+      },
+      {
+        "author": "Thomas R",
+        "date": "2013-09-04",
+        "score": null,
+        "id": "ta-web-5ed09c0119a52195",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d4422188-Reviews-Prego_Italian_Restaurant-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "7d109c7c448d3b9406c5e785cebb9f4c16477a75ab3d3ff6ea01bc0ce71ecf3c",
+        "summary": {
+          "zh": "喜欢意大利套餐与晚餐氛围。",
+          "en": "Enjoys Italian set dining and atmosphere."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 10,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "3018 Nanhu Road, Luohu District 3rd Floor, Crowne Plaza Hotel & Suites Landmark Shenzhen, Shenzhen 518001 China"
+  },
+  {
+    "id": "ta-8754601",
+    "name": "探鱼（金光华）",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d8754601-Reviews-Tanju_Jin_guanghua-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "Leonhkny",
+        "date": "2023-11-11",
+        "score": null,
+        "id": "ta-web-1aa897ea0d08735e",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d8754601-Reviews-Tanju_Jin_guanghua-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "42d770326dbd36a1211b6c5d339b6b758ff7a447ad2dd01831db858b25c7ede9",
+        "replacesLegacy": "legacy-ta-8754601",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "服务不错，烤鱼偏咸油腻。",
+          "en": "Good service; grilled fish salty and oily."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 1,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "Shop 017-021, L4, Jin'guanghua Plaza, No.2028 Renmin South Road, Luohu District, Shenzhen China"
+  },
+  {
+    "id": "ta-12624178",
+    "name": "海底捞火锅（金光华）",
+    "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12624178-Reviews-Hai_Di_Lao_Hot_Pot_Jinguanghua-Shenzhen_Guangdong.html",
+    "status": "readable_public_document",
+    "comments": [
+      {
+        "author": "BerlynCC",
+        "date": "2020-02-22",
+        "score": null,
+        "id": "ta-web-c515c102d932f89d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12624178-Reviews-Hai_Di_Lao_Hot_Pot_Jinguanghua-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "a6121c8da06996775566251141b030b2d0aa6c7a1e5b3132fb34c4339107bf99",
+        "summary": {
+          "zh": "喜欢火锅服务与现场拉面。",
+          "en": "Enjoys hotpot service and fresh noodle-making."
+        }
+      },
+      {
+        "author": "Ng_LS",
+        "date": "2020-01-05",
+        "score": null,
+        "id": "ta-web-6248f3493cccea9d",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12624178-Reviews-Hai_Di_Lao_Hot_Pot_Jinguanghua-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "ba1189e29a4fd40b3ce1aee31108e7774a1e559601ea08dd2f3750b8f26d481e",
+        "summary": {
+          "zh": "员工关注周到，服务出色。",
+          "en": "Attentive staff and excellent service."
+        }
+      },
+      {
+        "author": "Leonhkny",
+        "date": "2019-12-25",
+        "score": null,
+        "id": "ta-web-e4491b4e7f7cf3f7",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12624178-Reviews-Hai_Di_Lao_Hot_Pot_Jinguanghua-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "d747fe3e0d4d946272001ca32e0279aa31e8a406d8f2e5df5b0a5b3adde01b6c",
+        "replacesLegacy": "legacy-ta-12624178",
+        "legacyMatchEvidence": "same source and author; normalized original excerpt occurs in this review body",
+        "summary": {
+          "zh": "喜欢番茄辣汤与细致招待。",
+          "en": "Enjoys tomato-spicy broths and hospitality."
+        }
+      },
+      {
+        "author": "Andre",
+        "date": "2019-09-08",
+        "score": null,
+        "id": "ta-web-929c618c383c7a94",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12624178-Reviews-Hai_Di_Lao_Hot_Pot_Jinguanghua-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "968762c0da73cdde89e83839119771ca2f73d0a991db43aca580a021bfbbe7c8",
+        "summary": {
+          "zh": "食物不错，服务令其印象深刻。",
+          "en": "Enjoys food and memorable service."
+        }
+      },
+      {
+        "author": "cecilia l",
+        "date": "2018-10-25",
+        "score": null,
+        "id": "ta-web-022b0727bcdcd2d2",
+        "idKind": "source_author_written_date",
+        "source": "https://www.tripadvisor.com.sg/Restaurant_Review-g297415-d12624178-Reviews-Hai_Di_Lao_Hot_Pot_Jinguanghua-Shenzhen_Guangdong.html",
+        "platform": "Tripadvisor",
+        "fingerprint": "085add51495fd07024eaf123a132d6f0b42a94b835665d99dfbcbd449251f574",
+        "summary": {
+          "zh": "等位较久，员工服务有条理。",
+          "en": "Long queues with organized, friendly service."
+        }
+      }
+    ],
+    "retrieval": "Readable web source; cached snapshot, not live browser pagination",
+    "visibleReviewBlocks": 5,
+    "cacheAgeLabel": "last week",
+    "sourceAddress": "6/F-7/F, Jinguanghua Plaza, Renmin South Road, Shenzhen 518000 China"
+  }
+]

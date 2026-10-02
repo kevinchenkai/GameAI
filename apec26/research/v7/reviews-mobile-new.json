@@ -1,0 +1,1701 @@
+[
+  {
+    "id": "local-017",
+    "business": "18726306",
+    "poi": "42122305",
+    "nameTokens": [
+      "誉八仙茶室(万象天地店)"
+    ],
+    "addressTokens": [
+      "深南大道万象天地六楼"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "誉八仙茶室(万象天地店)",
+      "address": "深南大道万象天地六楼",
+      "poi": 42122305,
+      "business": 18726306
+    },
+    "comments": [
+      {
+        "id": "168087487",
+        "author": "TaleTell",
+        "date": "2021-10-23",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18726306/12/168087487.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "复古装潢吸引人，脆皮豆腐推荐。",
+          "en": "Likes the ornate retro setting and recommends crisp tofu."
+        },
+        "fingerprint": "5a1715147c97157de62b1832213bbddade19dfed9793d9e42e9c86bb2739cab6"
+      },
+      {
+        "id": "163183254",
+        "author": "juki235",
+        "date": "2020-04-06",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18726306/12/163183254.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "喜欢中式庭院氛围与精致粤菜。",
+          "en": "Enjoys the traditional-style setting and refined Cantonese dishes."
+        },
+        "fingerprint": "95d113ae2fb48b9a87069f0ce7ff23d7d680e84e1414743f62598a8be4d8eef0"
+      },
+      {
+        "id": "163304020",
+        "author": "YoYo_0E2G8R1A",
+        "date": "2020-04-25",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18726306/12/163304020.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "6b16f59e344d05dc6f22c226e52e16c76f014d9350a5b623f56d03b1e322ca1a"
+      },
+      {
+        "id": "163221149",
+        "author": "YoYo_0E2G8R1A",
+        "date": "2020-04-12",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18726306/12/163221149.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "0b983314e8757a0a1022514fcfe32b38f10f8c39e9d513effb1fb6e4997a249a"
+      },
+      {
+        "id": "162843733",
+        "author": "YoYo_0E2G8R1A",
+        "date": "2020-02-14",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18726306/12/162843733.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "f98bbb85cd3cac55f2e6c1b2ace4e4d7ad5525add4f8ffedc0de8b50853b8b7e"
+      },
+      {
+        "id": "165531800",
+        "author": "YoYo_4Y5Y2F3O",
+        "date": "2021-01-13",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18726306/12/165531800.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "42ecd90a5d88a65e54e183551f9f11e0b822777e3e45d1d3d988b593b07aa513"
+      },
+      {
+        "id": "165910410",
+        "author": "YoYo_6D2B5C6R",
+        "date": "2021-03-07",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18726306/12/165910410.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "c452323bfefc11b6556c01e75fe79af3365c916a04183993d1039c6b8337c685"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=18726306&businessType=12",
+        "ids": [
+          "168087487",
+          "163183254",
+          "163304020",
+          "163221149",
+          "162843733",
+          "165531800",
+          "165910410"
+        ]
+      }
+    ],
+    "platformTotal": 11,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 7,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-028",
+    "business": "122690649",
+    "poi": "122690649",
+    "nameTokens": [
+      "小辣椒·湖南乡里菜(文锦花园店)"
+    ],
+    "addressTokens": [
+      "文锦南路文锦渡文锦花园25A栋一楼"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "小辣椒·湖南乡里菜(文锦花园店)",
+      "address": "文锦南路文锦渡文锦花园25A栋一楼",
+      "poi": 122690649,
+      "business": 122690649
+    },
+    "comments": [
+      {
+        "id": "709862791",
+        "author": "YoYo_2X6O3B4J",
+        "date": "2026-02-19",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/122690649/12/709862791.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "现炒湘菜下饭，建议多备米饭。",
+          "en": "Freshly cooked spicy Hunan dishes pair well with rice."
+        },
+        "fingerprint": "5abddc3a60dcfc63e589a2833c64c5a994eb6f9d62dac7ddc6616b43d180349c"
+      },
+      {
+        "id": "709862812",
+        "author": "YoYo_5Z9L3L4M",
+        "date": "2026-01-16",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/122690649/12/709862812.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "大圆桌适合朋友聚餐，上菜快。",
+          "en": "Large round tables and quick service suit group dining."
+        },
+        "fingerprint": "d8ab6a692f76fb8bd537ca310f7d7af98e2d4b06ba772a3bf24b6ae8e866b9ab"
+      },
+      {
+        "id": "709862784",
+        "author": "YoYo_6I8Z6U6U",
+        "date": "2025-07-19",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/122690649/12/709862784.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "64ea26b5d8835df8fd12af3889617efc584397a1f2fa6ab6a74d647109a0907c"
+      },
+      {
+        "id": "709862798",
+        "author": "YoYo_9V1Y3T6W",
+        "date": "2025-10-22",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/122690649/12/709862798.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "edff7d5f296282572c6d1c7a94889b6180080d42147de2402f184497b85fa92f"
+      },
+      {
+        "id": "709862805",
+        "author": "YoYo_2M5Z7P4L",
+        "date": "2025-07-19",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/122690649/12/709862805.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "7c68674e2d461b4b222ddd22bacb22b95f07c056c4c70ba4c96d19794700ce36"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=122690649&businessType=12",
+        "ids": [
+          "709862791",
+          "709862812",
+          "709862784",
+          "709862798",
+          "709862805"
+        ]
+      }
+    ],
+    "platformTotal": 5,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 5,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-029",
+    "business": "130379198",
+    "poi": "130379198",
+    "nameTokens": [
+      "宇德隆记客家食府(宝安店)"
+    ],
+    "addressTokens": [
+      "上合社区32区上川村2栋101号"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "宇德隆记客家食府(宝安店)",
+      "address": "上合社区32区上川村2栋101号",
+      "poi": 130379198,
+      "business": 130379198
+    },
+    "comments": [
+      {
+        "id": "711970589",
+        "author": "YoYo_8T7S1O9E",
+        "date": "2026-05-03",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/130379198/12/711970589.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "酿豆腐柔软入味，周末建议早到。",
+          "en": "Enjoys tender stuffed tofu; suggests arriving early on weekends."
+        },
+        "fingerprint": "9243d70526d580d97ced185ff5d358596d1562c195e690b13224f898a257d10e"
+      },
+      {
+        "id": "711970610",
+        "author": "YoYo_7D1U5N3A",
+        "date": "2026-03-21",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/130379198/12/711970610.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "菜量足，适合家庭或朋友聚餐。",
+          "en": "Generous portions suit a family or small group."
+        },
+        "fingerprint": "324e90c1d3015e20952d16b37e7856e1c5b25752f518af11be10bd2827acf84f"
+      },
+      {
+        "id": "711970582",
+        "author": "YoYo_2N5P2V6L",
+        "date": "2025-12-06",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/130379198/12/711970582.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "55c33391b316116132cca6365f15ce5afd498d5511a78f52b6e38a16acdad63d"
+      },
+      {
+        "id": "711970596",
+        "author": "YoYo_5N3Z9X5U",
+        "date": "2026-02-05",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/130379198/12/711970596.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到环境氛围。",
+          "en": "Discusses atmosphere."
+        },
+        "fingerprint": "b368af68c6060f51e228873c95cf4ec4cce5df26358658119b42e8367f391c8e"
+      },
+      {
+        "id": "711970603",
+        "author": "YoYo_3V0Q1F5B",
+        "date": "2025-06-30",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/130379198/12/711970603.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "fc5542d203160dfb0a418faea592fe61d855a61f6fbdb4366b799860c98cfe12"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=130379198&businessType=12",
+        "ids": [
+          "711970589",
+          "711970610",
+          "711970582",
+          "711970596",
+          "711970603"
+        ]
+      }
+    ],
+    "platformTotal": 5,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 5,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-030",
+    "business": "13434332",
+    "poi": "26635743",
+    "nameTokens": [
+      "爱碗亭·鲜炒湖南菜(粤商中心店)"
+    ],
+    "addressTokens": [
+      "东环二路8号粤商中心A座L2层C8015号"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "爱碗亭·鲜炒湖南菜(粤商中心店)",
+      "address": "东环二路8号粤商中心A座L2层C8015号",
+      "poi": 26635743,
+      "business": 13434332
+    },
+    "comments": [
+      {
+        "id": "166274178",
+        "author": "YoYo_6D2B5C6R",
+        "date": "2021-04-19",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/13434332/12/166274178.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "湘菜辣度可选，口味较地道。",
+          "en": "Finds the Hunan cooking fairly authentic with varied heat levels."
+        },
+        "fingerprint": "4deba828830187a4a38ed9c277ce403487a0fbbffdeb967fe795777fd4359779"
+      },
+      {
+        "id": "164994796",
+        "author": "鲁树良",
+        "date": "2020-11-05",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/13434332/12/164994796.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "湘菜味道与价格适中，店内干净。",
+          "en": "Finds the Hunan dishes reasonably priced in a clean setting."
+        },
+        "fingerprint": "d403c380bdf6e87baa8e2b93ca767e3bf4fb2dde5639302cea7f40c692101095"
+      },
+      {
+        "id": "163237491",
+        "author": "YoYo_1I3W8R4R",
+        "date": "2020-04-14",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/13434332/12/163237491.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "c9020aad975ef6925506d3557103007161429cf3928e2b5f44ca4e8be6c3fa75"
+      },
+      {
+        "id": "165475246",
+        "author": "YoYo_0R0S3W0P",
+        "date": "2021-01-05",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/13434332/12/165475246.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "88673045976f24af8208e0a3a007d4626483c2fd706becb5ade9d5c4f9782d13"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=13434332&businessType=12",
+        "ids": [
+          "166274178",
+          "164994796",
+          "163237491",
+          "165475246"
+        ]
+      }
+    ],
+    "platformTotal": 589,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 4,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-034",
+    "business": "15590836",
+    "poi": "31152571",
+    "nameTokens": [
+      "陈鹏鹏潮汕菜(天利店)"
+    ],
+    "addressTokens": [
+      "天利中央商务广场（二期）209商铺"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "陈鹏鹏潮汕菜(天利店)",
+      "address": "天利中央商务广场（二期）209商铺",
+      "poi": 31152571,
+      "business": 15590836
+    },
+    "comments": [
+      {
+        "id": "162543732",
+        "author": "dlu808",
+        "date": "2020-01-05",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/15590836/12/162543732.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "喜欢鹅的味道，分量足到打包。",
+          "en": "Enjoys the goose; generous portions leave leftovers."
+        },
+        "fingerprint": "33a9056caaccb87ef2bea027daf88db1e622dc1fc8bade3cf8f63d38bc79c6ae"
+      },
+      {
+        "id": "161757853",
+        "author": "噼里啪啦",
+        "date": "2019-10-29",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/15590836/12/161757853.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "鹅肉味道不错，服务及时。",
+          "en": "Likes the goose and prompt, responsive service."
+        },
+        "fingerprint": "22f11f56cdcbee7f427bb8d8459d53f7381c5a069964cd9350b596f15e89f700"
+      },
+      {
+        "id": "162115896",
+        "author": "花叔叔",
+        "date": "2019-11-26",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/15590836/12/162115896.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到烧卤鹅。",
+          "en": "Discusses roast or braised goose."
+        },
+        "fingerprint": "7d9ab4d89529eced9da12e4dac17299c1efc91403cfe61590b8908fce65084b4"
+      },
+      {
+        "id": "163654964",
+        "author": "真诚7577",
+        "date": "2020-06-15",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/15590836/12/163654964.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到烧卤鹅。",
+          "en": "Discusses roast or braised goose."
+        },
+        "fingerprint": "a11b16cbc5367691c10d13b8dd2e8298a11ae9bc94ca7bf8da95eb9028c4c828"
+      },
+      {
+        "id": "164256355",
+        "author": "享受生活2013",
+        "date": "2020-08-27",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/15590836/12/164256355.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到烧卤鹅。",
+          "en": "Discusses roast or braised goose."
+        },
+        "fingerprint": "f0f7e7eb30c59f8a19baef598876a5f430832efe02f1adda17afbe9c4cbd643b"
+      },
+      {
+        "id": "163376897",
+        "author": "烟雨梨花",
+        "date": "2020-05-05",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/15590836/12/163376897.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "2d34e48ebc277fd332db7f2454c6ff2edd5590a27894414896f4f56bbd8a32eb"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=15590836&businessType=12",
+        "ids": [
+          "162543732",
+          "161757853",
+          "162115896",
+          "163654964",
+          "164256355",
+          "163376897"
+        ]
+      }
+    ],
+    "platformTotal": 160,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 6,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-039",
+    "business": "21402644",
+    "poi": "50501552",
+    "nameTokens": [
+      "点都德(A8店)"
+    ],
+    "addressTokens": [
+      "科园路1002号A8音乐大厦4楼"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "点都德(A8店)",
+      "address": "科园路1002号A8音乐大厦4楼",
+      "poi": 50501552,
+      "business": 21402644
+    },
+    "comments": [
+      {
+        "id": "180866759",
+        "author": "kxjwz",
+        "date": "2024-02-23",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/21402644/12/180866759.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "红米肠、虾饺与椰汁糕值得点。",
+          "en": "Recommends red rice rolls, shrimp dumplings and coconut cake."
+        },
+        "fingerprint": "693d1de0ff2d7fc1845f2284c47b05dfab24cc57293dc17e4a411cd23c531feb"
+      },
+      {
+        "id": "160818361",
+        "author": "Doom毁灭",
+        "date": "2019-09-07",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/21402644/12/160818361.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "茶点有亮点，手机点餐不方便。",
+          "en": "Some dim sum stands out; mobile ordering feels awkward."
+        },
+        "fingerprint": "0f1901b3845cf0b7a1b4270907fb86541e7fcdf1b82849307b1f2378c8813891"
+      },
+      {
+        "id": "163963301",
+        "author": "噼里啪啦",
+        "date": "2020-07-30",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/21402644/12/163963301.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到早茶点心、服务。",
+          "en": "Discusses dim sum and service."
+        },
+        "fingerprint": "353be5bbd3cda80e87a4a91d4bc812ecf301c07561796e32c21a158e9575cd9d"
+      },
+      {
+        "id": "166690618",
+        "author": "线无止境",
+        "date": "2021-05-29",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/21402644/12/166690618.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、价格感受。",
+          "en": "Discusses service and value."
+        },
+        "fingerprint": "44f7ba369d8d7379062eb1f0a14393304b13fdf12b654ec22fcfdcde8a6c0c26"
+      },
+      {
+        "id": "164737082",
+        "author": "噼里啪啦",
+        "date": "2020-10-10",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/21402644/12/164737082.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到肠粉、早茶点心。",
+          "en": "Discusses rice rolls and dim sum."
+        },
+        "fingerprint": "c6d558e6ccd7974372e0667918d96a7151158b675904eb5cb742d8d7c94d2503"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=21402644&businessType=12",
+        "ids": [
+          "180866759",
+          "160818361",
+          "163963301",
+          "166690618",
+          "164737082"
+        ]
+      }
+    ],
+    "platformTotal": 9,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 5,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-043",
+    "business": "18769107",
+    "poi": "42165106",
+    "nameTokens": [
+      "点都德(龙华优城店)"
+    ],
+    "addressTokens": [
+      "民治大道567号UONE优城北区二层"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "点都德(龙华优城店)",
+      "address": "民治大道567号UONE优城北区二层",
+      "poi": 42165106,
+      "business": 18769107
+    },
+    "comments": [
+      {
+        "id": "166100925",
+        "author": "网中的人",
+        "date": "2021-04-01",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/166100925.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点心选择多，茶位费和收碟声欠佳。",
+          "en": "Likes dim sum variety; tea charges and clearing noise disappoint."
+        },
+        "fingerprint": "f0ffe756bab36b74c2cef02be231085c0dd68cc434e73a34e58574d6ad761f7d"
+      },
+      {
+        "id": "162896338",
+        "author": "百合1203",
+        "date": "2020-02-24",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/162896338.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "上菜快，建议人齐后点餐。",
+          "en": "Service is quick; suggests ordering after everyone arrives."
+        },
+        "fingerprint": "4edcc4d93ab412c838027e63cd7a0639228f195dcce3b6e9baccd6a545b5ae2e"
+      },
+      {
+        "id": "163175964",
+        "author": "fish505",
+        "date": "2020-04-05",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/163175964.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到早茶点心。",
+          "en": "Discusses dim sum."
+        },
+        "fingerprint": "018db2507472bf17f0aebe465b6018eadd858a2269d3153675c60edc59545b3c"
+      },
+      {
+        "id": "163195537",
+        "author": "亭亭向阳",
+        "date": "2020-04-08",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/163195537.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "a0648e534b6b281da8f5d5c8e843cf0a3e40bb563fd2a303983b262c279da0bd"
+      },
+      {
+        "id": "163183580",
+        "author": "启航yyy",
+        "date": "2020-04-06",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/163183580.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到早茶点心。",
+          "en": "Discusses dim sum."
+        },
+        "fingerprint": "29f7c8d487a6390569593a21e3eb3002188db7a12cc1cff482303a5a7d2524a5"
+      },
+      {
+        "id": "163530994",
+        "author": "YoYo_6R0F6K7Q",
+        "date": "2020-05-27",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/163530994.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        },
+        "fingerprint": "40c6cedabf1f32dcc3aa33846f4b49f04f9430adb39cba49545f0cee0c6180ef"
+      },
+      {
+        "id": "161813094",
+        "author": "ma-mndy",
+        "date": "2019-11-02",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/161813094.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到排队等位。",
+          "en": "Discusses waiting times."
+        },
+        "fingerprint": "622e272f1764196c174273dcd97bcdb14ded216c8052873ee87ec1a90ab4b7a5"
+      },
+      {
+        "id": "160850584",
+        "author": "YoYo_3Y7Z9I0N",
+        "date": "2019-09-09",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/160850584.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "f4c4e6d3e128405093513e06f9669421eca0d1fc0b746c3fb7146cc6d121058d"
+      },
+      {
+        "id": "173939303",
+        "author": "最后的青木",
+        "date": "2022-12-02",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/18769107/12/173939303.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "0d010b2b60bbd30699d9794ed4664e708bd99b0ec1594c72c3fdb3fdcaca9bd2"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=18769107&businessType=12",
+        "ids": [
+          "166100925",
+          "162896338",
+          "163175964",
+          "163195537",
+          "163183580",
+          "163530994",
+          "161813094",
+          "160850584",
+          "173939303"
+        ]
+      }
+    ],
+    "platformTotal": 11,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 9,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-051",
+    "business": "133677667",
+    "poi": "133677667",
+    "nameTokens": [
+      "炳胜私厨(万象前海店)"
+    ],
+    "addressTokens": [
+      "桂湾四路万象前海购物中心L324"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "炳胜私厨(万象前海店)",
+      "address": "桂湾四路万象前海购物中心L324",
+      "poi": 133677667,
+      "business": 133677667
+    },
+    "comments": [],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=133677667&businessType=12",
+        "ids": []
+      }
+    ],
+    "platformTotal": 1,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 0,
+    "collectionState": "identity_verified_no_readable_records",
+    "terminalNotice": "Page metadata lists 1 total reviews, but the initial public list was empty. Keep earlier verified records; no stock/business inference."
+  },
+  {
+    "id": "local-052",
+    "business": "12812570",
+    "poi": "26012436",
+    "nameTokens": [
+      "高三姐豆花店(上梅林店)"
+    ],
+    "addressTokens": [
+      "梅村路上梅林新村56栋102号铺"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "高三姐豆花店(上梅林店)",
+      "address": "梅村路上梅林新村56栋102号铺",
+      "poi": 26012436,
+      "business": 12812570
+    },
+    "comments": [
+      {
+        "id": "708394877",
+        "author": "YoYo_4G1D2G9F",
+        "date": "2026-05-16",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12812570/12/708394877.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "市井氛围熟悉，桌椅干净。",
+          "en": "Likes the everyday neighborhood feel and clean tables."
+        },
+        "fingerprint": "567ac09c4bb92955e147a46520ec85c907198036e7d90c02ad2aeff117e0b809"
+      },
+      {
+        "id": "708394856",
+        "author": "YoYo_9O3E5G4D",
+        "date": "2025-05-28",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12812570/12/708394856.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "店铺较隐蔽，饭点建议早到。",
+          "en": "Finds it tucked away; recommends arriving before lunch crowds."
+        },
+        "fingerprint": "b9bb9c6e9b1daf3154a5cef573d3c53c2efa4aca3d5d343296bd756f4617a902"
+      },
+      {
+        "id": "708394863",
+        "author": "YoYo_6L4P0H6Y",
+        "date": "2026-01-17",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12812570/12/708394863.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "704f077ce24a598bbabdd11c9c63f16333df4639338d2020b78148766dcccafc"
+      },
+      {
+        "id": "708394884",
+        "author": "YoYo_2Q8N2Y9Q",
+        "date": "2025-10-07",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12812570/12/708394884.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        },
+        "fingerprint": "42c4a21a3b86942dc2b8c97e573f4ac9b8cc9ec7b5972ed34437a0d9e8c2c0a0"
+      },
+      {
+        "id": "708394870",
+        "author": "YoYo_0A5R1S6O",
+        "date": "2025-09-25",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/12812570/12/708394870.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "7b1196188170b6d2b370f39af0c4c0b93566b63444ab0b94826aad04e86493d5"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=12812570&businessType=12",
+        "ids": [
+          "708394877",
+          "708394856",
+          "708394863",
+          "708394884",
+          "708394870"
+        ]
+      }
+    ],
+    "platformTotal": 5,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 5,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-053",
+    "business": "7404824",
+    "poi": "15562053",
+    "nameTokens": [
+      "金稻园砂锅粥(壹海城店)"
+    ],
+    "addressTokens": [
+      "海山路壹海城四区1栋101号"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "金稻园砂锅粥(壹海城店)",
+      "address": "海山路壹海城四区1栋101号",
+      "poi": 15562053,
+      "business": 7404824
+    },
+    "comments": [
+      {
+        "id": "166928322",
+        "author": "我是鼠老大",
+        "date": "2021-06-25",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/166928322.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "环境适合家庭，觉得粥价格偏高。",
+          "en": "Likes the family-friendly setting; finds the congee pricey."
+        },
+        "fingerprint": "6e0e19fa88a02f1f7187b6a26861f737761c3b1385e6df30c65aa3bfc0236fe2"
+      },
+      {
+        "id": "161162877",
+        "author": "我是鼠老大",
+        "date": "2019-09-26",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/161162877.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "户外环境舒服，人多时上菜偏慢。",
+          "en": "Enjoys outdoor seating; service slows when busy."
+        },
+        "fingerprint": "fcaa0058cbef20a3fdc09d23264d4c7dc72760e3ead8473f45d8787896a12dd8"
+      },
+      {
+        "id": "168279615",
+        "author": "长空血乱",
+        "date": "2021-11-06",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/168279615.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "2bbd7eac59f12166fcbf1481cf8f02d157ec10a96601d5c75b9c05149a6dc0d1"
+      },
+      {
+        "id": "166283491",
+        "author": "爱旅游的小A",
+        "date": "2021-04-20",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/166283491.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        },
+        "fingerprint": "73cf30a956b60cc530feb6c608547071c4a29f611b01fb8b83214bfa0f9e8df4"
+      },
+      {
+        "id": "165764212",
+        "author": "怪兽花园",
+        "date": "2021-02-17",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/165764212.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到环境氛围、价格感受。",
+          "en": "Discusses atmosphere and value."
+        },
+        "fingerprint": "ef8787d525588637a3ee5a1f98ca7f14ba60a2d5fc4d0a7737aa566735a4b984"
+      },
+      {
+        "id": "165443446",
+        "author": "爱旅游的小A",
+        "date": "2021-01-01",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/165443446.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到价格感受。",
+          "en": "Discusses value."
+        },
+        "fingerprint": "bcd2f89f80d62b569537e1a12aaace93c5391243c6d5dd68d40e443bbd0e849a"
+      },
+      {
+        "id": "167708595",
+        "author": "wan19740813",
+        "date": "2021-09-18",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/167708595.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        },
+        "fingerprint": "39750fc87fb3ab62aaffe701bddd96144fc78ea2d99cc5a39b57a205e8beff07"
+      },
+      {
+        "id": "167148290",
+        "author": "月盈韵",
+        "date": "2021-07-14",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/167148290.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到海鲜、粥品。",
+          "en": "Discusses seafood and congee."
+        },
+        "fingerprint": "3ab6009a4345e7cf59dd6d100dd95737fe4dd9f8d2333450076d91f44035d2cb"
+      },
+      {
+        "id": "165722185",
+        "author": "彧帝",
+        "date": "2021-02-13",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7404824/12/165722185.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "19df6de0f197944b122b1566947bec0b3b7dd9f3eb6ec5a753bb6bb75762e335"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=7404824&businessType=12",
+        "ids": [
+          "166928322",
+          "161162877",
+          "168279615",
+          "166283491",
+          "165764212",
+          "165443446",
+          "167708595",
+          "167148290",
+          "165722185"
+        ]
+      }
+    ],
+    "platformTotal": 62,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 9,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-020",
+    "business": "118848364",
+    "poi": "118848364",
+    "nameTokens": [
+      "客语概念店(海岸城店)"
+    ],
+    "addressTokens": [
+      "文心五路33号海岸城购物中心西区5楼516号"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "客语概念店(海岸城店)",
+      "address": "文心五路33号海岸城购物中心西区5楼516号",
+      "poi": 118848364,
+      "business": 118848364
+    },
+    "comments": [],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=118848364&businessType=12",
+        "ids": []
+      }
+    ],
+    "platformTotal": 2,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 0,
+    "collectionState": "identity_verified_no_readable_records",
+    "terminalNotice": "Page metadata lists 2 total reviews, but the initial public list was empty. Keep earlier verified records; no stock/business inference."
+  },
+  {
+    "id": "local-032",
+    "business": "118843067",
+    "poi": "118843067",
+    "nameTokens": [
+      "浅海小厨·潮汕小排档(深圳湾店)"
+    ],
+    "addressTokens": [
+      "招商东路与中心路交汇处恒裕·香悦里一楼外层L1-082-085"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "浅海小厨·潮汕小排档(深圳湾店)",
+      "address": "招商东路与中心路交汇处恒裕·香悦里一楼外层L1-082-085",
+      "poi": 118843067,
+      "business": 118843067
+    },
+    "comments": [
+      {
+        "id": "709740725",
+        "author": "YoYo_9L1W2O4F",
+        "date": "2026-04-13",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118843067/12/709740725.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "卤水与生腌不错，忙时上菜偏慢。",
+          "en": "Likes braised goose and marinated shrimp; busy service is slower."
+        },
+        "fingerprint": "698b262adefd55a94a3c68788cc75d39fb0eb22f8659e5a11845e12c23455ffa"
+      },
+      {
+        "id": "709740746",
+        "author": "YoYo_8P9F5U1S",
+        "date": "2025-09-21",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118843067/12/709740746.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "喜欢自制叉烧的入味与焦脆边。",
+          "en": "Enjoys the house-made char siu and its crisp edges."
+        },
+        "fingerprint": "cf40b663328af133f7172a42830266ecc4ad3595bdec6dacd5b1d43d13061d19"
+      },
+      {
+        "id": "709740732",
+        "author": "YoYo_8O6G7C0G",
+        "date": "2026-04-08",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118843067/12/709740732.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "751160cffed23ae6b49f0e824005571fe7e05ba6a1f534671b149531154c1c43"
+      },
+      {
+        "id": "709740739",
+        "author": "YoYo_6Z3I8N9J",
+        "date": "2025-11-30",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118843067/12/709740739.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到环境氛围。",
+          "en": "Discusses atmosphere."
+        },
+        "fingerprint": "a46949ab5367782286acf3cd0a2e5d3f4bd8c2227cc88580e54e9ba3e7ffb01a"
+      },
+      {
+        "id": "709740753",
+        "author": "YoYo_6V3G7Z3D",
+        "date": "2025-12-10",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/118843067/12/709740753.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到环境氛围。",
+          "en": "Discusses atmosphere."
+        },
+        "fingerprint": "192e5030d3c08fa97ace20c908746f1d964c3e7b7c25db1302ea2a4c16474f27"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=118843067&businessType=12",
+        "ids": [
+          "709740725",
+          "709740746",
+          "709740732",
+          "709740739",
+          "709740753"
+        ]
+      }
+    ],
+    "platformTotal": 5,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 5,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-037",
+    "business": "17631271",
+    "poi": "36997218",
+    "nameTokens": [
+      "点都德(卓悦汇店)"
+    ],
+    "addressTokens": [
+      "梅林街道中康路126号卓悦汇购物中心1~2楼(八合里火锅斜对面)"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "点都德(卓悦汇店)",
+      "address": "梅林街道中康路126号卓悦汇购物中心1~2楼(八合里火锅斜对面)",
+      "poi": 36997218,
+      "business": 17631271
+    },
+    "comments": [
+      {
+        "id": "166446881",
+        "author": "Wade0755",
+        "date": "2021-05-05",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/17631271/12/166446881.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "一人早茶体验不错，人多更易分摊。",
+          "en": "Enjoys solo dim sum; groups can share the cost."
+        },
+        "fingerprint": "6d4c5823248ab500581ecf239d7b669f85b967ec4f1aeecc8f44284027bf7d29"
+      },
+      {
+        "id": "161504096",
+        "author": "eason19999",
+        "date": "2019-10-11",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/17631271/12/161504096.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "茶点经典，节假日建议提前取号。",
+          "en": "Likes classic dim sum; suggests joining the holiday queue early."
+        },
+        "fingerprint": "69903a066b77b690c8e41eaf38d54c4bf4c29701f62b30364c795275bb90c288"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=17631271&businessType=12",
+        "ids": [
+          "166446881",
+          "161504096"
+        ]
+      }
+    ],
+    "platformTotal": 7,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 2,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-044",
+    "business": "22640085",
+    "poi": "57317543",
+    "nameTokens": [
+      "海底捞火锅(天玑城店)"
+    ],
+    "addressTokens": [
+      "龙岗大道与碧新路交汇处锦泰城商业广场二层A210、A211、A218"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "海底捞火锅(天玑城店)",
+      "address": "龙岗大道与碧新路交汇处锦泰城商业广场二层A210、A211、A218",
+      "poi": 57317543,
+      "business": 22640085
+    },
+    "comments": [
+      {
+        "id": "162208751",
+        "author": "噼里啪啦",
+        "date": "2019-12-05",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22640085/12/162208751.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "火锅与服务不错，价格稍高。",
+          "en": "Enjoys the hot pot and service despite higher prices."
+        },
+        "fingerprint": "3e3f73750eceb1cfa3b55a539e279d47f55940d3d63dc1a488c5b5a83e9dea28"
+      },
+      {
+        "id": "680190148",
+        "author": "静谧书桌",
+        "date": "2025-12-06",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22640085/12/680190148.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "服务热情周到，让人觉得贴心。",
+          "en": "Finds the staff warm and attentive."
+        },
+        "fingerprint": "3c82fc4b9d64691db7f7e6926b0a3adb227b7248f3b96078da090e3ac356bdae"
+      },
+      {
+        "id": "680190232",
+        "author": "书桌上的小熊2",
+        "date": "2025-12-05",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22640085/12/680190232.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、环境氛围。",
+          "en": "Discusses service and atmosphere."
+        },
+        "fingerprint": "783b1af7e5aeb98715d2143d9a35da4d4d13cf0b816acb93b16537bc6c97510d"
+      },
+      {
+        "id": "680190218",
+        "author": "深夜食堂小猫",
+        "date": "2025-08-08",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22640085/12/680190218.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务、价格感受。",
+          "en": "Discusses service and value."
+        },
+        "fingerprint": "156dccd6784faa1ab25491455501ddf848d6690189b13f9f889d2c1a664658d9"
+      },
+      {
+        "id": "680190176",
+        "author": "anime_laughs",
+        "date": "2025-07-22",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22640085/12/680190176.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "621f33b58edadd1c28e492f4482402398c1bd87fece6a3aaf156b778d3ca9347"
+      },
+      {
+        "id": "680190197",
+        "author": "静思书灯下",
+        "date": "2025-05-30",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/22640085/12/680190197.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到环境氛围。",
+          "en": "Discusses atmosphere."
+        },
+        "fingerprint": "7a2d6ba39186d2f0dc26e55572c84d234be3e1bccd879e9b43f2448f9b65b3de"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=22640085&businessType=12",
+        "ids": [
+          "162208751",
+          "680190148",
+          "680190232",
+          "680190218",
+          "680190176",
+          "680190197"
+        ]
+      }
+    ],
+    "platformTotal": 6,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 6,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-047",
+    "business": "127770113",
+    "poi": "127770113",
+    "nameTokens": [
+      "润园四季椰子鸡火锅(科兴店)"
+    ],
+    "addressTokens": [
+      "科技园社区科苑路15号科兴科学园B栋G-19（北门进来下台阶左手边）"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "润园四季椰子鸡火锅(科兴店)",
+      "address": "科技园社区科苑路15号科兴科学园B栋G-19（北门进来下台阶左手边）",
+      "poi": 127770113,
+      "business": 127770113
+    },
+    "comments": [
+      {
+        "id": "710795450",
+        "author": "YoYo_1B7J3T7W",
+        "date": "2026-05-06",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/127770113/12/710795450.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "绿植与傍晚靠窗座位令人放松。",
+          "en": "Greenery and evening window seats feel relaxing."
+        },
+        "fingerprint": "4cdf04556a29b72c64aab9d02994cd29481d331f4dfee6bc35118d205aaad38e"
+      },
+      {
+        "id": "710795429",
+        "author": "YoYo_2W3J3A1U",
+        "date": "2026-04-08",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/127770113/12/710795429.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "竹笙椰子鸡汤清甜，鸡肉嫩。",
+          "en": "Enjoys sweet coconut broth, bamboo fungus and tender chicken."
+        },
+        "fingerprint": "d4dc4cfec266236f1514abac0b8ad8aba61de5a72bec99f4e67d2baafb8e4fde"
+      },
+      {
+        "id": "710795436",
+        "author": "YoYo_0W2V7T4M",
+        "date": "2025-12-25",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/127770113/12/710795436.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "分享了这家店的用餐体验。",
+          "en": "Shares a personal dining experience at this venue."
+        },
+        "fingerprint": "941351c0948e27e12a8ebef91179b5e4ba55237d72520ae4bb2c2d0d6db9295e"
+      },
+      {
+        "id": "710795457",
+        "author": "YoYo_4I4D5M8N",
+        "date": "2025-09-10",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/127770113/12/710795457.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到服务。",
+          "en": "Discusses service."
+        },
+        "fingerprint": "1aaed863586aaa9307c59dc98b37848f4eaf0cc762cbcb30bd6bf61b45ecf5f2"
+      },
+      {
+        "id": "177521479",
+        "author": "Sammy0618",
+        "date": "2023-07-09",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/127770113/12/177521479.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到火锅、服务。",
+          "en": "Discusses hot pot and service."
+        },
+        "fingerprint": "747b161c5e2289bb8f2f8e7b043d0133b3585befa92e283317c3af29f8fd2cfe"
+      },
+      {
+        "id": "710795464",
+        "author": "YoYo_5R7J4D7Q",
+        "date": "2026-03-19",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/127770113/12/710795464.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到椰子鸡汤。",
+          "en": "Discusses coconut chicken broth."
+        },
+        "fingerprint": "8c3d4d2ab2bde5728bee7c5b1c3e43becea792a6124e33afd8bb01021791f0c0"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=127770113&businessType=12",
+        "ids": [
+          "710795450",
+          "710795429",
+          "710795436",
+          "710795457",
+          "177521479",
+          "710795464"
+        ]
+      }
+    ],
+    "platformTotal": 6,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 6,
+    "collectionState": "readable_public_records"
+  },
+  {
+    "id": "local-005",
+    "business": "7381170",
+    "poi": "15536655",
+    "nameTokens": [
+      "丹桂轩",
+      "天安"
+    ],
+    "addressTokens": [
+      "车公庙",
+      "天安高尔夫花园"
+    ],
+    "status": "verified",
+    "identity": {
+      "name": "丹桂轩(天安店)",
+      "address": "深南路车公庙天安高尔夫花园会所二楼、三楼",
+      "poi": 15536655,
+      "business": 7381170
+    },
+    "comments": [
+      {
+        "id": "162593179",
+        "author": "YoYo_3Z9X9X3V",
+        "date": "2020-01-11",
+        "score": 3,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381170/12/162593179.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "肠粉不错，部分点心和座位间距欠佳。",
+          "en": "Likes rice rolls; some dim sum and tight seating disappoint."
+        },
+        "fingerprint": "cb55c6fe6cd902d04fe73438c25a6458d6a569996b99c47abee637c1d00a649b"
+      },
+      {
+        "id": "162195585",
+        "author": "elsashen0529",
+        "date": "2019-12-04",
+        "score": 5,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381170/12/162195585.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "现烤乳鸽令人满意，服务到位。",
+          "en": "Enjoys freshly roasted pigeon and attentive service."
+        },
+        "fingerprint": "75498130cf20624a8a6a319a1f1212b12f7426308a3eecd0ce8b9d9b14736503"
+      },
+      {
+        "id": "160636260",
+        "author": "-MIAQ-",
+        "date": "2019-08-27",
+        "score": 4,
+        "source": "https://m.ctrip.com/webapp/you/comment/detail/7381170/12/160636260.html",
+        "platform": "携程 / Ctrip",
+        "sourceVisibility": "main",
+        "summary": {
+          "zh": "点评提到环境氛围、价格感受。",
+          "en": "Discusses atmosphere and value."
+        },
+        "fingerprint": "65a60165d9b7325a1f47f500057d70f95357013e04b332fe6cacd2917e7bf264"
+      }
+    ],
+    "pages": [
+      {
+        "kind": "main",
+        "source": "https://m.ctrip.com/webapp/you/commentWeb/commentList?businessId=7381170&businessType=12",
+        "ids": [
+          "162593179",
+          "162195585",
+          "160636260"
+        ]
+      }
+    ],
+    "platformTotal": 10,
+    "pagination": "Public main batch only; no visible folded-review link. No synthetic pagination.",
+    "checked": "2026-10-02",
+    "foldedLinkVisible": false,
+    "publicRecordCount": 3,
+    "collectionState": "readable_public_records"
+  }
+]

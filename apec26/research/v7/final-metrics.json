@@ -1,0 +1,23 @@
+{
+  "baselineCommit": "22c25fc",
+  "before": 751,
+  "after": 825,
+  "newKeys": 87,
+  "removedLegacyKeys": 13,
+  "netAdded": 74,
+  "uniqueVenues": 91,
+  "boardEntries": 104,
+  "listComplete": 102,
+  "detailComplete": 65,
+  "uniqueListComplete": 89,
+  "uniqueDetailComplete": 56,
+  "remainingDetailVenues": 35,
+  "remainingDetailRecords": 157,
+  "remainingListRecords": 2,
+  "productCount": 160,
+  "listingMatched": 97,
+  "unconfirmed": 63,
+  "productsWithAttributes": 92,
+  "structuredAttributeFields": 201,
+  "officialCompleteDetails": 0
+}
