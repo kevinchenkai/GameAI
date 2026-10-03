@@ -1,0 +1,174 @@
+{
+  "date": "2026-10-02",
+  "environment": "Chromium; mobile 402×773 DPR2, ground truth 375×812 DPR2; desktop1280×720 DPR1; not physical iPhone",
+  "checks": [
+    {
+      "name": "canvas DPR=2",
+      "passed": true,
+      "details": 2
+    },
+    {
+      "name": "six-column layout unchanged",
+      "passed": true,
+      "details": {
+        "tile": "52.17",
+        "row": "44.34"
+      }
+    },
+    {
+      "name": "restart cancels old pick at 30ms",
+      "passed": true,
+      "details": {
+        "moves": 0,
+        "tray": 0
+      }
+    },
+    {
+      "name": "restart cancels old pick at 260ms",
+      "passed": true,
+      "details": {
+        "moves": 0,
+        "tray": 0
+      }
+    },
+    {
+      "name": "restart cancels old pick at 500ms",
+      "passed": true,
+      "details": {
+        "moves": 0,
+        "tray": 0
+      }
+    },
+    {
+      "name": "restart aborts worker and does not spend shuffle",
+      "passed": true,
+      "details": {
+        "result": false,
+        "shuffleUsed": 0
+      }
+    },
+    {
+      "name": "input queue accepts active+2 and refuses fourth",
+      "passed": true,
+      "details": [
+        true,
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "name": "queue remains usable after cancellations",
+      "passed": true
+    },
+    {
+      "name": "third tile not duplicated before flight arrives",
+      "passed": true,
+      "details": 2
+    },
+    {
+      "name": "win animation preserves physical display dimensions",
+      "passed": true,
+      "details": [
+        {
+          "key": "ui-panel-win",
+          "width": 310.8,
+          "height": 310
+        },
+        {
+          "key": "fx-star",
+          "width": 38,
+          "height": 38
+        },
+        {
+          "key": "fx-star",
+          "width": 38,
+          "height": 38
+        },
+        {
+          "key": "fx-star",
+          "width": 38,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "name": "skip restores exact star scales",
+      "passed": true,
+      "details": [
+        38,
+        38,
+        38
+      ]
+    },
+    {
+      "name": "danger tray never scales the whole region",
+      "passed": true,
+      "details": 1
+    },
+    {
+      "name": "restart confirmation blocks board input",
+      "passed": true
+    },
+    {
+      "name": "reduced-motion pick completes without long fly animation",
+      "passed": true,
+      "details": 10
+    },
+    {
+      "name": "reduced-motion disables warning pulse",
+      "passed": true
+    },
+    {
+      "name": "one shared AudioContext across scenes",
+      "passed": true,
+      "details": 1
+    },
+    {
+      "name": "real L1 solution plays through all 18 moves",
+      "passed": true,
+      "details": {
+        "status": "won",
+        "moves": 18,
+        "tray": 0
+      }
+    },
+    {
+      "name": "real worker shuffle yields solvable L20",
+      "passed": true,
+      "details": {
+        "ok": true,
+        "shuffleUsed": 1,
+        "solvable": true,
+        "strategy": "random"
+      }
+    },
+    {
+      "name": "browser has no page/console errors",
+      "passed": true,
+      "details": []
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "output/playwright/upgrade-20261002/mobile-home.png",
+    "output/playwright/upgrade-20261002/mobile-help-1.png",
+    "output/playwright/upgrade-20261002/mobile-help-2.png",
+    "output/playwright/upgrade-20261002/mobile-help-3.png",
+    "output/playwright/upgrade-20261002/mobile-help-4.png",
+    "output/playwright/upgrade-20261002/mobile-game-L4.png",
+    "output/playwright/upgrade-20261002/mobile-settings.png",
+    "output/playwright/upgrade-20261002/mobile-settings-restart-confirm.png",
+    "output/playwright/upgrade-20261002/mobile-match-in-flight.png",
+    "output/playwright/upgrade-20261002/mobile-match-arrival.png",
+    "output/playwright/upgrade-20261002/mobile-win.png",
+    "output/playwright/upgrade-20261002/mobile-tray-5.png",
+    "output/playwright/upgrade-20261002/mobile-tray-6.png",
+    "output/playwright/upgrade-20261002/mobile-fail.png",
+    "output/playwright/upgrade-20261002/mobile-restart-confirm.png",
+    "output/playwright/upgrade-20261002/mobile-real-L1-win-reduced-motion.png",
+    "output/playwright/upgrade-20261002/mobile-level-select.png",
+    "output/playwright/upgrade-20261002/desktop-game-1280x720.png",
+    "output/playwright/upgrade-20261002/desktop-help-1280x720.png"
+  ]
+}

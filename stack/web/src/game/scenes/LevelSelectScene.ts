@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { SCENE_TEXTURES } from '../config/assets';
-import { COLORS, LAYOUT } from '../config/layout';
+import { COLORS, GAME_UI, LAYOUT } from '../config/layout';
+import { createRoundedButton } from '../ui/RoundedButton';
 import { LEVEL_LOADER } from '../levelRegistry';
 import { getSaveManager } from '../systems/SaveManager';
 import { fontPx, px } from '../ui/uiScale';
@@ -60,11 +61,7 @@ export class LevelSelectScene extends Phaser.Scene {
   }
 
   private drawBackButton(x: number, y: number): void {
-    const button = this.add.rectangle(x, y, px(this, 64), px(this, 34), 0xfffbf2, 0.9).setOrigin(0, 0).setStrokeStyle(px(this, 1.5), COLORS.tileStroke, 0.75).setInteractive({ useHandCursor: true });
-    this.add.text(x + px(this, 32), y + px(this, 17), '‹ 首页', {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 14), fontStyle: 'bold', color: COLORS.text,
-    }).setOrigin(0.5);
-    button.on(Phaser.Input.Events.POINTER_UP, () => this.scene.start('Home'));
+    createRoundedButton(this, { x, y: y - px(this, 5), width: px(this, 64), height: px(this, 44), label: '‹ 首页', labelSize: 14, fontWidthRatio: 0.22, enabled: true, onTap: () => this.scene.start('Home') });
   }
 
   private drawLevelCard(
@@ -80,24 +77,33 @@ export class LevelSelectScene extends Phaser.Scene {
     const completed = stars > 0;
     const fill = !unlocked ? 0xd7dce0 : current && !completed ? 0xffd76b : 0xfff8e9;
     const alpha = unlocked ? 0.96 : 0.7;
-    const card = this.add.rectangle(x, y, width, height, fill, alpha).setOrigin(0, 0).setStrokeStyle(px(this, current ? 2.5 : 1.5), current ? 0xe29a2f : COLORS.tileStroke, unlocked ? 0.8 : 0.28);
+    const card = this.add.graphics().setPosition(x, y);
+    card.fillStyle(fill, alpha);
+    card.fillRoundedRect(0, 0, width, height, px(this, 13));
+    card.lineStyle(px(this, current ? 2 : 1), current ? 0xe29a2f : COLORS.tileStroke, unlocked ? 0.6 : 0.2);
+    card.strokeRoundedRect(0, 0, width, height, px(this, 13));
     this.add.text(x + width / 2, y + height * 0.32, unlocked ? String(levelId) : '🔒', {
       fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif',
       fontSize: `${Math.round(Math.max(px(this, 20), Math.min(px(this, 28), height * 0.34)))}px`,
       fontStyle: 'bold',
       color: unlocked ? COLORS.title : '#8d989f',
     }).setOrigin(0.5);
-    const status = completed ? `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}` : current ? '当前可玩' : unlocked ? '可重玩' : '未解锁';
-    this.add.text(x + width / 2, y + height * 0.72, status, {
+    const status = current ? '当前可玩' : unlocked ? '可重玩' : '未解锁';
+    if (completed) {
+      for (let index = 0; index < 3; index++) {
+        const star = this.add.image(x + width / 2 + (index - 1) * px(this, 17), y + height * 0.72, SCENE_TEXTURES.LevelSelect.star.key)
+          .setDisplaySize(px(this, 16), px(this, 16));
+        if (index >= stars) star.setTint(COLORS.resultStarUnearnedTint).setAlpha(GAME_UI.resultStarUnearnedAlpha);
+      }
+    } else this.add.text(x + width / 2, y + height * 0.72, status, {
       fontFamily: 'PingFang SC, sans-serif',
       fontSize: `${Math.round(Math.max(px(this, 10), Math.min(px(this, 13), width * 0.15)))}px`,
       fontStyle: completed || current ? 'bold' : 'normal',
       color: completed ? '#d89223' : unlocked ? '#6e8ca0' : '#9ba4aa',
     }).setOrigin(0.5);
     if (!unlocked) return;
-    card.setInteractive({ useHandCursor: true });
-    card.on(Phaser.Input.Events.POINTER_OVER, () => card.setScale(1.04));
-    card.on(Phaser.Input.Events.POINTER_OUT, () => card.setScale(1));
+    card.setInteractive(new Phaser.Geom.Rectangle(0, 0, width, height), Phaser.Geom.Rectangle.Contains);
+    card.input!.cursor = 'pointer';
     card.on(Phaser.Input.Events.POINTER_UP, () => {
       const currentRun = getSaveManager().snapshot.currentRun;
       this.scene.start('Game', { levelId, resume: currentRun?.levelId === levelId });

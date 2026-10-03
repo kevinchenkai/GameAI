@@ -20,14 +20,14 @@ function audioAsset(key: string, paths: readonly string[]): AudioAssetDefinition
 
 export const ASSETS = {
   tiles: {
-    paw: asset('tile-paw', 'assets/tiles/paw.webp'),
-    grass: asset('tile-grass', 'assets/tiles/grass.webp'),
-    watering: asset('tile-watering', 'assets/tiles/watering.webp'),
-    bell: asset('tile-bell', 'assets/tiles/bell.webp'),
-    fish: asset('tile-fish', 'assets/tiles/fish.webp'),
-    yarn: asset('tile-yarn', 'assets/tiles/yarn.webp'),
-    bone: asset('tile-bone', 'assets/tiles/bone.webp'),
-    flowerpot: asset('tile-flowerpot', 'assets/tiles/flowerpot.webp'),
+    paw: asset('tile-paw', 'assets/tiles/paw_v2.webp'),
+    grass: asset('tile-grass', 'assets/tiles/grass_v2.webp'),
+    watering: asset('tile-watering', 'assets/tiles/watering_v2.webp'),
+    bell: asset('tile-bell', 'assets/tiles/bell_v2.webp'),
+    fish: asset('tile-fish', 'assets/tiles/fish_v2.webp'),
+    yarn: asset('tile-yarn', 'assets/tiles/yarn_v2.webp'),
+    bone: asset('tile-bone', 'assets/tiles/bone_v2.webp'),
+    flowerpot: asset('tile-flowerpot', 'assets/tiles/flowerpot_v2.webp'),
   } satisfies Readonly<Record<TileType, AssetDefinition>>,
   ui: {
     tileFrame: asset('ui-tile-frame', 'assets/ui/tile_frame.webp'),
@@ -35,14 +35,14 @@ export const ASSETS = {
     traySlotWarn: asset('ui-tray-slot-warn', 'assets/ui/tray_slot_warn.webp'),
     shuffle: asset('ui-btn-shuffle', 'assets/ui/btn_shuffle.webp'),
     undo: asset('ui-btn-undo', 'assets/ui/btn_undo.webp'),
-    settings: asset('ui-btn-settings', 'assets/ui/btn_settings.webp'),
+    settings: asset('ui-btn-settings', 'assets/ui/btn_settings_v2.webp'),
     hint: asset('ui-btn-hint', 'assets/ui/btn_hint.webp'),
-    winPanel: asset('ui-panel-win', 'assets/ui/panel_win.webp'),
-    failPanel: asset('ui-panel-fail', 'assets/ui/panel_fail.webp'),
+    winPanel: asset('ui-panel-win', 'assets/ui/panel_win_v2.webp'),
+    failPanel: asset('ui-panel-fail', 'assets/ui/panel_fail_v2.webp'),
   },
   bg: {
-    game: asset('bg-game', 'assets/bg/game_bg.webp'),
-    home: asset('bg-home', 'assets/bg/home_bg.webp'),
+    game: asset('bg-game', 'assets/bg/game_bg_v2.webp'),
+    home: asset('bg-home', 'assets/bg/home_bg_v2.webp'),
   },
   fx: {
     sparkle01: asset('fx-sparkle-01', 'assets/fx/sparkle_01.webp'),

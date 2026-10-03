@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-02",
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "name": "paw",
+      "path": "assets/tiles/paw_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 12612,
+      "alpha": true,
+      "bounds": {
+        "left": 41,
+        "top": 52,
+        "width": 174,
+        "height": 151,
+        "meanL": 136.79428514699327
+      },
+      "sourceSha256": "e964809502d73584fb23a79244af43008a7987a6393e481e6eb1ff00ebade6e5",
+      "sha256": "eb29d3b908a25cc88c9fb3e550929540bef15d760ac4a0be7ad5407d62ac8c54"
+    },
+    {
+      "name": "grass",
+      "path": "assets/tiles/grass_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 10682,
+      "alpha": true,
+      "bounds": {
+        "left": 41,
+        "top": 42,
+        "width": 174,
+        "height": 172,
+        "meanL": 155.68349513480524
+      },
+      "sourceSha256": "0824876e36dd1a06cde84ae7d27ff9b56fb4f4e2307fe166d2150dc9cfcfb202",
+      "sha256": "66d1ab05403af8c62de4d4de1cd404566bf532e1e4d00534a0d4415bc84e76c1"
+    },
+    {
+      "name": "watering",
+      "path": "assets/tiles/watering_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 8964,
+      "alpha": true,
+      "bounds": {
+        "left": 41,
+        "top": 64,
+        "width": 174,
+        "height": 127,
+        "meanL": 152.017992352459
+      },
+      "sourceSha256": "90b1c5a57a190f24f61fdeed0c4e15026d6ad573cec843c7d3506301db3d60e1",
+      "sha256": "a73c309a460474bfbb592ce2b28b5158b0abc0a99b3571d97f9832be0a0ceba1"
+    },
+    {
+      "name": "bell",
+      "path": "assets/tiles/bell_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 10056,
+      "alpha": true,
+      "bounds": {
+        "left": 47,
+        "top": 41,
+        "width": 161,
+        "height": 174,
+        "meanL": 183.66425200870808
+      },
+      "sourceSha256": "64090ea6d2e7eedd3b8db23dac190f0e181ffa1eff26b0d87e4598e70ee51d23",
+      "sha256": "319e15482bc137c316a420a1dff4938baeaee70a0b8bc0f657cfeb8823417f4d"
+    },
+    {
+      "name": "fish",
+      "path": "assets/tiles/fish_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 9160,
+      "alpha": true,
+      "bounds": {
+        "left": 41,
+        "top": 77,
+        "width": 174,
+        "height": 101,
+        "meanL": 135.88311780202676
+      },
+      "sourceSha256": "6dc1c0230a1adec92c3361005fbd8e5dd6373a59f87a5b644213ee235cd89ffc",
+      "sha256": "53058ffea8ed50ea25868d1bb060c67677b7ee493eccca8bde8f926abda919d3"
+    },
+    {
+      "name": "yarn",
+      "path": "assets/tiles/yarn_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 10290,
+      "alpha": true,
+      "bounds": {
+        "left": 41,
+        "top": 47,
+        "width": 174,
+        "height": 161,
+        "meanL": 137.46638064516733
+      },
+      "sourceSha256": "8dbe3ecc5947812f6cbb69cffa74d848a719651ee03e3ec591f710ebd1d2a1bd",
+      "sha256": "5aae68724cfaa57cc2ca6a1571aff8685bc9d18f8ab0700873e13e8d21edd6ef"
+    },
+    {
+      "name": "bone",
+      "path": "assets/tiles/bone_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 7938,
+      "alpha": true,
+      "bounds": {
+        "left": 41,
+        "top": 81,
+        "width": 174,
+        "height": 94,
+        "meanL": 210.91268747674337
+      },
+      "sourceSha256": "8a72a40632231b5c96804317dcbad4269b076776b4cca4842d37b53eabce24c6",
+      "sha256": "a49bf6805c048c5f9d76c470594aa666a1564adb66406b7ed35ef342c2ed9f61"
+    },
+    {
+      "name": "flowerpot",
+      "path": "assets/tiles/flowerpot_v2.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 9720,
+      "alpha": true,
+      "bounds": {
+        "left": 61,
+        "top": 41,
+        "width": 134,
+        "height": 174,
+        "meanL": 101.96346666437498
+      },
+      "sourceSha256": "7b7f3ac3640f74321fb92cd327311c9f16259f62b7aab40be0fe9396c9c99324",
+      "sha256": "9c3c01cd5935c9e7f34c0d2f7332c907aa85311be538aa85dcfd12230e8a7f48"
+    },
+    {
+      "name": "home_bg",
+      "path": "assets/bg/home_bg_v2.webp",
+      "width": 1125,
+      "height": 2436,
+      "bytes": 35288,
+      "alpha": false,
+      "sourceSha256": "0d294881bf206c4e8c620037f7c93f4ee6fdf2df93300d128b711a14064cc7ed",
+      "sha256": "7f52de2a5d4c47b61815405446c04404248b80121dda2ba7275ecd360af04307"
+    },
+    {
+      "name": "game_bg",
+      "path": "assets/bg/game_bg_v2.webp",
+      "width": 1125,
+      "height": 2436,
+      "bytes": 17550,
+      "alpha": false,
+      "sourceSha256": "d7e0e6ff4c23587ed37ab8d586f193c9068d1ad259631210e6e209cff8559ee2",
+      "sha256": "0546a5fc7b6d2f7a5e55f626001a60e82b8a575d52e4edaaa6baed355e7a8130"
+    },
+    {
+      "name": "settings",
+      "path": "assets/ui/btn_settings_v2.webp",
+      "width": 200,
+      "height": 200,
+      "bytes": 12500,
+      "alpha": true,
+      "bounds": {
+        "left": 14,
+        "top": 14,
+        "width": 172,
+        "height": 171,
+        "meanL": 185.8923195481345
+      },
+      "sourceSha256": "6eae33676976019b154b69f9ad0c50af3e2d09c74ddeff520b5e97e61241d92a",
+      "sha256": "ebb0674dbf81d089f12a18bf32a5c7a89fc8458b42e6c2b1c19b6b8c190c4763"
+    },
+    {
+      "name": "panel_win",
+      "path": "assets/ui/panel_win_v2.webp",
+      "width": 718,
+      "height": 814,
+      "bytes": 13572,
+      "alpha": true,
+      "derivative": "trim transparent gutter from approved v1 artwork",
+      "sourceSha256": "8b1c1545ebbd55e422b650927b5f0a3d25d28c0e80c9bfd63cf6a510b158470e",
+      "sha256": "2bf40f21f32b17aa3f5bceebf10ba569ab45ab06d8e51c9fb4223890f9ae94d4"
+    },
+    {
+      "name": "panel_fail",
+      "path": "assets/ui/panel_fail_v2.webp",
+      "width": 717,
+      "height": 814,
+      "bytes": 16148,
+      "alpha": true,
+      "derivative": "trim transparent gutter from approved v1 artwork",
+      "sourceSha256": "a304bf3010db5dc22fefeefca97393332d13cf71070eee15ef08e79aee7894b8",
+      "sha256": "81b923b9d2ffb074750757870919b592d1dd6a46259de31982cd0feb32f60342"
+    }
+  ]
+}

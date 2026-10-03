@@ -158,7 +158,7 @@ export class HowToPlayScene extends Phaser.Scene {
         const type = types[index];
         if (type !== undefined) {
           this.add.image(startX + index * (slotSize + gap) + slotSize / 2, y + px(this, 10) + slotSize / 2, SCENE_TEXTURES.Game.tiles[type].key)
-            .setDisplaySize(slotSize * 0.66, slotSize * 0.66);
+            .setDisplaySize(slotSize * GAME_UI.trayIconCanvasRatio, slotSize * GAME_UI.trayIconCanvasRatio);
         }
       }
       this.add.text(x + width / 2, y + height - px(this, 13), '危险 6/7 · 给第三张留位置', {
@@ -186,10 +186,9 @@ export class HowToPlayScene extends Phaser.Scene {
   }
 
   private drawMiniTile(x: number, y: number, size: number, type: TileType, active: boolean): void {
-    this.add.image(x, y, SCENE_TEXTURES.Game.tileFrame.key).setOrigin(0, 0).setDisplaySize(size, size).setAlpha(active ? 1 : 0.62);
+    this.add.image(x, y, SCENE_TEXTURES.Game.tileFrame.key).setOrigin(0, 0).setDisplaySize(size, size).setAlpha(active ? 1 : GAME_UI.tileCoveredFrameAlpha);
     this.add.image(x + size / 2, y + size / 2, SCENE_TEXTURES.Game.tiles[type].key)
-      .setDisplaySize(size * 0.66, size * 0.66)
-      .setAlpha(active ? 1 : 0.7);
+      .setDisplaySize(size * GAME_UI.boardIconCanvasRatio, size * GAME_UI.boardIconCanvasRatio);
   }
 
   private drawMiniTool(centerX: number, centerY: number, texture: string, label: string, detail: string): void {

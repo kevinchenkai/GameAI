@@ -117,6 +117,38 @@ describe('Shuffle', () => {
     expect(canSolve(solverStateFromGame(result.nextState))).toBe(true);
   });
 
+  it('Worker 创建或消息发送失败仍可完成安全打乱', async () => {
+    const result = await shuffleInWorker(createDemoState(), 123, {
+      workerFactory: () => { throw new Error('worker unavailable'); },
+    });
+    expect(result.strategy).toBe('timeout-safe');
+    expect(canSolve(solverStateFromGame(result.nextState))).toBe(true);
+    let terminated = false;
+    const worker: WorkerLike = {
+      onmessage: null, onerror: null,
+      postMessage(): void { throw new Error('cannot clone'); },
+      terminate(): void { terminated = true; },
+    };
+    expect((await shuffleInWorker(createDemoState(), 456, { workerFactory: () => worker })).strategy).toBe('timeout-safe');
+    expect(terminated).toBe(true);
+  });
+
+  it('重开或退出时终止 Worker，不让旧结果写进新一局', async () => {
+    let terminated = false;
+    const worker: WorkerLike = {
+      onmessage: null, onerror: null,
+      postMessage(): void {},
+      terminate(): void { terminated = true; },
+    };
+    const abort = new AbortController();
+    const result = shuffleInWorker(createDemoState(), 789, { signal: abort.signal, workerFactory: () => worker });
+    abort.abort();
+    await expect(result).rejects.toThrow('Shuffle cancelled');
+    expect(terminated).toBe(true);
+    expect(worker.onmessage).toBeNull();
+    expect(worker.onerror).toBeNull();
+  });
+
   it('Worker 返回错误时同样走兜底而非卡住', async () => {
     const worker: WorkerLike = {
       onmessage: null,

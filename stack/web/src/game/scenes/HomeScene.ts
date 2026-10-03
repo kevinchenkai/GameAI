@@ -1,6 +1,9 @@
 import Phaser from 'phaser';
 import { SCENE_TEXTURES } from '../config/assets';
-import { COLORS, LAYOUT, PROTOTYPE_UI } from '../config/layout';
+import { COLORS, GAME_UI, LAYOUT, PROTOTYPE_UI } from '../config/layout';
+import { createRoundedButton } from '../ui/RoundedButton';
+import { drawDialogPanel } from '../render/DialogRenderer';
+import type { ToolButtonVariant } from '../ui/toolButtonStyle';
 import { getSaveManager } from '../systems/SaveManager';
 import { fontPx, px } from '../ui/uiScale';
 import { syncBackgroundMusic } from './BackgroundMusicScene';
@@ -30,7 +33,7 @@ export class HomeScene extends Phaser.Scene {
     const save = getSaveManager().snapshot;
     this.add.image(centerX, centerY, SCENE_TEXTURES.Home.background.key).setDisplaySize(width, height);
     const panelWidth = Math.min(px(this, 356), width - px(this, LAYOUT.contentPadding) * 2);
-    this.add.rectangle(centerX, centerY - px(this, 24), panelWidth, px(this, 430), 0xfff9ec, 0.84).setStrokeStyle(px(this, 2), 0xffffff, 0.88).setOrigin(0.5);
+    drawDialogPanel(this, centerX - panelWidth / 2, centerY - px(this, 239), panelWidth, px(this, 430), px(this, GAME_UI.helpPanelRadius), 0);
     this.add.text(centerX, centerY - px(this, 190), 'StackPop', {
       fontFamily: 'Arial Rounded MT Bold, PingFang SC, sans-serif', fontSize: fontPx(this, 46), fontStyle: 'bold', color: COLORS.title, stroke: '#ffffff', strokeThickness: px(this, 5),
     }).setOrigin(0.5);
@@ -42,10 +45,10 @@ export class HomeScene extends Phaser.Scene {
     const currentRun = save.currentRun;
     const targetLevel = currentRun?.levelId ?? save.maxUnlockedLevel;
     const primaryLabel = currentRun === null ? `开始第 ${targetLevel} 关` : `继续第 ${targetLevel} 关`;
-    this.drawHomeButton(centerX, centerY - px(this, 58), buttonWidth, primaryLabel, 0xffc93c, () => {
+    this.drawHomeButton(centerX, centerY - px(this, 58), buttonWidth, primaryLabel, 'primary', () => {
       this.scene.start('Game', { levelId: targetLevel, resume: currentRun !== null });
     });
-    this.drawHomeButton(centerX, centerY + px(this, 16), buttonWidth, '选择关卡', 0xfff6e3, () => this.scene.start('LevelSelect'));
+    this.drawHomeButton(centerX, centerY + px(this, 16), buttonWidth, '选择关卡', 'secondary', () => this.scene.start('LevelSelect'));
 
     const compactGap = px(this, 8);
     const compactWidth = (buttonWidth - compactGap) / 2;
@@ -62,38 +65,12 @@ export class HomeScene extends Phaser.Scene {
     }).setOrigin(0.5);
   }
 
-  private drawHomeButton(centerX: number, y: number, width: number, label: string, fill: number, onTap: () => void): void {
-    const container = this.add.container(centerX, y);
-    const background = this.add.rectangle(0, 0, width, px(this, 58), fill).setStrokeStyle(px(this, 2), COLORS.tileStroke).setInteractive({ useHandCursor: true });
-    const text = this.add.text(0, 0, label, {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: fontPx(this, 19), fontStyle: 'bold', color: '#62452f',
-    }).setOrigin(0.5);
-    container.add([background, text]);
-    background.on(Phaser.Input.Events.POINTER_OVER, () => container.setY(y - px(this, 4)).setScale(1.03));
-    background.on(Phaser.Input.Events.POINTER_OUT, () => container.setY(y).setScale(1));
-    background.on(Phaser.Input.Events.POINTER_DOWN, () => container.setScale(0.96));
-    background.on(Phaser.Input.Events.POINTER_UP, () => {
-      container.setY(y).setScale(1);
-      onTap();
-    });
+  private drawHomeButton(centerX: number, y: number, width: number, label: string, variant: ToolButtonVariant, onTap: () => void): void {
+    createRoundedButton(this, { x: centerX - width / 2, y: y - px(this, 29), width, height: px(this, 58), label, enabled: true, variant, labelSize: 19, onTap });
   }
 
   private drawIconButton(centerX: number, y: number, width: number, label: string, textureKey: string, onTap: () => void): void {
-    const container = this.add.container(centerX, y);
-    const background = this.add.rectangle(0, 0, width, px(this, 52), 0xe9f3fb, 0.94)
-      .setStrokeStyle(px(this, 1.5), COLORS.tileStroke, 0.55)
-      .setInteractive({ useHandCursor: true });
-    const icon = this.add.image(-width / 2 + px(this, 26), 0, textureKey).setDisplaySize(px(this, 34), px(this, 34));
-    const text = this.add.text(px(this, 14), 0, label, {
-      fontFamily: 'PingFang SC, sans-serif', fontSize: `${Math.round(Math.min(px(this, 15), width * 0.13))}px`, fontStyle: 'bold', color: COLORS.text,
-    }).setOrigin(0.5);
-    container.add([background, icon, text]);
-    background.on(Phaser.Input.Events.POINTER_OVER, () => container.setY(y - px(this, 3)).setScale(1.02));
-    background.on(Phaser.Input.Events.POINTER_OUT, () => container.setY(y).setScale(1));
-    background.on(Phaser.Input.Events.POINTER_UP, () => {
-      container.setY(y).setScale(1);
-      onTap();
-    });
+    createRoundedButton(this, { x: centerX - width / 2, y: y - px(this, 26), width, height: px(this, 52), label, enabled: true, textureKey, labelSize: 15, fontWidthRatio: 0.13, onTap });
   }
 
   private openSettings(): void {

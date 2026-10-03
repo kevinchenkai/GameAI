@@ -10,6 +10,35 @@ function deferred(): { promise: Promise<void>; resolve: () => void } {
 }
 
 describe('InputQueue', () => {
+  it('shutdown discards pending input and rejects new taps even after current work settles', async () => {
+    const first = deferred();
+    const handled: number[] = [];
+    const queue = new InputQueue(async (column) => { handled.push(column); await first.promise; });
+    queue.enqueue(0);
+    queue.enqueue(1);
+    queue.dispose();
+    expect(queue.enqueue(2)).toBe(false);
+    first.resolve();
+    await Promise.resolve();
+    expect(handled).toEqual([0]);
+    expect(queue.pendingCount).toBe(0);
+  });
+
+  it('a rejected handler clears stale input and the queue remains usable', async () => {
+    const onError = vi.fn();
+    const handled: number[] = [];
+    const queue = new InputQueue(async (column) => {
+      if (column === 0) throw new Error('interrupted animation');
+      handled.push(column);
+    }, onError);
+    queue.enqueue(0);
+    queue.enqueue(1);
+    await vi.waitFor(() => expect(onError).toHaveBeenCalledOnce());
+    expect(handled).toEqual([]);
+    queue.enqueue(2);
+    await vi.waitFor(() => expect(handled).toEqual([2]));
+  });
+
   it('animation processing can retain at most two pending taps and drops the third', async () => {
     const first = deferred();
     const handled: number[] = [];

@@ -14,11 +14,13 @@ import {
   type GameLayout,
 } from '../layout/GameLayout';
 import { AudioSystem } from '../systems/AudioSystem';
+import { AnimationTasks } from '../systems/AnimationTasks';
 import { fontPx, px, uiScale } from '../ui/uiScale';
 import { InputQueue } from '../systems/InputQueue';
 import { getSaveManager, type SaveManager } from '../systems/SaveManager';
 import { shuffleInWorker } from '../systems/SolverWorkerClient';
 import type { GameState, PickResult } from '../types/game';
+import type { TileData } from '../types/tile';
 import { createRoundedButton } from '../ui/RoundedButton';
 import { drawDialogOverlay, drawDialogPanel, drawResultStat } from '../render/DialogRenderer';
 import type { ToolButtonVariant } from '../ui/toolButtonStyle';
@@ -50,6 +52,7 @@ export class GameScene extends Phaser.Scene {
   private readonly audioSystem = new AudioSystem();
   private readonly topTileContainers = new Map<number, Phaser.GameObjects.Container>();
   private trayRoot: Phaser.GameObjects.Container | null = null;
+  private trayTileImages = new Map<string, Phaser.GameObjects.Image>();
   private trayWarningTween: Phaser.Tweens.Tween | null = null;
   private lastShuffleStrategy = 'none';
   private lastShuffleDurationMs = 0;
@@ -58,12 +61,17 @@ export class GameScene extends Phaser.Scene {
   private previousTrayPairKeys = new Set<string>();
   private pendingWinCelebration = false;
   private resultAnimationTimers: Phaser.Time.TimerEvent[] = [];
+  private readonly animationTasks = new AnimationTasks();
+  private runVersion = 0;
+  private shuffleAbort: AbortController | null = null;
 
   constructor() {
     super('Game');
   }
 
   create(data: GameSceneData = {}): void {
+    this.runVersion += 1;
+    this.busy = false;
     const params = new URLSearchParams(window.location.search);
     this.saveManager = getSaveManager();
     this.layoutFixture = params.get('layout') === 'depth12';
@@ -87,7 +95,11 @@ export class GameScene extends Phaser.Scene {
     const freshState = this.layoutFixture ? createDepthTwelveLayoutState() : LEVEL_LOADER.createState(levelId);
     this.model = new GameModel(freshState);
     if (restored !== null) this.model.replaceState(restored.state);
-    this.inputQueue = new InputQueue((columnIndex) => this.handleQueuedPick(columnIndex));
+    this.inputQueue = new InputQueue((columnIndex) => this.handleQueuedPick(columnIndex), (error) => {
+      console.error('[Input] unable to finish interaction', error);
+      this.busy = false;
+      this.renderGame();
+    });
     if (this.sound instanceof Phaser.Sound.WebAudioSoundManager) {
       this.audioSystem.adoptContext(this.sound.context);
     }
@@ -98,6 +110,9 @@ export class GameScene extends Phaser.Scene {
     this.scale.on(Phaser.Scale.Events.RESIZE, this.handleResize, this);
     this.events.on(Phaser.Scenes.Events.RESUME, this.handleResume, this);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.runVersion += 1;
+      this.shuffleAbort?.abort();
+      this.inputQueue.dispose();
       this.clearInputQueue('shutdown');
       this.trayWarningTween?.stop();
       this.clearRenderAnimations();
@@ -114,6 +129,10 @@ export class GameScene extends Phaser.Scene {
 
   private handleResize(): void {
     if (!this.busy) this.renderGame();
+  }
+
+  private prefersReducedMotion(): boolean {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   private parseOverlap(value: string | null): number {
@@ -139,7 +158,7 @@ export class GameScene extends Phaser.Scene {
     };
   }
 
-  private renderGame(showResult = true): void {
+  private renderGame(showResult = true, visualTray?: readonly TileData[]): void {
     if (!this.model) return;
     this.trayWarningTween?.stop();
     this.trayWarningTween = null;
@@ -174,7 +193,7 @@ export class GameScene extends Phaser.Scene {
     this.drawBackground();
     this.drawHeader(state);
     this.drawBoard(state);
-    this.drawTray(state);
+    this.drawTray(visualTray === undefined ? state : { ...state, tray: [...visualTray] });
     this.drawTools(state);
     if (this.restartConfirmVisible) this.drawRestartConfirmation();
     if (showResult && (state.status === 'won' || state.status === 'failed')) {
@@ -327,13 +346,21 @@ export class GameScene extends Phaser.Scene {
   }
 
   private drawTray(state: GameState): void {
-    const { root, pairKeys, warningTween } = drawTray(this, this.currentLayout, state, {
+    const { root, tileImages, pairKeys, warningTween } = drawTray(this, this.currentLayout, state, {
       previousPairKeys: this.previousTrayPairKeys,
       busy: this.busy,
+      reducedMotion: this.prefersReducedMotion(),
     });
     this.trayRoot = root;
+    this.trayTileImages = tileImages;
     this.previousTrayPairKeys = pairKeys;
     this.trayWarningTween = warningTween ?? null;
+  }
+
+  private replaceAnimatedTray(tray: readonly TileData[]): void {
+    this.trayWarningTween?.stop();
+    this.trayRoot?.destroy(true);
+    this.drawTray({ ...this.model.state, tray: [...tray] });
   }
 
   private drawTools(state: GameState): void {
@@ -439,7 +466,7 @@ export class GameScene extends Phaser.Scene {
       : null;
     const animateWin = status === 'won'
       && this.pendingWinCelebration
-      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      && !this.prefersReducedMotion();
     this.pendingWinCelebration = false;
     const starImages: Phaser.GameObjects.Image[] = [];
     const contentTargets: Array<Phaser.GameObjects.Text | Phaser.GameObjects.Container> = [];
@@ -545,13 +572,18 @@ export class GameScene extends Phaser.Scene {
     overlay: Phaser.GameObjects.Rectangle,
   ): void {
     const finalStarAlphas = stars.map((star) => star.alpha);
-    panel.setScale(GAME_UI.resultPanelEnterScale).setAlpha(GAME_UI.resultPanelEnterAlpha);
+    // Phaser's display size is encoded in scaleX/Y; restoring scale=1 restores
+    // the source texture size, not the CSS/DPR-aware size chosen by the layout.
+    const panelScale = { x: panel.scaleX, y: panel.scaleY };
+    const starScales = stars.map((star) => ({ x: star.scaleX, y: star.scaleY }));
+    panel.setScale(panelScale.x * GAME_UI.resultPanelEnterScale, panelScale.y * GAME_UI.resultPanelEnterScale).setAlpha(GAME_UI.resultPanelEnterAlpha);
     contentTargets.forEach((target) => target.setAlpha(0));
-    stars.forEach((star) => star.setScale(0.35).setAlpha(0));
+    stars.forEach((star, index) => star.setScale(starScales[index]!.x * 0.35, starScales[index]!.y * 0.35).setAlpha(0));
 
     this.tweens.add({
       targets: panel,
-      scale: 1,
+      scaleX: panelScale.x,
+      scaleY: panelScale.y,
       alpha: 1,
       duration: GAME_UI.resultPanelEnterMs,
       ease: 'Back.easeOut',
@@ -568,7 +600,8 @@ export class GameScene extends Phaser.Scene {
       const delay = GAME_UI.resultStarInitialDelayMs + index * GAME_UI.resultStarStaggerMs;
       this.tweens.add({
         targets: star,
-        scale: 1,
+        scaleX: starScales[index]!.x,
+        scaleY: starScales[index]!.y,
         alpha: finalStarAlphas[index] ?? 1,
         delay,
         duration: GAME_UI.resultStarEnterMs,
@@ -590,8 +623,8 @@ export class GameScene extends Phaser.Scene {
     const finish = (): void => {
       this.tweens.killTweensOf([panel, ...stars, ...contentTargets]);
       this.clearResultAnimationTimers();
-      panel.setScale(1).setAlpha(1);
-      stars.forEach((star, index) => star.setScale(1).setAlpha(finalStarAlphas[index] ?? 1));
+      panel.setScale(panelScale.x, panelScale.y).setAlpha(1);
+      stars.forEach((star, index) => star.setScale(starScales[index]!.x, starScales[index]!.y).setAlpha(finalStarAlphas[index] ?? 1));
       contentTargets.forEach((target) => target.setAlpha(1));
       skipLayer.destroy();
     };
@@ -608,6 +641,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private clearRenderAnimations(): void {
+    this.animationTasks.cancelAll();
     this.tweens.killAll();
     this.clearResultAnimationTimers();
   }
@@ -625,12 +659,16 @@ export class GameScene extends Phaser.Scene {
         x,
         y,
         index % 2 === 0 ? SCENE_TEXTURES.Game.sparkle01.key : SCENE_TEXTURES.Game.sparkle02.key,
-      ).setDisplaySize(px(this, 16), px(this, 16)).setScale(0.45).setDepth(306);
+      ).setDisplaySize(px(this, 16), px(this, 16)).setDepth(306);
+      const scaleX = sparkle.scaleX;
+      const scaleY = sparkle.scaleY;
+      sparkle.setScale(scaleX * 0.45, scaleY * 0.45);
       this.tweens.add({
         targets: sparkle,
         x: x + Math.cos(angle) * distance,
         y: y + Math.sin(angle) * distance,
-        scale: 0.9,
+        scaleX: scaleX * 0.9,
+        scaleY: scaleY * 0.9,
         alpha: 0,
         duration: GAME_UI.resultParticleMs,
         ease: 'Quad.easeOut',
@@ -640,7 +678,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private enqueuePick(columnIndex: number): boolean {
-    if (this.layoutFixture) return false;
+    if (this.layoutFixture || this.restartConfirmVisible) return false;
     const state = this.model.state;
     if (!this.busy && state.status !== 'playing') return false;
     return this.inputQueue.enqueue(columnIndex);
@@ -649,9 +687,11 @@ export class GameScene extends Phaser.Scene {
   private async handleQueuedPick(columnIndex: number): Promise<void> {
     if (this.layoutFixture || !this.model.canPick(columnIndex)) return;
     this.busy = true;
+    const version = this.runVersion;
     this.audioSystem.play('tap');
     const tapped = this.topTileContainers.get(columnIndex);
-    if (tapped !== undefined) await this.playTapAnimation(tapped);
+    if (tapped !== undefined && !await this.playTapAnimation(tapped)) return;
+    if (version !== this.runVersion) return;
     if (!this.model.canPick(columnIndex)) {
       this.busy = false;
       this.renderGame();
@@ -661,37 +701,35 @@ export class GameScene extends Phaser.Scene {
     this.undoManager.push(before);
     const result = this.model.pick(columnIndex);
     this.persistAfterStateChange();
-    this.renderGame(false);
-    await this.playPickAnimation(before, result);
+    // core/rules has already resolved the move; only its visual arrival is delayed.
+    this.renderGame(false, before.tray);
+    if (!await this.playPickAnimation(before, result) || version !== this.runVersion) return;
     const status = this.model.state.status;
     if (status === 'won' || status === 'failed') {
       if (status === 'failed') {
         this.clearInputQueue('fail');
-        await this.shakeTray();
         this.audioSystem.play('tray_full');
+        if (!await this.shakeTray() || version !== this.runVersion) return;
         this.vibrate([20]);
       } else {
         this.clearInputQueue('win');
         this.audioSystem.play('win');
         this.vibrate([30, 40, 30]);
       }
-      await this.wait(ANIMATION.resultDelayMs);
+      if (!await this.wait(ANIMATION.resultDelayMs) || version !== this.runVersion) return;
     }
     this.pendingWinCelebration = status === 'won';
     this.busy = false;
     this.renderGame();
   }
 
-  private async playTapAnimation(container: Phaser.GameObjects.Container): Promise<void> {
-    await new Promise<void>((resolve) => {
-      this.tweens.add({ targets: container, scale: 0.94, duration: ANIMATION.tapDownMs, ease: 'Quad.easeOut', onComplete: () => resolve() });
-    });
-    await new Promise<void>((resolve) => {
-      this.tweens.add({ targets: container, scale: 1.05, duration: ANIMATION.tapUpMs, ease: 'Back.easeOut', onComplete: () => resolve() });
-    });
+  private async playTapAnimation(container: Phaser.GameObjects.Container): Promise<boolean> {
+    if (this.prefersReducedMotion()) return true;
+    if (!await this.runTween({ targets: container, scale: 0.94, duration: ANIMATION.tapDownMs, ease: 'Quad.easeOut' })) return false;
+    return this.runTween({ targets: container, scale: 1.05, duration: ANIMATION.tapUpMs, ease: 'Back.easeOut' });
   }
 
-  private async playPickAnimation(before: GameState, result: PickResult): Promise<void> {
+  private async playPickAnimation(before: GameState, result: PickResult): Promise<boolean> {
     const { contentLeft, tileSize, trayTop, traySlotSize } = this.currentLayout;
     const placements = calculateBottomAlignedBoardPlacements(
       this.currentLayout,
@@ -713,9 +751,7 @@ export class GameScene extends Phaser.Scene {
     const flying = createTileVisual(this, result.pickedTile, startX, startY, tileSize, true).setDepth(250);
     const progress = { value: 0 };
     const controlY = Math.min(startY, targetY) - Math.min(px(this, 60), tileSize * 0.9);
-    this.audioSystem.play('jump');
-    await new Promise<void>((resolve) => {
-      this.tweens.add({
+    if (!this.prefersReducedMotion() && !await this.runTween({
         targets: progress, value: 1, duration: ANIMATION.jumpMs, ease: 'Sine.easeInOut',
         onUpdate: () => {
           const t = progress.value;
@@ -725,45 +761,63 @@ export class GameScene extends Phaser.Scene {
           const targetScale = (traySlotSize / tileSize) * 0.84;
           flying.setScale(1 + (targetScale - 1) * t).setRotation(Math.sin(t * Math.PI) * 0.045);
         },
-        onComplete: () => resolve(),
-      });
-    });
+      })) return false;
     flying.destroy();
-    if (this.trayRoot !== null) {
-      this.trayRoot.x += px(this, 8);
-      this.tweens.add({ targets: this.trayRoot, x: this.currentLayout.contentLeft, alpha: 1, duration: ANIMATION.trayShiftMs, ease: 'Quad.easeOut' });
+    this.audioSystem.play('jump');
+    const insertedTray = [...before.tray];
+    insertedTray.splice(result.insertedTrayIndex, 0, result.pickedTile);
+    this.replaceAnimatedTray(insertedTray);
+    if (!this.prefersReducedMotion()) {
+      for (const id of result.shiftedTileIds) {
+        const icon = this.trayTileImages.get(id);
+        if (icon === undefined) continue;
+        const finalX = icon.x;
+        icon.x -= traySlotSize + px(this, LAYOUT.trayGap);
+        this.tweens.add({ targets: icon, x: finalX, duration: ANIMATION.trayShiftMs, ease: 'Quad.easeOut' });
+      }
     }
     if (result.matches.length > 0) {
       this.audioSystem.play('match');
       this.vibrate([15, 20, 15]);
-      this.playMatchParticles(targetX + traySlotSize / 2, targetY + traySlotSize / 2);
-      await this.wait(ANIMATION.matchMs);
+      if (!this.prefersReducedMotion()) {
+        this.playMatchParticles(targetX + traySlotSize / 2, targetY + traySlotSize / 2);
+        const matched = result.matches.flatMap((match) => match.tiles)
+          .map((tile) => this.trayTileImages.get(tile.id))
+          .filter((icon): icon is Phaser.GameObjects.Image => icon !== undefined);
+        if (!await this.runTween({ targets: matched, alpha: 0, duration: ANIMATION.matchMs, ease: 'Quad.easeIn' })) return false;
+      }
+      this.replaceAnimatedTray(result.nextState.tray);
     } else {
       this.vibrate([10]);
+      if (result.shiftedTileIds.length > 0 && !this.prefersReducedMotion()
+        && !await this.wait(ANIMATION.trayShiftMs)) return false;
     }
+    return true;
   }
 
   private playMatchParticles(x: number, y: number): void {
     for (let index = 0; index < 8; index += 1) {
       const angle = (Math.PI * 2 * index) / 8;
       const distance = px(this, 30 + (index % 2) * 14);
-      const sparkle = this.add.image(x, y, index % 2 === 0 ? SCENE_TEXTURES.Game.sparkle01.key : SCENE_TEXTURES.Game.sparkle02.key).setDisplaySize(px(this, 22), px(this, 22)).setDepth(260).setScale(0.4);
+      const sparkle = this.add.image(x, y, index % 2 === 0 ? SCENE_TEXTURES.Game.sparkle01.key : SCENE_TEXTURES.Game.sparkle02.key).setDisplaySize(px(this, 22), px(this, 22)).setDepth(260);
+      const scaleX = sparkle.scaleX;
+      const scaleY = sparkle.scaleY;
+      sparkle.setScale(scaleX * 0.4, scaleY * 0.4);
       this.tweens.add({
-        targets: sparkle, x: x + Math.cos(angle) * distance, y: y + Math.sin(angle) * distance, scale: 1, alpha: 0,
+        targets: sparkle, x: x + Math.cos(angle) * distance, y: y + Math.sin(angle) * distance, scaleX, scaleY, alpha: 0,
         duration: ANIMATION.matchMs, ease: 'Quad.easeOut', onComplete: () => sparkle.destroy(),
       });
     }
   }
 
-  private async shakeTray(): Promise<void> {
-    if (this.trayRoot === null) return;
+  private async shakeTray(): Promise<boolean> {
+    if (this.trayRoot === null || this.prefersReducedMotion()) return true;
     const originX = this.trayRoot.x;
-    await new Promise<void>((resolve) => {
-      this.tweens.add({
+    const completed = await this.runTween({
         targets: this.trayRoot, x: originX + px(this, 4), duration: ANIMATION.trayShakeMs, yoyo: true, repeat: 3, ease: 'Sine.easeInOut',
-        onComplete: () => { this.trayRoot?.setX(originX); resolve(); },
       });
-    });
+    if (completed) this.trayRoot?.setX(originX);
+    return completed;
   }
 
   private performUndo(): boolean {
@@ -783,30 +837,39 @@ export class GameScene extends Phaser.Scene {
     const state = this.model.state;
     if (this.busy || this.layoutFixture || state.status !== 'playing' || state.shuffleUsed >= GAMEPLAY.shuffleLimit) return false;
     this.busy = true;
-    this.audioSystem.play('shuffle');
+    const version = this.runVersion;
+    const abort = new AbortController();
+    this.shuffleAbort = abort;
     this.renderGame(false);
     const startedAt = performance.now();
     try {
-      const [result] = await Promise.all([shuffleInWorker(state, state.rngState), this.wait(ANIMATION.shuffleMs)]);
+      const [result, completed] = await Promise.all([shuffleInWorker(state, state.rngState, { signal: abort.signal }), this.wait(this.prefersReducedMotion() ? 0 : ANIMATION.shuffleMs)]);
+      if (!completed || version !== this.runVersion) return false;
       this.undoManager.push(state);
       this.model.replaceState({ ...result.nextState, undoUsed: state.undoUsed, shuffleUsed: state.shuffleUsed + 1, status: 'playing' });
       this.persistCurrentRun();
+      this.audioSystem.play('shuffle');
       this.lastShuffleStrategy = result.strategy;
       this.lastShuffleDurationMs = performance.now() - startedAt;
       this.busy = false;
       this.renderGame();
       return true;
     } catch (error: unknown) {
+      if (version !== this.runVersion) return false;
       console.error('[Shuffle] unable to construct a safe state', error);
       this.lastShuffleStrategy = 'error';
       this.lastShuffleDurationMs = performance.now() - startedAt;
       this.busy = false;
       this.renderGame();
       return false;
+    } finally {
+      if (this.shuffleAbort === abort) this.shuffleAbort = null;
     }
   }
 
   private restart(): void {
+    this.runVersion += 1;
+    this.shuffleAbort?.abort();
     this.clearInputQueue('restart');
     this.busy = false;
     this.restartConfirmVisible = false;
@@ -823,6 +886,7 @@ export class GameScene extends Phaser.Scene {
   private requestRestart(): void {
     if (this.busy || this.layoutFixture || this.model.state.status !== 'playing') return;
     this.restartConfirmVisible = true;
+    this.inputQueue.clear();
     this.renderGame(false);
   }
 
@@ -871,7 +935,17 @@ export class GameScene extends Phaser.Scene {
     this.inputQueue.clear();
   }
 
-  private wait(duration: number): Promise<void> {
-    return new Promise((resolve) => this.time.delayedCall(duration, resolve));
+  private runTween(config: Phaser.Types.Tweens.TweenBuilderConfig): Promise<boolean> {
+    return this.animationTasks.run((complete) => {
+      const tween = this.tweens.add({ ...config, onComplete: complete });
+      return () => tween.stop();
+    });
+  }
+
+  private wait(duration: number): Promise<boolean> {
+    return this.animationTasks.run((complete) => {
+      const timer = this.time.delayedCall(duration, complete);
+      return () => timer.remove(false);
+    });
   }
 }

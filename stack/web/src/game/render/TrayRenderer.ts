@@ -20,10 +20,12 @@ export interface TrayRenderInput {
   previousPairKeys: ReadonlySet<string>;
   /** 忙碌中（有动画在跑）时不启动危险呼吸，避免与取牌动画打架 */
   busy: boolean;
+  reducedMotion: boolean;
 }
 
 export interface TrayRenderResult {
   root: Phaser.GameObjects.Container;
+  tileImages: Map<string, Phaser.GameObjects.Image>;
   /** 本帧的成对高亮 key，调用方需存下来喂给下一帧 */
   pairKeys: Set<string>;
   /** 危险档呼吸动画，未启动时为 undefined */
@@ -41,6 +43,7 @@ export function drawTray(
   const pressure = presentation.level !== 'normal';
   const danger = presentation.level === 'danger' || presentation.level === 'full';
   const root = scene.add.container(contentLeft, trayTop);
+  const tileImages = new Map<string, Phaser.GameObjects.Image>();
 
   const panel = scene.add.graphics();
   const panelLeft = -px(scene, 10);
@@ -120,7 +123,9 @@ export function drawTray(
         traySlotSize * 0.18,
       );
       root.add(highlight);
-      root.add(createTrayTile(scene, tile, x, 0, traySlotSize));
+      const icon = createTrayTile(scene, tile, x, 0, traySlotSize);
+      tileImages.set(tile.id, icon);
+      root.add(icon);
     }
   }
 
@@ -143,7 +148,7 @@ export function drawTray(
       traySlotSize - px(scene, 3),
     );
     root.add(glow);
-    if (!input.previousPairKeys.has(key)) {
+    if (!input.reducedMotion && !input.previousPairKeys.has(key)) {
       glow.setAlpha(GAME_UI.trayPairGlowEnterAlpha);
       scene.tweens.add({
         targets: glow,
@@ -157,10 +162,9 @@ export function drawTray(
   }
 
   let warningTween: Phaser.Tweens.Tween | undefined;
-  if (presentation.level === 'danger' && !input.busy) {
+  if (presentation.level === 'danger' && !input.busy && !input.reducedMotion) {
     warningTween = scene.tweens.add({
-      targets: root,
-      scale: 1.025,
+      targets: panel,
       alpha: GAME_UI.trayWarningPulseAlpha,
       duration: ANIMATION.trayWarningCycleMs / 2,
       yoyo: true,
@@ -169,7 +173,7 @@ export function drawTray(
     });
   }
 
-  return { root, pairKeys, warningTween };
+  return { root, tileImages, pairKeys, warningTween };
 }
 
 export function createTrayTile(

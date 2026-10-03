@@ -41,16 +41,19 @@ export function drawDialogPanel(
   height: number,
   radius: number,
   depth: number,
-): void {
+): Phaser.GameObjects.Container {
+  const container = scene.add.container(left, top).setDepth(depth);
   const shadow = scene.add.graphics().setDepth(depth);
   shadow.fillStyle(GAME_UI.softShadow, GAME_UI.dialogPanelShadowAlpha);
-  shadow.fillRoundedRect(left, top + px(scene, 4), width, height, radius);
+  shadow.fillRoundedRect(0, px(scene, 4), width, height, radius);
 
   const panel = scene.add.graphics().setDepth(depth + 1);
   panel.fillStyle(GAME_UI.dialogPanelFill, GAME_UI.dialogPanelFillAlpha);
-  panel.fillRoundedRect(left, top, width, height, radius);
+  panel.fillRoundedRect(0, 0, width, height, radius);
   panel.lineStyle(px(scene, GAME_UI.dialogPanelStrokeWidth), COLORS.tileStroke, GAME_UI.dialogPanelStrokeAlpha);
-  panel.strokeRoundedRect(left, top, width, height, radius);
+  panel.strokeRoundedRect(0, 0, width, height, radius);
+  container.add([shadow, panel]);
+  return container;
 }
 
 /** 结果页的一张数据卡片（步数 / 撤回等）。 */

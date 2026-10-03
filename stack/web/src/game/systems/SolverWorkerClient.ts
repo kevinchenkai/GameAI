@@ -15,6 +15,7 @@ export type WorkerFactory = () => WorkerLike;
 export interface WorkerShuffleOptions {
   timeoutMs?: number;
   workerFactory?: WorkerFactory;
+  signal?: AbortSignal;
 }
 
 function defaultWorkerFactory(): WorkerLike {
@@ -34,7 +35,13 @@ export function shuffleInWorker(
   seed: number,
   options: WorkerShuffleOptions = {},
 ): Promise<ShuffleResult> {
-  const worker = (options.workerFactory ?? defaultWorkerFactory)();
+  if (options.signal?.aborted) return Promise.reject(new Error('Shuffle cancelled'));
+  let worker: WorkerLike;
+  try {
+    worker = (options.workerFactory ?? defaultWorkerFactory)();
+  } catch {
+    return Promise.resolve().then(() => timeoutFallback(state, seed));
+  }
   const timeoutMs = options.timeoutMs ?? SHUFFLE_TUNING.workerTimeoutMs;
   const requestId = `shuffle-${state.levelId}-${state.moveCount}-${seed >>> 0}`;
 
@@ -44,9 +51,13 @@ export function shuffleInWorker(
       if (settled) return;
       settled = true;
       clearTimeout(timer);
+      options.signal?.removeEventListener('abort', cancel);
+      worker.onmessage = null;
+      worker.onerror = null;
       worker.terminate();
       callback();
     };
+    const cancel = (): void => finish(() => reject(new Error('Shuffle cancelled')));
     const fallback = (): void => {
       try {
         const result = timeoutFallback(state, seed);
@@ -56,6 +67,7 @@ export function shuffleInWorker(
       }
     };
     const timer = setTimeout(fallback, timeoutMs);
+    options.signal?.addEventListener('abort', cancel, { once: true });
 
     worker.onmessage = (event): void => {
       const response = event.data;
@@ -67,6 +79,10 @@ export function shuffleInWorker(
       }
     };
     worker.onerror = fallback;
-    worker.postMessage({ kind: 'shuffle', requestId, state, seed });
+    try {
+      worker.postMessage({ kind: 'shuffle', requestId, state, seed });
+    } catch {
+      fallback();
+    }
   });
 }

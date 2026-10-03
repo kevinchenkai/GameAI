@@ -13,7 +13,8 @@
     "generate-levels": "tsx tools/generateLevels.ts",
     "validate-levels": "tsx tools/validateLevels.ts",
     "validate-levels:stable": "tsx tools/validateStable.ts",
-    "simulate": "tsx tools/simulate.ts"
+    "simulate": "tsx tools/simulate.ts",
+    "prepare-art:v2": "node tools/prepareUpgradeArt.mjs"
   },
   "dependencies": {
     "phaser": "^3.90.0"
@@ -23,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "eslint": "^9.17.0",
+    "sharp": "^0.35.4",
     "tsx": "^4.19.2",
     "typescript": "^5.8.3",
     "vite": "^5.4.19",
