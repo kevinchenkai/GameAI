@@ -6,6 +6,7 @@ const sharp = require("sharp");
 // Rebuild web-sized variants from the versioned JPEG masters, not game assets.
 const assetDir = path.resolve(__dirname, "../images/promo/home-v2");
 const games = ["star-fighter", "soulmate", "wulin-tavern", "journey-ludo", "garden-match", "stackpop"];
+const studioDir = path.resolve(__dirname, "../images/promo/home-v3");
 
 async function build() {
   await fs.mkdir(assetDir, { recursive: true });
@@ -15,6 +16,21 @@ async function build() {
       await sharp(path.join(assetDir, `${game}.jpg`))
         .resize(width, Math.round(width * 2 / 3), { fit: "cover" })
         .webp({ quality: 82, effort: 6 })
+        .toFile(destination);
+      console.log(path.relative(process.cwd(), destination));
+    }
+  }
+  const studioAssets = [
+    { name: "studio-hero", widths: [600, 1200, 1600] },
+    { name: "creation-flow-en", widths: [800, 1600] },
+    { name: "creation-flow-cn", widths: [800, 1600] }
+  ];
+  for (const { name, widths } of studioAssets) {
+    for (const width of widths) {
+      const destination = path.join(studioDir, `${name}-${width}.webp`);
+      await sharp(path.join(studioDir, `${name}.jpg`))
+        .resize({ width })
+        .webp({ quality: 85, effort: 6 })
         .toFile(destination);
       console.log(path.relative(process.cwd(), destination));
     }

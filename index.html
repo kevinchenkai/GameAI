@@ -60,6 +60,7 @@
     a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
     button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
     img { display: block; max-width: 100%; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
     ::selection { background: #80e7dd; color: #101112; }
     [data-lang="en"] .zh, [data-lang="zh"] .en { display: none !important; }
@@ -104,15 +105,17 @@
       font-size: 12px; font-weight: 700;
     }
     .lang-toggle button[aria-pressed="true"] { background: var(--cyan); color: #101112; }
-    .intro { padding: 48px 0 40px; max-width: 820px; }
-    .eyebrow, .section-index {
+    .intro { padding: 28px 0 36px; }
+    .studio-art { display: block; background: #080909; }
+    .studio-art img { width: 100%; height: auto; max-height: min(480px, max(160px, calc(100svh - 360px))); aspect-ratio: 40 / 21; object-fit: contain; }
+    .intro-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: 32px; margin-top: 24px; }
+    .section-index {
       margin: 0 0 10px; color: var(--cyan);
       font: 600 11px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       text-transform: uppercase;
     }
-    h1 { margin: 0; font-size: 58px; font-weight: 750; line-height: 1.1; }
-    .intro-line { margin: 15px 0 0; font-size: 23px; line-height: 1.4; }
-    .lead { margin: 12px 0 0; max-width: 740px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+    .intro-line { margin: 0; font-size: 23px; line-height: 1.4; }
+    .lead { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
     .catalog { padding-bottom: 72px; }
     .catalog-head {
       display: flex; justify-content: space-between; align-items: center; gap: 16px;
@@ -170,7 +173,7 @@
     .detail strong { display: block; font-size: 19px; font-weight: 600; line-height: 1.35; }
     .detail p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
     .flow-copy { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 48px; margin-bottom: 28px; align-items: end; }
-    .flow-copy p { margin: 16px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .flow-copy p:not(.section-index) { margin: 16px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
     .flow-note { border-left: 2px solid var(--cyan); padding-left: 20px; color: var(--muted); font-size: 13px; line-height: 1.85; }
     .flow-visual { margin: 0; }
     .flow-image-link { display: block; border-radius: var(--radius); cursor: zoom-in; }
@@ -178,6 +181,12 @@
       width: 100%; height: auto; aspect-ratio: 16 / 9;
       border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
     }
+    .flow-steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; }
+    .flow-steps li { min-width: 0; border-top: 1px solid var(--line); padding-top: 14px; }
+    .flow-step-title { display: flex; gap: 12px; align-items: baseline; }
+    .flow-number { color: var(--cyan); font: 500 12px/1.5 ui-monospace, monospace; }
+    .flow-steps h3 { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; }
+    .flow-steps p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
     .footer {
       display: flex; justify-content: space-between; align-items: center; gap: 20px;
       padding: 28px 0 max(28px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line);
@@ -195,7 +204,7 @@
     @media (max-width: 1099px) {
       .showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
       .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      h1 { font-size: 52px; }
+      .flow-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 759px) {
       .shell { width: calc(100% - 40px); }
@@ -204,8 +213,9 @@
       .topbar { min-height: 82px; gap: 12px; }
       .section-head, .flow-copy { grid-template-columns: 1fr; gap: 18px; }
       .footer { align-items: flex-start; flex-direction: column; gap: 8px; }
-      .intro { padding-block: 36px; }
-      h1 { font-size: 46px; }
+      .intro { padding-block: 24px 28px; }
+      .intro-copy { grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+      .studio-art img { max-height: none; }
       .intro-line { font-size: 21px; }
       .catalog-note { display: none; }
     }
@@ -216,7 +226,6 @@
       .brand small { font-size: 10px; }
       .mark { flex-basis: 28px; width: 28px; height: 28px; }
       .lang-toggle button { min-width: 40px; padding-inline: 8px; }
-      h1 { font-size: 42px; }
       .intro-line { font-size: 20px; }
       .lead { font-size: 14px; }
       .showcase, .details-grid { grid-template-columns: 1fr; }
@@ -226,6 +235,7 @@
       .section { padding: 28px 0 44px; }
       .section h2 { font-size: 27px; }
       .details-grid { gap: 0; }
+      .flow-steps { grid-template-columns: 1fr; gap: 18px; }
       .detail { padding-block: 20px; }
       .records { gap: 4px 18px; }
     }
@@ -253,7 +263,7 @@
     <nav class="site-nav" data-label="navigation" aria-label="Primary navigation">
       <a href="#games"><span class="zh">游戏</span><span class="en">Games</span></a>
       <a href="#moods"><span class="zh">心情</span><span class="en">Moods</span></a>
-      <a href="#process"><span class="zh">制作流程</span><span class="en">AI Process</span></a>
+      <a href="#process"><span class="zh">创作幕后</span><span class="en">How It's Made</span></a>
     </nav>
     <div class="lang-toggle" role="group" data-label="language" aria-label="Language">
       <button type="button" data-set-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
@@ -263,10 +273,14 @@
 
   <main class="shell">
     <section class="intro" aria-labelledby="page-title">
-      <p class="eyebrow">Independent / AI Native</p>
-      <h1 id="page-title">Codex Games</h1>
-      <p class="intro-line"><span class="zh">六个小世界，等你来玩。</span><span class="en">Six small worlds. Find your escape.</span></p>
-      <p class="lead"><span class="zh">六款原创 AI Native 游戏，由 Seta Chen 与 Codex 一起打磨。来一场深空冒险、留一段温柔日常，或让下一次三连消解锁好心情。</span><span class="en">Six original AI Native games by Seta Chen, crafted with Codex. Chase a little adventure, stay for a quiet connection, or find joy in one more satisfying clear.</span></p>
+      <h1 id="page-title" class="sr-only">Codex Games</h1>
+      <picture class="studio-art">
+        <img id="studio-image" src="images/promo/home-v3/studio-hero-1200.webp" srcset="images/promo/home-v3/studio-hero-600.webp 600w, images/promo/home-v3/studio-hero-1200.webp 1200w, images/promo/home-v3/studio-hero-1600.webp 1600w" sizes="(max-width: 599px) calc(100vw - 32px), (max-width: 759px) calc(100vw - 40px), (max-width: 1264px) calc(100vw - 64px), 1200px" width="1600" height="840" alt="Codex Games: space battles, a quiet companion, a wuxia tavern, a journey west, a growing garden, and colorful tile puzzles." fetchpriority="high" decoding="async" />
+      </picture>
+      <div class="intro-copy">
+        <p class="intro-line"><span class="zh">六个小世界，等你来玩。</span><span class="en">Six small worlds. Find your escape.</span></p>
+        <p class="lead"><span class="zh">由 Seta Chen 与 Codex 一起打磨的六款原创 AI Native 游戏。热血、温柔、江湖与小小的快乐，都在这里。</span><span class="en">Six original AI Native games by Seta Chen, crafted with Codex. A little adventure, a quiet connection, and small moments of joy.</span></p>
+      </div>
     </section>
 
     <section class="catalog" id="games" tabindex="-1" aria-labelledby="games-title">
@@ -278,7 +292,7 @@
         <article class="game-card star">
           <a class="game-entry" href="https://g.ismayday.mobi/star_fighter/" aria-labelledby="star-title">
             <picture class="game-art">
-              <img src="images/promo/home-v2/star-fighter-960.webp" srcset="images/promo/home-v2/star-fighter-480.webp 480w, images/promo/home-v2/star-fighter-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" fetchpriority="high" decoding="async" />
+              <img src="images/promo/home-v2/star-fighter-960.webp" srcset="images/promo/home-v2/star-fighter-480.webp 480w, images/promo/home-v2/star-fighter-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" loading="lazy" decoding="async" />
             </picture>
             <div class="game-copy">
               <span class="tagline"><span class="zh">霓虹弹幕 / 热血街机</span><span class="en">Neon action / Arcade</span></span>
@@ -380,17 +394,25 @@
     <section class="section" id="process" aria-labelledby="flow-title">
       <div class="flow-copy">
         <div>
-          <p class="section-index">02 / <span class="zh">从创意到开玩</span><span class="en">From idea to play</span></p>
-          <h2 id="flow-title"><span class="zh">AI Native 游戏制作流程</span><span class="en">AI Native Game Creation Flow</span></h2>
-          <p><span class="zh">从一句创意开始，把世界观、角色、玩法、美术、代码和上线验证串成连续循环。AI 参与灵感扩展、原型打磨、内容生成和体验迭代，人类掌握方向，也亲自感受每一局。</span><span class="en">A single idea becomes a world, a cast, a playable prototype, and a game worth returning to. AI helps explore, create, and iterate; people set the direction and play every step of the way.</span></p>
+          <p class="section-index">02 / <span class="zh">AI Native 创作</span><span class="en">AI Native creation</span></p>
+          <h2 id="flow-title"><span class="zh">让想象，成为游戏</span><span class="en">From imagination to play</span></h2>
+          <p><span class="zh">从一个“想玩这样的游戏”的念头出发，与 AI 一起搭世界、试玩法、画角色、写代码。人来决定什么值得做，再用真实的试玩，把一个想法慢慢打磨成值得再来一局的体验。</span><span class="en">It starts with a game we wish existed. With AI, we shape its world, explore the mechanics, create the art, and write the code. People choose the direction; real play turns the idea into something worth coming back to.</span></p>
         </div>
-        <div class="flow-note"><span class="zh">从“想玩什么”到“可以打开体验什么”，让每一次试玩推动下一轮创作。</span><span class="en">From “what would be fun?” to something you can actually play. Every playtest gives the next idea somewhere to begin.</span></div>
+        <div class="flow-note"><span class="zh">人定方向，AI 协作，每次试玩都更进一步。</span><span class="en">Human direction. AI collaboration. Better with every playtest.</span></div>
       </div>
       <figure class="flow-visual">
-        <a id="flow-link" class="flow-image-link" href="https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-en.jpg" target="_blank" rel="noopener" aria-label="Open the full-size AI Native game creation flow diagram">
-          <img id="flow-image" src="images/promo/home-v2/ai-dev-flow-en.webp" width="1600" height="900" alt="AI Native game creation flow diagram" loading="lazy" decoding="async" />
+        <a id="flow-link" class="flow-image-link" href="images/promo/home-v3/creation-flow-en.jpg" target="_blank" rel="noopener" aria-label="Open the full-size English game creation illustration">
+          <img id="flow-image" src="images/promo/home-v3/creation-flow-en-1600.webp" srcset="images/promo/home-v3/creation-flow-en-800.webp 800w, images/promo/home-v3/creation-flow-en-1600.webp 1600w" sizes="(max-width: 599px) calc(100vw - 32px), (max-width: 759px) calc(100vw - 40px), (max-width: 1264px) calc(100vw - 64px), 1200px" width="1600" height="900" alt="From imagination to play: Idea, World, Prototype, Art &amp; Code, Playtest, Launch &amp; Grow. Play, learn, and refine." loading="lazy" decoding="async" />
         </a>
       </figure>
+      <ol class="flow-steps" role="list">
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">01</span><h3><span class="zh">灵感</span><span class="en">Idea</span></h3></div><p><span class="zh">从一种想留下的心情，找到一个值得开玩的点子。</span><span class="en">Find a feeling we want to share, and an idea worth playing.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">02</span><h3><span class="zh">世界</span><span class="en">World</span></h3></div><p><span class="zh">让角色、故事与规则，组成一个有自己气质的小世界。</span><span class="en">Give the characters, story, and rules a world of their own.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">03</span><h3><span class="zh">原型</span><span class="en">Prototype</span></h3></div><p><span class="zh">先把核心玩法做出来，亲手试试它有没有趣。</span><span class="en">Build the smallest playable version and see if the fun is there.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">04</span><h3><span class="zh">美术与代码</span><span class="en">Art &amp; Code</span></h3></div><p><span class="zh">与 AI 一起，让画面、声音和交互贴合这款游戏的心情。</span><span class="en">Create with AI until the visuals, sound, and interactions feel like this game.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">05</span><h3><span class="zh">试玩</span><span class="en">Playtest</span></h3></div><p><span class="zh">在手机和电脑上亲自试玩，发现不顺手的地方，反复打磨。</span><span class="en">Play on phones and desktops. Notice the friction, then refine it.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">06</span><h3><span class="zh">上线与成长</span><span class="en">Launch &amp; Grow</span></h3></div><p><span class="zh">把游戏交给玩家，让真实的反馈成为下一轮创作的起点。</span><span class="en">Let people play. Their feedback starts the next round of creation.</span></p></li>
+      </ol>
     </section>
   </main>
 
@@ -413,6 +435,7 @@
       };
       const flowImage = document.getElementById("flow-image");
       const flowLink = document.getElementById("flow-link");
+      const studioImage = document.getElementById("studio-image");
       const description = document.querySelector('meta[name="description"]');
 
       function setLanguage(value, persist = false) {
@@ -424,11 +447,20 @@
           element.setAttribute("aria-label", labels[lang][element.dataset.label]);
         });
         const suffix = lang === "zh" ? "cn" : "en";
-        const imageSource = "images/promo/home-v2/ai-dev-flow-" + suffix + ".webp";
-        if (flowImage.getAttribute("src") !== imageSource) flowImage.src = imageSource;
-        flowImage.alt = lang === "zh" ? "AI Native 游戏制作流程图" : "AI Native game creation flow diagram";
-        flowLink.href = "https://g.ismayday.mobi/tavern/images/promo/ai-dev-flow-" + suffix + ".jpg";
-        flowLink.setAttribute("aria-label", lang === "zh" ? "打开中文版 AI Native 游戏制作流程大图" : "Open the full-size AI Native game creation flow diagram");
+        const flowBase = "images/promo/home-v3/creation-flow-" + suffix;
+        const imageSource = flowBase + "-1600.webp";
+        if (flowImage.getAttribute("src") !== imageSource) {
+          flowImage.srcset = flowBase + "-800.webp 800w, " + imageSource + " 1600w";
+          flowImage.src = imageSource;
+        }
+        flowImage.alt = lang === "zh"
+          ? "让想象，成为游戏：灵感、世界、原型、美术与代码、试玩、上线与成长。试玩、反馈、打磨，持续迭代。"
+          : "From imagination to play: Idea, World, Prototype, Art & Code, Playtest, Launch & Grow. Play, learn, and refine.";
+        flowLink.href = flowBase + ".jpg";
+        flowLink.setAttribute("aria-label", lang === "zh" ? "打开中文版游戏创作流程大图" : "Open the full-size English game creation illustration");
+        studioImage.alt = lang === "zh"
+          ? "Codex Games 六款游戏合集：深空战斗、心动陪伴、江湖酒馆、西游冒险、治愈花园与叠消拼图。"
+          : "Codex Games: space battles, a quiet companion, a wuxia tavern, a journey west, a growing garden, and colorful tile puzzles.";
         description.content = lang === "zh"
           ? "六款原创 AI Native 浏览器游戏：星际突击队、心动陪伴、武侠酒馆、西游取经棋、治愈花园、萌宠叠叠消。由 Seta Chen 与 Codex 一起打磨。"
           : "Six original AI Native browser games. Find your next escape in Star Fighter, Soulmate, Wulin Tavern, Journey Ludo, Garden Match, and StackPop.";

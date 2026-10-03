@@ -1,19 +1,36 @@
 # Homepage Art V2
 
 Created on 2026-10-02 for the Codex Games hub with the built-in image generation
-tool. These are promotional illustrations, not gameplay screenshots. Existing
-game art and the previous homepage covers remain unchanged.
+tool. These are promotional illustrations, not gameplay screenshots. Game art
+in the individual projects remains unchanged. This directory holds the current
+six game covers and social preview, not a retired set of homepage artwork.
 
 ## Files
 
 - Six 1536 x 1024 JPEG masters: `star-fighter.jpg`, `soulmate.jpg`,
   `wulin-tavern.jpg`, `journey-ludo.jpg`, `garden-match.jpg`, `stackpop.jpg`.
 - Each game has 480 x 320 and 960 x 640 WebP variants. The page uses `srcset`
-  and `sizes`; only Star Fighter has high fetch priority.
+  and `sizes`; all game covers are lazy-loaded. The v3 studio banner has high
+  fetch priority.
 - `studio-share.jpg`: 1200 x 630 social preview with all six games and the
   studio title. Used by Open Graph and Twitter metadata.
-- `ai-dev-flow-en.webp` and `ai-dev-flow-cn.webp`: optimized 1600 x 900 versions
-  of the original bilingual flow diagrams. These are not regenerated.
+- The previous `ai-dev-flow-en.webp` and `ai-dev-flow-cn.webp` were removed
+  after the regenerated bilingual illustrations in `../home-v3/` were accepted.
+
+## Retired Assets
+
+The following unused homepage assets were removed from the repository and
+production server after checking the current page's references:
+
+- `images/promo/home-v2/ai-dev-flow-en.webp`
+- `images/promo/home-v2/ai-dev-flow-cn.webp`
+- `images/promo/journey-ludo-cover.jpg`
+- `images/promo/garden-match-cover.jpg`
+- `images/promo/stackpop-cover.jpg`
+
+Legacy reference filenames below document the source material used during
+generation; they are not runtime dependencies. Earlier commits retain their
+history. Artwork inside the game projects was not deleted.
 
 ## Art Direction And Prompts
 
