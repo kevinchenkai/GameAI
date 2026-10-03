@@ -1,0 +1,28 @@
+stack/web/tests/assets.test.ts
+  s_d321df54fe1b3e::t_22162cb2bea572 11-18,20,22-28
+  s_d321df54fe1b3e::t_4f11a8bb2ce01d 19
+stack/docs/StackPop_体验与美术升级_20261002.md
+  s_d321df54fe1b3e::t_b97a588ae83b1f 157-158
+  s_d321df54fe1b3e::t_21c9aea84efe39 159-160
+  s_d321df54fe1b3e::t_22162cb2bea572 81,95,145-156
+stack/web/tools/generatePlaceholderAssets.py
+  s_d321df54fe1b3e::t_22162cb2bea572 4-5,16
+stack/web/tools/prepareUpgradeArt.mjs
+  s_d321df54fe1b3e::t_22162cb2bea572 16-19,88-89,91,93-101,125-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "4dfc5b372e50aaea119559cf6be7a85a2e8c7702",
+  "prompts": {},
+  "sessions": {
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
