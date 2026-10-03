@@ -1,0 +1,30 @@
+scripts/build-home-images.cjs
+  s_f9553c5376110e::t_f3e1349d488572 10,42
+  s_f9553c5376110e::t_941bffd7d9284b 39-41,43
+  s_f9553c5376110e::t_59217c8fc5c4c4 44
+images/brand/README.md
+  s_f9553c5376110e::t_a595766451f8f3 3-15,18,23-32
+  s_f9553c5376110e::t_cce652a26afb11 16-17,19-22
+  s_f9553c5376110e::t_20a67d7a4d9e61 1-2,33
+images/promo/home-v3/README.md
+  s_f9553c5376110e::t_39e869270f3fbf 6-7
+index.html
+  s_f9553c5376110e::t_c28ffbb1605fd9 78,82,98-101,216
+  s_f9553c5376110e::t_cab20d83a9a246 10-11,249
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "8e530fd6f24158de3c7d2e460ed8dbf0bf1653f8",
+  "prompts": {},
+  "sessions": {
+    "s_f9553c5376110e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e4909-b9ee-7613-bfc1-2fd4660cf491",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
