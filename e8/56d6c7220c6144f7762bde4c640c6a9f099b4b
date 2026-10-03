@@ -1,0 +1,39 @@
+images/promo/home-v3/README.md
+  s_f9553c5376110e::t_3d2d8b5f05fc3b 11-13
+  s_f9553c5376110e::t_002ba28b36e7d8 1-10,14-58
+scripts/build-home-images.cjs
+  s_f9553c5376110e::t_4730820d3696a1 9,23-33
+  s_f9553c5376110e::t_3a34a29e612241 34-36
+  s_43e0cd16d36b33::t_e62c352b0669b2 37
+index.html
+  s_f9553c5376110e::t_4d10e24ec0f898 63,108-109,111,117-118,184-189,207,216-218,238
+  s_f9553c5376110e::t_8739f2dcae1bbe 295
+  s_f9553c5376110e::t_e5435b45939b13 276-283,397-399,401,404-405,409-415,438,450-463
+  s_f9553c5376110e::t_79afbc70415129 110,112,176,266,408
+images/promo/home-v2/README.md
+  s_f9553c5376110e::t_98c46e83d4ae93 4-6,13-14,17-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "e856d6c7220c6144f7762bde4c640c6a9f099b4b",
+  "prompts": {},
+  "sessions": {
+    "s_43e0cd16d36b33": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0ffd1-f45e-7243-939a-4f4bff853bfe",
+        "model": "unknown"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    },
+    "s_f9553c5376110e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e4909-b9ee-7613-bfc1-2fd4660cf491",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
