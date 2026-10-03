@@ -3,6 +3,8 @@
 ## Integration
 
 - Reuses the accepted six-game Codex Games collage as an uncropped opening banner.
+- The banner fills the content width at its natural 40:21 ratio, with no
+  fixed height or `contain` letterboxing on desktop.
 - Six game covers and social metadata remain on their existing v2 URLs.
 - English and Chinese creation illustrations share the same six-stage layout.
 - Page copy and semantic ordered list follow the same stages: Idea, World, Prototype, Art & Code, Playtest, Launch & Grow.

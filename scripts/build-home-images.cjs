@@ -7,6 +7,7 @@ const sharp = require("sharp");
 const assetDir = path.resolve(__dirname, "../images/promo/home-v2");
 const games = ["star-fighter", "soulmate", "wulin-tavern", "journey-ludo", "garden-match", "stackpop"];
 const studioDir = path.resolve(__dirname, "../images/promo/home-v3");
+const brandDir = path.resolve(__dirname, "../images/brand");
 
 async function build() {
   await fs.mkdir(assetDir, { recursive: true });
@@ -34,6 +35,12 @@ async function build() {
         .toFile(destination);
       console.log(path.relative(process.cwd(), destination));
     }
+  }
+  const logoName = "codex-games-v2";
+  const logo = path.join(brandDir, `${logoName}.png`);
+  await sharp(logo).resize(96, 96).webp({ lossless: true }).toFile(path.join(brandDir, `${logoName}-96.webp`));
+  for (const width of [32, 180]) {
+    await sharp(logo).resize(width, width).png().toFile(path.join(brandDir, `${logoName}-${width}.png`));
   }
 }
 

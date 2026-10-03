@@ -7,7 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <meta name="theme-color" content="#101112" />
   <link rel="canonical" href="https://g.ismayday.mobi/" />
-  <link rel="icon" href="data:," />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/codex-games-v2-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/codex-games-v2-180.png" />
   <title>Codex Games | AI Native Game Studio</title>
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Codex Games" />
@@ -74,22 +75,11 @@
     .skip-link:focus { transform: translateY(0); }
     .topbar {
       display: flex; align-items: center; gap: 28px;
-      min-height: 94px; padding-block: max(20px, env(safe-area-inset-top)) 20px;
+      min-height: 82px; padding-block: max(16px, env(safe-area-inset-top)) 16px;
       border-bottom: 1px solid var(--line);
     }
     .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
-    .mark {
-      position: relative; flex: 0 0 32px; width: 32px; height: 32px;
-      border: 1px solid #6cc9c0; border-radius: 50%;
-    }
-    .mark::before {
-      content: ""; position: absolute; inset: 9px 2px;
-      border: 1px solid #6cc9c0; border-radius: 50%; transform: rotate(-25deg);
-    }
-    .mark::after {
-      content: ""; position: absolute; width: 7px; height: 7px; left: 3px; top: 2px;
-      border-radius: 50%; background: var(--cyan);
-    }
+    .mark { flex: 0 0 40px; width: 40px; height: 40px; }
     .brand strong { display: block; font-size: 16px; line-height: 1.3; }
     .brand small { display: block; margin-top: 3px; color: var(--soft); font-size: 11px; }
     .site-nav { display: flex; gap: 26px; margin-left: auto; }
@@ -105,10 +95,10 @@
       font-size: 12px; font-weight: 700;
     }
     .lang-toggle button[aria-pressed="true"] { background: var(--cyan); color: #101112; }
-    .intro { padding: 28px 0 36px; }
-    .studio-art { display: block; background: #080909; }
-    .studio-art img { width: 100%; height: auto; max-height: min(480px, max(160px, calc(100svh - 360px))); aspect-ratio: 40 / 21; object-fit: contain; }
-    .intro-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: 32px; margin-top: 24px; }
+    .intro { padding: 20px 0 28px; }
+    .studio-art { display: block; }
+    .studio-art img { width: 100%; height: auto; aspect-ratio: 40 / 21; }
+    .intro-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: 32px; margin-top: 18px; }
     .section-index {
       margin: 0 0 10px; color: var(--cyan);
       font: 600 11px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -215,7 +205,6 @@
       .footer { align-items: flex-start; flex-direction: column; gap: 8px; }
       .intro { padding-block: 24px 28px; }
       .intro-copy { grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
-      .studio-art img { max-height: none; }
       .intro-line { font-size: 21px; }
       .catalog-note { display: none; }
     }
@@ -224,7 +213,7 @@
       .brand { gap: 9px; }
       .brand strong { font-size: 14px; }
       .brand small { font-size: 10px; }
-      .mark { flex-basis: 28px; width: 28px; height: 28px; }
+      .mark { flex-basis: 34px; width: 34px; height: 34px; }
       .lang-toggle button { min-width: 40px; padding-inline: 8px; }
       .intro-line { font-size: 20px; }
       .lead { font-size: 14px; }
@@ -257,7 +246,7 @@
   <a class="skip-link" href="#games"><span class="zh">跳到游戏列表</span><span class="en">Skip to games</span></a>
   <header class="topbar shell">
     <a class="brand" href="index.html" data-label="home" aria-label="Codex Games home">
-      <span class="mark" aria-hidden="true"></span>
+      <img class="mark" src="images/brand/codex-games-v2-96.webp" width="96" height="96" alt="" decoding="async" />
       <span><strong>Codex Games</strong><small>AI Native Game Studio</small></span>
     </a>
     <nav class="site-nav" data-label="navigation" aria-label="Primary navigation">
