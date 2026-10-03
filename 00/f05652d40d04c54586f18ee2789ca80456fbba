@@ -1,0 +1,91 @@
+stack/docs/art_review/upgrade_20261002/prompts.json
+  s_d321df54fe1b3e::t_4c0dadf169aa74 1-17
+stack/web/tests/artUpgrade.test.ts
+  s_d321df54fe1b3e::t_abbc76f264353c 1-71,73-79
+  s_d321df54fe1b3e::t_1d6fec1ec73ab8 72
+stack/docs/art_review/upgrade_20261002/assets.json
+  s_d321df54fe1b3e::t_ab66cf36f11b47 1-176,200-202
+  s_d321df54fe1b3e::t_39fe45f9471d9b 178-199
+  s_d321df54fe1b3e::t_5bc7b6d1e58f48 177
+stack/web/src/game/systems/InputQueue.ts
+  s_d321df54fe1b3e::t_1e105e4195ccb2 8,10-13,20,30-34,39,41-48
+stack/web/src/game/render/TrayRenderer.ts
+  s_d321df54fe1b3e::t_0fe7d564fd1962 28,46,126-128,176
+  s_d321df54fe1b3e::t_84cf9b5057ae93 23,151,165,167
+stack/web/src/game/scenes/SettingsScene.ts
+  s_d321df54fe1b3e::t_bb8415337d79d0 6,20,29,64-67,73-92
+  s_d321df54fe1b3e::t_edb61d6901b172 3-5,46,69,72,101-103,116-117
+stack/web/src/game/systems/SolverWorkerClient.ts
+  s_d321df54fe1b3e::t_1cf469d361ac30 18,38-44,54-56,60,70,82-86
+stack/web/src/game/scenes/GameScene.ts
+  s_d321df54fe1b3e::t_bb8415337d79d0 792-793
+  s_d321df54fe1b3e::t_0fe7d564fd1962 23,55,136,161,196,349,355,360-365,704-705,767-777,784-787,789
+  s_d321df54fe1b3e::t_84cf9b5057ae93 17,64-66,73-74,98-102,113-115,134-135,352,469,575-579,581,585-586,603-604,626-627,644,662-665,670-671,681,690,693-694,706,712,719,726-729,732,754,764,766,782-783,788,795,802-805,807,813-814,816,819-820,840-842,846-847,851,858,865-866,871-872,889,938-949
+  s_f9553c5376110e::t_58788aacef8eb1 137
+stack/web/src/game/config/assets.ts
+  s_d321df54fe1b3e::t_9004c8b39b3db8 23-30,38,44-45
+  s_d321df54fe1b3e::t_1d6fec1ec73ab8 40-41
+stack/web/src/game/scenes/HomeScene.ts
+  s_d321df54fe1b3e::t_edb61d6901b172 3-6,36,48,51,68-69,73
+stack/web/src/game/scenes/LevelSelectScene.ts
+  s_d321df54fe1b3e::t_bb8415337d79d0 3-4,64,80-84,91-98,105-106
+stack/web/src/game/render/DialogRenderer.ts
+  s_d321df54fe1b3e::t_edb61d6901b172 44-45,48,52,54-56
+stack/web/src/game/systems/AnimationTasks.ts
+  s_d321df54fe1b3e::t_1e105e4195ccb2 1-36
+stack/web/tests/animationTasks.test.ts
+  s_d321df54fe1b3e::t_1e105e4195ccb2 1-37
+stack/docs/StackPop_体验与美术升级_20261002.md
+  s_d321df54fe1b3e::t_b74bd0161bcd07 1-2,4-143
+  s_d321df54fe1b3e::t_4e372658564f11 3,144
+stack/web/tools/verifyExperience.playwright.js
+  s_d321df54fe1b3e::t_3bb2df613631ab 56,63
+  s_d321df54fe1b3e::t_3324786ed829a0 204
+  s_d321df54fe1b3e::t_1d6fec1ec73ab8 193
+  s_d321df54fe1b3e::t_c6eebbf46589ed 54-55,62
+  s_d321df54fe1b3e::t_abbc76f264353c 1-53,57-61,64-125,128-166,186-192,194-203
+  s_d321df54fe1b3e::t_294e4a92204216 167-179,181,183-184
+  s_d321df54fe1b3e::t_ea2365b800c64e 180,182,185
+  s_d321df54fe1b3e::t_95df69b0be610e 126-127
+stack/web/tools/prepareUpgradeArt.mjs
+  s_d321df54fe1b3e::t_45e7222891c24f 1-54,56,63-70,73-83,99-123
+  s_d321df54fe1b3e::t_1d6fec1ec73ab8 84-98
+  s_d321df54fe1b3e::t_8792e5878c0293 55,57-62,71-72
+stack/web/package.json
+  s_d321df54fe1b3e::t_bb8415337d79d0 16-17
+  s_f9553c5376110e::t_e98b28ac9d43ab 27
+stack/web/tests/inputQueue.test.ts
+  s_d321df54fe1b3e::t_1e105e4195ccb2 13-41
+stack/web/tests/shuffle.test.ts
+  s_d321df54fe1b3e::t_1cf469d361ac30 120-151
+stack/web/src/game/scenes/HowToPlayScene.ts
+  s_d321df54fe1b3e::t_84cf9b5057ae93 161,189,191
+stack/docs/art_review/upgrade_20261002/runtime-checks.json
+  s_d321df54fe1b3e::t_70bfeb96a3bdbc 1-174
+stack/web/package-lock.json
+  s_d321df54fe1b3e::t_1e3eaae0b6e3e4 18,25-35,747-1321,2345-2354,3277-3326,3481-3488
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "00f05652d40d04c54586f18ee2789ca80456fbba",
+  "prompts": {},
+  "sessions": {
+    "s_d321df54fe1b3e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a02d03-5d9a-78d2-a23a-cb46c5d3ba48",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    },
+    "s_f9553c5376110e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e4909-b9ee-7613-bfc1-2fd4660cf491",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
