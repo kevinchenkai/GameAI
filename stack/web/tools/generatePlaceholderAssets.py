@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Generate deterministic M4 placeholder WebP assets.
 
-These files exercise the real manifest, sizing, alpha, and loading paths. Do not
-run with --force after approved art has replaced the placeholders.
+Archived M4 prototype generator. Outputs go only to ignored output/ so running
+it cannot resurrect retired files or overwrite approved production artwork.
 """
 
 from __future__ import annotations
@@ -13,7 +13,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 
-ROOT = Path(__file__).resolve().parents[1] / "public" / "assets"
+ROOT = Path(__file__).resolve().parents[1].parent / "output" / "placeholder-assets"
 CREAM = "#FFF6E3"
 BROWN = "#8A542B"
 LIGHT_BROWN = "#B08355"

@@ -8,7 +8,24 @@ import {
   RENDERED_TEXTURE_KEYS,
 } from '../src/game/config/assets';
 
+function listAssetFiles(directory: string, prefix = 'assets'): string[] {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.name === '.DS_Store') return [];
+    const relativePath = `${prefix}/${entry.name}`;
+    return entry.isDirectory()
+      ? listAssetFiles(path.join(directory, entry.name), relativePath)
+      : [relativePath];
+  });
+}
+
 describe('M4 asset manifest', () => {
+  it('public assets contain only current manifest files, never retired art', () => {
+    const expected = [...new Set([
+      ...PRELOAD_ASSETS.map(({ path: assetPath }) => assetPath),
+      ...DEFERRED_AUDIO_ASSETS.flatMap(({ paths }) => [...paths]),
+    ])].sort();
+    expect(listAssetFiles(path.resolve('public/assets')).sort()).toEqual(expected);
+  });
   it('every preloaded texture key is owned by a rendering layer', () => {
     const loaded = PRELOAD_ASSETS.map(({ key }) => key).sort();
     const rendered = [...RENDERED_TEXTURE_KEYS].sort();

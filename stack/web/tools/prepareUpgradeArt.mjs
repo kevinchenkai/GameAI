@@ -13,6 +13,10 @@ if (!sourceFile) throw new Error('Usage: node tools/prepareUpgradeArt.mjs <sourc
 const sources = JSON.parse(await fs.readFile(sourceFile, 'utf8'));
 const tiles = ['paw', 'grass', 'watering', 'bell', 'fish', 'yarn', 'bone', 'flowerpot'];
 await fs.mkdir(review, { recursive: true });
+const previousReview = JSON.parse(await fs.readFile(path.join(review, 'assets.json'), 'utf8').catch((error) => {
+  if (error.code === 'ENOENT') return '{"assets":[]}';
+  throw error;
+}));
 
 async function bounds(file) {
   const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -81,11 +85,20 @@ const lookup = Object.fromEntries(records.map((r) => [r.name, r]));
 if (lookup.flowerpot.bounds.meanL > 140) throw new Error('Flowerpot must have mean L <= 140');
 if (lookup.bell.bounds.meanL - lookup.flowerpot.bounds.meanL < 38) throw new Error('Bell/flowerpot contrast too small');
 if (lookup.bone.bounds.meanL - lookup.fish.bounds.meanL < 25) throw new Error('Bone/fish contrast too small');
-// Retain approved result-panel artwork, but remove its transparent outer gutter.
-// The renderer's padding must refer to the visible panel, not empty source pixels.
+// Optional panel masters live outside public/. Without them, retain the approved
+// v2 deliveries and their provenance, not a dependency on deleted v1 assets.
 for (const name of ['panel_win', 'panel_fail']) {
-  const source = path.join(publicRoot, 'ui', `${name}.webp`);
+  const source = sources[name];
   const destination = path.join(publicRoot, 'ui', `${name}_v2.webp`);
+  if (!source) {
+    const encoded = await fs.readFile(destination);
+    const previous = previousReview.assets.find((asset) => asset.name === name);
+    if (!previous || previous.sha256 !== createHash('sha256').update(encoded).digest('hex')) {
+      throw new Error(`Approved ${name}_v2 does not match its review record; provide an external panel master`);
+    }
+    records.push(previous);
+    continue;
+  }
   const box = await bounds(source);
   await sharp(source).extract({ left: box.left, top: box.top, width: box.width, height: box.height })
     .webp({ quality: 94, alphaQuality: 100, effort: 6 }).toFile(destination);
@@ -109,15 +122,6 @@ for (const gray of [false, true]) {
   await sharp({ create: { width: 328, height: 48, channels: 4, background: '#fff6e3' } })
     .composite(overlays).png().toFile(path.join(review, gray ? 'tiles_32px_gray.png' : 'tiles_32px.png'));
 }
-const compare = [];
-for (let i = 0; i < tiles.length; i++) {
-  for (let row = 0; row < 2; row++) {
-    compare.push({ input: await sharp(path.join(publicRoot, 'tiles', `${tiles[i]}${row ? '_v2' : ''}.webp`)).resize(128, 128).png().toBuffer(),
-      left: 16 + i * 144, top: 40 + row * 168 });
-  }
-}
-const captions = `<svg width="1168" height="384"><style>text{font:16px sans-serif;fill:#6e573e}</style><text x="16" y="24">Before / previous art</text><text x="16" y="192">After / upgraded art</text>${tiles.map((n, i) => `<text x="${32 + i * 144}" y="368">${n}</text>`).join('')}</svg>`;
-compare.push({ input: Buffer.from(captions), left: 0, top: 0 });
-await sharp({ create: { width: 1168, height: 384, channels: 4, background: '#fff6e3' } })
-  .composite(compare).png().toFile(path.join(review, 'tiles_before_after.png'));
+// tiles_before_after.png is an immutable historical review artifact. Do not
+// recreate retired public assets just to regenerate that comparison.
 console.log(JSON.stringify(records.map(({ name, bytes, bounds }) => ({ name, bytes, meanL: bounds?.meanL })), null, 2));
