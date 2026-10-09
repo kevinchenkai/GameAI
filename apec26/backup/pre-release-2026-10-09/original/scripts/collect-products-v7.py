@@ -4,11 +4,11 @@ Never request item pages or repeat rate-limited requests. Different variants are
 """
 import json,re,html,hashlib,urllib.request,urllib.error,argparse
 from pathlib import Path
-from project_paths import ROOT,PUBLIC,SOURCES,DOCS,CACHE;p=argparse.ArgumentParser();p.add_argument('--saved',action='store_true');args=p.parse_args()
-data=json.loads((SOURCES/'v5/products-public.json').read_text());groups={};out=[];blocked=False
+ROOT=Path(__file__).resolve().parents[1];p=argparse.ArgumentParser();p.add_argument('--saved',action='store_true');args=p.parse_args()
+data=json.loads((ROOT/'research/v5/products-public.json').read_text());groups={};out=[];blocked=False
 for cat,rows in data.items():
  for row in rows:groups.setdefault(row['listing'],[]).append((cat,row))
-cache=CACHE/'research/v7/.raw-cache';cache.mkdir(parents=True,exist_ok=True)
+cache=ROOT/'research/v7/.raw-cache';cache.mkdir(exist_ok=True)
 clean=lambda s:html.unescape(re.sub('<[^>]*>','',s)).strip()
 norm=lambda s:re.sub(r'\s+','',s or '')
 for source,group in groups.items():
@@ -39,4 +39,4 @@ for source,group in groups.items():
   out.extend(dict(category=cat,sku=row['sku'],source=source,checked='2026-10-02',status='access_restricted' if blocked else 'unavailable',httpStatus=e.code) for cat,row in group)
  except Exception as e:out.extend(dict(category=cat,sku=row['sku'],source=source,checked='2026-10-02',status='unavailable',reason=str(e)) for cat,row in group)
 assert len(out)==160 and len({r['sku'] for r in out})==160
-(SOURCES/'v7/product-listing-checks.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'research/v7/product-listing-checks.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')

@@ -4,23 +4,22 @@ Topic summaries are deliberately neutral: a star rating is not a sentiment label
 """
 import json,re,datetime,hashlib,unicodedata
 from pathlib import Path
-from project_paths import ROOT,PUBLIC,SOURCES,DOCS,CACHE
-root=ROOT
-venues=json.loads((PUBLIC/'restaurants-v4.js').read_text().split('=',1)[1].strip().rstrip(';'))
+root=Path(__file__).resolve().parents[1]
+venues=json.loads((root/'restaurants-v4.js').read_text().split('=',1)[1].strip().rstrip(';'))
 raw=[]
-sourceFiles=sorted({f.name:f for f in (SOURCES/'v5').glob('reviews*public.json')}.values())
-cache=CACHE/'research/v5/.review-cache';cache.mkdir(parents=True,exist_ok=True)
+sourceFiles=sorted({f.name:f for f in (root/'research/v5').glob('reviews*public.json')}.values())
+cache=root/'research/v5/.review-cache';cache.mkdir(exist_ok=True)
 for f in sourceFiles:
  rows=json.loads((cache/f.name if (cache/f.name).exists() else f).read_text())
  raw.extend(rows)
 # V6 sources are fully reproducible from committed summaries. Raw bodies are optional.
-v6=SOURCES/'v6';v6Cache=CACHE/'research/v6/.raw-cache'
+v6=root/'research/v6';v6Cache=v6/'.raw-cache'
 v6Files=sorted({f.name:v6/f.name for f in list(v6.glob('reviews-*.json'))+list(v6Cache.glob('reviews-*.json'))}.values()) if v6.exists() else []
 for f in v6Files:
  rows=json.loads((v6Cache/f.name if (v6Cache/f.name).exists() else f).read_text())
  raw.extend(rows)
 # Later research batches retain the same reproducible summary format.
-v7=SOURCES/'v7';v7Cache=CACHE/'research/v7/.raw-cache'
+v7=root/'research/v7';v7Cache=v7/'.raw-cache'
 v7Files=sorted({f.name:v7/f.name for f in list(v7.glob('reviews-*.json'))+list(v7Cache.glob('reviews-*.json'))}.values()) if v7.exists() else []
 for f in v7Files:
  rows=json.loads((v7Cache/f.name if (v7Cache/f.name).exists() else f).read_text());raw.extend(rows)
@@ -144,7 +143,7 @@ for r in venues:
  if r.get('reviewTextEn') and not replaced:
   items.insert(0,{'id':'legacy-'+sourceId,'author':r['reviewAuthor'],'text':{'zh':r['reviewTextZh'],'en':r['reviewTextEn']},'score':None,'date':r.get('reviewDate',''),'source':r['reviewSource'],'platform':'Tripadvisor' if 'tripadvisor' in r['reviewSource'] else 'Ctrip / Trip.com'})
  if r['id'].startswith('local-v4-'):records[r['id']]=items
-(PUBLIC/'reviews-v5.js').write_text('/* Public review summaries with author/date/score/source. No synthetic reviewers. */\nconst V5_REVIEWS='+json.dumps(records,ensure_ascii=False,separators=(',',':'))+';\n')
+(root/'reviews-v5.js').write_text('/* Public review summaries with author/date/score/source. No synthetic reviewers. */\nconst V5_REVIEWS='+json.dumps(records,ensure_ascii=False,separators=(',',':'))+';\n')
 counts=[len(records[r['id']]) for r in venues]
 print('Venues',len(venues),'with 2+ reviews',sum(n>=2 for n in counts),'with 10+ reviews',sum(n>=10 for n in counts),'unique review IDs',len({c['id'] for rs in records.values() for c in rs}))
 # Commit attribution facts and brief summaries, without republishing full review bodies.

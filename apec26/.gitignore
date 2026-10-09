@@ -1,11 +1,10 @@
 output/
+.cache/
 .sites-runtime/
+.playwright-cli/
 .DS_Store
 
-# Transient full review bodies; the repository contains only attributed summaries.
-research/v5/.review-cache/
-
-research/v6/.raw-cache/
-.playwright-cli/
-
-research/v7/.raw-cache/
+# Historical raw review bodies and local screenshots remain local after archival.
+backup/**/.raw-cache/
+backup/**/.review-cache/
+backup/**/output/

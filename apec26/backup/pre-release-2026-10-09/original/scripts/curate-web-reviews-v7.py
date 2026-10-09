@@ -2,7 +2,7 @@
 """Human-reviewed short paraphrases. Run after parsing cached public documents."""
 import json,re,unicodedata
 from pathlib import Path
-from project_paths import ROOT,PUBLIC,SOURCES,DOCS,CACHE;pairs={}
+ROOT=Path(__file__).resolve().parents[1];pairs={}
 def add(id,s):pairs[id]=[dict(zip(['zh','en'],line.split('~'))) for line in s.strip().split('\n')]
 add('ta-9989898',"""
 喜欢披萨与意面，服务偏慢。~Enjoys pizza and pasta; service slow.
@@ -133,8 +133,8 @@ add('ta-12624178',"""
 食物不错，服务令其印象深刻。~Enjoys food and memorable service.
 等位较久，员工服务有条理。~Long queues with organized, friendly service.
 """)
-rows=json.loads((CACHE/'research/v7/.raw-cache/reviews-web-new.json').read_text());excluded=[]
-venues=json.loads((PUBLIC/'restaurants-v4.js').read_text().split('=',1)[1].strip().rstrip(';'));venues={v['id']:v for v in venues}
+rows=json.loads((ROOT/'research/v7/.raw-cache/reviews-web-new.json').read_text());excluded=[]
+venues=json.loads((ROOT/'restaurants-v4.js').read_text().split('=',1)[1].strip().rstrip(';'));venues={v['id']:v for v in venues}
 norm=lambda s:re.sub(r'[^\w]','',unicodedata.normalize('NFKC',s).casefold())
 for r in rows:
  cs=r['comments'];assert len(cs)==len(pairs[r['id']]),r['id'];keep=[]
@@ -152,6 +152,6 @@ for r in rows:
    c['replacesLegacy']='legacy-'+r['id'];c['legacyMatchEvidence']='same source and author; normalized original excerpt occurs in this review body'
   c['summary']=summary;c.pop('title',None);keep.append(c)
  r['comments']=keep
-(CACHE/'research/v7/.raw-cache/reviews-web-new.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
-(SOURCES/'v7/review-exclusions.json').write_text(json.dumps(excluded,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'research/v7/.raw-cache/reviews-web-new.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'research/v7/review-exclusions.json').write_text(json.dumps(excluded,ensure_ascii=False,indent=2)+'\n')
 print('Accepted',sum(len(r['comments']) for r in rows),'records; excluded',len(excluded))

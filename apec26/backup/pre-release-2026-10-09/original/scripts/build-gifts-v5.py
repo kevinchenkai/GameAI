@@ -2,10 +2,9 @@
 """Build 8 × 20 source-backed product cards from saved public listing facts."""
 import json,re
 from pathlib import Path
-from project_paths import ROOT,PUBLIC,SOURCES,DOCS,CACHE
-root=ROOT
-data=json.loads((SOURCES/'v5/products-public.json').read_text());out=[]
-verified={r['sku']:r for r in json.loads((SOURCES/'v7/product-verification.json').read_text())}
+root=Path(__file__).resolve().parents[1]
+data=json.loads((root/'research/v5/products-public.json').read_text());out=[]
+verified={r['sku']:r for r in json.loads((root/'research/v7/product-verification.json').read_text())}
 labels={'tea':('中国茶叶','Chinese tea'),'magnet':('文创冰箱贴','Souvenir magnets'),'scarf':('丝巾','Silk scarves'),'fan':('折扇','Folding fans'),'porcelain':('中国瓷器','Chinese porcelain'),'panda':('熊猫玩偶','Panda plush'),'incense':('东方香薰','Chinese fragrance'),'seal':('篆刻印章','Carved seals')}
 terms=[('金骏眉','Jin Jun Mei'),('龙井','Longjing'),('碧螺春','Biluochun'),('铁观音','Tieguanyin'),('正山小种','Lapsang Souchong'),('普洱','Pu’er'),('白茶','White tea'),('绿茶','Green tea'),('红茶','Black tea'),('苏绣','Suzhou embroidery'),('牡丹','Peony'),('荷花','Lotus'),('牡丹时','Peony Time'),('中国风','Chinese motif'),('千里江山','A Thousand Miles of Rivers and Mountains'),('宁静致远','Quiet contemplation'),('水墨竹','Ink bamboo'),('清风翠竹','Bamboo breeze'),('上善若水','Water-inspired calligraphy'),('青田石','Qingtian stone'),('寿山石','Shoushan stone'),('玉石','Jade-style stone'),('青花','Blue-and-white'),('影青','Yingqing glaze'),('青瓷','Celadon'),('白瓷','White porcelain'),('鹅梨','Pear-inspired incense'),('桂花','Osmanthus'),('桂雨','Osmanthus rain'),('檀香','Sandalwood'),('沉香','Agarwood'),('茶清','Tea scent'),('母子熊猫','Parent & baby panda'),('花花熊猫','Huahua panda'),('趴趴','Lying panda'),('挂件','Bag charm'),('抱枕','Cushion')]
 notes={
@@ -56,5 +55,5 @@ for cat,rows in data.items():
   descriptionEn=' / '.join(x for x in [region[1] if regionValue else '',matEn,sizeEn,' & '.join(keywords)] if x)+'. '+itemNotes[1]
   out.append({'id':'jd-'+row['sku'],'sku':row['sku'],'category':cat,'rank':rank,'name':{'zh':nameZh,'en':nameEn},'merchantTitle':title,'origin':{'zh':region[0],'en':region[1]},'region':{'zh':region[0],'en':region[1]},'desc':{'zh':descriptionZh,'en':descriptionEn},'tip':dict(zip(['zh','en'],itemNotes)),'spec':{'zh':spec,'en':sizeEn or 'Selected design: '+spec},'image':row['images'][0],'images':row['images'],'brand':brand,'verification':verification,'material':material,'dimensions':size or None,'variants':row['variants'],'price':None,'source':row['detailUrl'],'listingSource':row['listing'],'collected':row['collected'],'detailStatus':row['detailStatus'],'scores':{'gift':5,'portable':4 if cat not in ['porcelain','panda'] else 3,'culture':5},'audience':'friends','family':rank})
 assert len({g['id'] for g in out})==160
-(PUBLIC/'gifts-v5.js').write_text('/* Public JD listing facts, not a live sales ranking or verified stock. */\nconst V5_GIFTS='+json.dumps(out,ensure_ascii=False,separators=(',',':'))+';\n')
+(root/'gifts-v5.js').write_text('/* Public JD listing facts, not a live sales ranking or verified stock. */\nconst V5_GIFTS='+json.dumps(out,ensure_ascii=False,separators=(',',':'))+';\n')
 print('Built',len(out),'source-backed products')

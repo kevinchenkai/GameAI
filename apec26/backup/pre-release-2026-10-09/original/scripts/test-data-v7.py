@@ -2,8 +2,8 @@
 """Regression checks for source identity, extraction and offline reproducibility."""
 import json,hashlib,importlib.util,subprocess,tempfile
 from pathlib import Path
-from project_paths import ROOT,PUBLIC,SOURCES,DOCS,CACHE
-def js(name):return json.loads((PUBLIC/name).read_text().split('=',1)[1].strip().rstrip(';'))
+ROOT=Path(__file__).resolve().parents[1]
+def js(name):return json.loads((ROOT/name).read_text().split('=',1)[1].strip().rstrip(';'))
 spec=importlib.util.spec_from_file_location('parser',ROOT/'scripts/parse-public-web-reviews-v6.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 fixture='''L1: cite1†Alice L2: 12 contributions
 L3: 5.0 of 5 bubbles
@@ -28,8 +28,8 @@ for id,rows in reviews.items():
   assert r['author'].lower()!='transparency report' and r['source'].startswith('https://')
   assert all(r['text'][l] for l in ['zh','en']) and 'content' not in r and 'title' not in r
  if id.startswith('local-v4-'):assert rows==reviews[id.removeprefix('local-v4-')]
-excluded=json.loads((SOURCES/'v7/review-exclusions.json').read_text());assert len(excluded)==16
-web=json.loads((SOURCES/'v7/reviews-web-new.json').read_text())
+excluded=json.loads((ROOT/'research/v7/review-exclusions.json').read_text());assert len(excluded)==16
+web=json.loads((ROOT/'research/v7/reviews-web-new.json').read_text())
 for r in web:
  assert r['sourceAddress'] and r['cacheAgeLabel']
  for c in r['comments']:assert not any(x['venue']==r['id'] and x['author']==c['author'] and x['date']==c['date'] for x in excluded)
@@ -39,7 +39,7 @@ for r in web:
  for c in r['comments']:
   if c.get('replacesLegacy'):assert c['replacesLegacy']=='legacy-'+r['id'] and 'excerpt occurs' in c['legacyMatchEvidence']
 for research in ['v6','v7']:
- for f in (SOURCES/research).glob('reviews-*.json'):
+ for f in (ROOT/'research'/research).glob('reviews-*.json'):
   for r in json.loads(f.read_text()):
    for c in r.get('comments',[]):assert 'content' not in c and 'title' not in c
 products=js('gifts-v5.js');bySku={g['sku']:g for g in products};assert len(bySku)==len(products)==160
@@ -59,21 +59,20 @@ assert '3个' in bySku['10182305299203']['dimensions']
 assert '20' not in bySku['10093805312718']['dimensions']
 assert bySku['100353514106']['verification']['productType']['en']=='Agarwood bracelet'
 assert '手串' in bySku['100353514106']['desc']['zh']
-checks=json.loads((SOURCES/'v7/product-listing-checks.json').read_text())
+checks=json.loads((ROOT/'research/v7/product-listing-checks.json').read_text())
 assert len(checks)==160 and len({v['source'] for v in checks})==15
-for r in json.loads((SOURCES/'v7/reviews-mobile-new.json').read_text()):
+for r in json.loads((ROOT/'research/v7/reviews-mobile-new.json').read_text()):
  assert r['publicRecordCount']==len(r['comments']);assert r['identity']['business']==int(r['business']) and r['identity']['poi']==int(r['poi'])
  assert r['foldedLinkVisible'] is False
 # Builds must work identically after all ignored source bodies have been removed.
-files=['public/reviews-v5.js','public/gifts-v5.js','data/sources/v7/product-verification.json']
+files=['reviews-v5.js','gifts-v5.js','research/v7/product-verification.json']
 hashes=lambda:{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in files}
 before=hashes()
-CACHE.mkdir(parents=True,exist_ok=True)
-with tempfile.TemporaryDirectory(dir=CACHE) as tmp:
+with tempfile.TemporaryDirectory(dir=ROOT/'research/v7') as tmp:
  moves=[]
  try:
   for version,folder in [('v5','.review-cache'),('v6','.raw-cache'),('v7','.raw-cache')]:
-   cache=CACHE/'research'/version/folder
+   cache=ROOT/'research'/version/folder
    if cache.exists():dest=Path(tmp)/version;cache.rename(dest);moves.append((cache,dest))
   for name in ['build-reviews-v5.py','build-product-verification-v7.py','build-gifts-v5.py']:subprocess.run(['python3',str(ROOT/'scripts'/name)],check=True,capture_output=True)
  finally:
@@ -81,6 +80,6 @@ with tempfile.TemporaryDirectory(dir=CACHE) as tmp:
    if cache.exists():cache.rmdir()
    dest.rename(cache)
 assert before==hashes()
-for f in PUBLIC.glob('*.js'):subprocess.run(['node','--check',str(f)],check=True,capture_output=True)
-subprocess.run(['git','diff','--check','--','apec26'],cwd=ROOT,check=True)
+for f in ROOT.glob('*.js'):subprocess.run(['node','--check',str(f)],check=True,capture_output=True)
+subprocess.run(['git','diff','--check'],cwd=ROOT,check=True)
 print('PASS: strict parser, inline markers, attribution, exclusions, dedup, alias mapping, SKU/variant/quantity/material identity, empty batches, offline builds, JS syntax')

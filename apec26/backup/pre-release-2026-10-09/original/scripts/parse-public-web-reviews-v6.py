@@ -3,7 +3,7 @@ No network calls. Owner responses, photo captions and sub-ratings are excluded.
 """
 import json,re,hashlib,datetime,argparse
 from pathlib import Path
-from project_paths import ROOT,PUBLIC,SOURCES,DOCS,CACHE
+ROOT=Path(__file__).resolve().parents[1]
 def parse(document,strict=False):
  document=re.sub(r'(?<!\n)(?=L\d+:)', '\n', document)
  lines=[re.sub(r'^L\d+:\s*','',l) for l in document.splitlines() if re.match(r'^L\d+:',l)]
@@ -45,12 +45,11 @@ def parse(document,strict=False):
   rows.append(dict(author=author,date=date,score=float(m[1]) if m else None,title=title[1].strip(),content='\n'.join(body)))
  return rows
 if __name__=='__main__':
- ap=argparse.ArgumentParser();ap.add_argument('--research-dir',default='v7');ap.add_argument('--strict',action='store_true');ap.add_argument('--output',default='reviews-web-bulk.json');args=ap.parse_args()
- research=SOURCES/args.research_dir
- rawCache=CACHE/'research'/args.research_dir/'.raw-cache';rawCache.mkdir(parents=True,exist_ok=True)
+ ap=argparse.ArgumentParser();ap.add_argument('--research-dir',default='v6');ap.add_argument('--strict',action='store_true');ap.add_argument('--output',default='reviews-web-bulk.json');args=ap.parse_args()
+ research=ROOT/'research'/args.research_dir
  targets=json.loads((research/'web-targets.json').read_text());out=[]
  for t in targets:
-  file=rawCache/('web-'+t['id']+'.txt')
+  file=research/'.raw-cache'/('web-'+t['id']+'.txt')
   if not file.exists():continue
   doc=file.read_text();comments=parse(doc,strict=args.strict)
   verified=bool(re.search(r'-d'+t['id'].split('-')[-1]+r'-Reviews',doc))
@@ -59,5 +58,5 @@ if __name__=='__main__':
   age=re.search(r'Crawled:\s*([^;]+)',doc)
   address=re.search(r'†([^†\n]+)†maps.google.com',doc)
   out.append(dict(**t,status='readable_public_document' if verified else 'unverified_document',comments=comments[:10] if verified else [],retrieval='Readable web source; cached snapshot, not live browser pagination',visibleReviewBlocks=len(comments),cacheAgeLabel=age[1] if age else None,sourceAddress=address[1] if address else None))
- (rawCache/args.output).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+ (research/'.raw-cache'/args.output).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
  print(json.dumps([dict(id=r['id'],n=len(r['comments']),cacheAgeLabel=r['cacheAgeLabel']) for r in out],ensure_ascii=False))

@@ -1,0 +1,2286 @@
+{
+  "date": "2026-10-09",
+  "scope": "apec26 only",
+  "entries": [
+    {
+      "from": "README.md",
+      "to": "backup/pre-release-2026-10-09/original/README.md",
+      "operation": "copy_original",
+      "sha256": "1d90645d1d4127df6167a92e5aeca2053cebfdcdc11027268c9d0ddb110bb286",
+      "bytes": 4541,
+      "tracked": true
+    },
+    {
+      "from": ".gitignore",
+      "to": "backup/pre-release-2026-10-09/original/.gitignore",
+      "operation": "copy_original",
+      "sha256": "ddb5d1667e3ee53fb0dcf075e290a6e7753728c70807ae9c28569087c674882a",
+      "bytes": 212,
+      "tracked": true
+    },
+    {
+      "from": "deploy.sh",
+      "to": "backup/pre-release-2026-10-09/original/deploy.sh",
+      "operation": "copy_original",
+      "sha256": "931f1fb4437b17f682b9ed44b9bd71d0877db6c45f1c911f3be84e6b1caed23d",
+      "bytes": 1757,
+      "tracked": true
+    },
+    {
+      "from": "scripts/build-gifts-v4.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/build-gifts-v4.py",
+      "operation": "copy_original",
+      "sha256": "5a89cf5811423c2590fc67dc8ab6c65e36f86450c2383d6a9087007159c8269e",
+      "bytes": 13258,
+      "tracked": true
+    },
+    {
+      "from": "scripts/build-gifts-v5.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/build-gifts-v5.py",
+      "operation": "copy_original",
+      "sha256": "99a67d5baeb2e75d348e6551b220c6d5348af234214e37860b70ac311b043557",
+      "bytes": 8607,
+      "tracked": true
+    },
+    {
+      "from": "scripts/build-product-verification-v7.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/build-product-verification-v7.py",
+      "operation": "copy_original",
+      "sha256": "b0e07e27da520e62a08824ccedda783cfa163c43d8811053126a4b612070622c",
+      "bytes": 8464,
+      "tracked": true
+    },
+    {
+      "from": "scripts/build-reviews-v5.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/build-reviews-v5.py",
+      "operation": "copy_original",
+      "sha256": "14e696dbacf33a7e139a072537db20118b4b7f750f02ed6a15fa6d0336dd9987",
+      "bytes": 16845,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-mobile-reviews-v6.browser.js",
+      "to": "backup/pre-release-2026-10-09/original/scripts/collect-mobile-reviews-v6.browser.js",
+      "operation": "copy_original",
+      "sha256": "a160a1e83d68497109a07ece779532b76df92c7c051e88d0986381c173435290",
+      "bytes": 3143,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-products-v7.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/collect-products-v7.py",
+      "operation": "copy_original",
+      "sha256": "c556261e9a515c96af7dd96444d45865e7b4806886c37751b25783e46f0b6a13",
+      "bytes": 3418,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-reviews-v5.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/collect-reviews-v5.py",
+      "operation": "copy_original",
+      "sha256": "63a5323a4aefef844116a97c25f8e9c33592c6ee17d773fe31acb53054178df0",
+      "bytes": 2466,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-reviews-v6.browser.js",
+      "to": "backup/pre-release-2026-10-09/original/scripts/collect-reviews-v6.browser.js",
+      "operation": "copy_original",
+      "sha256": "801e9862ce718faad76144e71ade0a0e678f1ca46b125169d45fa83101073092",
+      "bytes": 4086,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-reviews-v6.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/collect-reviews-v6.py",
+      "operation": "copy_original",
+      "sha256": "76c1440e1171017dbe5d92679ebfe8048695d4c463f59188c2548273cddf021c",
+      "bytes": 1744,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-trip-reviews-v5.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/collect-trip-reviews-v5.py",
+      "operation": "copy_original",
+      "sha256": "a7bea643a00366177897cab881bbf93532ffc87923d1c8d01df77a53e2018a0f",
+      "bytes": 1642,
+      "tracked": true
+    },
+    {
+      "from": "scripts/curate-web-reviews-v6.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/curate-web-reviews-v6.py",
+      "operation": "copy_original",
+      "sha256": "7f24e3b0394c825e64104bb3707ea53bcb4ff5e626fbe5d99bcd78157af7be16",
+      "bytes": 21859,
+      "tracked": true
+    },
+    {
+      "from": "scripts/curate-web-reviews-v7.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/curate-web-reviews-v7.py",
+      "operation": "copy_original",
+      "sha256": "f1c3808c6053014be33526a68cc4ac46c4f91b7f936b21b8b1800434f314dbf0",
+      "bytes": 10907,
+      "tracked": true
+    },
+    {
+      "from": "scripts/parse-public-web-reviews-v6.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/parse-public-web-reviews-v6.py",
+      "operation": "copy_original",
+      "sha256": "df5097a0973fb5792407f57bc0c263fc9a21daf277335d8c993020212ba9edcb",
+      "bytes": 4084,
+      "tracked": true
+    },
+    {
+      "from": "scripts/qa-ui-v7.browser.js",
+      "to": "backup/pre-release-2026-10-09/original/scripts/qa-ui-v7.browser.js",
+      "operation": "copy_original",
+      "sha256": "e5f58ccd68e426b222028f4fa89d1a918547993bdc364079c97a2dcceadfaa7a",
+      "bytes": 4678,
+      "tracked": true
+    },
+    {
+      "from": "scripts/report-data-v6.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/report-data-v6.py",
+      "operation": "copy_original",
+      "sha256": "bfe9833a89ddecc2d622aaf10e5fc69cd0805d9f17bb31c44c90d3cc47fe302e",
+      "bytes": 8176,
+      "tracked": true
+    },
+    {
+      "from": "scripts/report-data-v7.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/report-data-v7.py",
+      "operation": "copy_original",
+      "sha256": "e8db27732ac37b66695c171709699b1ffd9b612f0562b4d33bb955552669dd54",
+      "bytes": 9809,
+      "tracked": true
+    },
+    {
+      "from": "scripts/test-data-v6.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/test-data-v6.py",
+      "operation": "copy_original",
+      "sha256": "59f666921e4930752e829c4c21f3a82eb205119db7693591dad48906edfb24bb",
+      "bytes": 3894,
+      "tracked": true
+    },
+    {
+      "from": "scripts/test-data-v7.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/test-data-v7.py",
+      "operation": "copy_original",
+      "sha256": "905b584767652e52855912a499c9af415e68ffec79171aef4a6c0133d20cd479",
+      "bytes": 5395,
+      "tracked": true
+    },
+    {
+      "from": "scripts/verify-products-v6.py",
+      "to": "backup/pre-release-2026-10-09/original/scripts/verify-products-v6.py",
+      "operation": "copy_original",
+      "sha256": "280dce32680b5287b9a1ab02e346e1aa32218a1cf65f2f270bc25255f3cda70a",
+      "bytes": 2197,
+      "tracked": true
+    },
+    {
+      "from": "restaurants-v3.js",
+      "to": "public/restaurants-v3.js",
+      "operation": "move",
+      "sha256": "a2c96a415afa114fcb198c0951d46e91ca06b124cf72e822234d8c16dea13d75",
+      "bytes": 153515,
+      "tracked": true
+    },
+    {
+      "from": "routes-v3.js",
+      "to": "public/routes-v3.js",
+      "operation": "move",
+      "sha256": "7f7ffd3581778b4b920db2fa1c42b8c8f3199b53d39763397b3b2542863cc880",
+      "bytes": 22471,
+      "tracked": true
+    },
+    {
+      "from": "v4.js",
+      "to": "public/v4.js",
+      "operation": "move",
+      "sha256": "4d9542f4b27d39c0c8c9de76cd83c97d7f47df52962f4ac1245e050abe25fab4",
+      "bytes": 16107,
+      "tracked": true
+    },
+    {
+      "from": "scenes-v4.js",
+      "to": "public/scenes-v4.js",
+      "operation": "move",
+      "sha256": "cc57183e9a9f49b72d8a989eb9635a6035553f503d96ce5152ac339e2a579f48",
+      "bytes": 13358,
+      "tracked": true
+    },
+    {
+      "from": "v5.js",
+      "to": "public/v5.js",
+      "operation": "move",
+      "sha256": "1f82c508135618ffccdd32c661247243739398820bf6b752c6567b36271e986e",
+      "bytes": 16580,
+      "tracked": true
+    },
+    {
+      "from": "reviews-v5.js",
+      "to": "public/reviews-v5.js",
+      "operation": "move",
+      "sha256": "3eec5ea3f4f09607bb6f68d93f798c7fc9d463387c423b681b77f432de96c3eb",
+      "bytes": 429043,
+      "tracked": true
+    },
+    {
+      "from": "v2.js",
+      "to": "public/v2.js",
+      "operation": "move",
+      "sha256": "9d9ae45dbe0804b3b2d5c43b02ede53db6d8be0adc78591e09b175fb6dacde4a",
+      "bytes": 25155,
+      "tracked": true
+    },
+    {
+      "from": "gifts-v4.js",
+      "to": "public/gifts-v4.js",
+      "operation": "move",
+      "sha256": "b68e08ead0e206581c35cdfaea675f2990bfb4d6fd95c68bf0a7f6dc9a23d5ea",
+      "bytes": 170667,
+      "tracked": true
+    },
+    {
+      "from": "media-v4.js",
+      "to": "public/media-v4.js",
+      "operation": "move",
+      "sha256": "44cc7e83543cc273a1aeacaee09302d7dcbc8ff545765f340d92134e174d832a",
+      "bytes": 140248,
+      "tracked": true
+    },
+    {
+      "from": "contacts-v3.js",
+      "to": "public/contacts-v3.js",
+      "operation": "move",
+      "sha256": "03baab392d45eaa411423438d2a304a767b1b914c6b0d5a5816291d409b941ba",
+      "bytes": 437,
+      "tracked": true
+    },
+    {
+      "from": "v3.js",
+      "to": "public/v3.js",
+      "operation": "move",
+      "sha256": "e6ff5d6c3a487b9093bd88439644d2b5f81bd57c277c5d2d75166feba3047c47",
+      "bytes": 23064,
+      "tracked": true
+    },
+    {
+      "from": "gifts-v5.js",
+      "to": "public/gifts-v5.js",
+      "operation": "move",
+      "sha256": "47135a8c04b31ff090a6c442e17f1a365395e73997fa77c0106feb346c9b85e3",
+      "bytes": 551982,
+      "tracked": true
+    },
+    {
+      "from": "data-v2.js",
+      "to": "public/data-v2.js",
+      "operation": "move",
+      "sha256": "e8158d05fc43a578d3e851f9a9de4fdc66aba689b9e4a9dc0198712f055b3eaf",
+      "bytes": 24962,
+      "tracked": true
+    },
+    {
+      "from": "app.js",
+      "to": "public/app.js",
+      "operation": "move",
+      "sha256": "dadb23d44fa081a86a006c54cb43aba8a34d6e2ef8d193f3726580557b02be55",
+      "bytes": 21467,
+      "tracked": true
+    },
+    {
+      "from": "guides-v5.js",
+      "to": "public/guides-v5.js",
+      "operation": "move",
+      "sha256": "a622188f7b37c6e2cdbcfef08a5b4a50c253f214eace7e771badbabcb8c3a223",
+      "bytes": 7429,
+      "tracked": true
+    },
+    {
+      "from": "restaurants-v4.js",
+      "to": "public/restaurants-v4.js",
+      "operation": "move",
+      "sha256": "12b1840e144618f8a9943a09d91231b458d19246a74ac784bd9807b639ee3405",
+      "bytes": 131275,
+      "tracked": true
+    },
+    {
+      "from": "v3.css",
+      "to": "public/v3.css",
+      "operation": "move",
+      "sha256": "cc3ec804c509b803acc78939fb981431b08c732daf1ee5baba712c8ac3fa0904",
+      "bytes": 11635,
+      "tracked": true
+    },
+    {
+      "from": "style.css",
+      "to": "public/style.css",
+      "operation": "move",
+      "sha256": "a4a9d3e46f4ffdf073c21a40fa94f6e5ec723f3689ce221ab047ed98a78f92f3",
+      "bytes": 26761,
+      "tracked": true
+    },
+    {
+      "from": "v5.css",
+      "to": "public/v5.css",
+      "operation": "move",
+      "sha256": "c71ecbc5805fdc3f32e55b423e05a9acb8bdd8a10b845c45559f708dee8ea54e",
+      "bytes": 4183,
+      "tracked": true
+    },
+    {
+      "from": "v4.css",
+      "to": "public/v4.css",
+      "operation": "move",
+      "sha256": "1dc6906600200c9e4d47ee53cdebb6cde31412b922cb6ad3de62cf69cf43bfdc",
+      "bytes": 2375,
+      "tracked": true
+    },
+    {
+      "from": "index.html",
+      "to": "public/index.html",
+      "operation": "move",
+      "sha256": "bc884a338f0fb8af80c0e6db10176de2417d0919c1a2ba07ee35da0f93747aad",
+      "bytes": 5118,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-10-v2.webp",
+      "to": "public/assets/guide-10-v2.webp",
+      "operation": "move",
+      "sha256": "25f9397fce2ae8cc2a87450edfa7801d6958d7396a6ac163708060d5795a23d9",
+      "bytes": 30248,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-02-v5.webp",
+      "to": "public/assets/guide-02-v5.webp",
+      "operation": "move",
+      "sha256": "f78b1d27897d2f772d3855960ce3bf83cc657d27c68ccec3dfe8fdfd71729290",
+      "bytes": 159116,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-09-v2.webp",
+      "to": "public/assets/guide-09-v2.webp",
+      "operation": "move",
+      "sha256": "7f770533f33107f1ddff34ac45729bf4b7dceeca8b694586ee42a6e21bfaf80f",
+      "bytes": 32562,
+      "tracked": true
+    },
+    {
+      "from": "assets/food-peel-v4.webp",
+      "to": "public/assets/food-peel-v4.webp",
+      "operation": "move",
+      "sha256": "3bd26f5626f7ef6d1b321c107103998d5f992e549ae33ddd1c00616d52c2233e",
+      "bytes": 145066,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-04-v3.webp",
+      "to": "public/assets/product-04-v3.webp",
+      "operation": "move",
+      "sha256": "57c3cbf708e570b81d14c96a8e737d66185a7317bf6712e79d6927b43ada9cc3",
+      "bytes": 115132,
+      "tracked": true
+    },
+    {
+      "from": "assets/scene-hill-v3.webp",
+      "to": "public/assets/scene-hill-v3.webp",
+      "operation": "move",
+      "sha256": "77ea883088886551eb3b0f145ce5b43692b0ff718f9f2674739dbed10b1ec785",
+      "bytes": 240128,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-indian-v3.webp",
+      "to": "public/assets/dish-indian-v3.webp",
+      "operation": "move",
+      "sha256": "6d78b05cc9150055681d665bfbaa4897d591bf19052d38724ba1d1d8032c5a63",
+      "bytes": 241676,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-cantonese-v3.webp",
+      "to": "public/assets/dish-cantonese-v3.webp",
+      "operation": "move",
+      "sha256": "d996c4edc80e325ab5aaaf1632bf1c7409fcedbdfa539a7587b19eea7f2e3147",
+      "bytes": 210638,
+      "tracked": true
+    },
+    {
+      "from": "assets/contact-whatsapp-v3.png",
+      "to": "public/assets/contact-whatsapp-v3.png",
+      "operation": "move",
+      "sha256": "decf4ce769746bffa995ddebba9c4aad738b75d07ad94ca46f45b195581a9df7",
+      "bytes": 139983,
+      "tracked": true
+    },
+    {
+      "from": "assets/scene-oldtown-v3.webp",
+      "to": "public/assets/scene-oldtown-v3.webp",
+      "operation": "move",
+      "sha256": "3a817392b62a8faab93400dcfafd232afd92c2ebf4590728f1110b78af3d8085",
+      "bytes": 261374,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-japanese-v3.webp",
+      "to": "public/assets/dish-japanese-v3.webp",
+      "operation": "move",
+      "sha256": "89493cc547c499bae0bbd6b4bea8e696a8aa4cddd6fa4b919c0fdfffc2ecae96",
+      "bytes": 149398,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-08-v2.webp",
+      "to": "public/assets/guide-08-v2.webp",
+      "operation": "move",
+      "sha256": "ee0ea2e17a740573f2ae0dbb260ec440747b914b3517f517de582658be77dbc2",
+      "bytes": 34706,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-05-v3.webp",
+      "to": "public/assets/product-05-v3.webp",
+      "operation": "move",
+      "sha256": "a2bf501f858b7dbcc5c1ff9d264f3da981eae33f6f1091bd642aa3d084ad4df2",
+      "bytes": 126000,
+      "tracked": true
+    },
+    {
+      "from": "assets/food-v1.webp",
+      "to": "public/assets/food-v1.webp",
+      "operation": "move",
+      "sha256": "c163351d276106b1f0cf3a760e5b940b5e98305f580129e045d1cd9a9fc13e9b",
+      "bytes": 147066,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-01-v2.webp",
+      "to": "public/assets/guide-01-v2.webp",
+      "operation": "move",
+      "sha256": "48790f1f11593c6fd863d7458faa3186432bbe8d12c10aa18d3c33d6cd61abe5",
+      "bytes": 28750,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-03-v5.webp",
+      "to": "public/assets/guide-03-v5.webp",
+      "operation": "move",
+      "sha256": "842cac82adcf294b96226bc38618dee0050c7f5791bfeb3105aba516e8b43008",
+      "bytes": 134744,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-western-v3.webp",
+      "to": "public/assets/dish-western-v3.webp",
+      "operation": "move",
+      "sha256": "086d9d08199cfc03d6072997b9abb7b741bf1193981dcdde38cf911a85a82cb3",
+      "bytes": 221276,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-07-v3.webp",
+      "to": "public/assets/product-07-v3.webp",
+      "operation": "move",
+      "sha256": "c9a01a63569248aa3502a3d3005455563f10d32f0d3ffcdb3f1739a16e50e279",
+      "bytes": 98724,
+      "tracked": true
+    },
+    {
+      "from": "assets/scene-fortress-v3.webp",
+      "to": "public/assets/scene-fortress-v3.webp",
+      "operation": "move",
+      "sha256": "b3616b64cff16fcc3b815b3e2fe4f8182f0ae8202f97664fa4e4522802799e09",
+      "bytes": 239208,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-08-v5.webp",
+      "to": "public/assets/guide-08-v5.webp",
+      "operation": "move",
+      "sha256": "d293f7de69299b7157736162a6fceb4d162f50b270b9c32fee426d6654cc3fbf",
+      "bytes": 92610,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-03-v2.webp",
+      "to": "public/assets/guide-03-v2.webp",
+      "operation": "move",
+      "sha256": "3d9778f51e0c8ed296d53f2712af07bb4646689920c9b764b1625ca45024a85f",
+      "bytes": 36164,
+      "tracked": true
+    },
+    {
+      "from": "assets/ceramic-celadon-v4.webp",
+      "to": "public/assets/ceramic-celadon-v4.webp",
+      "operation": "move",
+      "sha256": "462cdec0037ae07cfd7d0fbf21edd3a71d67ae2682890b700710e9d4fd3b4575",
+      "bytes": 19600,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-hotpot-v3.webp",
+      "to": "public/assets/dish-hotpot-v3.webp",
+      "operation": "move",
+      "sha256": "87ea15223fdda409c63e23590c78ef0ad6e7bde44508f4ad2b6fcbe7c308c886",
+      "bytes": 238732,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-01-v5.webp",
+      "to": "public/assets/guide-01-v5.webp",
+      "operation": "move",
+      "sha256": "6330e1da39b7441f71011fe15825f35ba56b57813c15802970e0e860a095851c",
+      "bytes": 145706,
+      "tracked": true
+    },
+    {
+      "from": "assets/silk-dark-v4.webp",
+      "to": "public/assets/silk-dark-v4.webp",
+      "operation": "move",
+      "sha256": "47a0450d9aeb4fa65d4363925679394d55ba0220da52d781725651a57c50a99d",
+      "bytes": 107104,
+      "tracked": true
+    },
+    {
+      "from": "assets/gifts-v1.webp",
+      "to": "public/assets/gifts-v1.webp",
+      "operation": "move",
+      "sha256": "5437f554f7f7e7bc9ca1da726f934a9a53e4f732b950b4150258f6e1351ed856",
+      "bytes": 180408,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-chinese-v3.webp",
+      "to": "public/assets/dish-chinese-v3.webp",
+      "operation": "move",
+      "sha256": "ccae7bd2ddf88da3f116a17039eb0add64b6573fa50cc8baf748bbb630b186c1",
+      "bytes": 163270,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-02-v2.webp",
+      "to": "public/assets/guide-02-v2.webp",
+      "operation": "move",
+      "sha256": "20cce855d90e54c523473324da0d12679bea9695550446e67d861df0f308b1ca",
+      "bytes": 35634,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-10-v5.webp",
+      "to": "public/assets/guide-10-v5.webp",
+      "operation": "move",
+      "sha256": "7a97a84e3e5afdc1752a4935f8beac38d56b3dc79d908141b9f05c9d6b20d732",
+      "bytes": 146808,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-06-v3.webp",
+      "to": "public/assets/product-06-v3.webp",
+      "operation": "move",
+      "sha256": "f9d2c54aa93ec6a496b20f2d4eb2999b5c5d1392fb7beb4fd76c0e62a8ce0f3c",
+      "bytes": 82210,
+      "tracked": true
+    },
+    {
+      "from": "assets/scene-art-v3.webp",
+      "to": "public/assets/scene-art-v3.webp",
+      "operation": "move",
+      "sha256": "6d6b167b24d9f091a501861d87f22caef95ba2ad2d4a7476b8449249c4af51f1",
+      "bytes": 243972,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-09-v5.webp",
+      "to": "public/assets/guide-09-v5.webp",
+      "operation": "move",
+      "sha256": "cda8fa7074da5f462342af940b60d66b58fcd1118aa11f75a7cab4a7a016f643",
+      "bytes": 162646,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-cafe-v3.webp",
+      "to": "public/assets/dish-cafe-v3.webp",
+      "operation": "move",
+      "sha256": "80ee86390d0f0a7f377b331f05e45f0e2a3a29ce886a5b640606a62d311eb57b",
+      "bytes": 195030,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-03-v3.webp",
+      "to": "public/assets/product-03-v3.webp",
+      "operation": "move",
+      "sha256": "1e315e98c761c7af70e25f2ca721919b9dc72015fa87cb5ca1523b5d96558680",
+      "bytes": 53298,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-05-v5.webp",
+      "to": "public/assets/guide-05-v5.webp",
+      "operation": "move",
+      "sha256": "8431177a366ab40bbf523a46c0e0bb31fd2f41ce2a986d7f214036470da8c056",
+      "bytes": 140250,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-07-v2.webp",
+      "to": "public/assets/guide-07-v2.webp",
+      "operation": "move",
+      "sha256": "5d2fa6f86233e82530aefcd993b38e3c403490dda6a9187a3cb5935ee176a66c",
+      "bytes": 29506,
+      "tracked": true
+    },
+    {
+      "from": "assets/tea-dark-v4.webp",
+      "to": "public/assets/tea-dark-v4.webp",
+      "operation": "move",
+      "sha256": "358c27e3385061637aa1bfccc0f1c55dbf9c36d28147c72d118a7f06cb3bc382",
+      "bytes": 153718,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-04-v5.webp",
+      "to": "public/assets/guide-04-v5.webp",
+      "operation": "move",
+      "sha256": "49b3633b0324c168daf7464998c9d17a19e7aecabb84bc0a85f19e05d2f3f511",
+      "bytes": 145660,
+      "tracked": true
+    },
+    {
+      "from": "assets/contact-telegram-v3.png",
+      "to": "public/assets/contact-telegram-v3.png",
+      "operation": "move",
+      "sha256": "f284b67872e7be4d5833c2fb04d6619881a8b9ceab20861262a3a2081f84fddc",
+      "bytes": 497329,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-seafood-v3.webp",
+      "to": "public/assets/dish-seafood-v3.webp",
+      "operation": "move",
+      "sha256": "fdde1f88998b1cf64fd0e2210f18152ebe21eb7ae2b8cfef5793d5c16019c402",
+      "bytes": 172674,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-06-v2.webp",
+      "to": "public/assets/guide-06-v2.webp",
+      "operation": "move",
+      "sha256": "a3591828b9fe0999c5cab47a210d812462ef0710dcbbb61ff86ce6e70b3b2a06",
+      "bytes": 32216,
+      "tracked": true
+    },
+    {
+      "from": "assets/scene-coast-v3.webp",
+      "to": "public/assets/scene-coast-v3.webp",
+      "operation": "move",
+      "sha256": "4c5c1d2c4074557de1b3c40dd1e5529e16467fa48dcd59fad17c61c8601d1b36",
+      "bytes": 232134,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-02-v3.webp",
+      "to": "public/assets/product-02-v3.webp",
+      "operation": "move",
+      "sha256": "215d5a1b6ecac9857ebf45280b92779396ebc5a83092f207e8f64f83d8524fae",
+      "bytes": 91692,
+      "tracked": true
+    },
+    {
+      "from": "assets/food-pastry-v4.webp",
+      "to": "public/assets/food-pastry-v4.webp",
+      "operation": "move",
+      "sha256": "f92fc52fdf18787cfaeb581033ef76a96795482662facff690e9cdafc913801d",
+      "bytes": 151132,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-06-v5.webp",
+      "to": "public/assets/guide-06-v5.webp",
+      "operation": "move",
+      "sha256": "b57d71bd9c358618953f04fc98d748ee1f82189da7e85ce8dd8a10e1dae27bab",
+      "bytes": 88070,
+      "tracked": true
+    },
+    {
+      "from": "assets/silk-brocade-v4.webp",
+      "to": "public/assets/silk-brocade-v4.webp",
+      "operation": "move",
+      "sha256": "632b1de5338e9986cbe13293fe0c4219041528eb3953f48fa12d444888111251",
+      "bytes": 176706,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-04-v2.webp",
+      "to": "public/assets/guide-04-v2.webp",
+      "operation": "move",
+      "sha256": "12bc44daedffdb07b2099d6e0bdeade80cfac4754a2886e6709419cf1b85d158",
+      "bytes": 33482,
+      "tracked": true
+    },
+    {
+      "from": "assets/tea-oolong-v4.webp",
+      "to": "public/assets/tea-oolong-v4.webp",
+      "operation": "move",
+      "sha256": "9342088d06f523fbd68eec984c2ea779c1114817c3886a4497508c49d9ec331c",
+      "bytes": 161364,
+      "tracked": true
+    },
+    {
+      "from": "assets/tea-green-v4.webp",
+      "to": "public/assets/tea-green-v4.webp",
+      "operation": "move",
+      "sha256": "5da23d181c57abc7a2e3950da138351bf2cb6bf872815dfcce77725566da027f",
+      "bytes": 115552,
+      "tracked": true
+    },
+    {
+      "from": "assets/ceramic-clay-v4.webp",
+      "to": "public/assets/ceramic-clay-v4.webp",
+      "operation": "move",
+      "sha256": "d076ea6016c502250cca90e5d983cb4520a610ce72d3454e037c884721b38392",
+      "bytes": 79140,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-01-v3.webp",
+      "to": "public/assets/product-01-v3.webp",
+      "operation": "move",
+      "sha256": "777bce6653188a2dd3216e2bc9ba8a496895ee680c8c58b67dde26d633036cac",
+      "bytes": 70722,
+      "tracked": true
+    },
+    {
+      "from": "assets/shenzhen-v1.webp",
+      "to": "public/assets/shenzhen-v1.webp",
+      "operation": "move",
+      "sha256": "c0c313613be2e37b0d4f201d388ac87ae141da8650bf98d3cf75bc564de073f3",
+      "bytes": 227368,
+      "tracked": true
+    },
+    {
+      "from": "assets/dish-dimsum-v3.webp",
+      "to": "public/assets/dish-dimsum-v3.webp",
+      "operation": "move",
+      "sha256": "9a13427841cc7a18e57da5e86d60a4e239cf3e260d451b6dd2999f58e7d59c46",
+      "bytes": 192022,
+      "tracked": true
+    },
+    {
+      "from": "assets/favicon.svg",
+      "to": "public/assets/favicon.svg",
+      "operation": "move",
+      "sha256": "395f6905f78004a0919f01e2196b23d7b119a8457993c69149cf08c962736f6c",
+      "bytes": 224,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-07-v5.webp",
+      "to": "public/assets/guide-07-v5.webp",
+      "operation": "move",
+      "sha256": "772b76c8b1433eec0c7387c6492d1ad65ddde72a639860d9f0171aa3e70ae92a",
+      "bytes": 173274,
+      "tracked": true
+    },
+    {
+      "from": "assets/product-08-v3.webp",
+      "to": "public/assets/product-08-v3.webp",
+      "operation": "move",
+      "sha256": "7c09131858347577c539bfe78411ccd0e49502537b6d630fd07df176589c2643",
+      "bytes": 116062,
+      "tracked": true
+    },
+    {
+      "from": "assets/guide-05-v2.webp",
+      "to": "public/assets/guide-05-v2.webp",
+      "operation": "move",
+      "sha256": "3c5b0583d77e653d0090ec6af943014cbd37dcfed16aa377e11ea345840f4c81",
+      "bytes": 50652,
+      "tracked": true
+    },
+    {
+      "from": "output/web-review-extraction.json",
+      "to": "backup/pre-release-2026-10-09/local/output/web-review-extraction.json",
+      "operation": "move",
+      "sha256": "4a699c9bc595bdfc34198f17ec09f5a7b73f224fca79917bef7228e7ba0ed5e4",
+      "bytes": 138196,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v5-mobile-venue-detail.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v5-mobile-venue-detail.png",
+      "operation": "move",
+      "sha256": "5a0ed105ac0ad83973da1a8ae3f29248ef74c9bac3bf6715a984e219cc530500",
+      "bytes": 152842,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v2-mobile-food.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v2-mobile-food.png",
+      "operation": "move",
+      "sha256": "0c528115e906d292a7bdf2a591e5e3590dbbb7d73f627435ecdfaa5a30367599",
+      "bytes": 105717,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v5-mobile-route.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v5-mobile-route.png",
+      "operation": "move",
+      "sha256": "ac1f2c94356a402f24bfe3ab14c87fcfa64d0144bd9f8b11bf85c07cb530ed17",
+      "bytes": 154899,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v3-mobile-products.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v3-mobile-products.png",
+      "operation": "move",
+      "sha256": "8b13be7dbcf201c4e01eb39549f2361bd5dead0d4ef9a1eb7d6193a39f6d4190",
+      "bytes": 167898,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v2-desktop.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v2-desktop.png",
+      "operation": "move",
+      "sha256": "8562ce576bf6ba2a8f4bf521e8681c5ad568e08ace2ae2834a25afc8a247e6ae",
+      "bytes": 677679,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v4-live-gifts-loaded.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v4-live-gifts-loaded.png",
+      "operation": "move",
+      "sha256": "0c77ba6cffed56a649bcbefd10e7dbba689611198a86159eca39483e34ab9550",
+      "bytes": 292740,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/mobile-food.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/mobile-food.png",
+      "operation": "move",
+      "sha256": "8d13bd505f382928b2fe4d22e7c29290af9f7284bf2ca0564aed189ef9307a07",
+      "bytes": 215534,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v5-mobile-food.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v5-mobile-food.png",
+      "operation": "move",
+      "sha256": "9689a24d905907cee0bef77d81394ad1a9275bb78d2ce23f37132a1219a38783",
+      "bytes": 148658,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/desktop-zh.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/desktop-zh.png",
+      "operation": "move",
+      "sha256": "2b1cfb6974f7b7b6f8f6a8b63eeb4eea7408b99d670200e7d0b0c9b9d84767fe",
+      "bytes": 547451,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v7-product-mobile.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v7-product-mobile.png",
+      "operation": "move",
+      "sha256": "cc767907e468e13213a4a929ac3e8ad8d01e6fe3aca123941c59a2bb3b2a7e7e",
+      "bytes": 170705,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v2-guides.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v2-guides.png",
+      "operation": "move",
+      "sha256": "33c457b85aae23dec2d5f61099b7bf9d3327bac6030d77b3a759a04e82679431",
+      "bytes": 623713,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v4-mobile-travel.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v4-mobile-travel.png",
+      "operation": "move",
+      "sha256": "c44435452ea4043c83f48865aeee1a1aff8f64e028d1d4843dd6bbbfd1be2035",
+      "bytes": 72169,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/mobile-en.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/mobile-en.png",
+      "operation": "move",
+      "sha256": "5d4c6f5640aa352a0af8ddaeded6a03fa08ebdc334c0335c6334d1bfb9a3eb7b",
+      "bytes": 194846,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v5-mobile-gift-detail.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v5-mobile-gift-detail.png",
+      "operation": "move",
+      "sha256": "dac0b21ca3c08e739935452576fa9249c0ea8c401e5294916c4b3c7f8b60c0aa",
+      "bytes": 194291,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v3-mobile-food.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v3-mobile-food.png",
+      "operation": "move",
+      "sha256": "0f506040490230b3c8a1605e6eecf8bd843efdae1cf29023e0d37890cd3748fb",
+      "bytes": 250487,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v3-mobile-home.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v3-mobile-home.png",
+      "operation": "move",
+      "sha256": "6bf166a23dd262a09eb96c123c0fc1c9f51a66110fdc02237c428b41560fd32c",
+      "bytes": 186406,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/live-mobile-gifts.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/live-mobile-gifts.png",
+      "operation": "move",
+      "sha256": "7b85f3747629ee8110a7ef9474dcac4aab2a4cc55b025fcda2261f34ce44ad17",
+      "bytes": 311234,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v5-mobile-guides.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v5-mobile-guides.png",
+      "operation": "move",
+      "sha256": "1d42507c53fad673e3bbd6c05a493badd9d6a01d30d5f57ae0f9c57aa1f57389",
+      "bytes": 269085,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v5-mobile-gifts.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v5-mobile-gifts.png",
+      "operation": "move",
+      "sha256": "e38b94e7152072b53781e5a2196d770ddeafbe0096f2e7e2a9514f9cd1348247",
+      "bytes": 194153,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v3-mobile-routes.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v3-mobile-routes.png",
+      "operation": "move",
+      "sha256": "1d111ff915f4552a732ec6ad916ef259c607168aace56141a49f92e3a454c757",
+      "bytes": 192736,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v7-food-mobile.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v7-food-mobile.png",
+      "operation": "move",
+      "sha256": "b066b6d6ab2c1de57396d1f84ff22e603417fea8daff5aa885966a7d4726b6dd",
+      "bytes": 178391,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v2-live-guides.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v2-live-guides.png",
+      "operation": "move",
+      "sha256": "9bb7e32e8f6b94445ab977e10975d2b8187675d4b8ccf9a240c7f3332be94876",
+      "bytes": 628752,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v2-mobile-guides.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v2-mobile-guides.png",
+      "operation": "move",
+      "sha256": "437c672e6302dc96f730adaae59f7c02044bd4376a72449ae6b08c1b59dc6672",
+      "bytes": 148454,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v4-live-gifts.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v4-live-gifts.png",
+      "operation": "move",
+      "sha256": "5f1380fdf6f77ca9b1f1dea6152379a053b02def567f53698ad286e05f9d0993",
+      "bytes": 45782,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v2-live-mobile.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v2-live-mobile.png",
+      "operation": "move",
+      "sha256": "ee179062d83f37cacd6a7be2b6518e33fa5e28936ca2026aa9adb5c56f0d58eb",
+      "bytes": 81224,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v4-mobile-venue.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v4-mobile-venue.png",
+      "operation": "move",
+      "sha256": "d8b68940a1827cee86dc739a65ece5d7ca55200070e2211cd6023918ecde2824",
+      "bytes": 138104,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v7-deployment.json",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v7-deployment.json",
+      "operation": "move",
+      "sha256": "bcfe68e8ee5494aa1c1e495ea45ae6c5fc1aea049aadb7f08e1ddd00da573b06",
+      "bytes": 1342,
+      "tracked": false
+    },
+    {
+      "from": "output/playwright/v4-mobile-route-detail.png",
+      "to": "backup/pre-release-2026-10-09/local/output/playwright/v4-mobile-route-detail.png",
+      "operation": "move",
+      "sha256": "992d567672202e6cef1e1aa379c23e5d8adf8a38ce9e67728bcb5509e9804ad0",
+      "bytes": 140511,
+      "tracked": false
+    },
+    {
+      "from": ".DS_Store",
+      "to": "backup/pre-release-2026-10-09/local/.DS_Store",
+      "operation": "move",
+      "sha256": "10026eaa7f9ce5790cd4ca80b3d8ece058500344652f36fd5051ea23eb7e7eea",
+      "bytes": 6148,
+      "tracked": false
+    },
+    {
+      "from": "research/v5/reviews-supplement-public.json",
+      "to": "data/sources/v5/reviews-supplement-public.json",
+      "operation": "move",
+      "sha256": "6ec2a7e5ba55ac6d2c370fb4169f65d19d7e61d95cde01ccf5f26ba9020f39b7",
+      "bytes": 86049,
+      "tracked": true
+    },
+    {
+      "from": "research/v5/products-public.json",
+      "to": "data/sources/v5/products-public.json",
+      "operation": "move",
+      "sha256": "6ac54b6c6c2cd3e8025c03d1738f7e310172efebf442a1afce418af355eb64ae",
+      "bytes": 122497,
+      "tracked": true
+    },
+    {
+      "from": "research/v5/reviews-last-public.json",
+      "to": "data/sources/v5/reviews-last-public.json",
+      "operation": "move",
+      "sha256": "1ecda910faac8b1ea65b85b184769fa847858054513fda5d105162be00240538",
+      "bytes": 20518,
+      "tracked": true
+    },
+    {
+      "from": "research/v5/reviews-extra-public.json",
+      "to": "data/sources/v5/reviews-extra-public.json",
+      "operation": "move",
+      "sha256": "876a109a299370a7c70633ffbe7b4d8d25fa1380bd47565b659997cfcc16dc36",
+      "bytes": 5815,
+      "tracked": true
+    },
+    {
+      "from": "research/v5/reviews-trip-public.json",
+      "to": "data/sources/v5/reviews-trip-public.json",
+      "operation": "move",
+      "sha256": "f564dacf1c2f326831a693aae6fd82ffab8a1f3f655c5d33133735299a1fd308",
+      "bytes": 44000,
+      "tracked": true
+    },
+    {
+      "from": "research/v5/reviews-public.json",
+      "to": "data/sources/v5/reviews-public.json",
+      "operation": "move",
+      "sha256": "12799af3c01ab330e3a9c3bf41fe645d3ca9c79c81c922bfb204ae0f28060aec",
+      "bytes": 69440,
+      "tracked": true
+    },
+    {
+      "from": "research/v5/.review-cache/reviews-supplement-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v5/.review-cache/reviews-supplement-public.json",
+      "operation": "move",
+      "sha256": "0568a5c8565aee719ff0bd875c67bbdac54dbc3ec323613254d633bfa803f3ce",
+      "bytes": 98410,
+      "tracked": false
+    },
+    {
+      "from": "research/v5/.review-cache/reviews-last-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v5/.review-cache/reviews-last-public.json",
+      "operation": "move",
+      "sha256": "305f80876f319b2a1033231589935ef8e8dcd862831effb8863b3c86b4090ce0",
+      "bytes": 21132,
+      "tracked": false
+    },
+    {
+      "from": "research/v5/.review-cache/reviews-extra-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v5/.review-cache/reviews-extra-public.json",
+      "operation": "move",
+      "sha256": "04129c6d043233c98f879c579e1e06f6df5782c5f4be2ef645a8add7f4dbcda4",
+      "bytes": 5522,
+      "tracked": false
+    },
+    {
+      "from": "research/v5/.review-cache/reviews-trip-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v5/.review-cache/reviews-trip-public.json",
+      "operation": "move",
+      "sha256": "3ad25ab6456b57dd06b962f57fe3cbfdd723efd0f549319d6f711ec45dbc89e2",
+      "bytes": 50075,
+      "tracked": false
+    },
+    {
+      "from": "research/v5/.review-cache/reviews-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v5/.review-cache/reviews-public.json",
+      "operation": "move",
+      "sha256": "398347923d20aa886c1775ab3abe797dc5c2493d17c91b62b7efe22c64950dc7",
+      "bytes": 83656,
+      "tracked": false
+    },
+    {
+      "from": "research/v5/.review-cache/reviews-more-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v5/.review-cache/reviews-more-public.json",
+      "operation": "move",
+      "sha256": "095c36dd9b58876e47f50be45eb43b04bcc6ce45672190e1bd9d699027ae0f6d",
+      "bytes": 27820,
+      "tracked": false
+    },
+    {
+      "from": "research/v5/reviews-more-public.json",
+      "to": "data/sources/v5/reviews-more-public.json",
+      "operation": "move",
+      "sha256": "0c5a36660c9b71539905534b92a1e6d28e34c86807417699a88f8f42d4f77f33",
+      "bytes": 28190,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-editor-verified.json",
+      "to": "data/sources/v6/reviews-editor-verified.json",
+      "operation": "move",
+      "sha256": "028bab47691ec59b7690a8795de66439126ae06ca86fbb19805d1655a3ca4878",
+      "bytes": 15677,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/screenshots/mobile-reviews-en.png",
+      "to": "backup/pre-release-2026-10-09/research/v6/screenshots/mobile-reviews-en.png",
+      "operation": "move",
+      "sha256": "92e777016d9bdbc34645818d1a87b703265ab611129feb4b13b7adb1cfe311b0",
+      "bytes": 204273,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/screenshots/mobile-product-en.png",
+      "to": "backup/pre-release-2026-10-09/research/v6/screenshots/mobile-product-en.png",
+      "operation": "move",
+      "sha256": "c80bc357b2798db19625d56bbdd40f0b27166926ac7a682ca59417c9c78ff696",
+      "bytes": 102206,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/screenshots/mobile-reviews-zh.png",
+      "to": "backup/pre-release-2026-10-09/research/v6/screenshots/mobile-reviews-zh.png",
+      "operation": "move",
+      "sha256": "ffab38106d2a80de4957114e6d8342ca021358e1b72ebf9a2f93e01f2c8d7d08",
+      "bytes": 213660,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/restaurant-address-reviewed-targets.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/restaurant-address-reviewed-targets.json",
+      "operation": "move",
+      "sha256": "a4b2a0d58e31cb5e4d8d344ca5c56bce6e4f35df9c6d71670f221bfe17ad977f",
+      "bytes": 6296,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/tests-v6.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/tests-v6.json",
+      "operation": "move",
+      "sha256": "59de20c7dedcdf6d2fe0e0758435fe96310ec9169cdf0ead7a9b54acbcb3ff91",
+      "bytes": 1704,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/REPORT.md",
+      "to": "backup/pre-release-2026-10-09/research/v6/REPORT.md",
+      "operation": "move",
+      "sha256": "8f618ac84273361a63431e2205f51eb4f75cd8b7f96e7012e68d129530e54313",
+      "bytes": 17686,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/restaurant-sample-targets.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/restaurant-sample-targets.json",
+      "operation": "move",
+      "sha256": "48cb9345663900c2f6df444cf6cd4b4db047bd84f7c67b8a5ee51bd6a9e3132c",
+      "bytes": 909,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/review-exclusions.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/review-exclusions.json",
+      "operation": "move",
+      "sha256": "fa5eca6a0568d8d58f8fb5edd6d2cb5965eadccab50f58cfe620692d4e835fd8",
+      "bytes": 1875,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-web-bulk.json",
+      "to": "data/sources/v6/reviews-web-bulk.json",
+      "operation": "move",
+      "sha256": "556d322bcb5d81c67fc6b09121fa347b931537fc8ab97eb2fe0c8d0b4b82b838",
+      "bytes": 166554,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/final-metrics.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/final-metrics.json",
+      "operation": "move",
+      "sha256": "44e91b42c410f3aa0dfb70cfb892b877f99f60c03f0de4f6ad62176e3cfbddfd",
+      "bytes": 343,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/web-targets.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/web-targets.json",
+      "operation": "move",
+      "sha256": "03b5c448d6bade85aa77066bf11fd48dc41e6cb123291b7c233f2289a6b9dc4b",
+      "bytes": 6057,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-address-reviewed.json",
+      "to": "data/sources/v6/reviews-address-reviewed.json",
+      "operation": "move",
+      "sha256": "3709f095e6de72a071952757df4101316df6cf4a4a0255f820db7c54317c1192",
+      "bytes": 39574,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/restaurant-folded-targets.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/restaurant-folded-targets.json",
+      "operation": "move",
+      "sha256": "0fd749e0a48dcc7809117dffc88af0b903491c06724beff67450f3b0bef754f1",
+      "bytes": 192,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-expanded.json",
+      "to": "data/sources/v6/reviews-expanded.json",
+      "operation": "move",
+      "sha256": "d62f53ae2ad60c03933d3441c364ff8367c9eb7df8d551bd43decb7527fbc3b5",
+      "bytes": 21502,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/save-reviewed-summaries.py",
+      "to": "backup/pre-release-2026-10-09/research/v6/save-reviewed-summaries.py",
+      "operation": "move",
+      "sha256": "b56e6df7740aa4f1420a61116c5f82269bec5d72ee14fcb7a965407635996753",
+      "bytes": 4017,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/restaurant-gaps.json",
+      "to": "data/sources/v6/restaurant-gaps.json",
+      "operation": "move",
+      "sha256": "8adeab41c20494afbe9c3c1064cfb3700d858c38cece0bf6e063253447d53960",
+      "bytes": 18247,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-folded-public.json",
+      "to": "data/sources/v6/reviews-folded-public.json",
+      "operation": "move",
+      "sha256": "f820aade45845c29c72b87ea6e3af150da828bbda201f092a6da7dcaf9d041ed",
+      "bytes": 2618,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-sample.json",
+      "to": "data/sources/v6/reviews-sample.json",
+      "operation": "move",
+      "sha256": "e8b89e2b482d69ce768d8d0ef2411a70899222ad5b54d6916e2b89ca3288a8d7",
+      "bytes": 10457,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/product-verification.json",
+      "to": "data/sources/v6/product-verification.json",
+      "operation": "move",
+      "sha256": "aa42b9f4813bf054a498a4b3f0f710f03dfd4312ec061111345c9b239c03cf64",
+      "bytes": 12378,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/restaurant-mobile-targets.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/restaurant-mobile-targets.json",
+      "operation": "move",
+      "sha256": "12d786d6e38b7e07341fefbd988f012a39b2e7ad9d1fce602681f10cf673ba6d",
+      "bytes": 1305,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/product-sample-checks.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/product-sample-checks.json",
+      "operation": "move",
+      "sha256": "9eee1d6ff6aee00bb2e4d0cd6e9f7caab4d92714923b2cadeb2fe3214d2b7355",
+      "bytes": 3981,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-local-verified.json",
+      "to": "data/sources/v6/reviews-local-verified.json",
+      "operation": "move",
+      "sha256": "36a3e2b6f4e7d02e8d0703a0d62a958373b838678387873fb76f2aa99f831a37",
+      "bytes": 2777,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-panda.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-panda.html",
+      "operation": "move",
+      "sha256": "92fe8aa780827975915dd7f9c7e3413b0a73b123ce8479a88de4a23753978d74",
+      "bytes": 114271,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-3466912.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-3466912.txt",
+      "operation": "move",
+      "sha256": "97b3a081d7bfbdfcf936a7ff0fe3ac7d01d14a2c5beec852dc4959b33f414f32",
+      "bytes": 28195,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-27507270.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-27507270.txt",
+      "operation": "move",
+      "sha256": "e4a0c9a288a7120f6d3e7a5aa88d75e403ab33763f5afa9fd0a2143a1f467740",
+      "bytes": 27288,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-32764734.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-32764734.txt",
+      "operation": "move",
+      "sha256": "8f4ec3f22587daf307a3168f2065cc2a741c5f928b09c709dbb5ff3c70a634db",
+      "bytes": 28688,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-10235035.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-10235035.txt",
+      "operation": "move",
+      "sha256": "2b29a137635960d512f66ba6ff6ab66fc60d988d1948df9d675de19bea89e3b5",
+      "bytes": 27419,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-4419424.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-4419424.txt",
+      "operation": "move",
+      "sha256": "ee9f7fa54b462a8d727d0274d11318d94e91ae32e200d90c5bd3f6385ea0a885",
+      "bytes": 27227,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-2357477.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-2357477.txt",
+      "operation": "move",
+      "sha256": "ad26912867f6283b60d8a42e4238c864aab3e0b9d571614f892902f5d8956ea7",
+      "bytes": 29028,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-27508794.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-27508794.txt",
+      "operation": "move",
+      "sha256": "1ea2c16419db167056687897900898ec3023a2da29ca66a3344e836984eb598e",
+      "bytes": 26130,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-porcelain.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-porcelain.html",
+      "operation": "move",
+      "sha256": "1dd768100bd6f3985320b1c7c81abcdae68b4bb0fef38c8738d056df2717ef07",
+      "bytes": 144274,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-33357734.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-33357734.txt",
+      "operation": "move",
+      "sha256": "7aa4c881c2b53e2208f4d7c6838e7bafcc9768ae590ae0dde71b863d79ea3397",
+      "bytes": 28496,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-tea.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-tea.html",
+      "operation": "move",
+      "sha256": "d3c4f590a8e7362f939ec772ad8bf4619e322d0d1d7b9ea0164eac2713e333ad",
+      "bytes": 110907,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-3786961.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-3786961.txt",
+      "operation": "move",
+      "sha256": "400eb3195f59bdf2ae90b17c79a4b1a1d2995feff8462020f48b04db06c397a2",
+      "bytes": 27122,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-14790113.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-14790113.txt",
+      "operation": "move",
+      "sha256": "ae424b90d85f945b8e44d259a01cfe99ee0da563e46f48844851e80a65abb36e",
+      "bytes": 27930,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/reviews-web-bulk.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/reviews-web-bulk.json",
+      "operation": "move",
+      "sha256": "7a1c0ca4e273fa5eaa663e1078a15c5afb11baae4c3083f7dcb3bd4e1b5546b8",
+      "bytes": 275088,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-17783957.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-17783957.txt",
+      "operation": "move",
+      "sha256": "9460039783e23ba0e4c060d2432d5500eb917c6c2dfed4920c918010706b92f5",
+      "bytes": 25382,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-10666363.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-10666363.txt",
+      "operation": "move",
+      "sha256": "2f4fac68f581e9f66653c3acacb6a9386a9a70dbfc2e45b1b72397a4b4d2df65",
+      "bytes": 27521,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-incense.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-incense.html",
+      "operation": "move",
+      "sha256": "d9635048885bc4edd29cfa510e5862df344253e713a4c3f7060887446556734f",
+      "bytes": 113492,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-25560152.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-25560152.txt",
+      "operation": "move",
+      "sha256": "83d8ad2a0484821d53699be0507e1d469835677be5b38d18222f4a6e2295125c",
+      "bytes": 25695,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/reviews-address-reviewed.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/reviews-address-reviewed.json",
+      "operation": "move",
+      "sha256": "433dd57fa43692b0de114d93b177b01c7af174451106211c0991c1af23ba14dd",
+      "bytes": 36515,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-10749988.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-10749988.txt",
+      "operation": "move",
+      "sha256": "56629c9946a71a0bc236527796df02433356a7c9154d9acbb1c25280ae7aae80",
+      "bytes": 27444,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/reviews-expanded.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/reviews-expanded.json",
+      "operation": "move",
+      "sha256": "74bd3e88abf2ca69864599d5b281650f6385cfaead6538c38faeca39c34b32bc",
+      "bytes": 22231,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-magnet.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-magnet.html",
+      "operation": "move",
+      "sha256": "d5c4d2ac5dadab98776329a7b92bc0e8adde28f9857e96dff6ae6f3a85a53646",
+      "bytes": 114307,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/reviews-folded-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/reviews-folded-public.json",
+      "operation": "move",
+      "sha256": "cde3474af63eaaea8632a975473b7d7c059f94a2affd36d0567b0e018894fe9e",
+      "bytes": 2678,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/reviews-sample.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/reviews-sample.json",
+      "operation": "move",
+      "sha256": "b86620422dff23638615a46ea893338f91826d4853bddcdec6cef4de69980a08",
+      "bytes": 10962,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-11916999.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-11916999.txt",
+      "operation": "move",
+      "sha256": "9589c8cddcf2edb5f1a7672ea2c7f33213fe0eed21497e260bc5d10642cffbd9",
+      "bytes": 27718,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-2514786.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-2514786.txt",
+      "operation": "move",
+      "sha256": "34d2f8606e1a1c9efd7c5003b32678a58bc603c41dea7c344e07510344202358",
+      "bytes": 22303,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-32846849.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-32846849.txt",
+      "operation": "move",
+      "sha256": "53e4ba356a0597d1b1dff222ff0b248ea3ed50a7648d1962384862527ece227d",
+      "bytes": 28013,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-32911125.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-32911125.txt",
+      "operation": "move",
+      "sha256": "d1bba1b1aca790ab8993eae318b17857c75d8e60e73ce9bbfef5a7a1246e7d6d",
+      "bytes": 26320,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-17423944.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-17423944.txt",
+      "operation": "move",
+      "sha256": "cfb59ac281f948ba750c3071335959f9fc022a7715fd74c0fecaa68ae9b9e309",
+      "bytes": 27512,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-scarf.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-scarf.html",
+      "operation": "move",
+      "sha256": "3a9027b0645eb1c839bb1e8fc9fcef4e7002fa18af28f4139b279e6006317f1c",
+      "bytes": 112676,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-fan.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-fan.html",
+      "operation": "move",
+      "sha256": "9a08b259f08309fa8deab866389c152150aa8d6176972d0abb0baeec4656eac0",
+      "bytes": 112231,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/parsed-check.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/parsed-check.json",
+      "operation": "move",
+      "sha256": "4a699c9bc595bdfc34198f17ec09f5a7b73f224fca79917bef7228e7ba0ed5e4",
+      "bytes": 138196,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-7050174.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-7050174.txt",
+      "operation": "move",
+      "sha256": "0add1c56f7c769f721aec0e211ace5203e1a7eeb0636dd5d622dd5ad2fa7d3db",
+      "bytes": 26466,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-13919321.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-13919321.txt",
+      "operation": "move",
+      "sha256": "997d61c0e4ddbc2129a19845d1dae8720afecd912c4177edc74a8441eceda9c2",
+      "bytes": 28646,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/jd-seal.html",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/jd-seal.html",
+      "operation": "move",
+      "sha256": "2853bff7965bdf939e604ff1fcd31dbe5b80847745d25189dc79b220cc4f43cb",
+      "bytes": 151813,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-12816703.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-12816703.txt",
+      "operation": "move",
+      "sha256": "efdc71a0ee7e29da153d88c91b57181269879aa343fdf4cc06f864bbf6eb343f",
+      "bytes": 28416,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-7701171.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-7701171.txt",
+      "operation": "move",
+      "sha256": "a854a1d02dccdd66995fb5b4773a488d369113523e64eedb3a6dc4f87003491c",
+      "bytes": 27511,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-3491165.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-3491165.txt",
+      "operation": "move",
+      "sha256": "2ed3eb16b2bf00963998feb27a81d844f8dc31fe6e30fe150e3af60cef71795c",
+      "bytes": 27445,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-10787269.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-10787269.txt",
+      "operation": "move",
+      "sha256": "b4169db1d4fbce76d30969ebf6aff598ad1b7826b840007ddefead1cc23ce94e",
+      "bytes": 28541,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-3511968.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-3511968.txt",
+      "operation": "move",
+      "sha256": "5f14c701b80a761f82e2ec7d39d855f4693a34225cc13fc6540ba4dfc0207715",
+      "bytes": 30980,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-26837435.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-26837435.txt",
+      "operation": "move",
+      "sha256": "9f51a0e2b8022f7504299c38db0d1a9b37f472b9a8282114fe5a9f184700fcac",
+      "bytes": 28120,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/web-ta-26731850.txt",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/web-ta-26731850.txt",
+      "operation": "move",
+      "sha256": "2549ab45e7831153aaa0cb57581dc8cd27f4e7a700e4175d9949f94565262f98",
+      "bytes": 26760,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/.raw-cache/reviews-mobile-public.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/.raw-cache/reviews-mobile-public.json",
+      "operation": "move",
+      "sha256": "90fe4f2b1bd0f984e8a6ddf0c25edf4d12f488f0db899fb5d3a10c11d0b6fb7d",
+      "bytes": 14863,
+      "tracked": false
+    },
+    {
+      "from": "research/v6/restaurant-expanded-targets.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/restaurant-expanded-targets.json",
+      "operation": "move",
+      "sha256": "05cad7ac01cdf1379e883522cd5e761f8a1e09825c3e76163e8454a9cd20e815",
+      "bytes": 4356,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/baseline-metrics.json",
+      "to": "backup/pre-release-2026-10-09/research/v6/baseline-metrics.json",
+      "operation": "move",
+      "sha256": "a5659d01df797e410e60db4d52ad00e9440c29b9a16686f716d1884908e3bb02",
+      "bytes": 2452,
+      "tracked": true
+    },
+    {
+      "from": "research/v6/reviews-mobile-public.json",
+      "to": "data/sources/v6/reviews-mobile-public.json",
+      "operation": "move",
+      "sha256": "31d3930c52ad57f823ac67e03bf2d4ecb9a5e64a2a4f356b6a1ec9e63a8d0aca",
+      "bytes": 14271,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/product-gaps.json",
+      "to": "docs/data-quality/v7/product-gaps.json",
+      "operation": "move",
+      "sha256": "23a8e3dcfeb45b86c8d36d88f55121765635e2b47b17890373bc712e4841c523",
+      "bytes": 43725,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/qa-desktop.json",
+      "to": "docs/data-quality/v7/qa-desktop.json",
+      "operation": "move",
+      "sha256": "6c6bb93951f21e8f7227f9f3ded4e5a73113fb77e5f3dee79911e72dc8182808",
+      "bytes": 6484,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/reviews-mobile-new.json",
+      "to": "data/sources/v7/reviews-mobile-new.json",
+      "operation": "move",
+      "sha256": "f862a098abbd824adbaa6819975d73df537df5ea45adcb6703f4973ee5284a98",
+      "bytes": 58506,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/REPORT.md",
+      "to": "docs/data-quality/v7/REPORT.md",
+      "operation": "move",
+      "sha256": "fa3cf4031f4c5abc5efa7e329a7bcc338e7164e6478fad852e3f52365d5a554d",
+      "bytes": 17903,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/review-exclusions.json",
+      "to": "data/sources/v7/review-exclusions.json",
+      "operation": "move",
+      "sha256": "7eebb18a592601cb3e89b4653ad11ed810d5a29da78ee576253efff0b1082e08",
+      "bytes": 5493,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/final-metrics.json",
+      "to": "docs/data-quality/v7/final-metrics.json",
+      "operation": "move",
+      "sha256": "fc6fba4fae4f26d4125aca55c8b27e0c120d09d455c492b084d1f5d70fb4c080",
+      "bytes": 540,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/web-targets.json",
+      "to": "data/sources/v7/web-targets.json",
+      "operation": "move",
+      "sha256": "4c264446df65c703e4c393713b5fa8c8345578c3ea0ec299a091efcb4150c0c4",
+      "bytes": 2781,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/tests-v7.json",
+      "to": "docs/data-quality/v7/tests-v7.json",
+      "operation": "move",
+      "sha256": "c55346c15df891fbe2ed31d5f672e841250d4433eba84ac2b4448e97d62816cb",
+      "bytes": 2810,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/restaurant-gaps.json",
+      "to": "docs/data-quality/v7/restaurant-gaps.json",
+      "operation": "move",
+      "sha256": "d276889fcb73ae4f218c140c22300cd0d100c13443a193d322d2e9db337953c7",
+      "bytes": 14689,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/qa-mobile.json",
+      "to": "docs/data-quality/v7/qa-mobile.json",
+      "operation": "move",
+      "sha256": "013ccbd08feba2fb0f97ce912f7378be647724e75b135d3f6c4ac4bd31aa7439",
+      "bytes": 6464,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/product-verification.json",
+      "to": "data/sources/v7/product-verification.json",
+      "operation": "move",
+      "sha256": "76de218d6c6b28b9db30a30b852db39fd18a5dcee180e4819686892d242e1ff2",
+      "bytes": 334107,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/restaurant-mobile-targets.json",
+      "to": "data/sources/v7/restaurant-mobile-targets.json",
+      "operation": "move",
+      "sha256": "3bc64a4d367ea54a214c2ec7b77e3ee336c0f21a4fbec96e31c34a3adfd88eeb",
+      "bytes": 3828,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/product-listing-checks.json",
+      "to": "data/sources/v7/product-listing-checks.json",
+      "operation": "move",
+      "sha256": "c49b99976818c344410a52602a67243655fc2618c85175a88db595a14276b2d8",
+      "bytes": 99323,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/qa-corrected-item.json",
+      "to": "docs/data-quality/v7/qa-corrected-item.json",
+      "operation": "move",
+      "sha256": "f33ccc1d2f36a07c39d355c95cebaaade8880ca900424c0cbdba8895dc27cede",
+      "bytes": 133,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-panda.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-panda.html",
+      "operation": "move",
+      "sha256": "10bba57a40b24b130d9e217ecddcdb018aae2422516732af1cf06accac14662b",
+      "bytes": 114271,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-453761.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-453761.html",
+      "operation": "move",
+      "sha256": "99a6a25970ed8913014d32c3d028364cae2c99c4c7c5b4841279c834b2428b8b",
+      "bytes": 114307,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-32991374.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-32991374.txt",
+      "operation": "move",
+      "sha256": "c7827b5aa9c15cc28f4c8052747038c817174dc72ac88b5fbedea1e3439e8d8d",
+      "bytes": 31213,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-7050208.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-7050208.txt",
+      "operation": "move",
+      "sha256": "335eff8ec578976598f4107ef4b6dab113f0f74a5739dede06ab02142827ff0a",
+      "bytes": 28098,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-2535972.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-2535972.html",
+      "operation": "move",
+      "sha256": "892ede1c04e77ae7b89c15f16cc36435b214e272b97176e4bdf6cbfd1ce5baab",
+      "bytes": 114276,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-4008332.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-4008332.txt",
+      "operation": "move",
+      "sha256": "c0e955a95d0e1438b9c0bb483fd037678483d5dc1c623b75214107b476ac8f11",
+      "bytes": 28889,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/reviews-mobile-new.json",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/reviews-mobile-new.json",
+      "operation": "move",
+      "sha256": "7d06833024bfe4c5bf0f55af8c7ca56a00c7c0d7334d21c26b1a433110d086d2",
+      "bytes": 55947,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-9989898.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-9989898.txt",
+      "operation": "move",
+      "sha256": "3fd98cb66b7c3b4bc770b3e2b0d4d605e0292311f42ea58a4d83c67ec0f36099",
+      "bytes": 28247,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-1164281.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-1164281.html",
+      "operation": "move",
+      "sha256": "10bba57a40b24b130d9e217ecddcdb018aae2422516732af1cf06accac14662b",
+      "bytes": 114271,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-90600.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-90600.html",
+      "operation": "move",
+      "sha256": "050b539cb5690fbc44050654aaacaa7f8654fcf7e8848727c90738776596d720",
+      "bytes": 144274,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-1521071.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-1521071.html",
+      "operation": "move",
+      "sha256": "4c1aa933f1223f476492bf651647e8202ae39fc88e52b036257cee3183e3e8f9",
+      "bytes": 112643,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-porcelain.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-porcelain.html",
+      "operation": "move",
+      "sha256": "050b539cb5690fbc44050654aaacaa7f8654fcf7e8848727c90738776596d720",
+      "bytes": 144274,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-1606864.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-1606864.html",
+      "operation": "move",
+      "sha256": "18723ed165608916b9f50602b406738c83a922b23386022d9bcd0b10469dfe9a",
+      "bytes": 112584,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-43954.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-43954.html",
+      "operation": "move",
+      "sha256": "86faa39510c5243b7563154abb0452d11b6716c0ac57333890079e5e1ede9350",
+      "bytes": 112872,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-2258501.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-2258501.html",
+      "operation": "move",
+      "sha256": "6108cd7eaca6a8cbbc3cbc72b6268529a60ee1bb391d81e028dba60b1cdf839a",
+      "bytes": 151813,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-tea.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-tea.html",
+      "operation": "move",
+      "sha256": "304dbd7a83dd5f3b7725dbd1b4f021f764c9d0651abdf8eb76fabac26c841a98",
+      "bytes": 111467,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-454688.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-454688.html",
+      "operation": "move",
+      "sha256": "3573c8e9e78be511fd09bd7f67a7384c7dbbb90b9c36ed26d708dd693aa01a11",
+      "bytes": 113060,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-4962484.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-4962484.txt",
+      "operation": "move",
+      "sha256": "9a6f6c2a6b6cee3c59155645ec235477a65e3209f7de0176daec67857b709ec1",
+      "bytes": 28732,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-8754601.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-8754601.txt",
+      "operation": "move",
+      "sha256": "58877a5db8778f8a4625d0d4fae499248db2e3afd8811a57cc13e53fbefc4f9d",
+      "bytes": 20653,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-incense.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-incense.html",
+      "operation": "move",
+      "sha256": "06c80815b9404d957dfc39c1eadb776ea20e6d44aceb56abad332b861b8e1e84",
+      "bytes": 112645,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-magnet.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-magnet.html",
+      "operation": "move",
+      "sha256": "99a6a25970ed8913014d32c3d028364cae2c99c4c7c5b4841279c834b2428b8b",
+      "bytes": 114307,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-3512826.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-3512826.txt",
+      "operation": "move",
+      "sha256": "a59db4625a75f77ad883623697580212519e037164b7ee99fe82cff7272d9482",
+      "bytes": 29124,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-4422188.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-4422188.txt",
+      "operation": "move",
+      "sha256": "35f91da6cf32d0e684323d83fefb981c754a7974d9cd34751326f237866bcacc",
+      "bytes": 28871,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-3457031.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-3457031.txt",
+      "operation": "move",
+      "sha256": "0266fed384c84736dc42f04ecfc0a1d415d19e22c3a06fc1bc7d64430ae3d759",
+      "bytes": 29283,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-3467079.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-3467079.txt",
+      "operation": "move",
+      "sha256": "d881349a9ab791b9c0d4b291e50cbcd49aff51296bead97d654331cf4e9ecd0c",
+      "bytes": 28122,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-124800.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-124800.html",
+      "operation": "move",
+      "sha256": "149875ad85cbdff2f95c4539719f01256b53cf23398d56ad6b32a34671349f99",
+      "bytes": 113291,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-2172974.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-2172974.html",
+      "operation": "move",
+      "sha256": "62acf3cd8ab28c3960d24065eb8cb8382209f77c2d39703cdddb30712c734e17",
+      "bytes": 112676,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-2598168.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-2598168.html",
+      "operation": "move",
+      "sha256": "304dbd7a83dd5f3b7725dbd1b4f021f764c9d0651abdf8eb76fabac26c841a98",
+      "bytes": 111467,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-2554896.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-2554896.html",
+      "operation": "move",
+      "sha256": "65084ab889e751c310239ebf65b0fd719800c6968c56ffdff6c88d215e4d320a",
+      "bytes": 127747,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-6754166.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-6754166.txt",
+      "operation": "move",
+      "sha256": "29af7708329d9677a91ed00a145a5954fcea89b6f404fc4417c3348719a03cb3",
+      "bytes": 22751,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-451539.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-451539.html",
+      "operation": "move",
+      "sha256": "9b7c5e46015f3323a3e8d043b992688105f3e1040a3d9c288d4fd50a33c7f66a",
+      "bytes": 113732,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-scarf.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-scarf.html",
+      "operation": "move",
+      "sha256": "62acf3cd8ab28c3960d24065eb8cb8382209f77c2d39703cdddb30712c734e17",
+      "bytes": 112676,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-2625641.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-2625641.html",
+      "operation": "move",
+      "sha256": "06c80815b9404d957dfc39c1eadb776ea20e6d44aceb56abad332b861b8e1e84",
+      "bytes": 112645,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-fan.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-fan.html",
+      "operation": "move",
+      "sha256": "9b7c5e46015f3323a3e8d043b992688105f3e1040a3d9c288d4fd50a33c7f66a",
+      "bytes": 113732,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/jd-seal.html",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/jd-seal.html",
+      "operation": "move",
+      "sha256": "6108cd7eaca6a8cbbc3cbc72b6268529a60ee1bb391d81e028dba60b1cdf839a",
+      "bytes": 151813,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-12624178.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-12624178.txt",
+      "operation": "move",
+      "sha256": "48e717d4c951b5636f9f4d79f83dda9d68ae770976d130ed3ae38c29a0ba76dc",
+      "bytes": 24751,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/web-ta-7701549.txt",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/web-ta-7701549.txt",
+      "operation": "move",
+      "sha256": "625c796e546db15ae2b712cbe8fe3972f56cbedbb9b21365e0ef144bb02a79a0",
+      "bytes": 31060,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/.raw-cache/reviews-web-new.json",
+      "to": "backup/pre-release-2026-10-09/research/v7/.raw-cache/reviews-web-new.json",
+      "operation": "move",
+      "sha256": "bcc8e728c42bd2c3149233bb7c67898f75509ddf0af803baf32959dddcaee632",
+      "bytes": 103922,
+      "tracked": false
+    },
+    {
+      "from": "research/v7/reviews-web-new.json",
+      "to": "data/sources/v7/reviews-web-new.json",
+      "operation": "move",
+      "sha256": "817d5af019b7f12e54337c3176f3c23cbab93d3f449c48b9cf526375091b0486",
+      "bytes": 61964,
+      "tracked": true
+    },
+    {
+      "from": "research/.DS_Store",
+      "to": "backup/pre-release-2026-10-09/research/.DS_Store",
+      "operation": "move",
+      "sha256": "38a3a1f2245411f532945176c05aa0a4bd26d4d24b77b4c752f744e07f624f8a",
+      "bytes": 8196,
+      "tracked": false
+    },
+    {
+      "from": "scripts/build-gifts-v4.py",
+      "to": "backup/pre-release-2026-10-09/legacy/scripts/build-gifts-v4.py",
+      "operation": "move",
+      "sha256": "5a89cf5811423c2590fc67dc8ab6c65e36f86450c2383d6a9087007159c8269e",
+      "bytes": 13258,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-reviews-v5.py",
+      "to": "backup/pre-release-2026-10-09/legacy/scripts/collect-reviews-v5.py",
+      "operation": "move",
+      "sha256": "63a5323a4aefef844116a97c25f8e9c33592c6ee17d773fe31acb53054178df0",
+      "bytes": 2466,
+      "tracked": true
+    },
+    {
+      "from": "scripts/curate-web-reviews-v6.py",
+      "to": "backup/pre-release-2026-10-09/legacy/scripts/curate-web-reviews-v6.py",
+      "operation": "move",
+      "sha256": "7f24e3b0394c825e64104bb3707ea53bcb4ff5e626fbe5d99bcd78157af7be16",
+      "bytes": 21859,
+      "tracked": true
+    },
+    {
+      "from": "scripts/verify-products-v6.py",
+      "to": "backup/pre-release-2026-10-09/legacy/scripts/verify-products-v6.py",
+      "operation": "move",
+      "sha256": "280dce32680b5287b9a1ab02e346e1aa32218a1cf65f2f270bc25255f3cda70a",
+      "bytes": 2197,
+      "tracked": true
+    },
+    {
+      "from": "scripts/report-data-v6.py",
+      "to": "backup/pre-release-2026-10-09/legacy/scripts/report-data-v6.py",
+      "operation": "move",
+      "sha256": "bfe9833a89ddecc2d622aaf10e5fc69cd0805d9f17bb31c44c90d3cc47fe302e",
+      "bytes": 8176,
+      "tracked": true
+    },
+    {
+      "from": "scripts/test-data-v6.py",
+      "to": "backup/pre-release-2026-10-09/legacy/scripts/test-data-v6.py",
+      "operation": "move",
+      "sha256": "59f666921e4930752e829c4c21f3a82eb205119db7693591dad48906edfb24bb",
+      "bytes": 3894,
+      "tracked": true
+    },
+    {
+      "from": "scripts/collect-trip-reviews-v5.py",
+      "to": "backup/pre-release-2026-10-09/legacy/scripts/collect-trip-reviews-v5.py",
+      "operation": "move",
+      "sha256": "a7bea643a00366177897cab881bbf93532ffc87923d1c8d01df77a53e2018a0f",
+      "bytes": 1642,
+      "tracked": true
+    },
+    {
+      "from": "QA_V2.md",
+      "to": "backup/pre-release-2026-10-09/documents/QA_V2.md",
+      "operation": "move",
+      "sha256": "42bc63fb1b4dfe509ee36c90db6b70dd1cb269fb09335879d3118d095806ff02",
+      "bytes": 1707,
+      "tracked": true
+    },
+    {
+      "from": "CONTENT_SOURCES_V5.md",
+      "to": "backup/pre-release-2026-10-09/documents/CONTENT_SOURCES_V5.md",
+      "operation": "move",
+      "sha256": "f667e63ddc61b6968ce0135598ef2c01b5033985b4910b854c2e0813f3a20151",
+      "bytes": 4145,
+      "tracked": true
+    },
+    {
+      "from": "CONTENT_SOURCES_V4.md",
+      "to": "backup/pre-release-2026-10-09/documents/CONTENT_SOURCES_V4.md",
+      "operation": "move",
+      "sha256": "2104daa68388aa8bd5024f7e97d3a2643f7897f0fbde6eb0958529e183e7e3ed",
+      "bytes": 2580,
+      "tracked": true
+    },
+    {
+      "from": "QA_V3.md",
+      "to": "backup/pre-release-2026-10-09/documents/QA_V3.md",
+      "operation": "move",
+      "sha256": "b729a3062b6f18cebd534da90ba70797c84a71139294af7d74abd923b270699e",
+      "bytes": 1543,
+      "tracked": true
+    },
+    {
+      "from": "IMAGE_PROMPTS.md",
+      "to": "backup/pre-release-2026-10-09/documents/IMAGE_PROMPTS.md",
+      "operation": "move",
+      "sha256": "c9a2047afe72cf174e41e3527fe780f6a20ac9f3736cbb84e3d1c10729878d04",
+      "bytes": 28930,
+      "tracked": true
+    },
+    {
+      "from": "QA_V4.md",
+      "to": "backup/pre-release-2026-10-09/documents/QA_V4.md",
+      "operation": "move",
+      "sha256": "3e806e0b29363515bd53e826aade2799e05342680c140ccc8e2359933559ae60",
+      "bytes": 1526,
+      "tracked": true
+    },
+    {
+      "from": "CONTENT_SOURCES_V3.md",
+      "to": "backup/pre-release-2026-10-09/documents/CONTENT_SOURCES_V3.md",
+      "operation": "move",
+      "sha256": "bcd443ea49468a4a37ee4690769a9b9b239a3990fed928ff20e11f5f8eb65ad9",
+      "bytes": 45341,
+      "tracked": true
+    },
+    {
+      "from": "QA_V5.md",
+      "to": "backup/pre-release-2026-10-09/documents/QA_V5.md",
+      "operation": "move",
+      "sha256": "a62ab8e1545126918ef500b995755f49e99e0f2169e1790cbd76411a20527581",
+      "bytes": 2904,
+      "tracked": true
+    },
+    {
+      "from": "CONTENT_SELECTION_V4.json",
+      "to": "backup/pre-release-2026-10-09/documents/CONTENT_SELECTION_V4.json",
+      "operation": "move",
+      "sha256": "600590518b8c7f5b9d175dc490ff3de8ab164e81c08d72f8b6c0ae9a4fd558be",
+      "bytes": 1998,
+      "tracked": true
+    },
+    {
+      "from": "IMAGE_PROMPTS_V5.json",
+      "to": "backup/pre-release-2026-10-09/documents/IMAGE_PROMPTS_V5.json",
+      "operation": "move",
+      "sha256": "733d8648d2030e5249edac76bd75eda6de0c23e58d60a829bc9baef84763283c",
+      "bytes": 6233,
+      "tracked": true
+    },
+    {
+      "from": "IMAGE_PROMPTS_V4.json",
+      "to": "backup/pre-release-2026-10-09/documents/IMAGE_PROMPTS_V4.json",
+      "operation": "move",
+      "sha256": "284d941eb7c756c233146769dba97d63a2ccaaa7a650d5106120a491dc455ffb",
+      "bytes": 4224,
+      "tracked": true
+    },
+    {
+      "from": "research/v7/REPORT.md",
+      "to": "backup/pre-release-2026-10-09/original/research/v7/REPORT.md",
+      "operation": "copy_original",
+      "sha256": "fa3cf4031f4c5abc5efa7e329a7bcc338e7164e6478fad852e3f52365d5a554d",
+      "bytes": 17903,
+      "tracked": true
+    }
+  ]
+}

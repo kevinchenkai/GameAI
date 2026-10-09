@@ -1,42 +1,62 @@
-# 深圳，见面吧 · APEC 2026 城市旅行指南 V7
+# APEC26 深圳城市旅行指南
 
-中英双语静态 H5；线上：https://g.ismayday.mobi/apec26/ ，英文：https://g.ismayday.mobi/apec26/?lang=en 。
+面向深圳 APEC 2026 来访者的中英双语静态 H5，包含深圳旅游、深圳美食、深圳手信与私人地陪。
 
-| 模块 | 本版功能 |
-|---|---|
-| 旅游 | 保留 60 条路线、五档各 12 条、每条至少 5 张有来源的照片；卡片地名去重；时长、步行类型、预算和 hashtag 同行；分享和找地陪并排 |
-| 美食 | 两榜各 52 条，91 个不同门店来源；每店 5 图直接横滑、特色简介；列表最多 2 条短评，详情展示全部已取得真实评论 |
-| 手信 | 茶叶、冰箱贴、丝巾、折扇、瓷器、熊猫、香薰、印章，每类 20 个真实京东 SKU，共 160 条；详情、分类、搜索、分页与联系购买 |
-| 地陪 | 10 张生活化成年演示照片，学生、白领及文化爱好者的双语介绍；个人卡片移除地点；保留需求单 |
+线上：[中文版](https://g.ismayday.mobi/apec26/) · [英文版](https://g.ismayday.mobi/apec26/?lang=en)。当前内容批次为 2026-10-02，目录于 2026-10-09 整理。
 
-图片采用完整显示与放大交互；图片上的 AI 来源标签移除。页面无后端，不提交订单、不收款；表单和定位信息留在浏览器内存，只有语言偏好存入 localStorage。
+## 目录
 
-## 内容边界
+| 路径 | 用途 | 部署 |
+|---|---|---|
+| `public/` | 网站入口、运行脚本、样式、图片与二维码，共 78 个文件 | 是 |
+| `data/sources/` | 重建现有商品及评论所需的已审核来源、摘要与核对证据 | 否 |
+| `scripts/` | 当前数据构建、核对、采集与验证工具 | 否 |
+| `docs/` | 发布说明与当前数据质量报告 | 否 |
+| `backup/pre-release-2026-10-09/` | 历史文档、过期工具、原始缓存、截图，以及整理前工具快照 | 否 |
+| `release-files.json` | 网站文件的明确发布清单 | 否 |
+| `deploy.sh` | 校验清单后只同步 `public/`，入口最后发布 | 否 |
 
-餐厅评论有真实作者与来源，展示摘要／译文。现有 102 条榜单记录取得 2+ 条，65 条取得 10+ 条（独立门店为89/91与56/91）；其余按实际可取得数量展示。完整京东详情页受访问限制，商品资料只展示取得的图片、SKU、款式及标题规格，价格和库存联系确认。榜单不伪造销量或投票名次。POI 仍为片区近似坐标。地陪档案均为虚构演示。
+`public/` 内的 v2/v3/v4 文件仍是当前运行依赖。现有页面采用顺序加载与覆盖，不能只按版本号删减。目录调整保持所有网页文件内容及线上相对 URL 不变。
 
-[内容来源](CONTENT_SOURCES_V5.md) · [验证记录](QA_V5.md) · [内置 Image Gen 资产与提示词](IMAGE_PROMPTS_V5.json)。此前版本资料保存在 CONTENT_SOURCES_V3.md、CONTENT_SOURCES_V4.md、QA_V2.md 至 QA_V4.md。
+## 预览与校验
 
-## 文件与预览
+在 GameAI 根目录执行：
 
-`v5.js` / `v5.css` 覆盖既有静态模块；`gifts-v5.js`、`reviews-v5.js`、`guides-v5.js` 提供新版数据。公开资料保存在 `research/v5/`，生成与采集脚本保存在 `scripts/`。完整评论正文缓存不提交；研究资料与文档不部署。
+```bash
+python3 -m http.server 8626 --bind 127.0.0.1 --directory apec26/public
+```
 
-在 GameAI 根目录执行 `python3 -m http.server 8626 --bind 127.0.0.1`，打开 http://127.0.0.1:8626/apec26/ 。四个模块可通过 `#travel`、`#food`、`#gifts`、`#guide` 直达。
+打开 <http://127.0.0.1:8626/>。四个模块通过 `#travel`、`#food`、`#gifts`、`#guide` 直达。预览只提供 `public/`，研究资料和备份不在网站根目录内。
+
+```bash
+python3 apec26/scripts/check-release.py
+python3 apec26/scripts/test-data-v7.py
+```
+
+首项检查发布清单、文件类型、本地依赖、脚本顺序与 JS 语法；第二项验证署名、去重、SKU／款式关联及无原文缓存时的可重复构建。
+
+## 数据维护
+
+```bash
+python3 apec26/scripts/build-product-verification-v7.py
+python3 apec26/scripts/build-gifts-v5.py
+python3 apec26/scripts/build-reviews-v5.py
+python3 apec26/scripts/report-data-v7.py
+```
+
+网页数据生成至 `public/`，审核结果生成至 `docs/data-quality/v7/`。采集适配器、公开文档解析器和人工摘要工具仍保留于 `scripts/`；采集原文写入被忽略的 `.cache/research/`，已审核摘要存入 `data/sources/`。构建无需历史备份或原文缓存；未经核对的原文不能直接作为发布数据。
+
+[当前数据质量报告](docs/data-quality/v7/REPORT.md) · [逐店评论缺口](docs/data-quality/v7/restaurant-gaps.json) · [逐 SKU 参数缺口](docs/data-quality/v7/product-gaps.json)。现有 60 条路线、104 个餐厅榜单条目（91 家独立门店）、825 个去重评论键、160 个商品 SKU 与 10 个虚构成年地陪档案。餐厅与商品的剩余缺口按实际取得资料展示；地陪档案用于演示。资料批次日期不代表实时营业、库存或服务状态。
 
 ## 发布
 
-先运行 `./apec26/deploy.sh` 核对 dry-run，再运行 `./apec26/deploy.sh --apply`。仅同步 `/www/wwwroot/g.ismayday.mobi/apec26/` 的入口、CSS、JS 与 assets，资源先于入口。不修改 Nginx，不删除其他目录文件；新图片使用新文件名，本轮变更资源使用 `?v=7`，其余沿用 `?v=5`。
+```bash
+./apec26/deploy.sh --dry-run
+./apec26/deploy.sh --apply
+```
 
-V6 已于 2026-10-02 经用户授权提交、推送和部署。用户已明确授权本轮 V7 的 Git 提交、双远端推送和部署。推送目标为 GitHub `main` 和 Ezone `main:master`。保留用户 Git author／committer，每次提交附 `Co-authored-by: Codex <codex@openai.com>`。
+必须先核对预演。目标仅为 `/www/wwwroot/g.ismayday.mobi/apec26/`；按 `release-files.json` 发布资源，再发布入口，不使用 `--delete`，不同步整个项目目录。新增网页资源时同步更新发布清单。改图使用新文件名；改脚本或样式更新入口中的缓存版本。详细步骤见 [发布说明](docs/RELEASE.md)，本次目录整理结果见 [验收记录](docs/RELEASE_CHECKS.md)。
 
-## 数据补齐审核
+## 备份
 
-[新增数量与逐店缺口](research/v6/REPORT.md) · [商品小样核对](research/v6/product-verification.json) · [测试记录](research/v6/tests-v6.json)。评论共751个独立键，净增265；仍有45家独立门店不足10条，累计缺192条。商品小样6个同SKU列表匹配、2个当前未确认，未取得完整官方参数页。原文缓存不入Git。
-
-复现：`python3 apec26/scripts/build-reviews-v5.py`、`python3 apec26/scripts/build-gifts-v5.py`。公开采集适配器只跟随正常页面/按钮；遇403/429/432停止该域名。Tripadvisor可读缓存由离线解析器提取，并人工逐条写短摘要；不将缓存称为实时分页。
-
-## V7 评论与商品补全
-
-[本轮报告与逐店缺口](research/v7/REPORT.md) · [160 个 SKU 核对](research/v7/product-verification.json) · [测试记录](research/v7/tests-v7.json)。相对已部署 22c25fc：评论净增74至825个去重键；35家门店详情不足10条，共缺157条；列表仍有2家各缺1条。97款同SKU公开列表匹配、63款本次所查页面未出现；92款整理201个商家显式字段，完整官方详情确认数仍为0。实际商品类型、文化地域、规格与来源分别展示，未知参数留空。
-
-无网络复现：`python3 apec26/scripts/build-product-verification-v7.py`、`python3 apec26/scripts/build-gifts-v5.py`、`python3 apec26/scripts/build-reviews-v5.py`；验证：`python3 apec26/scripts/test-data-v7.py`。报告：`python3 apec26/scripts/report-data-v7.py`。原文及公开列表原始HTML只在忽略的缓存内，不提交、不部署。
+[备份说明](backup/README.md) · [逐文件迁移清单](backup/pre-release-2026-10-09/manifest.json)。历史内容来源、图片生成提示词和旧版 QA 记录均保留在备份中；原始评论缓存与临时截图继续被 Git 忽略。备份不参与构建、预览或部署。

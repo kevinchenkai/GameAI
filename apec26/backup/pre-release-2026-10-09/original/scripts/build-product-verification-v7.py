@@ -4,10 +4,10 @@ Brand labels use manually reviewed full names. No inferred manufacturer model or
 """
 import json,re
 from pathlib import Path
-from project_paths import ROOT,PUBLIC,SOURCES,DOCS,CACHE
-checks=json.loads((SOURCES/'v7/product-listing-checks.json').read_text())
-old={x['sku']:x for rows in json.loads((SOURCES/'v5/products-public.json').read_text()).values() for x in rows}
-previous={x['sku']:x for x in json.loads((SOURCES/'v6/product-verification.json').read_text())}
+ROOT=Path(__file__).resolve().parents[1]
+checks=json.loads((ROOT/'research/v7/product-listing-checks.json').read_text())
+old={x['sku']:x for rows in json.loads((ROOT/'research/v5/products-public.json').read_text()).values() for x in rows}
+previous={x['sku']:x for x in json.loads((ROOT/'research/v6/product-verification.json').read_text())}
 brands=['景德镇（jdz）','威尔通（WELTSTON）','福澤天下（Blessing All）','得力（deli）','中国木雕博物馆','MOONCHILD','SunToMoon','GOTOVAN','DEATKN','MPPMCK','ROSHK','喆炜','吉朵芸','磁尚','随效','优学库','大猫日记','壹居长宁','万事利','杭丝路','上海故事','织锦楼','绣娘丝绸','杭丝府','极度空间','慕曦贝儿','繁夏','哥纶','齐选','密爱港湾','妙普乐','八千行','昌南','不拙','古笙记','陶相惠','兮元记','金镶玉','京东京造','富玉','美真香','普云','轩椽阁','香瑞鸿运','楠檀大师','京寻','六品堂','墨香荷','孔府印阁','卓达']
 materials=[('100%桑蚕丝','100% mulberry silk'),('桑蚕丝','Mulberry silk'),('真丝','Silk'),('仿真丝','Silk imitation'),('宣纸','Xuan paper'),('青竹','Bamboo'),('亚克力','Acrylic'),('木质','Wood'),('金属','Metal'),('青田石','Qingtian stone'),('毛绒','Plush'),('骨瓷','Bone china'),('陶瓷','Ceramic'),('白瓷','White porcelain'),('沉香','Agarwood'),('檀香','Sandalwood'),('冰丝','Ice-silk label')]
 techniques=[('苏绣','Suzhou embroidery'),('手绘','Hand painted'),('描金','Gold-detail painting'),('描银','Silver-detail painting'),('雕刻','Carving'),('影青','Yingqing glaze'),('玲珑','Linglong porcelain'),('釉里红','Underglaze red'),('青花','Blue-and-white decoration'),('扒花','Carved decoration')]
@@ -63,6 +63,6 @@ for c in checks:
   v['missingFields']=['材质与尺寸实物标签','用途说明','厂家型号'];v['missingFieldsEn']=['actual material and size label','use description','manufacturer model']
  out.append(v)
 assert len(out)==160
-(SOURCES/'v7/product-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'research/v7/product-verification.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Verified current listings',sum(x['verificationLevel']=='same_sku_partial_listing' for x in out),'of 160')
 print('With explicit new attribute fields',sum(bool(x['attributes']) for x in out),'fields',sum(len(x['attributes']) for x in out))
