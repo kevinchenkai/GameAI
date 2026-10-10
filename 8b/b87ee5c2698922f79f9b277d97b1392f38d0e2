@@ -1,0 +1,50 @@
+apec26/tools/mp-ci/index.cjs
+  s_63cb3e122796a0::t_f97c686a92260b 14,47-49,114
+apec26/mp/project.config.json
+  s_63cb3e122796a0::t_f97c686a92260b 3
+apec26/README.md
+  s_63cb3e122796a0::t_84aa6ccffc1cad 11,60,62
+apec26/public/wechat.js
+  s_63cb3e122796a0::t_09f4d8d86af466 31,34
+  s_63cb3e122796a0::t_1dfed1d672757e 1-30,32-33,35-63
+apec26/release-files.json
+  s_63cb3e122796a0::t_1dfed1d672757e 83-85
+apec26/public/wechat.css
+  s_63cb3e122796a0::t_1dfed1d672757e 1-5
+apec26/docs/WECHAT_RELEASE.md
+  s_63cb3e122796a0::t_b12b19db47f021 3,13-20
+  s_63cb3e122796a0::t_5536bcbca4ef9a 5
+  s_63cb3e122796a0::t_84aa6ccffc1cad 1-2,4,6-12,21-22
+apec26/public/index.html
+  s_63cb3e122796a0::t_1dfed1d672757e 27-28
+apec26/mp/pages/home/home.wxml
+  s_63cb3e122796a0::t_f97c686a92260b 7
+apec26/mp/app.json
+  s_63cb3e122796a0::t_f97c686a92260b 4
+apec26/mp/pages/home/home.js
+  s_63cb3e122796a0::t_59ce82888867e7 31-32
+  s_63cb3e122796a0::t_f97c686a92260b 1-25,28,30,33,48,51-52,54-55
+apec26/docs/WECHAT_GUIDE_PREVIEW.md
+  s_63cb3e122796a0::t_b12b19db47f021 3,42-43,66
+  s_63cb3e122796a0::t_84aa6ccffc1cad 1-2,4-41,44-57,68-81
+  s_63cb3e122796a0::t_5536bcbca4ef9a 82-89
+  s_63cb3e122796a0::t_b0024f987ca5da 58-65,67
+apec26/tools/mp-ci/test.cjs
+  s_63cb3e122796a0::t_09f4d8d86af466 70,74-89,91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "8bb87ee5c2698922f79f9b277d97b1392f38d0e2",
+  "prompts": {},
+  "sessions": {
+    "s_63cb3e122796a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a09f2a-7878-72b1-986b-a9f627221419",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
