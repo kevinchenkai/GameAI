@@ -1,0 +1,14 @@
+{
+  "name": "apec26-wechat-ci",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Preview and upload the isolated APEC26 web-view demo",
+  "scripts": {
+    "check": "node index.cjs check",
+    "test": "node --test test.cjs",
+    "prepare-project": "node index.cjs prepare",
+    "preview": "node index.cjs preview",
+    "upload": "node index.cjs upload"
+  },
+  "dependencies": { "miniprogram-ci": "2.1.31" }
+}

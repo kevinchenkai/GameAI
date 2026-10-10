@@ -3,6 +3,14 @@ output/
 .sites-runtime/
 .playwright-cli/
 .DS_Store
+node_modules/
+keys/
+SecKey/
+*.key
+*.pem
+.env
+.env.*
+mp/project.private.config.json
 
 # Historical raw review bodies and local screenshots remain local after archival.
 backup/**/.raw-cache/

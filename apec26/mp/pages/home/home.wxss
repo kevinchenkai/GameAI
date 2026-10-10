@@ -1,0 +1,8 @@
+page { background: #f4f5ef; color: #183d35; }
+.error-page { padding: 96rpx 40rpx; text-align: center; }
+.error-title { display: block; font-size: 40rpx; font-weight: 600; }
+.error-message { display: block; margin: 24rpx 0 48rpx; color: #5c6e65; font-size: 28rpx; }
+button { background: #204e3f; color: white; }
+.diagnostics { margin-top: 40rpx; padding: 24rpx; border: 1rpx solid #d9e0d5; border-radius: 16rpx; text-align: left; }
+.diagnostics text { display: block; margin: 12rpx 0; font-size: 24rpx; line-height: 1.6; word-break: break-all; white-space: pre-wrap; }
+.diagnostic-title { font-weight: 600; }
