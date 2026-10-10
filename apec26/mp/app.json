@@ -1,7 +1,7 @@
 {
   "pages": ["pages/home/home"],
   "window": {
-    "navigationBarTitleText": "Hello Shenzhen",
+    "navigationBarTitleText": "深圳 · Shenzhen",
     "navigationBarBackgroundColor": "#f4f5ef",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#f4f5ef"

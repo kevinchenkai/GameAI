@@ -1,0 +1,5 @@
+.contact-full-qr{display:block;width:min(100%,340px);height:auto;margin:20px auto;object-fit:contain}
+#contact-link{display:block;width:100%;min-height:94px;margin:10px 0 16px;overflow-wrap:anywhere;resize:vertical}
+.wechat-share-tip{padding:14px 16px;background:#e8f0e9;border-radius:12px;line-height:1.7}
+.guide-contact-wechat{margin-top:36px}
+.contact-option .text-button{margin-top:12px}

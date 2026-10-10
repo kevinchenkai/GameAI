@@ -8,7 +8,7 @@
 
 | 路径 | 用途 | 部署 |
 |---|---|---|
-| `public/` | 网站入口、运行脚本、样式、图片与二维码，共 79 个文件（含独立微信测试页） | 是 |
+| `public/` | 网站入口、运行脚本、样式、图片与二维码，共 81 个文件（含微信适配与独立测试页） | 是 |
 | `data/sources/` | 重建现有商品及评论所需的已审核来源、摘要与核对证据 | 否 |
 | `scripts/` | 当前数据构建、核对、采集与验证工具 | 否 |
 | `docs/` | 发布说明与当前数据质量报告 | 否 |
@@ -57,9 +57,9 @@ python3 apec26/scripts/report-data-v7.py
 
 必须先核对预演。目标仅为 `/www/wwwroot/g.ismayday.mobi/apec26/`；按 `release-files.json` 发布资源，再发布入口，不使用 `--delete`，不同步整个项目目录。新增网页资源时同步更新发布清单。改图使用新文件名；改脚本或样式更新入口中的缓存版本。详细步骤见 [发布说明](docs/RELEASE.md)，本次目录整理结果见 [验收记录](docs/RELEASE_CHECKS.md)。
 
-## 微信流程 demo
+## 微信小程序
 
-独立极简页为 `/wechat-demo/`，小程序壳在 `mp/`，CI 工具在 `tools/mp-ci/`。操作与管理员配置见 [微信流程说明](docs/WECHAT_RELEASE.md)。测试页没有预订或购买功能，不替换当前旅游指南入口。
+小程序壳在 `mp/`，CI 工具在 `tools/mp-ci/`。当前 `0.2.0` 壳接入正式旅游攻略 `/apec26/`，保留中英切换、栏目与路线分享参数；网站微信适配位于 `public/wechat.js` 与 `public/wechat.css`。操作与管理员配置见 [微信流程说明](docs/WECHAT_RELEASE.md)，本轮验收见 [正式攻略预览记录](docs/WECHAT_GUIDE_PREVIEW.md)。独立极简页 `/wechat-demo/` 继续保留供排错。
 
 2026-10-09 已走通 CI 开发版上传与微信真机 H5 加载；配置、三轮排错、成功截图及后续迭代步骤见 [首次走通记录](docs/WECHAT_FIRST_SUCCESS.md)。提交审核与正式发布尚未执行。
 

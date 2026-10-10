@@ -4,7 +4,7 @@
   <text class="error-message">{{lang === 'en' ? 'The webpage did not load. Please check the details below.' : '网页未能载入，请查看下方信息。'}}</text>
   <button bindtap="retry">{{lang === 'en' ? 'Try again' : '重新加载'}}</button>
   <view class="diagnostics">
-    <text class="diagnostic-title">{{lang === 'en' ? 'Flow test' : '流程测试'}} · {{build}}</text>
+    <text class="diagnostic-title">{{lang === 'en' ? 'City guide' : '城市攻略'}} · {{build}}</text>
     <text selectable="{{true}}">{{src}}</text>
     <text selectable="{{true}}">{{errorDetails}}</text>
     <text>{{lang === 'en' ? 'Confirm g.ismayday.mobi is a web-view business domain for this AppID.' : '请确认本 AppID 的业务域名中包含 g.ismayday.mobi。'}}</text>

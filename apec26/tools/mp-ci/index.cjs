@@ -11,7 +11,7 @@ const OUTPUT = path.join(ROOT, 'output/wechat-ci');
 const PAGE = 'pages/home/home';
 const FILES = ['project.config.json', 'app.js', 'app.json', 'sitemap.json',
   ...['js', 'json', 'wxml', 'wxss'].map(ext => PAGE + '.' + ext)];
-const DEMO_URL = 'https://g.ismayday.mobi/apec26/wechat-demo/';
+const GUIDE_URL = 'https://g.ismayday.mobi/apec26/';
 
 function parseArgs(argv) {
   const [mode = 'check', ...args] = argv;
@@ -44,9 +44,9 @@ function checkProject(env = process.env) {
   if (!/^wx[a-f0-9]{16}$/.test(appid)) throw new Error('Configure a real WX_MP_APPID');
   if (config.compileType !== 'miniprogram' || config.miniprogramRoot !== './' || config.setting.urlCheck !== true) throw new Error('Unexpected mini-program root or domain-check setting');
   const app = JSON.parse(fs.readFileSync(path.join(MP, 'app.json'), 'utf8'));
-  if (JSON.stringify(app.pages) !== JSON.stringify([PAGE])) throw new Error('Demo page must match the backend entry: ' + PAGE);
-  if (!fs.readFileSync(path.join(MP, PAGE + '.js'), 'utf8').includes(DEMO_URL)) throw new Error('Unexpected H5 entry URL');
-  if (!fs.existsSync(path.join(ROOT, 'public/wechat-demo/index.html'))) throw new Error('Missing demo H5');
+  if (JSON.stringify(app.pages) !== JSON.stringify([PAGE])) throw new Error('Guide page must match the backend entry: ' + PAGE);
+  if (!fs.readFileSync(path.join(MP, PAGE + '.js'), 'utf8').includes(GUIDE_URL)) throw new Error('Unexpected H5 entry URL');
+  if (!fs.existsSync(path.join(ROOT, 'public/index.html'))) throw new Error('Missing guide H5');
   return { appid, config };
 }
 
@@ -111,7 +111,7 @@ async function main(argv = process.argv.slice(2)) {
   console.log('Prepared isolated project: ' + projectPath);
   if (!remote) return;
   const sdkProject = new ci.Project({ appid: project.appid, type: 'miniProgram', projectPath, privateKeyPath: key, ignores: ['node_modules/**/*'] });
-  const common = { project: sdkProject, robot, setting: { es6: true, minify: true }, desc: options.desc || 'APEC26 minimal web-view flow test',
+  const common = { project: sdkProject, robot, setting: { es6: true, minify: true }, desc: options.desc || 'APEC26 city guide web-view preview',
     onProgressUpdate: () => {} };
   const compiledPath = path.join(OUTPUT, 'compiled-' + Date.now() + '.zip');
   verifyCompiled(await ci.getCompiledResult(common, compiledPath));

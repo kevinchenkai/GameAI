@@ -80,6 +80,8 @@
     "v4.js",
     "v5.css",
     "v5.js",
-    "wechat-demo/index.html"
+    "wechat-demo/index.html",
+    "wechat.css",
+    "wechat.js"
   ]
 }

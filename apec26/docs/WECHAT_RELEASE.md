@@ -1,4 +1,25 @@
-# 微信小程序最小流程 demo
+# 微信小程序操作与发布记录
+
+## 当前壳：正式旅游攻略 0.2.0
+
+当前 `mp/` 已从极简 demo 切换到 `https://g.ismayday.mobi/apec26/`。入口仍为 `pages/home/home`，保留语言、栏目及路线参数；微信内使用右上角菜单转发，联系方式提供二维码和复制链接。首次仅生成预览，用户已反馈真机测试通过，随后已通过官方 CI 上传开发版 `0.2.0`；未提交审核或正式发布。详细结果与上传状态见 [正式攻略预览记录](WECHAT_GUIDE_PREVIEW.md)。
+
+下方最小 demo 的流程与版本记录保留作历史参考；`wechat-demo/` 页面及单文件部署脚本仍可使用，但当前壳和 CI 固定地址检查针对正式攻略。重新生成当前预览：
+
+```bash
+export WX_MP_PRIVATE_KEY_PATH='/Users/kk/Work/GameAI/apec26/SecKey/private.wxc3765635c190d693.key'
+node apec26/tools/mp-ci/index.cjs preview --desc '0.2.0 正式旅游攻略，中英分享与联系方式测试'
+```
+
+`preview` 只生成扫码预览，不新增后台开发版本。要让后台版本管理出现新版本，应在验收并获得上传授权后执行：
+
+```bash
+node apec26/tools/mp-ci/index.cjs upload --version 0.2.0 --desc '正式旅游攻略接入，中英切换、微信分享与联系方式适配；真机测试通过'
+```
+
+后续迭代改用新的实际版本号。上传开发版、设置体验版、提交审核和正式发布是分别执行的步骤。
+
+## 首次极简 demo：0.1.0–0.1.2
 
 目的：先验证 H5 托管 → web-view 真机加载 → CI 预览／上传 → 后台体验版。此页是流程测试内容，不作为正式旅游服务提交审核。
 

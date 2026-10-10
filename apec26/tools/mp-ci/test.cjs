@@ -67,15 +67,28 @@ test('native page fixes destination, restores language, retries and shares safel
   vm.runInNewContext(fs.readFileSync(path.resolve(__dirname, '../../mp/' + PAGE + '.js'), 'utf8'), { Page: value => { definition = value; } });
   const page = { ...definition, data: { ...definition.data }, setData(patch) { Object.assign(this.data, patch); } };
   page.onLoad({ lang: 'en', url: 'https://untrusted.example/' });
-  assert.equal(page.data.src, 'https://g.ismayday.mobi/apec26/wechat-demo/?lang=en&mpbuild=0.1.2');
+  assert.equal(page.data.src, 'https://g.ismayday.mobi/apec26/?lang=en&tab=travel&mpbuild=0.2.0#travel');
   page.onWebError({ detail: { url: page.data.src, errMsg: 'domain rejected' } });
   assert.equal(page.data.failed, true); assert.match(page.data.errorDetails, /domain rejected/);
   page.retry(); assert.equal(page.data.failed, false); assert.equal(page.data.retryCount, 1);
-  assert.equal(page.data.errorDetails, ''); assert.match(page.data.src, /&retry=1$/);
-  assert.equal(page.onShareAppMessage({ webViewUrl: 'https://g.ismayday.mobi/apec26/wechat-demo/?lang=zh' }).path, '/' + PAGE + '?lang=zh');
-  assert.equal(page.onShareAppMessage({ webViewUrl: 'https://untrusted.example/?lang=zh' }).path, '/' + PAGE + '?lang=en');
+  assert.equal(page.data.errorDetails, ''); assert.match(page.data.src, /&retry=1#travel$/);
+  assert.equal(page.onShareAppMessage({ webViewUrl: 'https://g.ismayday.mobi/apec26/?lang=zh' }).path, '/' + PAGE + '?lang=zh&tab=travel');
+  assert.equal(page.onShareAppMessage({ webViewUrl: 'https://untrusted.example/?lang=zh' }).path, '/' + PAGE + '?lang=en&tab=travel');
+  const share = page.onShareAppMessage({ webViewUrl: 'https://g.ismayday.mobi/apec26/?lang=en&route=half-skyline#travel' });
+  assert.equal(share.path, '/' + PAGE + '?lang=en&tab=travel&route=half-skyline');
+  const receiver = { ...definition, data: { ...definition.data }, setData(patch) { Object.assign(this.data, patch); } };
+  receiver.onLoad({ lang: 'en', tab: 'travel', route: 'half-skyline' });
+  assert.match(receiver.data.src, /route=half-skyline&mpbuild=0.2.0#travel$/);
+  for (const tab of ['food', 'gifts', 'guide']) {
+    assert.equal(page.onShareAppMessage({ webViewUrl: 'https://g.ismayday.mobi/apec26/?lang=en#' + tab }).path, '/' + PAGE + '?lang=en&tab=' + tab);
+    receiver.onLoad({ lang: 'en', tab }); assert.match(receiver.data.src, new RegExp('#' + tab + '$'));
+  }
+  assert.equal(page.onShareAppMessage({ webViewUrl: 'https://g.ismayday.mobi/apec26/other/?lang=zh' }).path, '/' + PAGE + '?lang=en&tab=travel');
+  assert.equal(page.onShareAppMessage({ webViewUrl: 'https://g.ismayday.mobi/apec26/?route=%3Cscript%3E&lang=%E0%A4%A#food' }).path, '/' + PAGE + '?lang=zh&tab=food');
+  receiver.onLoad({ lang: 'zh', route: '../secret', tab: 'invalid', url: 'https://untrusted.example' });
+  assert.equal(receiver.data.route, ''); assert.equal(receiver.data.tab, 'travel');
   page.onLoad({ lang: '<script>' }); assert.equal(page.data.lang, 'zh');
-  assert.equal(page.onShareAppMessage().path, '/' + PAGE + '?lang=zh');
+  assert.equal(page.onShareAppMessage().path, '/' + PAGE + '?lang=zh&tab=travel');
 });
 
 test('web-view is not mounted until its HTTPS URL is ready', () => {

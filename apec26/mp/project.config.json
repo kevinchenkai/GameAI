@@ -1,6 +1,6 @@
 {
   "appid": "wxc3765635c190d693",
-  "projectname": "apec26-wechat-demo",
+  "projectname": "apec26-city-guide",
   "compileType": "miniprogram",
   "miniprogramRoot": "./",
   "setting": { "urlCheck": true, "es6": true, "minified": true }

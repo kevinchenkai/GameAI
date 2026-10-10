@@ -1,11 +1,36 @@
-const DEMO_URL = 'https://g.ismayday.mobi/apec26/wechat-demo/';
-const BUILD = '0.1.2';
+const GUIDE_URL = 'https://g.ismayday.mobi/apec26/';
+const BUILD = '0.2.0';
+
+const TABS = ['travel', 'food', 'gifts', 'guide'];
+function stateFrom(options) {
+  const lang = options && options.lang === 'en' ? 'en' : 'zh';
+  const route = options && typeof options.route === 'string' && /^[a-z0-9-]{1,60}$/.test(options.route) ? options.route : '';
+  const tab = route ? 'travel' : options && TABS.indexOf(options.tab) >= 0 ? options.tab : 'travel';
+  return { lang, route, tab };
+}
+function queryState(state) {
+  return 'lang=' + state.lang + '&tab=' + state.tab + (state.route ? '&route=' + encodeURIComponent(state.route) : '');
+}
+function sharedState(url, fallback) {
+  if (typeof url !== 'string' || !(url === GUIDE_URL || url.indexOf(GUIDE_URL + '?') === 0 || url.indexOf(GUIDE_URL + '#') === 0)) return stateFrom(fallback);
+  const values = {};
+  const query = url.split('#')[0].split('?')[1] || '';
+  query.split('&').forEach(pair => {
+    const parts = pair.split('=');
+    try { values[decodeURIComponent(parts[0])] = decodeURIComponent(parts.slice(1).join('=')); } catch (_) { /* Ignore malformed input. */ }
+  });
+  const hash = url.split('#')[1];
+  if (TABS.indexOf(hash) >= 0) values.tab = hash;
+  return stateFrom(values);
+}
 
 Page({
-  data: { src: '', lang: 'zh', failed: false, build: BUILD, retryCount: 0, errorDetails: '' },
+  data: { src: '', lang: 'zh', route: '', tab: 'travel', failed: false, build: BUILD, retryCount: 0, errorDetails: '' },
   onLoad(options) {
-    const lang = options && options.lang === 'en' ? 'en' : 'zh';
-    this.setData({ lang, src: DEMO_URL + '?lang=' + lang + '&mpbuild=' + BUILD });
+    const state = stateFrom(options);
+    this.setData({ lang: state.lang, route: state.route, tab: state.tab,
+      src: GUIDE_URL + '?' + queryState(state) + '&mpbuild=' + BUILD + '#' + state.tab });
+    if (typeof wx !== 'undefined' && wx.showShareMenu) wx.showShareMenu({ menus: ['shareAppMessage'] });
   },
   onWebLoad() {
     this.setData({ failed: false });
@@ -20,18 +45,14 @@ Page({
   retry() {
     const retryCount = this.data.retryCount + 1;
     this.setData({ failed: false, errorDetails: '', retryCount,
-      src: DEMO_URL + '?lang=' + this.data.lang + '&mpbuild=' + BUILD + '&retry=' + retryCount });
+      src: GUIDE_URL + '?' + queryState(this.data) + '&mpbuild=' + BUILD + '&retry=' + retryCount + '#' + this.data.tab });
   },
   onShareAppMessage(options) {
-    // Only accept a language from our own page; never navigate to an input URL.
-    const currentUrl = options && options.webViewUrl;
-    const ownPage = typeof currentUrl === 'string' &&
-      (currentUrl === DEMO_URL || currentUrl.indexOf(DEMO_URL + '?') === 0 || currentUrl.indexOf(DEMO_URL + '#') === 0);
-    const match = ownPage && currentUrl.match(/[?&]lang=(en|zh)(?:&|#|$)/);
-    const lang = match ? match[1] : this.data.lang;
+    // Share only whitelisted state from this exact guide URL, never an input URL.
+    const state = sharedState(options && options.webViewUrl, this.data);
     return {
-      title: lang === 'en' ? 'Hello, Shenzhen.' : '你好，深圳。',
-      path: '/pages/home/home?lang=' + lang
+      title: state.lang === 'en' ? 'Explore Shenzhen · APEC 2026 City Guide' : '深圳，见面吧 · APEC 2026 城市旅行指南',
+      path: '/pages/home/home?' + queryState(state)
     };
   }
 });
