@@ -38,7 +38,17 @@
       } catch {
         // Language switching remains available when browser storage is blocked.
       }
+      const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (motionOk && "WebGL2RenderingContext" in window) {
+        root.classList.add("supports-3d");
+        let off = false;
+        try { off = localStorage.getItem("codex-games-3d") === "off"; } catch { /* Default to on. */ }
+        if (!off) root.classList.add("can-3d");
+      }
     })();
+  </script>
+  <script type="importmap">
+    { "imports": { "three": "./home-3d/vendor/three.module.min.js", "three/addons/": "./home-3d/vendor/" } }
   </script>
   <style>
     :root {
@@ -98,6 +108,66 @@
     .intro { padding: 20px 0 28px; }
     .studio-art { display: block; }
     .studio-art img { width: 100%; height: auto; aspect-ratio: 40 / 21; }
+    .stage {
+      position: relative; overflow: hidden; aspect-ratio: 40 / 21;
+      border-radius: var(--radius); background: #0f1d26;
+    }
+    .stage .studio-art, .stage .studio-art img { width: 100%; height: 100%; }
+    .stage .studio-art img { object-fit: cover; transition: opacity 700ms ease 200ms; }
+    .stage-canvas { position: absolute; inset: 0; opacity: 0; transition: opacity 900ms ease; }
+    .stage-canvas canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
+    .stage-canvas::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 75% 70% at 50% 52%, transparent 60%, rgba(6, 12, 16, 0.42) 100%);
+    }
+    .stage-brand {
+      position: absolute; top: clamp(16px, 3vw, 30px); left: clamp(18px, 3.2vw, 34px);
+      display: none; pointer-events: none; text-shadow: 0 2px 18px rgba(4, 12, 18, 0.7);
+    }
+    .stage-brand strong { display: block; font-size: clamp(26px, 4.4vw, 54px); font-weight: 800; line-height: 1; }
+    .stage-brand span {
+      display: block; margin-top: 8px; color: var(--cyan);
+      font: 600 clamp(10px, 1vw, 12px)/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-transform: uppercase; letter-spacing: 0.18em;
+    }
+    .stage-toggle {
+      position: absolute; top: 12px; right: 12px; display: none; align-items: center; gap: 8px;
+      min-height: 34px; padding: 6px 12px; border: 1px solid rgba(243, 245, 244, 0.18); border-radius: 999px;
+      background: rgba(16, 17, 18, 0.55); color: var(--ink); font-size: 12px; font-weight: 600;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .stage-toggle::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+    .stage-toggle[aria-pressed="true"]::before { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    .supports-3d .stage-toggle { display: inline-flex; }
+    .stage::after {
+      content: ""; position: absolute; inset: 0 0 auto; height: 38%; pointer-events: none; opacity: 0;
+      background: linear-gradient(rgba(8, 16, 22, 0.62), rgba(8, 16, 22, 0)); transition: opacity 900ms ease;
+    }
+    .stage-toggle, .stage-brand { z-index: 1; }
+    .is-3d .stage::after { opacity: 1; }
+    .is-3d .stage-canvas { opacity: 1; }
+    .is-3d .stage .studio-art img { opacity: 0; }
+    .is-3d .stage-brand { display: block; animation: stage-in 900ms ease both; }
+    @keyframes stage-in { from { opacity: 0; transform: translateY(6px); } }
+    .world-bar { display: none; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; }
+    .is-3d .world-bar { display: flex; }
+    .world-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .world-tab {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 7px 13px;
+      border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font-size: 13px;
+      transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+    }
+    .world-tab i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.55; }
+    .world-tab[aria-pressed="true"] { border-color: var(--accent); color: var(--ink); background: rgba(255, 255, 255, 0.04); }
+    .world-tab[aria-pressed="true"] i { opacity: 1; box-shadow: 0 0 8px var(--accent); }
+    .world-play {
+      display: inline-flex; flex: 0 0 auto; align-items: center; gap: 8px; min-height: 40px; padding: 8px 16px;
+      border-radius: var(--radius); background: var(--cyan); color: #101112; font-size: 14px; font-weight: 700;
+    }
+    .world-play [data-w] { display: none; }
+    .world-play[data-active="0"] [data-w="0"], .world-play[data-active="1"] [data-w="1"],
+    .world-play[data-active="2"] [data-w="2"], .world-play[data-active="3"] [data-w="3"],
+    .world-play[data-active="4"] [data-w="4"], .world-play[data-active="5"] [data-w="5"] { display: inline; }
     .intro-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: 32px; margin-top: 18px; }
     .section-index {
       margin: 0 0 10px; color: var(--cyan);
@@ -188,6 +258,7 @@
     @media (hover: hover) and (pointer: fine) {
       .site-nav a:hover, .records a:hover { color: var(--cyan); }
       .game-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+      .world-tab:hover { color: var(--ink); border-color: var(--accent); }
       .game-card:hover .game-art img { transform: scale(1.035); }
       .detail:hover { border-color: var(--accent); }
     }
@@ -207,6 +278,9 @@
       .intro-copy { grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
       .intro-line { font-size: 21px; }
       .catalog-note { display: none; }
+      .can-3d .stage { aspect-ratio: 4 / 3; }
+      .world-bar { flex-direction: column; align-items: stretch; }
+      .world-play { justify-content: center; }
     }
     @media (max-width: 599px) {
       .shell { width: calc(100% - 32px); }
@@ -217,6 +291,11 @@
       .lang-toggle button { min-width: 40px; padding-inline: 8px; }
       .intro-line { font-size: 20px; }
       .lead { font-size: 14px; }
+      .can-3d .stage { aspect-ratio: 1 / 1; }
+      .stage-brand strong { font-size: 24px; }
+      .stage-brand span { margin-top: 5px; font-size: 9px; }
+      .world-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .world-tab { justify-content: center; padding-inline: 6px; font-size: 12px; }
       .showcase, .details-grid { grid-template-columns: 1fr; }
       .game-copy { padding: 20px; }
       .game-card h3 { font-size: 25px; }
@@ -263,9 +342,25 @@
   <main class="shell">
     <section class="intro" aria-labelledby="page-title">
       <h1 id="page-title" class="sr-only">Codex Games</h1>
-      <picture class="studio-art">
-        <img id="studio-image" src="images/promo/home-v3/studio-hero-1200.webp" srcset="images/promo/home-v3/studio-hero-600.webp 600w, images/promo/home-v3/studio-hero-1200.webp 1200w, images/promo/home-v3/studio-hero-1600.webp 1600w" sizes="(max-width: 599px) calc(100vw - 32px), (max-width: 759px) calc(100vw - 40px), (max-width: 1264px) calc(100vw - 64px), 1200px" width="1600" height="840" alt="Codex Games: space battles, a quiet companion, a wuxia tavern, a journey west, a growing garden, and colorful tile puzzles." fetchpriority="high" decoding="async" />
-      </picture>
+      <div class="stage" id="stage">
+        <picture class="studio-art">
+          <img id="studio-image" src="images/promo/home-v3/studio-hero-1200.webp" srcset="images/promo/home-v3/studio-hero-600.webp 600w, images/promo/home-v3/studio-hero-1200.webp 1200w, images/promo/home-v3/studio-hero-1600.webp 1600w" sizes="(max-width: 599px) calc(100vw - 32px), (max-width: 759px) calc(100vw - 40px), (max-width: 1264px) calc(100vw - 64px), 1200px" width="1600" height="840" alt="Codex Games: space battles, a quiet companion, a wuxia tavern, a journey west, a growing garden, and colorful tile puzzles." fetchpriority="high" decoding="async" />
+        </picture>
+        <div class="stage-canvas" id="stage-canvas"></div>
+        <p class="stage-brand" aria-hidden="true"><strong>Codex Games</strong><span>AI Native Game Studio</span></p>
+        <button type="button" class="stage-toggle" id="stage-toggle" data-label="toggle3d" aria-label="Animated 3D scene" aria-pressed="false">3D</button>
+      </div>
+      <div class="world-bar" id="world-bar">
+        <div class="world-tabs" role="group" data-label="worlds" aria-label="Choose a world">
+          <button type="button" class="world-tab star" data-world="0" data-href="https://g.ismayday.mobi/star_fighter/" aria-pressed="true"><i aria-hidden="true"></i><span class="zh">星际突击队</span><span class="en">Star Fighter</span></button>
+          <button type="button" class="world-tab soul" data-world="1" data-href="https://g.ismayday.mobi/soulmate/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">心动陪伴</span><span class="en">Soulmate</span></button>
+          <button type="button" class="world-tab tavern" data-world="2" data-href="https://g.ismayday.mobi/tavern/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">武侠酒馆</span><span class="en">Wulin Tavern</span></button>
+          <button type="button" class="world-tab journey" data-world="3" data-href="https://g.ismayday.mobi/journey/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">西游取经棋</span><span class="en">Journey Ludo</span></button>
+          <button type="button" class="world-tab garden" data-world="4" data-href="https://g.ismayday.mobi/garden/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">治愈花园</span><span class="en">Garden Match</span></button>
+          <button type="button" class="world-tab stack" data-world="5" data-href="https://g.ismayday.mobi/stack/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">萌宠叠叠消</span><span class="en">StackPop</span></button>
+        </div>
+        <a class="world-play" id="world-play" href="https://g.ismayday.mobi/star_fighter/" data-active="0"><span class="zh">进入</span><span class="en">Play</span> <span data-w="0"><span class="zh">星际突击队</span><span class="en">Star Fighter</span></span><span data-w="1"><span class="zh">心动陪伴</span><span class="en">Soulmate</span></span><span data-w="2"><span class="zh">武侠酒馆</span><span class="en">Wulin Tavern</span></span><span data-w="3"><span class="zh">西游取经棋</span><span class="en">Journey Ludo</span></span><span data-w="4"><span class="zh">治愈花园</span><span class="en">Garden Match</span></span><span data-w="5"><span class="zh">萌宠叠叠消</span><span class="en">StackPop</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></a>
+      </div>
       <div class="intro-copy">
         <p class="intro-line"><span class="zh">六个小世界，等你来玩。</span><span class="en">Six small worlds. Find your escape.</span></p>
         <p class="lead"><span class="zh">由 Seta Chen 与 Codex 一起打磨的六款原创 AI Native 游戏。热血、温柔、江湖与小小的快乐，都在这里。</span><span class="en">Six original AI Native games by Seta Chen, crafted with Codex. A little adventure, a quiet connection, and small moments of joy.</span></p>
@@ -419,8 +514,8 @@
       const root = document.documentElement;
       const buttons = [...document.querySelectorAll("[data-set-lang]")];
       const labels = {
-        en: { home: "Codex Games home", navigation: "Primary navigation", language: "Language", credits: "Author and ICP filing information" },
-        zh: { home: "Codex Games 首页", navigation: "主导航", language: "语言", credits: "作者与网站备案信息" }
+        en: { home: "Codex Games home", navigation: "Primary navigation", language: "Language", credits: "Author and ICP filing information", worlds: "Choose a world", toggle3d: "Animated 3D scene" },
+        zh: { home: "Codex Games 首页", navigation: "主导航", language: "语言", credits: "作者与网站备案信息", worlds: "选择一个世界", toggle3d: "3D 动态场景" }
       };
       const flowImage = document.getElementById("flow-image");
       const flowLink = document.getElementById("flow-link");
@@ -464,6 +559,91 @@
       });
       setLanguage(root.dataset.lang);
     })();
+  </script>
+  <script type="module">
+    const root = document.documentElement;
+    const host = document.getElementById("stage-canvas");
+    const toggle = document.getElementById("stage-toggle");
+    const playLink = document.getElementById("world-play");
+    const tabs = [...document.querySelectorAll("[data-world]")];
+    const cards = [...document.querySelectorAll(".showcase .game-card")];
+    let stage = null;
+    let loading = false;
+    let current = 0;
+    let userChose = false;
+    let autoplay = 0;
+
+    function select(index, fromUser) {
+      current = index;
+      tabs.forEach((tab, k) => tab.setAttribute("aria-pressed", String(k === index)));
+      playLink.dataset.active = String(index);
+      playLink.href = tabs[index].dataset.href;
+      stage?.select(index);
+      if (fromUser) userChose = true;
+    }
+
+    function stop(reason) {
+      clearInterval(autoplay);
+      stage?.destroy();
+      stage = null;
+      root.classList.remove("is-3d");
+      toggle.setAttribute("aria-pressed", "false");
+      // Anything but a user switch-off means this device should keep the poster layout.
+      if (reason !== "user") root.classList.remove("can-3d");
+    }
+
+    async function start() {
+      if (stage || loading) return;
+      loading = true;
+      toggle.setAttribute("aria-pressed", "true");
+      try {
+        const { createStage } = await import("./home-3d/stage.js");
+        const tier = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 760 ? "low" : "high";
+        const created = await createStage({
+          host,
+          tier,
+          assets: {
+            sky: tier === "low" ? "images/promo/home-3d/sky-backdrop-v1-1024.webp" : "images/promo/home-3d/sky-backdrop-v1-1600.webp",
+            tiles: "images/promo/home-3d/stack-tiles-v1-512.webp"
+          },
+          onPick(index) {
+            if (index === current) window.location.href = tabs[index].dataset.href;
+            else select(index, true);
+          }
+        });
+        if (!root.classList.contains("can-3d")) { created.destroy(); return; }
+        stage = created;
+        stage.onFail = reason => stop(reason);
+        stage.select(current);
+        stage.start();
+        root.classList.add("is-3d");
+        autoplay = setInterval(() => {
+          if (!userChose && !document.hidden) select((current + 1) % tabs.length, false);
+        }, 6500);
+      } catch (error) {
+        console.warn("3D stage unavailable; keeping the poster.", error);
+        stop("error");
+      } finally {
+        loading = false;
+      }
+    }
+
+    tabs.forEach((tab, index) => tab.addEventListener("click", () => select(index, true)));
+    cards.forEach((card, index) => {
+      card.addEventListener("pointerenter", () => { if (stage) select(index, false); });
+      card.addEventListener("focusin", () => { if (stage) select(index, false); });
+    });
+    toggle.addEventListener("click", () => {
+      const on = !(stage || loading);
+      try { localStorage.setItem("codex-games-3d", on ? "on" : "off"); } catch { /* Preference is optional. */ }
+      if (on) { root.classList.add("can-3d"); start(); }
+      else { root.classList.remove("can-3d"); stop("user"); }
+    });
+
+    if (root.classList.contains("can-3d")) {
+      const boot = () => ("requestIdleCallback" in window ? requestIdleCallback(start, { timeout: 1200 }) : setTimeout(start, 200));
+      document.readyState === "complete" ? boot() : window.addEventListener("load", boot, { once: true });
+    }
   </script>
 </body>
 </html>

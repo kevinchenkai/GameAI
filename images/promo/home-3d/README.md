@@ -1,6 +1,6 @@
 # Homepage 3D Stage Assets
 
-Created on 2026-10-21 for the `index_new.html` three.js hero draft
+Created on 2026-10-21 for the homepage three.js hero in `index.html`
 (`home-3d/stage.js`). Generated with Codex `gpt-6.1-sol` built-in image
 generation via model-bridge, then resized to WebP locally with `cwebp`.
 Static images use `expires 30d` on the server: change the `-vN` suffix when
