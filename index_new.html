@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Six original AI Native browser games. Find your next escape in Star Fighter, Soulmate, Wulin Tavern, Journey Ludo, Garden Match, and StackPop." />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="theme-color" content="#101112" />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://g.ismayday.mobi/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/codex-games-v2-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/codex-games-v2-180.png" />
+  <title>Codex Games | AI Native Game Studio</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Codex Games" />
+  <meta property="og:url" content="https://g.ismayday.mobi/" />
+  <meta property="og:title" content="Codex Games | AI Native Game Studio" />
+  <meta property="og:description" content="Six small worlds, six ways to escape. Original AI Native browser games by Seta Chen, crafted with Codex." />
+  <meta property="og:image" content="https://g.ismayday.mobi/images/promo/home-v2/studio-share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Codex Games: six game worlds from space battles to a cozy garden." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Codex Games | AI Native Game Studio" />
+  <meta name="twitter:description" content="Six small worlds, six ways to escape. Original AI Native browser games crafted with Codex." />
+  <meta name="twitter:image" content="https://g.ismayday.mobi/images/promo/home-v2/studio-share.jpg" />
+  <meta name="twitter:image:alt" content="Codex Games: six game worlds from space battles to a cozy garden." />
+  <script>
+    (() => {
+      const root = document.documentElement;
+      root.classList.add("js");
+      try {
+        if (localStorage.getItem("codex-games-lang") === "zh") {
+          root.dataset.lang = "zh";
+          root.lang = "zh-CN";
+        }
+      } catch {
+        // Language switching remains available when browser storage is blocked.
+      }
+      const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (motionOk && "WebGL2RenderingContext" in window) {
+        root.classList.add("supports-3d");
+        let off = false;
+        try { off = localStorage.getItem("codex-games-3d") === "off"; } catch { /* Default to on. */ }
+        if (!off) root.classList.add("can-3d");
+      }
+    })();
+  </script>
+  <script type="importmap">
+    { "imports": { "three": "./home-3d/vendor/three.module.min.js", "three/addons/": "./home-3d/vendor/" } }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101112;
+      --surface: #191b1d;
+      --ink: #f3f5f4;
+      --muted: #b1b6b8;
+      --soft: #9bada9;
+      --line: #323638;
+      --cyan: #80e7dd;
+      --radius: 8px;
+      --max: 1200px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-synthesis: none;
+    }
+    * { box-sizing: border-box; letter-spacing: 0; }
+    html { background: var(--bg); scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { margin: 0; color: var(--ink); background: var(--bg); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+    ::selection { background: #80e7dd; color: #101112; }
+    [data-lang="en"] .zh, [data-lang="zh"] .en { display: none !important; }
+    .shell { width: min(var(--max), calc(100% - 64px)); margin-inline: auto; }
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 10;
+      padding: 10px 16px; border-radius: var(--radius);
+      background: var(--cyan); color: var(--bg); font-weight: 700;
+      transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .topbar {
+      display: flex; align-items: center; gap: 28px;
+      min-height: 82px; padding-block: max(16px, env(safe-area-inset-top)) 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
+    .mark { flex: 0 0 40px; width: 40px; height: 40px; }
+    .brand strong { display: block; font-size: 16px; line-height: 1.3; }
+    .brand small { display: block; margin-top: 3px; color: var(--soft); font-size: 11px; }
+    .site-nav { display: flex; gap: 26px; margin-left: auto; }
+    .site-nav a { padding-block: 10px; color: var(--muted); font-size: 13px; }
+    .lang-toggle {
+      display: none; flex: 0 0 auto; gap: 2px; padding: 3px;
+      border: 1px solid var(--line); border-radius: 6px;
+    }
+    .js .lang-toggle { display: inline-flex; }
+    .lang-toggle button {
+      min-width: 44px; min-height: 38px; padding: 6px 10px;
+      border: 0; border-radius: 3px; background: transparent; color: var(--muted);
+      font-size: 12px; font-weight: 700;
+    }
+    .lang-toggle button[aria-pressed="true"] { background: var(--cyan); color: #101112; }
+    .intro { padding: 20px 0 28px; }
+    .studio-art { display: block; }
+    .studio-art img { width: 100%; height: auto; aspect-ratio: 40 / 21; }
+    .stage {
+      position: relative; overflow: hidden; aspect-ratio: 40 / 21;
+      border-radius: var(--radius); background: #0f1d26;
+    }
+    .stage .studio-art, .stage .studio-art img { width: 100%; height: 100%; }
+    .stage .studio-art img { object-fit: cover; transition: opacity 700ms ease 200ms; }
+    .stage-canvas { position: absolute; inset: 0; opacity: 0; transition: opacity 900ms ease; }
+    .stage-canvas canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
+    .stage-canvas::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 75% 70% at 50% 52%, transparent 60%, rgba(6, 12, 16, 0.42) 100%);
+    }
+    .stage-brand {
+      position: absolute; top: clamp(16px, 3vw, 30px); left: clamp(18px, 3.2vw, 34px);
+      display: none; pointer-events: none; text-shadow: 0 2px 18px rgba(4, 12, 18, 0.7);
+    }
+    .stage-brand strong { display: block; font-size: clamp(26px, 4.4vw, 54px); font-weight: 800; line-height: 1; }
+    .stage-brand span {
+      display: block; margin-top: 8px; color: var(--cyan);
+      font: 600 clamp(10px, 1vw, 12px)/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-transform: uppercase; letter-spacing: 0.18em;
+    }
+    .stage-toggle {
+      position: absolute; top: 12px; right: 12px; display: none; align-items: center; gap: 8px;
+      min-height: 34px; padding: 6px 12px; border: 1px solid rgba(243, 245, 244, 0.18); border-radius: 999px;
+      background: rgba(16, 17, 18, 0.55); color: var(--ink); font-size: 12px; font-weight: 600;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .stage-toggle::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+    .stage-toggle[aria-pressed="true"]::before { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    .supports-3d .stage-toggle { display: inline-flex; }
+    .stage::after {
+      content: ""; position: absolute; inset: 0 0 auto; height: 38%; pointer-events: none; opacity: 0;
+      background: linear-gradient(rgba(8, 16, 22, 0.62), rgba(8, 16, 22, 0)); transition: opacity 900ms ease;
+    }
+    .stage-toggle, .stage-brand { z-index: 1; }
+    .is-3d .stage::after { opacity: 1; }
+    .is-3d .stage-canvas { opacity: 1; }
+    .is-3d .stage .studio-art img { opacity: 0; }
+    .is-3d .stage-brand { display: block; animation: stage-in 900ms ease both; }
+    @keyframes stage-in { from { opacity: 0; transform: translateY(6px); } }
+    .world-bar { display: none; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; }
+    .is-3d .world-bar { display: flex; }
+    .world-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .world-tab {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 7px 13px;
+      border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font-size: 13px;
+      transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+    }
+    .world-tab i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.55; }
+    .world-tab[aria-pressed="true"] { border-color: var(--accent); color: var(--ink); background: rgba(255, 255, 255, 0.04); }
+    .world-tab[aria-pressed="true"] i { opacity: 1; box-shadow: 0 0 8px var(--accent); }
+    .world-play {
+      display: inline-flex; flex: 0 0 auto; align-items: center; gap: 8px; min-height: 40px; padding: 8px 16px;
+      border-radius: var(--radius); background: var(--cyan); color: #101112; font-size: 14px; font-weight: 700;
+    }
+    .world-play [data-w] { display: none; }
+    .world-play[data-active="0"] [data-w="0"], .world-play[data-active="1"] [data-w="1"],
+    .world-play[data-active="2"] [data-w="2"], .world-play[data-active="3"] [data-w="3"],
+    .world-play[data-active="4"] [data-w="4"], .world-play[data-active="5"] [data-w="5"] { display: inline; }
+    .intro-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: 32px; margin-top: 18px; }
+    .section-index {
+      margin: 0 0 10px; color: var(--cyan);
+      font: 600 11px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-transform: uppercase;
+    }
+    .intro-line { margin: 0; font-size: 23px; line-height: 1.4; }
+    .lead { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+    .catalog { padding-bottom: 72px; }
+    .catalog-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      margin-bottom: 20px;
+    }
+    .catalog-head h2 { margin: 0; font-size: 17px; font-weight: 600; }
+    .catalog-head h2 span + span { margin-left: 8px; }
+    .count { color: var(--soft); font: 500 12px/1 ui-monospace, monospace; }
+    .catalog-note { margin: 0; color: var(--soft); font-size: 12px; }
+    .showcase { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .game-card {
+      min-width: 0; overflow: hidden; border: 1px solid var(--line);
+      border-radius: var(--radius); background: var(--surface);
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+    .star { --accent: #87ddf0; }
+    .soul { --accent: #efb2c7; }
+    .tavern { --accent: #f0c77f; }
+    .journey { --accent: #9ec3fc; }
+    .garden { --accent: #a4de9a; }
+    .stack { --accent: #f0c59e; }
+    .game-entry { display: flex; flex-direction: column; height: 100%; }
+    .game-entry:focus-visible { outline-color: var(--accent); outline-offset: -3px; }
+    .game-art { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: #25292a; }
+    .game-art img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 350ms ease;
+    }
+    .game-copy { display: flex; flex: 1; flex-direction: column; padding: 22px; }
+    .tagline { color: var(--accent); font-size: 11px; font-weight: 650; }
+    .game-card h3 { margin: 8px 0 0; font-size: 25px; line-height: 1.2; font-weight: 700; }
+    .game-card p { margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .meta { display: flex; flex-wrap: wrap; gap: 7px 12px; margin-top: 18px; }
+    .chip { color: var(--soft); font-size: 11px; }
+    .chip + .chip { border-left: 1px solid var(--line); padding-left: 12px; }
+    .card-actions { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 22px; }
+    .play { color: var(--accent); font-size: 14px; font-weight: 650; }
+    .arrow {
+      display: block; width: 20px; height: 20px; fill: none;
+      stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .card-actions .arrow { color: var(--accent); }
+    .section { padding: 36px 0 64px; border-top: 1px solid var(--line); }
+    .section-head {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 26px;
+    }
+    .section h2 { margin: 0; font-size: 32px; font-weight: 650; line-height: 1.2; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 28px; }
+    .detail {
+      min-width: 0; display: block; padding: 22px 0; border-bottom: 1px solid var(--line);
+      transition: border-color 180ms ease;
+    }
+    .detail-game { display: block; margin-bottom: 8px; color: var(--accent); font-size: 11px; font-weight: 600; }
+    .detail strong { display: block; font-size: 19px; font-weight: 600; line-height: 1.35; }
+    .detail p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
+    .flow-copy { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 48px; margin-bottom: 28px; align-items: end; }
+    .flow-copy p:not(.section-index) { margin: 16px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .flow-note { border-left: 2px solid var(--cyan); padding-left: 20px; color: var(--muted); font-size: 13px; line-height: 1.85; }
+    .flow-visual { margin: 0; }
+    .flow-image-link { display: block; border-radius: var(--radius); cursor: zoom-in; }
+    .flow-visual img {
+      width: 100%; height: auto; aspect-ratio: 16 / 9;
+      border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+    }
+    .flow-steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; }
+    .flow-steps li { min-width: 0; border-top: 1px solid var(--line); padding-top: 14px; }
+    .flow-step-title { display: flex; gap: 12px; align-items: baseline; }
+    .flow-number { color: var(--cyan); font: 500 12px/1.5 ui-monospace, monospace; }
+    .flow-steps h3 { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; }
+    .flow-steps p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .footer {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      padding: 28px 0 max(28px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line);
+      color: var(--soft); font-size: 12px;
+    }
+    .records { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+    .records a { min-height: 32px; display: inline-flex; align-items: center; }
+    .author { color: var(--ink); }
+    @media (hover: hover) and (pointer: fine) {
+      .site-nav a:hover, .records a:hover { color: var(--cyan); }
+      .game-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+      .world-tab:hover { color: var(--ink); border-color: var(--accent); }
+      .game-card:hover .game-art img { transform: scale(1.035); }
+      .detail:hover { border-color: var(--accent); }
+    }
+    @media (max-width: 1099px) {
+      .showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+      .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .flow-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 759px) {
+      .shell { width: calc(100% - 40px); }
+      .site-nav { display: none; }
+      .lang-toggle { margin-left: auto; }
+      .topbar { min-height: 82px; gap: 12px; }
+      .section-head, .flow-copy { grid-template-columns: 1fr; gap: 18px; }
+      .footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .intro { padding-block: 24px 28px; }
+      .intro-copy { grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+      .intro-line { font-size: 21px; }
+      .catalog-note { display: none; }
+      .can-3d .stage { aspect-ratio: 4 / 3; }
+      .world-bar { flex-direction: column; align-items: stretch; }
+      .world-play { justify-content: center; }
+    }
+    @media (max-width: 599px) {
+      .shell { width: calc(100% - 32px); }
+      .brand { gap: 9px; }
+      .brand strong { font-size: 14px; }
+      .brand small { font-size: 10px; }
+      .mark { flex-basis: 34px; width: 34px; height: 34px; }
+      .lang-toggle button { min-width: 40px; padding-inline: 8px; }
+      .intro-line { font-size: 20px; }
+      .lead { font-size: 14px; }
+      .can-3d .stage { aspect-ratio: 1 / 1; }
+      .stage-brand strong { font-size: 24px; }
+      .stage-brand span { margin-top: 5px; font-size: 9px; }
+      .world-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .world-tab { justify-content: center; padding-inline: 6px; font-size: 12px; }
+      .showcase, .details-grid { grid-template-columns: 1fr; }
+      .game-copy { padding: 20px; }
+      .game-card h3 { font-size: 25px; }
+      .catalog { padding-bottom: 44px; }
+      .section { padding: 28px 0 44px; }
+      .section h2 { font-size: 27px; }
+      .details-grid { gap: 0; }
+      .flow-steps { grid-template-columns: 1fr; gap: 18px; }
+      .detail { padding-block: 20px; }
+      .records { gap: 4px 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+    @media (forced-colors: active) {
+      .lang-toggle button[aria-pressed="true"] { outline: 2px solid Highlight; outline-offset: -2px; }
+      .game-card { border-color: CanvasText; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Lucide arrow-up-right, ISC license: images/ui/LUCIDE-LICENSE. -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute">
+    <defs><symbol id="arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></symbol></defs>
+  </svg>
+  <a class="skip-link" href="#games"><span class="zh">跳到游戏列表</span><span class="en">Skip to games</span></a>
+  <header class="topbar shell">
+    <a class="brand" href="index.html" data-label="home" aria-label="Codex Games home">
+      <img class="mark" src="images/brand/codex-games-v2-96.webp" width="96" height="96" alt="" decoding="async" />
+      <span><strong>Codex Games</strong><small>AI Native Game Studio</small></span>
+    </a>
+    <nav class="site-nav" data-label="navigation" aria-label="Primary navigation">
+      <a href="#games"><span class="zh">游戏</span><span class="en">Games</span></a>
+      <a href="#moods"><span class="zh">心情</span><span class="en">Moods</span></a>
+      <a href="#process"><span class="zh">创作幕后</span><span class="en">How It's Made</span></a>
+    </nav>
+    <div class="lang-toggle" role="group" data-label="language" aria-label="Language">
+      <button type="button" data-set-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">EN</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title" class="sr-only">Codex Games</h1>
+      <div class="stage" id="stage">
+        <picture class="studio-art">
+          <img id="studio-image" src="images/promo/home-v3/studio-hero-1200.webp" srcset="images/promo/home-v3/studio-hero-600.webp 600w, images/promo/home-v3/studio-hero-1200.webp 1200w, images/promo/home-v3/studio-hero-1600.webp 1600w" sizes="(max-width: 599px) calc(100vw - 32px), (max-width: 759px) calc(100vw - 40px), (max-width: 1264px) calc(100vw - 64px), 1200px" width="1600" height="840" alt="Codex Games: space battles, a quiet companion, a wuxia tavern, a journey west, a growing garden, and colorful tile puzzles." fetchpriority="high" decoding="async" />
+        </picture>
+        <div class="stage-canvas" id="stage-canvas"></div>
+        <p class="stage-brand" aria-hidden="true"><strong>Codex Games</strong><span>AI Native Game Studio</span></p>
+        <button type="button" class="stage-toggle" id="stage-toggle" data-label="toggle3d" aria-label="Animated 3D scene" aria-pressed="false">3D</button>
+      </div>
+      <div class="world-bar" id="world-bar">
+        <div class="world-tabs" role="group" data-label="worlds" aria-label="Choose a world">
+          <button type="button" class="world-tab star" data-world="0" data-href="https://g.ismayday.mobi/star_fighter/" aria-pressed="true"><i aria-hidden="true"></i><span class="zh">星际突击队</span><span class="en">Star Fighter</span></button>
+          <button type="button" class="world-tab soul" data-world="1" data-href="https://g.ismayday.mobi/soulmate/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">心动陪伴</span><span class="en">Soulmate</span></button>
+          <button type="button" class="world-tab tavern" data-world="2" data-href="https://g.ismayday.mobi/tavern/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">武侠酒馆</span><span class="en">Wulin Tavern</span></button>
+          <button type="button" class="world-tab journey" data-world="3" data-href="https://g.ismayday.mobi/journey/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">西游取经棋</span><span class="en">Journey Ludo</span></button>
+          <button type="button" class="world-tab garden" data-world="4" data-href="https://g.ismayday.mobi/garden/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">治愈花园</span><span class="en">Garden Match</span></button>
+          <button type="button" class="world-tab stack" data-world="5" data-href="https://g.ismayday.mobi/stack/" aria-pressed="false"><i aria-hidden="true"></i><span class="zh">萌宠叠叠消</span><span class="en">StackPop</span></button>
+        </div>
+        <a class="world-play" id="world-play" href="https://g.ismayday.mobi/star_fighter/" data-active="0"><span class="zh">进入</span><span class="en">Play</span> <span data-w="0"><span class="zh">星际突击队</span><span class="en">Star Fighter</span></span><span data-w="1"><span class="zh">心动陪伴</span><span class="en">Soulmate</span></span><span data-w="2"><span class="zh">武侠酒馆</span><span class="en">Wulin Tavern</span></span><span data-w="3"><span class="zh">西游取经棋</span><span class="en">Journey Ludo</span></span><span data-w="4"><span class="zh">治愈花园</span><span class="en">Garden Match</span></span><span data-w="5"><span class="zh">萌宠叠叠消</span><span class="en">StackPop</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></a>
+      </div>
+      <div class="intro-copy">
+        <p class="intro-line"><span class="zh">六个小世界，等你来玩。</span><span class="en">Six small worlds. Find your escape.</span></p>
+        <p class="lead"><span class="zh">由 Seta Chen 与 Codex 一起打磨的六款原创 AI Native 游戏。热血、温柔、江湖与小小的快乐，都在这里。</span><span class="en">Six original AI Native games by Seta Chen, crafted with Codex. A little adventure, a quiet connection, and small moments of joy.</span></p>
+      </div>
+    </section>
+
+    <section class="catalog" id="games" tabindex="-1" aria-labelledby="games-title">
+      <div class="catalog-head">
+        <h2 id="games-title"><span class="zh">游戏作品</span><span class="en">The Collection</span> <span class="count" aria-hidden="true">/ 06</span></h2>
+        <p class="catalog-note"><span class="zh">在浏览器里，随时开玩。</span><span class="en">A little play, right in your browser.</span></p>
+      </div>
+      <div class="showcase">
+        <article class="game-card star">
+          <a class="game-entry" href="https://g.ismayday.mobi/star_fighter/" aria-labelledby="star-title">
+            <picture class="game-art">
+              <img src="images/promo/home-v2/star-fighter-960.webp" srcset="images/promo/home-v2/star-fighter-480.webp 480w, images/promo/home-v2/star-fighter-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" loading="lazy" decoding="async" />
+            </picture>
+            <div class="game-copy">
+              <span class="tagline"><span class="zh">霓虹弹幕 / 热血街机</span><span class="en">Neon action / Arcade</span></span>
+              <h3 id="star-title"><span class="zh">星际突击队</span><span class="en">Star Fighter</span></h3>
+              <p><span class="zh">穿过密集弹幕，捡起下一次火力升级，在 Boss 逼近前找到生路。危急时刻，用欧米伽脉冲清出一条路。</span><span class="en">Dodge the barrage, chase the next power-up, and face the boss. When space runs out, unleash Omega Blast and carve your way through.</span></p>
+              <div class="meta"><span class="chip"><span class="zh">弹幕射击</span><span class="en">Bullet dodging</span></span><span class="chip"><span class="zh">Boss 对决</span><span class="en">Boss battles</span></span></div>
+              <div class="card-actions"><span class="play"><span class="zh">立即出击</span><span class="en">Launch</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></div>
+            </div>
+          </a>
+        </article>
+        <article class="game-card soul">
+          <a class="game-entry" href="https://g.ismayday.mobi/soulmate/" aria-labelledby="soul-title">
+            <picture class="game-art">
+              <img src="images/promo/home-v2/soulmate-960.webp" srcset="images/promo/home-v2/soulmate-480.webp 480w, images/promo/home-v2/soulmate-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" loading="lazy" decoding="async" />
+            </picture>
+            <div class="game-copy">
+              <span class="tagline"><span class="zh">心动日常 / 温柔陪伴</span><span class="en">Quiet moments / Companionship</span></span>
+              <h3 id="soul-title"><span class="zh">心动陪伴</span><span class="en">Soulmate</span></h3>
+              <p><span class="zh">聊几句心事，等一个微笑，要一个抱抱，或听她轻轻说晚安。一个只属于你们的小房间，一段不用赶时间的日常。</span><span class="en">Share a thought, wait for a smile, ask for a hug, or hear a soft good night. A private little room, and a moment made just for two.</span></p>
+              <div class="meta"><span class="chip"><span class="zh">聊天互动</span><span class="en">Heart-to-heart</span></span><span class="chip"><span class="zh">日常陪伴</span><span class="en">Everyday connection</span></span></div>
+              <div class="card-actions"><span class="play"><span class="zh">开始陪伴</span><span class="en">Stay Close</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></div>
+            </div>
+          </a>
+        </article>
+        <article class="game-card tavern">
+          <a class="game-entry" href="https://g.ismayday.mobi/tavern/" aria-labelledby="tavern-title">
+            <picture class="game-art">
+              <img src="images/promo/home-v2/wulin-tavern-960.webp" srcset="images/promo/home-v2/wulin-tavern-480.webp 480w, images/promo/home-v2/wulin-tavern-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" loading="lazy" decoding="async" />
+            </picture>
+            <div class="game-copy">
+              <span class="tagline"><span class="zh">大侠拼桌 / 江湖奇遇</span><span class="en">Wuxia tales / Unexpected encounters</span></span>
+              <h3 id="tavern-title"><span class="zh">武侠酒馆</span><span class="en">Wulin Tavern</span></h3>
+              <p><span class="zh">推门就是一桌新故事。大侠拼酒，旧闻翻篇，妙语接连上菜。坐下来，看看今晚谁会把江湖聊成一场名场面。</span><span class="en">A new table, a new story. Heroes trade drinks, rumors, and sharp replies. Pull up a chair and see who steals the scene tonight.</span></p>
+              <div class="meta"><span class="chip"><span class="zh">江湖故事</span><span class="en">Tavern stories</span></span><span class="chip"><span class="zh">角色奇遇</span><span class="en">Hero encounters</span></span></div>
+              <div class="card-actions"><span class="play"><span class="zh">入座听书</span><span class="en">Take a Seat</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></div>
+            </div>
+          </a>
+        </article>
+        <article class="game-card journey">
+          <a class="game-entry" href="https://g.ismayday.mobi/journey/" aria-labelledby="journey-title">
+            <picture class="game-art">
+              <img src="images/promo/home-v2/journey-ludo-960.webp" srcset="images/promo/home-v2/journey-ludo-480.webp 480w, images/promo/home-v2/journey-ludo-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" loading="lazy" decoding="async" />
+            </picture>
+            <div class="game-copy">
+              <span class="tagline"><span class="zh">一掷翻盘 / 西游棋盘</span><span class="en">Lucky rolls / A journey west</span></span>
+              <h3 id="journey-title"><span class="zh">西游取经棋</span><span class="en">Journey Ludo</span></h3>
+              <p><span class="zh">选一位取经人，与三位 AI 同伴一路向西。一颗骰子就能改写领先，下一格可能是奇遇，也可能让你重整旗鼓。</span><span class="en">Pick your pilgrim and race three AI companions west. One roll can rewrite the lead. Will the next tile bring a blessing or beautiful trouble?</span></p>
+              <div class="meta"><span class="chip"><span class="zh">骰子竞速</span><span class="en">Dice racing</span></span><span class="chip"><span class="zh">随机奇遇</span><span class="en">Surprise events</span></span></div>
+              <div class="card-actions"><span class="play"><span class="zh">启程西行</span><span class="en">Start the Journey</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></div>
+            </div>
+          </a>
+        </article>
+        <article class="game-card garden">
+          <a class="game-entry" href="https://g.ismayday.mobi/garden/" aria-labelledby="garden-title">
+            <picture class="game-art">
+              <img src="images/promo/home-v2/garden-match-960.webp" srcset="images/promo/home-v2/garden-match-480.webp 480w, images/promo/home-v2/garden-match-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" loading="lazy" decoding="async" />
+            </picture>
+            <div class="game-copy">
+              <span class="tagline"><span class="zh">轻松三消 / 萌宠相伴</span><span class="en">Cozy matching / A garden to grow</span></span>
+              <h3 id="garden-title"><span class="zh">治愈花园</span><span class="en">Garden Match</span></h3>
+              <p><span class="zh">让旺财陪你玩一局不催促的三消。触发连锁，慢慢完成目标，再把每次通关变成花园里新长出的一点风景。</span><span class="en">Match at an easy pace with Wangcai beside you. Set off a cascade, clear a little goal, and watch your garden grow with every win.</span></p>
+              <div class="meta"><span class="chip"><span class="zh">治愈三消</span><span class="en">Gentle match-3</span></span><span class="chip"><span class="zh">花园成长</span><span class="en">Garden growth</span></span></div>
+              <div class="card-actions"><span class="play"><span class="zh">去花园玩</span><span class="en">Visit the Garden</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></div>
+            </div>
+          </a>
+        </article>
+        <article class="game-card stack">
+          <a class="game-entry" href="https://g.ismayday.mobi/stack/" aria-labelledby="stack-title">
+            <picture class="game-art">
+              <img src="images/promo/home-v2/stackpop-960.webp" srcset="images/promo/home-v2/stackpop-480.webp 480w, images/promo/home-v2/stackpop-960.webp 960w" sizes="(max-width: 599px) calc(100vw - 34px), (max-width: 759px) calc((100vw - 62px) / 2), (max-width: 1099px) calc((100vw - 86px) / 2), (max-width: 1264px) calc((100vw - 118px) / 3), 382px" width="960" height="640" alt="" loading="lazy" decoding="async" />
+            </picture>
+            <div class="game-copy">
+              <span class="tagline"><span class="zh">七格取舍 / 三连解压</span><span class="en">Seven slots / One satisfying pop</span></span>
+              <h3 id="stack-title"><span class="zh">萌宠叠叠消</span><span class="en">StackPop</span></h3>
+              <p><span class="zh">从层层牌堆中选一枚，放进七格暂存槽。凑齐三枚同类，“啪”地清空。每一步都在赌空间，也在等下一次松一口气。</span><span class="en">Pick a tile, save a slot, and line up three of a kind. Every move is a little bet on space, until the next pop lets you breathe again.</span></p>
+              <div class="meta"><span class="chip"><span class="zh">三枚配对</span><span class="en">Triple matching</span></span><span class="chip"><span class="zh">20 个关卡</span><span class="en">20 levels</span></span></div>
+              <div class="card-actions"><span class="play"><span class="zh">开始叠消</span><span class="en">Pop the Stack</span></span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#arrow-up-right"></use></svg></div>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section mood-section" id="moods" aria-labelledby="moods-title">
+      <div class="section-head">
+        <div><p class="section-index">01 / <span class="zh">跟着心情走</span><span class="en">Follow your mood</span></p><h2 id="moods-title"><span class="zh">六种心情，六种打开方式</span><span class="en">Six moods, six ways to play</span></h2></div>
+        <p><span class="zh">想追一阵热血、留在温柔里、入席江湖、让骰子带路、慢慢种花，或再来一次漂亮的三连？挑一种心情，直接开玩。</span><span class="en">Chasing a rush, a quiet connection, jianghu banter, a lucky roll, a garden to tend, or one more satisfying clear? Follow the feeling.</span></p>
+      </div>
+      <div class="details-grid">
+        <a class="detail star" href="https://g.ismayday.mobi/star_fighter/"><span class="detail-game">Star Fighter</span><strong><span class="zh">越战越上头</span><span class="en">Chase the Rush</span></strong><p><span class="zh">穿过弹幕，抢下强化。每次坠落，都只会让下一局来得更快。</span><span class="en">Thread through the fire and grab the next upgrade. Every crash makes another run harder to resist.</span></p></a>
+        <a class="detail soul" href="https://g.ismayday.mobi/soulmate/"><span class="detail-game">Soulmate</span><strong><span class="zh">留在温柔里</span><span class="en">Stay a Little Longer</span></strong><p><span class="zh">聊几句心事，听一句晚安。这里没有催促，只有陪你慢下来的日常。</span><span class="en">Share a thought or hear a soft good night. Nothing rushes you here; it is simply a quiet moment for two.</span></p></a>
+        <a class="detail tavern" href="https://g.ismayday.mobi/tavern/"><span class="detail-game">Wulin Tavern</span><strong><span class="zh">入席江湖</span><span class="en">Pull Up a Chair</span></strong><p><span class="zh">大侠拼桌，妙语上菜。坐下来，看看今晚的江湖会聊到哪里。</span><span class="en">Wandering heroes, old rumors, and replies sharp enough to steal the scene. See where tonight leads.</span></p></a>
+        <a class="detail journey" href="https://g.ismayday.mobi/journey/"><span class="detail-game">Journey Ludo</span><strong><span class="zh">让骰子带路</span><span class="en">Let Luck Lead</span></strong><p><span class="zh">一掷改写领先。下一格是奇遇，还是意料之外的翻车？</span><span class="en">One roll can rewrite the lead. The next tile may be a blessing or beautiful trouble.</span></p></a>
+        <a class="detail garden" href="https://g.ismayday.mobi/garden/"><span class="detail-game">Garden Match</span><strong><span class="zh">慢慢种出好心情</span><span class="en">Grow at Your Own Pace</span></strong><p><span class="zh">旺财陪你三消，花园悄悄长大。不赶时间，只收集今天的一点好心情。</span><span class="en">Match with Wangcai and watch the garden grow. No hurry, just a little progress for today.</span></p></a>
+        <a class="detail stack" href="https://g.ismayday.mobi/stack/"><span class="detail-game">StackPop</span><strong><span class="zh">七格之间，步步取舍</span><span class="en">Make Every Slot Count</span></strong><p><span class="zh">留对位置，等三枚同类一起清空，压力也跟着消失。</span><span class="en">Save the right space, line up a triple, and feel the puzzle exhale with the pop.</span></p></a>
+      </div>
+    </section>
+
+    <section class="section" id="process" aria-labelledby="flow-title">
+      <div class="flow-copy">
+        <div>
+          <p class="section-index">02 / <span class="zh">AI Native 创作</span><span class="en">AI Native creation</span></p>
+          <h2 id="flow-title"><span class="zh">让想象，成为游戏</span><span class="en">From imagination to play</span></h2>
+          <p><span class="zh">从一个“想玩这样的游戏”的念头出发，与 AI 一起搭世界、试玩法、画角色、写代码。人来决定什么值得做，再用真实的试玩，把一个想法慢慢打磨成值得再来一局的体验。</span><span class="en">It starts with a game we wish existed. With AI, we shape its world, explore the mechanics, create the art, and write the code. People choose the direction; real play turns the idea into something worth coming back to.</span></p>
+        </div>
+        <div class="flow-note"><span class="zh">人定方向，AI 协作，每次试玩都更进一步。</span><span class="en">Human direction. AI collaboration. Better with every playtest.</span></div>
+      </div>
+      <figure class="flow-visual">
+        <a id="flow-link" class="flow-image-link" href="images/promo/home-v3/creation-flow-en.jpg" target="_blank" rel="noopener" aria-label="Open the full-size English game creation illustration">
+          <img id="flow-image" src="images/promo/home-v3/creation-flow-en-1600.webp" srcset="images/promo/home-v3/creation-flow-en-800.webp 800w, images/promo/home-v3/creation-flow-en-1600.webp 1600w" sizes="(max-width: 599px) calc(100vw - 32px), (max-width: 759px) calc(100vw - 40px), (max-width: 1264px) calc(100vw - 64px), 1200px" width="1600" height="900" alt="From imagination to play: Idea, World, Prototype, Art &amp; Code, Playtest, Launch &amp; Grow. Play, learn, and refine." loading="lazy" decoding="async" />
+        </a>
+      </figure>
+      <ol class="flow-steps" role="list">
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">01</span><h3><span class="zh">灵感</span><span class="en">Idea</span></h3></div><p><span class="zh">从一种想留下的心情，找到一个值得开玩的点子。</span><span class="en">Find a feeling we want to share, and an idea worth playing.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">02</span><h3><span class="zh">世界</span><span class="en">World</span></h3></div><p><span class="zh">让角色、故事与规则，组成一个有自己气质的小世界。</span><span class="en">Give the characters, story, and rules a world of their own.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">03</span><h3><span class="zh">原型</span><span class="en">Prototype</span></h3></div><p><span class="zh">先把核心玩法做出来，亲手试试它有没有趣。</span><span class="en">Build the smallest playable version and see if the fun is there.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">04</span><h3><span class="zh">美术与代码</span><span class="en">Art &amp; Code</span></h3></div><p><span class="zh">与 AI 一起，让画面、声音和交互贴合这款游戏的心情。</span><span class="en">Create with AI until the visuals, sound, and interactions feel like this game.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">05</span><h3><span class="zh">试玩</span><span class="en">Playtest</span></h3></div><p><span class="zh">在手机和电脑上亲自试玩，发现不顺手的地方，反复打磨。</span><span class="en">Play on phones and desktops. Notice the friction, then refine it.</span></p></li>
+        <li><div class="flow-step-title"><span class="flow-number" aria-hidden="true">06</span><h3><span class="zh">上线与成长</span><span class="en">Launch &amp; Grow</span></h3></div><p><span class="zh">把游戏交给玩家，让真实的反馈成为下一轮创作的起点。</span><span class="en">Let people play. Their feedback starts the next round of creation.</span></p></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <span><span class="zh">用 Codex 创作，让想象可以开玩。</span><span class="en">Crafted with Codex. Made to be played.</span></span>
+    <div class="records" data-label="credits" aria-label="Author and ICP filing information">
+      <a class="author" href="https://ismayday.mobi/" rel="noopener">Seta Chen</a>
+      <a href="https://beian.miit.gov.cn/" rel="noopener">京ICP备18049801号</a>
+      <a href="https://beian.miit.gov.cn/" rel="noopener">京ICP备18049801号-1</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const buttons = [...document.querySelectorAll("[data-set-lang]")];
+      const labels = {
+        en: { home: "Codex Games home", navigation: "Primary navigation", language: "Language", credits: "Author and ICP filing information", worlds: "Choose a world", toggle3d: "Animated 3D scene" },
+        zh: { home: "Codex Games 首页", navigation: "主导航", language: "语言", credits: "作者与网站备案信息", worlds: "选择一个世界", toggle3d: "3D 动态场景" }
+      };
+      const flowImage = document.getElementById("flow-image");
+      const flowLink = document.getElementById("flow-link");
+      const studioImage = document.getElementById("studio-image");
+      const description = document.querySelector('meta[name="description"]');
+
+      function setLanguage(value, persist = false) {
+        const lang = value === "zh" ? "zh" : "en";
+        root.dataset.lang = lang;
+        root.lang = lang === "zh" ? "zh-CN" : "en";
+        buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.setLang === lang)));
+        document.querySelectorAll("[data-label]").forEach(element => {
+          element.setAttribute("aria-label", labels[lang][element.dataset.label]);
+        });
+        const suffix = lang === "zh" ? "cn" : "en";
+        const flowBase = "images/promo/home-v3/creation-flow-" + suffix;
+        const imageSource = flowBase + "-1600.webp";
+        if (flowImage.getAttribute("src") !== imageSource) {
+          flowImage.srcset = flowBase + "-800.webp 800w, " + imageSource + " 1600w";
+          flowImage.src = imageSource;
+        }
+        flowImage.alt = lang === "zh"
+          ? "让想象，成为游戏：灵感、世界、原型、美术与代码、试玩、上线与成长。试玩、反馈、打磨，持续迭代。"
+          : "From imagination to play: Idea, World, Prototype, Art & Code, Playtest, Launch & Grow. Play, learn, and refine.";
+        flowLink.href = flowBase + ".jpg";
+        flowLink.setAttribute("aria-label", lang === "zh" ? "打开中文版游戏创作流程大图" : "Open the full-size English game creation illustration");
+        studioImage.alt = lang === "zh"
+          ? "Codex Games 六款游戏合集：深空战斗、心动陪伴、江湖酒馆、西游冒险、治愈花园与叠消拼图。"
+          : "Codex Games: space battles, a quiet companion, a wuxia tavern, a journey west, a growing garden, and colorful tile puzzles.";
+        description.content = lang === "zh"
+          ? "六款原创 AI Native 浏览器游戏：星际突击队、心动陪伴、武侠酒馆、西游取经棋、治愈花园、萌宠叠叠消。由 Seta Chen 与 Codex 一起打磨。"
+          : "Six original AI Native browser games. Find your next escape in Star Fighter, Soulmate, Wulin Tavern, Journey Ludo, Garden Match, and StackPop.";
+        if (persist) {
+          try { localStorage.setItem("codex-games-lang", lang); } catch { /* Storage is optional. */ }
+        }
+      }
+
+      buttons.forEach(button => button.addEventListener("click", () => setLanguage(button.dataset.setLang, true)));
+      window.addEventListener("storage", event => {
+        if (event.key === "codex-games-lang") setLanguage(event.newValue);
+      });
+      setLanguage(root.dataset.lang);
+    })();
+  </script>
+  <script type="module">
+    const root = document.documentElement;
+    const host = document.getElementById("stage-canvas");
+    const toggle = document.getElementById("stage-toggle");
+    const playLink = document.getElementById("world-play");
+    const tabs = [...document.querySelectorAll("[data-world]")];
+    const cards = [...document.querySelectorAll(".showcase .game-card")];
+    let stage = null;
+    let loading = false;
+    let current = 0;
+    let userChose = false;
+    let autoplay = 0;
+
+    function select(index, fromUser) {
+      current = index;
+      tabs.forEach((tab, k) => tab.setAttribute("aria-pressed", String(k === index)));
+      playLink.dataset.active = String(index);
+      playLink.href = tabs[index].dataset.href;
+      stage?.select(index);
+      if (fromUser) userChose = true;
+    }
+
+    function stop(reason) {
+      clearInterval(autoplay);
+      stage?.destroy();
+      stage = null;
+      root.classList.remove("is-3d");
+      toggle.setAttribute("aria-pressed", "false");
+      // Anything but a user switch-off means this device should keep the poster layout.
+      if (reason !== "user") root.classList.remove("can-3d");
+    }
+
+    async function start() {
+      if (stage || loading) return;
+      loading = true;
+      toggle.setAttribute("aria-pressed", "true");
+      try {
+        const { createStage } = await import("./home-3d/stage.js");
+        const tier = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 760 ? "low" : "high";
+        const created = await createStage({
+          host,
+          tier,
+          assets: {
+            sky: tier === "low" ? "images/promo/home-3d/sky-backdrop-v1-1024.webp" : "images/promo/home-3d/sky-backdrop-v1-1600.webp",
+            tiles: "images/promo/home-3d/stack-tiles-v1-512.webp"
+          },
+          onPick(index) {
+            if (index === current) window.location.href = tabs[index].dataset.href;
+            else select(index, true);
+          }
+        });
+        if (!root.classList.contains("can-3d")) { created.destroy(); return; }
+        stage = created;
+        stage.onFail = reason => stop(reason);
+        stage.select(current);
+        stage.start();
+        root.classList.add("is-3d");
+        autoplay = setInterval(() => {
+          if (!userChose && !document.hidden) select((current + 1) % tabs.length, false);
+        }, 6500);
+      } catch (error) {
+        console.warn("3D stage unavailable; keeping the poster.", error);
+        stop("error");
+      } finally {
+        loading = false;
+      }
+    }
+
+    tabs.forEach((tab, index) => tab.addEventListener("click", () => select(index, true)));
+    cards.forEach((card, index) => {
+      card.addEventListener("pointerenter", () => { if (stage) select(index, false); });
+      card.addEventListener("focusin", () => { if (stage) select(index, false); });
+    });
+    toggle.addEventListener("click", () => {
+      const on = !(stage || loading);
+      try { localStorage.setItem("codex-games-3d", on ? "on" : "off"); } catch { /* Preference is optional. */ }
+      if (on) { root.classList.add("can-3d"); start(); }
+      else { root.classList.remove("can-3d"); stop("user"); }
+    });
+
+    if (root.classList.contains("can-3d")) {
+      const boot = () => ("requestIdleCallback" in window ? requestIdleCallback(start, { timeout: 1200 }) : setTimeout(start, 200));
+      document.readyState === "complete" ? boot() : window.addEventListener("load", boot, { once: true });
+    }
+  </script>
+</body>
+</html>
