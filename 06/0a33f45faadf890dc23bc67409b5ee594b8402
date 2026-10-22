@@ -1,0 +1,78 @@
+images/promo/home-3d/README.md
+  s_21f0fa7d02fd47::t_4fe9444a18e2a8 1-29
+home-3d/stage.js
+  s_21f0fa7d02fd47::t_3caef11b4fdf96 17,29,237,240,243,1015-1017
+  s_21f0fa7d02fd47::t_ce7bcbd91deb1e 244-245
+  s_21f0fa7d02fd47::t_f1ddc48f2efb86 734-736
+  s_21f0fa7d02fd47::t_0b8286a994267b 887
+  s_21f0fa7d02fd47::t_0d8380c5ddf299 387-391,395,397
+  s_21f0fa7d02fd47::t_95072251f2677a 33-34
+  s_21f0fa7d02fd47::t_b733b3e18fbc4c 60,86,177,179,325,356,360,969,997-999
+  s_21f0fa7d02fd47::t_dddcbb5dd81b97 606-607,610-611,613
+  s_21f0fa7d02fd47::t_8103f40c4b4c8b 7-13
+  s_21f0fa7d02fd47::t_3e8baae51edc63 1-6,14-16,18-28,31-32,35-59,61-83,88,90-93,95-170,205,207-217,219-236,238-239,241-242,246-256,262-269,271-285,404-605,608-609,612,614-616,618-733,737-886,888-914,916-962,984-992,1001-1013,1018-1029,1034-1092,1094-1109,1113-1136,1138-1154,1156-1176,1178-1184
+  s_21f0fa7d02fd47::t_b86eb4ac5d1538 94
+  s_21f0fa7d02fd47::t_6c2aa33f1f0ac6 257-261
+  s_21f0fa7d02fd47::t_b8bcf1e1ff7b05 270
+  s_21f0fa7d02fd47::t_746e1949b86d72 171-176,178,180-204,206
+  s_21f0fa7d02fd47::t_1c596615dd9175 286-324,326-355,357-359,361-386,392-394,396,398-403
+  s_21f0fa7d02fd47::t_a813132e2cde4b 915
+  s_21f0fa7d02fd47::t_aa92274a94c29c 976-981,1111,1177
+  s_21f0fa7d02fd47::t_5d85301e7a387f 84-85,87,89
+  s_21f0fa7d02fd47::t_a957ab6545a400 218
+  s_21f0fa7d02fd47::t_a21fb0264efd1f 617,963-968,970-975,982-983,993-996,1000,1014,1030-1033,1093,1110,1112,1137,1155
+  s_21f0fa7d02fd47::t_d66f0764d45fc3 30
+index_new.html
+  s_21f0fa7d02fd47::t_3caef11b4fdf96 143-146,148,296-297
+  s_21f0fa7d02fd47::t_31384f906c6f2b 147
+  s_21f0fa7d02fd47::t_aa92274a94c29c 120-123
+  s_21f0fa7d02fd47::t_690ba73c81448a 1-119,124-142,149-295,298-650
+home-3d/vendor/LICENSE
+  s_21f0fa7d02fd47::t_55190279ebe276 1-21
+home-3d/vendor/RoomEnvironment.js
+  s_21f0fa7d02fd47::t_b2f853a77ec56f 1-144
+home-3d/vendor/RoundedBoxGeometry.js
+  s_21f0fa7d02fd47::t_4131f0f89dc58b 1-155
+home-3d/vendor/postprocessing/EffectComposer.js
+  s_21f0fa7d02fd47::t_1de0db010249c5 1-231
+home-3d/vendor/postprocessing/MaskPass.js
+  s_21f0fa7d02fd47::t_8c8c5dee4d7d11 1-104
+home-3d/vendor/postprocessing/OutputPass.js
+  s_21f0fa7d02fd47::t_1ce307784c73e6 1-97
+home-3d/vendor/postprocessing/Pass.js
+  s_21f0fa7d02fd47::t_05f078819e589b 1-95
+home-3d/vendor/postprocessing/RenderPass.js
+  s_21f0fa7d02fd47::t_11e07e4642b129 1-99
+home-3d/vendor/postprocessing/ShaderPass.js
+  s_21f0fa7d02fd47::t_9930dc1347fe6e 1-77
+home-3d/vendor/postprocessing/UnrealBloomPass.js
+  s_21f0fa7d02fd47::t_dbabf9a910781c 1-415
+home-3d/vendor/shaders/CopyShader.js
+  s_21f0fa7d02fd47::t_c51c4b7419c074 1-45
+home-3d/vendor/shaders/HorizontalTiltShiftShader.js
+  s_21f0fa7d02fd47::t_71d91b1ac25301 1-63
+home-3d/vendor/shaders/LuminosityHighPassShader.js
+  s_21f0fa7d02fd47::t_8ce57447a57839 1-64
+home-3d/vendor/shaders/OutputShader.js
+  s_21f0fa7d02fd47::t_9fd3f0c9abd9ea 1-85
+home-3d/vendor/shaders/VerticalTiltShiftShader.js
+  s_21f0fa7d02fd47::t_45deb87220e902 1-63
+home-3d/vendor/three.module.min.js
+  s_21f0fa7d02fd47::t_76e07192b4e135 1-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "060a33f45faadf890dc23bc67409b5ee594b8402",
+  "prompts": {},
+  "sessions": {
+    "s_21f0fa7d02fd47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3257aa24-dcea-4b05-ab2b-3fb31cf4ac83",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Kevin <kevinchenkai@126.com>"
+    }
+  }
+}
